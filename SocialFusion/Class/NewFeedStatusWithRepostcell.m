@@ -12,28 +12,52 @@
 @implementation NewFeedStatusWithRepostcell
 
 
-@synthesize repostUserName = _repostUserName;
-@synthesize repostAreaButton = _repostAreaButton;
-@synthesize repostAreaButtonCursor = _repostAreaButtonCursor;
-@synthesize repostStatus = _repostStatus;
 
 
 - (void)dealloc
 {
     
-    [_repostUserName release];
-    [_repostAreaButton release];
-    [_repostStatus release];
-    
 
-    [_repostAreaButtonCursor release];
     
     [super dealloc];
 }
 
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
+    
+    
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[(NewFeedData*)_feedData getPostMessage]]];
+    int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+    self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+    
+    
+    
+    _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+}
+
+
 -(void)configureCell:(NewFeedData*)feedData
 {
 
+  
+    
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcell" ofType:@"html"];
+    NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
+    
+   //  _webView.userInteractionEnabled=NO;
+    _webView.delegate=self;
+   
+    _webView.scrollView.scrollEnabled=FALSE;
+    
+    _feedData=feedData;
+    /*
     [super configureCell:feedData];
 
      [_picView setImage:nil];
@@ -117,7 +141,7 @@
     
 
     
-    
+    */
 }
 
 

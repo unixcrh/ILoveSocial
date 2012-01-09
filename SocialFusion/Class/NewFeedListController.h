@@ -20,7 +20,7 @@
 #import "NewFeedStatusWithRepostcell.h"
 #import "NewFeedBlogCell.h"
 #import "NewFeedDetailViewCell.h"
-@interface NewFeedListController : EGOTableViewController {
+@interface NewFeedListController : EGOTableViewController<UIWebViewDelegate> {
     
     
     
@@ -39,10 +39,14 @@
     int _pageNumber;
     
     
+
+    
+    
 }
 
 
 
+-(void)exposeCell:(NSIndexPath*)indexPath;
 
 -(IBAction)gotoRepostStatus:(id)sender;
 -(IBAction)resetToNormalList;

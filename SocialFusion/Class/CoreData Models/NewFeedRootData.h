@@ -2,8 +2,8 @@
 //  NewFeedRootData.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-21.
-//  Copyright (c) 2011年 TJU. All rights reserved.
+//  Created by He Ruoyun on 12-1-6.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * owner_Name;
 @property (nonatomic, retain) NSDate * update_Time;
 @property (nonatomic, retain) NSString * owner_Head;
+@property (nonatomic, retain) NSNumber * cellheight;
 @property (nonatomic, retain) User *owner;
 @property (nonatomic, retain) NSSet *comments;
 @end

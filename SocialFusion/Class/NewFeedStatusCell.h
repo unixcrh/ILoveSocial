@@ -8,37 +8,34 @@
 
 #import <UIKit/UIKit.h>
 #import "NewFeedData+NewFeedData_Addition.h"
-
-@interface NewFeedStatusCell : UITableViewCell {
+#import "NewFeedRootData+NewFeedRootData_Addition.h"
+@class NewFeedListController;
+@interface NewFeedStatusCell : UITableViewCell<UIWebViewDelegate> {
     NewFeedRootData* _feedData;
-    CGPoint _beginPoint;
-    BOOL _buttonViewShowed;
-    IBOutlet UIView* _buttonView;
-    IBOutlet UIImageView* _styleView;
-    IBOutlet UILabel* _commentCount;
    
     
+    NewFeedListController* _listController;
     
-    UIImageView* _picView;
+
+    
+
+    
+    IBOutlet UIWebView* _webView;
     
     
-    
-    UIImageView* _defaultHeadImageView;
-    UIImageView* _headImageView;
-    UIButton* _userName;
-    UILabel* _status;
-    UILabel* _time;
+
 }
 
-@property(nonatomic, retain) IBOutlet UIImageView* picView;
-@property(nonatomic, retain) IBOutlet UIImageView* defaultHeadImageView;
-@property(nonatomic, retain) IBOutlet UIImageView* headImageView;
-@property(nonatomic, retain) IBOutlet UIButton* userName;
-@property(nonatomic, retain) IBOutlet UILabel* status;
-@property(nonatomic, retain) IBOutlet UILabel* time;
+
+
+
+
+
 
 +(float)heightForCell:(NewFeedData*)feedData;
 -(NewFeedRootData*) getFeedData;
 - (IBAction)cancelButton:(id)sender;
+-(void)setList:(NewFeedListController*)list;
 -(void)configureCell:(NewFeedData*)feedData;
+-(void)exposeCell;
 @end

@@ -8,6 +8,7 @@
 
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
+//#import "CalculateHeight.h"
 @implementation NewFeedData (NewFeedData_Addition)
 
 -(NSString*)getBlog
@@ -97,8 +98,11 @@
 {
     
     
+    return self.message;
     //if (description==nil)
     //description=@"";
+    
+    /*
     NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
     
     
@@ -122,6 +126,7 @@
     
     
     return [tempString stringByAppendingFormat:@":%@",self.message]  ;
+ */
     
 }
 
@@ -222,6 +227,16 @@
                   
         
         result.get_Time=getDate;
+        
+        
+ //       CalculateHeight* calculateHeight=[[CalculateHeight alloc] initWithFeed:result];
+        
+     /*   while ([calculateHeight getHeight]==0)
+        {
+            
+        }
+       */ 
+ 
 
         return result;
         

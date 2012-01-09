@@ -10,8 +10,7 @@
 #import "NewFeedStatusCell.h"
 
 @interface NewFeedBlogCell : NewFeedStatusCell {
-    UILabel* _blog;
+ 
 }
-@property(nonatomic, retain) IBOutlet UILabel* blog;
 
 @end

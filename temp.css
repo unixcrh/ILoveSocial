@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/* CSS Document */
+body{
+		background-color:transparent;
+        width:310px;
+
+}
+
+
+#weibo
+{
+	background-color:#fdf0b9;
+	background-image:url(back.png);
+	font-size:9px;
+	
+}
+#allinfo
+{
+width:310px;
+
+
+}
+
+.headimage{
+	width:50px;
+	height:50px;
+	position:absolute;
+	left: 26px;
+	top: 38px;
+}
+
+#maininfo{
+	position:absolute;
+	left:90px;
+	top:42px;
+	width:229px;
+}
+
+.title{
+	color:#4F7992;
+	font-size:16px;
+	font-weight: bold;	
+}
+.name{
+	color:#4F7992;
+}
+
+.time{
+	color:#828165;
+	font-size:7px;
+	text-align:right;
+right:0px;
+top:5px;
+	position:absolute;
+}
+
+#repost{
+	background-color:#fdf0b9;
+	border-style:outset;
+	border-bottom-style:none;
+	border-width:2px;
+	position:relative;
+	left:15px;
+	top:15px;
+	width:200px;
+}

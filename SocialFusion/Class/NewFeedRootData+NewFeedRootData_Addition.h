@@ -12,6 +12,7 @@
 + (NewFeedRootData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedRootData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getFeedName;
+
 -(NSString*)getHeadURL;
 -(NSDate*)getDate;
 -(NSString*)getActor_ID;

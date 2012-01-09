@@ -10,16 +10,18 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
 #import "NewFeedBlog.h"
-
+#import "NewFeedListController.h"
 @implementation NewFeedStatusCell
 
+/*
 @synthesize defaultHeadImageView = _defaultHeadImageView;
 @synthesize headImageView = _headImageView;
 @synthesize userName = _userName;
 @synthesize status = _status;
 @synthesize time = _time;
 @synthesize picView=_picView;
-- (void)awakeFromNib
+*/
+ - (void)awakeFromNib
 {
     /*self.defaultHeadImageView.layer.masksToBounds = YES;
     self.defaultHeadImageView.layer.cornerRadius = 5.0f;  
@@ -30,14 +32,17 @@
 
 - (void)dealloc {
     //NSLog(@"Friend List Cell Dealloc");
+    /*
     [_defaultHeadImageView release];
     [_headImageView release];
     [_userName release];
     [_status release];
     [_time release];
+    */
     
     
-
+    _webView.delegate=nil;
+    
     
     [super dealloc];
 }
@@ -53,58 +58,51 @@
         {
             NSString* tempString=[feedData getName];
             CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
                                       constrainedToSize:size];
             
             
-            if (feedData.pic_URL==nil)
-            {
-                if (labelSize.height<50)
-                {
-                    return 70;
-                }
-                
-                return labelSize.height+20;
-            }
-            else
-            {
-                return labelSize.height+110;
-            }
+
+                return labelSize.height*1.45+85;
+            
         }
         else
         {
             NSString* tempString=[feedData getName];
             CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
                                       constrainedToSize:size];
             
             
             NSString* tempString1=[feedData getPostMessage];
             CGSize size1 = CGSizeMake(200, 1000);
-            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Courier New" size:12]
+            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
                                         constrainedToSize:size1];
-            return labelSize.height+labelSize1.height+50;
+            return (labelSize.height+labelSize1.height)*1.45+85;
         }
     }
+    
     else if ([feedData class]==[NewFeedBlog class] )
     {
         NSString* tempString=[feedData getName];
         CGSize size = CGSizeMake(212, 1000);
-        CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+        CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
                                   constrainedToSize:size];
         
         
         NSString* tempString1=[feedData getBlog];
-        CGSize size1 = CGSizeMake(212, 1000);
-        CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Courier New" size:12]
+        CGSize size1 = CGSizeMake(200, 1000);
+        CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
                                     constrainedToSize:size1];
-        return labelSize.height+labelSize1.height+30;
+        return (labelSize.height+labelSize1.height)*1.45+85;
         
         
     }
+     
     return 0;
     
     
+ 
 }
 
 
@@ -114,7 +112,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _buttonViewShowed=NO;
+    //    _buttonViewShowed=NO;
     }
     return self;
 }
@@ -126,7 +124,7 @@
     //NSLog(@"highlight:%d", highlighted);
     if(highlighted == NO && self.selected == YES)
         return;
-    self.userName.highlighted = highlighted;
+ //   self.userName.highlighted = highlighted;
    
 }   
 
@@ -188,13 +186,58 @@
      
 }
 */
+
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     //NSLog(@"selected:%d", selected);
-    self.userName.highlighted = selected;
+   // self.userName.highlighted = selected;
 
 }
 
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
+    
+    
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+
+    int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+    self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+  
+    
+    
+    _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+   
+    
+    
+
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    
+    
+    NSString* tempString=[NSString stringWithFormat:@"%@",[request URL]];
+    if ([tempString isEqualToString:@"file:///Users/RoyHe/Library/Application%20Support/iPhone%20Simulator/5.0/Applications/EBB5A096-6C24-446E-8719-D6CE74B256DE/Pocket%20Social.app/www.baidu.com"])
+    {
+    [self exposeCell];
+        return NO;
+    }
+    return YES;
+}
+-(void)exposeCell
+{
+    
+    NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
+//    [_listController.tableView selectRowAtIndexPath:indexpath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    
+    
+    [_listController exposeCell:indexpath];
+}
+/*
 -(IBAction) cancelButton:(id)sender
 {
     
@@ -216,14 +259,52 @@
     [_buttonView removeFromSuperview];
     _buttonViewShowed=NO;
 }
+ */
+
+
+-(void)setList:(NewFeedListController*)list
+{
+    _listController=list;
+}
+
+
 -(NewFeedRootData*) getFeedData
 {
     return _feedData;
 }
+
+
 -(void)configureCell:(NewFeedData*)feedData
 {
+    //_webView=[[UIWebView alloc] init];
+    
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcell" ofType:@"html"];
+    NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
+    
+    
+    
+   // [_webView removeFromSuperview];
+    _webView.scrollView.scrollEnabled=FALSE;
+    _webView.delegate=self;
+
+    
+   //   [[_webView nextResponder] becomeFirstResponder];
+    
+    
+    //  NSLog(@"%@",a);
+    
+    //NSLog(@"%@",[NSString stringWithFormat:@"setName(abcd)",[feedData getName]]);
+    //[self.contentView addSubview:_webView];
+    //[super addSubview:_webView];
+    
     
     _feedData=feedData;
+    
+    
+    /*
     //  修改人人／weibo小标签
     [_picView setImage:nil];
     if ([feedData getStyle]==0)
@@ -329,7 +410,7 @@
         
 
     }
-    
+    */
   }
 
 
@@ -346,7 +427,7 @@
     //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
  */
-     [_headImageView setImage:image];
+   //  [_headImageView setImage:image];
     
 }
 @end

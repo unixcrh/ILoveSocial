@@ -296,7 +296,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 if (cell == nil) {
                     [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                     cell = _feedStatusCel;
+                  /*  
+              
+*/
                     
+                    //[cell.webview loadRequest:<#(NSURLRequest *)#>]
                 }
             }
             
@@ -325,7 +329,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         
         [cell configureCell:a];
         
-        
+        [cell setList:self];
         
         
         
@@ -334,7 +338,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             imageData = [Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
         }
         if(imageData != nil) {
-            cell.headImageView.image = [UIImage imageWithData:imageData];
+         //   cell.headImageView.image = [UIImage imageWithData:imageData];
         }
         
         if ([a class]==[NewFeedData class])
@@ -346,8 +350,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                     imageData = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
                 }
                 if(imageData != nil) {
-                    cell.picView.image = [UIImage imageWithData:imageData];
-                    cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
+           //         cell.picView.image = [UIImage imageWithData:imageData];
+             //       cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
                 }
             }
         }
@@ -383,12 +387,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
     if (!image)
     {
-        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        [statusCell.headImageView loadImageFromURL:data.owner_Head completion:^{
-            [self showHeadImageAnimation:statusCell.headImageView];
-        } cacheInContext:self.managedObjectContext];
+       // NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+      //  [statusCell.headImageView loadImageFromURL:data.owner_Head completion:^{
+         //   [self showHeadImageAnimation:statusCell.headImageView];
+     //   } cacheInContext:self.managedObjectContext];
     }
     
+    /*
     if ([data class]==[NewFeedData class])
     {
         NewFeedData* data2=(NewFeedData*)data;
@@ -396,14 +401,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         if (!image)
         {
             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            [statusCell.picView loadImageFromURL:data2.pic_URL completion:^{
-                [self showHeadImageAnimation:statusCell.headImageView];
+           // [statusCell.picView loadImageFromURL:data2.pic_URL completion:^{
+       //         [self showHeadImageAnimation:statusCell.headImageView];
                 
-                statusCell.picView.frame=CGRectMake(statusCell.picView.frame.origin.x, statusCell.picView.frame.origin.y,(statusCell.picView.frame.size.height/statusCell.picView.image.size.height)*statusCell.picView.image.size.width, statusCell.picView.frame.size.height);
+         //       statusCell.picView.frame=CGRectMake(statusCell.picView.frame.origin.x, statusCell.picView.frame.origin.y,(statusCell.picView.frame.size.height/statusCell.picView.image.size.height)*statusCell.picView.image.size.width, statusCell.picView.frame.size.height);
                 
             } cacheInContext:self.managedObjectContext];
         }
     }
+     */
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -450,6 +456,21 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
 }
 
+
+-(void)exposeCell:(NSIndexPath*)indexPath
+{
+    [self.tableView cellForRowAtIndexPath:indexPath].selected=false;
+    self.tableView.allowsSelection=false;
+    //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
+    
+    //_openedCell=indexPath.row;
+    _indexPath=[indexPath retain];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    self.tableView.scrollEnabled=FALSE;
+}
+
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -466,6 +487,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     self.tableView.scrollEnabled=FALSE;
     
 }
+ */
 -(IBAction)resetToNormalList
 {
     

@@ -10,18 +10,55 @@
 #import "CommonFunction.h"
 
 @implementation NewFeedBlogCell
-@synthesize blog=_blog;
+
 
 - (void)dealloc
 {
 
-    [_blog release];
         [super dealloc];
 }
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[_feedData getBlog]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+    
+   
+    int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+    self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+    
+    
+    
+    _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+}
+
+
+
 
 -(void)configureCell:(NewFeedData*)feedData
 {
     
+    
+    
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
+    NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
+    
+    _webView.delegate=self;
+    
+    
+    _webView.scrollView.scrollEnabled=NO;
+    
+  //  _webView.userInteractionEnabled=NO;
+    _feedData=feedData;
+
+    
+    
+    
+    /*
     
     [super configureCell:feedData];
     
@@ -66,7 +103,7 @@
     [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
     
     
-
+*/
     
 }
 

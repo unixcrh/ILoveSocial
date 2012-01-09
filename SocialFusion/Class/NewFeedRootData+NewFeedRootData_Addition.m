@@ -9,6 +9,7 @@
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
 #import "User.h"
 #import "WeiboUser+Addition.h"
+//#import "CalculateHeight.h"
 @implementation NewFeedRootData (NewFeedRootData_Addition)
 
 
@@ -61,6 +62,10 @@
 }
 
 
+-(int)getCellHeight
+{
+    return [self.cellheight intValue];
+}
 
 + (NewFeedRootData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -116,6 +121,8 @@
         
         
         result.get_Time=getDate;
+        
+
         return result;
         
         // 将自己添加到对应user的statuses里

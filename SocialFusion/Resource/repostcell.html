@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+</head>
+<link rel="stylesheet" href="temp.css" type="text/css"    />
+<script  type="text/javascript">
+<!--
+
+
+function setName(name)
+{
+	document.getElementById('author').innerHTML=name;
+}
+
+
+
+function setWeibo(weibo)
+{
+	document.getElementById("weibo").innerHTML=weibo;
+}
+
+function setTime(time)
+{
+	document.getElementById("time").innerHTML=time;
+}
+function setRepost(repost)
+{
+		document.getElementById("postingdata").innerHTML=repost;
+}
+-->
+</script>
+<body>
+<div id="allinfo">
+
+<div style="position:absolute ;left:0px; top:5px">
+<img src="top.png"  id="topline">
+</div>
+  <div class="headimage"><img src="default_renren_tiny.png"  width="37.5" height="37.5"  /></div>
+  <div id="maininfo"> <span class="title" id="author"> </span> <span class="time" id="time"> </span>
+    <div id="weibo"> </div>
+    <div id="repost">
+      <div id="lefttip"> <img src="left.png"> </div>
+      <div id="righttip"> <img src="right.png"> </div>
+      <div id="repostdata">
+        <div  id="postingdata"    style="background-image:url(back.png)"> </div>
+      </div>
+      <div id="downborder"> <img src="down.png"> </div>
+    </div>
+    <div id="count"><a href="www.google.com"> 转发（1）｜评论（1）</a> </div>
+  </div>
+</div>
+</body>
+</html>
