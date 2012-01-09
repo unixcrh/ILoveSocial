@@ -39,7 +39,6 @@
 		7359F96914B454CC0032F09A /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 7359F96714B454CC0032F09A /* left.png */; };
 		7359F96B14B4804F0032F09A /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 7359F96A14B4804F0032F09A /* down.png */; };
 		736341EF14B6ADFC00A697A5 /* NewFeedRootData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736341EE14B6ADFC00A697A5 /* NewFeedRootData.m */; };
-		736341F314B6C86500A697A5 /* CalculateHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 736341F214B6C86400A697A5 /* CalculateHeight.m */; };
 		736341F514B6E5DC00A697A5 /* top.png in Resources */ = {isa = PBXBuildFile; fileRef = 736341F414B6E5DC00A697A5 /* top.png */; };
 		736444FD14B9D89F0054AF56 /* head_renren.png in Resources */ = {isa = PBXBuildFile; fileRef = 736444FC14B9D89F0054AF56 /* head_renren.png */; };
 		7364450014B9EDD00054AF56 /* blogcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 736444FF14B9EDD00054AF56 /* blogcell.html */; };
@@ -267,8 +266,6 @@
 		7359F96A14B4804F0032F09A /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		736341ED14B6ADFC00A697A5 /* NewFeedRootData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedRootData.h; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.h"; sourceTree = "<group>"; };
 		736341EE14B6ADFC00A697A5 /* NewFeedRootData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedRootData.m; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.m"; sourceTree = "<group>"; };
-		736341F114B6C86200A697A5 /* CalculateHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateHeight.h; sourceTree = "<group>"; };
-		736341F214B6C86400A697A5 /* CalculateHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateHeight.m; sourceTree = "<group>"; };
 		736341F414B6E5DC00A697A5 /* top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top.png; sourceTree = "<group>"; };
 		736444FC14B9D89F0054AF56 /* head_renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_renren.png; sourceTree = "<group>"; };
 		736444FF14B9EDD00054AF56 /* blogcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blogcell.html; sourceTree = "<group>"; };
@@ -575,8 +572,6 @@
 				7309DDBC1447E93300774011 /* NewFeedCell */,
 				73906659143F095C00835332 /* NewFeedListController.h */,
 				7390665A143F095C00835332 /* NewFeedListController.m */,
-				736341F114B6C86200A697A5 /* CalculateHeight.h */,
-				736341F214B6C86400A697A5 /* CalculateHeight.m */,
 				73DE4B82144E5EDE00547931 /* CommonFunction.h */,
 				73DE4B83144E5EDE00547931 /* CommonFunction.m */,
 			);
@@ -1323,7 +1318,6 @@
 				73B9A38C147A1D0F0058FC20 /* NewFeedBlog.m in Sources */,
 				734483C0147A7B780031D33A /* NewFeedDetailViewCell.m in Sources */,
 				736341EF14B6ADFC00A697A5 /* NewFeedRootData.m in Sources */,
-				736341F314B6C86500A697A5 /* CalculateHeight.m in Sources */,
 				73B75BB114BB29C700D7ACA1 /* NSData+NsData_Base64.m in Sources */,
 				73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */,
 			);
