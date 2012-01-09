@@ -273,12 +273,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedStatusCell.m"
-         timestampString = "347709758.759952"
+         timestampString = "347810769.045658"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "223"
-         endingLineNumber = "223"
-         landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
+         landmarkName = "-loadImage:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

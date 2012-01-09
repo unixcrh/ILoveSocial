@@ -38,4 +38,5 @@
 -(void)setList:(NewFeedListController*)list;
 -(void)configureCell:(NewFeedData*)feedData;
 -(void)exposeCell;
+-(void)loadImage:(NSData*)image;
 @end

@@ -45,6 +45,8 @@
 		7364450014B9EDD00054AF56 /* blogcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 736444FF14B9EDD00054AF56 /* blogcell.html */; };
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
 		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
+		73B75BB114BB29C700D7ACA1 /* NSData+NsData_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */; };
+		73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */; };
 		73B9A37F1479F6B30058FC20 /* StatusCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A37E1479F6B20058FC20 /* StatusCommentData.m */; };
 		73B9A3831479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */; };
 		73B9A386147A1D090058FC20 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A385147A1D080058FC20 /* NewFeedData.m */; };
@@ -274,6 +276,10 @@
 		7390665A143F095C00835332 /* NewFeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedListController.m; sourceTree = "<group>"; };
 		73ABE37E14416E730067B45F /* NewFeedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusCell.h; sourceTree = "<group>"; };
 		73ABE37F14416E730067B45F /* NewFeedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedStatusCell.m; sourceTree = "<group>"; };
+		73B75BAF14BB29C700D7ACA1 /* NSData+NsData_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NsData_Base64.h"; sourceTree = "<group>"; };
+		73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NsData_Base64.m"; sourceTree = "<group>"; };
+		73B75BB314BB2A1100D7ACA1 /* NSString+DataURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DataURI.h"; sourceTree = "<group>"; };
+		73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DataURI.m"; sourceTree = "<group>"; };
 		73B9A37D1479F6B20058FC20 /* StatusCommentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusCommentData.h; path = "SocialFusion/Class/CoreData Models/StatusCommentData.h"; sourceTree = "<group>"; };
 		73B9A37E1479F6B20058FC20 /* StatusCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusCommentData.m; path = "SocialFusion/Class/CoreData Models/StatusCommentData.m"; sourceTree = "<group>"; };
 		73B9A3811479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StatusCommentData+StatusCommentData_Addition.h"; sourceTree = "<group>"; };
@@ -696,6 +702,10 @@
 				73152F091475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m */,
 				73152F0A1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.h */,
 				73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */,
+				73B75BAF14BB29C700D7ACA1 /* NSData+NsData_Base64.h */,
+				73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */,
+				73B75BB314BB2A1100D7ACA1 /* NSString+DataURI.h */,
+				73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */,
 			);
 			name = Categories;
 			path = SocialFusion/Class;
@@ -1314,6 +1324,8 @@
 				734483C0147A7B780031D33A /* NewFeedDetailViewCell.m in Sources */,
 				736341EF14B6ADFC00A697A5 /* NewFeedRootData.m in Sources */,
 				736341F314B6C86500A697A5 /* CalculateHeight.m in Sources */,
+				73B75BB114BB29C700D7ACA1 /* NSData+NsData_Base64.m in Sources */,
+				73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -380,6 +380,39 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
+
+- (void)loadImageFromURL:(NSString *)urlString 
+              completion:(void (^)())completion 
+          cacheInContext:(NSManagedObjectContext *)context
+{
+
+	
+    NSURL *url = [NSURL URLWithString:urlString];    
+    dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);
+    dispatch_async(downloadQueue, ^{ 
+        //NSLog(@"download image:%@", urlString);
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        if(!imageData) {
+            NSLog(@"download image failed:%@", urlString);
+            return;
+        }
+        UIImage *img = [UIImage imageWithData:imageData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if([Image imageWithURL:urlString inManagedObjectContext:context] == nil) {
+                [Image insertImage:imageData withURL:urlString inManagedObjectContext:context];
+                //NSLog(@"cache image url:%@", urlString);
+              //  self.image = img;
+                if (completion) {
+                    completion();
+                }			
+            }
+        });
+    });
+    dispatch_release(downloadQueue);
+}
+
+
+
 - (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
     if(self.tableView.dragging || self.tableView.decelerating || _reloading)
         return;
@@ -387,12 +420,23 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
     if (!image)
     {
-       // NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-      //  [statusCell.headImageView loadImageFromURL:data.owner_Head completion:^{
-         //   [self showHeadImageAnimation:statusCell.headImageView];
-     //   } cacheInContext:self.managedObjectContext];
+        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [self loadImageFromURL:data.owner_Head completion:^{
+            Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
+           
+            [statusCell loadImage:image1.imageData.data];
+            
+        } cacheInContext:self.managedObjectContext];
+        
     }
     
+    else
+    {
+        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+       
+            [statusCell loadImage:image.imageData.data];
+
+    }
     /*
     if ([data class]==[NewFeedData class])
     {

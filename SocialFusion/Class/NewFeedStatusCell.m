@@ -11,6 +11,9 @@
 #import "CommonFunction.h"
 #import "NewFeedBlog.h"
 #import "NewFeedListController.h"
+#import "Base64Transcoder.h"
+#import "NSData+NsData_Base64.m"
+#import "NSString+DataURI.h"
 @implementation NewFeedStatusCell
 
 /*
@@ -117,7 +120,21 @@
     return self;
 }
 
+-(void)loadImage:(NSData*)image
+{
+    
+    NSString *imgB64 = [[image base64Encoding] jpgDataURIWithContent];
 
+    
+    
+  //  NSString *html = [NSString stringWithFormat:@"setHeadImage('%@')",imgB64];
+                      
+    NSString *javascript = [NSString stringWithFormat:@"document.getElementById('head').src='%@'", imgB64];
+  //  NSLog(@"%@",html);       
+    
+    [_webView stringByEvaluatingJavaScriptFromString:javascript];
+    
+}
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
@@ -127,65 +144,6 @@
  //   self.userName.highlighted = highlighted;
    
 }   
-
-/* 这里的问题需要解决
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-
-    if (_buttonViewShowed==NO)
-    {
-
-    UITouch* touch=[touches anyObject];
-    _beginPoint=[touch locationInView:self];
-        
-     //   [super touchesBegan:touches withEvent:event];
-    }    
-
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    
-   // [self setSelected:YES];
-    
-    if (_buttonViewShowed==NO)
-    {
-    UITouch* touch=[touches anyObject];
-    CGPoint tempPoint=[touch locationInView:self];
-
-    if (tempPoint.y-_beginPoint.y<100)
-    {
-        if (tempPoint.x-_beginPoint.x>30)
-        {
-            
-            NSLog(@"Moved");
-            
-            [self setSelected:NO];
-            _buttonView.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-          
-            
-            
-             CATransition *animation = [CATransition animation];
-             animation.delegate = self;
-             animation.duration = 0.2f;
-             animation.timingFunction = UIViewAnimationCurveEaseInOut;
-             animation.fillMode = kCAFillModeForwards;
-             animation.removedOnCompletion = NO;
-            [animation setType:@"kCATransitionFade"];
-         //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-            [self.layer addAnimation:animation forKey:@"animationID"]; 
-
-            
-            [self addSubview:_buttonView];
-            _buttonViewShowed=YES;
-        }
-    }
-    
-    }
-     
-}
-*/
 
 
 
