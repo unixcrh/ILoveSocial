@@ -14,6 +14,7 @@
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
+#import "NewFeedUploadPhoto+Addition.h"
 #import "Image+Addition.h"
 #import "UIImageView+DispatchLoad.h"
 #import "NewFeedBlog.h"
@@ -190,9 +191,21 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             for(NSDictionary *dict in array) {
                 
                 
+                
+                
+                NSLog(@"%@",dict);
+                
+                
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
                     NewFeedBlog* data = [NewFeedBlog insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+                    [self.currentRenrenUser addNewFeedObject:data]; 
+                }
+                else if ([[dict objectForKey:@"feed_type"] intValue]==30)
+                {
+                    
+                    NewFeedUploadPhoto* data = [NewFeedUploadPhoto insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
@@ -296,9 +309,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 if (cell == nil) {
                     [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                     cell = _feedStatusCel;
-                  /*  
-              
-*/
                     
                     //[cell.webview loadRequest:<#(NSURLRequest *)#>]
                 }
@@ -315,6 +325,16 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             }
         }
         
+        else if ([a class]==[NewFeedUploadPhoto class])
+        {
+            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
+            if (cell == nil) {
+                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
+                cell = _feedStatusCel;
+                
+                //[cell.webview loadRequest:<#(NSURLRequest *)#>]
+            }
+        }
         else if ([a class]==[NewFeedBlog class])
         {
             cell=(NewFeedBlogCell*)[tableView dequeueReusableCellWithIdentifier:BlogCell];
@@ -396,7 +416,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSLog(@"download image failed:%@", urlString);
             return;
         }
-        UIImage *img = [UIImage imageWithData:imageData];
+    //    UIImage *img = [UIImage imageWithData:imageData];
         dispatch_async(dispatch_get_main_queue(), ^{
             if([Image imageWithURL:urlString inManagedObjectContext:context] == nil) {
                 [Image insertImage:imageData withURL:urlString inManagedObjectContext:context];
@@ -437,23 +457,31 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             [statusCell loadImage:image.imageData.data];
 
     }
-    /*
-    if ([data class]==[NewFeedData class])
+    
+    if ([data class]==[NewFeedUploadPhoto class])
     {
-        NewFeedData* data2=(NewFeedData*)data;
-        image = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
+        NewFeedUploadPhoto* data2=(NewFeedUploadPhoto*)data;
+        image = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
         if (!image)
         {
             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-           // [statusCell.picView loadImageFromURL:data2.pic_URL completion:^{
-       //         [self showHeadImageAnimation:statusCell.headImageView];
+            [self loadImageFromURL:data2.photo_url completion:^{
+                Image *image1 = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
                 
-         //       statusCell.picView.frame=CGRectMake(statusCell.picView.frame.origin.x, statusCell.picView.frame.origin.y,(statusCell.picView.frame.size.height/statusCell.picView.image.size.height)*statusCell.picView.image.size.width, statusCell.picView.frame.size.height);
+                [statusCell loadPicture:image1.imageData.data];
                 
             } cacheInContext:self.managedObjectContext];
         }
+        else
+        {
+            NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            
+            [statusCell loadPicture:image.imageData.data];
+
+        }
+        
     }
-     */
+     
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

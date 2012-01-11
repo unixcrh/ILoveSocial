@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
 #import "NewFeedBlog.h"
+#import "NewFeedUploadPhoto.h"
 #import "NewFeedListController.h"
 #import "Base64Transcoder.h"
 #import "NSData+NsData_Base64.m"
@@ -84,7 +85,10 @@
             return (labelSize.height+labelSize1.height)*1.45+85;
         }
     }
-    
+    else if ([feedData class]==[NewFeedUploadPhoto class] )
+    {
+        return 165;
+    }
     else if ([feedData class]==[NewFeedBlog class] )
     {
         NSString* tempString=[feedData getName];
@@ -120,21 +124,58 @@
     return self;
 }
 
+-(void)loadPicture:(NSData*)image
+{
+    
+    UIImage* image1=[UIImage imageWithData:image];
+    CGSize size;
+    
+    float a=image1.size.width/98;
+    float b=image1.size.height/73;
+    if (a>b)
+    {
+        size=CGSizeMake(image1.size.width/image1.size.height*73, 73);
+    }
+    else
+    {
+        size=CGSizeMake(98, image1.size.height/image1.size.width*98);
+    }
+    UIGraphicsBeginImageContext(size);
+    [image1 drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+  //  return newImage;
+        
+    
+    NSData* imagedata=UIImageJPEGRepresentation(newImage, 10);
+   // NSString *javascript1 = [NSString stringWithFormat:@"setPhotoPos(%f,%f)",image1.size.width,image1.size.height];
+    
+    
+   // NSLog(@"%@",javascript1);
+   // [_webView stringByEvaluatingJavaScriptFromString:javascript1];
+
+    
+    NSString *imgB64 = [[imagedata base64Encoding] jpgDataURIWithContent];
+    
+    NSString *javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
+    
+    [_webView stringByEvaluatingJavaScriptFromString:javascript];
+}
 -(void)loadImage:(NSData*)image
 {
     
     NSString *imgB64 = [[image base64Encoding] jpgDataURIWithContent];
 
     
-    
-  //  NSString *html = [NSString stringWithFormat:@"setHeadImage('%@')",imgB64];
-                      
+                    
     NSString *javascript = [NSString stringWithFormat:@"document.getElementById('head').src='%@'", imgB64];
-  //  NSLog(@"%@",html);       
+       
     
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
     
 }
+
+
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
@@ -145,8 +186,6 @@
    
 }   
 
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     //NSLog(@"selected:%d", selected);
@@ -156,19 +195,46 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    
+      if ([_feedData class]==[NewFeedUploadPhoto class])
+      {
+          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
+       
+          
+          if (((NewFeedUploadPhoto*)_feedData).photo_comment!=nil)
+          {
+          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",((NewFeedUploadPhoto*)_feedData).photo_comment]];
+          }
+          else
+          {
+              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",@"那个人很懒，没有写介绍噢"]];
+  
+          }
+          
+           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTitle('%@')",[((NewFeedUploadPhoto*)_feedData) getTitle]]];
+          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+          
+      }
+      else{
+
+    
+    
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
     
     
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
-
+     
+      }
     int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
   
     
     
     _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
-   
+      
     
     
 
@@ -195,30 +261,6 @@
     
     [_listController exposeCell:indexpath];
 }
-/*
--(IBAction) cancelButton:(id)sender
-{
-    
-    _buttonView.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    
-    
-    
-    CATransition *animation = [CATransition animation];
-    animation.delegate = self;
-    animation.duration = 0.2f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.fillMode = kCAFillModeForwards;
-    animation.removedOnCompletion = NO;
-    [animation setType:@"kCATransitionFade"];
-    //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-    [self.layer addAnimation:animation forKey:@"animationID"]; 
-    
-    
-    [_buttonView removeFromSuperview];
-    _buttonViewShowed=NO;
-}
- */
-
 
 -(void)setList:(NewFeedListController*)list
 {
@@ -236,156 +278,34 @@
 {
     //_webView=[[UIWebView alloc] init];
     
+    if ([feedData class]==[NewFeedUploadPhoto class])
+    {
+        NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
+        NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+        
+    }
+    else
+    {
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcell" ofType:@"html"];
     NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    }
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
     
-    
-    
-   // [_webView removeFromSuperview];
+
     _webView.scrollView.scrollEnabled=FALSE;
     _webView.delegate=self;
 
     
-   //   [[_webView nextResponder] becomeFirstResponder];
-    
-    
-    //  NSLog(@"%@",a);
-    
-    //NSLog(@"%@",[NSString stringWithFormat:@"setName(abcd)",[feedData getName]]);
-    //[self.contentView addSubview:_webView];
-    //[super addSubview:_webView];
-    
+
     
     _feedData=feedData;
     
     
-    /*
-    //  修改人人／weibo小标签
-    [_picView setImage:nil];
-    if ([feedData getStyle]==0)
-    {
-        [_styleView setImage:[UIImage imageNamed:@"Renren12.png"]];
-    }
-    else
-    {
-        [_styleView setImage:[UIImage imageNamed:@"Weibo12.png"]];
-    }
-    //头像
-        [self.headImageView setImage:nil];
-   
-    
-    //状态
-    self.status.text=[feedData getName];
-    
-    CGSize size = CGSizeMake(212, 1000);
-    CGSize labelSize = [self.status.text sizeWithFont:self.status.font 
-                                    constrainedToSize:size];
-    self.status.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y,
-                                   self.status.frame.size.width, labelSize.height);
-    self.status.lineBreakMode = UILineBreakModeWordWrap;
-    self.status.numberOfLines = 0;
-    
-    
-    if (self.frame.size.height<50)
-    {
-        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+20);
-    }
-    
-    
-    //名字
-    [self.userName setTitle:[feedData getFeedName] forState:UIControlStateNormal];
-    
-   
-    
-      [self.userName sizeToFit];
-    
-    if ([feedData class]==[NewFeedData class])
-    {
-        if (feedData.pic_URL!=nil)
-        {
-            self.picView.frame=CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
-                                          self.picView.frame.size.width,self.picView.frame.size.height); 
-            
-            
-            //时间
-            NSDate* FeedDate=[feedData getDate];
-            
-            //NSLog(@"%@",FeedDate);
-            
-            
-            NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
-            
-            //NSLog(@"%@",tempString);
-            
-            
-            
-            self.time.frame = CGRectMake(self.status.frame.origin.x, self.picView.frame.origin.y+self.picView.frame.size.height,
-                                         self.time.frame.size.width,self.time.frame.size.height); 
-            self.time.text=tempString ;
-            [tempString release];
-            
-            
-            
-            //回复数量
-            NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
-            _commentCount.text=countSting;
-            [countSting release];
-            [_commentCount sizeToFit];
-            [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
-        }
-        else
-        {
-            //时间
-            NSDate* FeedDate=[feedData getDate];
-            
-            //NSLog(@"%@",FeedDate);
-            
-            
-            NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
-            
-            //NSLog(@"%@",tempString);
-            
-            
-            
-            self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
-                                         self.time.frame.size.width,self.time.frame.size.height); 
-            self.time.text=tempString ;
-            [tempString release];
-            
-            
-            
-            //回复数量
-            NSString* countSting=[[NSString alloc] initWithFormat:@"回复:%d",[feedData getComment_Count]];
-            _commentCount.text=countSting;
-            [countSting release];
-            [_commentCount sizeToFit];
-            [_commentCount setFrame:CGRectMake(self.status.frame.origin.x+self.status.frame.size.width-_commentCount.frame.size.width, self.time.frame.origin.y, _commentCount.frame.size.width, _commentCount.frame.size.height)];
-            
-        }
-        
-
-    }
-    */
   }
 
 
--(void)setUserHeadImage:(UIImage*)image
-{
-    /*
-    CATransition *animation = [CATransition animation];
-    animation.delegate = self;
-    animation.duration = 0.3f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.fillMode = kCAFillModeForwards;
-    animation.removedOnCompletion = NO;
-    [animation setType:@"kCATransitionFade"];
-    //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
- */
-   //  [_headImageView setImage:image];
-    
-}
+
 @end

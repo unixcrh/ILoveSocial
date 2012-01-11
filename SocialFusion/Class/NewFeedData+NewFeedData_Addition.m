@@ -99,34 +99,7 @@
     
     
     return self.message;
-    //if (description==nil)
-    //description=@"";
-    
-    /*
-    NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
-    
-    
-    int nameLength=[self.owner_Name length];
-    
-    for (int i=0;i<nameLength;i++)
-    {
-        
-        if ([self.owner_Name characterAtIndex:i]<512)
-        {
-            tempString=[tempString stringByAppendingString:@" "];
-        }
-        else
-        {
-            tempString=[tempString stringByAppendingString:@"  "];
-        }
-    }
-    
-    
-    
-    
-    
-    return [tempString stringByAppendingFormat:@":%@",self.message]  ;
- */
+
     
 }
 

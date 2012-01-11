@@ -11,10 +11,6 @@
 @implementation NewFeedBlog (NewFeedBlog_Addition)
 + (NewFeedBlog *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
-    
-    
-    
- 
         NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
         if (!statusID || [statusID isEqualToString:@""]) {
             return nil;

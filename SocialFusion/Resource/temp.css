@@ -1,70 +1,54 @@
 @charset "UTF-8";
 /* CSS Document */
-body{
-		background-color:transparent;
-        width:306x;
-		font:Helvetica;
-		
-
+body {
+	background-color:transparent;
+	width:306x;
+	font:Helvetica;
 }
-
-a{
+a {
 	color:#6F99B2;
-	
 }
-#topline
-{
-	left:3px ;
+#topline {
+	left:3px;
 	position:relative;
 	width:300px;
 	height:1px
 }
-#weibo
-{
-	
+#weibo {
 	line-height:120%;
 	background-image:url(back.png);
 	background-size:238px 19px;
 	color:#525044;
 	font-size:16px;
-	
 	padding-top:0px;
 	margin-top:0px;
-	
-	
 }
-#allinfo
-{
+#allinfo {
 	width:306px;
 	height:200px;
 	position:absolute;
 	left: 0px;
 	top: 0px;
 }
-
-.headimage{
+.headimage {
 	width:37.5px;
 	height:37.5px;
 	position:absolute;
 	left: 11px;
 	top: 15px;
 }
-
-#maininfo{
+#maininfo {
 	position:absolute;
 	left:58px;
 	top:10px;
 	width:238px;
 }
-
-.title{
+.title {
 	font-size:16px;
-	font-weight: bold;	
+	font-weight: bold;
 	color:#525044;
 }
-
-
-.time{
+.time {
 	color:#908E78;
 	font-size:9px;
 	text-align:right;
@@ -72,27 +56,20 @@ a{
 	top:3px;
 	position:absolute;
 }
-
-#repost
-{
+#repost {
 	position:relative;
 	top:0px;
 	left:0px;
-
 	border:none;
 }
-#repostdata{
-
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,243,127,.10)), color-stop(100%,rgba(240,224,54,0.8)));
-	
-	
+#repostdata {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(254, 243, 127, .10)), color-stop(100%, rgba(240, 224, 54, 0.8)));
 	border-style:outset;
 	border-color:#d7d6a3;
 	border-bottom-style:none;
 	border-width:2px;
-
 	-webkit-border-radius: .5em;
-    -webkit-box-shadow: 6px 6px 9px #aaa;
+	-webkit-box-shadow: 6px 6px 9px #aaa;
 	padding-bottom:5px;
 	line-height:180%;
 	position:relative;
@@ -103,10 +80,7 @@ a{
 	color:#908050;
 	z-index:1;
 }
-
-
-#lefttip
-{
+#lefttip {
 	position:absolute;
 	width:0px;
 	height:0px;
@@ -114,9 +88,7 @@ a{
 	top:1px;
 	left: 0px;
 }
-
-#righttip
-{
+#righttip {
 	position:absolute;
 	width:44px;
 	height:36px;
@@ -124,40 +96,52 @@ a{
 	top:2px;
 	left:182px;
 }
-
-#downborder
-{
+#downborder {
 	z-index:5;
 	position:relative;
 	left:12px;
 	top:8px;
 }
-
-#count
-{
+#count {
 	position:relative;
 	top:10px;
 	text-align:right;
 	font-size:9px;
 	color:#908E78
 }
-
-#blog
-{
+#blog {
 	line-height:120%;
-	
 	color:#525044;
 	border-color:#E4E1BE;
 	border-width:1px;
 	border-style:solid;
-	
-	
-	
 	-webkit-border-radius: 5px;
-
-		background-color:#FEF0C4;
+	background-color:#FEF0C4;
 	font-size:11.5px;
-
 	position:relative;
 	top:5px;
+}
+#uploadphoto {
+	height:104px;
+	width:89.5px;
+	position:absolute;
+
+	left:5px;
+	top: 5px;
+}
+#photocomment {
+	line-height:120%;
+	color:#525044;
+	border-color:#E4E1BE;
+	border-width:1px;
+	border-style:solid;
+	width:120px;
+	height:90px;
+	-webkit-border-radius: 5px;
+	background-color:#FEF0C4;
+	font-size:11.5px;
+	position:absolute;
+	top:5px;
+	right:0px;
+
 }

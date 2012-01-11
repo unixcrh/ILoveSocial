@@ -39,4 +39,5 @@
 -(void)configureCell:(NewFeedData*)feedData;
 -(void)exposeCell;
 -(void)loadImage:(NSData*)image;
+-(void)loadPicture:(NSData*)image;
 @end
