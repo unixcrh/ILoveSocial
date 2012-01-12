@@ -10,12 +10,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
 #import "NewFeedBlog.h"
-#import "NewFeedUploadPhoto.h"
+#import "NewFeedUploadPhoto+Addition.h"
 #import "NewFeedListController.h"
 #import "Base64Transcoder.h"
 #import "NSData+NsData_Base64.m"
 #import "NSString+DataURI.h"
 #import "NewFeedShareAlbum+Addition.h"
+#import "NewFeedSharePhoto+Addition.h"
 @implementation NewFeedStatusCell
 
 
@@ -76,6 +77,11 @@
     {
         return 165;
     }
+    else if ([feedData class]==[NewFeedSharePhoto class] )
+    {
+        return 165;
+    }
+    
     
     else if ([feedData class]==[NewFeedBlog class] )
     {
@@ -204,7 +210,7 @@
           }
           
            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTitle('%@')",[((NewFeedUploadPhoto*)_feedData) getTitle]]];
-          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
           
       }
     
@@ -214,14 +220,23 @@
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[((NewFeedShareAlbum*)_feedData) getShareComment]]];
         
    
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
             
-           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumTitle('相册：《%@》')",((NewFeedShareAlbum*)_feedData).album_title]];
+           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumTitle('相册:《%@》')",((NewFeedShareAlbum*)_feedData).album_title]];
            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumQuantity('共%d张照片')",[(NewFeedShareAlbum*)_feedData getAlbumQuan]]];
-            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('来自：%@')",((NewFeedShareAlbum*)_feedData).fromName]];
+            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('来自:%@')",((NewFeedShareAlbum*)_feedData).fromName]];
     }
-      
-    
+    else if ([_feedData class]==[NewFeedSharePhoto class])
+    {
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[((NewFeedSharePhoto*)_feedData) getShareComment]]];
+        
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setPhotoComment('%@')",[(NewFeedSharePhoto*)_feedData getPhotoComment]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
+        
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('相册:《%@》')",((NewFeedSharePhoto*)_feedData).title]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('来自:%@')",((NewFeedSharePhoto*)_feedData).fromName]];
+    }
     
     else{
 
@@ -231,7 +246,7 @@
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
     
     
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
      
       }
     int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
@@ -294,6 +309,12 @@
     else if ([feedData class]==[NewFeedShareAlbum class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharealbum" ofType:@"html"];
+        NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    }
+    else if ([feedData class]==[NewFeedSharePhoto class])
+    {
+        NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharephotocell" ofType:@"html"];
         NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
     }

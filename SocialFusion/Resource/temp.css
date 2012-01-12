@@ -126,7 +126,7 @@ a {
 	width:89.5px;
 	position:absolute;
 
-	left:5px;
+	left:-30px;
 	top: 5px;
 }
 #albumcomment {
@@ -150,7 +150,7 @@ a {
 	border-color:#E4E1BE;
 	border-width:1px;
 	border-style:solid;
-	width:120px;
+	width:159px;
 	height:90px;
 	-webkit-border-radius: 5px;
 	background-color:#FEF0C4;
@@ -159,4 +159,3 @@ a {
 	top:5px;
 	right:0px;
 }
-

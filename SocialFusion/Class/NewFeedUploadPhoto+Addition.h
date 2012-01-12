@@ -12,4 +12,6 @@
 + (NewFeedUploadPhoto *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedUploadPhoto *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getName;
+
+-(NSString*)getTitle;
 @end

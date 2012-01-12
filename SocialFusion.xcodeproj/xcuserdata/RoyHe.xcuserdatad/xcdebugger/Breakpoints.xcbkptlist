@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "347968967.21958"
+         timestampString = "348067457.978249"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "307"
-         endingLineNumber = "307"
+         startingLineNumber = "305"
+         endingLineNumber = "305"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -219,11 +219,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "347968967.21958"
+         timestampString = "348067457.978249"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "392"
-         endingLineNumber = "392"
+         startingLineNumber = "390"
+         endingLineNumber = "390"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -233,11 +233,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedStatusCell.m"
-         timestampString = "347985780.772759"
+         timestampString = "348067457.978249"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "139"
-         endingLineNumber = "139"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
          landmarkName = "-loadPicture:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -247,11 +247,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "347968967.21958"
+         timestampString = "348067457.978249"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "197"
-         endingLineNumber = "197"
+         startingLineNumber = "198"
+         endingLineNumber = "198"
          landmarkName = "-loadMoreRenrenData"
          landmarkType = "5">
       </FileBreakpoint>
