@@ -15,6 +15,7 @@
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
+#import "NewFeedShareAlbum+Addition.h"
 #import "Image+Addition.h"
 #import "UIImageView+DispatchLoad.h"
 #import "NewFeedBlog.h"
@@ -209,6 +210,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
+                else if ([[dict objectForKey:@"feed_type"] intValue]==33)
+                {
+                    
+                    NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+                    [self.currentRenrenUser addNewFeedObject:data]; 
+                }
                 else
                 {
                     NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
@@ -325,7 +333,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             }
         }
         
-        else if ([a class]==[NewFeedUploadPhoto class])
+        else if ([a class]==[NewFeedUploadPhoto class]||[a class]==[NewFeedShareAlbum class])
         {
             cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
             if (cell == nil) {
@@ -335,6 +343,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 //[cell.webview loadRequest:<#(NSURLRequest *)#>]
             }
         }
+        
         else if ([a class]==[NewFeedBlog class])
         {
             cell=(NewFeedBlogCell*)[tableView dequeueReusableCellWithIdentifier:BlogCell];
@@ -481,6 +490,33 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         }
         
     }
+    
+    if ([data class]==[NewFeedShareAlbum class])
+    {
+        NewFeedShareAlbum* data2=(NewFeedShareAlbum*)data;
+        image = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
+        if (!image)
+        {
+            NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            [self loadImageFromURL:data2.photo_url completion:^{
+                Image *image1 = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
+                
+                [statusCell loadPicture:image1.imageData.data];
+                
+            } cacheInContext:self.managedObjectContext];
+        }
+        else
+        {
+            NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            
+            [statusCell loadPicture:image.imageData.data];
+            
+        }
+        
+    }
+    
+    
+    
      
 }
 

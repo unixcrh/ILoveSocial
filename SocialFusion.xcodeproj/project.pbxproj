@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7305A696144DB38C00ED59AA /* StatusCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7305A694144DB38B00ED59AA /* StatusCommentCell.m */; };
 		7305A697144DB38C00ED59AA /* StatusCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7305A695144DB38B00ED59AA /* StatusCommentCell.xib */; };
+		7308FF2914BD8E6300EC6481 /* NewFeedShareAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 7308FF2814BD8E6300EC6481 /* NewFeedShareAlbum.m */; };
+		7308FF2D14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7308FF2C14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m */; };
+		7308FF2F14BD942100EC6481 /* sharealbum.html in Resources */ = {isa = PBXBuildFile; fileRef = 7308FF2E14BD942100EC6481 /* sharealbum.html */; };
+		7308FF3314BDC1D100EC6481 /* newfeedjs.js in Resources */ = {isa = PBXBuildFile; fileRef = 7308FF3214BDC1D100EC6481 /* newfeedjs.js */; };
 		7309DDC51448253D00774011 /* NewFeedBlogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7309DDC41448253D00774011 /* NewFeedBlogCell.xib */; };
 		73152F0C1475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F071475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m */; };
 		73152F0D1475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F091475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m */; };
@@ -222,6 +226,12 @@
 		7305A693144DB38B00ED59AA /* StatusCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusCommentCell.h; sourceTree = "<group>"; };
 		7305A694144DB38B00ED59AA /* StatusCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCommentCell.m; sourceTree = "<group>"; };
 		7305A695144DB38B00ED59AA /* StatusCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusCommentCell.xib; sourceTree = "<group>"; };
+		7308FF2714BD8E6300EC6481 /* NewFeedShareAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedShareAlbum.h; path = "SocialFusion/Class/CoreData Models/NewFeedShareAlbum.h"; sourceTree = "<group>"; };
+		7308FF2814BD8E6300EC6481 /* NewFeedShareAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedShareAlbum.m; path = "SocialFusion/Class/CoreData Models/NewFeedShareAlbum.m"; sourceTree = "<group>"; };
+		7308FF2B14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedShareAlbum+Addition.h"; sourceTree = "<group>"; };
+		7308FF2C14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedShareAlbum+Addition.m"; sourceTree = "<group>"; };
+		7308FF2E14BD942100EC6481 /* sharealbum.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sharealbum.html; sourceTree = "<group>"; };
+		7308FF3214BDC1D100EC6481 /* newfeedjs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = newfeedjs.js; sourceTree = "<group>"; };
 		7309DDC41448253D00774011 /* NewFeedBlogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedBlogCell.xib; sourceTree = "<group>"; };
 		73152F061475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedBlog+NewFeedBlog_Addition.h"; sourceTree = "<group>"; };
 		73152F071475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedBlog+NewFeedBlog_Addition.m"; sourceTree = "<group>"; };
@@ -701,6 +711,8 @@
 				E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */,
 				73B9A3811479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.h */,
 				73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */,
+				7308FF2B14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.h */,
+				7308FF2C14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m */,
 				7317582014BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.h */,
 				7317582114BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.m */,
 				73152F061475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.h */,
@@ -747,6 +759,8 @@
 				73B9A384147A1D070058FC20 /* NewFeedData.h */,
 				73B9A385147A1D080058FC20 /* NewFeedData.m */,
 				73B9A38A147A1D0D0058FC20 /* NewFeedBlog.h */,
+				7308FF2714BD8E6300EC6481 /* NewFeedShareAlbum.h */,
+				7308FF2814BD8E6300EC6481 /* NewFeedShareAlbum.m */,
 				73B9A38B147A1D0E0058FC20 /* NewFeedBlog.m */,
 				736341ED14B6ADFC00A697A5 /* NewFeedRootData.h */,
 				736341EE14B6ADFC00A697A5 /* NewFeedRootData.m */,
@@ -852,6 +866,8 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				7308FF2E14BD942100EC6481 /* sharealbum.html */,
+				7308FF3214BDC1D100EC6481 /* newfeedjs.js */,
 				7317582314BC808100F14700 /* uploadphotocell.html */,
 				736444FF14B9EDD00054AF56 /* blogcell.html */,
 				736444FC14B9D89F0054AF56 /* head_renren.png */,
@@ -1134,6 +1150,7 @@
 				E1ABA40D141FA6E1002CD0A6 /* InfoPlist.strings in Resources */,
 				E1ABA493141FA883002CD0A6 /* friendImageCover.png in Resources */,
 				E1ABA494141FA883002CD0A6 /* tableviewCell@2x.png in Resources */,
+				7308FF3314BDC1D100EC6481 /* newfeedjs.js in Resources */,
 				E1ABA495141FA883002CD0A6 /* tableviewCell.png in Resources */,
 				E1ABA496141FA883002CD0A6 /* Icon-Small-50.png in Resources */,
 				E1ABA497141FA883002CD0A6 /* Icon-Small.png in Resources */,
@@ -1232,6 +1249,7 @@
 				7364450014B9EDD00054AF56 /* blogcell.html in Resources */,
 				7317581B14BC73DD00F14700 /* photo_frame.png in Resources */,
 				7317582414BC808100F14700 /* uploadphotocell.html in Resources */,
+				7308FF2F14BD942100EC6481 /* sharealbum.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1358,8 @@
 				73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */,
 				7317582214BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.m in Sources */,
 				736416AF14BD24AE00CE43F2 /* NewFeedUploadPhoto.m in Sources */,
+				7308FF2914BD8E6300EC6481 /* NewFeedShareAlbum.m in Sources */,
+				7308FF2D14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

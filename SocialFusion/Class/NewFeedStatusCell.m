@@ -15,34 +15,17 @@
 #import "Base64Transcoder.h"
 #import "NSData+NsData_Base64.m"
 #import "NSString+DataURI.h"
+#import "NewFeedShareAlbum+Addition.h"
 @implementation NewFeedStatusCell
 
-/*
-@synthesize defaultHeadImageView = _defaultHeadImageView;
-@synthesize headImageView = _headImageView;
-@synthesize userName = _userName;
-@synthesize status = _status;
-@synthesize time = _time;
-@synthesize picView=_picView;
-*/
+
  - (void)awakeFromNib
 {
-    /*self.defaultHeadImageView.layer.masksToBounds = YES;
-    self.defaultHeadImageView.layer.cornerRadius = 5.0f;  
-    self.headImageView.layer.masksToBounds = YES;
-    self.headImageView.layer.cornerRadius = 5.0f;*/
-   // [self.commentButton setImage:[UIImage imageNamed:@"messageButton-highlight.png"] forState:UIControlStateHighlighted];
+
 }
 
 - (void)dealloc {
-    //NSLog(@"Friend List Cell Dealloc");
-    /*
-    [_defaultHeadImageView release];
-    [_headImageView release];
-    [_userName release];
-    [_status release];
-    [_time release];
-    */
+
     
     
     _webView.delegate=nil;
@@ -89,6 +72,11 @@
     {
         return 165;
     }
+    else if ([feedData class]==[NewFeedShareAlbum class] )
+    {
+        return 165;
+    }
+    
     else if ([feedData class]==[NewFeedBlog class] )
     {
         NSString* tempString=[feedData getName];
@@ -161,6 +149,8 @@
     
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
 }
+
+
 -(void)loadImage:(NSData*)image
 {
     
@@ -217,7 +207,23 @@
           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
           
       }
-      else{
+    
+    else if ([_feedData class]==[NewFeedShareAlbum class])
+    {
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[((NewFeedShareAlbum*)_feedData) getShareComment]]];
+        
+   
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData get_Time]]]];
+            
+           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumTitle('相册：《%@》')",((NewFeedShareAlbum*)_feedData).album_title]];
+           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumQuantity('共%d张照片')",[(NewFeedShareAlbum*)_feedData getAlbumQuan]]];
+            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('来自：%@')",((NewFeedShareAlbum*)_feedData).fromName]];
+    }
+      
+    
+    
+    else{
 
     
     
@@ -284,6 +290,12 @@
         NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         
+    }
+    else if ([feedData class]==[NewFeedShareAlbum class])
+    {
+        NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharealbum" ofType:@"html"];
+        NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
     }
     else
     {
