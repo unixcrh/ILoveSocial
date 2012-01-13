@@ -35,6 +35,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+   // NSLog(@"webview跑出来拉！！！");
+       [self refresh];
+}
 
 
 - (void)viewDidLoad
@@ -45,8 +50,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //return;
     _pageNumber=0;
     _indexPath=nil;
-    //_openedCell=-1;
-    [self refresh];
+    
+    
+    _webView=[[UIWebView alloc] init];    
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
+    NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+
+_webView.backgroundColor=[UIColor clearColor];
+_webView.opaque=NO;
+    _webView.frame=CGRectMake(0, 0, 320, 69);
+
+_webView.scrollView.scrollEnabled=NO;
+_webView.delegate=self;
+
+
+ 
 }
 
 - (void)viewDidUnload
@@ -200,7 +219,25 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
-                    NewFeedBlog* data = [NewFeedBlog insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+   
+                    
+                
+
+                    
+                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@%@')",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]]];
+
+                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[dict objectForKey:@"description"]]];
+                  
+                    
+                    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+                    
+                    //NSLog(@"scrollHeight:%d",scrollHeight);
+                    
+                    NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+                    
+               
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
@@ -227,6 +264,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 else
                 {
                     NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
                     
                     [self.currentRenrenUser addNewFeedObject:data];
                 }
@@ -315,6 +353,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 if (cell == nil) {
                     [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                     cell = _feedStatusCel;
+                    
+                    
+                    
+                    
                     
                     //[cell.webview loadRequest:<#(NSURLRequest *)#>]
                 }

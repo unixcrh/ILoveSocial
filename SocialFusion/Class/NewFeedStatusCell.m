@@ -85,18 +85,7 @@
     
     else if ([feedData class]==[NewFeedBlog class] )
     {
-        NSString* tempString=[feedData getName];
-        CGSize size = CGSizeMake(212, 1000);
-        CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
-                                  constrainedToSize:size];
-        
-        
-        NSString* tempString1=[feedData getBlog];
-        CGSize size1 = CGSizeMake(200, 1000);
-        CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
-                                    constrainedToSize:size1];
-        return (labelSize.height+labelSize1.height)*1.45+85;
-        
+        return [feedData.cellheight intValue];
         
     }
      
@@ -123,7 +112,7 @@
     
     UIImage* image1=[UIImage imageWithData:image];
     CGSize size;
-    
+    //改变图片大小
     float a=image1.size.width/98;
     float b=image1.size.height/73;
     if (a>b)
@@ -151,7 +140,13 @@
     
     NSString *imgB64 = [[imagedata base64Encoding] jpgDataURIWithContent];
     
-    NSString *javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
+    
+    NSString *javascript = [NSString stringWithFormat:@"setPhotoPos(%f,%f)", size.width,size.height];
+    
+    [_webView stringByEvaluatingJavaScriptFromString:javascript];
+    
+    
+    javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
     
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
 }

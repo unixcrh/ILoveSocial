@@ -23,25 +23,11 @@ function setRepost(repost)
 
 function setPhotoPos(width,height)
 {
-	
-	if (height>width)
-	{
-		document.getElementById("upload").style.width=75/height*width-2+"px";
-		document.getElementById("upload").style.height=73+"px";
-	
-	
-		document.getElementById("upload").style.left=(104-(75/height*width))/2-1+"px";
-			document.getElementById("upload").style.top=7+"px";
-	}
-	else
-	{
-				document.getElementById("upload").style.width=98+"px";
-		document.getElementById("upload").style.height=100/width*height+"px";
-	
-	
-		document.getElementById("upload").style.left=1+"px";
-			document.getElementById("upload").style.top=(90-(100/width*height))/2-1+"px";
-	}
+	var actWidth=(98-width)/2;
+	var actHeight=(73-height)/2;
+
+	document.getElementById("upload").style.left=actWidth+'px';
+	document.getElementById("upload").style.top=actHeight+'px';
 }
 
 function setComment(comment)
