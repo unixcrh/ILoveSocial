@@ -9,7 +9,7 @@
 #import "NewFeedShareAlbum.h"
 
 @interface NewFeedShareAlbum (Addition)
-+ (NewFeedShareAlbum *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedShareAlbum *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedShareAlbum *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getShareComment;
 -(int)getAlbumQuan;

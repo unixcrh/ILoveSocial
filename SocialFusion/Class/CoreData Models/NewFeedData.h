@@ -2,8 +2,8 @@
 //  NewFeedData.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-21.
-//  Copyright (c) 2011年 TJU. All rights reserved.
+//  Created by He Ruoyun on 12-1-13.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSString * repost_ID;
 @property (nonatomic, retain) NSString * pic_URL;
 @property (nonatomic, retain) NSString * repost_Name;
+@property (nonatomic, retain) NSString * pic_big_URL;
 
 @end

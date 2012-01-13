@@ -56,7 +56,6 @@
 		73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */; };
 		73B9A37F1479F6B30058FC20 /* StatusCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A37E1479F6B20058FC20 /* StatusCommentData.m */; };
 		73B9A3831479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */; };
-		73B9A386147A1D090058FC20 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A385147A1D080058FC20 /* NewFeedData.m */; };
 		73B9A38C147A1D0F0058FC20 /* NewFeedBlog.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A38B147A1D0E0058FC20 /* NewFeedBlog.m */; };
 		73C99C9614BF051D00B251DF /* NewFeedSharePhoto+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */; };
 		73C99C9914BF0BE100B251DF /* NewFeedSharePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9814BF0BE100B251DF /* NewFeedSharePhoto.m */; };
@@ -70,6 +69,9 @@
 		73DD221A144C0347003BED92 /* Weibo12.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2218144C0347003BED92 /* Weibo12.png */; };
 		73DD221B144C0347003BED92 /* Weibo12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2219144C0347003BED92 /* Weibo12@2x.png */; };
 		73DE4B84144E5EDE00547931 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DE4B83144E5EDE00547931 /* CommonFunction.m */; };
+		73F1F6B214C01A2300C0EAF5 /* head_wb.png in Resources */ = {isa = PBXBuildFile; fileRef = 73F1F6B114C01A2300C0EAF5 /* head_wb.png */; };
+		73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */; };
+		73F1F6BD14C05D5000C0EAF5 /* photocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73F1F6BC14C05D5000C0EAF5 /* photocell.html */; };
 		73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400D14467EC400F9EDBD /* NewFeedListController.xib */; };
 		73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */; };
 		73F34015144680BA00F9EDBD /* NewFeedStatusWithRepostcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F34013144680B900F9EDBD /* NewFeedStatusWithRepostcell.m */; };
@@ -304,8 +306,6 @@
 		73B9A37E1479F6B20058FC20 /* StatusCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusCommentData.m; path = "SocialFusion/Class/CoreData Models/StatusCommentData.m"; sourceTree = "<group>"; };
 		73B9A3811479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StatusCommentData+StatusCommentData_Addition.h"; sourceTree = "<group>"; };
 		73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StatusCommentData+StatusCommentData_Addition.m"; sourceTree = "<group>"; };
-		73B9A384147A1D070058FC20 /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedData.h; path = "SocialFusion/Class/CoreData Models/NewFeedData.h"; sourceTree = "<group>"; };
-		73B9A385147A1D080058FC20 /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedData.m; path = "SocialFusion/Class/CoreData Models/NewFeedData.m"; sourceTree = "<group>"; };
 		73B9A38A147A1D0D0058FC20 /* NewFeedBlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedBlog.h; path = "SocialFusion/Class/CoreData Models/NewFeedBlog.h"; sourceTree = "<group>"; };
 		73B9A38B147A1D0E0058FC20 /* NewFeedBlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedBlog.m; path = "SocialFusion/Class/CoreData Models/NewFeedBlog.m"; sourceTree = "<group>"; };
 		73C99C9414BF051D00B251DF /* NewFeedSharePhoto+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedSharePhoto+Addition.h"; sourceTree = "<group>"; };
@@ -324,6 +324,10 @@
 		73DD2219144C0347003BED92 /* Weibo12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weibo12@2x.png"; sourceTree = "<group>"; };
 		73DE4B82144E5EDE00547931 /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		73DE4B83144E5EDE00547931 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		73F1F6B114C01A2300C0EAF5 /* head_wb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_wb.png; sourceTree = "<group>"; };
+		73F1F6B914C05AF700C0EAF5 /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedData.h; path = "SocialFusion/Class/CoreData Models/NewFeedData.h"; sourceTree = "<group>"; };
+		73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedData.m; path = "SocialFusion/Class/CoreData Models/NewFeedData.m"; sourceTree = "<group>"; };
+		73F1F6BC14C05D5000C0EAF5 /* photocell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = photocell.html; sourceTree = "<group>"; };
 		73F3400D14467EC400F9EDBD /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
 		73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusCell.xib; sourceTree = "<group>"; };
 		73F34012144680B900F9EDBD /* NewFeedStatusWithRepostcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusWithRepostcell.h; sourceTree = "<group>"; };
@@ -768,8 +772,8 @@
 				73C99C9814BF0BE100B251DF /* NewFeedSharePhoto.m */,
 				73B9A37D1479F6B20058FC20 /* StatusCommentData.h */,
 				73B9A37E1479F6B20058FC20 /* StatusCommentData.m */,
-				73B9A384147A1D070058FC20 /* NewFeedData.h */,
-				73B9A385147A1D080058FC20 /* NewFeedData.m */,
+				73F1F6B914C05AF700C0EAF5 /* NewFeedData.h */,
+				73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */,
 				7308FF2714BD8E6300EC6481 /* NewFeedShareAlbum.h */,
 				7308FF2814BD8E6300EC6481 /* NewFeedShareAlbum.m */,
 				73B9A38A147A1D0D0058FC20 /* NewFeedBlog.h */,
@@ -878,6 +882,8 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				73F1F6BC14C05D5000C0EAF5 /* photocell.html */,
+				73F1F6B114C01A2300C0EAF5 /* head_wb.png */,
 				73C99C9A14BF0FE900B251DF /* sharephotocell.html */,
 				7308FF2E14BD942100EC6481 /* sharealbum.html */,
 				7308FF3214BDC1D100EC6481 /* newfeedjs.js */,
@@ -1264,6 +1270,8 @@
 				7317582414BC808100F14700 /* uploadphotocell.html in Resources */,
 				7308FF2F14BD942100EC6481 /* sharealbum.html in Resources */,
 				73C99C9B14BF0FE900B251DF /* sharephotocell.html in Resources */,
+				73F1F6B214C01A2300C0EAF5 /* head_wb.png in Resources */,
+				73F1F6BD14C05D5000C0EAF5 /* photocell.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,7 +1372,6 @@
 				731D1DBF147603B6001981B4 /* Status.m in Sources */,
 				73B9A37F1479F6B30058FC20 /* StatusCommentData.m in Sources */,
 				73B9A3831479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m in Sources */,
-				73B9A386147A1D090058FC20 /* NewFeedData.m in Sources */,
 				73B9A38C147A1D0F0058FC20 /* NewFeedBlog.m in Sources */,
 				734483C0147A7B780031D33A /* NewFeedDetailViewCell.m in Sources */,
 				736341EF14B6ADFC00A697A5 /* NewFeedRootData.m in Sources */,
@@ -1376,6 +1383,7 @@
 				7308FF2D14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m in Sources */,
 				73C99C9614BF051D00B251DF /* NewFeedSharePhoto+Addition.m in Sources */,
 				73C99C9914BF0BE100B251DF /* NewFeedSharePhoto.m in Sources */,
+				73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

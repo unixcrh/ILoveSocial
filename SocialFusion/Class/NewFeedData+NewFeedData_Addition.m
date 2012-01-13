@@ -106,7 +106,7 @@
 
 
 
-+ (NewFeedData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
++ (NewFeedData *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
     
     if (sytle==0)//renren
@@ -127,7 +127,7 @@
         
         result.style=[NSNumber numberWithInt:sytle];
         
-        NSLog(@"%@",result.style);
+       // NSLog(@"%@",result.style);
         
         result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
         
@@ -158,26 +158,6 @@
         result.message=[dict objectForKey:@"message"];
         
         NSArray* attachments=[dict objectForKey:@"attachment"];
-        if ([[dict objectForKey:@"feed_type"] intValue]==30||[[dict objectForKey:@"feed_type"] intValue]==32)
-        {
-            if ([attachments count]!=0)
-            {
-                NSDictionary* attachment=[attachments objectAtIndex:0];
-                if ([attachment count]!=0)
-                {
-                    result.pic_URL=[attachment objectForKey:@"raw_src"];
-                    NSString* tempString1=[dict objectForKey:@"prefix"] ;
-                    NSString* tempString2=[dict objectForKey:@"title"] ;
-                    result.message=[NSString stringWithFormat:@"%@%@",tempString1,tempString2];
-                    
-                }
-                
-            }
-
-            
-        }
-        else
-        {
         if ([attachments count]!=0)
         {
             NSDictionary* attachment=[attachments objectAtIndex:0];
@@ -196,7 +176,7 @@
         }
             
 
-        }
+        result.cellheight=[NSNumber numberWithInt:height];
                   
         
         result.get_Time=getDate;
@@ -288,8 +268,8 @@
         
         //      NSLog(@"%@",result);
         result.pic_URL=[dict objectForKey:@"thumbnail_pic"];
-        
-        
+        result.pic_big_URL=[dict objectForKey:@"bmiddle_pic"];
+        result.cellheight=[NSNumber numberWithInt:height];
         NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
         if ([attachment count]!=0)
         {
@@ -310,11 +290,8 @@
                 result.repost_Status=[attachment objectForKey:@"text"] ;
                 
                 result.pic_URL=[attachment objectForKey:@"thumbnail_pic"];
-                
-                
-                //  post_Count=[[attachment objectForKey:@"comment_count"]  intValue];
-                
-            //    NSLog(@"%@",attachment);
+          
+                result.pic_big_URL=[attachment objectForKey:@"bmiddle_pic"];
             }
             
         }

@@ -37,8 +37,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
-   // NSLog(@"webview跑出来拉！！！");
-       [self refresh];
+    // NSLog(@"webview跑出来拉！！！");
+    [self refresh];
 }
 
 
@@ -56,16 +56,16 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
     NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-
-_webView.backgroundColor=[UIColor clearColor];
-_webView.opaque=NO;
+    
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
     _webView.frame=CGRectMake(0, 0, 320, 69);
-
-_webView.scrollView.scrollEnabled=NO;
-_webView.delegate=self;
-
-
- 
+    
+    _webView.scrollView.scrollEnabled=NO;
+    _webView.delegate=self;
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -161,24 +161,33 @@ _webView.delegate=self;
             
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
-                NewFeedData* data = [NewFeedData insertNewFeed:1 getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                
+                NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
+                int scrollHeight ;
+                if ([attachment count]==0)
+                {
+                  
+                    NSString* string=[dict objectForKey:@"text"];
+                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
+                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
+                     scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+                    if ([dict objectForKey:@"thumbnail_pic"]!=nil)
+                    {
+                        scrollHeight=scrollHeight+65;
+                        
+                    }
+                }
+                else
+                {
+                    
+                }
+                NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                 
                 [self.currentWeiboUser addNewFeedObject:data];
                 
             }
             
-            
-            
-            //  NSArray *dictArray = [client.responseJSONObject objectForKey:@"users"];
-            
-            //_nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
-            // NSLog(@"new cursor:%d", _nextCursor);
-            //if (_nextCursor == 0) {
-            //    [self hideLoadMoreDataButton];
-            // }
-            // else {
-            //    [self showLoadMoreDataButton];
-            // }
+
             [self showLoadMoreDataButton];
             [self doneLoadingTableViewData];
             
@@ -219,26 +228,14 @@ _webView.delegate=self;
                 
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
-                    
-   
-                    
-                
-
-                    
                     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@%@')",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]]];
-
+                    
                     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[dict objectForKey:@"description"]]];
-                  
                     
                     int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
                     
-                    //NSLog(@"scrollHeight:%d",scrollHeight);
-                    
                     NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    
-                    
-               
-                    
+
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else if ([[dict objectForKey:@"feed_type"] intValue]==30)
@@ -251,19 +248,63 @@ _webView.delegate=self;
                 else if ([[dict objectForKey:@"feed_type"] intValue]==33)
                 {
                     
-                    NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+
+                    NSString* string=[dict objectForKey:@"message"];
+                    if ([string compare:@""]==0)
+                    {
+                        [_webView stringByEvaluatingJavaScriptFromString:@"setWeibo('a')"];                                                                         
+                    }
+                    else
+                    {
+                        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
+  
+                    }
+                    
+                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
+                    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+             
+                    NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight+108 getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else if ([[dict objectForKey:@"feed_type"] intValue]==32)
                 {
-                    NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+                    NSString* string=[dict objectForKey:@"message"];
+            
+                    if ([string compare:@""]==0)
+                    {
+                        [_webView stringByEvaluatingJavaScriptFromString:@"setWeibo('a')"];                                                                         
+                    }
+                    else
+                    {
+                        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
+                        
+                    }
+                    
+                                                            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
+                    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+                    
+                    
+                    
+                    
+                    NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight+88  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else
                 {
-                    NewFeedData* data = [NewFeedData insertNewFeed:0  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    NSArray* attachments=[dict objectForKey:@"attachment"];
+                       if ([attachments count]==0)
+                       {
+                           NSString* string=[dict objectForKey:@"message"];
+                             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
+                           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
+ 
+                       }
+                           int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];                 
+                              NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     
                     [self.currentRenrenUser addNewFeedObject:data];
@@ -272,7 +313,7 @@ _webView.delegate=self;
             
             
             
-    
+            
             [self showLoadMoreDataButton];
             [self doneLoadingTableViewData];
             _loading = NO;
@@ -407,7 +448,7 @@ _webView.delegate=self;
             imageData = [Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
         }
         if(imageData != nil) {
-         //   cell.headImageView.image = [UIImage imageWithData:imageData];
+            //   cell.headImageView.image = [UIImage imageWithData:imageData];
         }
         
         if ([a class]==[NewFeedData class])
@@ -419,8 +460,8 @@ _webView.delegate=self;
                     imageData = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
                 }
                 if(imageData != nil) {
-           //         cell.picView.image = [UIImage imageWithData:imageData];
-             //       cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
+                    //         cell.picView.image = [UIImage imageWithData:imageData];
+                    //       cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
                 }
             }
         }
@@ -433,12 +474,12 @@ _webView.delegate=self;
         
         if ([a class]==[NewFeedData class])
         {
-         
-                
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
-                cell = _newFeedDetailViewCel;
-                
-                [cell initWithFeedData:a context:self.managedObjectContext];
+            
+            
+            [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
+            cell = _newFeedDetailViewCel;
+            
+            [cell initWithFeedData:a context:self.managedObjectContext];
             
         }
         return cell;
@@ -454,7 +495,7 @@ _webView.delegate=self;
               completion:(void (^)())completion 
           cacheInContext:(NSManagedObjectContext *)context
 {
-
+    
 	
     NSURL *url = [NSURL URLWithString:urlString];    
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);
@@ -465,12 +506,12 @@ _webView.delegate=self;
             NSLog(@"download image failed:%@", urlString);
             return;
         }
-    //    UIImage *img = [UIImage imageWithData:imageData];
+        //    UIImage *img = [UIImage imageWithData:imageData];
         dispatch_async(dispatch_get_main_queue(), ^{
             if([Image imageWithURL:urlString inManagedObjectContext:context] == nil) {
                 [Image insertImage:imageData withURL:urlString inManagedObjectContext:context];
                 //NSLog(@"cache image url:%@", urlString);
-              //  self.image = img;
+                //  self.image = img;
                 if (completion) {
                     completion();
                 }			
@@ -492,7 +533,7 @@ _webView.delegate=self;
         NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         [self loadImageFromURL:data.owner_Head completion:^{
             Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
-           
+            
             [statusCell loadImage:image1.imageData.data];
             
         } cacheInContext:self.managedObjectContext];
@@ -502,9 +543,9 @@ _webView.delegate=self;
     else
     {
         NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-       
-            [statusCell loadImage:image.imageData.data];
-
+        
+        [statusCell loadImage:image.imageData.data];
+        
     }
     
     if ([data class]==[NewFeedUploadPhoto class])
@@ -526,7 +567,7 @@ _webView.delegate=self;
             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             
             [statusCell loadPicture:image.imageData.data];
-
+            
         }
         
     }
@@ -579,9 +620,33 @@ _webView.delegate=self;
         
     }
     
+     if ([data class]==[NewFeedData class])
+     {
+         NewFeedData* data2=(NewFeedData*)data;
+         if (data2.pic_URL!=nil)
+         {
+         image = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
+         if (!image)
+         {
+             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+             [self loadImageFromURL:data2.pic_URL completion:^{
+                 Image *image1 = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
+                 
+                 [statusCell loadPicture:image1.imageData.data];
+                 
+             } cacheInContext:self.managedObjectContext];
+         }
+         else
+         {
+             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+             
+             [statusCell loadPicture:image.imageData.data];
+             
+         }
+         }
+     }
     
     
-     
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -643,22 +708,22 @@ _webView.delegate=self;
 }
 
 /*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    
-    
-    [tableView cellForRowAtIndexPath:indexPath].selected=false;
-    tableView.allowsSelection=false;
-    //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
-    
-    //_openedCell=indexPath.row;
-    _indexPath=[indexPath retain];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    self.tableView.scrollEnabled=FALSE;
-    
-}
+ - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ 
+ 
+ 
+ [tableView cellForRowAtIndexPath:indexPath].selected=false;
+ tableView.allowsSelection=false;
+ //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
+ 
+ //_openedCell=indexPath.row;
+ _indexPath=[indexPath retain];
+ [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+ self.tableView.scrollEnabled=FALSE;
+ 
+ }
  */
 -(IBAction)resetToNormalList
 {

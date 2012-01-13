@@ -44,15 +44,7 @@
     {
         if ([feedData getPostName]==nil)
         {
-            NSString* tempString=[feedData getName];
-            CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
-                                      constrainedToSize:size];
-            
-            
-
-                return labelSize.height*1.45+85;
-            
+             return [feedData.cellheight intValue];
         }
         else
         {
@@ -60,8 +52,7 @@
             CGSize size = CGSizeMake(212, 1000);
             CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
                                       constrainedToSize:size];
-            
-            
+
             NSString* tempString1=[feedData getPostMessage];
             CGSize size1 = CGSizeMake(200, 1000);
             CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
@@ -71,15 +62,15 @@
     }
     else if ([feedData class]==[NewFeedUploadPhoto class] )
     {
-        return 165;
+        return 162;
     }
     else if ([feedData class]==[NewFeedShareAlbum class] )
     {
-        return 165;
+        return [feedData.cellheight intValue];
     }
     else if ([feedData class]==[NewFeedSharePhoto class] )
     {
-        return 165;
+        return [feedData.cellheight intValue];
     }
     
     
@@ -237,13 +228,13 @@
 
     
     
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
-    
-    
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
      
       }
+
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",[_feedData.style  intValue]]];
     int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
   
@@ -315,9 +306,19 @@
     }
     else
     {
-    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcell" ofType:@"html"];
-    NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+        
+        if ((NewFeedData*)feedData.pic_URL!=nil)
+        {
+            NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocell" ofType:@"html"];
+            NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+            [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+        }
+        else
+        {
+            NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcell" ofType:@"html"];
+            NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+            [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+        }
     }
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;

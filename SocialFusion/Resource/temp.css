@@ -106,7 +106,8 @@ a {
 	top:10px;
 	text-align:right;
 	font-size:9px;
-	color:#908E78
+	color:#908E78;
+	height: 10px;
 }
 #blog {
 	line-height:120%;

@@ -36,7 +36,19 @@ function setComment(comment)
 
 }
 
-
+function setStyle(style)
+{
+	if (style==0)
+	{
+		document.getElementById("head_style").src="head_renren.png";
+		return;
+	}
+	if (style==1)
+	{
+		document.getElementById("head_style").src="head_wb.png";
+		return;
+	}
+}
 
 
 function setTitle(title)
