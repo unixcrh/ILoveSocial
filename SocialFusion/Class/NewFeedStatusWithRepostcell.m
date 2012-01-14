@@ -30,7 +30,7 @@
     
     
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[(NewFeedData*)_feedData getPostMessage]]];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepostData('%@')",[(NewFeedData*)_feedData getPostMessage]]];
     int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
     
