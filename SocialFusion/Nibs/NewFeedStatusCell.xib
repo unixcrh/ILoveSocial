@@ -55,8 +55,6 @@
 									<bytes key="NSRGB">MSAxIDEgMAA</bytes>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIDataDetectorTypes">1</int>
-								<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 99}</string>

@@ -10,7 +10,7 @@
 
 @implementation NewFeedShareAlbum (Addition)
 
-+ (NewFeedShareAlbum *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedShareAlbum *)insertNewFeed:(int)sytle  height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
     if (!statusID || [statusID isEqualToString:@""]) {
@@ -57,7 +57,7 @@
     
     
     
-    
+    result.cellheight=[NSNumber numberWithInt:height];
     // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
     // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
     

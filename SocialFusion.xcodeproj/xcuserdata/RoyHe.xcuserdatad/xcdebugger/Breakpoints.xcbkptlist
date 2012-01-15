@@ -102,20 +102,6 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "348067457.978249"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
@@ -219,12 +205,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "348067457.978249"
+         timestampString = "348237315.487655"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "390"
-         endingLineNumber = "390"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
+         landmarkName = "-loadMoreWeiboData"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -232,27 +218,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedStatusCell.m"
-         timestampString = "348067457.978249"
+         filePath = "SocialFusion/Class/NewFeedData+NewFeedData_Addition.m"
+         timestampString = "348253792.842787"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145"
-         landmarkName = "-loadPicture:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "348067457.978249"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "198"
-         endingLineNumber = "198"
-         landmarkName = "-loadMoreRenrenData"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "-getPostMessage"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

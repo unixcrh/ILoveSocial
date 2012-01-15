@@ -39,6 +39,9 @@
     int _pageNumber;
     
     
+    
+    UIWebView* _webView;
+    
 
     
     

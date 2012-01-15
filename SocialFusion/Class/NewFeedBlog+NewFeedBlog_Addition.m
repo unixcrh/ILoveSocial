@@ -9,7 +9,7 @@
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 
 @implementation NewFeedBlog (NewFeedBlog_Addition)
-+ (NewFeedBlog *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedBlog *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
         NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
         if (!statusID || [statusID isEqualToString:@""]) {
@@ -60,6 +60,7 @@
         result.mydescription=[dict objectForKey:@"description"] ;
         
         
+    result.cellheight=[NSNumber numberWithInt:height];
        // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
        // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
 
@@ -99,29 +100,12 @@
     //if (description==nil)
     //description=@"";
     
-    NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
-    
-    
-    int nameLength=[self.owner_Name length];
-    
-    for (int i=0;i<nameLength;i++)
-    {
-        
-        if ([self.owner_Name characterAtIndex:i]<512)
-        {
-            tempString=[tempString stringByAppendingString:@" "];
-        }
-        else
-        {
-            tempString=[tempString stringByAppendingString:@"  "];
-        }
-    }
+   
     
     
     
     
-    
-    return [[tempString stringByAppendingFormat:@"%@",self.prefix] stringByAppendingFormat:@"%@",self.title]  ;
+    return [NSString stringWithFormat:@"%@%@",self.prefix,self.title]  ;
     
 }
 
