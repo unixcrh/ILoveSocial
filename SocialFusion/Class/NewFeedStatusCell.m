@@ -48,16 +48,8 @@
         }
         else
         {
-            NSString* tempString=[feedData getName];
-            CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
-                                      constrainedToSize:size];
+            return [feedData.cellheight intValue];
 
-            NSString* tempString1=[feedData getPostMessage];
-            CGSize size1 = CGSizeMake(200, 1000);
-            CGSize labelSize1 = [tempString1 sizeWithFont:[UIFont fontWithName:@"Helvetica" size:10]
-                                        constrainedToSize:size1];
-            return (labelSize.height+labelSize1.height)*1.45+85;
         }
     }
     else if ([feedData class]==[NewFeedUploadPhoto class] )

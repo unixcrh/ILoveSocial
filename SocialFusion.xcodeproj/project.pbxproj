@@ -63,6 +63,9 @@
 		73C99C9614BF051D00B251DF /* NewFeedSharePhoto+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */; };
 		73C99C9914BF0BE100B251DF /* NewFeedSharePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9814BF0BE100B251DF /* NewFeedSharePhoto.m */; };
 		73C99C9B14BF0FE900B251DF /* sharephotocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73C99C9A14BF0FE900B251DF /* sharephotocell.html */; };
+		73CB550214C1A71C00C0DA29 /* repostcellwithphoto.html in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */; };
+		73CB550514C1BF9E00C0DA29 /* repost_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550414C1BF9E00C0DA29 /* repost_shadow.png */; };
+		73CB550714C1D45400C0DA29 /* repost_board.png in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550614C1D45400C0DA29 /* repost_board.png */; };
 		73CB895C145EEB5600C6EEB9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */; };
 		73D21C6314B59F7E00EFA9A5 /* repostcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73D21C6214B59F7E00EFA9A5 /* repostcell.html */; };
 		73D21C6514B5A10900EFA9A5 /* normalcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73D21C6414B5A10900EFA9A5 /* normalcell.html */; };
@@ -319,6 +322,9 @@
 		73C99C9714BF0BE100B251DF /* NewFeedSharePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedSharePhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.h"; sourceTree = "<group>"; };
 		73C99C9814BF0BE100B251DF /* NewFeedSharePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedSharePhoto.m; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.m"; sourceTree = "<group>"; };
 		73C99C9A14BF0FE900B251DF /* sharephotocell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sharephotocell.html; sourceTree = "<group>"; };
+		73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = repostcellwithphoto.html; sourceTree = "<group>"; };
+		73CB550414C1BF9E00C0DA29 /* repost_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repost_shadow.png; sourceTree = "<group>"; };
+		73CB550614C1D45400C0DA29 /* repost_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repost_board.png; sourceTree = "<group>"; };
 		73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		73D21C6214B59F7E00EFA9A5 /* repostcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = repostcell.html; sourceTree = "<group>"; };
 		73D21C6414B5A10900EFA9A5 /* normalcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = normalcell.html; sourceTree = "<group>"; };
@@ -888,6 +894,9 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				73CB550414C1BF9E00C0DA29 /* repost_shadow.png */,
+				73CB550614C1D45400C0DA29 /* repost_board.png */,
+				73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */,
 				73F1F6BC14C05D5000C0EAF5 /* photocell.html */,
 				7398960414C157F900696C1C /* repost_underline.png */,
 				7398960514C157F900696C1C /* tape.png */,
@@ -1284,6 +1293,9 @@
 				7398960714C157F900696C1C /* repost_underline.png in Resources */,
 				7398960814C157F900696C1C /* tape.png in Resources */,
 				7398960914C157F900696C1C /* repost_shadow.png in Resources */,
+				73CB550214C1A71C00C0DA29 /* repostcellwithphoto.html in Resources */,
+				73CB550514C1BF9E00C0DA29 /* repost_shadow.png in Resources */,
+				73CB550714C1D45400C0DA29 /* repost_board.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,28 +61,12 @@
 
 -(NSString*)getPostMessage
 {
-    NSString* tempString=[[[NSString alloc] initWithFormat:@""] autorelease];
+
     
-    int nameLength=[self.repost_Name length];
-    
-    for (int i=0;i<nameLength;i++)
-    {
-        
-        if ([self.repost_Name characterAtIndex:i]<512)
-        {
-            tempString=[tempString stringByAppendingString:@" "];
-        }
-        else
-        {
-            tempString=[tempString stringByAppendingString:@"  "];
-        }
-    }
-    
-    
-    
+    return [NSString stringWithFormat:@"<span style=\"font-weight:bold;\">%@:</span>%@",self.repost_Name,self.repost_Status];
     
     // NSLog(@"%@",[tempString stringByAppendingFormat:@"%@",post_Status]);
-    return [tempString stringByAppendingFormat:@":%@",self.repost_Status] ;
+   // return [tempString stringByAppendingFormat:@":%@",self.repost_Status] ;
     
     
 }
@@ -97,7 +81,7 @@
 -(NSString*)getName
 {
     
-    
+
     return self.message;
 
     

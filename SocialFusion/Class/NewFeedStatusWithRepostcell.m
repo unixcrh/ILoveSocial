@@ -27,8 +27,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('%@')",[_feedData getFeedName]]];
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
-    
-    
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",[_feedData.style  intValue]]];
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepostData('%@')",[(NewFeedData*)_feedData getPostMessage]]];
     int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
@@ -44,11 +43,19 @@
 {
 
   
-    
+    if (feedData.pic_URL==nil)
+    {
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcell" ofType:@"html"];
     NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-    _webView.backgroundColor=[UIColor clearColor];
+    }
+    else
+    {
+        NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcellwithphoto" ofType:@"html"];
+        NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    }
+        _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
     
    //  _webView.userInteractionEnabled=NO;
