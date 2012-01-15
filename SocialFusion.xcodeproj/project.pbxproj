@@ -63,6 +63,7 @@
 		73C99C9614BF051D00B251DF /* NewFeedSharePhoto+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */; };
 		73C99C9914BF0BE100B251DF /* NewFeedSharePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9814BF0BE100B251DF /* NewFeedSharePhoto.m */; };
 		73C99C9B14BF0FE900B251DF /* sharephotocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73C99C9A14BF0FE900B251DF /* sharephotocell.html */; };
+		73CA9B3814C308E500D85492 /* NewFeedCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CA9B3714C308E500D85492 /* NewFeedCellHeight.m */; };
 		73CB550214C1A71C00C0DA29 /* repostcellwithphoto.html in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */; };
 		73CB550514C1BF9E00C0DA29 /* repost_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550414C1BF9E00C0DA29 /* repost_shadow.png */; };
 		73CB550714C1D45400C0DA29 /* repost_board.png in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550614C1D45400C0DA29 /* repost_board.png */; };
@@ -322,6 +323,8 @@
 		73C99C9714BF0BE100B251DF /* NewFeedSharePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedSharePhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.h"; sourceTree = "<group>"; };
 		73C99C9814BF0BE100B251DF /* NewFeedSharePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedSharePhoto.m; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.m"; sourceTree = "<group>"; };
 		73C99C9A14BF0FE900B251DF /* sharephotocell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sharephotocell.html; sourceTree = "<group>"; };
+		73CA9B3614C308E500D85492 /* NewFeedCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedCellHeight.h; sourceTree = "<group>"; };
+		73CA9B3714C308E500D85492 /* NewFeedCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedCellHeight.m; sourceTree = "<group>"; };
 		73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = repostcellwithphoto.html; sourceTree = "<group>"; };
 		73CB550414C1BF9E00C0DA29 /* repost_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repost_shadow.png; sourceTree = "<group>"; };
 		73CB550614C1D45400C0DA29 /* repost_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repost_board.png; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 				7309DDBC1447E93300774011 /* NewFeedCell */,
 				73906659143F095C00835332 /* NewFeedListController.h */,
 				7390665A143F095C00835332 /* NewFeedListController.m */,
+				73CA9B3614C308E500D85492 /* NewFeedCellHeight.h */,
+				73CA9B3714C308E500D85492 /* NewFeedCellHeight.m */,
 				73DE4B82144E5EDE00547931 /* CommonFunction.h */,
 				73DE4B83144E5EDE00547931 /* CommonFunction.m */,
 			);
@@ -1408,6 +1413,7 @@
 				73C99C9614BF051D00B251DF /* NewFeedSharePhoto+Addition.m in Sources */,
 				73C99C9914BF0BE100B251DF /* NewFeedSharePhoto.m in Sources */,
 				73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */,
+				73CA9B3814C308E500D85492 /* NewFeedCellHeight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

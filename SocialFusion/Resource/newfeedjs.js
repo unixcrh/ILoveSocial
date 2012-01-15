@@ -64,5 +64,30 @@ function gotoDetail()
 
 }
 
-
+var mouseX;
+var mouseY;
+function mouseDown(e)
+{
+		mouseX=e.clientX;
+mouseY=e.clientY;
+alert(mouseX);
+}
+function mouseUp(e)
+{
+	var x1=e.clientX;
+	var y1=e.clientY;
+	
+	
+	
+	if (x1-mouseX>30)
+	{
+		alert("right");
+	}
+	
+	if (x1-mouseX<-50)
+	{
+		alert("left");
+	}
+	
+}
 

@@ -35,12 +35,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    
-    // NSLog(@"webview跑出来拉！！！");
-    [self refresh];
-}
-
 
 - (void)viewDidLoad
 {
@@ -52,18 +46,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     _indexPath=nil;
     
     
-    _webView=[[UIWebView alloc] init];    
-    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
-    NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-    
-    _webView.backgroundColor=[UIColor clearColor];
-    _webView.opaque=NO;
-    _webView.frame=CGRectMake(0, 0, 320, 69);
-    
-    _webView.scrollView.scrollEnabled=NO;
-    _webView.delegate=self;
-    
+    _cellHeightHelper=[[NewFeedCellHeight alloc] init];
+    [_cellHeightHelper myinit:self];
     
     
 }
@@ -140,38 +124,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 
-                NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
-                int scrollHeight ;
-                if ([attachment count]==0)
-                {
-                  
-                    NSString* string=[dict objectForKey:@"text"];
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
-                     scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
-                    if ([dict objectForKey:@"thumbnail_pic"]!=nil)
-                    {
-                        scrollHeight=scrollHeight+65;
-                    }
-                }
-                else
-                {
-                    NSString* string=[dict objectForKey:@"text"];
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];  
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@:%@')",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]]];
-                    scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
                
-                   // NSLog(@"%@",dict);
-                    
-                    if ([attachment objectForKey:@"thumbnail_pic"]!=nil)
-                    {
-                        scrollHeight=scrollHeight+45+65;
-                    }
-                    else
-                    {
-                        scrollHeight=scrollHeight+25;
-                    }
-                }
+                int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
+              
                 NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                 
                 [self.currentWeiboUser addNewFeedObject:data];
@@ -213,17 +168,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 
                 
                 
-                
+                       int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
                 //  NSLog(@"%@",dict);
                 
                 
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
                 {
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@%@')",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]]];
+              
                     
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[dict objectForKey:@"description"]]];
-                    
-                    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+           
                     
                     NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
 
@@ -241,70 +194,25 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                     
                     
 
-                    NSString* string=[dict objectForKey:@"message"];
-                    if ([string compare:@""]==0)
-                    {
-                        [_webView stringByEvaluatingJavaScriptFromString:@"setWeibo('a')"];                                                                         
-                    }
-                    else
-                    {
-                        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
-  
-                    }
-                    
-                    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
-                    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+                  
              
-                    NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight+68 getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else if ([[dict objectForKey:@"feed_type"] intValue]==32)
                 {
                     
-                    NSString* string=[dict objectForKey:@"message"];
-            
-                    if ([string compare:@""]==0)
-                    {
-                        [_webView stringByEvaluatingJavaScriptFromString:@"setWeibo('a')"];                                                                         
-                    }
-                    else
-                    {
-                        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
-                        
-                    }
-                    
-                                                            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
-                    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+           
                     
                     
-                    
-                    
-                    NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight+88  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else
                 {
-                    int scrollHeight ;
-                    NSArray* attachments=[dict objectForKey:@"attachment"];
-                       if ([attachments count]==0)
-                       {
-                           NSString* string=[dict objectForKey:@"message"];
-                             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
-                           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
-                           scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];                 
-                       }
-                    else
-                    {
-                        NSString* string=[dict objectForKey:@"message"];
-                        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
-                       
-              
-                        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@:%@')",          [[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"] ]];
-                        scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
-                        scrollHeight=scrollHeight+25;
-                    }
+
                       
                               NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     

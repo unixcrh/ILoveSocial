@@ -20,7 +20,8 @@
 #import "NewFeedStatusWithRepostcell.h"
 #import "NewFeedBlogCell.h"
 #import "NewFeedDetailViewCell.h"
-@interface NewFeedListController : EGOTableViewController<UIWebViewDelegate> {
+#import "NewFeedCellHeight.h"
+@interface NewFeedListController : EGOTableViewController {
     
     
     
@@ -40,7 +41,9 @@
     
     
     
-    UIWebView* _webView;
+    NewFeedCellHeight* _cellHeightHelper;
+    
+   // UIWebView* _webView;
     
 
     
