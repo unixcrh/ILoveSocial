@@ -97,9 +97,6 @@
 		E12064441454321A00A7FE4F /* rightlabelwithnoshadow.png in Resources */ = {isa = PBXBuildFile; fileRef = E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */; };
 		E12064451454321A00A7FE4F /* rightlabelwithnoshadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
-		E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C6142771AD006B675E /* backButton-highlight@2x.png */; };
-		E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17C7142771AD006B675E /* backButton-highlight.png */; };
-		E14D17CC142771C2006B675E /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CB142771C2006B675E /* backButton@2x.png */; };
 		E14D17CF142855B3006B675E /* bottomGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CD142855B3006B675E /* bottomGradient.png */; };
 		E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CE142855B3006B675E /* bottomGradient@2x.png */; };
 		E1777D2A1430475900A8D1BA /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E1777D291430475900A8D1BA /* blueArrow.png */; };
@@ -214,7 +211,6 @@
 		E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */; };
 		E1F1D4E9142E2B7800720635 /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E7142E2B7800720635 /* label.png */; };
 		E1F1D4EA142E2B7800720635 /* label-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E8142E2B7800720635 /* label-highlight.png */; };
-		E1FB62291423323100828E24 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FB62281423323100828E24 /* backButton.png */; };
 		E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */; };
 		E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB624014247EA000828E24 /* CoreDataViewController.m */; };
 		E1FB62621424812C00828E24 /* Image+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB62591424812B00828E24 /* Image+Addition.m */; };
@@ -375,9 +371,6 @@
 		E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightlabelwithnoshadow.png; sourceTree = "<group>"; };
 		E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabelwithnoshadow@2x.png"; sourceTree = "<group>"; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
-		E14D17C6142771AD006B675E /* backButton-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight@2x.png"; sourceTree = "<group>"; };
-		E14D17C7142771AD006B675E /* backButton-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton-highlight.png"; sourceTree = "<group>"; };
-		E14D17CB142771C2006B675E /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
 		E14D17CD142855B3006B675E /* bottomGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomGradient.png; sourceTree = "<group>"; };
 		E14D17CE142855B3006B675E /* bottomGradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomGradient@2x.png"; sourceTree = "<group>"; };
 		E1777D291430475900A8D1BA /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
@@ -545,7 +538,6 @@
 		E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTableViewCell.m; sourceTree = "<group>"; };
 		E1F1D4E7142E2B7800720635 /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		E1F1D4E8142E2B7800720635 /* label-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-highlight.png"; sourceTree = "<group>"; };
-		E1FB62281423323100828E24 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = SocialFusion/Class/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = SocialFusion/Class/CoreDataTableViewController.m; sourceTree = "<group>"; };
 		E1FB623F14247EA000828E24 /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataViewController.h; path = SocialFusion/Class/CoreDataViewController.h; sourceTree = "<group>"; };
@@ -943,10 +935,6 @@
 				E1FB62B01424BC9F00828E24 /* tableviewCellTopShadow.png */,
 				E1FB62AB1424BA6500828E24 /* tableviewCell-highlight@2x.png */,
 				E1FB62AC1424BA6500828E24 /* tableviewCell-highlight.png */,
-				E14D17C7142771AD006B675E /* backButton-highlight.png */,
-				E14D17C6142771AD006B675E /* backButton-highlight@2x.png */,
-				E1FB62281423323100828E24 /* backButton.png */,
-				E14D17CB142771C2006B675E /* backButton@2x.png */,
 				E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */,
 				E19A2D251421E93200BE491A /* background.png */,
 				E1BF91CA1421F1AD002F6F1A /* background@2x.png */,
@@ -1216,7 +1204,6 @@
 				E19A2D281421EA2B00BE491A /* FriendHeadViewController.xib in Resources */,
 				E1BF91CB1421F1AD002F6F1A /* background@2x.png in Resources */,
 				E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */,
-				E1FB62291423323100828E24 /* backButton.png in Resources */,
 				E1FB62AD1424BA6500828E24 /* tableviewCell-highlight@2x.png in Resources */,
 				E1FB62AE1424BA6500828E24 /* tableviewCell-highlight.png in Resources */,
 				E1FB62B11424BC9F00828E24 /* tableviewCellTopShadow@2x.png in Resources */,
@@ -1225,9 +1212,6 @@
 				E1FB62B61424C86900828E24 /* messageButton-highlight.png in Resources */,
 				E1FB62BD1424F68C00828E24 /* tableviewCellBottomShadow@2x.png in Resources */,
 				E1FB62BE1424F68C00828E24 /* tableviewCellBottomShadow.png in Resources */,
-				E14D17C8142771AD006B675E /* backButton-highlight@2x.png in Resources */,
-				E14D17C9142771AD006B675E /* backButton-highlight.png in Resources */,
-				E14D17CC142771C2006B675E /* backButton@2x.png in Resources */,
 				E14D17CF142855B3006B675E /* bottomGradient.png in Resources */,
 				E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */,
 				E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */,
