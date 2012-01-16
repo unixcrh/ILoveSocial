@@ -47,6 +47,10 @@ a {
 	font-size:16px;
 	font-weight: bold;
 	color:#525044;
+	width:200px;
+	white-space:nowrap; 
+	text-overflow:ellipsis; 
+	overflow:hidden; 
 }
 .time {
 	color:#908E78;
