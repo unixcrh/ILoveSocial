@@ -34,7 +34,7 @@
 
 +(float)heightForCell:(NewFeedData*)feedData;
 -(NewFeedRootData*) getFeedData;
-- (IBAction)cancelButton:(id)sender;
+
 -(void)setList:(NewFeedListController*)list;
 -(void)configureCell:(NewFeedData*)feedData;
 -(void)exposeCell;

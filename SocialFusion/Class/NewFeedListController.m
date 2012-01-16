@@ -21,7 +21,7 @@
 #import "UIImageView+DispatchLoad.h"
 #import "NewFeedBlog.h"
 #import "StatusDetailController.h"
-
+#import "UIImage+Addition.h"
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
@@ -88,7 +88,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     //   [request setSortDescriptors:nil];
     [request setPredicate:predicate];
-    NSArray *descriptors = [NSArray arrayWithObject:sort]; 
+   // NSArray *descriptors = [NSArray arrayWithObject:sort]; 
     // [request setSortDescriptors:descriptors]; 
     [sort release];
     request.fetchBatchSize = 5;
@@ -401,35 +401,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
-- (void)loadImageFromURL:(NSString *)urlString 
-              completion:(void (^)())completion 
-          cacheInContext:(NSManagedObjectContext *)context
-{
-    
-	
-    NSURL *url = [NSURL URLWithString:urlString];    
-    dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);
-    dispatch_async(downloadQueue, ^{ 
-        //NSLog(@"download image:%@", urlString);
-        NSData *imageData = [NSData dataWithContentsOfURL:url];
-        if(!imageData) {
-            NSLog(@"download image failed:%@", urlString);
-            return;
-        }
-        //    UIImage *img = [UIImage imageWithData:imageData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if([Image imageWithURL:urlString inManagedObjectContext:context] == nil) {
-                [Image insertImage:imageData withURL:urlString inManagedObjectContext:context];
-                //NSLog(@"cache image url:%@", urlString);
-                //  self.image = img;
-                if (completion) {
-                    completion();
-                }			
-            }
-        });
-    });
-    dispatch_release(downloadQueue);
-}
+
 
 
 
@@ -441,7 +413,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     if (!image)
     {
         NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        [self loadImageFromURL:data.owner_Head completion:^{
+        [UIImage loadImageFromURL:data.owner_Head completion:^{
             Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
             
             [statusCell loadImage:image1.imageData.data];
@@ -465,7 +437,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         if (!image)
         {
             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            [self loadImageFromURL:data2.photo_url completion:^{
+            [UIImage loadImageFromURL:data2.photo_url completion:^{
                 Image *image1 = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
                 
                 [statusCell loadPicture:image1.imageData.data];
@@ -489,7 +461,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         if (!image)
         {
             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            [self loadImageFromURL:data2.photo_url completion:^{
+            [UIImage loadImageFromURL:data2.photo_url completion:^{
                 Image *image1 = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
                 
                 [statusCell loadPicture:image1.imageData.data];
@@ -513,7 +485,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         if (!image)
         {
             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            [self loadImageFromURL:data2.photo_url completion:^{
+            [UIImage loadImageFromURL:data2.photo_url completion:^{
                 Image *image1 = [Image imageWithURL:data2.photo_url inManagedObjectContext:self.managedObjectContext];
                 
                 [statusCell loadPicture:image1.imageData.data];
@@ -539,7 +511,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
          if (!image)
          {
              NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-             [self loadImageFromURL:data2.pic_URL completion:^{
+             [UIImage loadImageFromURL:data2.pic_URL completion:^{
                  Image *image1 = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
                  
                  [statusCell loadPicture:image1.imageData.data];
@@ -617,24 +589,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     self.tableView.scrollEnabled=FALSE;
 }
 
-/*
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
- {
- 
- 
- 
- [tableView cellForRowAtIndexPath:indexPath].selected=false;
- tableView.allowsSelection=false;
- //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
- 
- //_openedCell=indexPath.row;
- _indexPath=[indexPath retain];
- [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
- self.tableView.scrollEnabled=FALSE;
- 
- }
- */
+
 -(IBAction)resetToNormalList
 {
     
