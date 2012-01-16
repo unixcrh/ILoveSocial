@@ -95,6 +95,7 @@
 		73F4F978144A9EA400A692F7 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F968144A9EA400A692F7 /* OAServiceTicket.m */; };
 		73F4F979144A9EA400A692F7 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F96B144A9EA400A692F7 /* OAToken.m */; };
 		73F4F9C5144AAD8D00A692F7 /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F9C4144AAD8D00A692F7 /* WBRequest.m */; };
+		73FBBFB914C3BCEB00694B1B /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */; };
 		E12064441454321A00A7FE4F /* rightlabelwithnoshadow.png in Resources */ = {isa = PBXBuildFile; fileRef = E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */; };
 		E12064451454321A00A7FE4F /* rightlabelwithnoshadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
@@ -370,6 +371,8 @@
 		73F4F96C144A9EA400A692F7 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		73F4F9C3144AAD8D00A692F7 /* WBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRequest.h; sourceTree = "<group>"; };
 		73F4F9C4144AAD8D00A692F7 /* WBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRequest.m; sourceTree = "<group>"; };
+		73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addition.h"; sourceTree = "<group>"; };
+		73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightlabelwithnoshadow.png; sourceTree = "<group>"; };
 		E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabelwithnoshadow@2x.png"; sourceTree = "<group>"; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
@@ -746,6 +749,8 @@
 				73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */,
 				73B75BB314BB2A1100D7ACA1 /* NSString+DataURI.h */,
 				73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */,
+				73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */,
+				73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */,
 			);
 			name = Categories;
 			path = SocialFusion/Class;
@@ -1394,6 +1399,7 @@
 				73C99C9914BF0BE100B251DF /* NewFeedSharePhoto.m in Sources */,
 				73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */,
 				73CA9B3814C308E500D85492 /* NewFeedCellHeight.m in Sources */,
+				73FBBFB914C3BCEB00694B1B /* UIImage+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

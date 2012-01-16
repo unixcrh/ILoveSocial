@@ -54,6 +54,5 @@
 
 -(void)exposeCell:(NSIndexPath*)indexPath;
 
--(IBAction)gotoRepostStatus:(id)sender;
 -(IBAction)resetToNormalList;
 @end

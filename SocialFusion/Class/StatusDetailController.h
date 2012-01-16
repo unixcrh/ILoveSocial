@@ -35,6 +35,6 @@
     //   BOOL _completing;
 }
 @property (nonatomic, retain) NewFeedData* feedData;
-@property (nonatomic,retain) NewFeedStatusCell* feedStatusCel;
+
 -(void)loadData;
 @end
