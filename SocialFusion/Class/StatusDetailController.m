@@ -306,7 +306,7 @@
     for (NSIndexPath *indexPath in visiblePaths)
     {
         i += 0.05;
-        [self performSelector:@selector(loadExtraDataForOnscreenRowsHelp:) withObject:indexPath afterDelay:i];
+        [self performSelector:@selector(loadExtraDataForOnScreenRowsHelp:) withObject:indexPath afterDelay:i];
     }
 }
 

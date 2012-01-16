@@ -24,37 +24,25 @@
 
 @implementation FriendListViewController
 
-- (void)configureToolbar {
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    backButton.frame = CGRectMake(12, 12, 31, 34);
-    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
-    NSMutableArray *toolBarItems = [NSMutableArray array];
-    [toolBarItems addObject:backButtonItem];
-    self.toolbarItems = nil;
-    self.toolbarItems = toolBarItems;
-    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+- (void)viewDidUnload {
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"friend list view did load");
     self.egoHeaderView.textColor = [UIColor grayColor];
-    /*_topShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellTopShadow.png"]];
-    _topShadowImageView.frame = CGRectMake(0, -20, 320, 20);
-    [self.view addSubview:_topShadowImageView];
-    _bottomShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableviewCellBottomShadow.png"]];
-    _bottomShadowImageView.frame = CGRectMake(0, 460, 320, 20);
-    [self.view addSubview:_bottomShadowImageView];*/
 }
 
-- (void)dealloc {
-    //[_topShadowImageView release];
-    //[_bottomShadowImageView release];
-    [super dealloc];
-}
+#pragma mark -
+#pragma mark NSFetchRequestController
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -63,7 +51,7 @@
     relationshipCell.latestStatus.text = nil;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     relationshipCell.userName.text = usr.name;
-    //NSLog(@"cell name:%@", usr.name);
+
     if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             if(indexPath.row < kCustomRowCount) {
@@ -98,12 +86,47 @@
     return @"FriendListTableViewCell";
 }
 
-- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
+- (NSString *)customSectionNameKeyPath {
+    if(_type == RelationshipViewTypeRenrenFriends)
+        return @"nameFirstLetter";
+    else
+        return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if(_type == RelationshipViewTypeRenrenFriends)
+        return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    else 
+        return nil;
+}
+
+#pragma mark -
+#pragma mark UITableView delegates
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    // 清空选中状态
+    cell.highlighted = NO;
+    cell.selected = NO;
+    [self.tableView reloadData];
+    
+    User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSDictionary *dic = [NSMutableDictionary dictionary];
+    NSLog(@"send didSelectFriend notification. friend name:%@, type:%d", usr.name, _type);
+    [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];
+}
+
+#pragma mark -
+#pragma mark Animations
+
+- (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
     if(self.tableView.dragging || self.tableView.decelerating || _reloading)
         return;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     Image *image = [Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext];
-    if (!image)
+    if (image == nil)
     {
         FriendListTableViewCell *relationshipCell = (FriendListTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
@@ -126,21 +149,6 @@
             relationshipCell.latestStatus.alpha = 1;
         } completion:nil];
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    // 清空选中状态
-    cell.highlighted = NO;
-    cell.selected = NO;
-    [self.tableView reloadData];
-
-    User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSDictionary *dic = [NSMutableDictionary dictionary];
-    NSLog(@"send didSelectFriend notification. friend name:%@, type:%d", usr.name, _type);
-    [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];
 }
 
 @end

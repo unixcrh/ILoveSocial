@@ -22,6 +22,8 @@
 @property (nonatomic, retain) DetailInformation *detailInformation;
 @property (nonatomic, retain) NSSet *statuses;
 @property (nonatomic, retain) NSSet *newFeed;
+@property (nonatomic, readonly) NSString * nameFirstLetter;
+
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -34,4 +36,5 @@
 - (void)removeNewFeedObject:(NewFeedRootData *)value;
 - (void)addNewFeed:(NSSet *)values;
 - (void)removeNewFeed:(NSSet *)values;
+
 @end

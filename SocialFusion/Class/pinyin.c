@@ -6,6 +6,7 @@
  *  Copyright 2010 RED/SAFI. All rights reserved.
  *
  */
+
 #define HANZI_START 19968
 #define HANZI_COUNT 20902
 
@@ -221,15 +222,29 @@ static char firstLetterArray[HANZI_COUNT] =
 "whxgzxwznnqzjzjjqjccchykxbzszcnjtllcqxynjnckycynccqnxyewyczdcjycchyjlbtzyycqwlpgpyllgktltlgkgqbgychj"
 "xy";
 
+#define true    1
+#define false   0
+#define BOOL    unsigned char
+
+BOOL isLetter(unsigned short letter) {
+    if((letter >= 'A' && letter <= 'Z') || (letter >= 'a' && letter <= 'z')) {
+        return true;
+    }
+    return false;
+}
+
 char pinyinFirstLetter(unsigned short hanzi)
 {
 	int index = hanzi - HANZI_START;
-	if (index >= 0 && index <= HANZI_COUNT)
+    if(isLetter(hanzi)) {
+        return hanzi;
+    }
+	else if (index >= 0 && index <= HANZI_COUNT)
 	{
 		return firstLetterArray[index];
 	}
 	else
 	{
-		return hanzi;
+		return '~';
 	}
 }

@@ -35,7 +35,7 @@
         else if([self compareCharacterAtIndex:i withString:@"单"])
             firstLetter = @"S";
         else
-            firstLetter = [[NSString stringWithFormat:@"%c",pinyinFirstLetter([self characterAtIndex:i])] uppercaseString];
+            firstLetter = [[NSString stringWithFormat:@"%c", pinyinFirstLetter([self characterAtIndex:i])] uppercaseString];
         
         [pinyin appendString:firstLetter];
     }

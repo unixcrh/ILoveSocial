@@ -13,13 +13,6 @@
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize tableView = _tableView;
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -34,6 +27,13 @@
     _fetchedResultsController.delegate = nil;
     [_fetchedResultsController release];
     [super dealloc];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 #pragma mark to_override
@@ -52,6 +52,10 @@
     return nil;
 }
 
+- (NSString *)customSectionNameKeyPath {
+    return nil;
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -64,9 +68,8 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     [self configureRequest:fetchRequest];
-    
-    //[NSFetchedResultsController deleteCacheWithName:@"cache"];
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:[self customSectionNameKeyPath] cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -80,6 +83,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"total sections:%d", [[self.fetchedResultsController sections] count]);
     return [[self.fetchedResultsController sections] count];
 }
 
@@ -87,7 +91,7 @@
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     NSInteger count = [sectionInfo numberOfObjects];
-    //NSLog(@"row count:%d", count);
+
     if(count == 0)
         _firstLoadFlag = YES;
     else
@@ -160,9 +164,24 @@
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
-        default:
-            break;
     }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+	if(_firstLoadFlag || _noAnimationFlag)
+        return;
+    
+	switch(type) {
+			
+		case NSFetchedResultsChangeInsert:
+			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeDelete:
+			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
 }
 
 
@@ -171,7 +190,6 @@
         [self.tableView reloadData];
     else
         [self.tableView endUpdates];
-    
 }
 
 @end

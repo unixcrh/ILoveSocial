@@ -24,4 +24,8 @@
 @dynamic statuses;
 @dynamic newFeed;
 
+- (NSString *)nameFirstLetter {
+    return [self.pinyinName substringToIndex:1];
+}
+
 @end
