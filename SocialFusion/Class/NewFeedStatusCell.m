@@ -235,8 +235,14 @@
     _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
       
     
-    
+   // [_feedData release];
 
+}
+
+
+-(void)showBigImage
+{
+    [_listController showImage:((NewFeedData*)_feedData).pic_big_URL];   
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -244,11 +250,15 @@
     
     
     NSString* tempString=[NSString stringWithFormat:@"%@",[request URL]];
-    if ([tempString isEqualToString:@"file:///Users/RoyHe/Library/Application%20Support/iPhone%20Simulator/5.0/Applications/EBB5A096-6C24-446E-8719-D6CE74B256DE/Pocket%20Social.app/www.baidu.com"])
+    //NSLog(@"%@",tempString);
+
+    NSString* commandString=[tempString substringFromIndex:7];
+    if ([commandString isEqualToString:@"showimage"])
     {
-    [self exposeCell];
+        [self showBigImage];
         return NO;
     }
+    //   NSLog(@"%@",commandString);
     return YES;
 }
 -(void)exposeCell
@@ -267,10 +277,6 @@
 }
 
 
--(NewFeedRootData*) getFeedData
-{
-    return _feedData;
-}
 
 
 -(void)configureCell:(NewFeedData*)feedData

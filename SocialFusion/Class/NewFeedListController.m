@@ -8,7 +8,7 @@
 
 #import "NewFeedListController.h"
 #import "NavigationToolBar.h"
-
+#import <QuartzCore/QuartzCore.h>
 #import "RenrenClient.h"
 #import "WeiboClient.h"
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
@@ -22,6 +22,7 @@
 #import "NewFeedBlog.h"
 #import "StatusDetailController.h"
 #import "UIImage+Addition.h"
+#import "ShowImage.h"
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
@@ -124,7 +125,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 
-               
+                NSLog(@"%@",dict);
                 int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
               
                 NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
@@ -169,7 +170,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 
                 
                        int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
-                //  NSLog(@"%@",dict);
+                // NSLog(@"%@",dict);
                 
                 
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
@@ -191,30 +192,20 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 }
                 else if ([[dict objectForKey:@"feed_type"] intValue]==33)
                 {
-                    
-                    
-
-                  
-             
                     NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else if ([[dict objectForKey:@"feed_type"] intValue]==32)
                 {
-                    
-           
-                    
-                    
                     NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
                 }
                 else
                 {
-
-                      
-                              NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+                    
+                    NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     
                     [self.currentRenrenUser addNewFeedObject:data];
@@ -277,6 +268,48 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
+-(void)showImage:(NSString*)stringURL
+{
+
+    Image* image = [Image imageWithURL:stringURL inManagedObjectContext:self.managedObjectContext];
+    if (!image)
+    {
+    [UIImage loadImageFromURL:stringURL completion:^{
+            Image *image1 = [Image imageWithURL:stringURL inManagedObjectContext:self.managedObjectContext];
+            
+        
+        
+
+        
+        
+        
+        ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image1.imageData.data]];
+        tempImage.frame=CGRectMake(0, 0, 306, 389);
+        [self.view addSubview:tempImage];
+        
+        CATransition *animation = [CATransition animation];
+        animation.delegate = self;
+        animation.duration = 0.5f;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.fillMode = kCAFillModeForwards;
+        animation.type=kCATransitionFade;
+        animation.removedOnCompletion = NO;
+        [self.view.layer addAnimation:animation forKey:@"animationID"]; 
+
+        
+        
+        } cacheInContext:self.managedObjectContext];
+    }
+    else
+    {
+    
+        
+    }
+    
+    
+    
+    
+}
 
 
 
@@ -305,11 +338,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                     [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                     cell = _feedStatusCel;
                     
-                    
-                    
-                    
-                    
-                    //[cell.webview loadRequest:<#(NSURLRequest *)#>]
+
                 }
             }
             
@@ -331,7 +360,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
                 cell = _feedStatusCel;
                 
-                //[cell.webview loadRequest:<#(NSURLRequest *)#>]
             }
         }
         
