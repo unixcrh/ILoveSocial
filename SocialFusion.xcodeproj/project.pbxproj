@@ -135,7 +135,6 @@
 		E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA425141FA882002CD0A6 /* pinyin.c */; };
 		E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */; };
 		E1ABA48E141FA883002CD0A6 /* UIImageView+DispatchLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA42E141FA882002CD0A6 /* UIImageView+DispatchLoad.m */; };
-		E1ABA493141FA883002CD0A6 /* friendImageCover.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA436141FA882002CD0A6 /* friendImageCover.png */; };
 		E1ABA494141FA883002CD0A6 /* tableviewCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA437141FA882002CD0A6 /* tableviewCell@2x.png */; };
 		E1ABA495141FA883002CD0A6 /* tableviewCell.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA438141FA882002CD0A6 /* tableviewCell.png */; };
 		E1ABA496141FA883002CD0A6 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */; };
@@ -423,7 +422,6 @@
 		E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFusionViewController.m; sourceTree = "<group>"; };
 		E1ABA42D141FA882002CD0A6 /* UIImageView+DispatchLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DispatchLoad.h"; sourceTree = "<group>"; };
 		E1ABA42E141FA882002CD0A6 /* UIImageView+DispatchLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DispatchLoad.m"; sourceTree = "<group>"; };
-		E1ABA436141FA882002CD0A6 /* friendImageCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friendImageCover.png; sourceTree = "<group>"; };
 		E1ABA437141FA882002CD0A6 /* tableviewCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableviewCell@2x.png"; sourceTree = "<group>"; };
 		E1ABA438141FA882002CD0A6 /* tableviewCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableviewCell.png; sourceTree = "<group>"; };
 		E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -943,7 +941,6 @@
 				E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */,
 				E19A2D251421E93200BE491A /* background.png */,
 				E1BF91CA1421F1AD002F6F1A /* background@2x.png */,
-				E1ABA436141FA882002CD0A6 /* friendImageCover.png */,
 				E1ABA437141FA882002CD0A6 /* tableviewCell@2x.png */,
 				E1ABA438141FA882002CD0A6 /* tableviewCell.png */,
 				E1ABA4C3141FA97F002CD0A6 /* Icon.png */,
@@ -1178,7 +1175,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1ABA40D141FA6E1002CD0A6 /* InfoPlist.strings in Resources */,
-				E1ABA493141FA883002CD0A6 /* friendImageCover.png in Resources */,
 				E1ABA494141FA883002CD0A6 /* tableviewCell@2x.png in Resources */,
 				7308FF3314BDC1D100EC6481 /* newfeedjs.js in Resources */,
 				E1ABA495141FA883002CD0A6 /* tableviewCell.png in Resources */,
