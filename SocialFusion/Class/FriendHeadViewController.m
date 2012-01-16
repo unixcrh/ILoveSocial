@@ -85,7 +85,7 @@
 
 
 
-- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath
+- (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath
 {
     if(self.tableView.dragging || self.tableView.decelerating || _reloading)
         return;

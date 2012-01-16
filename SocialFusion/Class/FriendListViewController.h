@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FriendProfileViewController.h"
 
-@interface FriendListViewController : FriendProfileViewController {
-    //UIImageView *_topShadowImageView;
-    //UIImageView *_bottomShadowImageView;
-}
+@interface FriendListViewController : FriendProfileViewController
 
 @end
 

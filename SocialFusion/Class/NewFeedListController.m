@@ -151,7 +151,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     for (NSIndexPath *indexPath in visiblePaths)
     {
         i += 0.05;
-        [self performSelector:@selector(loadExtraDataForOnscreenRowsHelp:) withObject:indexPath afterDelay:i];
+        [self performSelector:@selector(loadExtraDataForOnScreenRowsHelp:) withObject:indexPath afterDelay:i];
     }
 }
 
@@ -405,7 +405,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
-- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
+- (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
     if(self.tableView.dragging || self.tableView.decelerating || _reloading)
         return;
     NewFeedRootData *data = [self.fetchedResultsController objectAtIndexPath:indexPath];

@@ -22,13 +22,21 @@
 
 @implementation FriendProfileViewController
 
-- (id)initWithType:(RelationshipViewType)type
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
+- (void)didReceiveMemoryWarning
 {
-    self = [super init];
-    if(self) {
-        _type = type;
-    }
-    return self;
+    [super didReceiveMemoryWarning];
+    [Image clearAllCacheInContext:self.managedObjectContext];
 }
 
 - (void)viewDidLoad
@@ -39,22 +47,8 @@
     [self refresh];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    [self clearData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    NSLog(@"clear all cache");
-    [Image clearAllCacheInContext:self.managedObjectContext];
-}
-
-- (void)dealloc {
-    [super dealloc];
-}
+#pragma mark -
+#pragma mark NSFetchRequestController
 
 - (void)configureRequest:(NSFetchRequest *)request
 {
@@ -80,9 +74,9 @@
     request.fetchBatchSize = 20;
 }
 
-#pragma mark - EGORefresh Method
+#pragma mark -
+#pragma mark EGORefresh Method
 - (void)refresh {
-    NSLog(@"refresh!");
     [self hideLoadMoreDataButton];
     [self clearData];
     [self loadMoreData];
@@ -109,6 +103,15 @@
         _nextCursor = -1;
         [self.weiboUser removeFollowers:self.weiboUser.followers];
     }
+}
+
+- (id)initWithType:(RelationshipViewType)type
+{
+    self = [super init];
+    if(self) {
+        _type = type;
+    }
+    return self;
 }
 
 - (void)loadMoreRenrenData {
@@ -180,7 +183,7 @@
 }
 
 // 优化显示，每次滑动停止才载入数据
-- (void)loadExtraDataForOnscreenRowsHelp:(NSIndexPath *)indexPath {
+- (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
 }
 
 - (void)loadExtraDataForOnscreenRows 
@@ -190,11 +193,12 @@
     for (NSIndexPath *indexPath in visiblePaths)
     {
         i += 0.05;
-        [self performSelector:@selector(loadExtraDataForOnscreenRowsHelp:) withObject:indexPath afterDelay:i];
+        [self performSelector:@selector(loadExtraDataForOnScreenRowsHelp:) withObject:indexPath afterDelay:i];
     }
 }
 
-#pragma mark - Deferred image loading (UIScrollViewDelegate)
+#pragma mark -
+#pragma mark Deferred image loading (UIScrollViewDelegate)
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //NSLog(@"scrollViewDidEndDragging");
