@@ -173,15 +173,10 @@
           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",[(NewFeedData*)_feedData getName]]];
        
           
-          if (((NewFeedUploadPhoto*)_feedData).photo_comment!=nil)
-          {
-          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",((NewFeedUploadPhoto*)_feedData).photo_comment]];
-          }
-          else
-          {
-              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",@"那个人很懒，没有写介绍噢"]];
+    
+              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",[(NewFeedUploadPhoto*)_feedData getPhoto_Comment]]];
   
-          }
+       
           
            [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTitle('%@')",[((NewFeedUploadPhoto*)_feedData) getTitle]]];
           [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTime('%@')",[CommonFunction getTimeBefore:[_feedData getDate]]]];
