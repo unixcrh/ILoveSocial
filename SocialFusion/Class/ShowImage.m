@@ -53,7 +53,7 @@
     
     
     //设置layer
-    CALayer *layer=[_imageView layer];
+    CALayer *layer=[_scrollView layer];
     //是否设置边框以及是否可见
     [layer setMasksToBounds:YES];
     //设置边框圆角的弧度
@@ -93,6 +93,8 @@
 }
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
+    
+    
     return _imageView;
 }
 
