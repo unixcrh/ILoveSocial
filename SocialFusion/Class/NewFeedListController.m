@@ -268,43 +268,21 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
--(void)showImage:(NSString*)stringURL
+-(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
 {
 
+    Image* image = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
+    ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image.imageData.data] BigURL:stringURL];
+    [tempImage setContext:self.managedObjectContext];
+    tempImage.frame=CGRectMake(0, 0, 320, 480);
+    tempImage.alpha=0;
+    [[UIApplication sharedApplication].keyWindow addSubview:tempImage];
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+        tempImage.alpha = 1;
+    } completion:nil];
+    
+    
  
-    
-    //     [self.view addSubview:tempImage];
-
-   // [tempImage startAnimation];
-    
-    
-    Image* image = [Image imageWithURL:stringURL inManagedObjectContext:self.managedObjectContext];
-    if (!image)
-    {
-    [UIImage loadImageFromURL:stringURL completion:^{
-            Image *image1 = [Image imageWithURL:stringURL inManagedObjectContext:self.managedObjectContext];
-            
-        
-        
-        ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image1.imageData.data]];
-        tempImage.frame=CGRectMake(0, 0, 320, 480);
-        tempImage.alpha=0;
-        [[UIApplication sharedApplication].keyWindow addSubview:tempImage];
-        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-            tempImage.alpha = 1;
-        } completion:nil];
-        
-        
-        } cacheInContext:self.managedObjectContext];
-    }
-    else
-    {
-    
-        
-    }
-    
-    
-    
     
 }
 

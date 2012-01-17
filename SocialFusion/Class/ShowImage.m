@@ -8,11 +8,15 @@
 
 #import "ShowImage.h"
 #import  <QuartzCore/QuartzCore.h>
+#import "Image+Addition.h"
+#import "UIImage+Addition.h"
 @implementation ShowImage
 
--(id)initWithImage:(UIImage*)image
+-(id)initWithImage:(UIImage*)image BigURL:(NSString*)bigURL
 {
     self=[super init];
+    
+    _bigURL=[[NSString alloc] initWithString:bigURL];
     _imageView=[[UIImageView alloc] initWithImage:image];
     
     _imageView.frame=CGRectMake(0, 0, 220, image.size.height/image.size.width*220);
@@ -85,13 +89,17 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [self removeFromSuperview];
+    [self release];
 }
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return _imageView;
 }
 
-
+-(void)setContext:(NSManagedObjectContext*)context
+{
+    _context=context;
+}
 -(void)startAnimation
 {
     [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
@@ -100,6 +108,22 @@
         
     } completion:nil];
 
+    
+
+    Image* image = [Image imageWithURL:_bigURL inManagedObjectContext:_context];
+    if (!image)
+    {
+        [UIImage loadImageFromURL:_bigURL completion:^{
+            Image *image1 = [Image imageWithURL:_bigURL inManagedObjectContext:_context];
+            [_imageView setImage:[UIImage imageWithData:image1.imageData.data]];
+
+        } cacheInContext:_context];
+     }
+    else
+    {
+             [_imageView setImage:[UIImage imageWithData:image.imageData.data]];
+    }
+     
     
 }
 
@@ -115,6 +139,7 @@
 }
 -(void)dealloc
 {
+    [_bigURL release];
     [_imageView release];
     [_scrollView release];
     [super dealloc];

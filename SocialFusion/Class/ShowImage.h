@@ -13,7 +13,10 @@
     UIImageView* _imageView;
     UIScrollView* _scrollView;
     CGRect _rect;
+    NSString* _bigURL;
+    NSManagedObjectContext *_context;
 }
-
+-(void)setContext:(NSManagedObjectContext*)context;
+-(id)initWithImage:(UIImage*)image BigURL:(NSString*)bigURL;
 -(void)show;
 @end
