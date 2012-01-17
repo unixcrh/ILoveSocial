@@ -22,6 +22,7 @@
 
 - (void)dealloc {
 
+    [_feedData release];
     _webView.delegate=nil;    
     [super dealloc];
 }
@@ -323,7 +324,7 @@
     
 
     
-    _feedData=feedData;
+    _feedData=[feedData retain];
     
     
   }
