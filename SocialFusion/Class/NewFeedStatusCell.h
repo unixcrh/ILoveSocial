@@ -33,7 +33,7 @@
 
 
 +(float)heightForCell:(NewFeedData*)feedData;
--(NewFeedRootData*) getFeedData;
+
 
 -(void)setList:(NewFeedListController*)list;
 -(void)configureCell:(NewFeedData*)feedData;
