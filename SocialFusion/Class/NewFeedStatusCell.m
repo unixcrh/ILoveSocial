@@ -242,7 +242,7 @@
 
 -(void)showBigImage
 {
-    [_listController showImage:((NewFeedData*)_feedData).pic_big_URL];   
+    [_listController showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

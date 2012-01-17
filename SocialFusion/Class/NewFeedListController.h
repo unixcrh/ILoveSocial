@@ -53,6 +53,6 @@
 
 
 -(void)exposeCell:(NSIndexPath*)indexPath;
--(void)showImage:(NSString*)stringURL;
+-(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
 -(IBAction)resetToNormalList;
 @end
