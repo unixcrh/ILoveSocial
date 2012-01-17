@@ -20,23 +20,18 @@
 @implementation NewFeedStatusCell
 
 
- - (void)awakeFromNib
-{
-
-}
-
 - (void)dealloc {
 
-    
-    
-    _webView.delegate=nil;
-    
-    
+    _webView.delegate=nil;    
     [super dealloc];
 }
 
+- (void)awakeFromNib
+{
+    
+}
 
-+(float)heightForCell:(NewFeedData*)feedData
++ (float)heightForCell:(NewFeedData*)feedData
 {
     
     

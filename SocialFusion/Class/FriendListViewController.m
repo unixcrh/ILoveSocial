@@ -52,6 +52,13 @@
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     relationshipCell.userName.text = usr.name;
 
+    if(_type == RelationshipViewTypeRenrenFriends) {
+        relationshipCell.headFrameIamgeView.image = [UIImage imageNamed:@"head_renren.png"];
+    }
+    else {
+        relationshipCell.headFrameIamgeView.image = [UIImage imageNamed:@"head_wb.png"];
+    }
+    
     if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             if(indexPath.row < kCustomRowCount) {
@@ -90,14 +97,7 @@
     if(_type == RelationshipViewTypeRenrenFriends)
         return @"nameFirstLetter";
     else
-        return nil;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if(_type == RelationshipViewTypeRenrenFriends)
-        return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-    else 
-        return nil;
+        return @"updateDate";
 }
 
 #pragma mark -
@@ -116,6 +116,23 @@
     NSLog(@"send didSelectFriend notification. friend name:%@, type:%d", usr.name, _type);
     [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
+{
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 20)] autorelease];
+    [headerView setBackgroundColor:[UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:0.6f]];
+    NSString *section_name = [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, 306, 18)];
+    label.text = section_name;
+    label.font = [UIFont fontWithName:@"MV Boli" size:16.0f];
+    label.textColor = [UIColor whiteColor];
+    label.shadowColor = [UIColor grayColor];
+    label.shadowOffset = CGSizeMake(0, 1.0f);
+    label.backgroundColor = [UIColor clearColor];
+    [headerView addSubview:label];
+    [label release];
+    return headerView;
 }
 
 #pragma mark -

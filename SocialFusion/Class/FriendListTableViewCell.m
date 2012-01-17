@@ -16,14 +16,11 @@
 @synthesize userName = _userName;
 @synthesize latestStatus = _latestStatus;
 @synthesize commentButton = _commentButton;
+@synthesize headFrameIamgeView = _headFrameIamgeView;
 
 
 - (void)awakeFromNib
 {
-    self.defaultHeadImageView.layer.masksToBounds = YES;
-    self.defaultHeadImageView.layer.cornerRadius = 5.0f;  
-    self.headImageView.layer.masksToBounds = YES;
-    self.headImageView.layer.cornerRadius = 5.0f; 
     [self.commentButton setImage:[UIImage imageNamed:@"messageButton-highlight.png"] forState:UIControlStateHighlighted];
 }
 
