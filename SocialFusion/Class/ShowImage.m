@@ -19,16 +19,16 @@
     _bigURL=[[NSString alloc] initWithString:bigURL];
     _imageView=[[UIImageView alloc] initWithImage:image];
     
-    _imageView.frame=CGRectMake(0, 0, 220, image.size.height/image.size.width*220);
+    _imageView.frame=CGRectMake(0, 0, 250, image.size.height/image.size.width*250);
     _scrollView=[[UIScrollView alloc] init];
-    if (_imageView.frame.size.height>300)
+    if (_imageView.frame.size.height>340)
     {
         
-        _rect=CGRectMake(0, 0, 220, 300);
+        _rect=CGRectMake(0, 0, 250, 340);
     }
     else
     {
-        _rect=CGRectMake(0, 0, 220, _imageView.frame.size.height);
+        _rect=CGRectMake(0, 0, 250, _imageView.frame.size.height);
     }
     _scrollView.frame=CGRectMake(0 , 0, 1, 1);
     _scrollView.contentSize=_imageView.frame.size;
