@@ -271,6 +271,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 -(void)showImage:(NSString*)stringURL
 {
 
+ 
+    
+    //     [self.view addSubview:tempImage];
+
+   // [tempImage startAnimation];
+    
+    
     Image* image = [Image imageWithURL:stringURL inManagedObjectContext:self.managedObjectContext];
     if (!image)
     {
@@ -279,23 +286,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
         
         
-
-        
-        
-        
         ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image1.imageData.data]];
-        tempImage.frame=CGRectMake(0, 0, 306, 389);
-        [self.view addSubview:tempImage];
-        
-        CATransition *animation = [CATransition animation];
-        animation.delegate = self;
-        animation.duration = 0.5f;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.fillMode = kCAFillModeForwards;
-        animation.type=kCATransitionFade;
-        animation.removedOnCompletion = NO;
-        [self.view.layer addAnimation:animation forKey:@"animationID"]; 
-
+        tempImage.frame=CGRectMake(0, 0, 320, 480);
+        tempImage.alpha=0;
+        [[UIApplication sharedApplication].keyWindow addSubview:tempImage];
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+            tempImage.alpha = 1;
+        } completion:nil];
         
         
         } cacheInContext:self.managedObjectContext];

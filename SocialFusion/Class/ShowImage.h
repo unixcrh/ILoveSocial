@@ -12,6 +12,7 @@
 {
     UIImageView* _imageView;
     UIScrollView* _scrollView;
+    CGRect _rect;
 }
 
 -(void)show;
