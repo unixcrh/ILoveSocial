@@ -15,8 +15,12 @@
     CGRect _rect;
     NSString* _bigURL;
     NSManagedObjectContext *_context;
+
+    NSString* _userID;
+    NSString* _photoID;
 }
 -(void)setContext:(NSManagedObjectContext*)context;
 -(id)initWithImage:(UIImage*)image BigURL:(NSString*)bigURL;
+-(id)initWithImage:(UIImage*)image userID:(NSString*)userID photoID:(NSString*)photoID;
 -(void)show;
 @end

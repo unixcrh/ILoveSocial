@@ -198,6 +198,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 }
                 else if ([[dict objectForKey:@"feed_type"] intValue]==32)
                 {
+                    
+                 //   NSLog(@"%@",dict);
                     NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
                     
                     [self.currentRenrenUser addNewFeedObject:data]; 
@@ -287,6 +289,18 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
+-(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID
+{
+    Image* image = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
+    ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image.imageData.data] userID:userID photoID:photoID];
+    [tempImage setContext:self.managedObjectContext];
+    tempImage.frame=CGRectMake(0, 0, 320, 480);
+    tempImage.alpha=0;
+    [[UIApplication sharedApplication].keyWindow addSubview:tempImage];
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+        tempImage.alpha = 1;
+    } completion:nil];
+}
 
 
 

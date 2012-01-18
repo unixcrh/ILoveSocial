@@ -233,7 +233,20 @@
 
 -(void)showBigImage
 {
-    [_listController showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
+    
+    if ([_feedData class]==[NewFeedUploadPhoto class])
+    {
+        [_listController showImage:((NewFeedUploadPhoto*)_feedData).photo_url bigURL:((NewFeedUploadPhoto*)_feedData).photo_big_url];
+    }
+    else if ([_feedData class]==[NewFeedSharePhoto class])
+    {
+        [_listController showImage:((NewFeedSharePhoto*)_feedData).photo_url userID:((NewFeedSharePhoto*)_feedData).fromID  photoID:((NewFeedSharePhoto*)_feedData).mediaID];
+   
+    }
+    else
+    {
+        [_listController showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -271,9 +284,7 @@
 
 
 -(void)configureCell:(NewFeedData*)feedData
-{
-    //_webView=[[UIWebView alloc] init];
-    
+{    
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
@@ -315,13 +326,7 @@
 
     _webView.scrollView.scrollEnabled=FALSE;
     _webView.delegate=self;
-
-    
-
-    
     _feedData=[feedData retain];
-    
-    
   }
 
 

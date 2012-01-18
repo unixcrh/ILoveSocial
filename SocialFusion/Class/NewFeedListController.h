@@ -54,5 +54,6 @@
 
 -(void)exposeCell:(NSIndexPath*)indexPath;
 -(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
+-(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID;
 -(IBAction)resetToNormalList;
 @end

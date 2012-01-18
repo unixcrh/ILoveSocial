@@ -66,7 +66,8 @@
     
     result.get_Time=getDate;
     
-    
+    result.photo_big_url=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"raw_src"];
+
     result.photo_url=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
     result.photo_comment=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"content"];
 

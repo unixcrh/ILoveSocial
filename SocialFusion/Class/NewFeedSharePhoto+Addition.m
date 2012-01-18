@@ -70,6 +70,10 @@
     result.photo_url=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
     result.share_comment=[dict objectForKey:@"message"];
     result.photo_comment=[dict objectForKey:@"description"];
+   
+    result.mediaID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
+
+    
     result.fromID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
     
     result.fromName=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_name"];

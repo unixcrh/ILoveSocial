@@ -2,7 +2,7 @@
 //  NewFeedUploadPhoto.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-1-11.
+//  Created by He Ruoyun on 12-1-18.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -11,9 +11,10 @@
 
 @implementation NewFeedUploadPhoto
 
-@dynamic photo_url;
-@dynamic photo_comment;
-@dynamic prefix;
 @dynamic title;
+@dynamic prefix;
+@dynamic photo_comment;
+@dynamic photo_url;
+@dynamic photo_big_url;
 
 @end
