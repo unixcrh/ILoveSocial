@@ -3,7 +3,7 @@
 //  SocialFusion
 //
 //  Created by Blue Bitch on 11-10-5.
-//  Copyright 2011年 TJU. All rights reserved.
+//  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 
 #import "WeiboDetail+Addition.h"

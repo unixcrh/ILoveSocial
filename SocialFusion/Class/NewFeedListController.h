@@ -3,7 +3,7 @@
 //  SocialFusion
 //
 //  Created by He Ruoyun on 11-10-7.
-//  Copyright 2011年 TJU. All rights reserved.
+//  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
