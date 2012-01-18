@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @protocol LNLabelViewControllerDelegate;
+
+typedef enum {
+    PARENT_LABEL,
+    CHILD_LABEL,
+} LabelType;
+
 @interface LNLabelViewController : UIViewController {
     UIButton *_button;
     NSUInteger _index;
+    
     id<LNLabelViewControllerDelegate> _delegate;
 }
 
@@ -25,6 +32,6 @@
 
 @protocol LNLabelViewControllerDelegate <NSObject>
 
-- (void)labelViewDidSelectLabelAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index;
 
 @end

@@ -16,6 +16,9 @@
 
 @implementation LNLabelPageViewController
 
+@synthesize page = _page;
+@synthesize delegate = _delegate;
+
 - (void)dealloc {
     [_labelViews release];
     [super dealloc];
@@ -59,7 +62,7 @@
     }
 }
 
-- (void)labelViewDidSelectLabelAtIndex:(NSUInteger)index {
+- (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index {
     NSLog(@"select %ud", index);
     [self unloadSubviews];
     for(int i = 0; i < index; i++) {
@@ -72,6 +75,27 @@
     }
     LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:index]);
     [self.view addSubview:label.view];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectPageAtIndex:)]) {
+        [self.delegate labelPageView:self didSelectPageAtIndex:self.page];
+    }
+}
+
+- (void)selectOtherPage:(NSUInteger)page {
+    if(page == self.page)
+        return;
+    [self unloadSubviews];
+    if(page > self.page) {
+        for(int i = 0; i < _labelViews.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            [self.view addSubview:label.view];
+        }
+    }
+    else if(page < self.page) {
+        for(int i = _labelViews.count - 1; i >= 0; i--) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            [self.view addSubview:label.view];
+        }
+    }
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "LNLabelBarViewController.h"
-#import "LNLabelPageViewController.h"
 
 @implementation LNLabelBarViewController
 
@@ -29,20 +28,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    for (int i = 0; i < 2; i++) {
+    _pageCount = 3;
+    for (int i = 0; i < _pageCount; i++) {
         CGRect frame;
         frame.origin.x = self.scrollView.frame.size.width * i;
         frame.origin.y = 0;
         frame.size = self.scrollView.frame.size;
         
-        LNLabelPageViewController *page = [[LNLabelPageViewController alloc] init];
-        page.view.frame = frame;
-        [self.scrollView addSubview:page.view];
-        [_labelPages addObject:page];
-        [page release];
+        LNLabelPageViewController *pageView = [[LNLabelPageViewController alloc] init];
+        pageView.view.frame = frame;
+        [self.scrollView addSubview:pageView.view];
+        [_labelPages addObject:pageView];
+        pageView.page = i;
+        pageView.delegate = self;
+        [pageView release];
     }
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
 }
 
 - (id)init {
@@ -53,5 +55,11 @@
     return self;
 }
 
+- (void)labelPageView:(LNLabelPageViewController *)pageView didSelectPageAtIndex:(NSUInteger)page {
+    for (int i = 0; i < _pageCount; i++) {
+        LNLabelPageViewController *pv = (LNLabelPageViewController *)[_labelPages objectAtIndex:i];
+        [pv selectOtherPage:page];
+    }
+}
 
 @end

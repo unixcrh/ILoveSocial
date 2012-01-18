@@ -36,8 +36,8 @@
 }
 
 - (IBAction)clickButton:(id)sender {
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelViewDidSelectLabelAtIndex:)]) {
-        [self.delegate labelViewDidSelectLabelAtIndex:self.index];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
+        [self.delegate labelView:self didSelectLabelAtIndex:self.index];
     }
 }
 
