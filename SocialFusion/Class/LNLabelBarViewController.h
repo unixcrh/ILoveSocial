@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LNLabelBarViewController : UIViewController
+@interface LNLabelBarViewController : UIViewController<UIScrollViewDelegate> {
+    UIScrollView *_scrollView;
+}
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 @end
