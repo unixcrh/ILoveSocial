@@ -16,14 +16,19 @@ typedef enum {
 } LabelType;
 
 @interface LNLabelViewController : UIViewController {
-    UIButton *_button;
+    UIButton *_titleButton;
+    UIButton *_plusButton;
     NSUInteger _index;
-    
+    LabelType _labelType;
+    BOOL _isSelected;
     id<LNLabelViewControllerDelegate> _delegate;
 }
 
-@property (nonatomic, retain) IBOutlet UIButton *button;
-@property NSUInteger index;
+@property (nonatomic, retain) IBOutlet UIButton *titleButton;
+@property (nonatomic, retain) IBOutlet UIButton *plusButton;
+@property (nonatomic) NSUInteger index;
+@property (nonatomic) LabelType labelType;
+@property (nonatomic) BOOL isSelected;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 
 - (IBAction)clickButton:(id)sender;

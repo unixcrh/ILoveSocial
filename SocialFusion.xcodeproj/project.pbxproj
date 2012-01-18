@@ -118,6 +118,8 @@
 		E1779BAA14C74D38001CE627 /* LNLabelPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779BA814C74D37001CE627 /* LNLabelPageViewController.xib */; };
 		E1779BAE14C74EFD001CE627 /* LNLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779BAC14C74EFC001CE627 /* LNLabelViewController.m */; };
 		E1779BAF14C74EFD001CE627 /* LNLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779BAD14C74EFC001CE627 /* LNLabelViewController.xib */; };
+		E1779BB214C77DA3001CE627 /* label_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = E1779BB014C77DA3001CE627 /* label_plus.png */; };
+		E1779BB314C77DA3001CE627 /* label_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1779BB114C77DA3001CE627 /* label_plus@2x.png */; };
 		E17817B61450084B00DB0D70 /* rootbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B41450084B00DB0D70 /* rootbackground.png */; };
 		E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B51450084B00DB0D70 /* rootbackground@2x.png */; };
 		E17817BE1450206B00DB0D70 /* rightlabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BA1450206B00DB0D70 /* rightlabel@2x.png */; };
@@ -410,6 +412,8 @@
 		E1779BAB14C74EFB001CE627 /* LNLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNLabelViewController.h; sourceTree = "<group>"; };
 		E1779BAC14C74EFC001CE627 /* LNLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNLabelViewController.m; sourceTree = "<group>"; };
 		E1779BAD14C74EFC001CE627 /* LNLabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNLabelViewController.xib; sourceTree = "<group>"; };
+		E1779BB014C77DA3001CE627 /* label_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label_plus.png; sourceTree = "<group>"; };
+		E1779BB114C77DA3001CE627 /* label_plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label_plus@2x.png"; sourceTree = "<group>"; };
 		E17817B41450084B00DB0D70 /* rootbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rootbackground.png; sourceTree = "<group>"; };
 		E17817B51450084B00DB0D70 /* rootbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rootbackground@2x.png"; sourceTree = "<group>"; };
 		E17817BA1450206B00DB0D70 /* rightlabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabel@2x.png"; sourceTree = "<group>"; };
@@ -941,6 +945,8 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E1779BB014C77DA3001CE627 /* label_plus.png */,
+				E1779BB114C77DA3001CE627 /* label_plus@2x.png */,
 				7359F95A14B3EFC80032F09A /* back.png */,
 				E19A2D251421E93200BE491A /* background.png */,
 				E1BF91CA1421F1AD002F6F1A /* background@2x.png */,
@@ -1336,6 +1342,8 @@
 				E1779BA514C74AC6001CE627 /* label@2x.png in Resources */,
 				E1779BAA14C74D38001CE627 /* LNLabelPageViewController.xib in Resources */,
 				E1779BAF14C74EFD001CE627 /* LNLabelViewController.xib in Resources */,
+				E1779BB214C77DA3001CE627 /* label_plus.png in Resources */,
+				E1779BB314C77DA3001CE627 /* label_plus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

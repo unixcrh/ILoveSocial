@@ -33,8 +33,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    for(int i = 0; i < _labelViews.count; i++) {
+    for(int i = _labelViews.count - 1; i >= 0; i--) {
         LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+        if(self.page == 0 && i == 0) {
+            label.isSelected = YES;
+        }
         [self.view addSubview:label.view];
     }
 }
@@ -59,6 +62,7 @@
     for(int i = 0; i < _labelViews.count; i++) {
         LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
         [label.view removeFromSuperview];
+        [label.plusButton setHidden:YES];
     }
 }
 
