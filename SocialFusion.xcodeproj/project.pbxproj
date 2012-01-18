@@ -112,6 +112,8 @@
 		E1779B9814C73DDB001CE627 /* LNContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9614C73DDB001CE627 /* LNContentViewController.xib */; };
 		E1779B9C14C73E21001CE627 /* LNLabelBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9A14C73E21001CE627 /* LNLabelBarViewController.m */; };
 		E1779B9D14C73E21001CE627 /* LNLabelBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9B14C73E21001CE627 /* LNLabelBarViewController.xib */; };
+		E1779BA414C74AC6001CE627 /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = E1779BA214C74AC6001CE627 /* label.png */; };
+		E1779BA514C74AC6001CE627 /* label@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1779BA314C74AC6001CE627 /* label@2x.png */; };
 		E17817B61450084B00DB0D70 /* rootbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B41450084B00DB0D70 /* rootbackground.png */; };
 		E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B51450084B00DB0D70 /* rootbackground@2x.png */; };
 		E17817BE1450206B00DB0D70 /* rightlabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BA1450206B00DB0D70 /* rightlabel@2x.png */; };
@@ -192,8 +194,6 @@
 		E1ABA4DB141FAC8D002CD0A6 /* SocialFusionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */; };
 		E1BF91CB1421F1AD002F6F1A /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91CA1421F1AD002F6F1A /* background@2x.png */; };
 		E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */; };
-		E1D3B17C143244A600443B79 /* label-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D3B17A143244A600443B79 /* label-highlight@2x.png */; };
-		E1D3B17D143244A600443B79 /* label@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D3B17B143244A600443B79 /* label@2x.png */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
 		E1E5DF41143B24CB0098BBD3 /* FriendHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF3F143B24CB0098BBD3 /* FriendHeadTableViewCell.m */; };
@@ -217,8 +217,6 @@
 		E1EA75B8145699F800D8A906 /* labelviewbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */; };
 		E1F1D4DD142E09ED00720635 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4DC142E09ED00720635 /* LabelViewController.m */; };
 		E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */; };
-		E1F1D4E9142E2B7800720635 /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E7142E2B7800720635 /* label.png */; };
-		E1F1D4EA142E2B7800720635 /* label-highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1D4E8142E2B7800720635 /* label-highlight.png */; };
 		E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */; };
 		E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB624014247EA000828E24 /* CoreDataViewController.m */; };
 		E1FB62621424812C00828E24 /* Image+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB62591424812B00828E24 /* Image+Addition.m */; };
@@ -400,6 +398,8 @@
 		E1779B9914C73E21001CE627 /* LNLabelBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNLabelBarViewController.h; sourceTree = "<group>"; };
 		E1779B9A14C73E21001CE627 /* LNLabelBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNLabelBarViewController.m; sourceTree = "<group>"; };
 		E1779B9B14C73E21001CE627 /* LNLabelBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNLabelBarViewController.xib; sourceTree = "<group>"; };
+		E1779BA214C74AC6001CE627 /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
+		E1779BA314C74AC6001CE627 /* label@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label@2x.png"; sourceTree = "<group>"; };
 		E17817B41450084B00DB0D70 /* rootbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rootbackground.png; sourceTree = "<group>"; };
 		E17817B51450084B00DB0D70 /* rootbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rootbackground@2x.png"; sourceTree = "<group>"; };
 		E17817BA1450206B00DB0D70 /* rightlabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabel@2x.png"; sourceTree = "<group>"; };
@@ -521,8 +521,6 @@
 		E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialFusionViewController.xib; sourceTree = "<group>"; };
 		E1BF91CA1421F1AD002F6F1A /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_renren_tiny.png; sourceTree = "<group>"; };
-		E1D3B17A143244A600443B79 /* label-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-highlight@2x.png"; sourceTree = "<group>"; };
-		E1D3B17B143244A600443B79 /* label@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label@2x.png"; sourceTree = "<group>"; };
 		E1D3B17E143244C400443B79 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = SocialFusion/Class/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = SocialFusion/Class/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		E1D3B180143244C500443B79 /* EGOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGOTableViewController.h; path = SocialFusion/Class/EGOTableViewController.h; sourceTree = "<group>"; };
@@ -557,8 +555,6 @@
 		E1F1D4DC142E09ED00720635 /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
 		E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTableViewCell.h; sourceTree = "<group>"; };
 		E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTableViewCell.m; sourceTree = "<group>"; };
-		E1F1D4E7142E2B7800720635 /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
-		E1F1D4E8142E2B7800720635 /* label-highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-highlight.png"; sourceTree = "<group>"; };
 		E1F247D214C3F03F00D2653A /* SocialFusion 1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.1.xcdatamodel"; sourceTree = "<group>"; };
 		E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = SocialFusion/Class/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = SocialFusion/Class/CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -929,96 +925,94 @@
 		E1ABA433141FA882002CD0A6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				E11DF22514C5810000DDC51A /* head_renren@2x.png */,
-				E11DF22614C5810000DDC51A /* head_wb@2x.png */,
-				E11DF22214C569F600DDC51A /* mvboli.ttf */,
-				73CB550414C1BF9E00C0DA29 /* repost_shadow.png */,
-				73CB550614C1D45400C0DA29 /* repost_board.png */,
-				73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */,
-				73F1F6BC14C05D5000C0EAF5 /* photocell.html */,
-				7398960414C157F900696C1C /* repost_underline.png */,
-				7398960514C157F900696C1C /* tape.png */,
-				7398960614C157F900696C1C /* repost_shadow.png */,
-				73F1F6B114C01A2300C0EAF5 /* head_wb.png */,
-				73C99C9A14BF0FE900B251DF /* sharephotocell.html */,
-				7308FF2E14BD942100EC6481 /* sharealbum.html */,
-				7308FF3214BDC1D100EC6481 /* newfeedjs.js */,
-				7317582314BC808100F14700 /* uploadphotocell.html */,
-				736444FF14B9EDD00054AF56 /* blogcell.html */,
-				736444FC14B9D89F0054AF56 /* head_renren.png */,
-				736341F414B6E5DC00A697A5 /* top.png */,
-				7317581A14BC73DD00F14700 /* photo_frame.png */,
-				7359F96A14B4804F0032F09A /* down.png */,
-				7359F96614B454CC0032F09A /* right.png */,
-				7359F96714B454CC0032F09A /* left.png */,
 				7359F95A14B3EFC80032F09A /* back.png */,
-				E1EA75B5145699F800D8A906 /* labelviewbackground.png */,
-				E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */,
-				E17817C614502C3300DB0D70 /* separator.png */,
-				E17817C714502C3300DB0D70 /* separator@2x.png */,
-				E17817B41450084B00DB0D70 /* rootbackground.png */,
-				E17817B51450084B00DB0D70 /* rootbackground@2x.png */,
-				73DD2218144C0347003BED92 /* Weibo12.png */,
-				73DD2219144C0347003BED92 /* Weibo12@2x.png */,
-				73DD2214144C0216003BED92 /* Renren12.png */,
-				73DD2215144C0216003BED92 /* Renren12@2x.png */,
+				E19A2D251421E93200BE491A /* background.png */,
+				E1BF91CA1421F1AD002F6F1A /* background@2x.png */,
+				736444FF14B9EDD00054AF56 /* blogcell.html */,
+				E1777D291430475900A8D1BA /* blueArrow.png */,
+				E14D17CD142855B3006B675E /* bottomGradient.png */,
+				E14D17CE142855B3006B675E /* bottomGradient@2x.png */,
+				E1ABA4C5141FA9A8002CD0A6 /* Default.png */,
+				E1ABA4C7141FA9B1002CD0A6 /* Default@2x.png */,
+				E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */,
+				7359F96A14B4804F0032F09A /* down.png */,
 				7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */,
 				7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */,
+				7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */,
+				7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */,
+				736444FC14B9D89F0054AF56 /* head_renren.png */,
+				E11DF22514C5810000DDC51A /* head_renren@2x.png */,
+				73F1F6B114C01A2300C0EAF5 /* head_wb.png */,
+				E11DF22614C5810000DDC51A /* head_wb@2x.png */,
+				E19A2D00141FC3B300BE491A /* homeButton.png */,
+				E19A2D01141FC3B300BE491A /* homeButtonPressed.png */,
+				E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */,
+				E1ABA43A141FA882002CD0A6 /* Icon-Small.png */,
+				E1ABA43B141FA882002CD0A6 /* Icon-Small@2x.png */,
+				E1ABA4C3141FA97F002CD0A6 /* Icon.png */,
+				E1ABA43C141FA882002CD0A6 /* Icon@2x.png */,
+				E1779BA214C74AC6001CE627 /* label.png */,
+				E1779BA314C74AC6001CE627 /* label@2x.png */,
+				E1EA75B5145699F800D8A906 /* labelviewbackground.png */,
+				E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */,
+				7359F96714B454CC0032F09A /* left.png */,
+				E17817BC1450206B00DB0D70 /* leftlabel.png */,
+				E17817BD1450206B00DB0D70 /* leftlabel@2x.png */,
+				E19A2CFE141FC2D700BE491A /* Localizable.strings */,
+				E1FB62B41424C86800828E24 /* messageButton-highlight.png */,
+				E1FB62B31424C86800828E24 /* messageButton-highlight@2x.png */,
+				E1ABA43D141FA882002CD0A6 /* messageButton.png */,
+				E1ABA43E141FA882002CD0A6 /* messageButton@2x.png */,
+				E11DF22214C569F600DDC51A /* mvboli.ttf */,
+				7308FF3214BDC1D100EC6481 /* newfeedjs.js */,
+				73D21C6414B5A10900EFA9A5 /* normalcell.html */,
+				7317581A14BC73DD00F14700 /* photo_frame.png */,
+				73F1F6BC14C05D5000C0EAF5 /* photocell.html */,
+				73DD2214144C0216003BED92 /* Renren12.png */,
+				73DD2215144C0216003BED92 /* Renren12@2x.png */,
+				E19A2D02141FC3B300BE491A /* renrenButton.png */,
+				E19A2D03141FC3B300BE491A /* renrenButtonPressed.png */,
+				E1ABA43F141FA882002CD0A6 /* renrenicon.png */,
+				E1ABA440141FA882002CD0A6 /* renrenicon@2x.png */,
+				73CB550614C1D45400C0DA29 /* repost_board.png */,
+				73CB550414C1BF9E00C0DA29 /* repost_shadow.png */,
+				7398960414C157F900696C1C /* repost_underline.png */,
+				73D21C6214B59F7E00EFA9A5 /* repostcell.html */,
+				73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */,
+				7359F96614B454CC0032F09A /* right.png */,
+				E17817BB1450206B00DB0D70 /* rightlabel.png */,
+				E17817BA1450206B00DB0D70 /* rightlabel@2x.png */,
+				E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */,
+				E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */,
+				E17817B41450084B00DB0D70 /* rootbackground.png */,
+				E17817B51450084B00DB0D70 /* rootbackground@2x.png */,
+				E17817C614502C3300DB0D70 /* separator.png */,
+				E17817C714502C3300DB0D70 /* separator@2x.png */,
+				7308FF2E14BD942100EC6481 /* sharealbum.html */,
+				73C99C9A14BF0FE900B251DF /* sharephotocell.html */,
+				E19A2D04141FC3B300BE491A /* sinawbButton.png */,
+				E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */,
 				E1E5DF57143B44A60098BBD3 /* tableviewBackgroundGray.png */,
 				E1E5DF58143B44A60098BBD3 /* tableviewBackgroundGray@2x.png */,
 				E1E5DF59143B44A60098BBD3 /* tableviewBackgroundWhite.png */,
 				E1E5DF5A143B44A60098BBD3 /* tableviewBackgroundWhite@2x.png */,
-				E1D3B17A143244A600443B79 /* label-highlight@2x.png */,
-				E1D3B17B143244A600443B79 /* label@2x.png */,
-				E1777D291430475900A8D1BA /* blueArrow.png */,
-				E1F1D4E7142E2B7800720635 /* label.png */,
-				E1F1D4E8142E2B7800720635 /* label-highlight.png */,
-				E14D17CD142855B3006B675E /* bottomGradient.png */,
-				E14D17CE142855B3006B675E /* bottomGradient@2x.png */,
-				E1FB62BB1424F68B00828E24 /* tableviewCellBottomShadow@2x.png */,
-				E1FB62BC1424F68B00828E24 /* tableviewCellBottomShadow.png */,
-				E1FB62AF1424BC9F00828E24 /* tableviewCellTopShadow@2x.png */,
-				E1FB62B01424BC9F00828E24 /* tableviewCellTopShadow.png */,
-				E1FB62AB1424BA6500828E24 /* tableviewCell-highlight@2x.png */,
 				E1FB62AC1424BA6500828E24 /* tableviewCell-highlight.png */,
-				E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */,
-				E19A2D251421E93200BE491A /* background.png */,
-				E1BF91CA1421F1AD002F6F1A /* background@2x.png */,
-				E1ABA437141FA882002CD0A6 /* tableviewCell@2x.png */,
+				E1FB62AB1424BA6500828E24 /* tableviewCell-highlight@2x.png */,
 				E1ABA438141FA882002CD0A6 /* tableviewCell.png */,
-				E1ABA4C3141FA97F002CD0A6 /* Icon.png */,
-				E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */,
-				E1ABA43A141FA882002CD0A6 /* Icon-Small.png */,
-				E1ABA4C7141FA9B1002CD0A6 /* Default@2x.png */,
-				E1ABA4C5141FA9A8002CD0A6 /* Default.png */,
-				E1ABA43B141FA882002CD0A6 /* Icon-Small@2x.png */,
-				E1ABA43C141FA882002CD0A6 /* Icon@2x.png */,
-				E1FB62B31424C86800828E24 /* messageButton-highlight@2x.png */,
-				E1FB62B41424C86800828E24 /* messageButton-highlight.png */,
-				E1ABA43D141FA882002CD0A6 /* messageButton.png */,
-				E1ABA43E141FA882002CD0A6 /* messageButton@2x.png */,
-				E1ABA43F141FA882002CD0A6 /* renrenicon.png */,
-				E1ABA440141FA882002CD0A6 /* renrenicon@2x.png */,
+				E1ABA437141FA882002CD0A6 /* tableviewCell@2x.png */,
+				E1FB62BC1424F68B00828E24 /* tableviewCellBottomShadow.png */,
+				E1FB62BB1424F68B00828E24 /* tableviewCellBottomShadow@2x.png */,
+				E1FB62B01424BC9F00828E24 /* tableviewCellTopShadow.png */,
+				E1FB62AF1424BC9F00828E24 /* tableviewCellTopShadow@2x.png */,
+				7398960514C157F900696C1C /* tape.png */,
+				7359F96214B3FB310032F09A /* temp.css */,
+				736341F414B6E5DC00A697A5 /* top.png */,
+				7317582314BC808100F14700 /* uploadphotocell.html */,
+				73DD2218144C0347003BED92 /* Weibo12.png */,
+				73DD2219144C0347003BED92 /* Weibo12@2x.png */,
 				E1ABA441141FA882002CD0A6 /* weiboicon.png */,
 				E1ABA442141FA882002CD0A6 /* weiboicon@2x.png */,
-				E19A2D00141FC3B300BE491A /* homeButton.png */,
-				E19A2D01141FC3B300BE491A /* homeButtonPressed.png */,
-				7359F96214B3FB310032F09A /* temp.css */,
-				E19A2D02141FC3B300BE491A /* renrenButton.png */,
-				E19A2D03141FC3B300BE491A /* renrenButtonPressed.png */,
-				E19A2D04141FC3B300BE491A /* sinawbButton.png */,
-				E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */,
-				7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */,
-				7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */,
-				E17817BA1450206B00DB0D70 /* rightlabel@2x.png */,
-				E17817BB1450206B00DB0D70 /* rightlabel.png */,
-				E17817BC1450206B00DB0D70 /* leftlabel.png */,
-				E17817BD1450206B00DB0D70 /* leftlabel@2x.png */,
-				E12064421454321A00A7FE4F /* rightlabelwithnoshadow.png */,
-				E12064431454321A00A7FE4F /* rightlabelwithnoshadow@2x.png */,
-				73D21C6414B5A10900EFA9A5 /* normalcell.html */,
-				73D21C6214B59F7E00EFA9A5 /* repostcell.html */,
-				E19A2CFE141FC2D700BE491A /* Localizable.strings */,
+				7398960614C157F900696C1C /* repost_shadow.png */,
 			);
 			name = Resource;
 			path = SocialFusion/Resource;
@@ -1257,11 +1251,7 @@
 				E14D17CF142855B3006B675E /* bottomGradient.png in Resources */,
 				E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */,
 				E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */,
-				E1F1D4E9142E2B7800720635 /* label.png in Resources */,
-				E1F1D4EA142E2B7800720635 /* label-highlight.png in Resources */,
 				E1777D2A1430475900A8D1BA /* blueArrow.png in Resources */,
-				E1D3B17C143244A600443B79 /* label-highlight@2x.png in Resources */,
-				E1D3B17D143244A600443B79 /* label@2x.png in Resources */,
 				E1E5DF45143B26750098BBD3 /* FriendHeadGridViewController.xib in Resources */,
 				E1E5DF4B143B290C0098BBD3 /* FriendHeadTabelViewCell.xib in Resources */,
 				E1E5DF4C143B290C0098BBD3 /* LabelTableViewCell.xib in Resources */,
@@ -1326,6 +1316,8 @@
 				E1779B9314C73B3B001CE627 /* LNRootViewController.xib in Resources */,
 				E1779B9814C73DDB001CE627 /* LNContentViewController.xib in Resources */,
 				E1779B9D14C73E21001CE627 /* LNLabelBarViewController.xib in Resources */,
+				E1779BA414C74AC6001CE627 /* label.png in Resources */,
+				E1779BA514C74AC6001CE627 /* label@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
