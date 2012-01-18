@@ -3,7 +3,7 @@
 //  SocialFusion
 //
 //  Created by Blue Bitch on 12-1-19.
-//  Copyright (c) 2012年 TJU. All rights reserved.
+//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
 #import "LNLabelBarViewController.h"
@@ -15,6 +15,7 @@
 
 - (void)dealloc {
     [_scrollView release];
+    [_labelPages release];
     [super dealloc];
 }
 
@@ -35,13 +36,21 @@
         frame.size = self.scrollView.frame.size;
         
         LNLabelPageViewController *page = [[LNLabelPageViewController alloc] init];
-        UIView *subview = page.view;
-        subview.frame = frame;
-        [self.scrollView addSubview:subview];
+        page.view.frame = frame;
+        [self.scrollView addSubview:page.view];
+        [_labelPages addObject:page];
         [page release];
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, self.scrollView.frame.size.height);
+}
+
+- (id)init {
+    self = [super init];
+    if(self) {
+        _labelPages = [[NSMutableArray alloc] init];
+    }
+    return self;
 }
 
 

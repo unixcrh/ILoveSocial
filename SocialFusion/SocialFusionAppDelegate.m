@@ -14,6 +14,7 @@
 
 
 @synthesize window = _window;
+@synthesize rootViewController = _rootViewController;
 
 @synthesize managedObjectContext = __managedObjectContext;//session  
 @synthesize managedObjectModel = __managedObjectModel;  
@@ -21,10 +22,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    LNRootViewController *rootViewController = [[LNRootViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    rootViewController.managedObjectContext = self.managedObjectContext;
-    [rootViewController release];
+    _rootViewController = [[LNRootViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
+    _rootViewController.managedObjectContext = self.managedObjectContext;
     navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
@@ -97,6 +97,7 @@ temp.managedObjectContext=self.managedObjectContext;
 {
     [super dealloc];
     [_window release];
+    [_rootViewController release];
     [self.managedObjectModel release];
     [self.managedObjectContext release];
     [self.persistentStoreCoordinator release]; 
