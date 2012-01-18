@@ -7,7 +7,6 @@
 //
 
 #import "NewFeedListController.h"
-#import "NavigationToolBar.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RenrenClient.h"
 #import "WeiboClient.h"
@@ -564,22 +563,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self loadExtraDataForOnscreenRows];
 }
 
-
-
-
-- (void)configureToolbar {
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"backButton-highlight.png"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    backButton.frame = CGRectMake(12, 12, 31, 34);
-    UIBarButtonItem *backButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:backButton] autorelease];
-    NSMutableArray *toolBarItems = [NSMutableArray array];
-    [toolBarItems addObject:backButtonItem];
-    self.toolbarItems = nil;
-    self.toolbarItems = toolBarItems;
-    ((NavigationToolBar *)self.navigationController.toolbar).respondView = self.tableView;
-}
 
 
 - (void)clearData

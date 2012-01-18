@@ -8,7 +8,6 @@
 
 #import "SocialFusionAppDelegate.h"
 #import "SocialFusionViewController.h"
-#import "NavigationToolBar.h"
 @implementation SocialFusionAppDelegate
 
 

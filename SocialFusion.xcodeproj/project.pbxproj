@@ -185,8 +185,6 @@
 		E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */; };
 		E1ABA4DA141FAC8D002CD0A6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */; };
 		E1ABA4DB141FAC8D002CD0A6 /* SocialFusionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */; };
-		E1BBA99F142C331100F09C42 /* NavigationToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BBA99E142C331100F09C42 /* NavigationToolBar.m */; };
-		E1BBA9A1142C33DF00F09C42 /* SFNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */; };
 		E1BF91CB1421F1AD002F6F1A /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91CA1421F1AD002F6F1A /* background@2x.png */; };
 		E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */; };
 		E1D3B17C143244A600443B79 /* label-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D3B17A143244A600443B79 /* label-highlight@2x.png */; };
@@ -508,9 +506,6 @@
 		E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialFusionViewController.xib; sourceTree = "<group>"; };
-		E1BBA99D142C331100F09C42 /* NavigationToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationToolBar.h; path = SocialFusion/Class/NavigationToolBar.h; sourceTree = "<group>"; };
-		E1BBA99E142C331100F09C42 /* NavigationToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationToolBar.m; path = SocialFusion/Class/NavigationToolBar.m; sourceTree = "<group>"; };
-		E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFNavigationController.xib; sourceTree = "<group>"; };
 		E1BF91CA1421F1AD002F6F1A /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_renren_tiny.png; sourceTree = "<group>"; };
 		E1D3B17A143244A600443B79 /* label-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-highlight@2x.png"; sourceTree = "<group>"; };
@@ -771,8 +766,6 @@
 		E19A2D0E142092BC00BE491A /* Trivals */ = {
 			isa = PBXGroup;
 			children = (
-				E1BBA99D142C331100F09C42 /* NavigationToolBar.h */,
-				E1BBA99E142C331100F09C42 /* NavigationToolBar.m */,
 				E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */,
 				E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */,
 				E1FB623F14247EA000828E24 /* CoreDataViewController.h */,
@@ -1109,7 +1102,6 @@
 				E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */,
 				E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */,
 				73F3400D14467EC400F9EDBD /* NewFeedListController.xib */,
-				E1BBA9A0142C33DF00F09C42 /* SFNavigationController.xib */,
 				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */,
 				7309DDC41448253D00774011 /* NewFeedBlogCell.xib */,
@@ -1236,7 +1228,6 @@
 				E14D17CF142855B3006B675E /* bottomGradient.png in Resources */,
 				E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */,
 				E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */,
-				E1BBA9A1142C33DF00F09C42 /* SFNavigationController.xib in Resources */,
 				E1F1D4E9142E2B7800720635 /* label.png in Resources */,
 				E1F1D4EA142E2B7800720635 /* label-highlight.png in Resources */,
 				E1777D2A1430475900A8D1BA /* blueArrow.png in Resources */,
@@ -1354,7 +1345,6 @@
 				E1FB62651424812C00828E24 /* WeiboStatus+Addition.m in Sources */,
 				E1FB62661424812C00828E24 /* WeiboUser+Addition.m in Sources */,
 				E1FB62931424894200828E24 /* User+Addition.m in Sources */,
-				E1BBA99F142C331100F09C42 /* NavigationToolBar.m in Sources */,
 				E1F1D4DD142E09ED00720635 /* LabelViewController.m in Sources */,
 				E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */,
 				E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */,

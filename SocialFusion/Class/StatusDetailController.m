@@ -5,7 +5,6 @@
 //  Created by He Ruoyun on 11-10-18.
 //  Copyright (c) 2011年 TJU. All rights reserved.
 //
-#import "NavigationToolBar.h"
 #import "StatusDetailController.h"
 #import "WeiboClient.h"
 #import "RenrenClient.h"

@@ -16,7 +16,6 @@
 #import "User+Addition.h"
 #import "RenrenClient.h"
 #import "WeiboClient.h"
-#import "NavigationToolBar.h"
 #import "MainPageViewController.h"
 #import "MainPageViewController.h"
 
