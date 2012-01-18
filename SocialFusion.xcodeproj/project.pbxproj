@@ -106,9 +106,14 @@
 		E14D17CF142855B3006B675E /* bottomGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CD142855B3006B675E /* bottomGradient.png */; };
 		E14D17D0142855B3006B675E /* bottomGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14D17CE142855B3006B675E /* bottomGradient@2x.png */; };
 		E1777D2A1430475900A8D1BA /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E1777D291430475900A8D1BA /* blueArrow.png */; };
+		E1779B9214C73B3B001CE627 /* LNRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9014C73B3B001CE627 /* LNRootViewController.m */; };
+		E1779B9314C73B3B001CE627 /* LNRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9114C73B3B001CE627 /* LNRootViewController.xib */; };
+		E1779B9714C73DDB001CE627 /* LNContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9514C73DDB001CE627 /* LNContentViewController.m */; };
+		E1779B9814C73DDB001CE627 /* LNContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9614C73DDB001CE627 /* LNContentViewController.xib */; };
+		E1779B9C14C73E21001CE627 /* LNLabelBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9A14C73E21001CE627 /* LNLabelBarViewController.m */; };
+		E1779B9D14C73E21001CE627 /* LNLabelBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9B14C73E21001CE627 /* LNLabelBarViewController.xib */; };
 		E17817B61450084B00DB0D70 /* rootbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B41450084B00DB0D70 /* rootbackground.png */; };
 		E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B51450084B00DB0D70 /* rootbackground@2x.png */; };
-		E17817B91450097800DB0D70 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17817B81450097800DB0D70 /* RootViewController.xib */; };
 		E17817BE1450206B00DB0D70 /* rightlabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BA1450206B00DB0D70 /* rightlabel@2x.png */; };
 		E17817BF1450206B00DB0D70 /* rightlabel.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BB1450206B00DB0D70 /* rightlabel.png */; };
 		E17817C01450206B00DB0D70 /* leftlabel.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817BC1450206B00DB0D70 /* leftlabel.png */; };
@@ -386,9 +391,17 @@
 		E14D17CD142855B3006B675E /* bottomGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomGradient.png; sourceTree = "<group>"; };
 		E14D17CE142855B3006B675E /* bottomGradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomGradient@2x.png"; sourceTree = "<group>"; };
 		E1777D291430475900A8D1BA /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		E1779B8F14C73B3B001CE627 /* LNRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNRootViewController.h; sourceTree = "<group>"; };
+		E1779B9014C73B3B001CE627 /* LNRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNRootViewController.m; sourceTree = "<group>"; };
+		E1779B9114C73B3B001CE627 /* LNRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNRootViewController.xib; sourceTree = "<group>"; };
+		E1779B9414C73DDB001CE627 /* LNContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNContentViewController.h; sourceTree = "<group>"; };
+		E1779B9514C73DDB001CE627 /* LNContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNContentViewController.m; sourceTree = "<group>"; };
+		E1779B9614C73DDB001CE627 /* LNContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNContentViewController.xib; sourceTree = "<group>"; };
+		E1779B9914C73E21001CE627 /* LNLabelBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNLabelBarViewController.h; sourceTree = "<group>"; };
+		E1779B9A14C73E21001CE627 /* LNLabelBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNLabelBarViewController.m; sourceTree = "<group>"; };
+		E1779B9B14C73E21001CE627 /* LNLabelBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNLabelBarViewController.xib; sourceTree = "<group>"; };
 		E17817B41450084B00DB0D70 /* rootbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rootbackground.png; sourceTree = "<group>"; };
 		E17817B51450084B00DB0D70 /* rootbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rootbackground@2x.png"; sourceTree = "<group>"; };
-		E17817B81450097800DB0D70 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		E17817BA1450206B00DB0D70 /* rightlabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightlabel@2x.png"; sourceTree = "<group>"; };
 		E17817BB1450206B00DB0D70 /* rightlabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightlabel.png; sourceTree = "<group>"; };
 		E17817BC1450206B00DB0D70 /* leftlabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftlabel.png; sourceTree = "<group>"; };
@@ -704,6 +717,22 @@
 			name = MainPage;
 			sourceTree = "<group>";
 		};
+		E1779B8D14C73AB4001CE627 /* LabelNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				E1779B9414C73DDB001CE627 /* LNContentViewController.h */,
+				E1779B9514C73DDB001CE627 /* LNContentViewController.m */,
+				E1779B9614C73DDB001CE627 /* LNContentViewController.xib */,
+				E1779B9914C73E21001CE627 /* LNLabelBarViewController.h */,
+				E1779B9A14C73E21001CE627 /* LNLabelBarViewController.m */,
+				E1779B9B14C73E21001CE627 /* LNLabelBarViewController.xib */,
+				E1779B8F14C73B3B001CE627 /* LNRootViewController.h */,
+				E1779B9014C73B3B001CE627 /* LNRootViewController.m */,
+				E1779B9114C73B3B001CE627 /* LNRootViewController.xib */,
+			);
+			name = LabelNavigation;
+			sourceTree = "<group>";
+		};
 		E19A2D0C1420927400BE491A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -886,6 +915,7 @@
 		E1ABA41C141FA882002CD0A6 /* ViewContrlloers */ = {
 			isa = PBXGroup;
 			children = (
+				E1779B8D14C73AB4001CE627 /* LabelNavigation */,
 				E13896871457E3D600FD0BE6 /* MainPage */,
 				E1E6E8E41451E63600FCB08B /* Friend */,
 				7309DDBD1447E95C00774011 /* NewFeed */,
@@ -1105,7 +1135,6 @@
 				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				735210071446BC360010DCD4 /* NewFeedStatusWithRepostcell.xib */,
 				7309DDC41448253D00774011 /* NewFeedBlogCell.xib */,
-				E17817B81450097800DB0D70 /* RootViewController.xib */,
 				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E17817CA14502C6C00DB0D70 /* LabelViewController.xib */,
 				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
@@ -1256,7 +1285,6 @@
 				7305A697144DB38C00ED59AA /* StatusCommentCell.xib in Resources */,
 				E17817B61450084B00DB0D70 /* rootbackground.png in Resources */,
 				E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */,
-				E17817B91450097800DB0D70 /* RootViewController.xib in Resources */,
 				E17817BE1450206B00DB0D70 /* rightlabel@2x.png in Resources */,
 				E17817BF1450206B00DB0D70 /* rightlabel.png in Resources */,
 				E17817C01450206B00DB0D70 /* leftlabel.png in Resources */,
@@ -1295,6 +1323,9 @@
 				E11DF22314C569F600DDC51A /* mvboli.ttf in Resources */,
 				E11DF22714C5810000DDC51A /* head_renren@2x.png in Resources */,
 				E11DF22814C5810000DDC51A /* head_wb@2x.png in Resources */,
+				E1779B9314C73B3B001CE627 /* LNRootViewController.xib in Resources */,
+				E1779B9814C73DDB001CE627 /* LNContentViewController.xib in Resources */,
+				E1779B9D14C73E21001CE627 /* LNLabelBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1409,6 +1440,9 @@
 				73FBBFC114C3F6B200694B1B /* ShowImage.m in Sources */,
 				73BA300314C6614300813E0E /* NewFeedUploadPhoto.m in Sources */,
 				73BA300714C6676C00813E0E /* NewFeedSharePhoto.m in Sources */,
+				E1779B9214C73B3B001CE627 /* LNRootViewController.m in Sources */,
+				E1779B9714C73DDB001CE627 /* LNContentViewController.m in Sources */,
+				E1779B9C14C73E21001CE627 /* LNLabelBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

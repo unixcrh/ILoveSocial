@@ -8,38 +8,23 @@
 
 #import "SocialFusionAppDelegate.h"
 #import "SocialFusionViewController.h"
+#import "LNRootViewController.h"
+
 @implementation SocialFusionAppDelegate
 
 
-@synthesize window=_window;
-@synthesize viewController=_viewController;
+@synthesize window = _window;
 
-@synthesize managedObjectContext=__managedObjectContext;//session  
-@synthesize managedObjectModel=__managedObjectModel;  
-@synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
-
-
-
-/*
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-	NSLog(@"获得已授权的key:%@",url);
-    
-  //  [[WBShareKit mainShare] handleOpenURL:url];
-    [[WeiboClient client] handleOpenURL:url];
-    
-    return YES;
-}
-
-*/
-
+@synthesize managedObjectContext = __managedObjectContext;//session  
+@synthesize managedObjectModel = __managedObjectModel;  
+@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-  //  _manageObjectModel1=self.managedObjectContext;
-    self.viewController.managedObjectContext = self.managedObjectContext;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    LNRootViewController *rootViewController = [[LNRootViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    rootViewController.managedObjectContext = self.managedObjectContext;
+    [rootViewController release];
     navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
@@ -68,7 +53,7 @@
 {
     
     
-    NSLog(@"%@",self.viewController.managedObjectContext);
+    NSLog(@"%@",self.managedObjectContext);
    // self.viewController.managedObjectContext = _manageObjectModel1;
     NSLog(@"active");
     
@@ -112,7 +97,6 @@ temp.managedObjectContext=self.managedObjectContext;
 {
     [super dealloc];
     [_window release];
-    [_viewController release];
     [self.managedObjectModel release];
     [self.managedObjectContext release];
     [self.persistentStoreCoordinator release]; 

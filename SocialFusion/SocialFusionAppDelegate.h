@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class SocialFusionViewController;
-
-@interface SocialFusionAppDelegate : NSObject <UIApplicationDelegate> {
-    //NSManagedObjectContext* _manageObjectModel1;
-}
+@interface SocialFusionAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet SocialFusionViewController *viewController;
 // core data
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;  
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;  
