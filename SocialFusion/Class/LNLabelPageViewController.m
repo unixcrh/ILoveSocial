@@ -66,24 +66,6 @@
     }
 }
 
-- (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index {
-    NSLog(@"select %ud", index);
-    [self unloadSubviews];
-    for(int i = 0; i < index; i++) {
-        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
-        [self.view addSubview:label.view];
-    }
-    for(int i = _labelViews.count - 1; i > index; i--) {
-        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
-        [self.view addSubview:label.view];
-    }
-    LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:index]);
-    [self.view addSubview:label.view];
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectPageAtIndex:)]) {
-        [self.delegate labelPageView:self didSelectPageAtIndex:self.page];
-    }
-}
-
 - (void)selectOtherPage:(NSUInteger)page {
     if(page == self.page)
         return;
@@ -100,6 +82,30 @@
             [self.view addSubview:label.view];
         }
     }
+}
+
+#pragma mark -
+#pragma mark LNLabelViewController delegate
+
+- (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index {
+    [self unloadSubviews];
+    for(int i = 0; i < index; i++) {
+        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+        [self.view addSubview:label.view];
+    }
+    for(int i = _labelViews.count - 1; i > index; i--) {
+        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+        [self.view addSubview:label.view];
+    }
+    LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:index]);
+    [self.view addSubview:label.view];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectPageAtIndex:)]) {
+        [self.delegate labelPageView:self didSelectPageAtIndex:self.page];
+    }
+}
+
+- (void)labelView:(LNLabelViewController *)labelView didSelectPlusAtIndex:(NSUInteger)index {
+
 }
 
 @end

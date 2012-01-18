@@ -31,12 +31,14 @@ typedef enum {
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 
-- (IBAction)clickButton:(id)sender;
+- (IBAction)clickTitleButton:(id)sender;
+- (IBAction)clickPlusButton:(id)sender;
 
 @end
 
 @protocol LNLabelViewControllerDelegate <NSObject>
 
 - (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didSelectPlusAtIndex:(NSUInteger)index;
 
 @end

@@ -40,7 +40,13 @@
         [self.plusButton setHidden:YES];
 }
 
-- (IBAction)clickButton:(id)sender {
+- (void)setIsSelected:(BOOL)isSelected {
+    _isSelected = isSelected;
+    if(isSelected == YES)
+        [self.plusButton setHidden:NO];
+}
+
+- (IBAction)clickTitleButton:(id)sender {
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];
     }
@@ -50,10 +56,12 @@
     }
 }
 
-- (void)setIsSelected:(BOOL)isSelected {
-    _isSelected = isSelected;
-    if(isSelected == YES)
-        [self.plusButton setHidden:NO];
+- (IBAction)clickPlusButton:(id)sender {
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectPlusAtIndex:)]) {
+        [self.delegate labelView:self didSelectPlusAtIndex:self.index];
+    }
 }
+
+
 
 @end
