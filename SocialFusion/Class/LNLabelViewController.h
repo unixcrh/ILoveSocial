@@ -44,5 +44,6 @@ typedef enum {
 - (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index;
 - (void)labelView:(LNLabelViewController *)labelView didSelectOpenAtIndex:(NSUInteger)index;
 - (void)labelView:(LNLabelViewController *)labelView didSelectCloseAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index;
 
 @end

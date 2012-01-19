@@ -40,6 +40,14 @@
     [self.titleButton setTitleColor:[UIColor brownColor] forState:UIControlStateSelected];
     if(!_isSelected)
         [self.plusButton setHidden:YES];
+    
+    UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self 
+																							action:@selector(swipeUp:)];
+	swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
+	swipeUpGesture.numberOfTouchesRequired = 1;
+	[self.view addGestureRecognizer:swipeUpGesture];
+	[swipeUpGesture release];
+	
 }
 
 - (void)setIsSelected:(BOOL)isSelected {
@@ -89,6 +97,12 @@
     if([self init])
         self.labelStatus = status;
     return self;
+}
+
+- (void)swipeUp:(UISwipeGestureRecognizer *)ges {
+    NSLog(@"swipe top");
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didRemoveLabelAtIndex:)])
+        [self.delegate labelView:self didRemoveLabelAtIndex:self.index];
 }
 
 @end
