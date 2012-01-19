@@ -227,11 +227,9 @@
 
 -(id)init
 {
-<<<<<<< HEAD
-    self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewFeedStatusCell"];
-=======
+
     self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier: @"NewFeedStatusCell"];
->>>>>>> ea5bb4412eac83ad118725f0d555994a5419cb9c
+
     _webView=[[UIWebView alloc] init];
       _webView.frame=CGRectMake(0,0, 320    , 100);
     [self.contentView addSubview:_webView];
