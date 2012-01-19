@@ -13,6 +13,7 @@
 #define LABEL_SPACE     75
 #define LABEL_WIDTH     81
 #define LABEL_HEIGHT    44
+#define ANIMATION_MOVE_LENGTH   250
 
 @implementation LNLabelPageViewController
 
@@ -47,7 +48,7 @@
     if(self) {
         _labelViews = [[NSMutableArray alloc] init];
         for(int i = 0; i < 4; i++) {
-            LNLabelViewController *label = [[LNLabelViewController alloc] init];
+            LNLabelViewController *label = [[LNLabelViewController alloc] initWithStatus:PARENT_LABEL_CLOSE];
             label.view.frame = CGRectMake(LABEL_OFFSET_X + i * LABEL_SPACE, LABEL_OFFSET_Y, LABEL_WIDTH, LABEL_HEIGHT);
             [_labelViews addObject:label];
             label.delegate = self;
@@ -84,6 +85,20 @@
     }
 }
 
+- (void)setToOriginAnimation {
+    [UIView animateWithDuration:0.3f animations:^{
+        for(int i = 0; i < _labelViews.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            newFrame = CGRectMake(LABEL_OFFSET_X + label.index * LABEL_SPACE, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            label.view.frame = newFrame;
+        }
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
+
 #pragma mark -
 #pragma mark LNLabelViewController delegate
 
@@ -104,8 +119,30 @@
     }
 }
 
-- (void)labelView:(LNLabelViewController *)labelView didSelectPlusAtIndex:(NSUInteger)index {
+- (void)labelView:(LNLabelViewController *)labelView didSelectOpenAtIndex:(NSUInteger)index {
+    [UIView animateWithDuration:0.3f animations:^{
+        for(int i = 0; i < _labelViews.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            if(i < index) {
+                newFrame = CGRectMake(oldFrame.origin.x - ANIMATION_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+            else if(i > index) {
+                newFrame = CGRectMake(oldFrame.origin.x + ANIMATION_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+            else {
+                newFrame = CGRectMake(LABEL_OFFSET_X, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+            label.view.frame = newFrame;
+        }
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
 
+- (void)labelView:(LNLabelViewController *)labelView didSelectCloseAtIndex:(NSUInteger)index {
+    [self setToOriginAnimation];
 }
 
 @end
