@@ -16,13 +16,13 @@
 @synthesize window = _window;
 @synthesize rootViewController = _rootViewController;
 
-@synthesize managedObjectContext = __managedObjectContext;//session  
+@synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;  
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _rootViewController = [[SocialFusionViewController alloc] init];
+    _rootViewController = [[LNRootViewController alloc] init];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
     _rootViewController.managedObjectContext = self.managedObjectContext;
