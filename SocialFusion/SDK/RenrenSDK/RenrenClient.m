@@ -51,7 +51,7 @@ static NSString* const AppID = @"150399";
 }
 
 - (void)dealloc {
-    //NSLog(@"RenrenClient dealloc");
+    NSLog(@"RenrenClient dealloc");
     [_sessionKey release];
     [_secret release];
     [_accessToken release];
@@ -65,7 +65,7 @@ static NSString* const AppID = @"150399";
 }
 
 - (void)setCompletionBlock:(void (^)(RenrenClient* client))completionBlock {
-    [_completionBlock autorelease];
+    [_completionBlock release];
     _completionBlock = [completionBlock copy];
 }
 

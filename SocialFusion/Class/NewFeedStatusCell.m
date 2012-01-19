@@ -9,7 +9,7 @@
 #import "NewFeedStatusCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
-#import "NewFeedBlog.h"
+#import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
 #import "NewFeedListController.h"
 #import "Base64Transcoder.h"
@@ -18,7 +18,7 @@
 #import "NewFeedShareAlbum+Addition.h"
 #import "NewFeedSharePhoto+Addition.h"
 #import "NSString+HTMLSet.h"
-#import "NewFeedBlog.h"
+
 @implementation NewFeedStatusCell
 
 
@@ -227,10 +227,15 @@
 
 -(id)init
 {
+<<<<<<< HEAD
     self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewFeedStatusCell"];
+=======
+    self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier: @"NewFeedStatusCell"];
+>>>>>>> ea5bb4412eac83ad118725f0d555994a5419cb9c
     _webView=[[UIWebView alloc] init];
       _webView.frame=CGRectMake(0,0, 320    , 100);
     [self.contentView addSubview:_webView];
+    
     
     return  self;
 }
