@@ -308,7 +308,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     static NSString *StatusCell = @"NewFeedStatusCell";
 
-    static NSString *DetailCell=@"DetailCell";
+  //  static NSString *DetailCell=@"DetailCell";
     if ([indexPath compare:_indexPath])
     {
         NewFeedStatusCell* cell;
