@@ -364,10 +364,11 @@
         }
     }
     
+    _webView.userInteractionEnabled=YES;
     _style=[feedData.style intValue];
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
-    _webView.scrollView.scrollEnabled=FALSE;
+    _webView.scrollView.scrollEnabled=NO;
     _webView.delegate=self;
     
   }

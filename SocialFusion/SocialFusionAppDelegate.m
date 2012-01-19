@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _rootViewController = [[LNRootViewController alloc] init];
+    _rootViewController = [[SocialFusionViewController alloc] init];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
     _rootViewController.managedObjectContext = self.managedObjectContext;

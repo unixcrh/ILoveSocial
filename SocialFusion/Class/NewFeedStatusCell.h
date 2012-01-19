@@ -18,8 +18,6 @@
     
 
     
-
-    
     IBOutlet UIWebView* _webView;
     
     int _style;
