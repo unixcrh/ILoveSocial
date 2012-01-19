@@ -13,6 +13,7 @@
 #define LABEL_SPACE     75
 #define LABEL_WIDTH     81
 #define LABEL_HEIGHT    44
+#define ANIMATION_MOVE_LENGTH   250
 
 @implementation LNLabelPageViewController
 
@@ -105,7 +106,25 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didSelectPlusAtIndex:(NSUInteger)index {
-
+    [UIView animateWithDuration:0.3f animations:^{
+        for(int i = 0; i < _labelViews.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            if(i < index) {
+                newFrame = CGRectMake(oldFrame.origin.x - ANIMATION_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+            else if(i > index) {
+                newFrame = CGRectMake(oldFrame.origin.x + ANIMATION_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+            else {
+                newFrame = CGRectMake(LABEL_OFFSET_X, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+            label.view.frame = newFrame;
+        }
+    } completion:^(BOOL finished) {
+        ;
+    }];
 }
 
 @end
