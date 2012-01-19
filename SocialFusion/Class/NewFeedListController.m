@@ -319,9 +319,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
                 cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
                 if (cell == nil) {
-                    [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
-                    cell = _feedStatusCel;
-                    
+                    cell=[[NewFeedStatusCell alloc] init];
 
                 }
 

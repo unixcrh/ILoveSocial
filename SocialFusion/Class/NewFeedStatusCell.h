@@ -18,7 +18,7 @@
     
 
     
-    IBOutlet UIWebView* _webView;
+     UIWebView* _webView;
     
     int _style;
 

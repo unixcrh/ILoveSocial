@@ -26,6 +26,7 @@
 
 
     _webView.delegate=nil;    
+    [_webView release];
     [super dealloc];
 }
 
@@ -167,17 +168,14 @@
 
 
 
-
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",_style]];
-    int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+    
+
+    
+    _webView.frame=CGRectMake(0,0, _webView.scrollView.contentSize.width, scrollHeight);
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",_style]];
   
-    
-    
-    _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
-      
-    
-   // [_feedData release];
 
 }
 
@@ -227,10 +225,19 @@
 }
 
 
-
+-(id)init
+{
+    self=[super init];
+    _webView=[[UIWebView alloc] init];
+      _webView.frame=CGRectMake(0,0, 320    , 100);
+    [self.contentView addSubview:_webView];
+    
+    return  self;
+}
 
 -(void)configureCell:(NewFeedRootData*)feedData
 {    
+    
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
@@ -370,6 +377,12 @@
     _webView.opaque=NO;
     _webView.scrollView.scrollEnabled=NO;
     _webView.delegate=self;
+    
+   
+    
+
+    // [_feedData release];
+    
     
   }
 
