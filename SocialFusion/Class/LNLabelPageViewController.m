@@ -145,4 +145,15 @@
     [self setToOriginAnimation];
 }
 
+- (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index {
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect oldFrame = labelView.view.frame;
+        CGRect newFrame;
+        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 100, oldFrame.size.width, oldFrame.size.height);
+        labelView.view.frame = newFrame;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
+
 @end
