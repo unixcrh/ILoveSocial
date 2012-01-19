@@ -9,7 +9,7 @@
 #import "NewFeedStatusCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
-#import "NewFeedBlog.h"
+#import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
 #import "NewFeedListController.h"
 #import "Base64Transcoder.h"
@@ -18,14 +18,15 @@
 #import "NewFeedShareAlbum+Addition.h"
 #import "NewFeedSharePhoto+Addition.h"
 #import "NSString+HTMLSet.h"
-#import "NewFeedBlog.h"
+
 @implementation NewFeedStatusCell
 
 
 - (void)dealloc {
-
+    NSLog(@"webview release");
 
     _webView.delegate=nil;    
+    [_webView release];
     [super dealloc];
 }
 
@@ -167,17 +168,14 @@
 
 
 
-
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",_style]];
-    int scrollHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+    
+
+    
+    _webView.frame=CGRectMake(0,0, _webView.scrollView.contentSize.width, scrollHeight);
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",_style]];
   
-    
-    
-    _webView.frame=CGRectMake(_webView.frame.origin.x, _webView.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
-      
-    
-   // [_feedData release];
 
 }
 
@@ -227,10 +225,28 @@
 }
 
 
+-(id)init
+{
 
+    self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier: @"NewFeedStatusCell"];
+
+    _webView=[[UIWebView alloc] init];
+      _webView.frame=CGRectMake(0,0, 320    , 100);
+    [self.contentView addSubview:_webView];
+    
+    
+    return  self;
+}
 
 -(void)configureCell:(NewFeedRootData*)feedData
 {    
+    [_webView removeFromSuperview];
+    [_webView release];
+    
+    _webView=[[UIWebView alloc] init];
+    _webView.frame=CGRectMake(0,0, 320    , 100);
+    [self.contentView addSubview:_webView];
+
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
@@ -364,11 +380,18 @@
         }
     }
     
+    _webView.userInteractionEnabled=YES;
     _style=[feedData.style intValue];
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
-    _webView.scrollView.scrollEnabled=FALSE;
+    _webView.scrollView.scrollEnabled=NO;
     _webView.delegate=self;
+    
+   
+    
+
+    // [_feedData release];
+    
     
   }
 

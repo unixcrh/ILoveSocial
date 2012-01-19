@@ -169,7 +169,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 
                 
                        int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
-                // NSLog(@"%@",dict);
+                 NSLog(@"%@",dict);
                 
                 
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
@@ -308,7 +308,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     static NSString *StatusCell = @"NewFeedStatusCell";
 
-    static NSString *DetailCell=@"DetailCell";
+  //  static NSString *DetailCell=@"DetailCell";
     if ([indexPath compare:_indexPath])
     {
         NewFeedStatusCell* cell;
@@ -319,11 +319,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
                 cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
                 if (cell == nil) {
-                    [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
-                    cell = _feedStatusCel;
-                    
+                    cell=[[NewFeedStatusCell alloc] init];
 
                 }
+            else
+            {
+                NSLog(@"reuse");
+            }
 
         
         

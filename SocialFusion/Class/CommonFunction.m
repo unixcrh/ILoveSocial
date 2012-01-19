@@ -22,23 +22,23 @@
     
     if (time<0)
     {
-        tempString=[[NSString alloc] initWithFormat:@"0秒前"];
+        tempString=[NSString  stringWithFormat:@"0秒前"];
     }
     else if (time<60)
     {
-        tempString=[[NSString alloc] initWithFormat:@"%d秒前",time];
+        tempString=[NSString  stringWithFormat:@"%d秒前",time];
     }
     else if (time<3600)
     {
-        tempString=[[NSString alloc]  initWithFormat:@"%d分钟前",time/60];
+        tempString=[NSString stringWithFormat:@"%d分钟前",time/60];
     }
     else if (time<(3600*24))
     {
-        tempString= [[NSString alloc]  initWithFormat:@"%d小时前",time/3600];
+        tempString= [NSString   stringWithFormat:@"%d小时前",time/3600];
     }
     else
     {
-        tempString= [[NSString alloc]  initWithFormat:@"%d天前",time/(3600*24)];
+        tempString= [NSString stringWithFormat:@"%d天前",time/(3600*24)];
     }
     
     return tempString;

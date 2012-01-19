@@ -109,15 +109,16 @@
     }
     else
     {
-        if ([self.photo_comment length]>54)
+     
+        /*if ([self.photo_comment length]>54)
         {
             NSString* returnString=[NSString stringWithFormat:@"%@...",[self.photo_comment substringToIndex:50]];
             return returnString;
-        }
-        else
-        {
+        }*/
+       // else
+       // {
             return self.photo_comment;
-        }
+       // }
     }
 }
 -(NSString*)getTitle

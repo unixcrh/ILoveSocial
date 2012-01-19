@@ -78,7 +78,6 @@
 		73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */; };
 		73F1F6BD14C05D5000C0EAF5 /* photocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73F1F6BC14C05D5000C0EAF5 /* photocell.html */; };
 		73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400D14467EC400F9EDBD /* NewFeedListController.xib */; };
-		73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */; };
 		73F4F96D144A9EA400A692F7 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F951144A9EA400A692F7 /* NSMutableURLRequest+Parameters.m */; };
 		73F4F96E144A9EA400A692F7 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F953144A9EA400A692F7 /* NSString+URLEncoding.m */; };
 		73F4F96F144A9EA400A692F7 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F955144A9EA400A692F7 /* NSURL+Base.m */; };
@@ -345,7 +344,6 @@
 		73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedData.m; path = "SocialFusion/Class/CoreData Models/NewFeedData.m"; sourceTree = "<group>"; };
 		73F1F6BC14C05D5000C0EAF5 /* photocell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = photocell.html; sourceTree = "<group>"; };
 		73F3400D14467EC400F9EDBD /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
-		73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedStatusCell.xib; sourceTree = "<group>"; };
 		73F4F950144A9EA400A692F7 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		73F4F951144A9EA400A692F7 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		73F4F952144A9EA400A692F7 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -1136,7 +1134,6 @@
 				E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */,
 				E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */,
 				73F3400D14467EC400F9EDBD /* NewFeedListController.xib */,
-				73F3400E14467EC400F9EDBD /* NewFeedStatusCell.xib */,
 				E1247266142A58090086AC61 /* MainPageViewController.xib */,
 				E17817CA14502C6C00DB0D70 /* LabelViewController.xib */,
 				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
@@ -1269,7 +1266,6 @@
 				E1E5DF5E143B44A60098BBD3 /* tableviewBackgroundWhite@2x.png in Resources */,
 				E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */,
 				73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */,
-				73F3401014467EC400F9EDBD /* NewFeedStatusCell.xib in Resources */,
 				7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */,
 				7352100D1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png in Resources */,
 				735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */,
@@ -1493,7 +1489,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "$(CACHE_ROOT)/SharedPrecompiledHeaders";
@@ -1514,7 +1510,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1533,7 +1529,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Pocket Social";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1552,7 +1548,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = "SocialFusion/SocialFusion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Pocket Social";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
