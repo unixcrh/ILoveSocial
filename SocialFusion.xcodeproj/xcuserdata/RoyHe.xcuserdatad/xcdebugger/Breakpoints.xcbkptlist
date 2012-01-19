@@ -205,12 +205,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "348680026.639269"
+         timestampString = "348684835.116381"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "320"
-         endingLineNumber = "320"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+         landmarkName = "-loadMoreRenrenData"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

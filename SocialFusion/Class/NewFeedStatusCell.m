@@ -23,7 +23,7 @@
 
 
 - (void)dealloc {
-
+    NSLog(@"webview release");
 
     _webView.delegate=nil;    
     [_webView release];
@@ -227,7 +227,7 @@
 
 -(id)init
 {
-    self=[super init];
+    self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewFeedStatusCell"];
     _webView=[[UIWebView alloc] init];
       _webView.frame=CGRectMake(0,0, 320    , 100);
     [self.contentView addSubview:_webView];
@@ -237,7 +237,13 @@
 
 -(void)configureCell:(NewFeedRootData*)feedData
 {    
+    [_webView removeFromSuperview];
+    [_webView release];
     
+    _webView=[[UIWebView alloc] init];
+    _webView.frame=CGRectMake(0,0, 320    , 100);
+    [self.contentView addSubview:_webView];
+
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];

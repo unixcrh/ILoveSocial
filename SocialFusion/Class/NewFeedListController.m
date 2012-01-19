@@ -169,7 +169,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 
                 
                        int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
-                // NSLog(@"%@",dict);
+                 NSLog(@"%@",dict);
                 
                 
                 if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
@@ -322,6 +322,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                     cell=[[NewFeedStatusCell alloc] init];
 
                 }
+            else
+            {
+                NSLog(@"reuse");
+            }
 
         
         
