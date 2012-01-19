@@ -8,12 +8,14 @@
 
 #import "LNLabelViewController.h"
 
+#define DEGREES_TO_RADIANS(__ANGLE) ((__ANGLE) / 180.0 * M_PI)
+
 @implementation LNLabelViewController
 
 @synthesize titleButton = _titleButton;
 @synthesize index = _index;
 @synthesize delegate = _delegate;
-@synthesize labelType = _labelType;
+@synthesize labelStatus = _labelStatus;
 @synthesize plusButton = _plusButton;
 @synthesize isSelected = _isSelected;
 
@@ -46,22 +48,47 @@
         [self.plusButton setHidden:NO];
 }
 
+- (BOOL)isParentLabel {
+    return self.labelStatus == PARENT_LABEL_OPEN || self.labelStatus == PARENT_LABEL_CLOSE;
+}
+
 - (IBAction)clickTitleButton:(id)sender {
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];
     }
-    if(self.labelType == PARENT_LABEL) {
+    if(self.isParentLabel) {
         [self.plusButton setHidden:NO];
         self.isSelected = YES;
     }
 }
 
 - (IBAction)clickPlusButton:(id)sender {
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectPlusAtIndex:)]) {
-        [self.delegate labelView:self didSelectPlusAtIndex:self.index];
+    if(self.labelStatus == PARENT_LABEL_OPEN) {
+        self.labelStatus = PARENT_LABEL_CLOSE;
+        [UIView animateWithDuration:0.3f animations:^{
+            CGAffineTransform xform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
+            self.plusButton.transform = xform;
+        }completion:^(BOOL finished) {
+            if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectCloseAtIndex:)])
+                [self.delegate labelView:self didSelectCloseAtIndex:self.index];
+        }];
+    }
+    else if(self.labelStatus == PARENT_LABEL_CLOSE) { 
+        self.labelStatus = PARENT_LABEL_OPEN;
+        [UIView animateWithDuration:0.3f animations:^{
+            CGAffineTransform xform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(180 + 45));
+            self.plusButton.transform = xform;
+        } completion:^(BOOL finished) {
+            if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectOpenAtIndex:)])
+                [self.delegate labelView:self didSelectOpenAtIndex:self.index];
+        }];
     }
 }
 
-
+- (id)initWithStatus:(LabelStatus)status {
+    if([self init])
+        self.labelStatus = status;
+    return self;
+}
 
 @end

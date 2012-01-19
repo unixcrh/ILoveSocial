@@ -11,15 +11,16 @@
 @protocol LNLabelViewControllerDelegate;
 
 typedef enum {
-    PARENT_LABEL,
+    PARENT_LABEL_CLOSE,
+    PARENT_LABEL_OPEN,
     CHILD_LABEL,
-} LabelType;
+} LabelStatus;
 
 @interface LNLabelViewController : UIViewController {
     UIButton *_titleButton;
     UIButton *_plusButton;
     NSUInteger _index;
-    LabelType _labelType;
+    LabelStatus _labelStatus;
     BOOL _isSelected;
     id<LNLabelViewControllerDelegate> _delegate;
 }
@@ -27,18 +28,21 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIButton *titleButton;
 @property (nonatomic, retain) IBOutlet UIButton *plusButton;
 @property (nonatomic) NSUInteger index;
-@property (nonatomic) LabelType labelType;
+@property (nonatomic) LabelStatus labelStatus;
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
+@property (nonatomic, readonly) BOOL isParentLabel;
 
 - (IBAction)clickTitleButton:(id)sender;
 - (IBAction)clickPlusButton:(id)sender;
+- (id)initWithStatus:(LabelStatus)status;
 
 @end
 
 @protocol LNLabelViewControllerDelegate <NSObject>
 
 - (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index;
-- (void)labelView:(LNLabelViewController *)labelView didSelectPlusAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didSelectOpenAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didSelectCloseAtIndex:(NSUInteger)index;
 
 @end
