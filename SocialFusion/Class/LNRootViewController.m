@@ -38,6 +38,16 @@
     self = [super init];
     if(self) {
         _labelBarViewController = [[LNLabelBarViewController alloc] init];
+        _labelBarStack = [[NSMutableArray alloc] initWithObjects:_labelBarViewController, nil];
+        NSArray *labelInfo = [NSArray arrayWithObjects:
+                              [LabelInfo labelInfoWithName:@"新鲜事" status:PARENT_LABEL_CLOSE isSystem:YES],
+                              [LabelInfo labelInfoWithName:@"通讯录" status:PARENT_LABEL_CLOSE isSystem:YES],
+                              [LabelInfo labelInfoWithName:@"个人档" status:PARENT_LABEL_CLOSE isSystem:YES],
+                              [LabelInfo labelInfoWithName:@"收件箱" status:PARENT_LABEL_CLOSE isSystem:YES],
+                              [LabelInfo labelInfoWithName:@"人人测试" status:PARENT_LABEL_CLOSE isSystem:NO],
+                              [LabelInfo labelInfoWithName:@"微博测试" status:PARENT_LABEL_CLOSE isSystem:NO],
+                              [LabelInfo labelInfoWithName:@"新标签测试" status:CHILD_LABEL isSystem:NO], nil];
+        [_labelBarViewController.labelInfoArray setArray:labelInfo];
     }
     return self;
 }
@@ -46,6 +56,7 @@
 #pragma mark handle notifications
 
 - (void)didSelectFriend:(NSNotification *)notification {
+    [_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:@"何若运" status:PARENT_LABEL_CLOSE isSystem:NO]];
     /*
     User* user = notification.object;
     NSNumber *typeContainer = ((NSNumber *)[notification.userInfo objectForKey:kDisSelectFirendType]);

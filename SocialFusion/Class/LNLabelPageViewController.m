@@ -19,9 +19,12 @@
 
 @synthesize page = _page;
 @synthesize delegate = _delegate;
+@synthesize labelInfoSubArray = _labelInfoSubArray;
 
 - (void)dealloc {
     [_labelViews release];
+    [_labelInfoSubArray release];
+    self.delegate = nil;
     [super dealloc];
 }
 
@@ -34,10 +37,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    for(int i = 0; i < 4; i++) {
+        LNLabelViewController *label = [[LNLabelViewController alloc] initWithStatus:PARENT_LABEL_CLOSE];
+        label.view.frame = CGRectMake(LABEL_OFFSET_X + i * LABEL_SPACE, LABEL_OFFSET_Y, LABEL_WIDTH, LABEL_HEIGHT);
+        [_labelViews addObject:label];
+        label.delegate = self;
+        label.index = i;
+        [label release];
+    }
+    
     for(int i = _labelViews.count - 1; i >= 0; i--) {
         LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
         if(self.page == 0 && i == 0) {
             label.isSelected = YES;
+        }
+        if(self.labelInfoSubArray.count - 1 < i) {
+            [label.view setHidden:YES];
+            [label.view setUserInteractionEnabled:NO];
+        }
+        else {
+            label.info = [self.labelInfoSubArray objectAtIndex:i];
         }
         [self.view addSubview:label.view];
     }
@@ -47,14 +67,16 @@
     self = [super init];
     if(self) {
         _labelViews = [[NSMutableArray alloc] init];
-        for(int i = 0; i < 4; i++) {
-            LNLabelViewController *label = [[LNLabelViewController alloc] initWithStatus:PARENT_LABEL_CLOSE];
-            label.view.frame = CGRectMake(LABEL_OFFSET_X + i * LABEL_SPACE, LABEL_OFFSET_Y, LABEL_WIDTH, LABEL_HEIGHT);
-            [_labelViews addObject:label];
-            label.delegate = self;
-            label.index = i;
-            [label release];
-        }
+        _labelInfoSubArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (id)initWithInfoSubArray:(NSMutableArray *)array pageIndex:(NSUInteger)page{
+    self = [self init];
+    if(self) {
+        self.labelInfoSubArray = array;
+        self.page = page;
     }
     return self;
 }
@@ -114,8 +136,8 @@
     }
     LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:index]);
     [self.view addSubview:label.view];
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectPageAtIndex:)]) {
-        [self.delegate labelPageView:self didSelectPageAtIndex:self.page];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectLabelAtIndex:)]) {
+        [self.delegate labelPageView:self didSelectLabelAtIndex:self.page * 4 + index];
     }
 }
 
@@ -152,8 +174,26 @@
         newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 100, oldFrame.size.width, oldFrame.size.height);
         labelView.view.frame = newFrame;
     } completion:^(BOOL finished) {
-        ;
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabelAtIndex:)]) {
+            [self.delegate labelPageView:self didRemoveLabelAtIndex:self.page * 4 + index];
+        }
     }];
+}
+
+- (void)activateLastLabel:(LabelInfo *)info {
+    [self.labelInfoSubArray addObject:info];
+    int labelIndex = self.labelInfoSubArray.count - 1;
+    LNLabelViewController *label = [_labelViews objectAtIndex:labelIndex];
+    [label.view setHidden:NO];
+    [label.view setUserInteractionEnabled:YES];
+    label.info = info;
+    [self selectLastLabel];
+}
+
+- (void)selectLastLabel {
+    int labelIndex = self.labelInfoSubArray.count - 1;
+    LNLabelViewController *label = [_labelViews objectAtIndex:labelIndex];
+    [label clickTitleButton:nil];
 }
 
 @end

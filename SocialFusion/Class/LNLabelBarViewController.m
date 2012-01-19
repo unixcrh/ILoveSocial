@@ -11,10 +11,12 @@
 @implementation LNLabelBarViewController
 
 @synthesize scrollView = _scrollView;
+@synthesize labelInfoArray = _labelInfoArray;
 
 - (void)dealloc {
     [_scrollView release];
     [_labelPages release];
+    [_labelInfoArray release];
     [super dealloc];
 }
 
@@ -24,24 +26,31 @@
     self.scrollView = nil;
 }
 
+- (void)createLabelPageAtIndex:(NSInteger)index {
+    CGRect frame;
+    frame.origin.x = self.scrollView.frame.size.width * index;
+    frame.origin.y = 0;
+    frame.size = self.scrollView.frame.size;
+    
+    NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
+                                                                        NSMakeRange(index * 4, self.labelInfoArray.count < (index + 1) * 4 ? self.labelInfoArray.count - index * 4 : 4)]];
+    LNLabelPageViewController *pageView = [[LNLabelPageViewController alloc] initWithInfoSubArray:labelInfoSubArray pageIndex:index];
+    
+    pageView.view.frame = frame;
+    [self.scrollView addSubview:pageView.view];
+    [_labelPages addObject:pageView];
+    pageView.delegate = self;
+    [pageView release];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _pageCount = 3;
+    _pageCount = _labelInfoArray.count / 4;
+    if(_labelInfoArray.count % 4 != 0)
+        _pageCount++;
     for (int i = 0; i < _pageCount; i++) {
-        CGRect frame;
-        frame.origin.x = self.scrollView.frame.size.width * i;
-        frame.origin.y = 0;
-        frame.size = self.scrollView.frame.size;
-        
-        LNLabelPageViewController *pageView = [[LNLabelPageViewController alloc] init];
-        pageView.view.frame = frame;
-        [self.scrollView addSubview:pageView.view];
-        [_labelPages addObject:pageView];
-        pageView.page = i;
-        pageView.delegate = self;
-        [pageView release];
+        [self createLabelPageAtIndex:i];
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
@@ -51,15 +60,51 @@
     self = [super init];
     if(self) {
         _labelPages = [[NSMutableArray alloc] init];
+        _labelInfoArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (void)labelPageView:(LNLabelPageViewController *)pageView didSelectPageAtIndex:(NSUInteger)page {
+- (void)createLabelWithInfo:(LabelInfo *)info {
+    [self.labelInfoArray addObject:info];
+    if(self.labelInfoArray.count % 4 == 1) {
+        _pageCount++;
+        [self createLabelPageAtIndex:_pageCount - 1];
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+        LNLabelPageViewController *page = [_labelPages objectAtIndex:_pageCount - 1];
+        [page selectLastLabel];
+    }
+    else {
+        LNLabelPageViewController *page = [_labelPages objectAtIndex:_pageCount - 1];
+        [page activateLastLabel:info];
+    }
+    [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (_pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+}
+
+#pragma mark -
+#pragma mark LNLabelPageViewController delegate
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didSelectLabelAtIndex:(NSUInteger)index {
+    NSUInteger page = pageView.page;
     for (int i = 0; i < _pageCount; i++) {
         LNLabelPageViewController *pv = (LNLabelPageViewController *)[_labelPages objectAtIndex:i];
         [pv selectOtherPage:page];
     }
+}
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabelAtIndex:(NSUInteger)index {
+    [self.labelInfoArray removeObjectAtIndex:index];
+    if(self.labelInfoArray.count % 4 == 0) {
+        _pageCount--;
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+        [_labelPages removeLastObject];
+    }
+    NSUInteger page = pageView.page;
+    // 拷贝信息
+    for(int i = page; i < _pageCount; i++) {
+        
+    }
+    // 动画
 }
 
 @end

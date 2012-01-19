@@ -10,28 +10,47 @@
 
 @protocol LNLabelViewControllerDelegate;
 
+#define kDidSelectFriendNotification @"kDidSelectFriendNotification"
+
 typedef enum {
     PARENT_LABEL_CLOSE,
     PARENT_LABEL_OPEN,
     CHILD_LABEL,
 } LabelStatus;
 
+@interface LabelInfo : NSObject {
+@private
+    NSString *_labelName;
+    LabelStatus _labelStatus;
+    BOOL _isSystemLabel;
+}
+
+@property (nonatomic, copy) NSString *labelName;
+@property (nonatomic) LabelStatus labelStatus;
+@property (nonatomic) BOOL isSystemLabel;
+
++ (LabelInfo *)labelInfoWithName:(NSString *)name status:(LabelStatus)status isSystem:(BOOL)isSystem;
+
+@end
+
 @interface LNLabelViewController : UIViewController {
     UIButton *_titleButton;
     UIButton *_plusButton;
     NSUInteger _index;
-    LabelStatus _labelStatus;
     BOOL _isSelected;
     id<LNLabelViewControllerDelegate> _delegate;
+    UILabel *_titleLabel;
+    LabelInfo *_info;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *titleButton;
 @property (nonatomic, retain) IBOutlet UIButton *plusButton;
 @property (nonatomic) NSUInteger index;
-@property (nonatomic) LabelStatus labelStatus;
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 @property (nonatomic, readonly) BOOL isParentLabel;
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) LabelInfo *info;
 
 - (IBAction)clickTitleButton:(id)sender;
 - (IBAction)clickPlusButton:(id)sender;

@@ -13,8 +13,12 @@
     UIScrollView *_scrollView;
     NSMutableArray *_labelPages;
     NSUInteger _pageCount;
+    NSMutableArray *_labelInfoArray;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) NSMutableArray *labelInfoArray;
+
+- (void)createLabelWithInfo:(LabelInfo *)info;
 
 @end
