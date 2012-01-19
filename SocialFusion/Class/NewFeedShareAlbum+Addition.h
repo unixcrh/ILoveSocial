@@ -13,4 +13,8 @@
 + (NewFeedShareAlbum *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getShareComment;
 -(int)getAlbumQuan;
+-(NSString*)getAubumName;
+-(NSString*)getAblbumQuantity;
+-(NSString*)getFromName;
 @end
+

@@ -8,38 +8,22 @@
 <script language="javascript" type="text/javascript" src="newfeedjs.js">
 
 </script>
-<script language="javascript" type="text/javascript" >
-function setAlbumTitle(title)
-{
-	document.getElementById("albumName").innerHTML=title;
-}
 
-function setAlbumQuantity(number)
-{
-	document.getElementById("photonumber").innerHTML=number;
-}
-
-function setAlbumAuthor(author)
-{
-	document.getElementById("albumauthor").innerHTML=author;
-}
-
-</script>
 <body>
 <div id="allinfo">
   <div style="position:absolute ;left:0px; top:5px"> <img src="top.png"  id="topline"> </div>
   <div class="headimage"><img id="head"   src="default_renren_tiny.png" width="37.5" height="37.5"  style="position:absolute; z-index:1 ;left:3.25px; top:2.25px"/><img src="head_renren.png" width="44" height="42"  style="position:absolute; z-index:5 ;left:0px ; top:0px"/></div>
-  <div id="maininfo"> <span class="title" id="author">沈君儒 </span> <span class="time" id="time"> </span>
-    <div id="weibo" > 上传了张照片至《草拟大爷》</div>
+  <div id="maininfo"> <span class="title" id="author">@#Name#@</span> <span class="time" id="time">@#Time#@</span>
+    <div id="weibo" >@#Weibo#@</div>
     <div style="position:relative; height:90px;">
       <div id="uploadphoto">
-        <div   style="position:absolute; z-index:1 ; left:3px;top:8px;width:98px;height:73px;overflow:hidden;"><a href="/showimage"> <img id="upload"  style="position:absolute; left: 0px; top: 0px;"/> </a></div>
-        <img src="photo_frame.png" width="104" height="89.5"  style="position:absolute; z-index:5 ;left:0px ; top:0px"/> </div>
+        <div   style="position:absolute; z-index:1 ; left:3px;top:8px;width:98px;height:73px;overflow:hidden;"><a href="/showimage"> <img id="upload"  style="position:absolute; left: 0px; top: 0px;"/> </div>
+        <img src="photo_frame.png" width="104" height="89.5"  style="position:absolute; z-index:5 ;left:0px ; top:0px"/></a> </div>
       <div id="photocomment" style="height:auto; top:21px" >
         <div id="photocommentdetail" style="padding:3px;">
-          <div id="albumName" style="position:relative; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; font-size:11px;">相册：《快速上传》</div>
-          <div id="photonumber" style="position:relative;font-size:11px;">共100张照片</div>
-          <div id="albumauthor" style="position:relative;  white-space:nowrap; text-overflow:ellipsis; overflow:hidden;font-size:11px;">来自：何若运Roy</div>
+          <div id="albumName" style="position:relative; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; font-size:11px;">@#Album#@</div>
+          <div id="photonumber" style="position:relative;font-size:11px;">@#PhotoMount#@</div>
+          <div id="albumauthor" style="position:relative;  white-space:nowrap; text-overflow:ellipsis; overflow:hidden;font-size:11px;">@#Author#@</div>
         </div>
       </div>
     </div>

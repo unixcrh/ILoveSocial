@@ -40,12 +40,12 @@ function setStyle(style)
 {
 	if (style==0)
 	{
-		document.getElementById("head_style").src="head_renren.png";
+		document.getElementById("head_style").src="head_renren@2x.png";
 		return;
 	}
 	if (style==1)
 	{
-		document.getElementById("head_style").src="head_wb.png";
+		document.getElementById("head_style").src="head_wb@2x.png";
 		return;
 	}
 }

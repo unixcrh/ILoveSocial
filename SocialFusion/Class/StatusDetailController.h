@@ -11,7 +11,7 @@
 #import "NewFeedData.h"
 #import "StatusCommentCell.h"
 #import "NewFeedStatusCell.h"
-#import "NewFeedStatusWithRepostcell.h"
+
 #import "EGOTableViewController.h"
 #import "NewFeedRootData.h"
 @interface StatusDetailController : EGOTableViewController<UIScrollViewDelegate>

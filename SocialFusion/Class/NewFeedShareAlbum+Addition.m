@@ -115,6 +115,23 @@
 {
     return [self.album_count intValue];
 }
+-(NSString*)getAubumName
+{
+    return [NSString stringWithFormat:@"相册:《%@》",self.album_title];
+    
+}
+
+
+-(NSString*)getAblbumQuantity
+{
+    return [NSString stringWithFormat:@"共%d张照片",[self getAlbumQuan]];
+
+}
+
+-(NSString*)getFromName
+{
+      return [NSString stringWithFormat:@"来自:%@", self.fromName];
+}
 
 
 @end

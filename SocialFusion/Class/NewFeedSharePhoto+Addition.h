@@ -11,7 +11,9 @@
 @interface NewFeedSharePhoto (Addition)
 + (NewFeedSharePhoto *)insertNewFeed:(int)sytle height:(int)height   getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedSharePhoto *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
--(NSString*)getName;
+
 -(NSString*)getShareComment;
 -(NSString*)getPhotoComment;
+-(NSString*)getTitle;
+-(NSString*)getFromName;
 @end

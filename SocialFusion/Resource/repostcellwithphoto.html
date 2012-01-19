@@ -7,27 +7,19 @@
 <link rel="stylesheet" href="temp.css" type="text/css"    />
 <script language="javascript" type="text/javascript" src="newfeedjs.js">
 </script>
-<script language="javascript" type="text/javascript" >
-function setRepostData(data)
-{
-	document.getElementById("realrepostdata").innerHTML=data;
-}
 
-
-
-</script>
 <body>
 <div id="allinfo">
   <div style="position:absolute ;left:0px; top:5px"> <img src="top.png"  id="topline"> </div>
   <div class="headimage"><img id="head"   src="default_renren_tiny.png" width="37.5" height="37.5"  style="position:absolute; z-index:1 ;left:3.25px; top:2.25px"/><img src="head_renren.png" id="head_style"  width="44" height="42"  style="position:absolute; z-index:5 ;left:0px ; top:0px"/></div>
-  <div id="maininfo"> <span class="title" id="author"> 名字</span> <span class="time" id="time"> </span>
-    <div id="weibo">你妹妹妹妹 </div>
+  <div id="maininfo"> <span class="title" id="author">@#Name#@</span> <span class="time" id="time">@#Time#@</span>
+    <div id="weibo">@#Weibo#@</div>
     <img src="tape.png" style="width:44px;height:19.5px;position:relative; z-index:5; left:95px;">
     <div id="repostdata" >
-      <div id="realrepostdata"style="background-position:0px 0px;	background-repeat:repeat-y;	background-image:url(repost_underline.png); background-size:219px 14px;"></div>
+      <div id="realrepostdata"style="background-position:0px 0px;	background-repeat:repeat-y;	background-image:url(repost_underline.png); background-size:219px 14px;">@#Repost#@</div>
       <div id="uploadphoto" style="left:62px; position:relative; margin-bottom:10px;">
         <div   style="position:absolute; z-index:1 ; left:1.5px;top:1.5px;width:98px;height:73px;overflow:hidden;"><a href="//showimage"> <img id="upload"    style="position:absolute;"/> </div>
-        <img src="repost_board.png" width="101px" height="76px"  style="position:absolute; z-index:8 ;left:0px ; top:0px; "/> </div></a>
+        <img src="repost_board.png" width="101px" height="76px"  style="position:absolute; z-index:8 ;left:0px ; top:0px; "/></a> </div>
     </div>
     <div id="count" style="position:relative; z-index:5;top:0px;"> 转发(1)｜评论(1) </div>
     <img src="repost_shadow.png" style="position:relative; z-index:6;top:-20px; width:242.5px; height:13.5px;left:-3px;"> </div>

@@ -134,6 +134,14 @@
     //return self.prefix;
     
 }
-
+-(NSString*)getTitle
+{
+ 
+    return  [NSString stringWithFormat:@"相册:《%@》",self.title];
+}
+-(NSString*)getFromName
+{
+    return  [NSString stringWithFormat:@"来自:%@",self.fromName];   
+}
 
 @end

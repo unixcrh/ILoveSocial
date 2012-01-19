@@ -11,7 +11,7 @@
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
 @class NewFeedListController;
 @interface NewFeedStatusCell : UITableViewCell<UIWebViewDelegate> {
-    NewFeedRootData* _feedData;
+
    
     
     NewFeedListController* _listController;
@@ -22,7 +22,7 @@
     
     IBOutlet UIWebView* _webView;
     
-    
+    int _style;
 
 }
 
@@ -32,11 +32,11 @@
 
 
 
-+(float)heightForCell:(NewFeedData*)feedData;
++(float)heightForCell:(NewFeedRootData*)feedData;
 
 
 -(void)setList:(NewFeedListController*)list;
--(void)configureCell:(NewFeedData*)feedData;
+-(void)configureCell:(NewFeedRootData*)feedData;
 -(void)exposeCell;
 -(void)loadImage:(NSData*)image;
 -(void)loadPicture:(NSData*)image;

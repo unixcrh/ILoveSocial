@@ -17,8 +17,8 @@
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
-#import "NewFeedStatusWithRepostcell.h"
-#import "NewFeedBlogCell.h"
+
+
 #import "NewFeedDetailViewCell.h"
 #import "NewFeedCellHeight.h"
 @interface NewFeedListController : EGOTableViewController {
@@ -31,8 +31,8 @@
     NSDate* _currentTime;
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
-    IBOutlet NewFeedStatusWithRepostcell *_feedRepostStatusCel;
-    IBOutlet NewFeedBlogCell *_newFeedBlogCel;
+
+
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
     
     NSIndexPath* _indexPath;
@@ -53,7 +53,9 @@
 
 
 -(void)exposeCell:(NSIndexPath*)indexPath;
+-(void)showImage:(NSIndexPath*)indexPath;
 -(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
 -(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID;
+
 -(IBAction)resetToNormalList;
 @end

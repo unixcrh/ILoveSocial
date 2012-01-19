@@ -307,8 +307,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 {
     
     static NSString *StatusCell = @"NewFeedStatusCell";
-    static NSString *RepostStatusCell=@"NewFeedRepostCell";
-    static NSString *BlogCell=@"NewFeedBlogCell";
+
     static NSString *DetailCell=@"DetailCell";
     if ([indexPath compare:_indexPath])
     {
@@ -317,10 +316,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
         NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        if ([a class]==[NewFeedData class])
-        {
-            if ([a getPostName]==nil)
-            {
+
                 cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
                 if (cell == nil) {
                     [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
@@ -328,38 +324,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                     
 
                 }
-            }
-            
-            else
-            {
-                cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];
-                if (cell == nil) {
-                    [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil];
-                    cell = _feedRepostStatusCel;
-                }
-                
-            }
-        }
-        
-        else if ([a class]==[NewFeedUploadPhoto class]||[a class]==[NewFeedShareAlbum class]||[a class]==[NewFeedSharePhoto class] )
-        {
-            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil];
-                cell = _feedStatusCel;
-                
-            }
-        }
-        
-        else if ([a class]==[NewFeedBlog class])
-        {
-            cell=(NewFeedBlogCell*)[tableView dequeueReusableCellWithIdentifier:BlogCell];
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedBlogCell" owner:self options:nil];
-                cell = _newFeedBlogCel;
-            }
-        }
-        
+
         
         
         
@@ -590,6 +555,24 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
+-(void)showImage:(NSIndexPath*)indexPath
+{
+    NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
+     if ([_feedData class]==[NewFeedUploadPhoto class])
+     {
+     [self showImage:((NewFeedUploadPhoto*)_feedData).photo_url bigURL:((NewFeedUploadPhoto*)_feedData).photo_big_url];
+     }
+     else if ([_feedData class]==[NewFeedSharePhoto class])
+     {
+     [self showImage:((NewFeedSharePhoto*)_feedData).photo_url userID:((NewFeedSharePhoto*)_feedData).fromID  photoID:((NewFeedSharePhoto*)_feedData).mediaID];
+     
+     }
+     else
+     {
+     [self showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
+     }
+     
+}
 -(IBAction)resetToNormalList
 {
     

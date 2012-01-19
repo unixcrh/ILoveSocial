@@ -10,7 +10,7 @@
 #import "RenrenClient.h"
 #import "StatusCommentData.h"
 #import "NewFeedStatusCell.h"
-#import "NewFeedStatusWithRepostcell.h"
+
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
