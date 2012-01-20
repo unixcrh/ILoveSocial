@@ -31,9 +31,9 @@
 
 @protocol LNLabelPageViewControllerDelegate <NSObject>
 
-- (void)labelPageView:(LNLabelPageViewController *)pageView didSelectLabelAtIndex:(NSUInteger)index;
-- (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabelAtIndex:(NSUInteger)index;
-- (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabelAtIndex:(NSUInteger)index;
-- (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabelAtIndex:(NSUInteger)index;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didSelectLabel:(LNLabelViewController *)label;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)label;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabel:(LNLabelViewController *)label;
 
 @end

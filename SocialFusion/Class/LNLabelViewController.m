@@ -17,6 +17,11 @@
 @synthesize isSystemLabel = _isSystemLabel;
 @synthesize isSelected = _isSelected;
 
+- (void)dealloc {
+    [_labelName release];
+    [super dealloc];
+}
+
 + (LabelInfo *)labelInfoWithName:(NSString *)name status:(LabelStatus)status isSystem:(BOOL)isSystem{
     LabelInfo *info = [[[LabelInfo alloc] init] autorelease];
     info.labelStatus = status;

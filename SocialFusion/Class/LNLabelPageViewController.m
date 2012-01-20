@@ -167,9 +167,9 @@
     }
     LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:index]);
     [self.view addSubview:label.view];
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectLabelAtIndex:)]) {
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectLabel:)]) {
         BOOL labelPreState = label.isSelected;
-        [self.delegate labelPageView:self didSelectLabelAtIndex:self.page * 4 + index];
+        [self.delegate labelPageView:self didSelectLabel:labelView];
         if(labelPreState)
             label.isSelected = YES;
     }
@@ -193,12 +193,17 @@
             label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
-        ;
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didOpenLabel:)]) {
+            [self.delegate labelPageView:self didOpenLabel:labelView];
+        }
     }];
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didCloseLabelAtIndex:(NSUInteger)index {
-    [self closeParentLabelAnimation];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
+        [self.delegate labelPageView:self didCloseLabel:labelView];
+    }
+    //[self closeParentLabelAnimation];
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index {
@@ -208,8 +213,8 @@
         newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
         labelView.view.frame = newFrame;
     } completion:^(BOOL finished) {
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabelAtIndex:)]) {
-            [self.delegate labelPageView:self didRemoveLabelAtIndex:self.page * 4 + index];
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabel:)]) {
+            [self.delegate labelPageView:self didRemoveLabel:labelView];
             [self removeLabelPostAnimation:index];
         }
     }];

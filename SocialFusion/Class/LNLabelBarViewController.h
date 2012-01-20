@@ -11,7 +11,7 @@
 
 @interface LNLabelBarViewController : UIViewController<UIScrollViewDelegate ,LNLabelPageViewControllerDelegate> {
     UIScrollView *_scrollView;
-    NSMutableArray *_labelPages;
+    NSMutableArray *_labelPagesStack;
     NSUInteger _pageCount;
     NSMutableArray *_labelInfoArray;
     UIPageControl *_pageControl;
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) NSMutableArray *labelInfoArray;
 @property (nonatomic) NSUInteger pageCount;
+@property (nonatomic, readonly) NSMutableArray *labelPages;
 
 - (void)createLabelWithInfo:(LabelInfo *)info;
 
