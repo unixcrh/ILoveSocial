@@ -35,7 +35,6 @@ typedef enum {
 
 @interface LNLabelViewController : UIViewController {
     UIButton *_titleButton;
-    UIButton *_plusButton;
     NSUInteger _index;
     BOOL _isSelected;
     id<LNLabelViewControllerDelegate> _delegate;
@@ -44,7 +43,6 @@ typedef enum {
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *titleButton;
-@property (nonatomic, retain) IBOutlet UIButton *plusButton;
 @property (nonatomic) NSUInteger index;
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
@@ -53,7 +51,6 @@ typedef enum {
 @property (nonatomic, retain) LabelInfo *info;
 
 - (IBAction)clickTitleButton:(id)sender;
-- (IBAction)clickPlusButton:(id)sender;
 - (id)initWithStatus:(LabelStatus)status;
 
 @end
@@ -61,8 +58,8 @@ typedef enum {
 @protocol LNLabelViewControllerDelegate <NSObject>
 
 - (void)labelView:(LNLabelViewController *)labelView didSelectLabelAtIndex:(NSUInteger)index;
-- (void)labelView:(LNLabelViewController *)labelView didSelectOpenAtIndex:(NSUInteger)index;
-- (void)labelView:(LNLabelViewController *)labelView didSelectCloseAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didOpenLabelAtIndex:(NSUInteger)index;
+- (void)labelView:(LNLabelViewController *)labelView didCloseLabelAtIndex:(NSUInteger)index;
 - (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index;
 
 @end

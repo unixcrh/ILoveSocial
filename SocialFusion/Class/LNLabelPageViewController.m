@@ -86,11 +86,14 @@
     for(int i = 0; i < _labelViews.count; i++) {
         LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
         [label.view removeFromSuperview];
-        [label.plusButton setHidden:YES];
     }
 }
 
 - (void)selectOtherPage:(NSUInteger)page {
+    for(int i = 0; i < _labelViews.count; i++) {
+        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+        label.isSelected = NO;
+    }
     if(page == self.page)
         return;
     [self unloadSubviews];
@@ -168,11 +171,14 @@
     LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:index]);
     [self.view addSubview:label.view];
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didSelectLabelAtIndex:)]) {
+        BOOL labelPreState = label.isSelected;
         [self.delegate labelPageView:self didSelectLabelAtIndex:self.page * 4 + index];
+        if(labelPreState)
+            label.isSelected = YES;
     }
 }
 
-- (void)labelView:(LNLabelViewController *)labelView didSelectOpenAtIndex:(NSUInteger)index {
+- (void)labelView:(LNLabelViewController *)labelView didOpenLabelAtIndex:(NSUInteger)index {
     [UIView animateWithDuration:0.3f animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
@@ -194,7 +200,7 @@
     }];
 }
 
-- (void)labelView:(LNLabelViewController *)labelView didSelectCloseAtIndex:(NSUInteger)index {
+- (void)labelView:(LNLabelViewController *)labelView didCloseLabelAtIndex:(NSUInteger)index {
     [self closeParentLabelAnimation];
 }
 

@@ -31,7 +31,6 @@
 @synthesize titleButton = _titleButton;
 @synthesize index = _index;
 @synthesize delegate = _delegate;
-@synthesize plusButton = _plusButton;
 @synthesize isSelected = _isSelected;
 @synthesize titleLabel = _titleLabel;
 @synthesize info = _info;
@@ -39,7 +38,6 @@
 - (void)dealloc {
     NSLog(@"LNLabelViewController dealloc");
     [_titleButton release];
-    [_plusButton release];
     [_titleLabel release];
     _delegate = nil;
     [super dealloc];
@@ -49,15 +47,12 @@
 {
     [super viewDidUnload];
     self.titleButton = nil;
-    self.plusButton = nil;
     self.titleLabel = nil;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(!_isSelected)
-        [self.plusButton setHidden:YES];
     
     UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self 
 																							action:@selector(swipeUp:)];
@@ -70,8 +65,15 @@
 
 - (void)setIsSelected:(BOOL)isSelected {
     _isSelected = isSelected;
-    if(isSelected == YES)
-        [self.plusButton setHidden:NO];
+    if(_isSelected) {
+        if(self.info.labelStatus == PARENT_LABEL_CLOSE || self.info.labelStatus == PARENT_LABEL_OPEN)
+            [self.titleLabel setTextColor:[UIColor magentaColor]];
+        else 
+            [self.titleLabel setTextColor:[UIColor redColor]];
+    }   
+    else {
+        [self.titleLabel setTextColor:[UIColor grayColor]];
+    }
 }
 
 - (BOOL)isParentLabel {
@@ -82,44 +84,31 @@
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];
     }
-    if(self.isParentLabel) {
-        [self.plusButton setHidden:NO];
-        self.isSelected = YES;
+    if(self.info.labelStatus == PARENT_LABEL_OPEN) {
+        self.info.labelStatus = PARENT_LABEL_CLOSE;
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
+            [self.delegate labelView:self didCloseLabelAtIndex:self.index];
+        /*[UIView animateWithDuration:0.3f animations:^{
+         CGAffineTransform xform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
+         self.plusButton.transform = xform;
+         }completion:^(BOOL finished) {
+         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
+         [self.delegate labelView:self didCloseLabelAtIndex:self.index];
+         }];*/
     }
+    else if(self.info.labelStatus == PARENT_LABEL_CLOSE && self.isSelected){ 
+        self.info.labelStatus = PARENT_LABEL_OPEN;
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didOpenLabelAtIndex:)])
+            [self.delegate labelView:self didOpenLabelAtIndex:self.index];
+    }
+    self.isSelected = YES;
+    
     if([self.titleLabel.text isEqualToString:@"人人测试"]) {
-        /*User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        NSDictionary *dic = [NSMutableDictionary dictionary];
-        NSLog(@"send didSelectFriend notification. friend name:%@, type:%d", usr.name, _type);
-        [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];*/
     }
     else if([self.titleLabel.text isEqualToString:@"微博测试"]) {
     }
     else if([self.titleLabel.text isEqualToString:@"新标签测试"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:nil userInfo:nil];
-    }
-}
-
-- (IBAction)clickPlusButton:(id)sender {
-    if(self.info.labelStatus == PARENT_LABEL_OPEN) {
-        self.info.labelStatus = PARENT_LABEL_CLOSE;
-        [UIView animateWithDuration:0.3f animations:^{
-            CGAffineTransform xform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
-            self.plusButton.transform = xform;
-        }completion:^(BOOL finished) {
-            if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectCloseAtIndex:)])
-                [self.delegate labelView:self didSelectCloseAtIndex:self.index];
-        }];
-    }
-    else if(self.info.labelStatus == PARENT_LABEL_CLOSE) { 
-        self.info.labelStatus = PARENT_LABEL_OPEN;
-        [UIView animateWithDuration:0.3f animations:^{
-            CGAffineTransform xform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(180 + 45));
-            self.plusButton.transform = xform;
-        } completion:^(BOOL finished) {
-            if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectOpenAtIndex:)])
-                [self.delegate labelView:self didSelectOpenAtIndex:self.index];
-        }];
     }
 }
 
@@ -132,6 +121,8 @@
 - (void)swipeUp:(UISwipeGestureRecognizer *)ges {
     NSLog(@"swipe top");
     if(self.info.isSystemLabel)
+        return;
+    if(self.info.labelStatus != PARENT_LABEL_CLOSE)
         return;
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didRemoveLabelAtIndex:)])
         [self.delegate labelView:self didRemoveLabelAtIndex:self.index];
