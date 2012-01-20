@@ -203,7 +203,7 @@
     [UIView animateWithDuration:0.3f animations:^{
         CGRect oldFrame = labelView.view.frame;
         CGRect newFrame;
-        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
+        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH * 3, oldFrame.size.width, oldFrame.size.height);
         labelView.view.frame = newFrame;
     } completion:^(BOOL finished) {
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabel:)]) {
