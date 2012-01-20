@@ -122,8 +122,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             //NSLog(@"dict:%@", client.responseJSONObject);
             
             NSArray *array = client.responseJSONObject;
+            
+           //  NSLog(@"%@",array);
             for(NSDictionary *dict in array) {
-                
+              
                 NSLog(@"%@",dict);
                 int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
               
@@ -235,12 +237,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
-    [self loadMoreRenrenData];
+    //[self loadMoreRenrenData];
     [self loadMoreWeiboData];
     
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+     return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    /*
     if (_indexPath==nil)
     {
         return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
@@ -257,6 +262,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             return 389;
         }
     }
+     */
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -37,39 +37,15 @@
 
 + (float)heightForCell:(NewFeedData*)feedData
 {
-    
-    
-    if ([feedData class]==[NewFeedData class] )
-    {
-        if ([feedData getPostName]==nil)
-        {
-             return [feedData.cellheight intValue];
-        }
-        else
-        {
-            return [feedData.cellheight intValue];
-
-        }
-    }
-    else if ([feedData class]==[NewFeedUploadPhoto class] )
+     if ([feedData class]==[NewFeedUploadPhoto class] )
     {
         return 162;
     }
-    else if ([feedData class]==[NewFeedShareAlbum class] )
-    {
-        return [feedData.cellheight intValue];
-    }
-    else if ([feedData class]==[NewFeedSharePhoto class] )
+    else
     {
         return [feedData.cellheight intValue];
     }
     
-    
-    else if ([feedData class]==[NewFeedBlog class] )
-    {
-        return [feedData.cellheight intValue];
-        
-    }
      
     return 0;
     

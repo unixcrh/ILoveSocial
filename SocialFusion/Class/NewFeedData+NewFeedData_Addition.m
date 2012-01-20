@@ -253,7 +253,8 @@
         //      NSLog(@"%@",result);
         result.pic_URL=[dict objectForKey:@"thumbnail_pic"];
         result.pic_big_URL=[dict objectForKey:@"bmiddle_pic"];
-        result.cellheight=[NSNumber numberWithInt:height];
+        
+
         NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
         if ([attachment count]!=0)
         {
@@ -285,6 +286,8 @@
         
        result.message=[dict objectForKey:@"text"];
         
+        NSLog(@"%@",result.message);
+        result.cellheight=[NSNumber numberWithInt:height];
         return result;
         
         

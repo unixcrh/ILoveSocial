@@ -20,8 +20,8 @@
     
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
-    _webView.frame=CGRectMake(0, 0, 320, 69);
-    
+    _webView.frame=CGRectMake(0, 0, 400, 10);
+    _webView.scalesPageToFit=NO;
     _webView.scrollView.scrollEnabled=NO;
     _webView.delegate=self;
    _dele=deleControl;
@@ -38,11 +38,18 @@
 -(int)getHeight:(NSDictionary*)dict style:(int)style
 {
     int scrollHeight ;
+    
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setName('我')"]];   
  if (style==1)
  {
      NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
      NSString* string=[dict objectForKey:@"text"];
+     
+     NSLog(@"%@",string);
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];   
+   
+   
+     
      if ([attachment count]==0)
      {
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
@@ -54,7 +61,10 @@
      }
      else
      {
-         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@:%@')",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]]];
+         
+
+         
+         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('<span style=\"font-weight:bold;\">%@:</span>%@')",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]]];
          scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
          if ([attachment objectForKey:@"thumbnail_pic"]!=nil)
          {
@@ -135,10 +145,9 @@
          else
          {
              NSString* string=[dict objectForKey:@"message"];
+             
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
-             
-             
-             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@:%@')", [[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"] ]];
+             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('<span style=\"font-weight:bold;\">%@:</span>%@')", [[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"] ]];
              scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
              scrollHeight=scrollHeight+25;
          }
@@ -148,7 +157,8 @@
      
      
  }
-    
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('')"]];         
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
     return  scrollHeight;
 }
 

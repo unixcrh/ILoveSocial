@@ -204,13 +204,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "SocialFusion/Class/NewFeedListController.m"
-         timestampString = "348684835.116381"
+         filePath = "SocialFusion/Class/NewFeedData+NewFeedData_Addition.m"
+         timestampString = "348744854.611036"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
-         landmarkName = "-loadMoreRenrenData"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
+         landmarkName = "+insertNewFeed:height:getDate:Owner:Dic:inManagedObjectContext:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
