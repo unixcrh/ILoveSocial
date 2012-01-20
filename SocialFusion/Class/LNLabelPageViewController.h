@@ -26,6 +26,8 @@
 - (void)selectOtherPage:(NSUInteger)page;
 - (void)activateLastLabel:(LabelInfo *)info;
 - (void)selectLastLabel;
+- (void)openLabelPostAnimation;
+- (void)closeParentLabelAnimation;
 
 @end
 

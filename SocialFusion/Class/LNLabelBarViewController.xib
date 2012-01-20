@@ -74,7 +74,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSNextKeyView" ref="1068303145"/>
+						<reference key="NSNextKeyView" ref="165818567"/>
 						<string key="NSReuseIdentifierKey">_NS:569</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -83,7 +83,7 @@
 							<string key="NSResourceName">separator.png</string>
 						</object>
 					</object>
-					<object class="IBUIPageControl" id="1068303145">
+					<object class="IBUIPageControl" id="165818567">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
@@ -97,6 +97,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<bool key="IBUIHidesForSinglePage">YES</bool>
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
@@ -134,7 +135,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">pageControl</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="1068303145"/>
+						<reference key="destination" ref="165818567"/>
 					</object>
 					<int key="connectionID">10</int>
 				</object>
@@ -173,7 +174,7 @@
 							<reference ref="579052360"/>
 							<reference ref="736663168"/>
 							<reference ref="77837543"/>
-							<reference ref="1068303145"/>
+							<reference ref="165818567"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -195,7 +196,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
-						<reference key="object" ref="1068303145"/>
+						<reference key="object" ref="165818567"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</array>

@@ -13,8 +13,8 @@
 #define LABEL_SPACE     75
 #define LABEL_WIDTH     81
 #define LABEL_HEIGHT    44
-#define ANIMATION_HORIZONTAL_MOVE_LENGTH   250
-#define ANIMATION_VERTICAL_MOVE_LENGTH   100
+#define ANIMATION_HORIZONTAL_MOVE_LENGTH   258
+#define ANIMATION_VERTICAL_MOVE_LENGTH   40
 
 @implementation LNLabelPageViewController
 
@@ -112,6 +112,9 @@
     }
 }
 
+#pragma mark -
+#pragma mark Animations
+
 - (void)closeParentLabelAnimation {
     [UIView animateWithDuration:0.3f animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
@@ -151,6 +154,27 @@
     }];
 }
 
+- (void)openLabelPostAnimation {
+    for(int i = 1; i < _labelInfoSubArray.count; i++) {
+        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+        CGRect oldFrame = label.view.frame;
+        CGRect newFrame;
+        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
+        label.view.frame = newFrame;
+    }
+    [UIView animateWithDuration:0.3f animations:^{
+        for(int i = 1; i < _labelInfoSubArray.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            newFrame = CGRectMake(oldFrame.origin.x, LABEL_OFFSET_Y, oldFrame.size.width, oldFrame.size.height);
+            label.view.frame = newFrame;
+        }
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
 
 #pragma mark -
 #pragma mark LNLabelViewController delegate
@@ -173,6 +197,20 @@
         if(labelPreState)
             label.isSelected = YES;
     }
+}
+
+- (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index {
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect oldFrame = labelView.view.frame;
+        CGRect newFrame;
+        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
+        labelView.view.frame = newFrame;
+    } completion:^(BOOL finished) {
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabel:)]) {
+            [self.delegate labelPageView:self didRemoveLabel:labelView];
+            [self removeLabelPostAnimation:index];
+        }
+    }];
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didOpenLabelAtIndex:(NSUInteger)index {
@@ -200,22 +238,17 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didCloseLabelAtIndex:(NSUInteger)index {
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
-        [self.delegate labelPageView:self didCloseLabel:labelView];
-    }
-    //[self closeParentLabelAnimation];
-}
-
-- (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index {
     [UIView animateWithDuration:0.3f animations:^{
-        CGRect oldFrame = labelView.view.frame;
-        CGRect newFrame;
-        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
-        labelView.view.frame = newFrame;
+        for(int i = 1; i < _labelInfoSubArray.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
+            label.view.frame = newFrame;
+        }
     } completion:^(BOOL finished) {
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabel:)]) {
-            [self.delegate labelPageView:self didRemoveLabel:labelView];
-            [self removeLabelPostAnimation:index];
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
+            [self.delegate labelPageView:self didCloseLabel:labelView];
         }
     }];
 }

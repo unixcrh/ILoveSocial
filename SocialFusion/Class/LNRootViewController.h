@@ -15,7 +15,6 @@
 
 @interface LNRootViewController : CoreDataViewController {
     LNLabelBarViewController *_labelBarViewController;
-    NSMutableArray *_labelBarStack;
 }
 
 @property (nonatomic, retain) LNLabelBarViewController *labelBarViewController;

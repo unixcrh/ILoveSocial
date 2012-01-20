@@ -37,17 +37,13 @@
 - (id)init {
     self = [super init];
     if(self) {
-        _labelBarViewController = [[LNLabelBarViewController alloc] init];
-        _labelBarStack = [[NSMutableArray alloc] initWithObjects:_labelBarViewController, nil];
         NSArray *labelInfo = [NSArray arrayWithObjects:
                               [LabelInfo labelInfoWithName:@"新鲜事" status:PARENT_LABEL_CLOSE isSystem:YES],
                               [LabelInfo labelInfoWithName:@"通讯录" status:PARENT_LABEL_CLOSE isSystem:YES],
                               [LabelInfo labelInfoWithName:@"个人档" status:PARENT_LABEL_CLOSE isSystem:YES],
-                              [LabelInfo labelInfoWithName:@"收件箱" status:PARENT_LABEL_CLOSE isSystem:YES],
-                              [LabelInfo labelInfoWithName:@"人人测试" status:PARENT_LABEL_CLOSE isSystem:NO],
-                              [LabelInfo labelInfoWithName:@"微博测试" status:PARENT_LABEL_CLOSE isSystem:NO],
+                              [LabelInfo labelInfoWithName:@"收件箱" status:CHILD_LABEL isSystem:YES],
                               [LabelInfo labelInfoWithName:@"新标签测试" status:CHILD_LABEL isSystem:NO], nil];
-        [_labelBarViewController.labelInfoArray setArray:labelInfo];
+        _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
     }
     return self;
 }

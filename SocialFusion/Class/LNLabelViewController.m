@@ -99,7 +99,6 @@
         return;
     }
     if(self.info.labelStatus == PARENT_LABEL_OPEN) {
-        self.info.labelStatus = PARENT_LABEL_CLOSE;
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
             [self.delegate labelView:self didCloseLabelAtIndex:self.index];
         /*[UIView animateWithDuration:0.3f animations:^{
@@ -111,17 +110,12 @@
          }];*/
     }
     else if(self.info.labelStatus == PARENT_LABEL_CLOSE && self.isSelected){ 
-        self.info.labelStatus = PARENT_LABEL_OPEN;
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didOpenLabelAtIndex:)])
             [self.delegate labelView:self didOpenLabelAtIndex:self.index];
     }
     self.isSelected = YES;
     
-    if([self.titleLabel.text isEqualToString:@"人人测试"]) {
-    }
-    else if([self.titleLabel.text isEqualToString:@"微博测试"]) {
-    }
-    else if([self.titleLabel.text isEqualToString:@"新标签测试"]) {
+    if([self.titleLabel.text isEqualToString:@"新标签测试"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:nil userInfo:nil];
     }
 }

@@ -11,20 +11,24 @@
 @interface LNLabelBarViewController()
 - (void)pushLabelPages:(NSMutableArray *)labelPages;
 - (void)popLabelPages;
+- (void)pushLabelInfoArray:(NSMutableArray *)infoArray;
+- (void)popLabelInfoArray;
+- (void)pushPageIndex:(NSUInteger)pageIndex;
+- (void)popPageIndex;
 @end
 
 @implementation LNLabelBarViewController
 
 @synthesize scrollView = _scrollView;
-@synthesize labelInfoArray = _labelInfoArray;
 @synthesize pageControl = _pageControl;
 @synthesize pageCount = _pageCount;
 
 - (void)dealloc {
     [_scrollView release];
     [_labelPagesStack release];
-    [_labelInfoArray release];
+    [_labelInfoArrayStack release];
     [_pageControl release];
+    [_pageIndexStack release];
     [super dealloc];
 }
 
@@ -56,27 +60,40 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.pageCount + 1, self.scrollView.frame.size.height);
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.pageCount = _labelInfoArray.count / 4;
-    if(_labelInfoArray.count % 4 != 0)
+- (void)loadLabelPages{
+    self.pageCount = self.labelInfoArray.count / 4;
+    if(self.labelInfoArray.count % 4 != 0)
         self.pageCount = self.pageCount + 1;
     for (int i = 0; i < self.pageCount; i++) {
         [self createLabelPageAtIndex:i];
     }
-    self.scrollView.delegate = self;
     [self refreshLabelBarContentSize];
-    self.pageControl.numberOfPages = self.pageCount;
+    self.pageControl.currentPage = 0;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.scrollView.delegate = self;
+    [self loadLabelPages];
 }
 
 - (id)init {
     self = [super init];
     if(self) {
         _labelPagesStack = [[NSMutableArray alloc] init];
-        NSMutableArray *labelPages = [[NSMutableArray alloc] init];
+        NSMutableArray *labelPages = [[[NSMutableArray alloc] init] autorelease];
         [_labelPagesStack addObject:labelPages];
-        _labelInfoArray = [[NSMutableArray alloc] init];
+        _labelInfoArrayStack = [[NSMutableArray alloc] init];
+        _pageIndexStack = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (id)initWithLabelInfoArray:(NSArray *)infoArray {
+    self = [self init];
+    if(self) {
+        [self pushLabelInfoArray:[NSMutableArray arrayWithArray:infoArray]];
     }
     return self;
 }
@@ -152,11 +169,56 @@
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label {
-    
+    [_scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
+    NSMutableArray *labelPages = [[[NSMutableArray alloc]init] autorelease];
+    [self pushLabelPages:labelPages];
+    [self pushPageIndex:pageView.page];
+    NSArray *labelInfo;
+    NSString *labelName = label.info.labelName;
+    if([labelName isEqualToString:@"新鲜事"])
+        labelInfo = [NSArray arrayWithObjects:
+                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"全部" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"人人" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"微博" status:CHILD_LABEL isSystem:NO], nil];
+
+    else if([labelName isEqualToString:@"通讯录"])
+        labelInfo = [NSArray arrayWithObjects:
+                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"人人好友" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"微博关注" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"微博粉丝" status:CHILD_LABEL isSystem:NO], nil];
+    else if([labelName isEqualToString:@"个人档"])
+        labelInfo = [NSArray arrayWithObjects:
+                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"资料" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"最近来访" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"日志" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"收藏" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"相册" status:CHILD_LABEL isSystem:NO], nil];
+    else
+        labelInfo = [NSArray arrayWithObjects:
+                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"新鲜事" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"好友" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"资料" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"日志" status:CHILD_LABEL isSystem:NO],
+                     [LabelInfo labelInfoWithName:@"相册" status:CHILD_LABEL isSystem:NO], nil];
+    [self pushLabelInfoArray:[NSMutableArray arrayWithArray:labelInfo]];
+    [self loadLabelPages];
+    LNLabelPageViewController *firstPage = [self.labelPages objectAtIndex:0];
+    [firstPage openLabelPostAnimation];
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabel:(LNLabelViewController *)label {
+    NSUInteger pageIndex = self.pageIndex;
+    [self popLabelInfoArray];
+    [self popPageIndex];
     [self popLabelPages];
+    [_scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * pageIndex, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
+    self.pageControl.currentPage = pageIndex;
+    LNLabelPageViewController *page = [self.labelPages objectAtIndex:pageIndex];
+    [page closeParentLabelAnimation];
 }
 
 #pragma mark -
@@ -181,12 +243,48 @@
     return _labelPagesStack.lastObject;
 }
 
+- (NSMutableArray *)labelInfoArray {
+    return _labelInfoArrayStack.lastObject;
+}
+
+- (NSUInteger)pageIndex {
+    return ((NSNumber *)_pageIndexStack.lastObject).unsignedIntValue;
+}
+
 - (void)pushLabelPages:(NSMutableArray *)labelPages {
-    [_labelPagesStack addObject:labelPages];
+    for(int i = 0; i < self.pageCount; i++) {
+        LNLabelPageViewController *page = [self.labelPages objectAtIndex:i];
+        [page.view removeFromSuperview];
+    }
+    if(labelPages != nil)
+        [_labelPagesStack addObject:labelPages];
 }
 
 - (void)popLabelPages {
+    [self pushLabelPages:nil];
     [_labelPagesStack removeLastObject];
+    self.pageCount = self.labelPages.count;
+    [self refreshLabelBarContentSize];
+    for(int i = 0; i < self.pageCount; i++) {
+        LNLabelPageViewController *page = [self.labelPages objectAtIndex:i];
+        [_scrollView addSubview:page.view];
+    }
+}
+
+- (void)pushLabelInfoArray:(NSMutableArray *)infoArray {
+    [_labelInfoArrayStack addObject:infoArray];
+}
+
+- (void)popLabelInfoArray {
+    [_labelInfoArrayStack removeLastObject];
+}
+
+- (void)pushPageIndex:(NSUInteger)pageIndex {
+    [_pageIndexStack addObject:[NSNumber numberWithUnsignedInteger:pageIndex]];
+}
+
+- (void)popPageIndex {
+    [_pageIndexStack removeLastObject];
 }
 
 @end
