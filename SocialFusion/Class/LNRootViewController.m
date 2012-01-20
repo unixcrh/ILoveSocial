@@ -56,7 +56,9 @@
 #pragma mark handle notifications
 
 - (void)didSelectFriend:(NSNotification *)notification {
-    [_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:@"何若运" status:PARENT_LABEL_CLOSE isSystem:NO]];
+    static int i = 0;
+    [_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:[NSString stringWithFormat:@"何若运%d",i] status:PARENT_LABEL_CLOSE isSystem:NO]];
+    i++;
     /*
     User* user = notification.object;
     NSNumber *typeContainer = ((NSNumber *)[notification.userInfo objectForKey:kDisSelectFirendType]);

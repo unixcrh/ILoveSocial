@@ -13,7 +13,8 @@
 #define LABEL_SPACE     75
 #define LABEL_WIDTH     81
 #define LABEL_HEIGHT    44
-#define ANIMATION_MOVE_LENGTH   250
+#define ANIMATION_HORIZONTAL_MOVE_LENGTH   250
+#define ANIMATION_VERTICAL_MOVE_LENGTH   100
 
 @implementation LNLabelPageViewController
 
@@ -107,7 +108,7 @@
     }
 }
 
-- (void)setToOriginAnimation {
+- (void)closeParentLabelAnimation {
     [UIView animateWithDuration:0.3f animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
@@ -120,6 +121,36 @@
         ;
     }];
 }
+
+- (void)removeLabelPostAnimation:(NSUInteger)index {
+    for(int i = index; i < 4; i++) {
+        LNLabelViewController *label = [_labelViews objectAtIndex:i];
+        CGRect oldFrame = label.view.frame;
+        CGRect newFrame;
+        CGFloat posX = LABEL_OFFSET_X + (label.index + 1) * LABEL_SPACE;
+        if(i == 3) {
+            posX += ANIMATION_HORIZONTAL_MOVE_LENGTH;
+        }
+        newFrame = CGRectMake(posX, LABEL_OFFSET_Y, oldFrame.size.width, oldFrame.size.height);
+        label.view.frame = newFrame;
+        
+    }
+    [UIView animateWithDuration:0.3f animations:^{
+        for(int i = index; i < 4; i++) {
+            LNLabelViewController *label = [_labelViews objectAtIndex:i];
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            newFrame = CGRectMake(LABEL_OFFSET_X + label.index * LABEL_SPACE, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            label.view.frame = newFrame;
+            
+        }
+    }];
+    LNLabelViewController *label = [_labelViews objectAtIndex:index];
+    if(label.isSelected) {
+        [label clickTitleButton:nil];
+    }
+}
+
 
 #pragma mark -
 #pragma mark LNLabelViewController delegate
@@ -148,10 +179,10 @@
             CGRect oldFrame = label.view.frame;
             CGRect newFrame;
             if(i < index) {
-                newFrame = CGRectMake(oldFrame.origin.x - ANIMATION_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+                newFrame = CGRectMake(oldFrame.origin.x - ANIMATION_HORIZONTAL_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
             }
             else if(i > index) {
-                newFrame = CGRectMake(oldFrame.origin.x + ANIMATION_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+                newFrame = CGRectMake(oldFrame.origin.x + ANIMATION_HORIZONTAL_MOVE_LENGTH, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
             }
             else {
                 newFrame = CGRectMake(LABEL_OFFSET_X, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
@@ -164,36 +195,68 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didSelectCloseAtIndex:(NSUInteger)index {
-    [self setToOriginAnimation];
+    [self closeParentLabelAnimation];
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index {
     [UIView animateWithDuration:0.3f animations:^{
         CGRect oldFrame = labelView.view.frame;
         CGRect newFrame;
-        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 100, oldFrame.size.width, oldFrame.size.height);
+        newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
         labelView.view.frame = newFrame;
     } completion:^(BOOL finished) {
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didRemoveLabelAtIndex:)]) {
             [self.delegate labelPageView:self didRemoveLabelAtIndex:self.page * 4 + index];
+            [self removeLabelPostAnimation:index];
         }
     }];
 }
 
 - (void)activateLastLabel:(LabelInfo *)info {
+    NSLog(@"activate:%@", info.labelName);
     [self.labelInfoSubArray addObject:info];
     int labelIndex = self.labelInfoSubArray.count - 1;
     LNLabelViewController *label = [_labelViews objectAtIndex:labelIndex];
     [label.view setHidden:NO];
     [label.view setUserInteractionEnabled:YES];
     label.info = info;
-    [self selectLastLabel];
+    CGRect oldFrame = label.view.frame;
+    CGRect newFrame;
+    newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
+    label.view.frame = newFrame;
+    [UIView animateWithDuration:0.3f animations:^{
+        label.view.frame = oldFrame;
+    } completion:^(BOOL finished) {
+        [self selectLastLabel];
+    }];
 }
 
 - (void)selectLastLabel {
     int labelIndex = self.labelInfoSubArray.count - 1;
     LNLabelViewController *label = [_labelViews objectAtIndex:labelIndex];
     [label clickTitleButton:nil];
+}
+
+- (void)setLabelInfoSubArray:(NSMutableArray *)labelInfoSubArray {
+    if(_labelInfoSubArray != labelInfoSubArray) {
+        [_labelInfoSubArray release];
+        _labelInfoSubArray = [labelInfoSubArray retain];
+        if(_labelViews.count < 4)
+            return;
+        for(int i = 0; i < 4; i++) {
+            if(i < _labelInfoSubArray.count) {
+                LabelInfo *info = [_labelInfoSubArray objectAtIndex:i];
+                LNLabelViewController *label = [_labelViews objectAtIndex:i];
+                label.info = info;
+            }
+            if(i >= _labelInfoSubArray.count) {
+                LNLabelViewController *label = [_labelViews objectAtIndex:i];
+                label.info = nil;
+                [label.view setHidden:YES];
+                [label.view setUserInteractionEnabled:NO];
+            }
+        }
+    }
 }
 
 @end

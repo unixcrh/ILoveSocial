@@ -43,6 +43,10 @@
     [pageView release];
 }
 
+- (void)refreshLabelBarContentSize {
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount + 1, self.scrollView.frame.size.height);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,8 +56,8 @@
     for (int i = 0; i < _pageCount; i++) {
         [self createLabelPageAtIndex:i];
     }
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+    self.scrollView.delegate = self;
+    [self refreshLabelBarContentSize];
 }
 
 - (id)init {
@@ -70,7 +74,7 @@
     if(self.labelInfoArray.count % 4 == 1) {
         _pageCount++;
         [self createLabelPageAtIndex:_pageCount - 1];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+        [self refreshLabelBarContentSize];
         LNLabelPageViewController *page = [_labelPages objectAtIndex:_pageCount - 1];
         [page selectLastLabel];
     }
@@ -94,17 +98,27 @@
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabelAtIndex:(NSUInteger)index {
     [self.labelInfoArray removeObjectAtIndex:index];
+    NSUInteger page = pageView.page;
     if(self.labelInfoArray.count % 4 == 0) {
         _pageCount--;
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+        LNLabelPageViewController *lastPage = [_labelPages lastObject];
+        [lastPage.view removeFromSuperview];
         [_labelPages removeLastObject];
+        if(page >= _pageCount)
+            [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (_pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+        else 
+            [self refreshLabelBarContentSize];
     }
-    NSUInteger page = pageView.page;
-    // 拷贝信息
     for(int i = page; i < _pageCount; i++) {
-        
+        NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
+                                                                            NSMakeRange(i * 4, self.labelInfoArray.count < (i + 1) * 4 ? self.labelInfoArray.count - i * 4 : 4)]];
+        LNLabelPageViewController *pageView = [_labelPages objectAtIndex:i];
+        pageView.labelInfoSubArray = labelInfoSubArray;
     }
-    // 动画
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+     [self refreshLabelBarContentSize];
 }
 
 @end
