@@ -43,6 +43,10 @@
     [pageView release];
 }
 
+- (void)refreshLabelBarContentSize {
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount + 1, self.scrollView.frame.size.height);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,7 +57,7 @@
         [self createLabelPageAtIndex:i];
     }
     self.scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+    [self refreshLabelBarContentSize];
 }
 
 - (id)init {
@@ -70,7 +74,7 @@
     if(self.labelInfoArray.count % 4 == 1) {
         _pageCount++;
         [self createLabelPageAtIndex:_pageCount - 1];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+        [self refreshLabelBarContentSize];
         LNLabelPageViewController *page = [_labelPages objectAtIndex:_pageCount - 1];
         [page selectLastLabel];
     }
@@ -103,7 +107,7 @@
         if(page >= _pageCount)
             [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (_pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
         else 
-            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+            [self refreshLabelBarContentSize];
     }
     for(int i = page; i < _pageCount; i++) {
         NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
@@ -114,7 +118,7 @@
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
+     [self refreshLabelBarContentSize];
 }
 
 @end
