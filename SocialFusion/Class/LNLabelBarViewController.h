@@ -14,10 +14,13 @@
     NSMutableArray *_labelPages;
     NSUInteger _pageCount;
     NSMutableArray *_labelInfoArray;
+    UIPageControl *_pageControl;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) NSMutableArray *labelInfoArray;
+@property (nonatomic) NSUInteger pageCount;
 
 - (void)createLabelWithInfo:(LabelInfo *)info;
 
