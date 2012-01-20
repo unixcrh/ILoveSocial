@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LNLabelPageViewController.h"
 
-@interface LNLabelBarViewController : UIViewController<LNLabelPageViewControllerDelegate> {
+@interface LNLabelBarViewController : UIViewController<UIScrollViewDelegate ,LNLabelPageViewControllerDelegate> {
     UIScrollView *_scrollView;
     NSMutableArray *_labelPages;
     NSUInteger _pageCount;
