@@ -94,14 +94,17 @@
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabelAtIndex:(NSUInteger)index {
     [self.labelInfoArray removeObjectAtIndex:index];
+    NSUInteger page = pageView.page;
     if(self.labelInfoArray.count % 4 == 0) {
         _pageCount--;
         LNLabelPageViewController *lastPage = [_labelPages lastObject];
         [lastPage.view removeFromSuperview];
         [_labelPages removeLastObject];
-        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (_pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+        if(page >= _pageCount)
+            [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (_pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+        else 
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _pageCount, self.scrollView.frame.size.height);
     }
-    NSUInteger page = pageView.page;
     for(int i = page; i < _pageCount; i++) {
         NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
                                                                             NSMakeRange(i * 4, self.labelInfoArray.count < (i + 1) * 4 ? self.labelInfoArray.count - i * 4 : 4)]];
