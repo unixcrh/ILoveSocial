@@ -237,7 +237,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
-    //[self loadMoreRenrenData];
+    [self loadMoreRenrenData];
     [self loadMoreWeiboData];
     
 }

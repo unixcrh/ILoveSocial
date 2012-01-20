@@ -45,7 +45,9 @@
      NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
      NSString* string=[dict objectForKey:@"text"];
      
-     NSLog(@"%@",string);
+     string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+     string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+     
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];   
    
    
@@ -63,8 +65,12 @@
      {
          
 
+         NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]];
          
-         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('<span style=\"font-weight:bold;\">%@:</span>%@')",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]]];
+         outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+         outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+         
+         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
          scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
          if ([attachment objectForKey:@"thumbnail_pic"]!=nil)
          {
@@ -81,9 +87,22 @@
  {
      if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
      {
-         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@%@')",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]]];
          
-         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",[dict objectForKey:@"description"]]];
+         NSString* outString=[NSString stringWithFormat:@"%@%@",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
+         
+         outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+         outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+       
+         
+         
+         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
+         
+         
+         outString=[dict objectForKey:@"description"];
+         outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+         outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+         
+         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
          
           scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
          
@@ -102,6 +121,10 @@
          }
          else
          {
+             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+             
+             
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
          }
@@ -122,6 +145,10 @@
          }
          else
          {
+             
+             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
          }
@@ -138,6 +165,9 @@
          if ([attachments count]==0)
          {
              NSString* string=[dict objectForKey:@"message"];
+             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
              scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];                 
@@ -145,9 +175,21 @@
          else
          {
              NSString* string=[dict objectForKey:@"message"];
-             
+             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
-             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('<span style=\"font-weight:bold;\">%@:</span>%@')", [[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"] ]];
+           
+             NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"]];
+             
+             outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+             outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+             
+             
+
+             
+             
+             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')", outString ]];
              scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
              scrollHeight=scrollHeight+25;
          }
@@ -157,9 +199,7 @@
      
      
  }
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('')"]];         
-    [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
-    return  scrollHeight;
+      return  scrollHeight;
 }
 
 @end

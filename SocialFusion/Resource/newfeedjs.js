@@ -10,6 +10,7 @@ function setName(name)
 function setWeibo(weibo)
 {
 	document.getElementById("weibo").innerHTML=weibo;
+	
 }
 
 function setTime(time)
@@ -19,6 +20,7 @@ function setTime(time)
 function setRepost(repost)
 {
 		document.getElementById("blog").innerHTML=repost;
+
 }
 
 function setPhotoPos(width,height)
