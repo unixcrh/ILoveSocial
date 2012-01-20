@@ -92,7 +92,7 @@
             outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-       
+                             outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
          
          
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
@@ -102,7 +102,7 @@
          outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-         
+                  outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
          
           scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
@@ -125,7 +125,7 @@
                 string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-             
+                      string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
              
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
@@ -150,7 +150,7 @@
                string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-
+         string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
          }
@@ -170,7 +170,7 @@
                string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-               string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+               string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
          //    NSLog(@"%@",string);
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
