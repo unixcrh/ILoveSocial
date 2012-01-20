@@ -44,7 +44,7 @@
  {
      NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
      NSString* string=[dict objectForKey:@"text"];
-     
+     string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
      string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
      string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
      
@@ -66,7 +66,7 @@
          
 
          NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]];
-         
+           outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
          
@@ -89,7 +89,7 @@
      {
          
          NSString* outString=[NSString stringWithFormat:@"%@%@",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
-         
+            outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
        
@@ -99,6 +99,7 @@
          
          
          outString=[dict objectForKey:@"description"];
+         outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
          
@@ -121,6 +122,7 @@
          }
          else
          {
+                string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
              
@@ -145,7 +147,7 @@
          }
          else
          {
-             
+               string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 
@@ -165,9 +167,11 @@
          if ([attachments count]==0)
          {
              NSString* string=[dict objectForKey:@"message"];
+               string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-
+               string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+         //    NSLog(@"%@",string);
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
              scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];                 
@@ -175,20 +179,28 @@
          else
          {
              NSString* string=[dict objectForKey:@"message"];
+               string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+             string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
            
              NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"]];
-             
+               outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
              outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
              outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
              
-             
+             outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 
+          //   NSLog(@"start:%@:end",outString);
              
-             
+            // unichar ch=[outString characterAtIndex:[outString length]-1];
+            // unichar ch2=[outString characterAtIndex:[outString length]-2];
+
+//             unichar ch3=[outString characterAtIndex:[outString length]-3];
+
+  //           NSLog(@"%c%c%c",ch3,ch2,ch);
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')", outString ]];
              scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
              scrollHeight=scrollHeight+25;

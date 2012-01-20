@@ -20,7 +20,7 @@ function setTime(time)
 function setRepost(repost)
 {
 		document.getElementById("blog").innerHTML=repost;
-
+	
 }
 
 function setPhotoPos(width,height)
