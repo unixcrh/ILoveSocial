@@ -380,6 +380,7 @@
         }
     }
     
+    _webView.dataDetectorTypes=UIDataDetectorTypeLink;
     _webView.userInteractionEnabled=YES;
     _style=[feedData.style intValue];
     _webView.backgroundColor=[UIColor clearColor];
