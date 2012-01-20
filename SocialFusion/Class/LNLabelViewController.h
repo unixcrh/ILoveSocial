@@ -23,11 +23,14 @@ typedef enum {
     NSString *_labelName;
     LabelStatus _labelStatus;
     BOOL _isSystemLabel;
+    BOOL _isSelected;
 }
 
 @property (nonatomic, copy) NSString *labelName;
 @property (nonatomic) LabelStatus labelStatus;
 @property (nonatomic) BOOL isSystemLabel;
+@property (nonatomic) BOOL isSelected;
+
 
 + (LabelInfo *)labelInfoWithName:(NSString *)name status:(LabelStatus)status isSystem:(BOOL)isSystem;
 
@@ -36,7 +39,6 @@ typedef enum {
 @interface LNLabelViewController : UIViewController {
     UIButton *_titleButton;
     NSUInteger _index;
-    BOOL _isSelected;
     id<LNLabelViewControllerDelegate> _delegate;
     UILabel *_titleLabel;
     LabelInfo *_info;

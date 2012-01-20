@@ -97,8 +97,20 @@
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabelAtIndex:(NSUInteger)index {
-    [self.labelInfoArray removeObjectAtIndex:index];
+    NSUInteger labelIndexInPage = index % 4;
+    LNLabelViewController *label = [pageView.labelViews objectAtIndex:labelIndexInPage];
+    if(label.isSelected) {
+        NSUInteger labelToSelectIndex = index - 1;
+        NSUInteger labelToSelectPage = labelToSelectIndex / 4;
+        NSUInteger labelToSelectIndexInPage = labelToSelectIndex % 4;
+        LNLabelPageViewController *labelPageToSelect = [_labelPages objectAtIndex:labelToSelectPage];
+        LNLabelViewController *labelToSelect = [labelPageToSelect.labelViews objectAtIndex:labelToSelectIndexInPage];
+        [labelToSelect clickTitleButton:nil];
+    }
+    
     NSUInteger page = pageView.page;
+    [self.labelInfoArray removeObjectAtIndex:index];
+    
     if(self.labelInfoArray.count % 4 == 0) {
         _pageCount--;
         LNLabelPageViewController *lastPage = [_labelPages lastObject];
@@ -109,12 +121,30 @@
         else 
             [self refreshLabelBarContentSize];
     }
+    
     for(int i = page; i < _pageCount; i++) {
         NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
                                                                             NSMakeRange(i * 4, self.labelInfoArray.count < (i + 1) * 4 ? self.labelInfoArray.count - i * 4 : 4)]];
         LNLabelPageViewController *pageView = [_labelPages objectAtIndex:i];
         pageView.labelInfoSubArray = labelInfoSubArray;
     }
+    for(int i = 0; i < _pageCount; i++) {
+        for(int j = 0; j < 4; j++) {
+            LNLabelPageViewController *page = [_labelPages objectAtIndex:i];
+            LNLabelViewController *label = [page.labelViews objectAtIndex:j];
+            if(label.isSelected) {
+                [label clickTitleButton:nil];
+            }
+        }
+    }
+}
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabelAtIndex:(NSUInteger)index {
+    
+}
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabelAtIndex:(NSUInteger)index {
+    
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {

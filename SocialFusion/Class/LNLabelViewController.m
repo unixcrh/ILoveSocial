@@ -15,6 +15,7 @@
 @synthesize labelName = _labelName;
 @synthesize labelStatus = _labelStatus;
 @synthesize isSystemLabel = _isSystemLabel;
+@synthesize isSelected = _isSelected;
 
 + (LabelInfo *)labelInfoWithName:(NSString *)name status:(LabelStatus)status isSystem:(BOOL)isSystem{
     LabelInfo *info = [[[LabelInfo alloc] init] autorelease];
@@ -31,7 +32,6 @@
 @synthesize titleButton = _titleButton;
 @synthesize index = _index;
 @synthesize delegate = _delegate;
-@synthesize isSelected = _isSelected;
 @synthesize titleLabel = _titleLabel;
 @synthesize info = _info;
 
@@ -64,8 +64,8 @@
 }
 
 - (void)setIsSelected:(BOOL)isSelected {
-    _isSelected = isSelected;
-    if(_isSelected) {
+    self.info.isSelected = isSelected;
+    if(self.isSelected) {
         if(self.info.labelStatus == PARENT_LABEL_CLOSE || self.info.labelStatus == PARENT_LABEL_OPEN)
             [self.titleLabel setTextColor:[UIColor magentaColor]];
         else 
@@ -76,6 +76,10 @@
     }
 }
 
+- (BOOL)isSelected {
+    return self.info.isSelected;
+}
+
 - (BOOL)isParentLabel {
     return self.info.labelStatus == PARENT_LABEL_OPEN || self.info.labelStatus == PARENT_LABEL_CLOSE;
 }
@@ -83,6 +87,11 @@
 - (IBAction)clickTitleButton:(id)sender {
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];
+    }
+    if(sender == nil) {
+        // called by label bar or label page
+        self.isSelected = YES;
+        return;
     }
     if(self.info.labelStatus == PARENT_LABEL_OPEN) {
         self.info.labelStatus = PARENT_LABEL_CLOSE;
@@ -119,7 +128,6 @@
 }
 
 - (void)swipeUp:(UISwipeGestureRecognizer *)ges {
-    NSLog(@"swipe top");
     if(self.info.isSystemLabel)
         return;
     if(self.info.labelStatus != PARENT_LABEL_CLOSE)
@@ -133,6 +141,7 @@
         [_info release];
         _info = [info retain];
         self.titleLabel.text = _info.labelName;
+        self.isSelected = _info.isSelected;
     }
 }
 @end

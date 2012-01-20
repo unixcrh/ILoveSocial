@@ -20,6 +20,7 @@
 @property NSUInteger page;
 @property (nonatomic, assign) id<LNLabelPageViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *labelInfoSubArray;
+@property (nonatomic, retain) NSMutableArray *labelViews;
 
 - (id)initWithInfoSubArray:(NSMutableArray *)array pageIndex:(NSUInteger)page;
 - (void)selectOtherPage:(NSUInteger)page;
@@ -32,5 +33,7 @@
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didSelectLabelAtIndex:(NSUInteger)index;
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabelAtIndex:(NSUInteger)index;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabelAtIndex:(NSUInteger)index;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabelAtIndex:(NSUInteger)index;
 
 @end

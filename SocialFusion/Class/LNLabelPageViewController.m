@@ -21,6 +21,7 @@
 @synthesize page = _page;
 @synthesize delegate = _delegate;
 @synthesize labelInfoSubArray = _labelInfoSubArray;
+@synthesize labelViews = _labelViews;
 
 - (void)dealloc {
     [_labelViews release];
@@ -50,15 +51,15 @@
     
     for(int i = _labelViews.count - 1; i >= 0; i--) {
         LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
-        if(self.page == 0 && i == 0) {
-            label.isSelected = YES;
-        }
         if(self.labelInfoSubArray.count - 1 < i) {
             [label.view setHidden:YES];
             [label.view setUserInteractionEnabled:NO];
         }
         else {
             label.info = [self.labelInfoSubArray objectAtIndex:i];
+        }
+        if(self.page == 0 && i == 0) {
+            label.isSelected = YES;
         }
         [self.view addSubview:label.view];
     }
@@ -145,13 +146,9 @@
             CGRect newFrame;
             newFrame = CGRectMake(LABEL_OFFSET_X + label.index * LABEL_SPACE, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
             label.view.frame = newFrame;
-            
         }
+    } completion:^(BOOL finished) {
     }];
-    LNLabelViewController *label = [_labelViews objectAtIndex:index];
-    if(label.isSelected) {
-        [label clickTitleButton:nil];
-    }
 }
 
 
