@@ -99,6 +99,7 @@
         return;
     }
     if(self.info.labelStatus == PARENT_LABEL_OPEN) {
+        [self.view setUserInteractionEnabled:NO];
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
             [self.delegate labelView:self didCloseLabelAtIndex:self.index];
         /*[UIView animateWithDuration:0.3f animations:^{

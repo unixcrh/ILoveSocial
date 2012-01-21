@@ -116,7 +116,7 @@
 #pragma mark Animations
 
 - (void)closeParentLabelAnimation {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
             CGRect oldFrame = label.view.frame;
@@ -142,7 +142,7 @@
         label.view.frame = newFrame;
         
     }
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = index; i < 4; i++) {
             LNLabelViewController *label = [_labelViews objectAtIndex:i];
             CGRect oldFrame = label.view.frame;
@@ -162,7 +162,7 @@
         newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
         label.view.frame = newFrame;
     }
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 1; i < _labelInfoSubArray.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
             CGRect oldFrame = label.view.frame;
@@ -200,7 +200,7 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didRemoveLabelAtIndex:(NSUInteger)index {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         CGRect oldFrame = labelView.view.frame;
         CGRect newFrame;
         newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - ANIMATION_VERTICAL_MOVE_LENGTH * 3, oldFrame.size.width, oldFrame.size.height);
@@ -214,7 +214,7 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didOpenLabelAtIndex:(NSUInteger)index {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
             CGRect oldFrame = label.view.frame;
@@ -238,7 +238,7 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didCloseLabelAtIndex:(NSUInteger)index {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 1; i < _labelInfoSubArray.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
             CGRect oldFrame = label.view.frame;
@@ -265,7 +265,7 @@
     CGRect newFrame;
     newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
     label.view.frame = newFrame;
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         label.view.frame = oldFrame;
     } completion:^(BOOL finished) {
         [self selectLastLabel];
