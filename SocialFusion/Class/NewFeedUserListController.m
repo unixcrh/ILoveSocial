@@ -67,13 +67,12 @@
     
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
-    
-    if (_style==0)
+    if (_style==kRenrenUserFeed)
     {
             [self loadMoreRenrenData];
     }
 
-    else
+    else if(_style==kWeiboUserFeed)
     {
             [self loadMoreWeiboData];
     }

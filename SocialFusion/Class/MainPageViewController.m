@@ -29,7 +29,7 @@
 - (void)configureLabelViewController {
     //[NSArray arrayWithObjects:@"首页", @"新鲜事", @"好友", @"关注", @"资料", @"留言板", @"访客", @"日志", @"相册", @"状态", @"分享", nil];
     
-    [self.lableViewController pushLabels:[NSMutableArray arrayWithObjects:@"新鲜事", @"人人好友", @"微博关注", @"微博粉丝", nil]];
+    [self.lableViewController pushLabels:[NSMutableArray arrayWithObjects:@"人人feed", @"微博feed", @"全部feed", nil]];
     self.lableViewController.delegate = self;
     [self.view addSubview:self.lableViewController.view];
 }

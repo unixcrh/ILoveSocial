@@ -23,6 +23,7 @@
 #import "UIImage+Addition.h"
 #import "ShowImage.h"
 #import "NewFeedUserListController.h"
+
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
@@ -35,23 +36,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 +(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style
-
 {
-    
     NewFeedListController* userList;
     if (style==kRenrenUserFeed)
     {
-          userList=[[[NewFeedUserListController alloc] init] autorelease];
-        [(NewFeedUserListController*)userList setStyle:0];
+        userList=[[[NewFeedUserListController alloc] init] autorelease];
+        [(NewFeedUserListController*)userList setStyle:kRenrenUserFeed];
     }
     else if (style==kWeiboUserFeed)
     {
-          userList=[[[NewFeedUserListController alloc] init] autorelease];
-        [(NewFeedUserListController*)userList setStyle:1];        
+        userList=[[[NewFeedUserListController alloc] init] autorelease];
+        [(NewFeedUserListController*)userList setStyle:kWeiboUserFeed];        
     }
-    else
+    else if (style==kAllUserFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
+        //[(NewFeedUserListController*)userList setStyle:kAllUserFeed]; 
     }
     return userList;
 }
@@ -109,7 +109,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     //   [request setSortDescriptors:nil];
     [request setPredicate:predicate];
-   // NSArray *descriptors = [NSArray arrayWithObject:sort]; 
+    // NSArray *descriptors = [NSArray arrayWithObject:sort]; 
     // [request setSortDescriptors:descriptors]; 
     [sort release];
     request.fetchBatchSize = 5;
@@ -140,12 +140,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-
+            
             
             NSArray *array = client.responseJSONObject;
             [self processWeiboData:array];
-      
-       
+            
+            
         }
     }];
     
@@ -226,7 +226,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         {
             
             NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
- 
+            
             [self.currentRenrenUser addNewFeedObject:data];
         }
     }
@@ -255,13 +255,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)loadMoreData {
     if(_loading)
         return;
+    
     _loading = YES;
     _pageNumber++;
-    
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
-    
-
     [self loadMoreRenrenData];
     [self loadMoreWeiboData];
     
@@ -269,24 +267,24 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-     return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     /*
-    if (_indexPath==nil)
-    {
-        return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-    }
-    else
-    {
-        if ([indexPath compare:_indexPath])
-            
-        {
-            return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        }
-        else
-        {
-            return 389;
-        }
-    }
+     if (_indexPath==nil)
+     {
+     return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+     }
+     else
+     {
+     if ([indexPath compare:_indexPath])
+     
+     {
+     return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+     }
+     else
+     {
+     return 389;
+     }
+     }
      */
 }
 
@@ -302,7 +300,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 -(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
 {
-
+    
     Image* image = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
     ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image.imageData.data] BigURL:stringURL];
     [tempImage setContext:self.managedObjectContext];
@@ -314,7 +312,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     } completion:nil];
     
     
- 
+    
     
 }
 
@@ -338,8 +336,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 {
     
     static NSString *StatusCell = @"NewFeedStatusCell";
-
-  //  static NSString *DetailCell=@"DetailCell";
+    
+    //  static NSString *DetailCell=@"DetailCell";
     if ([indexPath compare:_indexPath])
     {
         NewFeedStatusCell* cell;
@@ -347,17 +345,17 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
         NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-
-                cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
-                if (cell == nil) {
-                    cell=[[NewFeedStatusCell alloc] init];
-
-                }
-            else
-            {
-                NSLog(@"reuse");
-            }
-
+        
+        cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
+        if (cell == nil) {
+            cell=[[NewFeedStatusCell alloc] init];
+            
+        }
+        else
+        {
+            NSLog(@"reuse");
+        }
+        
         
         
         
@@ -516,31 +514,31 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         
     }
     
-     if ([data class]==[NewFeedData class])
-     {
-         NewFeedData* data2=(NewFeedData*)data;
-         if (data2.pic_URL!=nil)
-         {
-         image = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
-         if (!image)
-         {
-             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-             [UIImage loadImageFromURL:data2.pic_URL completion:^{
-                 Image *image1 = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
-                 
-                 [statusCell loadPicture:image1.imageData.data];
-                 
-             } cacheInContext:self.managedObjectContext];
-         }
-         else
-         {
-             NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-             
-             [statusCell loadPicture:image.imageData.data];
-             
-         }
-         }
-     }
+    if ([data class]==[NewFeedData class])
+    {
+        NewFeedData* data2=(NewFeedData*)data;
+        if (data2.pic_URL!=nil)
+        {
+            image = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
+            if (!image)
+            {
+                NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                [UIImage loadImageFromURL:data2.pic_URL completion:^{
+                    Image *image1 = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext];
+                    
+                    [statusCell loadPicture:image1.imageData.data];
+                    
+                } cacheInContext:self.managedObjectContext];
+            }
+            else
+            {
+                NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                
+                [statusCell loadPicture:image.imageData.data];
+                
+            }
+        }
+    }
     
     
 }
@@ -591,20 +589,20 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 -(void)showImage:(NSIndexPath*)indexPath
 {
     NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
-     if ([_feedData class]==[NewFeedUploadPhoto class])
-     {
-     [self showImage:((NewFeedUploadPhoto*)_feedData).photo_url bigURL:((NewFeedUploadPhoto*)_feedData).photo_big_url];
-     }
-     else if ([_feedData class]==[NewFeedSharePhoto class])
-     {
-     [self showImage:((NewFeedSharePhoto*)_feedData).photo_url userID:((NewFeedSharePhoto*)_feedData).fromID  photoID:((NewFeedSharePhoto*)_feedData).mediaID];
-     
-     }
-     else
-     {
-     [self showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
-     }
-     
+    if ([_feedData class]==[NewFeedUploadPhoto class])
+    {
+        [self showImage:((NewFeedUploadPhoto*)_feedData).photo_url bigURL:((NewFeedUploadPhoto*)_feedData).photo_big_url];
+    }
+    else if ([_feedData class]==[NewFeedSharePhoto class])
+    {
+        [self showImage:((NewFeedSharePhoto*)_feedData).photo_url userID:((NewFeedSharePhoto*)_feedData).fromID  photoID:((NewFeedSharePhoto*)_feedData).mediaID];
+        
+    }
+    else
+    {
+        [self showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
+    }
+    
 }
 -(IBAction)resetToNormalList
 {

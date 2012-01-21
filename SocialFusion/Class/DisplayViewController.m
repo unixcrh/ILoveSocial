@@ -43,16 +43,14 @@
 - (void)createViewControllers {
     switch (_type) {
         case DisplayViewTypeSelf: {
-            NewFeedListController *newFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
- 
-            [_viewControllerMap setValue:newFeedList forKey:@"新鲜事"];
-            FriendListViewController *renrenFriendList = [[(FriendListViewController *)[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
-            [_viewControllerMap setValue:renrenFriendList forKey:@"人人好友"];
-            FriendListViewController *weiboFriendList = [[(FriendListViewController *)[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFriends] autorelease];
-            [_viewControllerMap setValue:weiboFriendList forKey:@"微博关注"];
-            FriendListViewController *weiboFollowerList = [[(FriendListViewController *)[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
-            [_viewControllerMap setValue:weiboFollowerList forKey:@"微博粉丝"];
-            NSArray *viewControllers = [NSArray arrayWithObjects:newFeedList, renrenFriendList, weiboFriendList, weiboFollowerList, nil];
+            NewFeedListController *renrenNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
+            [_viewControllerMap setValue:renrenNewFeedList forKey:@"人人feed"];
+            NewFeedListController *weiboNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
+            [_viewControllerMap setValue:weiboNewFeedList forKey:@"微博feed"];
+            NewFeedListController *allNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
+            [_viewControllerMap setValue:allNewFeedList forKey:@"全部feed"];
+            
+            NSArray *viewControllers = [NSArray arrayWithObjects: renrenNewFeedList, weiboNewFeedList, allNewFeedList, nil];
             [self.viewControllers addObjectsFromArray:viewControllers];
             break;
         }

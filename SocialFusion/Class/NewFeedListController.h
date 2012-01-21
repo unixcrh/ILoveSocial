@@ -8,26 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-typedef   enum kUserFeed {
-    kRenrenUserFeed = 0,
-    kWeiboUserFeed = 1,
-    kSelfUserFeed=2
-} kUserFeed;
 #import "EGOTableViewController.h"
-
-
 //#import "DragRefreshTableViewController.h"
 #import "NewFeedRootData.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NewFeedStatusCell.h"
 
-
 #import "NewFeedDetailViewCell.h"
 #import "NewFeedCellHeight.h"
+
+typedef   enum kUserFeed {
+    kRenrenUserFeed = 0,
+    kWeiboUserFeed  = 1,
+    kAllUserFeed    = 2,
+} kUserFeed;
+
 @interface NewFeedListController : EGOTableViewController {
-    
-    
     
     // NewFeedRootData *feedDatas;
     //  NSMutableArray* _feedArray;
@@ -35,8 +32,8 @@ typedef   enum kUserFeed {
     NSDate* _currentTime;
     
     IBOutlet NewFeedStatusCell *_feedStatusCel;
-
-
+    
+    
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
     
     NSIndexPath* _indexPath;
@@ -47,11 +44,7 @@ typedef   enum kUserFeed {
     
     NewFeedCellHeight* _cellHeightHelper;
     
-   // UIWebView* _webView;
-    
-
-    
-    
+    // UIWebView* _webView;
 }
 
 

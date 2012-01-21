@@ -12,5 +12,7 @@
 {
     int _style;
 }
+
 -(void)setStyle:(int)style;
+
 @end
