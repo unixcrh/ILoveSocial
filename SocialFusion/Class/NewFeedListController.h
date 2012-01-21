@@ -51,11 +51,13 @@
 }
 
 
-
++(NewFeedListController*)getNewFeedListControllerwithStyle:(int)style;
 -(void)exposeCell:(NSIndexPath*)indexPath;
 -(void)showImage:(NSIndexPath*)indexPath;
 -(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
 -(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID;
-
+-(void)processRenrenData:(NSArray*)array;
+-(void)processWeiboData:(NSArray*)array;
+- (void)clearData;
 -(IBAction)resetToNormalList;
 @end

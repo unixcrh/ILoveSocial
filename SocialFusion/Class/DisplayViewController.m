@@ -7,7 +7,7 @@
 //
 
 #import "DisplayViewController.h"
-#import "NewFeedListController.h"
+#import "NewFeedUserListController.h"
 #import "FriendListViewController.h"
 
 @interface DisplayViewController()
@@ -43,7 +43,8 @@
 - (void)createViewControllers {
     switch (_type) {
         case DisplayViewTypeSelf: {
-            NewFeedListController *newFeedList = [[[NewFeedListController alloc] init] autorelease];
+            NewFeedListController *newFeedList = [NewFeedListController getNewFeedListControllerwithStyle:2];
+ 
             [_viewControllerMap setValue:newFeedList forKey:@"新鲜事"];
             FriendListViewController *renrenFriendList = [[(FriendListViewController *)[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
             [_viewControllerMap setValue:renrenFriendList forKey:@"人人好友"];

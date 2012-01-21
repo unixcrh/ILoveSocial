@@ -22,6 +22,7 @@
 #import "StatusDetailController.h"
 #import "UIImage+Addition.h"
 #import "ShowImage.h"
+#import "NewFeedUserListController.h"
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
@@ -33,7 +34,27 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
++(NewFeedListController*)getNewFeedListControllerwithStyle:(int)style
 
+{
+    
+    NewFeedListController* userList;
+    if (style==0)
+    {
+          userList=[[[NewFeedUserListController alloc] init] autorelease];
+        [(NewFeedUserListController*)userList setStyle:0];
+    }
+    else if (style==1)
+    {
+          userList=[[[NewFeedUserListController alloc] init] autorelease];
+        [(NewFeedUserListController*)userList setStyle:1];        
+    }
+    else
+    {
+        userList=[[[NewFeedListController alloc] init] autorelease]; 
+    }
+    return userList;
+}
 
 
 - (void)viewDidLoad
@@ -119,27 +140,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-            //NSLog(@"dict:%@", client.responseJSONObject);
+
             
             NSArray *array = client.responseJSONObject;
-            
-           //  NSLog(@"%@",array);
-            for(NSDictionary *dict in array) {
-              
-                NSLog(@"%@",dict);
-                int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
-              
-                NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                
-                [self.currentWeiboUser addNewFeedObject:data];
-                
-            }
-            
-
-            [self showLoadMoreDataButton];
-            [self doneLoadingTableViewData];
-            
-            _loading = NO;
+            [self processWeiboData:array];
+      
+       
         }
     }];
     
@@ -158,6 +164,76 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
+-(void)processWeiboData:(NSArray*)array
+{
+    for(NSDictionary *dict in array) {
+        
+        NSLog(@"%@",dict);
+        int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
+        
+        NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+        
+        [self.currentWeiboUser addNewFeedObject:data];
+        
+    }
+    
+    
+    [self showLoadMoreDataButton];
+    [self doneLoadingTableViewData];
+    _loading = NO;
+}
+-(void)processRenrenData:(NSArray*)array
+{
+    for(NSDictionary *dict in array) {
+        
+        
+        
+        int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
+        
+        
+        if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
+        {
+            
+            
+            
+            
+            NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            
+            [self.currentRenrenUser addNewFeedObject:data]; 
+        }
+        else if ([[dict objectForKey:@"feed_type"] intValue]==30)
+        {
+            
+            NewFeedUploadPhoto* data = [NewFeedUploadPhoto insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            
+            [self.currentRenrenUser addNewFeedObject:data]; 
+        }
+        else if ([[dict objectForKey:@"feed_type"] intValue]==33)
+        {
+            NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            
+            [self.currentRenrenUser addNewFeedObject:data]; 
+        }
+        else if ([[dict objectForKey:@"feed_type"] intValue]==32)
+        {
+            
+            //   NSLog(@"%@",dict);
+            NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            
+            [self.currentRenrenUser addNewFeedObject:data]; 
+        }
+        else
+        {
+            
+            NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+ 
+            [self.currentRenrenUser addNewFeedObject:data];
+        }
+    }
+    [self showLoadMoreDataButton];
+    [self doneLoadingTableViewData];
+    _loading = NO;
+}
 - (void)loadMoreRenrenData {
     RenrenClient *renren = [RenrenClient client];
     
@@ -166,61 +242,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             //NSLog(@"dict:%@", client.responseJSONObject);
             
             NSArray *array = client.responseJSONObject;
-            for(NSDictionary *dict in array) {
-                
-                
-                
-                       int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
-                 NSLog(@"%@",dict);
-                
-                
-                if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
-                {
-              
-                    
-           
-                    
-                    NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-
-                    [self.currentRenrenUser addNewFeedObject:data]; 
-                }
-                else if ([[dict objectForKey:@"feed_type"] intValue]==30)
-                {
-                    
-                    NewFeedUploadPhoto* data = [NewFeedUploadPhoto insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    
-                    [self.currentRenrenUser addNewFeedObject:data]; 
-                }
-                else if ([[dict objectForKey:@"feed_type"] intValue]==33)
-                {
-                    NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    
-                    [self.currentRenrenUser addNewFeedObject:data]; 
-                }
-                else if ([[dict objectForKey:@"feed_type"] intValue]==32)
-                {
-                    
-                 //   NSLog(@"%@",dict);
-                    NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    
-                    [self.currentRenrenUser addNewFeedObject:data]; 
-                }
-                else
-                {
-                    
-                    NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    
-                    
-                    [self.currentRenrenUser addNewFeedObject:data];
-                }
-            }
+            [self processRenrenData:array];
             
-            
-            
-            
-            [self showLoadMoreDataButton];
-            [self doneLoadingTableViewData];
-            _loading = NO;
         }
     }];
     
@@ -237,6 +260,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
+    
+
     [self loadMoreRenrenData];
     [self loadMoreWeiboData];
     

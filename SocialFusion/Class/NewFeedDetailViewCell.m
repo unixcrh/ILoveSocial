@@ -11,6 +11,7 @@
 @implementation NewFeedDetailViewCell
 
 
+
 -(void)initWithFeedData:(NewFeedData*)_feedData  context:(NSManagedObjectContext*)context
 {
     detailController.feedData=_feedData;
