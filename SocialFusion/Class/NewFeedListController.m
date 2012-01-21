@@ -34,17 +34,17 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
-+(NewFeedListController*)getNewFeedListControllerwithStyle:(int)style
++(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style
 
 {
     
     NewFeedListController* userList;
-    if (style==0)
+    if (style==kRenrenUserFeed)
     {
           userList=[[[NewFeedUserListController alloc] init] autorelease];
         [(NewFeedUserListController*)userList setStyle:0];
     }
-    else if (style==1)
+    else if (style==kWeiboUserFeed)
     {
           userList=[[[NewFeedUserListController alloc] init] autorelease];
         [(NewFeedUserListController*)userList setStyle:1];        

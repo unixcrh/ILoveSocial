@@ -43,7 +43,7 @@
 - (void)createViewControllers {
     switch (_type) {
         case DisplayViewTypeSelf: {
-            NewFeedListController *newFeedList = [NewFeedListController getNewFeedListControllerwithStyle:2];
+            NewFeedListController *newFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
  
             [_viewControllerMap setValue:newFeedList forKey:@"新鲜事"];
             FriendListViewController *renrenFriendList = [[(FriendListViewController *)[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];

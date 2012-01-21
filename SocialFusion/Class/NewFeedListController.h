@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
+typedef   enum kUserFeed {
+    kRenrenUserFeed = 0,
+    kWeiboUserFeed = 1,
+    kSelfUserFeed=2
+} kUserFeed;
 #import "EGOTableViewController.h"
 
 
@@ -51,7 +55,7 @@
 }
 
 
-+(NewFeedListController*)getNewFeedListControllerwithStyle:(int)style;
++(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
 -(void)exposeCell:(NSIndexPath*)indexPath;
 -(void)showImage:(NSIndexPath*)indexPath;
 -(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
