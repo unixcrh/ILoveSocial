@@ -230,6 +230,10 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    int offsetX = scrollView.contentOffset.x;
+    int inaccuracy = offsetX % (int)scrollView.frame.size.width;
+    offsetX -= inaccuracy;
+    [scrollView setContentOffset:CGPointMake(offsetX, scrollView.contentOffset.y) animated:NO];
     int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
     self.pageControl.currentPage = index;
 }
