@@ -12,21 +12,23 @@
 
 @implementation LabelInfo
 
+@synthesize identifier = _identifier;
 @synthesize labelName = _labelName;
-@synthesize labelStatus = _labelStatus;
-@synthesize isSystemLabel = _isSystemLabel;
+@synthesize isRetractable = _isRetractable;
+@synthesize isRemovable = _isRemovable;
 @synthesize isSelected = _isSelected;
+@synthesize isReturnLabel = _isReturnLabel;
 
 - (void)dealloc {
     [_labelName release];
     [super dealloc];
 }
 
-+ (LabelInfo *)labelInfoWithName:(NSString *)name status:(LabelStatus)status isSystem:(BOOL)isSystem{
++ (LabelInfo *)labelInfoWithIdentifer:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable {
     LabelInfo *info = [[[LabelInfo alloc] init] autorelease];
-    info.labelStatus = status;
+    info.identifier = identifier;
     info.labelName = name;
-    info.isSystemLabel = isSystem;
+    info.isRetractable = retractable;
     return info;
 }
 
@@ -71,13 +73,10 @@
 - (void)setIsSelected:(BOOL)isSelected {
     self.info.isSelected = isSelected;
     if(self.isSelected) {
-        if(self.info.labelStatus == PARENT_LABEL_CLOSE || self.info.labelStatus == PARENT_LABEL_OPEN)
-            [self.titleLabel setTextColor:[UIColor magentaColor]];
-        else 
-            [self.titleLabel setTextColor:[UIColor redColor]];
-    }   
+        [self.titleLabel setHighlighted:YES];
+    }
     else {
-        [self.titleLabel setTextColor:[UIColor grayColor]];
+        [self.titleLabel setHighlighted:NO];
     }
 }
 
@@ -85,8 +84,16 @@
     return self.info.isSelected;
 }
 
-- (BOOL)isParentLabel {
-    return self.info.labelStatus == PARENT_LABEL_OPEN || self.info.labelStatus == PARENT_LABEL_CLOSE;
+- (BOOL)isRetractable {
+    return self.info.isRetractable;
+}
+
+- (BOOL)isRemovable {
+    return self.info.isRemovable;
+}
+
+- (BOOL)isReturnLabel {
+    return self.info.isReturnLabel;
 }
 
 - (IBAction)clickTitleButton:(id)sender {
@@ -98,38 +105,19 @@
         self.isSelected = YES;
         return;
     }
-    if(self.info.labelStatus == PARENT_LABEL_OPEN) {
+    if(self.isReturnLabel) {
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
             [self.delegate labelView:self didCloseLabelAtIndex:self.index];
-        /*[UIView animateWithDuration:0.3f animations:^{
-         CGAffineTransform xform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(0));
-         self.plusButton.transform = xform;
-         }completion:^(BOOL finished) {
-         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
-         [self.delegate labelView:self didCloseLabelAtIndex:self.index];
-         }];*/
     }
-    else if(self.info.labelStatus == PARENT_LABEL_CLOSE && self.isSelected){ 
+    else if(self.isRetractable && self.isSelected){ 
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didOpenLabelAtIndex:)])
             [self.delegate labelView:self didOpenLabelAtIndex:self.index];
     }
     self.isSelected = YES;
-    
-    if([self.titleLabel.text isEqualToString:@"新标签测试"]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:nil userInfo:nil];
-    }
-}
-
-- (id)initWithStatus:(LabelStatus)status {
-    if([self init])
-        self.info.labelStatus = status;
-    return self;
 }
 
 - (void)swipeUp:(UISwipeGestureRecognizer *)ges {
-    if(self.info.isSystemLabel)
-        return;
-    if(self.info.labelStatus != PARENT_LABEL_CLOSE)
+    if(!self.isRemovable)
         return;
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didRemoveLabelAtIndex:)])
         [self.delegate labelView:self didRemoveLabelAtIndex:self.index];

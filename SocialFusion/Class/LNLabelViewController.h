@@ -7,32 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LabelConverter.h"
 
 @protocol LNLabelViewControllerDelegate;
 
 #define kDidSelectFriendNotification @"kDidSelectFriendNotification"
 
-typedef enum {
-    PARENT_LABEL_CLOSE,
-    PARENT_LABEL_OPEN,
-    CHILD_LABEL,
-} LabelStatus;
-
 @interface LabelInfo : NSObject {
 @private
+    NSString *_identifier;
     NSString *_labelName;
-    LabelStatus _labelStatus;
-    BOOL _isSystemLabel;
+    BOOL _isParent;
+    BOOL _isRemovable;
     BOOL _isSelected;
+    BOOL _isReturnLabel;
 }
 
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *labelName;
-@property (nonatomic) LabelStatus labelStatus;
-@property (nonatomic) BOOL isSystemLabel;
+@property (nonatomic) BOOL isRetractable;
+@property (nonatomic) BOOL isRemovable;
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic) BOOL isReturnLabel;
 
 
-+ (LabelInfo *)labelInfoWithName:(NSString *)name status:(LabelStatus)status isSystem:(BOOL)isSystem;
+
++ (LabelInfo *)labelInfoWithIdentifer:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable;
 
 @end
 
@@ -47,13 +47,14 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIButton *titleButton;
 @property (nonatomic) NSUInteger index;
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic, readonly) BOOL isRetractable;
+@property (nonatomic, readonly) BOOL isRemovable;
+@property (nonatomic, readonly) BOOL isReturnLabel;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
-@property (nonatomic, readonly) BOOL isParentLabel;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) LabelInfo *info;
 
 - (IBAction)clickTitleButton:(id)sender;
-- (id)initWithStatus:(LabelStatus)status;
 
 @end
 

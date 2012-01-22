@@ -7,6 +7,7 @@
 //
 
 #import "LNLabelBarViewController.h"
+#import "LabelConverter.h"
 
 @interface LNLabelBarViewController()
 - (void)pushLabelPages:(NSMutableArray *)labelPages;
@@ -173,37 +174,8 @@
     NSMutableArray *labelPages = [[[NSMutableArray alloc]init] autorelease];
     [self pushLabelPages:labelPages];
     [self pushPageIndex:pageView.page];
-    NSArray *labelInfo;
-    NSString *labelName = label.info.labelName;
-    if([labelName isEqualToString:@"新鲜事"])
-        labelInfo = [NSArray arrayWithObjects:
-                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"全部" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"人人" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"微博" status:CHILD_LABEL isSystem:NO], nil];
-
-    else if([labelName isEqualToString:@"通讯录"])
-        labelInfo = [NSArray arrayWithObjects:
-                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"人人好友" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"微博关注" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"微博粉丝" status:CHILD_LABEL isSystem:NO], nil];
-    else if([labelName isEqualToString:@"个人档"])
-        labelInfo = [NSArray arrayWithObjects:
-                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"资料" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"最近来访" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"日志" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"收藏" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"相册" status:CHILD_LABEL isSystem:NO], nil];
-    else
-        labelInfo = [NSArray arrayWithObjects:
-                     [LabelInfo labelInfoWithName:label.info.labelName status:PARENT_LABEL_OPEN isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"新鲜事" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"好友" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"资料" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"日志" status:CHILD_LABEL isSystem:NO],
-                     [LabelInfo labelInfoWithName:@"相册" status:CHILD_LABEL isSystem:NO], nil];
+    NSString *identifier = label.info.identifier;
+    NSArray *labelInfo = [LabelConverter getChildLabelsInfoWithParentLabelIndentifier:identifier];
     [self pushLabelInfoArray:[NSMutableArray arrayWithArray:labelInfo]];
     [self loadLabelPages];
     LNLabelPageViewController *firstPage = [self.labelPages objectAtIndex:0];

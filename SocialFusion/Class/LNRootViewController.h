@@ -9,14 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataViewController.h"
 #import "LNLabelBarViewController.h"
+#import "LNContentViewController.h"
 
 #define kDidSelectFriendNotification    @"kDidSelectFriendNotification"
 #define kDidSelectNewFeedNotification   @"kDidSelectNewFeedNotification"
 
+
 @interface LNRootViewController : CoreDataViewController {
     LNLabelBarViewController *_labelBarViewController;
+    LNContentViewController *_contentViewController;
 }
 
 @property (nonatomic, retain) LNLabelBarViewController *labelBarViewController;
+@property (nonatomic, retain) LNContentViewController *contentViewController;
 
 @end

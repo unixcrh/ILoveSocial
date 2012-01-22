@@ -7,26 +7,33 @@
 //
 
 #import "LNRootViewController.h"
+#import "LabelConverter.h"
+
+#define CONTENT_VIEW_OFFSET_X   7
+#define CONTENT_VIEW_OFFSET_Y   64
 
 @implementation LNRootViewController;
 
 @synthesize labelBarViewController = _labelBarViewController;
+@synthesize contentViewController = _contentViewController;
 
 - (void)dealloc {
     [_labelBarViewController release];
+    [_contentViewController release];
     [super dealloc];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.labelBarViewController = nil;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.view addSubview:self.labelBarViewController.view];
+    self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_OFFSET_X, CONTENT_VIEW_OFFSET_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
+    [self.view addSubview:self.contentViewController.view];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(didSelectFriend:) 
@@ -37,13 +44,9 @@
 - (id)init {
     self = [super init];
     if(self) {
-        NSArray *labelInfo = [NSArray arrayWithObjects:
-                              [LabelInfo labelInfoWithName:@"新鲜事" status:PARENT_LABEL_CLOSE isSystem:YES],
-                              [LabelInfo labelInfoWithName:@"通讯录" status:PARENT_LABEL_CLOSE isSystem:YES],
-                              [LabelInfo labelInfoWithName:@"个人档" status:PARENT_LABEL_CLOSE isSystem:YES],
-                              [LabelInfo labelInfoWithName:@"收件箱" status:CHILD_LABEL isSystem:YES],
-                              [LabelInfo labelInfoWithName:@"新标签测试" status:CHILD_LABEL isSystem:NO], nil];
+        NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
         _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
+        _contentViewController = [[LNContentViewController alloc] init];
     }
     return self;
 }
@@ -53,7 +56,7 @@
 
 - (void)didSelectFriend:(NSNotification *)notification {
     static int i = 0;
-    [_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:[NSString stringWithFormat:@"何若运%d",i] status:PARENT_LABEL_CLOSE isSystem:NO]];
+    //[_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:[NSString stringWithFormat:@"何若运%d",i] status:PARENT_LABEL_CLOSE isSystem:NO]];
     i++;
     /*
     User* user = notification.object;

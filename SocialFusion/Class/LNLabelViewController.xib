@@ -60,7 +60,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 8}, {81, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:345</string>
 						<reference key="IBUIBackgroundColor" ref="1040684597"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -70,12 +69,12 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">新鲜事啊</string>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC40IDAuNCAwLjQAA</bytes>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42AA</bytes>
 						</object>
 						<object class="NSColor" key="IBUIHighlightedColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC41NDkwMTk2MDc4IDAgMAA</bytes>
+							<bytes key="NSRGB">MC42ODQwMjE0NDE2IDAuMDU4ODIzNTI5NDEgMC4xMDE5NjA3ODQzAA</bytes>
 						</object>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">14</float>

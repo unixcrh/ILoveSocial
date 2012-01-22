@@ -41,7 +41,7 @@
     [super viewDidLoad];
     
     for(int i = 0; i < 4; i++) {
-        LNLabelViewController *label = [[LNLabelViewController alloc] initWithStatus:PARENT_LABEL_CLOSE];
+        LNLabelViewController *label = [[LNLabelViewController alloc] init];
         label.view.frame = CGRectMake(LABEL_OFFSET_X + i * LABEL_SPACE, LABEL_OFFSET_Y, LABEL_WIDTH, LABEL_HEIGHT);
         [_labelViews addObject:label];
         label.delegate = self;

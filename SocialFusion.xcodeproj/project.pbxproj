@@ -94,6 +94,8 @@
 		73F4F9C5144AAD8D00A692F7 /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F9C4144AAD8D00A692F7 /* WBRequest.m */; };
 		73FBBFB914C3BCEB00694B1B /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */; };
 		73FBBFC114C3F6B200694B1B /* ShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFC014C3F6B200694B1B /* ShowImage.m */; };
+		E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10296EB14CB5F7B002589A1 /* LabelConverter.m */; };
+		E10296F514CC8CAC002589A1 /* LabelProperty-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */; };
 		E11DF22314C569F600DDC51A /* mvboli.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22214C569F600DDC51A /* mvboli.ttf */; };
 		E11DF22714C5810000DDC51A /* head_renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22514C5810000DDC51A /* head_renren@2x.png */; };
 		E11DF22814C5810000DDC51A /* head_wb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22614C5810000DDC51A /* head_wb@2x.png */; };
@@ -355,6 +357,9 @@
 		73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		73FBBFBF14C3F6B100694B1B /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
 		73FBBFC014C3F6B200694B1B /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
+		E10296EA14CB5F7A002589A1 /* LabelConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelConverter.h; sourceTree = "<group>"; };
+		E10296EB14CB5F7B002589A1 /* LabelConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelConverter.m; sourceTree = "<group>"; };
+		E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LabelProperty-Config.plist"; path = "Resource/LabelProperty-Config.plist"; sourceTree = "<group>"; };
 		E11DF22214C569F600DDC51A /* mvboli.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mvboli.ttf; sourceTree = "<group>"; };
 		E11DF22514C5810000DDC51A /* head_renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_renren@2x.png"; sourceTree = "<group>"; };
 		E11DF22614C5810000DDC51A /* head_wb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_wb@2x.png"; sourceTree = "<group>"; };
@@ -672,6 +677,8 @@
 		E1779B8D14C73AB4001CE627 /* LabelNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				E10296EA14CB5F7A002589A1 /* LabelConverter.h */,
+				E10296EB14CB5F7B002589A1 /* LabelConverter.m */,
 				E1779B9414C73DDB001CE627 /* LNContentViewController.h */,
 				E1779B9514C73DDB001CE627 /* LNContentViewController.m */,
 				E1779B9614C73DDB001CE627 /* LNContentViewController.xib */,
@@ -864,6 +871,7 @@
 		E1ABA409141FA6E1002CD0A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */,
 				E1ABA40A141FA6E1002CD0A6 /* SocialFusion-Info.plist */,
 				E1ABA40B141FA6E1002CD0A6 /* InfoPlist.strings */,
 				E1ABA40E141FA6E1002CD0A6 /* main.m */,
@@ -1232,6 +1240,7 @@
 				E1779BA514C74AC6001CE627 /* label@2x.png in Resources */,
 				E1779BAA14C74D38001CE627 /* LNLabelPageViewController.xib in Resources */,
 				E1779BAF14C74EFD001CE627 /* LNLabelViewController.xib in Resources */,
+				E10296F514CC8CAC002589A1 /* LabelProperty-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1351,6 +1360,7 @@
 				E1779BAE14C74EFD001CE627 /* LNLabelViewController.m in Sources */,
 				736BA58114C802AE009037EE /* NSString+HTMLSet.m in Sources */,
 				73C6C9F514CAF06A0031BDD0 /* NewFeedUserListController.m in Sources */,
+				E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
