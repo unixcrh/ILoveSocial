@@ -349,11 +349,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
         if (cell == nil) {
             cell=[[NewFeedStatusCell alloc] init];
-            
-        }
-        else
-        {
-            NSLog(@"reuse");
         }
         
         

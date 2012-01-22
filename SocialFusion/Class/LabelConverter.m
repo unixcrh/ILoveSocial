@@ -3,7 +3,7 @@
 //  SocialFusion
 //
 //  Created by Blue Bitch on 12-1-22.
-//  Copyright (c) 2012年 TJU. All rights reserved.
+//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
 #import "LabelConverter.h"
@@ -45,7 +45,6 @@ static LabelConverter *instance = nil;
     LabelConverter *converter = [LabelConverter getInstance];
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:labelKeyArray.count];
     for(NSString *labelKey in labelKeyArray) {
-        NSLog(@"key:%@", labelKey);
         NSDictionary *labelConfig = [converter.configMap objectForKey:labelKey];
         NSString *labelName = [labelConfig objectForKey:kLabelName];
         NSNumber *isRetractable = [labelConfig objectForKey:kLabelIsRetractable];
@@ -55,9 +54,13 @@ static LabelConverter *instance = nil;
     return result;
 }
 
-+ (NSArray *)getSystemDefaultLabelsInfo {
++ (NSArray *)getSystemDefaultLabelsIdentifier {
     LabelConverter *converter = [LabelConverter getInstance];
-    NSArray *labelKeyArray = [converter.configMap objectForKey:kSystemDefaultLabels];
+    return [converter.configMap objectForKey:kSystemDefaultLabels];
+}
+
++ (NSArray *)getSystemDefaultLabelsInfo {
+    NSArray *labelKeyArray = [LabelConverter getSystemDefaultLabelsIdentifier];
     return [self getLabelsInfoWithLabelKeyArray:labelKeyArray];
 }
 

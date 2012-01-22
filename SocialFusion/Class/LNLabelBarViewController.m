@@ -23,6 +23,7 @@
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
 @synthesize pageCount = _pageCount;
+@synthesize delegate = _delegate;
 
 - (void)dealloc {
     [_scrollView release];
@@ -30,6 +31,7 @@
     [_labelInfoArrayStack release];
     [_pageControl release];
     [_pageIndexStack release];
+    _delegate = nil;
     [super dealloc];
 }
 
@@ -124,6 +126,9 @@
     for (int i = 0; i < self.pageCount; i++) {
         LNLabelPageViewController *pv = (LNLabelPageViewController *)[self.labelPages objectAtIndex:i];
         [pv selectOtherPage:page];
+    }
+    if(label.isParentLabel && [self.delegate respondsToSelector:@selector(labelBarView: didSelectParentLabelAtIndex:)]) {
+        [self.delegate labelBarView:self didSelectParentLabelAtIndex:page * 4 + label.index];
     }
 }
 

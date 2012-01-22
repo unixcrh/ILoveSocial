@@ -50,4 +50,52 @@
     }
 }
 
+- (void)setRenrenUser:(RenrenUser *)renrenUser
+{
+    if (_renrenUser != renrenUser) {
+        [_renrenUser release];
+        _renrenUser = [renrenUser retain];
+        if (!self.managedObjectContext) {
+            self.managedObjectContext = renrenUser.managedObjectContext;
+        }
+    }
+}
+
+- (void)setWeiboUser:(WeiboUser *)weiboUser
+{
+    if (_weiboUser != weiboUser) {
+        [_weiboUser release];
+        _weiboUser = [weiboUser retain];
+        if (!self.managedObjectContext) {
+            self.managedObjectContext = weiboUser.managedObjectContext;
+        }
+    }
+}
+
+- (NSDictionary *)userDict {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            self.currentRenrenUser, kCurrentRenrenUser,
+            self.currentWeiboUser, kCurrentWeiboUser,
+            self.renrenUser, kRenrenUser,
+            self.weiboUser, kWeiboUser, nil];
+}
+
+- (void)setUserDict:(NSDictionary *)userDict {
+    self.currentRenrenUser = [userDict objectForKey:kCurrentRenrenUser];
+    self.currentWeiboUser = [userDict objectForKey:kCurrentWeiboUser];
+    self.renrenUser = [userDict objectForKey:kRenrenUser];
+    self.weiboUser = [userDict objectForKey:kWeiboUser];
+}
+
+- (NSDictionary *)currentUserDict {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            self.currentRenrenUser, kCurrentRenrenUser,
+            self.currentWeiboUser, kCurrentWeiboUser, nil];
+}
+
+- (void)setCurrentUserDict:(NSDictionary *)currentUserDict {
+    self.currentRenrenUser = [currentUserDict objectForKey:kCurrentRenrenUser];
+    self.currentWeiboUser = [currentUserDict objectForKey:kCurrentWeiboUser];
+}
+
 @end

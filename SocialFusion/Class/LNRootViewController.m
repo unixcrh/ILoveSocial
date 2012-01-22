@@ -31,6 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
+    _contentViewController = [[LNContentViewController alloc] initWithlabelIdentifiers:labelIdentifier andUsers:self.userDict];
+    
     [self.view addSubview:self.labelBarViewController.view];
     self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_OFFSET_X, CONTENT_VIEW_OFFSET_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
     [self.view addSubview:self.contentViewController.view];
@@ -46,9 +50,20 @@
     if(self) {
         NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
         _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
-        _contentViewController = [[LNContentViewController alloc] init];
+        _labelBarViewController.delegate = self;
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark LNLabelBarViewController delegate
+
+- (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectParentLabelAtIndex:(NSUInteger)index {
+    self.contentViewController.currentContentIndex = index;
+}
+
+- (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectChildLabelWithIndentifier:(NSString *)identifier inParentLabelAtIndex:(NSUInteger)index {
+    
 }
 
 #pragma mark -

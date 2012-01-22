@@ -20,7 +20,7 @@
 @property NSUInteger page;
 @property (nonatomic, assign) id<LNLabelPageViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *labelInfoSubArray;
-@property (nonatomic, retain) NSMutableArray *labelViews;
+@property (nonatomic, retain, readonly) NSMutableArray *labelViews;
 
 - (id)initWithInfoSubArray:(NSMutableArray *)array pageIndex:(NSUInteger)page;
 - (void)selectOtherPage:(NSUInteger)page;

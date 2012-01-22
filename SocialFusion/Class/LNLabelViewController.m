@@ -96,6 +96,14 @@
     return self.info.isReturnLabel;
 }
 
+- (BOOL)isParentLabel {
+    return self.isRetractable && !self.isReturnLabel;
+}
+
+- (BOOL)isChildLabel {
+    return !self.isRetractable;
+}
+
 - (IBAction)clickTitleButton:(id)sender {
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];

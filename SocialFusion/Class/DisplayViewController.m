@@ -64,7 +64,7 @@
             break;
         }
         case DisplayViewTypeRenren: {
-            FriendListViewController *renrenFriendList = [[(FriendListViewController *)[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
+            FriendListViewController *renrenFriendList = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
             [_viewControllerMap setValue:renrenFriendList forKey:@"人人好友"];
             NSArray *viewControllers = [NSArray arrayWithObjects:renrenFriendList, nil];
             [self.viewControllers addObjectsFromArray:viewControllers];

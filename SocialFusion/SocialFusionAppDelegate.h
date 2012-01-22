@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SocialFusionViewController.h"
-#import "LNRootViewController.h"
 
 @interface SocialFusionAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-//@property (nonatomic, retain) SocialFusionViewController *rootViewController;
-@property (nonatomic, retain) LNRootViewController *rootViewController;
+@property (nonatomic, retain) SocialFusionViewController *rootViewController;
 
 // core data
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;  

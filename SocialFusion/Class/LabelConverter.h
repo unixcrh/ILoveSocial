@@ -3,7 +3,7 @@
 //  SocialFusion
 //
 //  Created by Blue Bitch on 12-1-22.
-//  Copyright (c) 2012年 TJU. All rights reserved.
+//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -44,7 +44,7 @@
 
 + (LabelConverter *)getInstance;
 + (NSArray *)getSystemDefaultLabelsInfo;
++ (NSArray *)getSystemDefaultLabelsIdentifier;
 + (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier;
-//+ (UIViewController)getViewControllerWithIndentifer:(NSString *)indentifer andUsers:(NSArray *)userArray;
 
 @end

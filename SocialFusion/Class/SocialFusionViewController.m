@@ -7,8 +7,7 @@
 //
 
 #import "SocialFusionViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "MainPageViewController.h"
+#import "LNRootViewController.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "WeiboClient.h"
@@ -29,16 +28,6 @@
             hasLoggedInAlertView = _hasLoggedInAlertView;
 @synthesize logoutClient = _logoutClient;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        NSLog(@"init social fusion view controller using nib file %@", nibNameOrNil);
-    }
-    return self;
-}
-
 
 - (void)dealloc
 {
@@ -51,12 +40,11 @@
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidUnload
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    [super viewDidUnload];
+    self.weiboUser = nil;
+    self.renrenUser = nil;
 }
 
 #pragma mark - View lifecycle
@@ -96,21 +84,14 @@
 	}
 }
 
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (IBAction)gotoMain:(id)sender
 {
     if(![RenrenClient authorized] && ![WeiboClient authorized])
         return;
-    MainPageViewController *vc = [[MainPageViewController alloc] init];
-    vc.currentRenrenUser = self.currentRenrenUser;
-    vc.currentWeiboUser  = self.currentWeiboUser;
+    LNRootViewController *vc = [[LNRootViewController alloc] init];
+    self.renrenUser = self.currentRenrenUser;
+    self.weiboUser = self.currentWeiboUser;
+    vc.userDict = self.userDict;
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
 }

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#define kWeiboUser  @"kWeiboUser"
+#define kRenrenUser @"kRenrenUser"
+#define kCurrentWeiboUser  @"kCurrentWeiboUser"
+#define kCurrentRenrenUser @"kCurrentRenrenUser"
+
 @class RenrenUser;
 @class WeiboUser;
 
@@ -22,7 +27,9 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) RenrenUser *currentRenrenUser;
 @property (nonatomic, retain) WeiboUser *currentWeiboUser;
-@property (retain, nonatomic) RenrenUser *renrenUser;
-@property (retain, nonatomic) WeiboUser *weiboUser;
+@property (nonatomic, retain) RenrenUser *renrenUser;
+@property (nonatomic, retain) WeiboUser *weiboUser;
+@property (nonatomic, assign) NSDictionary *currentUserDict;
+@property (nonatomic, assign) NSDictionary *userDict;
 
 @end

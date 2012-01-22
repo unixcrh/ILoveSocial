@@ -17,7 +17,6 @@
 @private
     NSString *_identifier;
     NSString *_labelName;
-    BOOL _isParent;
     BOOL _isRemovable;
     BOOL _isSelected;
     BOOL _isReturnLabel;
@@ -50,6 +49,8 @@
 @property (nonatomic, readonly) BOOL isRetractable;
 @property (nonatomic, readonly) BOOL isRemovable;
 @property (nonatomic, readonly) BOOL isReturnLabel;
+@property (nonatomic, readonly) BOOL isParentLabel;
+@property (nonatomic, readonly) BOOL isChildLabel;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) LabelInfo *info;
