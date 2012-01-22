@@ -18,6 +18,7 @@
     UIPageControl *_pageControl;
     NSUInteger _pageCount;
     NSMutableArray *_pageIndexStack;
+    NSUInteger _currentParentLabelIndex;
     id<LNLabelBarViewControllerDelegate> _delegate;
 }
 

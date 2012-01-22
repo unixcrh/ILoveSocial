@@ -24,7 +24,7 @@
     [super dealloc];
 }
 
-+ (LabelInfo *)labelInfoWithIdentifer:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable {
++ (LabelInfo *)labelInfoWithIdentifier:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable {
     LabelInfo *info = [[[LabelInfo alloc] init] autorelease];
     info.identifier = identifier;
     info.labelName = name;

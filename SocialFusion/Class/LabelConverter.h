@@ -46,5 +46,6 @@
 + (NSArray *)getSystemDefaultLabelsInfo;
 + (NSArray *)getSystemDefaultLabelsIdentifier;
 + (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier;
++ (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)parentIdentifier;
 
 @end

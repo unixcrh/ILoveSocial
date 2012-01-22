@@ -63,7 +63,7 @@
 }
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectChildLabelWithIndentifier:(NSString *)identifier inParentLabelAtIndex:(NSUInteger)index {
-    
+    [self.contentViewController setContentViewAtIndex:index forIdentifier:identifier];
 }
 
 #pragma mark -

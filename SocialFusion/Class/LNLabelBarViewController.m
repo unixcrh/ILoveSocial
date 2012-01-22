@@ -130,6 +130,9 @@
     if(label.isParentLabel && [self.delegate respondsToSelector:@selector(labelBarView: didSelectParentLabelAtIndex:)]) {
         [self.delegate labelBarView:self didSelectParentLabelAtIndex:page * 4 + label.index];
     }
+    else if(label.isChildLabel && [self.delegate respondsToSelector:@selector(labelBarView: didSelectChildLabelWithIndentifier: inParentLabelAtIndex:)]) {
+        [self.delegate labelBarView:self didSelectChildLabelWithIndentifier:label.info.identifier inParentLabelAtIndex:_currentParentLabelIndex];
+    }
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)label {
@@ -175,6 +178,7 @@
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label {
+    _currentParentLabelIndex = pageView.page * 4 + label.index;
     [_scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
     NSMutableArray *labelPages = [[[NSMutableArray alloc]init] autorelease];
     [self pushLabelPages:labelPages];

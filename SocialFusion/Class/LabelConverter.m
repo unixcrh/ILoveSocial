@@ -48,7 +48,7 @@ static LabelConverter *instance = nil;
         NSDictionary *labelConfig = [converter.configMap objectForKey:labelKey];
         NSString *labelName = [labelConfig objectForKey:kLabelName];
         NSNumber *isRetractable = [labelConfig objectForKey:kLabelIsRetractable];
-        LabelInfo *info = [LabelInfo labelInfoWithIdentifer:labelKey labelName:labelName isRetractable:isRetractable.boolValue];
+        LabelInfo *info = [LabelInfo labelInfoWithIdentifier:labelKey labelName:labelName isRetractable:isRetractable.boolValue];
         [result addObject:info];
     }
     return result;
@@ -75,6 +75,11 @@ static LabelConverter *instance = nil;
     return result;
 }
 
-
++ (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)identifier {
+    LabelConverter *converter = [LabelConverter getInstance];
+    NSDictionary *parentLabelConfig = [converter.configMap objectForKey:identifier];
+    NSArray *childLabels = [parentLabelConfig objectForKey:kChildLabels];
+    return [childLabels objectAtIndex:0];
+}
 
 @end

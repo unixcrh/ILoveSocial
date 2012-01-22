@@ -11,11 +11,13 @@
 @interface LNContentViewController : UIViewController {
     NSMutableArray *_contentViewControllerHeap;
     NSUInteger _currentContentIndex;
+    NSMutableArray *_contentViewIdentifierHeap;
 }
 
 @property (nonatomic, retain, readonly) NSMutableArray *contentViewControllerHeap;
 @property (nonatomic) NSUInteger currentContentIndex;
 
-- (id)initWithlabelIdentifiers:(NSArray *)identifers andUsers:(NSDictionary *)userDict;
+- (id)initWithlabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict;
+- (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier;
 
 @end

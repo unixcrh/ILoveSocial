@@ -15,16 +15,19 @@
 #import "FriendListViewController.h"
 
 @interface LNContentViewController()
-- (id)addContentViewWithIndentifer:(NSString *)identifer andUsers:(NSDictionary *)userDict;
+- (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict;
+@property (nonatomic, retain) NSMutableArray *contentViewIndentifierHeap;
 @end
 
 @implementation LNContentViewController
 
 @synthesize contentViewControllerHeap = _contentViewControllerHeap;
 @synthesize currentContentIndex = _currentContentIndex;
+@synthesize contentViewIndentifierHeap = _contentViewIndentifierHeap;
 
 - (void)dealloc {
     [_contentViewControllerHeap release];
+    [_contentViewIndentifierHeap release];
     [super dealloc];
 }
 
@@ -48,40 +51,54 @@
     self = [super init];
     if(self) {
         _contentViewControllerHeap = [[NSMutableArray alloc] init];
+        _contentViewIndentifierHeap = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (id)initWithlabelIdentifiers:(NSArray *)identifers andUsers:(NSDictionary *)userDict {
+- (id)initWithlabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict {
     self = [self init];
     if(self) {
-        for(NSString *identifier in identifers) {
-            id vc = [self addContentViewWithIndentifer:identifier andUsers:userDict];
+        for(NSString *identifier in identifiers) {
+            NSString *childIdentifier = [LabelConverter getDefaultChildIdentifierWithParentIdentifier:identifier];
+            id vc = [self addContentViewWithIndentifier:childIdentifier andUsers:userDict];
             if(!vc)
                 continue;
             [self.contentViewControllerHeap addObject:vc];
-            if([vc isKindOfClass:[CoreDataViewController class]]) {
-                ((CoreDataViewController *)vc).userDict = userDict;
-            }
-                
+            [self.contentViewIndentifierHeap addObject:childIdentifier];
         }
     }
     return self;
 }
 
-- (id)addContentViewWithIndentifer:(NSString *)identifer andUsers:(NSDictionary *)userDict {
+- (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict {
     id result = nil;
-    if([identifer isEqualToString:kParentNewFeed]) {
+    if([identifier isEqualToString:kChildAllNewFeed]) {
         result = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
     }
-    else if([identifer isEqualToString:kParentFriend]) {
+    else if([identifier isEqualToString:kChildRenrenNewFeed]) {
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
+    }
+    else if([identifier isEqualToString:kChildWeiboNewFeed]) {
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
+    }
+    else if([identifier isEqualToString:kChildRenrenFriend]) {
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
     }
-    else if([identifer isEqualToString:KParentUserInfo]) {
+    else if([identifier isEqualToString:kChildWeiboFriend]) {
+        result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFriends] autorelease];
+    }
+    else if([identifier isEqualToString:kChildWeiboFollower]) {
+        result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
+    }
+    else if([identifier isEqualToString:KParentUserInfo]) {
         
     }
-    else if([identifer isEqualToString:kParentInbox]) {
+    else if([identifier isEqualToString:kParentInbox]) {
         
+    }
+    if([result isKindOfClass:[CoreDataViewController class]]) {
+        ((CoreDataViewController *)result).userDict = userDict;
     }
     return result;
 }
@@ -94,6 +111,20 @@
     _currentContentIndex = currentContentIndex;
     vc = [self.contentViewControllerHeap objectAtIndex:_currentContentIndex];
     [self.view addSubview:vc.view];
+}
+
+- (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier {
+    if(index >= self.contentViewControllerHeap.count)
+        return;
+    NSString *currentIdentifier = [self.contentViewIndentifierHeap objectAtIndex:index];
+    if([currentIdentifier isEqualToString:identifier])
+        return;
+    CoreDataViewController *vc = [self.contentViewControllerHeap objectAtIndex:index];
+    [vc.view removeFromSuperview];
+    vc = [self addContentViewWithIndentifier:identifier andUsers:vc.userDict];
+    [self.view addSubview:vc.view];
+    [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc];
+    [self.contentViewIndentifierHeap replaceObjectAtIndex:index withObject:identifier];
 }
 
 @end
