@@ -182,7 +182,11 @@
         [self showBigImage];
         return NO;
     }
-    //   NSLog(@"%@",commandString);
+    else if ([commandString isEqualToString:@"gotoDetail"])
+    {
+        [self exposeCell];
+    }
+
     return YES;
 }
 -(void)exposeCell

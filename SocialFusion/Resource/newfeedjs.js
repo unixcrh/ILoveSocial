@@ -62,8 +62,7 @@ function setTitle(title)
 
 function gotoDetail()
 {
-//	alert("Click");
-
+	window.location.href="//gotoDetail";
 }
 
 

@@ -143,13 +143,9 @@
 -(NSString*)getText
 {
     
+
     
-    
-    
-    
-    return nil;
-    
-    
+    return self.text;
     
     
 }

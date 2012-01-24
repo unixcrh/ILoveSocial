@@ -30,10 +30,7 @@
 
         }
     }];
-    
     [renren getNewFeed:_pageNumber uid:self.renrenUser.userID];
-    
-    
 }
 
 
@@ -41,8 +38,7 @@
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-            //NSLog(@"dict:%@", client.responseJSONObject);
-            
+
             NSArray *array = client.responseJSONObject;
             
             [self processWeiboData:array];

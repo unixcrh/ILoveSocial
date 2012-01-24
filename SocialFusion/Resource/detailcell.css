@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* CSS Document */
+#weibo
+{
+	line-height:120%;
+	font-size:20px;
+	width:282px;
+	color:#525044;
+	word-break:break-all;
+	
+}

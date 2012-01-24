@@ -286,7 +286,7 @@
         
        result.message=[dict objectForKey:@"text"];
         
-        NSLog(@"%@",result.message);
+     //   NSLog(@"%@",result.message);
         result.cellheight=[NSNumber numberWithInt:height];
         return result;
         

@@ -8,7 +8,7 @@
 
 #import "StatusCommentCell.h"
 #import <QuartzCore/QuartzCore.h>
-#import "CommonFunction.h";
+#import "CommonFunction.h"
 @implementation StatusCommentCell
 @synthesize defaultHeadImageView = _defaultHeadImageView;
 @synthesize headImageView = _headImageView;
@@ -19,20 +19,15 @@
 
 +(float)heightForCell:(StatusCommentData*)feedData
 {
-    
- 
-            NSString* tempString=[feedData getText];
-            CGSize size = CGSizeMake(212, 1000);
-            CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
-                                      constrainedToSize:size];
-            
-            if (labelSize.height<50)
-            {
-                return 70;
-            }
-            
-            return labelSize.height+20;
-          
+    NSString* tempString=[feedData getText];
+    CGSize size = CGSizeMake(212, 1000);
+    CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+                              constrainedToSize:size];
+    if (labelSize.height<50)
+    {
+        return 70;
+    }
+    return labelSize.height+20;
 }
 
 
@@ -63,7 +58,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-     
+        
     }
     return self;
 }
@@ -91,7 +86,7 @@
 -(void)configureCell:(StatusCommentData*)feedData
 {
     
-
+    
     //头像
     [self.headImageView setImage:nil];
     
@@ -125,14 +120,11 @@
     //时间
     NSDate* FeedDate=[feedData getUpdateTime];
     
-    //NSLog(@"%@",FeedDate);
-    
+
     
     NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
-    //NSLog(@"%@",tempString);
-    
-    
+
     
     self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
                                  self.time.frame.size.width,self.time.frame.size.height); 
@@ -141,25 +133,13 @@
     
     
     
-      
+    
 }
 
 
 -(void)setUserHeadImage:(UIImage*)image
 {
-    /*
-     CATransition *animation = [CATransition animation];
-     animation.delegate = self;
-     animation.duration = 0.3f;
-     animation.timingFunction = UIViewAnimationCurveEaseInOut;
-     animation.fillMode = kCAFillModeForwards;
-     animation.removedOnCompletion = NO;
-     [animation setType:@"kCATransitionFade"];
-     //    [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-     [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:@"animationID"]; 
-     */
     [_headImageView setImage:image];
-    
 }
 
 

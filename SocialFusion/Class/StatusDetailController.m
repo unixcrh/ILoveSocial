@@ -18,7 +18,8 @@
 #import "UIImageView+DispatchLoad.h"
 #import "StatusDetailController.h"
 #import "StatusCommentData+StatusCommentData_Addition.h"
-
+#import "CommonFunction.h"
+#import "NSString+HTMLSet.h"
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
@@ -28,15 +29,10 @@
 {
     _nameLabel.text=[_feedData getFeedName];
     
-    _statusLabel.text=_feedData.message;
+ 
     
-    CGSize size = CGSizeMake(271, 1000);
-    CGSize labelSize = [_statusLabel.text sizeWithFont:_statusLabel.font 
-                                    constrainedToSize:size];
-    _statusLabel.frame = CGRectMake(_statusLabel.frame.origin.x, _statusLabel.frame.origin.y,
-                                  _statusLabel.frame.size.width, labelSize.height);
-    _statusLabel.lineBreakMode = UILineBreakModeWordWrap;
-    _statusLabel.numberOfLines = 0;
+ 
+
     
     
     NSData *imageData = nil;
@@ -47,45 +43,37 @@
         _headImage.image = [UIImage imageWithData:imageData];
     }
   
-        if (_feedData.pic_URL!=nil)
-        {
-            if([Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext]) {
-                imageData = [Image imageWithURL:_feedData.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
-            }
-            if(imageData != nil) {
-                _picImage.image = [UIImage imageWithData:imageData];
-                     }
-        }
+     
+    _time.text=[CommonFunction getTimeBefore:_feedData.update_Time];
     
-    if (_picImage.image!=nil)
-    {
-    _picImage.frame=CGRectMake(20,_statusLabel.frame.origin.y+_statusLabel.frame.size.height+10,266, 266/_picImage.image.size.width*_picImage.image.size.height);
-    }
-    else
-    {
-        _picImage.frame=CGRectMake(20,_statusLabel.frame.origin.y+_statusLabel.frame.size.height+10,0,0);
-
-    }
-    
-    _replyButton.frame=CGRectMake(_replyButton.frame.origin.x, _picImage.frame.origin.y+_picImage.frame.size.height+20, _replyButton.frame.size.width, _replyButton.frame.size.height);
-    
-    _repostButton.frame=CGRectMake(_repostButton.frame.origin.x, _picImage.frame.origin.y+_picImage.frame.size.height+20, _repostButton.frame.size.width, _repostButton.frame.size.height);
-    
-   
-    
-    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2,390)];
-      [_firstView setContentSize:CGSizeMake(self.view.frame.size.width,  _repostButton.frame.origin.y+70)];                                                 
     
     
     
+    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2,390)];
     ((UIScrollView*)self.view).pagingEnabled=YES;
     ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
-   
     ((UIScrollView*)self.view).directionalLockEnabled=YES;
     self.tableView.frame=CGRectMake(306, 0, 306, 390);
     [((UIScrollView*)self.view) addSubview:self.tableView];
     
     ((UIScrollView*)self.view).delegate=self;
+    
+    
+    
+    
+    
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
+    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    
+
+    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
+
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    [infoText release];
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
+    
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -212,7 +200,7 @@
             if(!client.hasError) {
                 NSArray *array = client.responseJSONObject;
                 for(NSDictionary *dict in array) {
-                    
+                        NSLog(@"%@",dict);
                     
                     StatusCommentData* commentsData=[StatusCommentData insertNewComment:0 Dic:dict inManagedObjectContext:self.managedObjectContext];
                     [_feedData addCommentsObject:commentsData];
@@ -229,16 +217,7 @@
                 
                 _loading=NO;
                 [self.tableView reloadData];
-                /*
-                 if(_completing==YES)
-                 {
-                 
-                 }
-                 else
-                 {
-                 _completing=YES;
-                 }
-                 */
+      
             }
             
             
@@ -256,7 +235,7 @@
         [weibo setCompletionBlock:^(WeiboClient *client) {
             if(!client.hasError) {
                 
-                NSLog(@"%@",client.responseJSONObject);
+  
                 NSArray *array = client.responseJSONObject;
                 for(NSDictionary *dict in array) {
                     
@@ -380,7 +359,6 @@
     }
     else
     {
-      //  NSLog(@"%d",number);
         return number+1;
     }
 }
@@ -391,85 +369,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     static NSString *StatusComentCell = @"StatusCommentCell";
-    //static NSString *StatusCell = @"NewFeedStatusCell";
-   // static NSString *RepostStatusCell=@"NewFeedRepostCell";
-    
-    /*
-    if (indexPath.row==0)
-    {
-        NewFeedStatusCell* cell;
-        if ([_feedData getPostName]==nil)
-        {
-            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];   
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusCell" owner:self options:nil] ;
-             //   cell=_feedStatusCel; 
-            }
-            
-            
-        }
-        else
-        {
-            cell = (NewFeedStatusWithRepostcell *)[tableView dequeueReusableCellWithIdentifier:RepostStatusCell];   
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedStatusWithRepostcell" owner:self options:nil] ;
-              //  cell=_feedRepostStatusCel; 
-            }
-        }
-        
-        [cell configureCell:_feedData];
-        return cell;        
-    }
-    
-    
-    
-    if (_showMoreButton==YES)
-    {
-        
-        
-        if (indexPath.row==1)
-        {
-            
-            UITableViewCell* cell=[[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 60)]; 
-            [cell.contentView addSubview:self.loadMoreDataButton];
-            return cell;
-        }
-        
-        else 
-        {
-            
-            StatusCommentCell* cell;
-            
-            cell = (StatusCommentCell *)[tableView dequeueReusableCellWithIdentifier:StatusComentCell];
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"StatusCommentCell" owner:self options:nil];
-                cell = _commentCel;
-            }
-//            indexPath=[[indexPath indexPathByRemovingLastIndex] indexPathByRemovingLastIndex];
-
-            [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-            return cell;
-        }
-    }
-    else
-    {*/
-        
-    
      if (_showMoreButton==NO)
      {
         StatusCommentCell* cell;
-        
         cell = (StatusCommentCell *)[tableView dequeueReusableCellWithIdentifier:StatusComentCell];
         if (cell == nil) {
             [[NSBundle mainBundle] loadNibNamed:@"StatusCommentCell" owner:self options:nil];
             cell = _commentCel;
         }
-        
-     
-        
         [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         return cell;
      }

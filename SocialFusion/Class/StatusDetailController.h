@@ -21,20 +21,18 @@
    
     int _pageNumber;
     BOOL _showMoreButton;
-    NewFeedData* _feedData;
+    NewFeedRootData* _feedData;
     
     
     IBOutlet UIImageView* _headImage;
-    IBOutlet UIImageView* _picImage;
+    IBOutlet UIImageView* _style;
+    IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
-    IBOutlet UILabel* _statusLabel;
-    
-    IBOutlet UIScrollView *_firstView;
-    IBOutlet UIButton* _repostButton;
-    IBOutlet UIButton* _replyButton;
+    IBOutlet UIWebView* _webView;
+
     //   BOOL _completing;
 }
-@property (nonatomic, retain) NewFeedData* feedData;
+@property (nonatomic, retain) NewFeedRootData* feedData;
 
 -(void)loadData;
 @end
