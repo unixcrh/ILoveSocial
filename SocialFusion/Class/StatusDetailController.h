@@ -21,7 +21,7 @@
    
     int _pageNumber;
     BOOL _showMoreButton;
-    NewFeedRootData* _feedData;
+
     
     
     IBOutlet UIImageView* _headImage;

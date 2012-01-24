@@ -65,23 +65,6 @@
 
 
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    [super setHighlighted:highlighted animated:animated];
-    //NSLog(@"highlight:%d", highlighted);
-    if(highlighted == NO && self.selected == YES)
-        return;
-    self.userName.highlighted = highlighted;
-    
-}   
-
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    //NSLog(@"selected:%d", selected);
-    self.userName.highlighted = selected;
-    
-}
 
 -(void)configureCell:(StatusCommentData*)feedData
 {
@@ -93,6 +76,8 @@
     
     //状态
     self.status.text=[feedData getText];
+    
+//    NSLog(@"%@",self.status.text);
     
     CGSize size = CGSizeMake(212, 1000);
     CGSize labelSize = [self.status.text sizeWithFont:self.status.font 
@@ -122,14 +107,14 @@
     
 
     
-    NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
+   // NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
 
     
     self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
                                  self.time.frame.size.width,self.time.frame.size.height); 
-    self.time.text=tempString ;
-    [tempString release];
+ //   self.time.text=tempString ;
+  //  [tempString release];
     
     
     

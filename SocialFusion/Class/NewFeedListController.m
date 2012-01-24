@@ -387,7 +387,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     else//展开时的cell
     {
         NewFeedDetailViewCell* cell;
-        NewFeedData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         if ([a class]==[NewFeedData class])
         {
@@ -571,9 +571,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 {
     [self.tableView cellForRowAtIndexPath:indexPath].selected=false;
     self.tableView.allowsSelection=false;
-    //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
-    
-    //_openedCell=indexPath.row;
     _indexPath=[indexPath retain];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
