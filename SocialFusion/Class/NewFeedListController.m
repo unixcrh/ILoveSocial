@@ -60,7 +60,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // if(_type == RelationshipViewTypeRenrenFriends && self.currentRenrenUser.friends.count > 0)
+    // if(_type == RelationshipViewTypeRenrenFriends && self.renrenUser.friends.count > 0)
     //  return;
     //return;
     _pageNumber=0;
@@ -96,7 +96,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     NSPredicate *predicate;
     NSSortDescriptor *sort;
     NSSortDescriptor *sort2;
-    predicate = [NSPredicate predicateWithFormat:@"SELF IN %@||SELF IN %@", self.currentWeiboUser.newFeed, self.currentRenrenUser.newFeed];
+    predicate = [NSPredicate predicateWithFormat:@"SELF IN %@||SELF IN %@", self.weiboUser.newFeed, self.renrenUser.newFeed];
     //  sort = [[NSSortDescriptor alloc] initWithKey:@"1" ascending:YES];
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:NO];
     sort2 = [[NSSortDescriptor alloc] initWithKey:@"get_Time" ascending:YES];
@@ -171,9 +171,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         NSLog(@"%@",dict);
         int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
         
-        NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.currentWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+        NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.weiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
         
-        [self.currentWeiboUser addNewFeedObject:data];
+        [self.weiboUser addNewFeedObject:data];
         
     }
     
@@ -197,37 +197,37 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             
             
-            NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            NewFeedBlog* data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.renrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
             
-            [self.currentRenrenUser addNewFeedObject:data]; 
+            [self.renrenUser addNewFeedObject:data]; 
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==30)
         {
             
-            NewFeedUploadPhoto* data = [NewFeedUploadPhoto insertNewFeed:0   getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            NewFeedUploadPhoto* data = [NewFeedUploadPhoto insertNewFeed:0   getDate:_currentTime  Owner:self.renrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
             
-            [self.currentRenrenUser addNewFeedObject:data]; 
+            [self.renrenUser addNewFeedObject:data]; 
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==33)
         {
-            NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            NewFeedShareAlbum* data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.renrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
             
-            [self.currentRenrenUser addNewFeedObject:data]; 
+            [self.renrenUser addNewFeedObject:data]; 
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==32)
         {
             
             //   NSLog(@"%@",dict);
-            NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            NewFeedSharePhoto* data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.renrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
             
-            [self.currentRenrenUser addNewFeedObject:data]; 
+            [self.renrenUser addNewFeedObject:data]; 
         }
         else
         {
             
-            NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.currentRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
+            NewFeedData* data = [NewFeedData insertNewFeed:0  height:scrollHeight getDate:_currentTime  Owner:self.renrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
             
-            [self.currentRenrenUser addNewFeedObject:data];
+            [self.renrenUser addNewFeedObject:data];
         }
     }
     [self showLoadMoreDataButton];
