@@ -7,7 +7,7 @@
 //
 
 #import "DisplayViewController.h"
-#import "NewFeedUserListController.h"
+#import "NewFeedSelfListController.h"
 #import "FriendListViewController.h"
 
 @interface DisplayViewController()

@@ -19,11 +19,11 @@
 #import "NewFeedCellHeight.h"
 
 typedef   enum kUserFeed {
-    kRenrenUserFeed = 0,
-    kWeiboUserFeed  = 1,
+    kRenrenSelfFeed = 0,
+    kWeiboSelfFeed  = 1,
     kAllUserFeed    = 2,
-    kRenrenSelfFeed=3,
-    kWeiboSelfFeed=4
+    kRenrenUserFeed = 3,
+    kWeiboUserFeed  = 4,
 } kUserFeed;
 
 @interface NewFeedListController : EGOTableViewController {

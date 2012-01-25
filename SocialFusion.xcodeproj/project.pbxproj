@@ -60,7 +60,7 @@
 		73BA300314C6614300813E0E /* NewFeedUploadPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BA300214C6614300813E0E /* NewFeedUploadPhoto.m */; };
 		73BA300714C6676C00813E0E /* NewFeedSharePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BA300614C6676C00813E0E /* NewFeedSharePhoto.m */; };
 		73C6582914CEB6750027D3BE /* normalcelldetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 73C6582814CEB6750027D3BE /* normalcelldetail.html */; };
-		73C6C9F514CAF06A0031BDD0 /* NewFeedUserListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C6C9F414CAF06A0031BDD0 /* NewFeedUserListController.m */; };
+		73C6C9F514CAF06A0031BDD0 /* NewFeedSelfListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C6C9F414CAF06A0031BDD0 /* NewFeedSelfListController.m */; };
 		73C99C9614BF051D00B251DF /* NewFeedSharePhoto+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */; };
 		73C99C9B14BF0FE900B251DF /* sharephotocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73C99C9A14BF0FE900B251DF /* sharephotocell.html */; };
 		73CA9B3814C308E500D85492 /* NewFeedCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CA9B3714C308E500D85492 /* NewFeedCellHeight.m */; };
@@ -302,8 +302,8 @@
 		73BA300514C6676C00813E0E /* NewFeedSharePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedSharePhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.h"; sourceTree = "<group>"; };
 		73BA300614C6676C00813E0E /* NewFeedSharePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedSharePhoto.m; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.m"; sourceTree = "<group>"; };
 		73C6582814CEB6750027D3BE /* normalcelldetail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = normalcelldetail.html; sourceTree = "<group>"; };
-		73C6C9F314CAF06A0031BDD0 /* NewFeedUserListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedUserListController.h; sourceTree = "<group>"; };
-		73C6C9F414CAF06A0031BDD0 /* NewFeedUserListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedUserListController.m; sourceTree = "<group>"; };
+		73C6C9F314CAF06A0031BDD0 /* NewFeedSelfListController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NewFeedSelfListController.h; sourceTree = "<group>"; };
+		73C6C9F414CAF06A0031BDD0 /* NewFeedSelfListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedSelfListController.m; sourceTree = "<group>"; };
 		73C99C9414BF051D00B251DF /* NewFeedSharePhoto+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedSharePhoto+Addition.h"; sourceTree = "<group>"; };
 		73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedSharePhoto+Addition.m"; sourceTree = "<group>"; };
 		73C99C9A14BF0FE900B251DF /* sharephotocell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sharephotocell.html; sourceTree = "<group>"; };
@@ -592,8 +592,8 @@
 				7309DDBC1447E93300774011 /* NewFeedCell */,
 				73906659143F095C00835332 /* NewFeedListController.h */,
 				7390665A143F095C00835332 /* NewFeedListController.m */,
-				73C6C9F314CAF06A0031BDD0 /* NewFeedUserListController.h */,
-				73C6C9F414CAF06A0031BDD0 /* NewFeedUserListController.m */,
+				73C6C9F314CAF06A0031BDD0 /* NewFeedSelfListController.h */,
+				73C6C9F414CAF06A0031BDD0 /* NewFeedSelfListController.m */,
 				73CA9B3614C308E500D85492 /* NewFeedCellHeight.h */,
 				73CA9B3714C308E500D85492 /* NewFeedCellHeight.m */,
 				73DE4B82144E5EDE00547931 /* CommonFunction.h */,
@@ -1368,7 +1368,7 @@
 				E1779BA914C74D38001CE627 /* LNLabelPageViewController.m in Sources */,
 				E1779BAE14C74EFD001CE627 /* LNLabelViewController.m in Sources */,
 				736BA58114C802AE009037EE /* NSString+HTMLSet.m in Sources */,
-				73C6C9F514CAF06A0031BDD0 /* NewFeedUserListController.m in Sources */,
+				73C6C9F514CAF06A0031BDD0 /* NewFeedSelfListController.m in Sources */,
 				E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */,
 				E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */,
 			);

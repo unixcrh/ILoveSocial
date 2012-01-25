@@ -22,7 +22,7 @@
 #import "StatusDetailController.h"
 #import "UIImage+Addition.h"
 #import "ShowImage.h"
-#import "NewFeedUserListController.h"
+#import "NewFeedSelfListController.h"
 
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
@@ -38,30 +38,30 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 +(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style
 {
     NewFeedListController* userList;
-    if (style==kRenrenUserFeed)
+    if (style==kRenrenSelfFeed)
     {
-        userList=[[[NewFeedUserListController alloc] init] autorelease];
-        [(NewFeedUserListController*)userList setStyle:kRenrenUserFeed];
+        userList=[[[NewFeedSelfListController alloc] init] autorelease];
+        [(NewFeedSelfListController*)userList setStyle:kRenrenSelfFeed];
     }
-    else if (style==kWeiboUserFeed)
+    else if (style==kWeiboSelfFeed)
     {
-        userList=[[[NewFeedUserListController alloc] init] autorelease];
-        [(NewFeedUserListController*)userList setStyle:kWeiboUserFeed];        
+        userList=[[[NewFeedSelfListController alloc] init] autorelease];
+        [(NewFeedSelfListController*)userList setStyle:kWeiboSelfFeed];        
     }
     else if (style==kAllUserFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
         [userList setStyle:kAllUserFeed];
     }
-    else if (style==kRenrenSelfFeed)
+    else if (style==kRenrenUserFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
-        [userList setStyle:kRenrenSelfFeed];
+        [userList setStyle:kRenrenUserFeed];
     }
-    else if (style==kWeiboSelfFeed)
+    else if (style==kWeiboUserFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
-        [userList setStyle:kWeiboSelfFeed];
+        [userList setStyle:kWeiboUserFeed];
     }
     return userList;
 }

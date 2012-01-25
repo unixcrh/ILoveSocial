@@ -44,9 +44,10 @@
 		<true/>
         <key>kChildLabels</key>
 		<array>
-			<string>kChildRenrenFriend</string>
             <string>kChildWeiboFriend</string>
             <string>kChildWeiboFollower</string>
+			<string>kChildRenrenFriend</string>
+            <string>kChildWeiboFriend</string>
 		</array>
 	</dict>
     <key>kChildRenrenFriend</key>
@@ -78,13 +79,23 @@
 		<true/>
         <key>kChildLabels</key>
 		<array>
-            <string>kChildRenrenNewFeed</string>
-            <string>kChildWeiboNewFeed</string>
-            <string>kChildRenrenInfo</string>
-            <string>kChildWeiboInfo</string>
-			<string>kChildAlbum</string>
-            <string>kChildBlog</string>
+            <string>kChildSelfRenrenNewFeed</string>
+            <string>kChildSelfWeiboNewFeed</string>
 		</array>
+	</dict>
+    <key>kChildSelfRenrenNewFeed</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>人人新鲜事</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+	</dict>
+    <key>kChildSelfWeiboNewFeed</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>微博新鲜事</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
 	</dict>
     <key>kChildAlbum</key>
 	<dict>
