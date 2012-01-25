@@ -51,10 +51,28 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     else if (style==kAllUserFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
-        //[(NewFeedUserListController*)userList setStyle:kAllUserFeed]; 
+        [userList setStyle:kAllUserFeed];
+    }
+    else if (style==kRenrenSelfFeed)
+    {
+        userList=[[[NewFeedListController alloc] init] autorelease]; 
+        [userList setStyle:kRenrenSelfFeed];
+    }
+    else if (style==kWeiboSelfFeed)
+    {
+        userList=[[[NewFeedListController alloc] init] autorelease]; 
+        [userList setStyle:kWeiboSelfFeed];
     }
     return userList;
 }
+
+
+
+-(void)setStyle:(int)style
+{
+    _style=style;
+}
+
 
 
 - (void)viewDidLoad
@@ -260,9 +278,20 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     _pageNumber++;
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
+    if (_style==2)
+    {
     [self loadMoreRenrenData];
     [self loadMoreWeiboData];
+    }
+    else if (_style==3)
+    {
+        [self loadMoreRenrenData];
+    }
     
+    else if (_style==4)
+    {
+        [self loadMoreWeiboData];
+    }
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

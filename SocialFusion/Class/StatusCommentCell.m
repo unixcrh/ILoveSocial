@@ -107,10 +107,10 @@
     
 
     
-   // NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
+    //NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
 
-    
+    [self.time setText:[CommonFunction getTimeBefore:FeedDate]];
     self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
                                  self.time.frame.size.width,self.time.frame.size.height); 
  //   self.time.text=tempString ;
