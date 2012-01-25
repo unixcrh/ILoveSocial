@@ -73,11 +73,12 @@
 }
 
 - (NSDictionary *)userDict {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            self.currentRenrenUser, kCurrentRenrenUser,
-            self.currentWeiboUser, kCurrentWeiboUser,
-            self.renrenUser, kRenrenUser,
-            self.weiboUser, kWeiboUser, nil];
+    NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
+    if(self.renrenUser)
+        [result setObject:self.renrenUser forKey:kRenrenUser];
+    if(self.weiboUser)
+        [result setObject:self.weiboUser forKey:kWeiboUser];
+    return result;
 }
 
 - (void)setUserDict:(NSDictionary *)userDict {
