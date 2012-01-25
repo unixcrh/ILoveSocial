@@ -12,7 +12,7 @@
 
 
 
--(void)initWithFeedData:(NewFeedData*)_feedData  context:(NSManagedObjectContext*)context
+-(void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context
 {
     detailController.feedData=_feedData;
     detailController.managedObjectContext=context;

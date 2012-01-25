@@ -72,10 +72,10 @@
         result = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
     }
     else if([identifier isEqualToString:kChildRenrenNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
     }
     else if([identifier isEqualToString:kChildWeiboNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
     }
     else if([identifier isEqualToString:kChildRenrenFriend]) {
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];

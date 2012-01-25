@@ -10,9 +10,7 @@
 #import "NewFeedListController.h"
 @interface NewFeedUserListController : NewFeedListController
 {
-    int _style;
-}
 
--(void)setStyle:(int)style;
+}
 
 @end

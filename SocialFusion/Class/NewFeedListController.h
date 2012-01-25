@@ -22,6 +22,8 @@ typedef   enum kUserFeed {
     kRenrenUserFeed = 0,
     kWeiboUserFeed  = 1,
     kAllUserFeed    = 2,
+    kRenrenSelfFeed=3,
+    kWeiboSelfFeed=4
 } kUserFeed;
 
 @interface NewFeedListController : EGOTableViewController {
@@ -40,9 +42,10 @@ typedef   enum kUserFeed {
     //int _openedCell;
     int _pageNumber;
     
-    
+        int _style;
     
     NewFeedCellHeight* _cellHeightHelper;
+    
     
     // UIWebView* _webView;
 }
@@ -57,4 +60,7 @@ typedef   enum kUserFeed {
 -(void)processWeiboData:(NSArray*)array;
 - (void)clearData;
 -(IBAction)resetToNormalList;
+
+-(void)setStyle:(int)style;
+
 @end

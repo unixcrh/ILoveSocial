@@ -51,10 +51,28 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     else if (style==kAllUserFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
-        //[(NewFeedUserListController*)userList setStyle:kAllUserFeed]; 
+        [userList setStyle:kAllUserFeed];
+    }
+    else if (style==kRenrenSelfFeed)
+    {
+        userList=[[[NewFeedListController alloc] init] autorelease]; 
+        [userList setStyle:kRenrenSelfFeed];
+    }
+    else if (style==kWeiboSelfFeed)
+    {
+        userList=[[[NewFeedListController alloc] init] autorelease]; 
+        [userList setStyle:kWeiboSelfFeed];
     }
     return userList;
 }
+
+
+
+-(void)setStyle:(int)style
+{
+    _style=style;
+}
+
 
 
 - (void)viewDidLoad
@@ -260,9 +278,20 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     _pageNumber++;
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
+    if (_style==2)
+    {
     [self loadMoreRenrenData];
     [self loadMoreWeiboData];
+    }
+    else if (_style==3)
+    {
+        [self loadMoreRenrenData];
+    }
     
+    else if (_style==4)
+    {
+        [self loadMoreWeiboData];
+    }
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -387,7 +416,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     else//展开时的cell
     {
         NewFeedDetailViewCell* cell;
-        NewFeedData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         if ([a class]==[NewFeedData class])
         {
@@ -571,9 +600,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 {
     [self.tableView cellForRowAtIndexPath:indexPath].selected=false;
     self.tableView.allowsSelection=false;
-    //NSLog(@"%@",[self.fetchedResultsController objectAtIndexPath:indexPath]);
-    
-    //_openedCell=indexPath.row;
     _indexPath=[indexPath retain];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];

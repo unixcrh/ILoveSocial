@@ -12,5 +12,5 @@
 {
     IBOutlet StatusDetailController* detailController;
 }
--(void)initWithFeedData:(NewFeedData*)_feedData  context:(NSManagedObjectContext*)context;
+-(void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context;
 @end

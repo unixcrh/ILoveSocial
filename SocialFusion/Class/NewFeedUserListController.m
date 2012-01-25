@@ -50,10 +50,7 @@
 }
 
 
--(void)setStyle:(int)style
-{
-    _style=style;
-}
+
 
 - (void)loadMoreData {
     if(_loading)
