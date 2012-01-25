@@ -60,12 +60,7 @@
     self = [self init];
     if(self) {
         for(NSString *identifier in identifiers) {
-            NSString *childIdentifier = [LabelConverter getDefaultChildIdentifierWithParentIdentifier:identifier];
-            id vc = [self addContentViewWithIndentifier:childIdentifier andUsers:userDict];
-            if(!vc)
-                continue;
-            [self.contentViewControllerHeap addObject:vc];
-            [self.contentViewIndentifierHeap addObject:childIdentifier];
+            [self addUserContentViewWithIndentifier:identifier andUsers:userDict];
         }
     }
     return self;
@@ -91,11 +86,10 @@
     else if([identifier isEqualToString:kChildWeiboFollower]) {
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
     }
-    else if([identifier isEqualToString:KParentUserInfo]) {
-        
-    }
-    else if([identifier isEqualToString:kParentInbox]) {
-        
+    // test code
+    else {
+        NSLog(@"nil identifier:%@", identifier);
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
     }
     if([result isKindOfClass:[CoreDataViewController class]]) {
         ((CoreDataViewController *)result).userDict = userDict;
@@ -125,6 +119,16 @@
     [self.view addSubview:vc.view];
     [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc];
     [self.contentViewIndentifierHeap replaceObjectAtIndex:index withObject:identifier];
+}
+
+- (void)addUserContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict {
+    NSString *childIdentifier = [LabelConverter getDefaultChildIdentifierWithParentIdentifier:identifier];
+    id vc = [self addContentViewWithIndentifier:childIdentifier andUsers:userDict];
+    if(!vc)
+        return;
+    [self.contentViewControllerHeap addObject:vc];
+    NSLog(@"content view controller heap count:%d", self.contentViewControllerHeap.count);
+    [self.contentViewIndentifierHeap addObject:childIdentifier];
 }
 
 @end

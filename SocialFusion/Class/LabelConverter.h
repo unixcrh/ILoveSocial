@@ -15,6 +15,8 @@
 #define kChildWeiboNewFeed  @"kChildWeiboNewFeed"
 
 #define KParentUserInfo     @"KParentUserInfo"
+#define kChildRenrenNewFeed @"kChildRenrenNewFeed"
+#define kChildWeiboNewFeed  @"kChildWeiboNewFeed"
 #define kChildRenrenAlbum   @"kChildAlbum"
 #define kChildRenrenBlog    @"kChildBlog"
 #define kChildRenrenInfo    @"kChildRenrenInfo"
@@ -29,12 +31,18 @@
 #define kChildNewMessage    @"kChildNewMessage"
 #define kChildNewFriend     @"kChildNewFriend"
 
+#define kParentRenrenUser       @"kParentRenrenUser"
+#define kChildRenrenUserNewFeed @"kChildRenrenUserNewFeed"
+#define kChildRenrenUserBlog    @"kChildRenrenUserBlog"
+
+#define kParentWeiboUser        @"kParentWeiboUser"
+
 #define kSystemDefaultLabels    @"kSystemDefaultLabels"
 #define kLabelName              @"kLabelName"
 #define kLabelIsRetractable     @"kLabelIsRetractable"
 #define kChildLabels            @"kChildLabels"
 
-
+@class LabelInfo;
 
 @interface LabelConverter : NSObject {
     NSDictionary *_configMap;
@@ -43,9 +51,10 @@
 @property (nonatomic, readonly) NSDictionary *configMap;
 
 + (LabelConverter *)getInstance;
++ (LabelInfo *)getLabelInfoWithIdentifier:(NSString *)identifier;
 + (NSArray *)getSystemDefaultLabelsInfo;
 + (NSArray *)getSystemDefaultLabelsIdentifier;
-+ (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier;
++ (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier andParentLabelName:(NSString *)name;
 + (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)parentIdentifier;
 
 @end

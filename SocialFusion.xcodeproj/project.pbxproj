@@ -101,6 +101,7 @@
 		E11DF22714C5810000DDC51A /* head_renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22514C5810000DDC51A /* head_renren@2x.png */; };
 		E11DF22814C5810000DDC51A /* head_wb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22614C5810000DDC51A /* head_wb@2x.png */; };
 		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
+		E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */; };
 		E1779B9214C73B3B001CE627 /* LNRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9014C73B3B001CE627 /* LNRootViewController.m */; };
 		E1779B9314C73B3B001CE627 /* LNRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9114C73B3B001CE627 /* LNRootViewController.xib */; };
 		E1779B9714C73DDB001CE627 /* LNContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9514C73DDB001CE627 /* LNContentViewController.m */; };
@@ -366,6 +367,8 @@
 		E11DF22514C5810000DDC51A /* head_renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_renren@2x.png"; sourceTree = "<group>"; };
 		E11DF22614C5810000DDC51A /* head_wb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_wb@2x.png"; sourceTree = "<group>"; };
 		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
+		E12F175C14CF080800B32229 /* NSNotificationCenter+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Addition.h"; sourceTree = "<group>"; };
+		E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Addition.m"; sourceTree = "<group>"; };
 		E1779B8F14C73B3B001CE627 /* LNRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNRootViewController.h; sourceTree = "<group>"; };
 		E1779B9014C73B3B001CE627 /* LNRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNRootViewController.m; sourceTree = "<group>"; };
 		E1779B9114C73B3B001CE627 /* LNRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNRootViewController.xib; sourceTree = "<group>"; };
@@ -756,6 +759,8 @@
 				73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */,
 				73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */,
 				73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */,
+				E12F175C14CF080800B32229 /* NSNotificationCenter+Addition.h */,
+				E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */,
 			);
 			name = Categories;
 			path = SocialFusion/Class;
@@ -1365,6 +1370,7 @@
 				736BA58114C802AE009037EE /* NSString+HTMLSet.m in Sources */,
 				73C6C9F514CAF06A0031BDD0 /* NewFeedUserListController.m in Sources */,
 				E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */,
+				E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

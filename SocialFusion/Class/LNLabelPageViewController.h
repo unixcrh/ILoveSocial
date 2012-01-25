@@ -28,6 +28,7 @@
 - (void)selectLastLabel;
 - (void)openLabelPostAnimation;
 - (void)closeParentLabelAnimation;
+- (void)closePageWithReturnLabel:(LNLabelViewController *)labelView;
 
 @end
 
@@ -37,5 +38,6 @@
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)label;
 - (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label;
 - (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabel:(LNLabelViewController *)label;
+- (void)labelPageView:(LNLabelPageViewController *)pageView didFinishCloseLabel:(LNLabelViewController *)label;
 
 @end

@@ -10,6 +10,7 @@
 #import "LNLabelPageViewController.h"
 
 @protocol LNLabelBarViewControllerDelegate;
+typedef void (^PopPageMnuallyCompletion)(void);
 
 @interface LNLabelBarViewController : UIViewController<UIScrollViewDelegate ,LNLabelPageViewControllerDelegate> {
     UIScrollView *_scrollView;
@@ -20,6 +21,7 @@
     NSMutableArray *_pageIndexStack;
     NSUInteger _currentParentLabelIndex;
     id<LNLabelBarViewControllerDelegate> _delegate;
+    PopPageMnuallyCompletion _popPageManuallyCompletion;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;

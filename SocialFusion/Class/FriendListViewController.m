@@ -18,6 +18,7 @@
 #import "WeiboClient.h"
 #import "MainPageViewController.h"
 #import "MainPageViewController.h"
+#import "NSNotificationCenter+Addition.h"
 
 #define kCustomRowCount 7
 
@@ -111,10 +112,12 @@
     [self.tableView reloadData];
     
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSDictionary *dic = [NSMutableDictionary dictionary];
-    NSLog(@"send didSelectFriend notification. friend name:%@, type:%d", usr.name, _type);
-    [dic setValue:[NSNumber numberWithInt:_type] forKey:kDisSelectFirendType];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectFriendNotification object:usr userInfo:dic];
+    NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
+    if([usr isMemberOfClass:[RenrenUser class]])
+        [userDict setObject:usr forKey:kRenrenUser];
+    else if([usr isMemberOfClass:[WeiboUser class]]) 
+        [userDict setObject:usr forKey:kWeiboUser];
+    [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 

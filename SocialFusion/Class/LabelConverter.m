@@ -42,13 +42,9 @@ static LabelConverter *instance = nil;
 }
 
 + (NSArray *)getLabelsInfoWithLabelKeyArray:(NSArray *)labelKeyArray{
-    LabelConverter *converter = [LabelConverter getInstance];
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:labelKeyArray.count];
     for(NSString *labelKey in labelKeyArray) {
-        NSDictionary *labelConfig = [converter.configMap objectForKey:labelKey];
-        NSString *labelName = [labelConfig objectForKey:kLabelName];
-        NSNumber *isRetractable = [labelConfig objectForKey:kLabelIsRetractable];
-        LabelInfo *info = [LabelInfo labelInfoWithIdentifier:labelKey labelName:labelName isRetractable:isRetractable.boolValue];
+        LabelInfo *info = [LabelConverter getLabelInfoWithIdentifier:labelKey];
         [result addObject:info];
     }
     return result;
@@ -64,14 +60,17 @@ static LabelConverter *instance = nil;
     return [self getLabelsInfoWithLabelKeyArray:labelKeyArray];
 }
 
-+ (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier {
++ (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier andParentLabelName:(NSString *)name {
     LabelConverter *converter = [LabelConverter getInstance];
-    NSDictionary *parentLabelConfig = [converter.configMap objectForKey:identifier];
+    NSMutableDictionary *parentLabelConfig = [NSMutableDictionary dictionaryWithDictionary:[converter.configMap objectForKey:identifier]];
     NSMutableArray *labelKeyArray = [NSMutableArray arrayWithObject:identifier];
     [labelKeyArray addObjectsFromArray:[parentLabelConfig objectForKey:kChildLabels]];
     NSArray *result = [self getLabelsInfoWithLabelKeyArray:labelKeyArray];
     LabelInfo *returnLabelInfo = [result objectAtIndex:0];
     returnLabelInfo.isReturnLabel = YES;
+    if([identifier isEqualToString:kParentRenrenUser] || [identifier isEqualToString:kParentWeiboUser]) {
+        returnLabelInfo.labelName = name;
+    }
     return result;
 }
 
@@ -80,6 +79,15 @@ static LabelConverter *instance = nil;
     NSDictionary *parentLabelConfig = [converter.configMap objectForKey:identifier];
     NSArray *childLabels = [parentLabelConfig objectForKey:kChildLabels];
     return [childLabels objectAtIndex:0];
+}
+
++ (LabelInfo *)getLabelInfoWithIdentifier:(NSString *)identifier {
+    LabelConverter *converter = [LabelConverter getInstance];
+    NSDictionary *labelConfig = [converter.configMap objectForKey:identifier];
+    NSString *labelName = [labelConfig objectForKey:kLabelName];
+    NSNumber *isRetractable = [labelConfig objectForKey:kLabelIsRetractable];
+    LabelInfo *info = [LabelInfo labelInfoWithIdentifier:identifier labelName:labelName isRetractable:isRetractable.boolValue];
+    return info;
 }
 
 @end

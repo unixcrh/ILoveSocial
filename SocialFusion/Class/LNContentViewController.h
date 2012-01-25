@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class User;
 @interface LNContentViewController : UIViewController {
     NSMutableArray *_contentViewControllerHeap;
     NSUInteger _currentContentIndex;
@@ -19,5 +20,6 @@
 
 - (id)initWithlabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict;
 - (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier;
+- (void)addUserContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict;
 
 @end

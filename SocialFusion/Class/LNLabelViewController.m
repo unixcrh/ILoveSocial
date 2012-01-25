@@ -104,6 +104,14 @@
     return !self.isRetractable;
 }
 
+- (NSString *)labelName {
+    return self.info.labelName;
+}
+
+- (void)setLabelName:(NSString *)labelName {
+    self.info.labelName = labelName;
+}
+
 - (IBAction)clickTitleButton:(id)sender {
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];

@@ -8,6 +8,7 @@
 
 #import "LNRootViewController.h"
 #import "LabelConverter.h"
+#import "User.h"
 
 #define CONTENT_VIEW_OFFSET_X   7
 #define CONTENT_VIEW_OFFSET_Y   64
@@ -70,28 +71,23 @@
 #pragma mark handle notifications
 
 - (void)didSelectFriend:(NSNotification *)notification {
-    static int i = 0;
     //[_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:[NSString stringWithFormat:@"何若运%d",i] status:PARENT_LABEL_CLOSE isSystem:NO]];
-    i++;
-    /*
-    User* user = notification.object;
-    NSNumber *typeContainer = ((NSNumber *)[notification.userInfo objectForKey:kDisSelectFirendType]);
-    RelationshipViewType type = typeContainer.intValue;
-    DisplayViewController *displayViewController;
-    if(type == RelationshipViewTypeRenrenFriends) {
-        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeRenren andUser:user];
-        [self pushLabelViewControllerWithType:DisplayViewTypeRenren withBackLabelName:user.name];
+    
+    NSDictionary *userDict = notification.object;
+    NSString *identifier;
+    User *selectedUser;
+    if([userDict objectForKey:kWeiboUser]) {
+        identifier = kParentWeiboUser;
+        selectedUser = [userDict objectForKey:kWeiboUser];
     }
-    else if(type == RelationshipViewTypeWeiboFollowers || type == RelationshipViewTypeWeiboFriends){
-        displayViewController = [self getDisplayViewControllerWithType:DisplayViewTypeWeibo andUser:user];
-        [self pushLabelViewControllerWithType:DisplayViewTypeWeibo withBackLabelName:user.name];
+    else if([userDict objectForKey:kRenrenUser]) {
+        identifier = kParentRenrenUser;
+        selectedUser = [userDict objectForKey:kRenrenUser];
     }
-    else {
-        NSLog(@"error while receiving notification");
-        return;
-    }
-    self.delegate = displayViewController;
-    [_navigationController pushViewController:displayViewController animated:YES];*/
+    [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
+    LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
+    labelInfo.labelName = selectedUser.name;
+    [self.labelBarViewController createLabelWithInfo:labelInfo];
 }
 
 @end

@@ -26,8 +26,8 @@
             //NSLog(@"dict:%@", client.responseJSONObject);
             
             NSArray *array = client.responseJSONObject;
-        [self processRenrenData:array];
-
+            [self processRenrenData:array];
+            
         }
     }];
     [renren getNewFeed:_pageNumber uid:self.renrenUser.userID];
@@ -38,14 +38,14 @@
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-
+            
             NSArray *array = client.responseJSONObject;
             
             [self processWeiboData:array];
         }
     }];
     
-   // [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
+    // [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
     [client getUserTimeline:self.weiboUser.userID SinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
 }
 
@@ -65,12 +65,12 @@
     
     if (_style==kRenrenUserFeed)
     {
-            [self loadMoreRenrenData];
+        [self loadMoreRenrenData];
     }
-
+    
     else if(_style==kWeiboUserFeed)
     {
-            [self loadMoreWeiboData];
+        [self loadMoreWeiboData];
     }
     
 }

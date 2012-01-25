@@ -126,7 +126,9 @@
             label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
-        ;
+        if([self.delegate respondsToSelector:@selector(labelPageView: didFinishCloseLabel:)]) {
+            [self.delegate labelPageView:self didFinishCloseLabel:nil];
+        }
     }];
 }
 
@@ -172,7 +174,6 @@
             label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
-        
     }];
 }
 
@@ -240,20 +241,7 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didCloseLabelAtIndex:(NSUInteger)index {
-    [self.view setUserInteractionEnabled:NO];
-    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
-        for(int i = 1; i < _labelInfoSubArray.count; i++) {
-            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
-            CGRect oldFrame = label.view.frame;
-            CGRect newFrame;
-            newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
-            label.view.frame = newFrame;
-        }
-    } completion:^(BOOL finished) {
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
-            [self.delegate labelPageView:self didCloseLabel:labelView];
-        }
-    }];
+    [self closePageWithReturnLabel:labelView];
 }
 
 - (void)activateLastLabel:(LabelInfo *)info {
@@ -301,6 +289,23 @@
             }
         }
     }
+}
+
+- (void)closePageWithReturnLabel:(LNLabelViewController *)labelView {
+    [self.view setUserInteractionEnabled:NO];
+    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
+        for(int i = 1; i < _labelInfoSubArray.count; i++) {
+            LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
+            label.view.frame = newFrame;
+        }
+    } completion:^(BOOL finished) {
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
+            [self.delegate labelPageView:self didCloseLabel:labelView];
+        }
+    }];
 }
 
 @end

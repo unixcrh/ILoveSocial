@@ -78,6 +78,8 @@
 		<true/>
         <key>kChildLabels</key>
 		<array>
+            <string>kChildRenrenNewFeed</string>
+            <string>kChildWeiboNewFeed</string>
             <string>kChildRenrenInfo</string>
             <string>kChildWeiboInfo</string>
 			<string>kChildAlbum</string>
@@ -145,5 +147,15 @@
 		<string>kParentUserInfo</string>
 		<string>kParentInbox</string>
 	</array>
+    <key>kParentWeiboUser</key>
+	<dict>
+		<key>kLabelIsRetractable</key>
+		<true/>
+        <key>kChildLabels</key>
+		<array>
+			<string>kChildWeiboFriend</string>
+            <string>kChildWeiboFollower</string>
+		</array>
+	</dict>  
 </dict>
 </plist>

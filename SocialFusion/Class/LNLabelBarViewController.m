@@ -16,6 +16,8 @@
 - (void)popLabelInfoArray;
 - (void)pushPageIndex:(NSUInteger)pageIndex;
 - (void)popPageIndex;
+- (void)popPageManually;
+- (void)closeOpenPage;
 @end
 
 @implementation LNLabelBarViewController
@@ -31,6 +33,7 @@
     [_labelInfoArrayStack release];
     [_pageControl release];
     [_pageIndexStack release];
+    [_popPageManuallyCompletion release];
     _delegate = nil;
     [super dealloc];
 }
@@ -102,20 +105,30 @@
 }
 
 - (void)createLabelWithInfo:(LabelInfo *)info {
-    [self.labelInfoArray addObject:info];
-    if(self.labelInfoArray.count % 4 == 1) {
-        self.pageCount = self.pageCount + 1;
-        [self createLabelPageAtIndex:self.pageCount - 1];
-        [self refreshLabelBarContentSize];
-        LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
-        [page selectLastLabel];
+    _popPageManuallyCompletion = [^(void) {
+        [self.labelInfoArray addObject:info];
+        if(self.labelInfoArray.count % 4 == 1) {
+            self.pageCount = self.pageCount + 1;
+            [self createLabelPageAtIndex:self.pageCount - 1];
+            [self refreshLabelBarContentSize];
+            LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
+            [page selectLastLabel];
+        }
+        else {
+            LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
+            [page activateLastLabel:info];
+        }
+        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (self.pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+        self.pageControl.currentPage = self.pageCount;
+    } copy];
+    if(_pageIndexStack.count != 0) {
+        [self popPageManually];
     }
     else {
-        LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
-        [page activateLastLabel:info];
+        _popPageManuallyCompletion();
+        [_popPageManuallyCompletion release];
+        _popPageManuallyCompletion = nil;
     }
-    [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (self.pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
-    self.pageControl.currentPage = self.pageCount;
 }
 
 #pragma mark -
@@ -184,7 +197,7 @@
     [self pushLabelPages:labelPages];
     [self pushPageIndex:pageView.page];
     NSString *identifier = label.info.identifier;
-    NSArray *labelInfo = [LabelConverter getChildLabelsInfoWithParentLabelIndentifier:identifier];
+    NSArray *labelInfo = [LabelConverter getChildLabelsInfoWithParentLabelIndentifier:identifier andParentLabelName:label.labelName];
     [self pushLabelInfoArray:[NSMutableArray arrayWithArray:labelInfo]];
     [self loadLabelPages];
     LNLabelPageViewController *firstPage = [self.labelPages objectAtIndex:0];
@@ -200,6 +213,14 @@
     self.pageControl.currentPage = pageIndex;
     LNLabelPageViewController *page = [self.labelPages objectAtIndex:pageIndex];
     [page closeParentLabelAnimation];
+}
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didFinishCloseLabel:(LNLabelViewController *)label {
+    if(_popPageManuallyCompletion) {
+        _popPageManuallyCompletion();
+        [_popPageManuallyCompletion release];
+        _popPageManuallyCompletion = nil;
+    }
 }
 
 #pragma mark -
@@ -270,6 +291,30 @@
 
 - (void)popPageIndex {
     [_pageIndexStack removeLastObject];
+}
+
+- (void)closeOpenPage {
+    LNLabelPageViewController *page = [self.labelPages objectAtIndex:0];
+    [page closePageWithReturnLabel:nil];
+}
+
+- (void)movePageToTopWithCompletion:(void(^)(void))completion {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, 0);
+    } completion:^(BOOL finished) {
+        completion();
+    }];
+}
+
+- (void)popPageManually {
+    if(self.pageControl.currentPage == 0) {
+        [self closeOpenPage];
+    }
+    else {
+        [self movePageToTopWithCompletion:^{
+            [self closeOpenPage];
+        }];
+    }
 }
 
 @end

@@ -51,6 +51,7 @@
 @property (nonatomic, readonly) BOOL isReturnLabel;
 @property (nonatomic, readonly) BOOL isParentLabel;
 @property (nonatomic, readonly) BOOL isChildLabel;
+@property (nonatomic, copy) NSString *labelName;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) LabelInfo *info;
