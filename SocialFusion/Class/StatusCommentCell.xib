@@ -72,7 +72,7 @@
 							<object class="IBUILabel" id="64992633">
 								<reference key="NSNextResponder" ref="762154621"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{63, 4}, {212, 77}}</string>
+								<string key="NSFrame">{{63, 19}, {212, 42}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="368284994"/>
@@ -121,8 +121,8 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC42IDAuNiAwLjYgMC42AA</bytes>
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
@@ -143,7 +143,7 @@
 							<object class="IBUILabel" id="266987608">
 								<reference key="NSNextResponder" ref="762154621"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{63, 39}, {64, 21}}</string>
+								<string key="NSFrame">{{232, 2}, {64, 21}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -269,11 +269,11 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="500193853"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="266987608"/>
 							<reference ref="368284994"/>
 							<reference ref="461165274"/>
 							<reference ref="892234288"/>
 							<reference ref="64992633"/>
+							<reference ref="266987608"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Friend Profile Table View Cell - FriendProfileTableViewCell</string>
