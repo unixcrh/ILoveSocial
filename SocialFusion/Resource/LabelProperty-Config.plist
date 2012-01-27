@@ -86,14 +86,14 @@
 	<key>kChildRenrenNewFeed</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>人人新鲜事</string>
+		<string>新鲜事</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 	</dict>
 	<key>kChildWeiboNewFeed</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>微博新鲜事</string>
+		<string>微博</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 	</dict>
