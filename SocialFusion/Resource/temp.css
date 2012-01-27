@@ -32,11 +32,9 @@ a {
 
 }
 .headimage {
-	width:37.5px;
-	height:37.5px;
 	position:absolute;
-	left: 11px;
-	top: 15px;
+	left: 4px;
+	top: 8px;
 }
 #maininfo {
 	position:absolute;

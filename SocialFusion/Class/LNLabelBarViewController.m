@@ -161,6 +161,9 @@
     
     NSUInteger page = pageView.page;
     [self.labelInfoArray removeObjectAtIndex:index];
+    if([self.delegate respondsToSelector:@selector(labelBarView:didRemoveParentLabelAtIndex:)]) {
+        [self.delegate labelBarView:self didRemoveParentLabelAtIndex:index];
+    }
     
     if(self.labelInfoArray.count % 4 == 0) {
         self.pageCount = self.pageCount - 1;

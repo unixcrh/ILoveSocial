@@ -67,6 +67,10 @@
     [self.contentViewController setContentViewAtIndex:index forIdentifier:identifier];
 }
 
+- (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index {
+    [self.contentViewController removeContentViewAtIndex:index];
+}
+
 #pragma mark -
 #pragma mark handle notifications
 
@@ -86,6 +90,7 @@
     }
     [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
     LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
+    labelInfo.isRemovable = YES;
     labelInfo.labelName = selectedUser.name;
     [self.labelBarViewController createLabelWithInfo:labelInfo];
 }

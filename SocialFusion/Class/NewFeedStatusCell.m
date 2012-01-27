@@ -49,12 +49,7 @@
      
     return 0;
     
-    
- 
 }
-
-
-
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -149,7 +144,7 @@
     
 
     
-    _webView.frame=CGRectMake(0,0, _webView.scrollView.contentSize.width, scrollHeight);
+    _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",_style]];
   
 
@@ -208,12 +203,11 @@
 -(id)init
 {
 
-    self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier: @"NewFeedStatusCell"];
+    self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewFeedStatusCell"];
 
     _webView=[[UIWebView alloc] init];
-      _webView.frame=CGRectMake(0,0, 320    , 100);
+    _webView.frame=CGRectMake(0, 0, 320, 100);
     [self.contentView addSubview:_webView];
-    
     
     return  self;
 }
@@ -224,7 +218,7 @@
     [_webView release];
     
     _webView=[[UIWebView alloc] init];
-    _webView.frame=CGRectMake(0,0, 320    , 100);
+    _webView.frame=CGRectMake(0, 0, 320, 100);
     [self.contentView addSubview:_webView];
 
     if ([feedData class]==[NewFeedUploadPhoto class])

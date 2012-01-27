@@ -12,13 +12,9 @@
 @class NewFeedListController;
 @interface NewFeedStatusCell : UITableViewCell<UIWebViewDelegate> {
 
-   
-    
     NewFeedListController* _listController;
     
-
-    
-     UIWebView* _webView;
+    UIWebView* _webView;
     
     int _style;
 

@@ -164,9 +164,9 @@
 		<true/>
 		<key>kChildLabels</key>
 		<array>
+            <string>kChildWeiboNewFeed</string>
 			<string>kChildWeiboFriend</string>
 			<string>kChildWeiboFollower</string>
-			<string>kChildWeiboNewFeed</string>
 		</array>
 	</dict>
     <key>kParentRenrenUser</key>

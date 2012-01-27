@@ -138,4 +138,12 @@
     [self.contentViewIndentifierHeap addObject:childIdentifier];
 }
 
+- (void)removeContentViewAtIndex:(NSUInteger)index {
+    UIViewController *vc = [self.contentViewControllerHeap objectAtIndex:index];
+    if(self.currentContentIndex == index)
+        [vc.view removeFromSuperview];
+    [self.contentViewControllerHeap removeObjectAtIndex:index];
+    [self.contentViewIndentifierHeap removeObjectAtIndex:index];
+}
+
 @end
