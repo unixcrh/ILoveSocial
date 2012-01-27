@@ -21,34 +21,23 @@
 typedef   enum kUserFeed {
     kRenrenSelfFeed = 0,
     kWeiboSelfFeed  = 1,
-    kAllUserFeed    = 2,
+    kAllSelfFeed    = 2,
     kRenrenUserFeed = 3,
     kWeiboUserFeed  = 4,
 } kUserFeed;
 
 @interface NewFeedListController : EGOTableViewController {
-    
-    // NewFeedRootData *feedDatas;
-    //  NSMutableArray* _feedArray;
-    //  NSMutableArray* _tempArray;
     NSDate* _currentTime;
-    
     IBOutlet NewFeedStatusCell *_feedStatusCel;
-    
-    
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
-    
     NSIndexPath* _indexPath;
-    //int _openedCell;
     int _pageNumber;
-    
-        int _style;
-    
+    int _style;
     NewFeedCellHeight* _cellHeightHelper;
-    
-    
-    // UIWebView* _webView;
 }
+
+@property (nonatomic, readonly) WeiboUser *processWeiboUser;
+@property (nonatomic, readonly) RenrenUser *processRenrenUser;
 
 
 +(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
@@ -60,7 +49,6 @@ typedef   enum kUserFeed {
 -(void)processWeiboData:(NSArray*)array;
 - (void)clearData;
 -(IBAction)resetToNormalList;
-
 -(void)setStyle:(int)style;
 
 @end

@@ -2,8 +2,8 @@
 //  NewFeedRootData.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-1-6.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-1-28.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "NewFeedRootData.h"
@@ -14,16 +14,17 @@
 @implementation NewFeedRootData
 
 @dynamic style;
-@dynamic actor_ID;
-@dynamic post_ID;
-@dynamic source_ID;
-@dynamic comment_Count;
-@dynamic get_Time;
 @dynamic owner_Name;
-@dynamic update_Time;
-@dynamic owner_Head;
+@dynamic post_ID;
+@dynamic comment_Count;
 @dynamic cellheight;
-@dynamic owner;
+@dynamic get_Time;
+@dynamic owner_Head;
+@dynamic actor_ID;
+@dynamic update_Time;
+@dynamic source_ID;
 @dynamic comments;
+@dynamic owner;
+@dynamic author;
 
 @end

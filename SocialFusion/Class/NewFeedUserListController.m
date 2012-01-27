@@ -11,10 +11,28 @@
 #import "WeiboClient.h"
 @implementation NewFeedUserListController
 
+- (void)dealloc {
+    [super dealloc];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self=[super initWithNibName:@"NewFeedListController" bundle:nil];
     return self;
+}
+
+- (void)clearData
+{
+    
+    _firstLoadFlag = YES;
+    [self.processRenrenUser removeStatuses:self.processRenrenUser.statuses];
+    
+    [self.processWeiboUser removeStatuses:self.processWeiboUser.statuses];
+    
 }
 
 - (WeiboUser *)processWeiboUser {
@@ -23,6 +41,25 @@
 
 - (RenrenUser *)processRenrenUser {
     return self.renrenUser;
+}
+
+-(NSPredicate *)customPresdicate {
+    NSPredicate *predicate;
+    if(_style == kRenrenUserFeed) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.processRenrenUser.statuses];
+    }
+    else if(_style == kWeiboUserFeed) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.processWeiboUser.statuses];
+    }
+    return predicate;
+}
+
+- (void)addNewWeiboData:(NewFeedRootData *)data {
+    [self.processWeiboUser addStatusesObject:data];
+}
+
+- (void)addNewRenrenData:(NewFeedRootData *)data {
+    [self.processRenrenUser addStatusesObject:data];
 }
 
 - (void)loadMoreRenrenData {
@@ -37,7 +74,7 @@
             
         }
     }];
-    [renren getNewFeed:_pageNumber uid:self.renrenUser.userID];
+    [renren getNewFeed:_pageNumber uid:self.processRenrenUser.userID];
 }
 
 
@@ -53,7 +90,7 @@
     }];
     
     // [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
-    [client getUserTimeline:self.weiboUser.userID SinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
+    [client getUserTimeline:self.processWeiboUser.userID SinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
 }
 
 - (void)loadMoreData {

@@ -52,10 +52,7 @@
     result.comment_Count=[NSNumber numberWithInt:    [ [[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
     
     result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
-    
-    result.owner=myUser;
-    
-    
+        
 
     
     // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;

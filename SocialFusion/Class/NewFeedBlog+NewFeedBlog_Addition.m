@@ -52,9 +52,6 @@
         
         result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
         
-        result.owner=myUser;
-        
-        
         result.prefix=[dict objectForKey:@"prefix"] ;
         result.title=[dict objectForKey:@"title"] ;
         result.mydescription=[dict objectForKey:@"description"] ;

@@ -11,7 +11,7 @@
 #import "CoreDataViewController.h"
 #import "User.h"
 
-#import "NewFeedSelfListController.h"
+#import "NewFeedListController.h"
 #import "FriendListViewController.h"
 
 @interface LNContentViewController()
@@ -69,13 +69,13 @@
 - (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict {
     id result = nil;
     if([identifier isEqualToString:kChildAllSelfNewFeed]) {
-        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kAllSelfFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kAllSelfFeed];
     }
     else if([identifier isEqualToString:kChildRenrenSelfNewFeed]) {
-        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
     }
     else if([identifier isEqualToString:kChildWeiboSelfNewFeed]) {
-        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
     }
     else if([identifier isEqualToString:kChildRenrenFriend]) {
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
@@ -87,15 +87,15 @@
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
     }
     else if([identifier isEqualToString:kChildRenrenNewFeed]) {
-        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
     }
     else if([identifier isEqualToString:kChildWeiboNewFeed]) {
-        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
     }
     // test code
     else {
         NSLog(@"nil identifier:%@", identifier);
-        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kAllSelfFeed];
+        result = [NewFeedListController getNewFeedListControllerwithStyle:kAllSelfFeed];
     }
     if([result isKindOfClass:[CoreDataViewController class]]) {
         ((CoreDataViewController *)result).userDict = userDict;
@@ -120,10 +120,12 @@
     if([currentIdentifier isEqualToString:identifier])
         return;
     CoreDataViewController *vc = [self.contentViewControllerHeap objectAtIndex:index];
+    CoreDataViewController *vc2 = [self addContentViewWithIndentifier:identifier andUsers:vc.userDict];
+    if(vc2 == nil)
+        return;
     [vc.view removeFromSuperview];
-    vc = [self addContentViewWithIndentifier:identifier andUsers:vc.userDict];
-    [self.view addSubview:vc.view];
-    [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc];
+    [self.view addSubview:vc2.view];
+    [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc2];
     [self.contentViewIndentifierHeap replaceObjectAtIndex:index withObject:identifier];
 }
 

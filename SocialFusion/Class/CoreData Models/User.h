@@ -2,14 +2,14 @@
 //  User.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
-//  Copyright (c) 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-1-28.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DetailInformation, NewFeedRootData, Status;
+@class DetailInformation, NewFeedRootData;
 
 @interface User : NSManagedObject
 
@@ -22,16 +22,15 @@
 @property (nonatomic, retain) DetailInformation *detailInformation;
 @property (nonatomic, retain) NSSet *statuses;
 @property (nonatomic, retain) NSSet *newFeed;
-@property (nonatomic, readonly) NSString * nameFirstLetter;
-
 @end
 
 @interface User (CoreDataGeneratedAccessors)
 
-- (void)addStatusesObject:(Status *)value;
-- (void)removeStatusesObject:(Status *)value;
+- (void)addStatusesObject:(NewFeedRootData *)value;
+- (void)removeStatusesObject:(NewFeedRootData *)value;
 - (void)addStatuses:(NSSet *)values;
 - (void)removeStatuses:(NSSet *)values;
+
 - (void)addNewFeedObject:(NewFeedRootData *)value;
 - (void)removeNewFeedObject:(NewFeedRootData *)value;
 - (void)addNewFeed:(NSSet *)values;

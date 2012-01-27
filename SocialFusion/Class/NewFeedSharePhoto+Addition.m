@@ -53,9 +53,6 @@
     
     result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
     
-    result.owner=myUser;
-    
-    
     
     
     // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;

@@ -136,9 +136,6 @@
         
         result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
         
-        result.owner=myUser;
-        
-        
         result.message=[dict objectForKey:@"message"];
         
         NSArray* attachments=[dict objectForKey:@"attachment"];
@@ -245,9 +242,7 @@
         
         //  NSString *authorID =    result.actor_ID;
         // result.owner = [WeiboUser userWithID:authorID inManagedObjectContext:context];
-        // result.owner=nil;
-        result.owner=myUser;
-        
+        // result.owner=nil;        
         
         
         //      NSLog(@"%@",result);

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class NewFeedSelfListController;
+@class NewFeedListController;
 @interface NewFeedCellHeight : NSObject<UIWebViewDelegate>
 {
     UIWebView* _webView;
-    NewFeedSelfListController* _dele;
+    NewFeedListController* _dele;
 }
 
--(void)myinit:(NewFeedSelfListController*)deleControl;
+-(void)myinit:(NewFeedListController*)deleControl;
 -(int)getHeight:(NSDictionary*) dic style:(int)style;
 @end

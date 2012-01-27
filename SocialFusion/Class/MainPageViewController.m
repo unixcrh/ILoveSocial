@@ -8,7 +8,7 @@
 
 #import "MainPageViewController.h"
 #import "FriendListViewController.h"
-#import "NewFeedSelfListController.h"
+#import "NewFeedListController.h"
 #import "DisplayViewController.h"
 
 @implementation MainPageViewController

@@ -2,14 +2,13 @@
 //  User.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
-//  Copyright (c) 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-1-28.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "User.h"
 #import "DetailInformation.h"
 #import "NewFeedRootData.h"
-#import "Status.h"
 
 
 @implementation User
@@ -23,9 +22,5 @@
 @dynamic detailInformation;
 @dynamic statuses;
 @dynamic newFeed;
-
-- (NSString *)nameFirstLetter {
-    return [self.pinyinName substringToIndex:1];
-}
 
 @end

@@ -11,7 +11,7 @@
 #import "CommonFunction.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
-#import "NewFeedSelfListController.h"
+#import "NewFeedListController.h"
 #import "Base64Transcoder.h"
 #import "NSData+NsData_Base64.m"
 #import "NSString+DataURI.h"
@@ -199,7 +199,7 @@
     [_listController exposeCell:indexpath];
 }
 
--(void)setList:(NewFeedSelfListController*)list
+-(void)setList:(NewFeedListController*)list
 {
     _listController=list;
 }

@@ -43,11 +43,11 @@
 - (void)createViewControllers {
     switch (_type) {
         case DisplayViewTypeSelf: {
-            NewFeedSelfListController *renrenNewFeedList = [NewFeedSelfListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
+            NewFeedListController *renrenNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
             [_viewControllerMap setValue:renrenNewFeedList forKey:@"人人feed"];
-            NewFeedSelfListController *weiboNewFeedList = [NewFeedSelfListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
+            NewFeedListController *weiboNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
             [_viewControllerMap setValue:weiboNewFeedList forKey:@"微博feed"];
-            NewFeedSelfListController *allNewFeedList = [NewFeedSelfListController getNewFeedListControllerwithStyle:kAllSelfFeed];
+            NewFeedListController *allNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kAllSelfFeed];
             [_viewControllerMap setValue:allNewFeedList forKey:@"全部feed"];
             
             NSArray *viewControllers = [NSArray arrayWithObjects: renrenNewFeedList, weiboNewFeedList, allNewFeedList, nil];

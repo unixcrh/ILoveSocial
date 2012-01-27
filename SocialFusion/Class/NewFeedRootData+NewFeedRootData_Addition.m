@@ -115,9 +115,7 @@
                               ];
         
         result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
-        
-        result.owner=myUser;
-        
+                
         
         
         result.get_Time=getDate;
@@ -193,10 +191,7 @@
         
         //  NSString *authorID =    result.actor_ID;
         // result.owner = [WeiboUser userWithID:authorID inManagedObjectContext:context];
-        // result.owner=nil;
-        result.owner=myUser;
-        
-        
+        // result.owner=nil;        
         
         result.get_Time=getDate;
         //      NSLog(@"%@",result);

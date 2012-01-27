@@ -53,10 +53,6 @@
     
     result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
     
-    result.owner=myUser;
-    
-    
-    
     result.cellheight=[NSNumber numberWithInt:height];
     // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
     // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
