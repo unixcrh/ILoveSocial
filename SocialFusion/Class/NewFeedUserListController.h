@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NewFeedListController.h"
-@interface NewFeedUserListController : NewFeedListController
+#import "NewFeedSelfListController.h"
+@interface NewFeedUserListController : NewFeedSelfListController
 {
 
 }

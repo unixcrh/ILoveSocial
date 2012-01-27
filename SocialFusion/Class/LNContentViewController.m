@@ -11,7 +11,7 @@
 #import "CoreDataViewController.h"
 #import "User.h"
 
-#import "NewFeedListController.h"
+#import "NewFeedSelfListController.h"
 #import "FriendListViewController.h"
 
 @interface LNContentViewController()
@@ -68,14 +68,14 @@
 
 - (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict {
     id result = nil;
-    if([identifier isEqualToString:kChildAllNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
+    if([identifier isEqualToString:kChildAllSelfNewFeed]) {
+        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kAllSelfFeed];
     }
-    else if([identifier isEqualToString:kChildRenrenNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
+    else if([identifier isEqualToString:kChildRenrenSelfNewFeed]) {
+        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
     }
-    else if([identifier isEqualToString:kChildWeiboNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
+    else if([identifier isEqualToString:kChildWeiboSelfNewFeed]) {
+        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
     }
     else if([identifier isEqualToString:kChildRenrenFriend]) {
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
@@ -86,16 +86,16 @@
     else if([identifier isEqualToString:kChildWeiboFollower]) {
         result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
     }
-    else if([identifier isEqualToString:kChildSelfRenrenNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
+    else if([identifier isEqualToString:kChildRenrenNewFeed]) {
+        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
     }
-    else if([identifier isEqualToString:kChildSelfWeiboNewFeed]) {
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
+    else if([identifier isEqualToString:kChildWeiboNewFeed]) {
+        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
     }
     // test code
     else {
         NSLog(@"nil identifier:%@", identifier);
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
+        result = [NewFeedSelfListController getNewFeedListControllerwithStyle:kAllSelfFeed];
     }
     if([result isKindOfClass:[CoreDataViewController class]]) {
         ((CoreDataViewController *)result).userDict = userDict;
@@ -133,7 +133,6 @@
     if(!vc)
         return;
     [self.contentViewControllerHeap addObject:vc];
-    NSLog(@"content view controller heap count:%d", self.contentViewControllerHeap.count);
     [self.contentViewIndentifierHeap addObject:childIdentifier];
 }
 

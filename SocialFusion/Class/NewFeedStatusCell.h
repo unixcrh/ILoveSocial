@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
-@class NewFeedListController;
+@class NewFeedSelfListController;
 @interface NewFeedStatusCell : UITableViewCell<UIWebViewDelegate> {
 
    
     
-    NewFeedListController* _listController;
+    NewFeedSelfListController* _listController;
     
 
     
@@ -33,7 +33,7 @@
 +(float)heightForCell:(NewFeedRootData*)feedData;
 
 
--(void)setList:(NewFeedListController*)list;
+-(void)setList:(NewFeedSelfListController*)list;
 -(void)configureCell:(NewFeedRootData*)feedData;
 -(void)exposeCell;
 -(void)loadImage:(NSData*)image;

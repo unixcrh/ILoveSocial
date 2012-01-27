@@ -11,13 +11,20 @@
 #import "WeiboClient.h"
 @implementation NewFeedUserListController
 
-
-
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self=[super initWithNibName:@"NewFeedListController" bundle:nil];
     return self;
 }
+
+- (WeiboUser *)processWeiboUser {
+    return self.weiboUser;
+}
+
+- (RenrenUser *)processRenrenUser {
+    return self.renrenUser;
+}
+
 - (void)loadMoreRenrenData {
     RenrenClient *renren = [RenrenClient client];
     
@@ -49,9 +56,6 @@
     [client getUserTimeline:self.weiboUser.userID SinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
 }
 
-
-
-
 - (void)loadMoreData {
     if(_loading)
         return;
@@ -64,7 +68,6 @@
     {
         [self loadMoreRenrenData];
     }
-    
     else if(_style==kWeiboUserFeed)
     {
         [self loadMoreWeiboData];

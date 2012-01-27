@@ -7,7 +7,7 @@
 //
 
 #import "DisplayViewController.h"
-#import "NewFeedSelfListController.h"
+#import "NewFeedUserListController.h"
 #import "FriendListViewController.h"
 
 @interface DisplayViewController()
@@ -43,11 +43,11 @@
 - (void)createViewControllers {
     switch (_type) {
         case DisplayViewTypeSelf: {
-            NewFeedListController *renrenNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
+            NewFeedSelfListController *renrenNewFeedList = [NewFeedSelfListController getNewFeedListControllerwithStyle:kRenrenSelfFeed];
             [_viewControllerMap setValue:renrenNewFeedList forKey:@"人人feed"];
-            NewFeedListController *weiboNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
+            NewFeedSelfListController *weiboNewFeedList = [NewFeedSelfListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
             [_viewControllerMap setValue:weiboNewFeedList forKey:@"微博feed"];
-            NewFeedListController *allNewFeedList = [NewFeedListController getNewFeedListControllerwithStyle:kAllUserFeed];
+            NewFeedSelfListController *allNewFeedList = [NewFeedSelfListController getNewFeedListControllerwithStyle:kAllSelfFeed];
             [_viewControllerMap setValue:allNewFeedList forKey:@"全部feed"];
             
             NSArray *viewControllers = [NSArray arrayWithObjects: renrenNewFeedList, weiboNewFeedList, allNewFeedList, nil];

@@ -2,15 +2,54 @@
 //  NewFeedSelfListController.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-1-21.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by He Ruoyun on 11-10-7.
+//  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "NewFeedListController.h"
-@interface NewFeedSelfListController : NewFeedListController
-{
+#import <UIKit/UIKit.h>
 
+#import "EGOTableViewController.h"
+//#import "DragRefreshTableViewController.h"
+#import "NewFeedRootData.h"
+#import "RenrenUser+Addition.h"
+#import "WeiboUser+Addition.h"
+#import "NewFeedStatusCell.h"
+
+#import "NewFeedDetailViewCell.h"
+#import "NewFeedCellHeight.h"
+
+typedef   enum kUserFeed {
+    kRenrenSelfFeed = 0,
+    kWeiboSelfFeed  = 1,
+    kAllSelfFeed    = 2,
+    kRenrenUserFeed = 3,
+    kWeiboUserFeed  = 4,
+} kUserFeed;
+
+@interface NewFeedSelfListController : EGOTableViewController {
+    NSDate* _currentTime;
+    IBOutlet NewFeedStatusCell *_feedStatusCel;
+    IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
+    NSIndexPath* _indexPath;
+    int _pageNumber;
+    int _style;
+    NewFeedCellHeight* _cellHeightHelper;
 }
+
+@property (nonatomic, readonly) WeiboUser *processWeiboUser;
+@property (nonatomic, readonly) RenrenUser *processRenrenUser;
+
+
++(NewFeedSelfListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
+-(void)exposeCell:(NSIndexPath*)indexPath;
+-(void)showImage:(NSIndexPath*)indexPath;
+-(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
+-(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID;
+-(void)processRenrenData:(NSArray*)array;
+-(void)processWeiboData:(NSArray*)array;
+- (void)clearData;
+-(IBAction)resetToNormalList;
+
+-(void)setStyle:(int)style;
 
 @end

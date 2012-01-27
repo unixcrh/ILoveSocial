@@ -7,11 +7,11 @@
 //
 
 #import "NewFeedCellHeight.h"
-#import "NewFeedListController.h"
+#import "NewFeedSelfListController.h"
 
 @implementation NewFeedCellHeight
 
--(void)myinit:(NewFeedListController*)deleControl
+-(void)myinit:(NewFeedSelfListController*)deleControl
 {
     _webView=[[UIWebView alloc] init];    
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];

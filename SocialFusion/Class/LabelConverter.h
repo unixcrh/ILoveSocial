@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "CoreDataViewController.h"
 
-#define kParentNewFeed      @"kParentNewFeed"
-#define kChildAllNewFeed    @"kChildAllNewFeed"
-#define kChildRenrenNewFeed @"kChildRenrenNewFeed"
-#define kChildWeiboNewFeed  @"kChildWeiboNewFeed"
+#define kParentNewFeed          @"kParentNewFeed"
+#define kChildAllSelfNewFeed    @"kChildAllSelfNewFeed"
+#define kChildRenrenSelfNewFeed @"kChildRenrenSelfNewFeed"
+#define kChildWeiboSelfNewFeed  @"kChildWeiboSelfNewFeed"
 
 #define KParentUserInfo         @"KParentUserInfo"
-#define kChildSelfRenrenNewFeed @"kChildSelfRenrenNewFeed"
-#define kChildSelfWeiboNewFeed  @"kChildSelfWeiboNewFeed"
+#define kChildRenrenNewFeed     @"kChildRenrenNewFeed"
+#define kChildWeiboNewFeed      @"kChildWeiboNewFeed"
 #define kChildRenrenAlbum       @"kChildAlbum"
 #define kChildRenrenBlog        @"kChildBlog"
 #define kChildRenrenInfo        @"kChildRenrenInfo"
