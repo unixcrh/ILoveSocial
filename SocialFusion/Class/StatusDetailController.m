@@ -188,8 +188,6 @@
             if(!client.hasError) {
                 NSArray *array = client.responseJSONObject;
                 for(NSDictionary *dict in array) {
-                        NSLog(@"%@",dict);
-                    
                     StatusCommentData* commentsData=[StatusCommentData insertNewComment:0 Dic:dict inManagedObjectContext:self.managedObjectContext];
                     [_feedData addCommentsObject:commentsData];
                     
@@ -205,7 +203,7 @@
                 }
                 
                 _loading=NO;
-                [self.tableView reloadData];
+                 [self doneLoadingTableViewData];
       
             }
             
@@ -243,7 +241,9 @@
                     _showMoreButton=NO;
                 }
                 _loading=NO;
-                [self.tableView reloadData];
+                [self doneLoadingTableViewData];
+                
+                
             }
             
             
