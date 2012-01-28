@@ -114,7 +114,6 @@
 		E11DF22314C569F600DDC51A /* mvboli.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22214C569F600DDC51A /* mvboli.ttf */; };
 		E11DF22714C5810000DDC51A /* head_renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22514C5810000DDC51A /* head_renren@2x.png */; };
 		E11DF22814C5810000DDC51A /* head_wb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22614C5810000DDC51A /* head_wb@2x.png */; };
-		E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1247266142A58090086AC61 /* MainPageViewController.xib */; };
 		E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */; };
 		E1779B9214C73B3B001CE627 /* LNRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1779B9014C73B3B001CE627 /* LNRootViewController.m */; };
 		E1779B9314C73B3B001CE627 /* LNRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1779B9114C73B3B001CE627 /* LNRootViewController.xib */; };
@@ -132,7 +131,6 @@
 		E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817B51450084B00DB0D70 /* rootbackground@2x.png */; };
 		E17817C814502C3300DB0D70 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817C614502C3300DB0D70 /* separator.png */; };
 		E17817C914502C3300DB0D70 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17817C714502C3300DB0D70 /* separator@2x.png */; };
-		E17817CB14502C6C00DB0D70 /* LabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17817CA14502C6C00DB0D70 /* LabelViewController.xib */; };
 		E19A2CFC141FC2D700BE491A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19A2CFE141FC2D700BE491A /* Localizable.strings */; };
 		E19A2D06141FC3B300BE491A /* homeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D00141FC3B300BE491A /* homeButton.png */; };
 		E19A2D07141FC3B300BE491A /* homeButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D01141FC3B300BE491A /* homeButtonPressed.png */; };
@@ -141,7 +139,6 @@
 		E19A2D0A141FC3B300BE491A /* sinawbButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D04141FC3B300BE491A /* sinawbButton.png */; };
 		E19A2D0B141FC3B300BE491A /* sinawbButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */; };
 		E19A2D171420A06000BE491A /* FriendListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */; };
-		E19A2D281421EA2B00BE491A /* FriendHeadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D271421EA2B00BE491A /* FriendHeadViewController.xib */; };
 		E1ABA401141FA6E1002CD0A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA400141FA6E1002CD0A6 /* UIKit.framework */; };
 		E1ABA403141FA6E1002CD0A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA402141FA6E1002CD0A6 /* Foundation.framework */; };
 		E1ABA405141FA6E1002CD0A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA404141FA6E1002CD0A6 /* CoreGraphics.framework */; };
@@ -151,7 +148,6 @@
 		E1ABA413141FA6E2002CD0A6 /* SocialFusionAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA412141FA6E2002CD0A6 /* SocialFusionAppDelegate.m */; };
 		E1ABA486141FA882002CD0A6 /* FriendListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA41E141FA882002CD0A6 /* FriendListTableViewCell.m */; };
 		E1ABA487141FA882002CD0A6 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */; };
-		E1ABA488141FA882002CD0A6 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA422141FA882002CD0A6 /* MainPageViewController.m */; };
 		E1ABA489141FA882002CD0A6 /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */; };
 		E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA425141FA882002CD0A6 /* pinyin.c */; };
 		E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */; };
@@ -198,25 +194,15 @@
 		E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF91D114223C0A002F6F1A /* default_renren_tiny.png */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
-		E1E5DF41143B24CB0098BBD3 /* FriendHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF3F143B24CB0098BBD3 /* FriendHeadTableViewCell.m */; };
-		E1E5DF45143B26750098BBD3 /* FriendHeadGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */; };
-		E1E5DF48143B27730098BBD3 /* FriendHeadGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF47143B27730098BBD3 /* FriendHeadGridViewController.m */; };
-		E1E5DF4B143B290C0098BBD3 /* FriendHeadTabelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */; };
-		E1E5DF4C143B290C0098BBD3 /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */; };
-		E1E5DF4F143B29540098BBD3 /* FriendHeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */; };
 		E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF51143B36600098BBD3 /* FriendListViewController.m */; };
 		E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */; };
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
 		E1E5DF94143C6C1F0098BBD3 /* WeiboDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF93143C6C1F0098BBD3 /* WeiboDetail+Addition.m */; };
 		E1E5DFAF143CB4110098BBD3 /* SocialFusion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DFAD143CB4110098BBD3 /* SocialFusion.xcdatamodeld */; };
-		E1EA75B11456872A00D8A906 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EA75B01456872A00D8A906 /* DisplayViewController.m */; };
-		E1EA75B41456875100D8A906 /* DisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EA75B31456875100D8A906 /* DisplayViewController.xib */; };
 		E1EA75B7145699F800D8A906 /* labelviewbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EA75B5145699F800D8A906 /* labelviewbackground.png */; };
 		E1EA75B8145699F800D8A906 /* labelviewbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */; };
 		E1EC716814D309A5005D123E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EC716714D309A5005D123E /* User.m */; };
 		E1EC716C14D309A6005D123E /* NewFeedRootData.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EC716B14D309A6005D123E /* NewFeedRootData.m */; };
-		E1F1D4DD142E09ED00720635 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4DC142E09ED00720635 /* LabelViewController.m */; };
-		E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */; };
 		E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */; };
 		E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB624014247EA000828E24 /* CoreDataViewController.m */; };
 		E1FB62621424812C00828E24 /* Image+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB62591424812B00828E24 /* Image+Addition.m */; };
@@ -394,7 +380,6 @@
 		E11DF22214C569F600DDC51A /* mvboli.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mvboli.ttf; sourceTree = "<group>"; };
 		E11DF22514C5810000DDC51A /* head_renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_renren@2x.png"; sourceTree = "<group>"; };
 		E11DF22614C5810000DDC51A /* head_wb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_wb@2x.png"; sourceTree = "<group>"; };
-		E1247266142A58090086AC61 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		E12F175C14CF080800B32229 /* NSNotificationCenter+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Addition.h"; sourceTree = "<group>"; };
 		E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Addition.m"; sourceTree = "<group>"; };
 		E1779B8F14C73B3B001CE627 /* LNRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNRootViewController.h; sourceTree = "<group>"; };
@@ -418,7 +403,6 @@
 		E17817B51450084B00DB0D70 /* rootbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rootbackground@2x.png"; sourceTree = "<group>"; };
 		E17817C614502C3300DB0D70 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		E17817C714502C3300DB0D70 /* separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator@2x.png"; sourceTree = "<group>"; };
-		E17817CA14502C6C00DB0D70 /* LabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelViewController.xib; sourceTree = "<group>"; };
 		E19A2CFD141FC2D700BE491A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E19A2CFF141FC2DE00BE491A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E19A2D00141FC3B300BE491A /* homeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeButton.png; sourceTree = "<group>"; };
@@ -428,7 +412,6 @@
 		E19A2D04141FC3B300BE491A /* sinawbButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinawbButton.png; sourceTree = "<group>"; };
 		E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinawbButtonPressed.png; sourceTree = "<group>"; };
 		E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListTableViewCell.xib; sourceTree = "<group>"; };
-		E19A2D271421EA2B00BE491A /* FriendHeadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendHeadViewController.xib; sourceTree = "<group>"; };
 		E1ABA3FC141FA6E1002CD0A6 /* Pocket Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ABA400141FA6E1002CD0A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1ABA402141FA6E1002CD0A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -444,8 +427,6 @@
 		E1ABA41E141FA882002CD0A6 /* FriendListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListTableViewCell.m; sourceTree = "<group>"; };
 		E1ABA41F141FA882002CD0A6 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
 		E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
-		E1ABA421141FA882002CD0A6 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
-		E1ABA422141FA882002CD0A6 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		E1ABA423141FA882002CD0A6 /* NSString+Pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Pinyin.h"; sourceTree = "<group>"; };
 		E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Pinyin.m"; sourceTree = "<group>"; };
 		E1ABA425141FA882002CD0A6 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pinyin.c; path = SocialFusion/Class/pinyin.c; sourceTree = "<group>"; };
@@ -527,15 +508,6 @@
 		E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = SocialFusion/Class/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		E1D3B180143244C500443B79 /* EGOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGOTableViewController.h; path = SocialFusion/Class/EGOTableViewController.h; sourceTree = "<group>"; };
 		E1D3B181143244C800443B79 /* EGOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGOTableViewController.m; path = SocialFusion/Class/EGOTableViewController.m; sourceTree = "<group>"; };
-		E1E5DF3E143B24CB0098BBD3 /* FriendHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendHeadTableViewCell.h; sourceTree = "<group>"; };
-		E1E5DF3F143B24CB0098BBD3 /* FriendHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendHeadTableViewCell.m; sourceTree = "<group>"; };
-		E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendHeadGridViewController.xib; sourceTree = "<group>"; };
-		E1E5DF46143B27730098BBD3 /* FriendHeadGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendHeadGridViewController.h; sourceTree = "<group>"; };
-		E1E5DF47143B27730098BBD3 /* FriendHeadGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendHeadGridViewController.m; sourceTree = "<group>"; };
-		E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendHeadTabelViewCell.xib; sourceTree = "<group>"; };
-		E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelTableViewCell.xib; sourceTree = "<group>"; };
-		E1E5DF4D143B29530098BBD3 /* FriendHeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendHeadViewController.h; sourceTree = "<group>"; };
-		E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendHeadViewController.m; sourceTree = "<group>"; };
 		E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
 		E1E5DF51143B36600098BBD3 /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
 		E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
@@ -544,19 +516,12 @@
 		E1E5DF92143C6C1F0098BBD3 /* WeiboDetail+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeiboDetail+Addition.h"; sourceTree = "<group>"; };
 		E1E5DF93143C6C1F0098BBD3 /* WeiboDetail+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeiboDetail+Addition.m"; sourceTree = "<group>"; };
 		E1E5DFAE143CB4110098BBD3 /* SocialFusion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialFusion.xcdatamodel; sourceTree = "<group>"; };
-		E1EA75AF1456872A00D8A906 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
-		E1EA75B01456872A00D8A906 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
-		E1EA75B31456875100D8A906 /* DisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayViewController.xib; sourceTree = "<group>"; };
 		E1EA75B5145699F800D8A906 /* labelviewbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labelviewbackground.png; sourceTree = "<group>"; };
 		E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "labelviewbackground@2x.png"; sourceTree = "<group>"; };
 		E1EC716614D309A5005D123E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
 		E1EC716714D309A5005D123E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
 		E1EC716A14D309A6005D123E /* NewFeedRootData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedRootData.h; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.h"; sourceTree = "<group>"; };
 		E1EC716B14D309A6005D123E /* NewFeedRootData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedRootData.m; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.m"; sourceTree = "<group>"; };
-		E1F1D4DB142E09EC00720635 /* LabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewController.h; sourceTree = "<group>"; };
-		E1F1D4DC142E09ED00720635 /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
-		E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTableViewCell.h; sourceTree = "<group>"; };
-		E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTableViewCell.m; sourceTree = "<group>"; };
 		E1F247D214C3F03F00D2653A /* SocialFusion 1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.1.xcdatamodel"; sourceTree = "<group>"; };
 		E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = SocialFusion/Class/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = SocialFusion/Class/CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -694,21 +659,6 @@
 				73F4F9C4144AAD8D00A692F7 /* WBRequest.m */,
 			);
 			path = BaseClass;
-			sourceTree = "<group>";
-		};
-		E13896871457E3D600FD0BE6 /* MainPage */ = {
-			isa = PBXGroup;
-			children = (
-				E1EA75AF1456872A00D8A906 /* DisplayViewController.h */,
-				E1EA75B01456872A00D8A906 /* DisplayViewController.m */,
-				E1ABA421141FA882002CD0A6 /* MainPageViewController.h */,
-				E1ABA422141FA882002CD0A6 /* MainPageViewController.m */,
-				E1F1D4DB142E09EC00720635 /* LabelViewController.h */,
-				E1F1D4DC142E09ED00720635 /* LabelViewController.m */,
-				E1F1D4E2142E24FC00720635 /* LabelTableViewCell.h */,
-				E1F1D4E3142E24FD00720635 /* LabelTableViewCell.m */,
-			);
-			name = MainPage;
 			sourceTree = "<group>";
 		};
 		E1779B8D14C73AB4001CE627 /* LabelNavigation */ = {
@@ -923,7 +873,6 @@
 			isa = PBXGroup;
 			children = (
 				E1779B8D14C73AB4001CE627 /* LabelNavigation */,
-				E13896871457E3D600FD0BE6 /* MainPage */,
 				E1E6E8E41451E63600FCB08B /* Friend */,
 				7309DDBD1447E95C00774011 /* NewFeed */,
 				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
@@ -1126,15 +1075,8 @@
 				E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */,
 				E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */,
 				E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */,
-				E19A2D271421EA2B00BE491A /* FriendHeadViewController.xib */,
 				E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */,
-				E1E5DF49143B290C0098BBD3 /* FriendHeadTabelViewCell.xib */,
-				E1E5DF44143B26740098BBD3 /* FriendHeadGridViewController.xib */,
 				73F3400D14467EC400F9EDBD /* NewFeedListController.xib */,
-				E1247266142A58090086AC61 /* MainPageViewController.xib */,
-				E17817CA14502C6C00DB0D70 /* LabelViewController.xib */,
-				E1E5DF4A143B290C0098BBD3 /* LabelTableViewCell.xib */,
-				E1EA75B31456875100D8A906 /* DisplayViewController.xib */,
 			);
 			name = Nibs;
 			path = SocialFusion/Nibs;
@@ -1143,16 +1085,10 @@
 		E1E6E8E41451E63600FCB08B /* Friend */ = {
 			isa = PBXGroup;
 			children = (
-				E1E5DF3E143B24CB0098BBD3 /* FriendHeadTableViewCell.h */,
-				E1E5DF3F143B24CB0098BBD3 /* FriendHeadTableViewCell.m */,
 				E1ABA41D141FA882002CD0A6 /* FriendListTableViewCell.h */,
 				E1ABA41E141FA882002CD0A6 /* FriendListTableViewCell.m */,
-				E1E5DF46143B27730098BBD3 /* FriendHeadGridViewController.h */,
-				E1E5DF47143B27730098BBD3 /* FriendHeadGridViewController.m */,
 				E1ABA41F141FA882002CD0A6 /* FriendProfileViewController.h */,
 				E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */,
-				E1E5DF4D143B29530098BBD3 /* FriendHeadViewController.h */,
-				E1E5DF4E143B29540098BBD3 /* FriendHeadViewController.m */,
 				E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */,
 				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
 			);
@@ -1232,7 +1168,6 @@
 				E19A2D0A141FC3B300BE491A /* sinawbButton.png in Resources */,
 				E19A2D0B141FC3B300BE491A /* sinawbButtonPressed.png in Resources */,
 				E19A2D171420A06000BE491A /* FriendListTableViewCell.xib in Resources */,
-				E19A2D281421EA2B00BE491A /* FriendHeadViewController.xib in Resources */,
 				E1BF91D214223C0A002F6F1A /* default_renren_tiny.png in Resources */,
 				E1FB62B11424BC9F00828E24 /* tableviewCellTopShadow@2x.png in Resources */,
 				E1FB62B21424BC9F00828E24 /* tableviewCellTopShadow.png in Resources */,
@@ -1240,10 +1175,6 @@
 				E1FB62B61424C86900828E24 /* messageButton-highlight.png in Resources */,
 				E1FB62BD1424F68C00828E24 /* tableviewCellBottomShadow@2x.png in Resources */,
 				E1FB62BE1424F68C00828E24 /* tableviewCellBottomShadow.png in Resources */,
-				E1247267142A58090086AC61 /* MainPageViewController.xib in Resources */,
-				E1E5DF45143B26750098BBD3 /* FriendHeadGridViewController.xib in Resources */,
-				E1E5DF4B143B290C0098BBD3 /* FriendHeadTabelViewCell.xib in Resources */,
-				E1E5DF4C143B290C0098BBD3 /* LabelTableViewCell.xib in Resources */,
 				E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */,
 				73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */,
 				7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */,
@@ -1259,8 +1190,6 @@
 				E17817B71450084B00DB0D70 /* rootbackground@2x.png in Resources */,
 				E17817C814502C3300DB0D70 /* separator.png in Resources */,
 				E17817C914502C3300DB0D70 /* separator@2x.png in Resources */,
-				E17817CB14502C6C00DB0D70 /* LabelViewController.xib in Resources */,
-				E1EA75B41456875100D8A906 /* DisplayViewController.xib in Resources */,
 				E1EA75B7145699F800D8A906 /* labelviewbackground.png in Resources */,
 				E1EA75B8145699F800D8A906 /* labelviewbackground@2x.png in Resources */,
 				734483C1147A7B780031D33A /* NewFeedDetailViewCell.xib in Resources */,
@@ -1328,7 +1257,6 @@
 				E1ABA413141FA6E2002CD0A6 /* SocialFusionAppDelegate.m in Sources */,
 				E1ABA486141FA882002CD0A6 /* FriendListTableViewCell.m in Sources */,
 				E1ABA487141FA882002CD0A6 /* FriendProfileViewController.m in Sources */,
-				E1ABA488141FA882002CD0A6 /* MainPageViewController.m in Sources */,
 				E1ABA489141FA882002CD0A6 /* NSString+Pinyin.m in Sources */,
 				E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */,
 				E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */,
@@ -1364,13 +1292,8 @@
 				E1FB62651424812C00828E24 /* WeiboStatus+Addition.m in Sources */,
 				E1FB62661424812C00828E24 /* WeiboUser+Addition.m in Sources */,
 				E1FB62931424894200828E24 /* User+Addition.m in Sources */,
-				E1F1D4DD142E09ED00720635 /* LabelViewController.m in Sources */,
-				E1F1D4E4142E24FD00720635 /* LabelTableViewCell.m in Sources */,
 				E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */,
 				E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */,
-				E1E5DF41143B24CB0098BBD3 /* FriendHeadTableViewCell.m in Sources */,
-				E1E5DF48143B27730098BBD3 /* FriendHeadGridViewController.m in Sources */,
-				E1E5DF4F143B29540098BBD3 /* FriendHeadViewController.m in Sources */,
 				E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */,
 				E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */,
 				E1E5DF94143C6C1F0098BBD3 /* WeiboDetail+Addition.m in Sources */,
@@ -1394,7 +1317,6 @@
 				7319DCD7144D6FFC006FE917 /* StatusDetailController.m in Sources */,
 				7305A696144DB38C00ED59AA /* StatusCommentCell.m in Sources */,
 				73DE4B84144E5EDE00547931 /* CommonFunction.m in Sources */,
-				E1EA75B11456872A00D8A906 /* DisplayViewController.m in Sources */,
 				73152F0C1475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m in Sources */,
 				73152F0D1475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m in Sources */,
 				73152F0E1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m in Sources */,
