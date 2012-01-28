@@ -39,13 +39,7 @@
     if(imageData != nil) {
         _headImage.image = [UIImage imageWithData:imageData];
     }
-  
-     
-    _time.text=[CommonFunction getTimeBefore:_feedData.update_Time];
-    
-    
-    
-    
+    _time.text=[CommonFunction getTimeBefore:_feedData.update_Time]; 
     [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2,390)];
     ((UIScrollView*)self.view).pagingEnabled=YES;
     ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
@@ -364,8 +358,6 @@
     }
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *StatusComentCell = @"StatusCommentCell";
@@ -385,8 +377,6 @@
          }
          else
          {
-             
-             
              [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath] colorStyle:NO];
          }
          
