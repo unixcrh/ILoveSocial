@@ -22,7 +22,11 @@
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
-
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+   int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
+    _pageControl.currentPage = index;
+}
 
 -(void)addOriStatus
 {
@@ -46,14 +50,15 @@
     ((UIScrollView*)self.view).pagingEnabled=YES;
     ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
     ((UIScrollView*)self.view).directionalLockEnabled=YES;
-    self.tableView.frame=CGRectMake(306, 0, 306, 390);
+     ((UIScrollView*)self.view).delegate=self;
+    self.tableView.frame=CGRectMake(306, 0, 306, 350);
     [((UIScrollView*)self.view) addSubview:self.tableView];
     
    
+    _pageControl.currentPage=0;
     
     
-    
-    
+    self.tableView.allowsSelection=NO;
     
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
     NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
@@ -361,8 +366,6 @@
 
 
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *StatusComentCell = @"StatusCommentCell";
@@ -374,7 +377,19 @@
             [[NSBundle mainBundle] loadNibNamed:@"StatusCommentCell" owner:self options:nil];
             cell = _commentCel;
         }
-        [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+         
+         if (indexPath.row %2 ==0)
+         {
+             [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath] colorStyle:YES];
+            
+         }
+         else
+         {
+             
+             
+             [cell configureCell:[self.fetchedResultsController objectAtIndexPath:indexPath] colorStyle:NO];
+         }
+         
         return cell;
      }
     else
@@ -397,7 +412,16 @@
             
             NSIndexPath* index=[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
             
-            [cell configureCell:[self.fetchedResultsController objectAtIndexPath:index]];
+            if (index.row %2 ==0)
+            {
+            [cell configureCell:[self.fetchedResultsController objectAtIndexPath:index] colorStyle:YES];
+            }
+            else
+            {
+            
+            
+            [cell configureCell:[self.fetchedResultsController objectAtIndexPath:index] colorStyle:NO];
+            }
             return cell;
         }
     };  

@@ -10,20 +10,18 @@
 #import "StatusCommentData+StatusCommentData_Addition.h"
 @interface StatusCommentCell : UITableViewCell
 {
-    UIImageView* _defaultHeadImageView;
-    UIImageView* _headImageView;
+
     UIButton* _userName;
     UILabel* _status;
     UILabel* _time;
 }
 
-@property(nonatomic, retain) IBOutlet UIImageView* defaultHeadImageView;
-@property(nonatomic, retain) IBOutlet UIImageView* headImageView;
+
 @property(nonatomic, retain) IBOutlet UIButton* userName;
 @property(nonatomic, retain) IBOutlet UILabel* status;
 @property(nonatomic, retain) IBOutlet UILabel* time;
 
 
 +(float)heightForCell:(StatusCommentData*)feedData;
--(void)configureCell:(StatusCommentData*)feedData;
+-(void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo;
 @end

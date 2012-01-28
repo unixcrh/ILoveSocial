@@ -10,8 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CommonFunction.h"
 @implementation StatusCommentCell
-@synthesize defaultHeadImageView = _defaultHeadImageView;
-@synthesize headImageView = _headImageView;
+
 @synthesize userName = _userName;
 @synthesize status = _status;
 @synthesize time = _time;
@@ -20,8 +19,8 @@
 +(float)heightForCell:(StatusCommentData*)feedData
 {
     NSString* tempString=[feedData getText];
-    CGSize size = CGSizeMake(212, 1000);
-    CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Courier New" size:14]
+    CGSize size = CGSizeMake(243, 1000);
+    CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13]
                               constrainedToSize:size];
     if (labelSize.height<50)
     {
@@ -34,17 +33,13 @@
 
 - (void)awakeFromNib
 {
-    self.defaultHeadImageView.layer.masksToBounds = YES;
-    self.defaultHeadImageView.layer.cornerRadius = 5.0f;  
-    self.headImageView.layer.masksToBounds = YES;
-    self.headImageView.layer.cornerRadius = 5.0f; 
+
     // [self.commentButton setImage:[UIImage imageNamed:@"messageButton-highlight.png"] forState:UIControlStateHighlighted];
 }
 
 - (void)dealloc {
     //NSLog(@"Friend List Cell Dealloc");
-    [_defaultHeadImageView release];
-    [_headImageView release];
+
     [_userName release];
     [_status release];
     [_time release];
@@ -66,20 +61,18 @@
 
 
 
--(void)configureCell:(StatusCommentData*)feedData
+-(void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo
 {
     
     
-    //头像
-    [self.headImageView setImage:nil];
-    
+
     
     //状态
     self.status.text=[feedData getText];
     
 //    NSLog(@"%@",self.status.text);
     
-    CGSize size = CGSizeMake(212, 1000);
+    CGSize size = CGSizeMake(243, 1000);
     CGSize labelSize = [self.status.text sizeWithFont:self.status.font 
                                     constrainedToSize:size];
     self.status.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y,
@@ -111,21 +104,28 @@
     
 
     [self.time setText:[CommonFunction getTimeBefore:FeedDate]];
-    self.time.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y+self.status.frame.size.height,
-                                 self.time.frame.size.width,self.time.frame.size.height); 
+
  //   self.time.text=tempString ;
   //  [tempString release];
     
     
-    
+    if (bo==YES)
+    {
+  
+     //  self.backgroundColor=[UIColor colorWithRed:254 green:248 blue:206 alpha:1];
+      self.backgroundColor=[UIColor colorWithRed:10 green:248 blue:206 alpha:1];
+    }
+    else
+    {
+        self.backgroundColor=[UIColor colorWithRed:1 green:248 blue:206 alpha:1];
+        //self.backgroundColor=[UIColor colorWithRed:100 green:248 blue:206 alpha:1];
+     //   self.contentView.backgroundColor=[UIColor colorWithRed:254 green:248 blue:206 alpha:1];
+    }
     
 }
 
 
--(void)setUserHeadImage:(UIImage*)image
-{
-    [_headImageView setImage:image];
-}
+
 
 
 

@@ -29,6 +29,7 @@
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
     IBOutlet UIWebView* _webView;
+    IBOutlet UIPageControl* _pageControl;
 
     //   BOOL _completing;
 }
