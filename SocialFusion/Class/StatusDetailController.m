@@ -212,7 +212,7 @@
                 
                 _loading=NO;
                  [self doneLoadingTableViewData];
-      
+                [self.tableView reloadData];
             }
             
             
@@ -250,7 +250,7 @@
                 }
                 _loading=NO;
                 [self doneLoadingTableViewData];
-                
+                         [self.tableView reloadData];
                 
             }
             

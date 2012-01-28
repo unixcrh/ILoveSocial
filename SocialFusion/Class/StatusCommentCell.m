@@ -11,9 +11,7 @@
 #import "CommonFunction.h"
 @implementation StatusCommentCell
 
-@synthesize userName = _userName;
-@synthesize status = _status;
-@synthesize time = _time;
+
 
 
 +(float)heightForCell:(StatusCommentData*)feedData
@@ -22,11 +20,11 @@
     CGSize size = CGSizeMake(243, 1000);
     CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13]
                               constrainedToSize:size];
-    if (labelSize.height<50)
+    if (labelSize.height<20)
     {
-        return 70;
+        return 60;
     }
-    return labelSize.height+20;
+    return labelSize.height+40;
 }
 
 
@@ -40,10 +38,7 @@
 - (void)dealloc {
     //NSLog(@"Friend List Cell Dealloc");
 
-    [_userName release];
-    [_status release];
-    [_time release];
-    
+
     
     
     
@@ -68,31 +63,28 @@
 
     
     //状态
-    self.status.text=[feedData getText];
+    _status.text=[feedData getText];
     
 //    NSLog(@"%@",self.status.text);
     
     CGSize size = CGSizeMake(243, 1000);
-    CGSize labelSize = [self.status.text sizeWithFont:self.status.font 
+    CGSize labelSize = [_status.text sizeWithFont:_status.font 
                                     constrainedToSize:size];
-    self.status.frame = CGRectMake(self.status.frame.origin.x, self.status.frame.origin.y,
-                                   self.status.frame.size.width, labelSize.height);
-    self.status.lineBreakMode = UILineBreakModeWordWrap;
-    self.status.numberOfLines = 0;
+    _status.frame = CGRectMake(_status.frame.origin.x, _status.frame.origin.y,
+                                   _status.frame.size.width, labelSize.height);
+    _status.lineBreakMode = UILineBreakModeWordWrap;
+    _status.numberOfLines = 0;
     
     
-    if (self.frame.size.height<50)
-    {
-        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+20);
-    }
-    
+
+        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+40);
     
     //名字
-    [self.userName setTitle:[feedData getOwner_Name] forState:UIControlStateNormal];
+    [_userName setTitle:[feedData getOwner_Name] forState:UIControlStateNormal];
     
     
     
-    [self.userName sizeToFit];
+    [_userName sizeToFit];
     
     
     //时间
@@ -103,23 +95,24 @@
     //NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
     
 
-    [self.time setText:[CommonFunction getTimeBefore:FeedDate]];
+    [_time setText:[CommonFunction getTimeBefore:FeedDate]];
 
  //   self.time.text=tempString ;
   //  [tempString release];
     
     
+    _commentButton.center=CGPointMake(_commentButton.center.x, self.frame.size.height/2+15);
     if (bo==YES)
     {
-  
-     //  self.backgroundColor=[UIColor colorWithRed:254 green:248 blue:206 alpha:1];
-      self.backgroundColor=[UIColor colorWithRed:10 green:248 blue:206 alpha:1];
+       // self.contentView
+       self.contentView.backgroundColor=[UIColor colorWithRed:0.99608 green:0.97255 blue:0.80784 alpha:1];
+     //   _backView.alpha=1;
+        
     }
+ 
     else
     {
-        self.backgroundColor=[UIColor colorWithRed:1 green:248 blue:206 alpha:1];
-        //self.backgroundColor=[UIColor colorWithRed:100 green:248 blue:206 alpha:1];
-     //   self.contentView.backgroundColor=[UIColor colorWithRed:254 green:248 blue:206 alpha:1];
+        self.contentView.backgroundColor=[UIColor clearColor];
     }
     
 }

@@ -62,7 +62,7 @@
        // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
 
         
-        
+    NSLog(@":%@:",result.mydescription);
     
         result.get_Time=getDate;
     return result;

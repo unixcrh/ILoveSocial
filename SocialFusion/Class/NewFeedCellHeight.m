@@ -99,10 +99,18 @@
          
          
          outString=[dict objectForKey:@"description"];
+         NSLog(@":%@:",outString);
          outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
+          NSLog(@":%@:",outString);
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+       
+           NSLog(@":%@:",outString);
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-                  outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+           NSLog(@":%@:",outString);         
+         outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+           NSLog(@":%@:",outString);
+ 
+         
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
          
           scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];

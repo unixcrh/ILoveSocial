@@ -11,15 +11,13 @@
 @interface StatusCommentCell : UITableViewCell
 {
 
-    UIButton* _userName;
-    UILabel* _status;
-    UILabel* _time;
+    IBOutlet UIButton* _userName;
+    IBOutlet UILabel* _status;
+    IBOutlet UILabel* _time;
+    IBOutlet UIButton* _commentButton;
 }
 
 
-@property(nonatomic, retain) IBOutlet UIButton* userName;
-@property(nonatomic, retain) IBOutlet UILabel* status;
-@property(nonatomic, retain) IBOutlet UILabel* time;
 
 
 +(float)heightForCell:(StatusCommentData*)feedData;

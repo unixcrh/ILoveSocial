@@ -239,7 +239,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     for(NSDictionary *dict in array) {
         
         
-        
+        NSLog(@"%@",dict);
         int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
         NewFeedRootData *data;
         
