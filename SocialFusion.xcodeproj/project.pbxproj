@@ -108,7 +108,7 @@
 		73F4F979144A9EA400A692F7 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F96B144A9EA400A692F7 /* OAToken.m */; };
 		73F4F9C5144AAD8D00A692F7 /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F9C4144AAD8D00A692F7 /* WBRequest.m */; };
 		73FBBFB914C3BCEB00694B1B /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */; };
-		73FBBFC114C3F6B200694B1B /* ShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFC014C3F6B200694B1B /* ShowImage.m */; };
+		73FBBFC114C3F6B200694B1B /* NewFeedTempImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFC014C3F6B200694B1B /* NewFeedTempImageView.m */; };
 		E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10296EB14CB5F7B002589A1 /* LabelConverter.m */; };
 		E10296F514CC8CAC002589A1 /* LabelProperty-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */; };
 		E11DF22314C569F600DDC51A /* mvboli.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22214C569F600DDC51A /* mvboli.ttf */; };
@@ -372,8 +372,8 @@
 		73F4F9C4144AAD8D00A692F7 /* WBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRequest.m; sourceTree = "<group>"; };
 		73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addition.h"; sourceTree = "<group>"; };
 		73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
-		73FBBFBF14C3F6B100694B1B /* ShowImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImage.h; sourceTree = "<group>"; };
-		73FBBFC014C3F6B200694B1B /* ShowImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImage.m; sourceTree = "<group>"; };
+		73FBBFBF14C3F6B100694B1B /* NewFeedTempImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NewFeedTempImageView.h; sourceTree = "<group>"; };
+		73FBBFC014C3F6B200694B1B /* NewFeedTempImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedTempImageView.m; sourceTree = "<group>"; };
 		E10296EA14CB5F7A002589A1 /* LabelConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelConverter.h; sourceTree = "<group>"; };
 		E10296EB14CB5F7B002589A1 /* LabelConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelConverter.m; sourceTree = "<group>"; };
 		E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LabelProperty-Config.plist"; path = "Resource/LabelProperty-Config.plist"; sourceTree = "<group>"; };
@@ -576,8 +576,8 @@
 				734483BD147A7B780031D33A /* NewFeedDetailViewCell.h */,
 				734483BE147A7B780031D33A /* NewFeedDetailViewCell.m */,
 				734483BF147A7B780031D33A /* NewFeedDetailViewCell.xib */,
-				73FBBFBF14C3F6B100694B1B /* ShowImage.h */,
-				73FBBFC014C3F6B200694B1B /* ShowImage.m */,
+				73FBBFBF14C3F6B100694B1B /* NewFeedTempImageView.h */,
+				73FBBFC014C3F6B200694B1B /* NewFeedTempImageView.m */,
 			);
 			name = NewFeedCell;
 			sourceTree = "<group>";
@@ -1343,7 +1343,7 @@
 				73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */,
 				73CA9B3814C308E500D85492 /* NewFeedCellHeight.m in Sources */,
 				73FBBFB914C3BCEB00694B1B /* UIImage+Addition.m in Sources */,
-				73FBBFC114C3F6B200694B1B /* ShowImage.m in Sources */,
+				73FBBFC114C3F6B200694B1B /* NewFeedTempImageView.m in Sources */,
 				73BA300314C6614300813E0E /* NewFeedUploadPhoto.m in Sources */,
 				73BA300714C6676C00813E0E /* NewFeedSharePhoto.m in Sources */,
 				E1779B9214C73B3B001CE627 /* LNRootViewController.m in Sources */,

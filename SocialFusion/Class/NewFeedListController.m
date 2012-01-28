@@ -21,7 +21,7 @@
 #import "NewFeedBlog.h"
 #import "StatusDetailController.h"
 #import "UIImage+Addition.h"
-#import "ShowImage.h"
+#import "NewFeedTempImageView.h"
 #import "NewFeedUserListController.h"
 
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
@@ -350,36 +350,19 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 
 
--(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
-{
-    
-    Image* image = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
-    ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image.imageData.data] BigURL:stringURL];
-    [tempImage setContext:self.managedObjectContext];
-    tempImage.frame=CGRectMake(0, 0, 320, 480);
-    tempImage.alpha=0;
-    [[UIApplication sharedApplication].keyWindow addSubview:tempImage];
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-        tempImage.alpha = 1;
-    } completion:nil];
-    
-    
-    
-    
+-(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL {
+    Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
+    UIImage *image = [UIImage imageWithData:imageData.imageData.data];
+    NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image BigURL:stringURL context:self.managedObjectContext];
+    [tempImage show];
 }
 
 
--(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID
-{
-    Image* image = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
-    ShowImage* tempImage=[[ShowImage alloc] initWithImage:[UIImage imageWithData:image.imageData.data] userID:userID photoID:photoID];
-    [tempImage setContext:self.managedObjectContext];
-    tempImage.frame=CGRectMake(0, 0, 320, 480);
-    tempImage.alpha=0;
-    [[UIApplication sharedApplication].keyWindow addSubview:tempImage];
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-        tempImage.alpha = 1;
-    } completion:nil];
+-(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID {
+    Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
+    UIImage *image = [UIImage imageWithData:imageData.imageData.data];
+    NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image userID:userID photoID:photoID context:self.managedObjectContext];
+    [tempImage show];
 }
 
 
@@ -629,17 +612,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 -(void)showImage:(NSIndexPath*)indexPath
 {
     NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    if ([_feedData class]==[NewFeedUploadPhoto class])
-    {
+    if ([_feedData class] == [NewFeedUploadPhoto class]) {
         [self showImage:((NewFeedUploadPhoto*)_feedData).photo_url bigURL:((NewFeedUploadPhoto*)_feedData).photo_big_url];
     }
-    else if ([_feedData class]==[NewFeedSharePhoto class])
-    {
+    else if ([_feedData class] == [NewFeedSharePhoto class]) {
         [self showImage:((NewFeedSharePhoto*)_feedData).photo_url userID:((NewFeedSharePhoto*)_feedData).fromID  photoID:((NewFeedSharePhoto*)_feedData).mediaID];
-        
     }
-    else
-    {
+    else {
         [self showImage:((NewFeedData*)_feedData).pic_URL bigURL:((NewFeedData*)_feedData).pic_big_URL];   
     }
     
