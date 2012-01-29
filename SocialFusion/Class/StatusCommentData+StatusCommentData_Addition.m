@@ -15,12 +15,12 @@
     if (style==0)
     {
   
-        
+       // NSLog(@"%@",dict);
         NSString  *comment_ID= [[dict objectForKey:@"comment_id"] stringValue] ;   
         
         
-        if (!comment_ID || [comment_ID isEqualToString:@""]) {
-            return nil;
+        if (comment_ID==nil || [comment_ID isEqualToString:@""]) {
+          comment_ID= [[dict objectForKey:@"id"] stringValue] ;   
         }
         
         StatusCommentData *result = [StatusCommentData feedWithID:comment_ID inManagedObjectContext:context];
@@ -57,6 +57,11 @@
     
     result.text=[dict objectForKey:@"text"];
     
+ if (result.text==nil)
+ {
+     result.text=[dict objectForKey:@"content"];
+     
+ }
     return result;
 
     }
@@ -74,13 +79,7 @@
         if (!result) {
             result = [NSEntityDescription insertNewObjectForEntityForName:@"StatusCommentData" inManagedObjectContext:context];
         }
-        
-        
-        
-        
-        
-        
-        
+
         result.actor_ID=[[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
         
         result.owner_Head= [[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
@@ -91,20 +90,14 @@
         NSDateFormatter *form = [[NSDateFormatter alloc] init];
         [form setDateFormat:@"EEE MMM d HH:mm:ss ZZZ yyyy"];
         
-        // Sat Oct 15 21:22:56 +0800 2011
         
         NSLocale* tempLocale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
         [form setLocale:tempLocale];
         [tempLocale release];
         
         NSString* dateString=[dict objectForKey:@"created_at"];
-        //NSLog(@"%@",dateString);
-        
-        
-        //NSDate* date=[NSDate dateWithTimeIntervalSinceNow:0];
-        //NSLog(@"%@",[form stringFromDate:date]);
-        //NSDate* aaa=[[form dateFromString: dateString] retain];
-        //NSLog(@"%@",aaa);
+
+  
         result.update_Time=[form dateFromString: dateString] ;
         [form release];
         
@@ -142,12 +135,7 @@
 }
 -(NSString*)getText
 {
-    
-
-    
     return self.text;
-    
-    
 }
 -(NSString*)getHeadURL
 {

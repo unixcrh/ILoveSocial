@@ -28,6 +28,9 @@
     _pageControl.currentPage = index;
 }
 
+
+
+
 -(void)addOriStatus
 {
     _nameLabel.text=[_feedData getFeedName];
@@ -83,10 +86,7 @@
                 infoText=[infoText setWeibo:content];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
-                
-                
-            //    [_webView loadHTMLString:content baseURL:nil];
-                          //  _webView.scalesPageToFit=YES;
+
             }
         }];
         [renren getBlog:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
@@ -144,7 +144,7 @@
 
 
 - (void)dealloc {
-    [_feedData release];
+    [self.feedData release];
     //[_feedStatusCel release];
     [super dealloc];
 }
@@ -156,7 +156,7 @@
     NSPredicate *predicate;
     NSSortDescriptor *sort;
   
-    predicate = [NSPredicate predicateWithFormat:@"SELF IN %@",_feedData.comments];
+    predicate = [NSPredicate predicateWithFormat:@"SELF IN %@",self.feedData.comments];
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:YES];
     [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort];
@@ -169,8 +169,9 @@
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
-    
+       
    // [self clearData];
+
     if ([_feedData getStyle]==0)
     {
         _pageNumber=[_feedData getComment_Count]/10+1;
@@ -219,7 +220,6 @@
                     [_feedData addCommentsObject:commentsData];
                     
                 }
-                
                 if (_pageNumber!=1)
                 {
                     _showMoreButton=YES;
@@ -231,16 +231,22 @@
                 
                 _loading=NO;
                  [self doneLoadingTableViewData];
-                [self.tableView reloadData];
+              //[self.tableView reloadData];
             }
             
             
             
         }];
         
-        
+        if ([_feedData class]!=[NewFeedBlog class])
+        {
         [renren getComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
-        
+        }
+        else
+        {
+            [renren getBlogComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
+
+        }
     }
     
     else
@@ -269,7 +275,7 @@
                 }
                 _loading=NO;
                 [self doneLoadingTableViewData];
-                         [self.tableView reloadData];
+                      //   [self.tableView reloadData];
                 
             }
             
@@ -427,8 +433,6 @@
             }
             else
             {
-            
-            
             [cell configureCell:[self.fetchedResultsController objectAtIndexPath:index] colorStyle:NO];
             }
             return cell;
