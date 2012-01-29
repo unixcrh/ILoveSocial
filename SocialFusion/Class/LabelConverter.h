@@ -42,6 +42,8 @@
 #define kLabelIsRetractable     @"kLabelIsRetractable"
 #define kChildLabels            @"kChildLabels"
 
+#define kParentPublication  @"kParentPublication"
+
 @class LabelInfo;
 
 @interface LabelConverter : NSObject {

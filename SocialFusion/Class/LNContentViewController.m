@@ -10,7 +10,7 @@
 #import "LabelConverter.h"
 #import "CoreDataViewController.h"
 #import "User.h"
-
+#import "PublicationViewController.h"
 #import "NewFeedListController.h"
 #import "FriendListViewController.h"
 
@@ -91,6 +91,9 @@
     }
     else if([identifier isEqualToString:kChildWeiboNewFeed]) {
         result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboUserFeed];
+    }
+    else if([identifier isEqualToString:kParentPublication]) {
+        result = [[[PublicationViewController alloc] init] autorelease];
     }
     // test code
     else {

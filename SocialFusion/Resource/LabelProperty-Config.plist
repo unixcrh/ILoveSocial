@@ -155,8 +155,9 @@
 	<array>
 		<string>kParentNewFeed</string>
 		<string>kParentFriend</string>
+        <string>kParentPublication</string>
+        <string>kParentInbox</string>
 		<string>kParentUserInfo</string>
-		<string>kParentInbox</string>
 	</array>
 	<key>kParentWeiboUser</key>
 	<dict>
@@ -177,6 +178,13 @@
 		<array>
 			<string>kChildRenrenNewFeed</string>
 		</array>
+	</dict>
+    <key>kParentPublication</key>
+	<dict>
+        <key>kLabelName</key>
+		<string>发件箱</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
 	</dict>
 </dict>
 </plist>

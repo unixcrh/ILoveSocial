@@ -78,7 +78,14 @@ static LabelConverter *instance = nil;
     LabelConverter *converter = [LabelConverter getInstance];
     NSDictionary *parentLabelConfig = [converter.configMap objectForKey:identifier];
     NSArray *childLabels = [parentLabelConfig objectForKey:kChildLabels];
-    return [childLabels objectAtIndex:0];
+    NSString *result = nil;
+    if(childLabels) {
+        result = [childLabels objectAtIndex:0];
+    }
+    else {
+        result = identifier;
+    }
+    return result;
 }
 
 + (LabelInfo *)getLabelInfoWithIdentifier:(NSString *)identifier {
