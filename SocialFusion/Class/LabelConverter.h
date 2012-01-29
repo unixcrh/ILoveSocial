@@ -41,6 +41,7 @@
 #define kLabelName              @"kLabelName"
 #define kLabelIsRetractable     @"kLabelIsRetractable"
 #define kChildLabels            @"kChildLabels"
+#define kLabelIsParent          @"kLabelIsParent"
 
 #define kParentPublication  @"kParentPublication"
 

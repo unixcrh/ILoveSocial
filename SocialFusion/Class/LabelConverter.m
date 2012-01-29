@@ -93,7 +93,8 @@ static LabelConverter *instance = nil;
     NSDictionary *labelConfig = [converter.configMap objectForKey:identifier];
     NSString *labelName = [labelConfig objectForKey:kLabelName];
     NSNumber *isRetractable = [labelConfig objectForKey:kLabelIsRetractable];
-    LabelInfo *info = [LabelInfo labelInfoWithIdentifier:identifier labelName:labelName isRetractable:isRetractable.boolValue];
+    NSNumber *isParent = [labelConfig objectForKey:kLabelIsParent];
+    LabelInfo *info = [LabelInfo labelInfoWithIdentifier:identifier labelName:labelName isRetractable:isRetractable.boolValue isParent:isParent.boolValue];
     return info;
 }
 

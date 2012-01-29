@@ -20,6 +20,7 @@
     BOOL _isRemovable;
     BOOL _isSelected;
     BOOL _isReturnLabel;
+    BOOL _isParent;
 }
 
 @property (nonatomic, copy) NSString *identifier;
@@ -28,10 +29,11 @@
 @property (nonatomic) BOOL isRemovable;
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic) BOOL isReturnLabel;
+@property (nonatomic) BOOL isParent;
 
 
 
-+ (LabelInfo *)labelInfoWithIdentifier:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable;
++ (LabelInfo *)labelInfoWithIdentifier:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable isParent:(BOOL)isParent;
 
 @end
 

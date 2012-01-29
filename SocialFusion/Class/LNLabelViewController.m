@@ -18,17 +18,19 @@
 @synthesize isRemovable = _isRemovable;
 @synthesize isSelected = _isSelected;
 @synthesize isReturnLabel = _isReturnLabel;
+@synthesize isParent = _isParent;
 
 - (void)dealloc {
     [_labelName release];
     [super dealloc];
 }
 
-+ (LabelInfo *)labelInfoWithIdentifier:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable {
++ (LabelInfo *)labelInfoWithIdentifier:(NSString *)identifier labelName:(NSString *)name isRetractable:(BOOL)retractable isParent:(BOOL)isParent{
     LabelInfo *info = [[[LabelInfo alloc] init] autorelease];
     info.identifier = identifier;
     info.labelName = name;
     info.isRetractable = retractable;
+    info.isParent = isParent;
     return info;
 }
 
@@ -97,7 +99,7 @@
 }
 
 - (BOOL)isParentLabel {
-    return self.isRetractable && !self.isReturnLabel;
+    return self.info.isParent && !self.isReturnLabel;
 }
 
 - (BOOL)isChildLabel {
