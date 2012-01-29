@@ -239,12 +239,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     for(NSDictionary *dict in array) {
         
         
-        NSLog(@"%@",dict);
+      //  NSLog(@"%@",dict);
         int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
         NewFeedRootData *data;
         
         if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
         {
+          //  NSLog(@"%@",dict);
             data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.processRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==30)
@@ -424,8 +425,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         NewFeedDetailViewCell* cell;
         NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        if ([a class]==[NewFeedData class])
-        {
+      
             
             
             [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
@@ -433,7 +433,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             [cell initWithFeedData:a context:self.managedObjectContext];
             
-        }
+        
         return cell;
     }
     

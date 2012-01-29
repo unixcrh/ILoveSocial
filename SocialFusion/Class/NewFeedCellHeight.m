@@ -99,16 +99,16 @@
          
          
          outString=[dict objectForKey:@"description"];
-         NSLog(@":%@:",outString);
+        // NSLog(@":%@:",outString);
          outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-          NSLog(@":%@:",outString);
+        //  NSLog(@":%@:",outString);
          outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
        
-           NSLog(@":%@:",outString);
+          // NSLog(@":%@:",outString);
          outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-           NSLog(@":%@:",outString);         
+          // NSLog(@":%@:",outString);         
          outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-           NSLog(@":%@:",outString);
+           //NSLog(@":%@:",outString);
  
          
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];

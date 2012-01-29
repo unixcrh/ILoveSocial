@@ -123,7 +123,6 @@
     if(highlighted == NO && self.selected == YES)
         return;
  //   self.userName.highlighted = highlighted;
-   
 }   
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

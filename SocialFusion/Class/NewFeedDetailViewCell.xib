@@ -61,7 +61,7 @@
 												<string key="NSFrame">{{0, 66}, {306, 285}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="883569839"/>
+												<reference key="NSNextKeyView" ref="170036589"/>
 												<object class="NSColor" key="IBUIBackgroundColor">
 													<int key="NSColorSpace">1</int>
 													<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -151,7 +151,7 @@
 												<string key="NSFrame">{{257, 35}, {15, 19}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="170036589"/>
+												<reference key="NSNextKeyView" ref="919437750"/>
 												<bool key="IBUIOpaque">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 												<int key="IBUIContentHorizontalAlignment">0</int>
@@ -188,7 +188,7 @@
 												<string key="NSFrame">{{222, 7}, {84, 21}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="242026056"/>
+												<reference key="NSNextKeyView" ref="163795574"/>
 												<object class="NSColor" key="IBUIBackgroundColor">
 													<int key="NSColorSpace">1</int>
 													<bytes key="NSRGB">MC43MzMzMzMzMzMzIDAuNzI1NDkwMTk2MSAwLjYxMTc2NDcwNTkgMAA</bytes>
@@ -225,7 +225,7 @@
 												<string key="NSFrame">{{2, 66}, {302, 1}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="163795574"/>
+												<reference key="NSNextKeyView" ref="883569839"/>
 												<bool key="IBUIUserInteractionEnabled">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 												<object class="NSCustomResource" key="IBUIImage">
@@ -239,7 +239,7 @@
 												<string key="NSFrame">{{225, 3}, {1, 62}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="919437750"/>
+												<reference key="NSNextKeyView" ref="242026056"/>
 												<bool key="IBUIUserInteractionEnabled">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 												<object class="NSCustomResource" key="IBUIImage">
@@ -270,6 +270,7 @@
 								<string key="NSFrame">{{0, 346}, {306, 45}}</string>
 								<reference key="NSSuperview" ref="1055693766"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="963707583"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -294,6 +295,7 @@
 								<string key="NSFrame">{{134, 313}, {38, 36}}</string>
 								<reference key="NSSuperview" ref="1055693766"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwIDAgMAA</bytes>
@@ -346,6 +348,7 @@
 				<string key="NSFrameSize">{306, 345}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC44MjExNjc4ODMyIDAuMzQ2NzE1MzI4NSAxIDAAA</bytes>
@@ -706,21 +709,26 @@
 					<string key="className">StatusCommentCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="status">UILabel</string>
-						<string key="time">UILabel</string>
-						<string key="userName">UIButton</string>
+						<string key="_commentButton">UIButton</string>
+						<string key="_status">UILabel</string>
+						<string key="_time">UILabel</string>
+						<string key="_userName">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="status">
-							<string key="name">status</string>
+						<object class="IBToOneOutletInfo" key="_commentButton">
+							<string key="name">_commentButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_status">
+							<string key="name">_status</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="time">
-							<string key="name">time</string>
+						<object class="IBToOneOutletInfo" key="_time">
+							<string key="name">_time</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="userName">
-							<string key="name">userName</string>
+						<object class="IBToOneOutletInfo" key="_userName">
+							<string key="name">_userName</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>

@@ -16,8 +16,8 @@
 #import "User+Addition.h"
 #import "RenrenClient.h"
 #import "WeiboClient.h"
-#import "MainPageViewController.h"
-#import "MainPageViewController.h"
+
+
 #import "NSNotificationCenter+Addition.h"
 
 #define kCustomRowCount 7

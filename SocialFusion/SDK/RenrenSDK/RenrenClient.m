@@ -96,7 +96,7 @@ static NSString* const AppID = @"150399";
 
 // please modify your permissions here
 - (void)authorize {
-    NSArray *permissions = [[NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo",nil] retain];
+    NSArray *permissions = [[NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog",nil] retain];
     
     NSLog(@"人人网 OAuth2.0 请求认证授权");
     if (![RenrenClient authorized]) {
@@ -430,6 +430,17 @@ static NSString* const AppID = @"150399";
                                  photoID,@"pids",
                                  nil];
   	[self requestWithParams:params andDelegate:self];
+}
+
+-(void)getBlog:(NSString*)userID status_ID:(NSString*)status
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"blog.get",@"method",
+                                 status,@"id",
+                                 userID,@"uid",
+                                 nil];
+  	[self requestWithParams:params andDelegate:self];
+    
 }
 
 @end

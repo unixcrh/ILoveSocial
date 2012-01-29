@@ -27,8 +27,18 @@
         
         result.style=[NSNumber numberWithInt:sytle];
         
-        
+    if ([[dict objectForKey:@"feed_type"] intValue]==21)
+    {
+        result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
+        result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
+    }
+    
+    else
+    {
         result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
+        result.source_ID= [[dict objectForKey:@"source_id"] stringValue]; 
+    }
+
         
         
         result.owner_Head= [dict objectForKey:@"headurl"] ;
@@ -50,7 +60,7 @@
         
         result.comment_Count=[NSNumber numberWithInt:    [ [[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
         
-        result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
+       // result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
         
         result.prefix=[dict objectForKey:@"prefix"] ;
         result.title=[dict objectForKey:@"title"] ;
@@ -61,9 +71,7 @@
        // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
        // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
 
-        
-    NSLog(@":%@:",result.mydescription);
-    
+
         result.get_Time=getDate;
     return result;
         

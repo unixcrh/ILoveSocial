@@ -31,7 +31,6 @@
 -(void)addOriStatus
 {
     _nameLabel.text=[_feedData getFeedName];
-
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
         imageData = [Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
@@ -47,24 +46,8 @@
      ((UIScrollView*)self.view).delegate=self;
     self.tableView.frame=CGRectMake(306, 0, 306, 350);
     [((UIScrollView*)self.view) addSubview:self.tableView];
-    
-   
     _pageControl.currentPage=0;
-    
-    
-    self.tableView.allowsSelection=NO;
-    
-    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
-    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-    
-
-    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
-
-    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-    [infoText release];
-    _webView.backgroundColor=[UIColor clearColor];
-    _webView.opaque=NO;
-    
+    self.tableView.allowsSelection=NO;    
     if ([_feedData.style intValue]==0)
     {
         [_style setImage:[UIImage imageNamed:@"detail_renren.png"]];
@@ -74,6 +57,35 @@
             [_style setImage:[UIImage imageNamed:@"detail_weibo.png"]];
     }
     
+    
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
+    
+    if ([_feedData class]==[NewFeedData class])
+    {
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
+    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    [infoText release];
+
+    }
+    else if ([_feedData class]==[NewFeedBlog class])
+    {
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSDictionary *dic = client.responseJSONObject;
+                NSString* content=[dic objectForKey:@"content"];
+                [_webView loadHTMLString:content baseURL:nil];
+                
+                
+            }
+        }];
+        [renren getBlog:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
+        
+
+    }
     
 }
 
