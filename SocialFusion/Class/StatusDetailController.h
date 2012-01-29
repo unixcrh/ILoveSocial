@@ -17,23 +17,19 @@
 @interface StatusDetailController : EGOTableViewController<UIScrollViewDelegate>
 {
     IBOutlet StatusCommentCell *_commentCel;
- 
-   
     int _pageNumber;
     BOOL _showMoreButton;
-
-    
-    
     IBOutlet UIImageView* _headImage;
     IBOutlet UIImageView* _style;
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
     IBOutlet UIWebView* _webView;
     IBOutlet UIPageControl* _pageControl;
-
-    //   BOOL _completing;
 }
 @property (nonatomic, retain) NewFeedRootData* feedData;
 
 -(void)loadData;
+-(void)setFixedInfo;
+-(void)loadWebView;
+
 @end

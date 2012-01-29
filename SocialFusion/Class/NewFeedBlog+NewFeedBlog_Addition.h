@@ -13,4 +13,5 @@
 + (NewFeedBlog *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 -(NSString*)getBlog;
 -(NSString*)getName;
+
 @end

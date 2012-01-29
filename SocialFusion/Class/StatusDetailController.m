@@ -30,8 +30,17 @@
 
 
 
+-(void)loadWebView
+{
+    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
+    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
+    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    [infoText release];
+}
 
--(void)addOriStatus
+
+-(void)setFixedInfo
 {
     _nameLabel.text=[_feedData getFeedName];
     NSData *imageData = nil;
@@ -46,7 +55,7 @@
     ((UIScrollView*)self.view).pagingEnabled=YES;
     ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
     ((UIScrollView*)self.view).directionalLockEnabled=YES;
-     ((UIScrollView*)self.view).delegate=self;
+    ((UIScrollView*)self.view).delegate=self;
     self.tableView.frame=CGRectMake(306, 0, 306, 350);
     [((UIScrollView*)self.view) addSubview:self.tableView];
     _pageControl.currentPage=0;
@@ -57,43 +66,22 @@
     }
     else
     {
-            [_style setImage:[UIImage imageNamed:@"detail_weibo.png"]];
+        [_style setImage:[UIImage imageNamed:@"detail_weibo.png"]];
     }
     
     
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
     
-    if ([_feedData class]==[NewFeedData class])
-    {
-    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
-    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
-    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-    [infoText release];
+}
+-(void)addOriStatus
+{
+    [self setFixedInfo];
+    [self loadWebView];
 
-    }
-    else if ([_feedData class]==[NewFeedBlog class])
-    {
-        RenrenClient *renren = [RenrenClient client];
-        [renren setCompletionBlock:^(RenrenClient *client) {
-            if(!client.hasError) {
-                NSDictionary *dic = client.responseJSONObject;
-                NSString* content=[dic objectForKey:@"content"];
-              
-                NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcelldetail" ofType:@"html"];
-                NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-                infoText=[infoText setWeibo:content];
-                [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-                [infoText release];
 
-            }
-        }];
-        [renren getBlog:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
-        
-
-    }
     
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -278,12 +266,7 @@
                       //   [self.tableView reloadData];
                 
             }
-            
-            
-            
-            
-            
-            
+
         }];
 
         [weibo getCommentsOfStatus:[_feedData getSource_ID] page:_pageNumber count:10];

@@ -23,7 +23,7 @@
 #import "UIImage+Addition.h"
 #import "NewFeedTempImageView.h"
 #import "NewFeedUserListController.h"
-
+#import "NewFeedDetailBlogViewCell.h"
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
@@ -373,7 +373,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     static NSString *StatusCell = @"NewFeedStatusCell";
     
-    //  static NSString *DetailCell=@"DetailCell";
+
     if ([indexPath compare:_indexPath])
     {
         NewFeedStatusCell* cell;
@@ -422,12 +422,26 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
     else//展开时的cell
     {
-        NewFeedDetailViewCell* cell;
+
         NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
       
+            if ([a class]==[NewFeedBlog class])
+            {
+                NewFeedDetailBlogViewCell* cell;
+                [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailBlogViewCell" owner:self options:nil];
+                cell = _newFeedDetailBlogViewCel;
+                
+                [cell initWithFeedData:a context:self.managedObjectContext];
+                
+                
+                return cell; 
+            }
             
-            
+        else
+        {
+    
+                NewFeedDetailViewCell* cell;
             [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
             cell = _newFeedDetailViewCel;
             
@@ -435,6 +449,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
         
         return cell;
+        }
     }
     
     

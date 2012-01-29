@@ -17,7 +17,7 @@
 
 #import "NewFeedDetailViewCell.h"
 #import "NewFeedCellHeight.h"
-
+#import "NewFeedDetailBlogViewCell.h"
 typedef   enum kUserFeed {
     kRenrenSelfFeed = 0,
     kWeiboSelfFeed  = 1,
@@ -30,6 +30,8 @@ typedef   enum kUserFeed {
     NSDate* _currentTime;
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
+    IBOutlet NewFeedDetailBlogViewCell *_newFeedDetailBlogViewCel;
+
     NSIndexPath* _indexPath;
     int _pageNumber;
     int _style;
