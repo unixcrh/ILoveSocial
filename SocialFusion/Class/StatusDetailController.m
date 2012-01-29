@@ -77,9 +77,16 @@
             if(!client.hasError) {
                 NSDictionary *dic = client.responseJSONObject;
                 NSString* content=[dic objectForKey:@"content"];
-                [_webView loadHTMLString:content baseURL:nil];
+              
+                NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcelldetail" ofType:@"html"];
+                NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+                infoText=[infoText setWeibo:content];
+                [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+                [infoText release];
                 
                 
+            //    [_webView loadHTMLString:content baseURL:nil];
+                          //  _webView.scalesPageToFit=YES;
             }
         }];
         [renren getBlog:[_feedData getActor_ID] status_ID:[_feedData getSource_ID]];
