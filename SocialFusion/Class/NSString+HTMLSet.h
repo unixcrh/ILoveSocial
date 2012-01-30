@@ -17,5 +17,6 @@
 -(NSString*)setPhotoMount:(NSString*)photomount; 
 -(NSString*)setAuthor:(NSString*)author;
 -(NSString*)setComment :(NSString*)comment; 
+-(NSString*)setCount :(NSString*)count; 
 
 @end

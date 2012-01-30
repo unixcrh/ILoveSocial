@@ -102,4 +102,12 @@
     return returnString;
 }
 
+-(NSString*)setCount :(NSString*)count
+{
+    NSArray* array=[self componentsSeparatedByString:@"@#Count#@"];
+    [self release];
+    
+    NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],count,[array objectAtIndex:1]];
+    return returnString;
+}
 @end

@@ -232,6 +232,7 @@
        
         infoText=[infoText setAlbum:[(NewFeedUploadPhoto*)feedData getTitle]];
         
+        infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
         
@@ -249,6 +250,7 @@
         infoText=[infoText setAlbum:[(NewFeedShareAlbum*)feedData getAubumName]];
         infoText=[infoText setPhotoMount:[(NewFeedShareAlbum*)feedData getAblbumQuantity]];
         infoText=[infoText setAuthor:[(NewFeedShareAlbum*)feedData getFromName]];
+               infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
 
@@ -271,6 +273,7 @@
         infoText=[infoText setComment:[(NewFeedSharePhoto*)feedData getPhotoComment]];
         infoText=[infoText setAlbum:[(NewFeedSharePhoto*)feedData getTitle]];
         infoText=[infoText setAuthor:[(NewFeedSharePhoto*)feedData getFromName]];
+               infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
         
@@ -285,6 +288,7 @@
         infoText=[infoText setWeibo:[((NewFeedBlog*)feedData) getName]];
         infoText=[infoText setTime:[CommonFunction getTimeBefore:[feedData getDate]]];
         infoText=[infoText setRepost:[(NewFeedBlog*)feedData getBlog]];
+               infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
 
@@ -304,7 +308,7 @@
                 infoText=[infoText setName:[feedData getFeedName]];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 infoText=[infoText setTime:[CommonFunction getTimeBefore:[feedData getDate]]];
-            
+                   infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }
@@ -315,7 +319,7 @@
                 infoText=[infoText setName:[feedData getFeedName]];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 infoText=[infoText setTime:[CommonFunction getTimeBefore:[feedData getDate]]];
-        
+               infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }
@@ -331,6 +335,7 @@
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 infoText=[infoText setTime:[CommonFunction getTimeBefore:[feedData getDate]]];
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
+                       infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }
@@ -343,7 +348,7 @@
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 infoText=[infoText setTime:[CommonFunction getTimeBefore:[feedData getDate]]];
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
-
+       infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }

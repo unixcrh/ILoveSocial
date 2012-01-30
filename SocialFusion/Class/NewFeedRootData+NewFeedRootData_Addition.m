@@ -215,6 +215,10 @@
     
 }
 
+-(NSString*)getCountString
+{
+    return [NSString stringWithFormat:@"评论:%d",[self.comment_Count intValue]];
+}
 
 + (NewFeedRootData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context
 {

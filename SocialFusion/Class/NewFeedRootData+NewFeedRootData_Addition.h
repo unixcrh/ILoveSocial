@@ -21,4 +21,5 @@
 -(int)getComment_Count;
 -(int)getStyle;
 -(void)setCount:(int)count;
+-(NSString*)getCountString;
 @end

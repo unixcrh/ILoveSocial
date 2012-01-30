@@ -28,12 +28,7 @@
             result = [NSEntityDescription insertNewObjectForEntityForName:@"StatusCommentData" inManagedObjectContext:context];
         }
         
-        
 
-    
-        
-    
-    
     result.actor_ID=[[dict objectForKey:@"uid"] stringValue] ;
     
     result.owner_Head= [dict objectForKey:@"tinyurl"];
@@ -53,7 +48,7 @@
     
     
     
-    result.comment_ID= [[dict objectForKey:@"comment_id"] stringValue];
+    result.comment_ID= comment_ID;
     
     result.text=[dict objectForKey:@"text"];
     
