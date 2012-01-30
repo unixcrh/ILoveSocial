@@ -28,7 +28,14 @@
     _pageControl.currentPage = index;
 }
 
-
+- (void)clearData
+{
+    
+    _firstLoadFlag = YES;
+    NSLog(@"%@",self.feedData.comments);
+    [self.feedData removeComments:self.feedData.comments];
+        NSLog(@"%@",self.feedData.comments);
+}
 
 -(void)loadWebView
 {
@@ -145,6 +152,7 @@
     NSSortDescriptor *sort;
   
     predicate = [NSPredicate predicateWithFormat:@"SELF IN %@",self.feedData.comments];
+    NSLog(@"%@",self.feedData.comments);
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:YES];
     [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort];
@@ -158,7 +166,7 @@
 #pragma mark - EGORefresh Method
 - (void)refresh {
        
-   // [self clearData];
+[self clearData];
 
     if ([_feedData getStyle]==0)
     {
@@ -183,6 +191,29 @@
 
 }
 
+
+- (void)loadMoreData {
+    if(_loading)
+        return;
+    _loading = YES;
+    
+    
+    if ([_feedData getStyle]==0)
+    {
+        _pageNumber--;
+    }
+    else
+    {
+        _pageNumber++;
+    }
+    [self loadData]    ;
+}
+
+
+
+
+
+
 - (void)showHeadImageAnimation:(UIImageView *)imageView {
     imageView.alpha = 0;
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
@@ -193,7 +224,49 @@
 
 
 
+-(void)ProcessRenrenData:(NSArray*)array
+{
+    for(NSDictionary *dict in array) {
+        StatusCommentData* commentsData=[StatusCommentData insertNewComment:0 Dic:dict inManagedObjectContext:self.managedObjectContext];
+        [_feedData addCommentsObject:commentsData];
+        
+    }
+    if (_pageNumber!=1)
+    {
+        _showMoreButton=YES;
+    }
+    else
+    {
+        _showMoreButton=NO;
+    }
+    
+    _loading=NO;
+    [self doneLoadingTableViewData];
+     [self.tableView reloadData];
+}
 
+-(void)ProcessWeiboData:(NSArray*)array
+{
+    for(NSDictionary *dict in array) {
+        
+        StatusCommentData* commentsData=[StatusCommentData insertNewComment:1 Dic:dict inManagedObjectContext:self.managedObjectContext];
+        [_feedData addCommentsObject:commentsData]; 
+    }
+    
+    
+    
+    if ([_feedData.comments count]<[_feedData getComment_Count])
+    {
+        _showMoreButton=YES;
+    }
+    else
+    {
+        _showMoreButton=NO;
+    }
+    _loading=NO;
+    [self doneLoadingTableViewData];
+      [self.tableView reloadData];
+}
 
 -(void)loadData
 {
@@ -203,38 +276,15 @@
         [renren setCompletionBlock:^(RenrenClient *client) {
             if(!client.hasError) {
                 NSArray *array = client.responseJSONObject;
-                for(NSDictionary *dict in array) {
-                    StatusCommentData* commentsData=[StatusCommentData insertNewComment:0 Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    [_feedData addCommentsObject:commentsData];
-                    
-                }
-                if (_pageNumber!=1)
-                {
-                    _showMoreButton=YES;
-                }
-                else
-                {
-                    _showMoreButton=NO;
-                }
-                
-                _loading=NO;
-                 [self doneLoadingTableViewData];
+                [self ProcessRenrenData:array];
               //[self.tableView reloadData];
             }
             
             
             
         }];
-        
-        if ([_feedData class]!=[NewFeedBlog class])
-        {
-        [renren getComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
-        }
-        else
-        {
             [renren getBlogComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
 
-        }
     }
     
     else
@@ -245,25 +295,7 @@
                 
   
                 NSArray *array = client.responseJSONObject;
-                for(NSDictionary *dict in array) {
-                    
-                    StatusCommentData* commentsData=[StatusCommentData insertNewComment:1 Dic:dict inManagedObjectContext:self.managedObjectContext];
-                    [_feedData addCommentsObject:commentsData]; 
-                }
-                
-                
-                
-                if ([_feedData.comments count]<[_feedData getComment_Count])
-                {
-                    _showMoreButton=YES;
-                }
-                else
-                {
-                    _showMoreButton=NO;
-                }
-                _loading=NO;
-                [self doneLoadingTableViewData];
-                      //   [self.tableView reloadData];
+                [self ProcessWeiboData:array];
                 
             }
 
@@ -294,22 +326,9 @@
 
 
 
-- (void)loadMoreData {
-    if(_loading)
-        return;
-    _loading = YES;
-    
-    
-    if ([_feedData getStyle]==0)
-    {
-        _pageNumber--;
-    }
-    else
-    {
-        _pageNumber++;
-    }
-    [self loadData]    ;
-}
+
+
+
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     

@@ -116,6 +116,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     if(_style == kAllSelfFeed) {
         NSLog(@"renren name:%@ and weibo name:%@", self.processRenrenUser.name, self.processWeiboUser.name);
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@||SELF IN %@", self.processRenrenUser.newFeed, self.processWeiboUser.newFeed];
+        
+        NSLog(@"%@",self.processRenrenUser.newFeed);
     }
     else if(_style == kRenrenSelfFeed) {
         NSLog(@"renren name:%@", self.processRenrenUser.name);

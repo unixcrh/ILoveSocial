@@ -31,5 +31,6 @@
 -(void)loadData;
 -(void)setFixedInfo;
 -(void)loadWebView;
-
+-(void)ProcessRenrenData:(NSArray*)array;
+-(void)ProcessWeiboData:(NSArray*)array;
 @end

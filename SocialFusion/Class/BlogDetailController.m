@@ -38,5 +38,46 @@
 }
 
 
+-(void)loadData
+{
+  
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSArray *array;
+                if  (((NewFeedBlog*)self.feedData).shareID!=nil)
+                {
+                     array=[client.responseJSONObject objectForKey:@"comments"];
+           
+                }
+                else
+                {
+                      array   = client.responseJSONObject;
+                }
+            //    NSLog(@"%@",array);
+                    [self ProcessRenrenData:array];
+
+            }
+        }];
+        
+if  (((NewFeedBlog*)self.feedData).shareID!=nil)
+{
+      [renren getShareComments:((NewFeedBlog*)self.feedData).sharePersonID share_ID:((NewFeedBlog*)self.feedData).shareID pageNumber:_pageNumber];
+}
+    else
+    {
+        
+            [renren getBlogComments:[self.feedData getActor_ID] status_ID:[self.feedData getSource_ID] pageNumber:_pageNumber];
+    }       
+        
+    
+    
+
+    
+    
+    
+    
+}
+
 
 @end

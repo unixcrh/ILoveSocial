@@ -27,17 +27,20 @@
         
         result.style=[NSNumber numberWithInt:sytle];
         
-    if ([[dict objectForKey:@"feed_type"] intValue]==21)
-    {
+        if ([[dict objectForKey:@"feed_type"] intValue]==21)
+        {
+          //  NSLog(@"%@",dict);
         result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
         result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
-    }
+            result.shareID=[[dict objectForKey:@"source_id"] stringValue]; 
+            result.sharePersonID=[[dict objectForKey:@"actor_id"] stringValue];
+        }
     
-    else
-    {
+        else
+        {
         result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
         result.source_ID= [[dict objectForKey:@"source_id"] stringValue]; 
-    }
+        }
 
         
         

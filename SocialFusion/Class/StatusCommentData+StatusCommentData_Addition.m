@@ -16,6 +16,9 @@
     {
   
        // NSLog(@"%@",dict);
+        
+        
+        
         NSString  *comment_ID= [[dict objectForKey:@"comment_id"] stringValue] ;   
         
         
@@ -31,7 +34,7 @@
 
     result.actor_ID=[[dict objectForKey:@"uid"] stringValue] ;
     
-    result.owner_Head= [dict objectForKey:@"tinyurl"];
+   // result.owner_Head= [dict objectForKey:@"tinyurl"];
     
     result.owner_Name=[dict objectForKey:@"name"];
     
@@ -77,7 +80,7 @@
 
         result.actor_ID=[[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
         
-        result.owner_Head= [[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
+        //result.owner_Head= [[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
         
         result.owner_Name=[[dict objectForKey:@"user"] objectForKey:@"screen_name"];
         
