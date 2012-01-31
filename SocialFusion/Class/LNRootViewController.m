@@ -82,6 +82,13 @@
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index {
     [self.contentViewController removeContentViewAtIndex:index];
+    [_openedUserHeap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSNumber *openedUserIndex = obj;
+        if(openedUserIndex.unsignedIntValue == index) {
+            [_openedUserHeap removeObjectForKey:key];
+            return;
+        }
+    }];
 }
 
 #pragma mark -
