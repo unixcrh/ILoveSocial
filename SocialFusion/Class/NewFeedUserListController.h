@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "NewFeedListController.h"
-@interface NewFeedUserListController : NewFeedListController
-{
+
+@interface NewFeedUserListController : NewFeedListController {
 
 }
 
