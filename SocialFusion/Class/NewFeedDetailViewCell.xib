@@ -58,7 +58,7 @@
 											<object class="IBUIWebView" id="919437750">
 												<reference key="NSNextResponder" ref="977345865"/>
 												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{0, 66}, {306, 285}}</string>
+												<string key="NSFrame">{{0, 62}, {306, 289}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="170036589"/>
@@ -222,7 +222,7 @@
 											<object class="IBUIImageView" id="170036589">
 												<reference key="NSNextResponder" ref="977345865"/>
 												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{2, 66}, {302, 1}}</string>
+												<string key="NSFrame">{{2, 61}, {302, 1}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="883569839"/>
@@ -236,7 +236,7 @@
 											<object class="IBUIImageView" id="163795574">
 												<reference key="NSNextResponder" ref="977345865"/>
 												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{225, 3}, {1, 62}}</string>
+												<string key="NSFrame">{{225, -1}, {1, 62}}</string>
 												<reference key="NSSuperview" ref="977345865"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="242026056"/>
@@ -507,7 +507,6 @@
 						<int key="objectID">86</int>
 						<reference key="object" ref="977345865"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="919437750"/>
 							<reference ref="170036589"/>
 							<reference ref="163795574"/>
 							<reference ref="138069420"/>
@@ -516,6 +515,7 @@
 							<reference ref="207819498"/>
 							<reference ref="883569839"/>
 							<reference ref="846360530"/>
+							<reference ref="919437750"/>
 						</array>
 						<reference key="parent" ref="1070131629"/>
 					</object>
@@ -609,6 +609,25 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
+					<string key="className">BlogDetailController</string>
+					<string key="superclassName">StatusDetailController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">_blogTitle</string>
+						<string key="NS.object.0">UILabel</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">_blogTitle</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">_blogTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/BlogDetailController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">CoreDataTableViewController</string>
 					<string key="superclassName">CoreDataViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -641,6 +660,25 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/EGOTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NewFeedDetailBlogViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">detailController</string>
+						<string key="NS.object.0">BlogDetailController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">detailController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">detailController</string>
+							<string key="candidateClassName">BlogDetailController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NewFeedDetailBlogViewCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -678,12 +716,17 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_feedStatusCel">NewFeedStatusCell</string>
+						<string key="_newFeedDetailBlogViewCel">NewFeedDetailBlogViewCell</string>
 						<string key="_newFeedDetailViewCel">NewFeedDetailViewCell</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_feedStatusCel">
 							<string key="name">_feedStatusCel</string>
 							<string key="candidateClassName">NewFeedStatusCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_newFeedDetailBlogViewCel">
+							<string key="name">_newFeedDetailBlogViewCel</string>
+							<string key="candidateClassName">NewFeedDetailBlogViewCell</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_newFeedDetailViewCel">
 							<string key="name">_newFeedDetailViewCel</string>

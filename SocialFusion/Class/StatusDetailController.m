@@ -32,9 +32,9 @@
 {
     
     _firstLoadFlag = YES;
-    NSLog(@"%@",self.feedData.comments);
+  //  NSLog(@"%@",self.feedData.comments);
     [self.feedData removeComments:self.feedData.comments];
-        NSLog(@"%@",self.feedData.comments);
+    //    NSLog(@"%@",self.feedData.comments);
 }
 
 -(void)loadWebView
@@ -166,7 +166,7 @@
 #pragma mark - EGORefresh Method
 - (void)refresh {
        
-[self clearData];
+    [self clearData];
 
     if ([_feedData getStyle]==0)
     {
