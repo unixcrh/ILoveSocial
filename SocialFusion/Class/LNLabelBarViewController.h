@@ -22,6 +22,7 @@ typedef void (^PopPageMnuallyCompletion)(void);
     NSUInteger _currentParentLabelIndex;
     id<LNLabelBarViewControllerDelegate> _delegate;
     PopPageMnuallyCompletion _popPageManuallyCompletion;
+    BOOL _selectUserLock;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;

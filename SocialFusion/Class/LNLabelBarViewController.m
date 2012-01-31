@@ -117,6 +117,9 @@
 }
 
 - (void)createLabelWithInfo:(LabelInfo *)info {
+    if(_selectUserLock) 
+        return;
+    _selectUserLock = YES;
     [self popPageManuallyWithCompletion:^{
         [self.labelInfoArray addObject:info];
         if(self.labelInfoArray.count % 4 == 1) {
@@ -132,6 +135,7 @@
         }
         [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (self.pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
         self.pageControl.currentPage = self.pageCount;
+        _selectUserLock = NO;
     }];
     
 }
@@ -329,10 +333,14 @@
 }
 
 - (void)selectParentLabelAtIndex:(NSUInteger)index {
+    if(_selectUserLock) 
+        return;
+    _selectUserLock = YES;
     [self popPageManuallyWithCompletion:^{
         [self selectLabelAtIndex:index];
         NSUInteger page = index / 4;
         [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * page, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+        _selectUserLock = NO;
     }];
 }
 
