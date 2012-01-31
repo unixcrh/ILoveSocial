@@ -22,6 +22,7 @@
 @property (nonatomic, retain) DetailInformation *detailInformation;
 @property (nonatomic, retain) NSSet *statuses;
 @property (nonatomic, retain) NSSet *newFeed;
+
 @end
 
 @interface User (CoreDataGeneratedAccessors)

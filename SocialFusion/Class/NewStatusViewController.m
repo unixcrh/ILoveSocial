@@ -59,6 +59,7 @@
     self.textView.delegate = self;
     [self.postRenrenButton setSelected:_postToRenren];
     [self.postWeiboButton setSelected:_postToWeibo];
+    self.textView.text = @"";
     [self updateTextCount];
 }
 

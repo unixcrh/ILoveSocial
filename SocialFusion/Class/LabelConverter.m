@@ -98,4 +98,9 @@ static LabelConverter *instance = nil;
     return info;
 }
 
++ (NSUInteger)getSystemDefaultLabelCount {
+    NSArray *systemDefaultLabelsIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
+    return systemDefaultLabelsIdentifier.count;
+}
+
 @end
