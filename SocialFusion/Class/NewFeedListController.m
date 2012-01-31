@@ -24,12 +24,11 @@
 #import "NewFeedTempImageView.h"
 #import "NewFeedUserListController.h"
 #import "NewFeedDetailBlogViewCell.h"
+
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
 }
-
-
 
 @implementation NewFeedListController
 
@@ -37,8 +36,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [super dealloc];
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self=[super initWithNibName:@"NewFeedListController" bundle:nil];
     return self;
 }

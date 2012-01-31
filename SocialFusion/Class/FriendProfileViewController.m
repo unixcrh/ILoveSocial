@@ -54,23 +54,27 @@
 {
     [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext]];
     NSPredicate *predicate;
-    NSSortDescriptor *sort;
+    NSArray *descriptors;
     if(_type == RelationshipViewTypeRenrenFriends) {
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.renrenUser.friends];
-        sort = [[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES];
+        NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES] autorelease];
+        NSSortDescriptor *sort2 = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+        descriptors = [NSArray arrayWithObjects:sort, sort2, nil];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.weiboUser.friends];
-        sort = [[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES];
+        NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES] autorelease];
+        descriptors = [NSArray arrayWithObject:sort];
     }
     else if(_type == RelationshipViewTypeWeiboFollowers) {
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.weiboUser.followers];
-        sort = [[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES];
+        NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES] autorelease];;
+        descriptors = [NSArray arrayWithObject:sort];
     }
     [request setPredicate:predicate];
-    NSArray *descriptors = [NSArray arrayWithObject:sort]; 
+    
     [request setSortDescriptors:descriptors]; 
-    [sort release];
+    
     request.fetchBatchSize = 20;
 }
 
