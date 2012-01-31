@@ -42,9 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(_type == RelationshipViewTypeRenrenFriends && self.renrenUser.friends.count > 0)
-        return;
-    [self refresh];
 }
 
 #pragma mark -

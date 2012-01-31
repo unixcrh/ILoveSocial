@@ -8,19 +8,14 @@
 
 #import "FriendListViewController.h"
 #import "FriendListTableViewCell.h"
-#import "RenrenUser+Addition.h"
-#import "RenrenStatus+Addition.h"
-#import "WeiboUser+Addition.h"
+#import "RenrenUser.h"
+#import "WeiboUser.h"
 #import "Image+Addition.h"
 #import "UIImageView+DispatchLoad.h"
 #import "User+Addition.h"
-#import "RenrenClient.h"
-#import "WeiboClient.h"
-
-
+#import "FriendListRenrenViewController.h"
+#import "FriendListWeiboViewController.h"
 #import "NSNotificationCenter+Addition.h"
-
-#define kCustomRowCount 7
 
 @implementation FriendListViewController
 
@@ -32,13 +27,23 @@
 }
 
 - (void)viewDidUnload {
-    
+    [super viewDidUnload];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"friend list view did load");
-    self.egoHeaderView.textColor = [UIColor grayColor];
+}
+
++ (FriendListViewController *)getNewFeedListControllerWithType:(RelationshipViewType)type {
+    FriendListViewController *result;
+    if(type == RelationshipViewTypeRenrenFriends) {
+        result = [[FriendListRenrenViewController alloc] initWithType:type];
+    }
+    else {
+        result = [[FriendListWeiboViewController alloc] initWithType:type];
+    }
+    [result autorelease];
+    return result;
 }
 
 #pragma mark -
@@ -51,24 +56,6 @@
     relationshipCell.latestStatus.text = nil;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     relationshipCell.userName.text = usr.name;
-
-    if(_type == RelationshipViewTypeRenrenFriends) {
-        relationshipCell.headFrameIamgeView.image = [UIImage imageNamed:@"head_renren.png"];
-    }
-    else {
-        relationshipCell.headFrameIamgeView.image = [UIImage imageNamed:@"head_wb.png"];
-    }
-    
-    if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
-        if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
-            if(indexPath.row < kCustomRowCount) {
-                [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
-            }
-        }
-    }
-    else {
-        relationshipCell.latestStatus.text = usr.latestStatus;
-    }
     
     NSData *imageData = nil;
     if([Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext]) {
@@ -93,13 +80,6 @@
     return @"FriendListTableViewCell";
 }
 
-- (NSString *)customSectionNameKeyPath {
-    if(_type == RelationshipViewTypeRenrenFriends)
-        return @"nameFirstLetter";
-    else
-        return @"updateDate";
-}
-
 #pragma mark -
 #pragma mark UITableView delegates
 
@@ -120,23 +100,6 @@
     [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
-{
-    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 20)] autorelease];
-    [headerView setBackgroundColor:[UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:0.6f]];
-    NSString *section_name = [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, 306, 18)];
-    label.text = section_name;
-    label.font = [UIFont fontWithName:@"MV Boli" size:16.0f];
-    label.textColor = [UIColor whiteColor];
-    label.shadowColor = [UIColor grayColor];
-    label.shadowOffset = CGSizeMake(0, 1.0f);
-    label.backgroundColor = [UIColor clearColor];
-    [headerView addSubview:label];
-    [label release];
-    return headerView;
-}
-
 #pragma mark -
 #pragma mark Animations
 
@@ -151,9 +114,6 @@
         [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
             [self showHeadImageAnimation:relationshipCell.headImageView];
         } cacheInContext:self.managedObjectContext];
-    }
-    if(_type == RelationshipViewTypeRenrenFriends && !usr.latestStatus) {
-        [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
     }
 }
 

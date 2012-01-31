@@ -78,13 +78,13 @@
         result = [NewFeedListController getNewFeedListControllerwithStyle:kWeiboSelfFeed];
     }
     else if([identifier isEqualToString:kChildRenrenFriend]) {
-        result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeRenrenFriends] autorelease];
+        result = [FriendListViewController getNewFeedListControllerWithType:RelationshipViewTypeRenrenFriends];
     }
     else if([identifier isEqualToString:kChildWeiboFriend]) {
-        result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFriends] autorelease];
+        result = result = [FriendListViewController getNewFeedListControllerWithType:RelationshipViewTypeWeiboFriends];
     }
     else if([identifier isEqualToString:kChildWeiboFollower]) {
-        result = [[[FriendListViewController alloc] initWithType:RelationshipViewTypeWeiboFollowers] autorelease];
+        result = [FriendListViewController getNewFeedListControllerWithType:RelationshipViewTypeWeiboFollowers];
     }
     else if([identifier isEqualToString:kChildRenrenNewFeed]) {
         result = [NewFeedListController getNewFeedListControllerwithStyle:kRenrenUserFeed];
