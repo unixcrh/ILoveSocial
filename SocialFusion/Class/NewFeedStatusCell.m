@@ -117,20 +117,7 @@
 
 
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    [super setHighlighted:highlighted animated:animated];
-    //NSLog(@"highlight:%d", highlighted);
-    if(highlighted == NO && self.selected == YES)
-        return;
- //   self.userName.highlighted = highlighted;
-}   
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    //NSLog(@"selected:%d", selected);
-   // self.userName.highlighted = selected;
-
-}
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{

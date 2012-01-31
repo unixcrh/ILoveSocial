@@ -4,6 +4,7 @@ body {
 	background-color:transparent;
 	width:306x;
 	font:Helvetica;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 a {
 	color:#6F99B2;

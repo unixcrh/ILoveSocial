@@ -89,7 +89,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     //return;
     _pageNumber=0;
     _indexPath=nil;
-    
+    self.tableView.allowsSelection=NO;
     
     _cellHeightHelper=[[NewFeedCellHeight alloc] init];
     [_cellHeightHelper myinit:self];
