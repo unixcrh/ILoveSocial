@@ -39,9 +39,11 @@
     NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
     _contentViewController = [[LNContentViewController alloc] initWithlabelIdentifiers:labelIdentifier andUsers:self.userDict];
     
+    [self.view addSubview:self.contentViewController.view];
+    
     [self.view addSubview:self.labelBarViewController.view];
     self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_OFFSET_X, CONTENT_VIEW_OFFSET_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
-    [self.view addSubview:self.contentViewController.view];
+    
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(didSelectFriend:) 
