@@ -167,7 +167,7 @@
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
-       
+           [self hideLoadMoreDataButton];
     [self clearData];
 
     if ([_feedData getStyle]==0)

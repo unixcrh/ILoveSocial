@@ -114,6 +114,7 @@
 - (void)doneLoadingTableViewData {
     [UIView animateWithDuration:0.2f animations:^(void) {
         [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+        
     } completion:^(BOOL finished) {
         _reloading = NO;
     }];

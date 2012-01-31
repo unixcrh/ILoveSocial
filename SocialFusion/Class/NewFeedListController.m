@@ -155,6 +155,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
+        [self hideLoadMoreDataButton];
     _pageNumber=0;
     //  [self hideLoadMoreDataButton];
     if (_currentTime!=nil)
@@ -227,9 +228,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         
     }
     
-    
+     
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
+    
     _loading = NO;
 }
 
@@ -272,6 +274,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
+   // [self loadExtraDataForOnscreenRows];
     _loading = NO;
 }
 
@@ -285,7 +288,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
-            
+                
         }
     }];
     
