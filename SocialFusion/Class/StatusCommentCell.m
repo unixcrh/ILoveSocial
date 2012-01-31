@@ -65,7 +65,6 @@
     //状态
     _status.text=[feedData getText];
     
-//    NSLog(@"%@",self.status.text);
     
     CGSize size = CGSizeMake(243, 1000);
     CGSize labelSize = [_status.text sizeWithFont:_status.font 
@@ -92,21 +91,28 @@
     
 
     
-    //NSString* tempString=[CommonFunction getTimeBefore:FeedDate];
-    
 
     [_time setText:[CommonFunction getTimeBefore:FeedDate]];
 
- //   self.time.text=tempString ;
-  //  [tempString release];
+
     
+    _commentButton.center=CGPointMake(_commentButton.center.x, self.frame.size.height/2+10);
     
-    _commentButton.center=CGPointMake(_commentButton.center.x, self.frame.size.height/2+15);
+    if ([feedData.secret boolValue]==YES)
+    {
+        [_secret setImage:[UIImage imageNamed:@"detail_rev_private.png"]];
+        _secret.center=CGPointMake(_commentButton.center.x-20, _commentButton.center.y-3);
+    }
+    else
+    {
+         [_secret setImage:nil];
+    }
+    
+    if (feedData)
     if (bo==YES)
     {
-       // self.contentView
        self.contentView.backgroundColor=[UIColor colorWithRed:0.99608 green:0.97255 blue:0.80784 alpha:1];
-     //   _backView.alpha=1;
+
         
     }
  

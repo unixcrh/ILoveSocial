@@ -15,6 +15,7 @@
     IBOutlet UILabel* _status;
     IBOutlet UILabel* _time;
     IBOutlet UIButton* _commentButton;
+    IBOutlet UIImageView* _secret;
 }
 
 

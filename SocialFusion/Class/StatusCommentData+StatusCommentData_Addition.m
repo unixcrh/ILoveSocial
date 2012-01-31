@@ -52,9 +52,19 @@
     
     
     result.comment_ID= comment_ID;
+        
+        
     
     result.text=[dict objectForKey:@"text"];
     
+    if ([[dict objectForKey:@"is_whisper"] intValue]==1)
+    {
+        result.secret=[NSNumber numberWithBool:YES];
+    }
+        else
+        {
+            result.secret=[NSNumber numberWithBool:NO];
+        }
  if (result.text==nil)
  {
      result.text=[dict objectForKey:@"content"];
@@ -103,7 +113,8 @@
         result.comment_ID= [[dict objectForKey:@"id"] stringValue] ;
         
         result.text=[dict objectForKey:@"text"] ;
-        
+        result.secret=[NSNumber numberWithBool:NO];
+
         return result;        
         
     }

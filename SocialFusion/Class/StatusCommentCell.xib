@@ -14,6 +14,7 @@
 			<string>IBUIButton</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUILabel</string>
+			<string>IBUIImageView</string>
 			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -46,7 +47,7 @@
 								<string key="NSFrame">{{5, 6}, {212, 21}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="266987608"/>
+								<reference key="NSNextKeyView" ref="64992633"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4zMTc2NDcwNTg4IDAuMzA5ODAzOTIxNiAwLjIzOTIxNTY4NjMgMAA</bytes>
@@ -84,7 +85,7 @@
 								<string key="NSFrame">{{5, 27}, {243, 35}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="276126519"/>
+								<reference key="NSNextKeyView" ref="605612343"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC40MDM5MjE1Njg2IDAuMzk2MDc4NDMxNCAwLjMzMzMzMzMzMzMgMAA</bytes>
@@ -121,7 +122,7 @@
 								<string key="NSFrame">{{225, 6}, {74, 21}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="64992633"/>
+								<reference key="NSNextKeyView" ref="276126519"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC42MzkyMTU2ODYzIDAuNjI3NDUwOTgwNCAwLjUwNTg4MjM1MjkgMAA</bytes>
@@ -178,6 +179,16 @@
 									<double key="pointSize">15</double>
 								</object>
 								<reference key="IBUIFont" ref="639448485"/>
+							</object>
+							<object class="IBUIImageView" id="605612343">
+								<reference key="NSNextResponder" ref="762154621"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{253, 12}, {7, 10}}</string>
+								<reference key="NSSuperview" ref="762154621"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="266987608"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
 						<string key="NSFrameSize">{310, 65}</string>
@@ -252,6 +263,14 @@
 					</object>
 					<int key="connectionID">32</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_secret</string>
+						<reference key="source" ref="500193853"/>
+						<reference key="destination" ref="605612343"/>
+					</object>
+					<int key="connectionID">34</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -280,6 +299,7 @@
 							<reference ref="64992633"/>
 							<reference ref="266987608"/>
 							<reference ref="276126519"/>
+							<reference ref="605612343"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Friend Profile Table View Cell - FriendProfileTableViewCell</string>
@@ -305,6 +325,11 @@
 						<reference key="object" ref="276126519"/>
 						<reference key="parent" ref="500193853"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">33</int>
+						<reference key="object" ref="605612343"/>
+						<reference key="parent" ref="500193853"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -313,6 +338,7 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">StatusCommentCell</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -323,7 +349,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -367,6 +393,7 @@
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_commentButton">UIButton</string>
+						<string key="_secret">UIImageView</string>
 						<string key="_status">UILabel</string>
 						<string key="_time">UILabel</string>
 						<string key="_userName">UIButton</string>
@@ -375,6 +402,10 @@
 						<object class="IBToOneOutletInfo" key="_commentButton">
 							<string key="name">_commentButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_secret">
+							<string key="name">_secret</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_status">
 							<string key="name">_status</string>
