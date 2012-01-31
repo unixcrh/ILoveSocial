@@ -154,7 +154,7 @@
     NSSortDescriptor *sort;
   
     predicate = [NSPredicate predicateWithFormat:@"SELF IN %@",self.feedData.comments];
-    NSLog(@"%@",self.feedData.comments);
+   // NSLog(@"%@",self.feedData.comments);
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:YES];
     [request setPredicate:predicate];
     NSArray *descriptors = [NSArray arrayWithObject:sort];
