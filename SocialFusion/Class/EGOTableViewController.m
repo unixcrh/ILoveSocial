@@ -49,12 +49,13 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 60);
         NSString *text = NSLocalizedString(@"加载更多数据", nil);
-        [button setBackgroundImage:[UIImage imageNamed:@"tableviewCell.png"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"tableviewCell-highlight.png"] forState:UIControlStateHighlighted];
+        //[button setBackgroundImage:[UIImage imageNamed:@"tableviewCell.png"] forState:UIControlStateNormal];
+        //[button setBackgroundImage:[UIImage imageNamed:@"tableviewCell-highlight.png"] forState:UIControlStateHighlighted];
         [button setTitle:text forState:UIControlStateNormal];
         [button setTitle:text forState:UIControlStateHighlighted];
+        button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor darkTextColor] forState:UIControlStateHighlighted];
         [button addTarget:self action:@selector(loadMoreData) forControlEvents:UIControlEventTouchUpInside];
         self.loadMoreDataButton = button;
     }
@@ -111,7 +112,7 @@
 }
 
 - (void)doneLoadingTableViewData {
-    [UIView animateWithDuration:.2 animations:^(void) {
+    [UIView animateWithDuration:0.2f animations:^(void) {
         [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
     } completion:^(BOOL finished) {
         _reloading = NO;

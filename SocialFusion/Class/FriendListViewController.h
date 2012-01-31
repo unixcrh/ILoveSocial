@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FriendProfileViewController.h"
 
+#define kCustomRowCount 7
+
 @interface FriendListViewController : FriendProfileViewController
+
++ (FriendListViewController *)getNewFeedListControllerWithType:(RelationshipViewType)type;
 
 @end
 

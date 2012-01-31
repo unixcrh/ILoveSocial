@@ -27,19 +27,18 @@
 #import "EGORefreshTableHeaderView.h"
 
 
-#define TEXT_COLOR	 [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]
+#define TEXT_COLOR  [UIColor grayColor]
+#define TEXT_FONT   [UIFont systemFontOfSize:14.0f]
 #define FLIP_ANIMATION_DURATION 0.18f
 
 
-@interface EGORefreshTableHeaderView (Private)
+@interface EGORefreshTableHeaderView()
 - (void)setState:(EGOPullRefreshState)aState;
 @end
 
 @implementation EGORefreshTableHeaderView
 
 @synthesize delegate = _delegate;
-@synthesize textColor = _textColor;
-
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -49,41 +48,27 @@
 
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont systemFontOfSize:14.0f];
-		//label.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
-		//label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		label.font = TEXT_FONT;
+        label.textColor = TEXT_COLOR;
+		label.shadowColor = [UIColor whiteColor];
+		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = UITextAlignmentCenter;
 		[self addSubview:label];
-		_lastUpdatedLabel=label;
-		[label release];
+		_lastUpdatedLabel = label;
 		
 		label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 60.0f, self.frame.size.width, 60.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont boldSystemFontOfSize:13.0f];
-		//label.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.8f];
-		//label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		label.font = TEXT_FONT;
+        label.textColor = TEXT_COLOR;
+		label.shadowColor = [UIColor whiteColor];
+		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = UITextAlignmentCenter;
 		[self addSubview:label];
-		_statusLabel=label;
-		[label release];
-		
-		/*CALayer *layer = [CALayer layer];
-		layer.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
-		layer.contentsGravity = kCAGravityResizeAspect;
-		layer.contents = (id)[UIImage imageNamed:@"blueArrow.png"].CGImage;
-		
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
-		if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-			layer.contentsScale = [[UIScreen mainScreen] scale];
-		}
-#endif
-		
-		[[self layer] addSublayer:layer];
-		_arrowImage=layer;*/
-		
-		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+		_statusLabel = label;
+				
+		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		view.frame = CGRectMake(25.0f, frame.size.height - 42.0f, 20.0f, 20.0f);
 		[self addSubview:view];
 		_activityView = view;
@@ -95,16 +80,6 @@
     }
     return self;
 }
-
-- (void)setTextColor:(UIColor *)textColor {
-    if(![textColor isEqual:_textColor]) {
-        [_textColor release];
-        _textColor = [textColor retain];
-        _statusLabel.textColor = _textColor;
-        _lastUpdatedLabel.textColor = _textColor;
-    }
-}
-
 
 #pragma mark -
 #pragma mark Setters
@@ -138,29 +113,10 @@
 		case EGOOPullRefreshPulling:
 			
 			_statusLabel.text = NSLocalizedString(@"松开即刷新...", @"松开以刷新状态");
-			//[CATransaction begin];
-			//[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
-			//_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
-			//[CATransaction commit];
-			
 			break;
-		case EGOOPullRefreshNormal:
-			
-			if (_state == EGOOPullRefreshPulling) {
-				//[CATransaction begin];
-				//[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
-				//_arrowImage.transform = CATransform3DIdentity;
-				//[CATransaction commit];
-			}
-			
+		case EGOOPullRefreshNormal:			
 			_statusLabel.text = NSLocalizedString(@"下拉以刷新...", @"下拉以刷新状态");
 			[_activityView stopAnimating];
-			//[CATransaction begin];
-			//[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
-			//_arrowImage.hidden = NO;
-			//_arrowImage.transform = CATransform3DIdentity;
-			//[CATransaction commit];
-			
 			[self refreshLastUpdatedDate];
 			
 			break;
@@ -168,11 +124,6 @@
 			
 			_statusLabel.text = NSLocalizedString(@"请稍等...", @"载入状态");
 			[_activityView startAnimating];
-			//[CATransaction begin];
-			//[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
-			//_arrowImage.hidden = YES;
-			//[CATransaction commit];
-			
 			break;
 		default:
 			break;
@@ -239,13 +190,10 @@
 #pragma mark Dealloc
 
 - (void)dealloc {
-	
 	_delegate = nil;
 	_activityView = nil;
-	_statusLabel = nil;
-	//_arrowImage = nil;
-	_lastUpdatedLabel = nil;
-    [_textColor release];
+	[_statusLabel release];
+	[_lastUpdatedLabel release];
     [super dealloc];
 }
 

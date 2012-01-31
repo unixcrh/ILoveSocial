@@ -116,6 +116,8 @@
 		73FBBFC114C3F6B200694B1B /* NewFeedTempImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBBFC014C3F6B200694B1B /* NewFeedTempImageView.m */; };
 		E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E10296EB14CB5F7B002589A1 /* LabelConverter.m */; };
 		E10296F514CC8CAC002589A1 /* LabelProperty-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */; };
+		E118405714D7BD78000FF01F /* FriendListRenrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E118405614D7BD78000FF01F /* FriendListRenrenViewController.m */; };
+		E118405B14D7BD89000FF01F /* FriendListWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E118405A14D7BD89000FF01F /* FriendListWeiboViewController.m */; };
 		E11DF22314C569F600DDC51A /* mvboli.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22214C569F600DDC51A /* mvboli.ttf */; };
 		E11DF22714C5810000DDC51A /* head_renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22514C5810000DDC51A /* head_renren@2x.png */; };
 		E11DF22814C5810000DDC51A /* head_wb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11DF22614C5810000DDC51A /* head_wb@2x.png */; };
@@ -404,6 +406,10 @@
 		E10296EA14CB5F7A002589A1 /* LabelConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelConverter.h; sourceTree = "<group>"; };
 		E10296EB14CB5F7B002589A1 /* LabelConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelConverter.m; sourceTree = "<group>"; };
 		E10296F414CC8CAC002589A1 /* LabelProperty-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LabelProperty-Config.plist"; path = "Resource/LabelProperty-Config.plist"; sourceTree = "<group>"; };
+		E118405514D7BD78000FF01F /* FriendListRenrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListRenrenViewController.h; sourceTree = "<group>"; };
+		E118405614D7BD78000FF01F /* FriendListRenrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListRenrenViewController.m; sourceTree = "<group>"; };
+		E118405914D7BD89000FF01F /* FriendListWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListWeiboViewController.h; sourceTree = "<group>"; };
+		E118405A14D7BD89000FF01F /* FriendListWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListWeiboViewController.m; sourceTree = "<group>"; };
 		E11DF22214C569F600DDC51A /* mvboli.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mvboli.ttf; sourceTree = "<group>"; };
 		E11DF22514C5810000DDC51A /* head_renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_renren@2x.png"; sourceTree = "<group>"; };
 		E11DF22614C5810000DDC51A /* head_wb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_wb@2x.png"; sourceTree = "<group>"; };
@@ -1177,6 +1183,10 @@
 				E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */,
 				E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */,
 				E1E5DF51143B36600098BBD3 /* FriendListViewController.m */,
+				E118405514D7BD78000FF01F /* FriendListRenrenViewController.h */,
+				E118405614D7BD78000FF01F /* FriendListRenrenViewController.m */,
+				E118405914D7BD89000FF01F /* FriendListWeiboViewController.h */,
+				E118405A14D7BD89000FF01F /* FriendListWeiboViewController.m */,
 			);
 			name = Friend;
 			sourceTree = "<group>";
@@ -1463,6 +1473,8 @@
 				E15F991E14D5CE810069072C /* NewStatusViewController.m in Sources */,
 				E15F992314D5CE8D0069072C /* PublicationViewController.m in Sources */,
 				739D223114D6EC8F00C765C8 /* NewFeedBlog.m in Sources */,
+				E118405714D7BD78000FF01F /* FriendListRenrenViewController.m in Sources */,
+				E118405B14D7BD89000FF01F /* FriendListWeiboViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
