@@ -267,7 +267,8 @@
     }
     _loading=NO;
     [self doneLoadingTableViewData];
-      [self.tableView reloadData];
+    [self.tableView reloadData];
+
 }
 
 -(void)loadData
@@ -285,7 +286,8 @@
             
             
         }];
-            [renren getBlogComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
+    
+            [renren getComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
 
     }
     

@@ -101,6 +101,11 @@
 }
 
 
+-(void)setData:(NSData*)image
+{
+    _photoData =[[NSData alloc] initWithData:image];
+}
+
 -(void)loadImage:(NSData*)image
 {
     
@@ -124,12 +129,13 @@
     
 
 
-
+if (_photoData!=nil)
+{
+    [self loadImage:_photoData];
+    [_photoData release];
+}
     int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
-    
-
-    
     _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setStyle(%d)",_style]];
   
@@ -200,6 +206,7 @@
 
 -(void)configureCell:(NewFeedRootData*)feedData
 {    
+    _photoData=nil;
     [_webView removeFromSuperview];
     [_webView release];
     

@@ -18,6 +18,7 @@
     
     int _style;
 
+        NSData* _photoData;
 }
 
 
@@ -34,4 +35,5 @@
 -(void)exposeCell;
 -(void)loadImage:(NSData*)image;
 -(void)loadPicture:(NSData*)image;
+-(void)setData:(NSData*)image;
 @end

@@ -28,6 +28,7 @@ typedef   enum kUserFeed {
 
 @interface NewFeedListController : EGOTableViewController {
     NSDate* _currentTime;
+
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
     IBOutlet NewFeedDetailBlogViewCell *_newFeedDetailBlogViewCel;

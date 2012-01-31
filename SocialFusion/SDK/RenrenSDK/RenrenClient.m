@@ -404,7 +404,7 @@ static NSString* const AppID = @"150399";
                                  status,@"status_id",
                                  userID,@"owner_id",
                                  tempString,@"page",
-                                 @"1",@"order",
+                                 @"0",@"order",
                                  nil];
     [tempString release];
 	[self requestWithParams:params andDelegate:self];

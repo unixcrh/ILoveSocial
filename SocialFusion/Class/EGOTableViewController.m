@@ -117,6 +117,7 @@
         
     } completion:^(BOOL finished) {
         _reloading = NO;
+   
     }];
 	[self.egoHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading];
 }

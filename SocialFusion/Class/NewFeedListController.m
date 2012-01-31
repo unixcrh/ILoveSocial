@@ -377,12 +377,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     static NSString *StatusCell = @"NewFeedStatusCell";
     
 
+
     if ([indexPath compare:_indexPath])
     {
         NewFeedStatusCell* cell;
         
         //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
-        NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NewFeedRootData *data= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         
         cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
@@ -393,34 +394,46 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         
         
         
-        [cell configureCell:a];
+        [cell configureCell:data];
         
         [cell setList:self];
         
         
+   
         
-        NSData *imageData = nil;
-        if([Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext]) {
-            imageData = [Image imageWithURL:a.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
-        }
-        if(imageData != nil) {
-            //   cell.headImageView.image = [UIImage imageWithData:imageData];
-        }
-        
-        if ([a class]==[NewFeedData class])
+        if (indexPath.row<5)
         {
-            NewFeedData* data2=(NewFeedData*)a;
-            if (data2.pic_URL!=nil)
-            {
-                if([Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext]) {
-                    imageData = [Image imageWithURL:data2.pic_URL inManagedObjectContext:self.managedObjectContext].imageData.data;
-                }
-                if(imageData != nil) {
-                    //         cell.picView.image = [UIImage imageWithData:imageData];
-                    //       cell.picView.frame=CGRectMake(cell.picView.frame.origin.x, cell.picView.frame.origin.y,(cell.picView.frame.size.height/cell.picView.image.size.height)*cell.picView.image.size.width, cell.picView.frame.size.height);
-                }
-            }
+    
+        if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+            return cell;
+   
+        Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
+        if (!image)
+        {
+                [UIImage loadImageFromURL:data.owner_Head completion:^{
+                Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
+                
+                [cell setData:image1.imageData.data];
+                
+            } cacheInContext:self.managedObjectContext];
+            
         }
+        
+        else
+        {
+            [cell setData:image.imageData.data];
+        }
+        
+        }
+       
+        
+
+       
+        
+    
+        
+        
+        
         return cell;
     }
     else//展开时的cell
