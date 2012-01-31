@@ -18,6 +18,7 @@
 @interface LNRootViewController : CoreDataViewController<LNLabelBarViewControllerDelegate> {
     LNLabelBarViewController *_labelBarViewController;
     LNContentViewController *_contentViewController;
+    NSMutableDictionary *_openedUserHeap;
 }
 
 @property (nonatomic, retain) LNLabelBarViewController *labelBarViewController;

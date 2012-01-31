@@ -104,8 +104,20 @@
     return self;
 }
 
+- (void)popPageManuallyWithCompletion:(void (^)(void))completion {
+    _popPageManuallyCompletion = [completion copy];
+    if(_pageIndexStack.count != 0) {
+        [self popPageManually];
+    }
+    else {
+        _popPageManuallyCompletion();
+        [_popPageManuallyCompletion release];
+        _popPageManuallyCompletion = nil;
+    }
+}
+
 - (void)createLabelWithInfo:(LabelInfo *)info {
-    _popPageManuallyCompletion = [^(void) {
+    [self popPageManuallyWithCompletion:^{
         [self.labelInfoArray addObject:info];
         if(self.labelInfoArray.count % 4 == 1) {
             self.pageCount = self.pageCount + 1;
@@ -120,15 +132,16 @@
         }
         [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (self.pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
         self.pageControl.currentPage = self.pageCount;
-    } copy];
-    if(_pageIndexStack.count != 0) {
-        [self popPageManually];
-    }
-    else {
-        _popPageManuallyCompletion();
-        [_popPageManuallyCompletion release];
-        _popPageManuallyCompletion = nil;
-    }
+    }];
+    
+}
+
+- (void)selectLabelAtIndex:(NSUInteger)labelToSelectIndex {
+    NSUInteger labelToSelectPage = labelToSelectIndex / 4;
+    NSUInteger labelToSelectIndexInPage = labelToSelectIndex % 4;
+    LNLabelPageViewController *labelPageToSelect = [self.labelPages objectAtIndex:labelToSelectPage];
+    LNLabelViewController *labelToSelect = [labelPageToSelect.labelViews objectAtIndex:labelToSelectIndexInPage];
+    [labelToSelect clickTitleButton:nil];
 }
 
 #pragma mark -
@@ -151,12 +164,7 @@
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)label {
     NSUInteger index = pageView.page * 4 + label.index;
     if(label.isSelected) {
-        NSUInteger labelToSelectIndex = index - 1;
-        NSUInteger labelToSelectPage = labelToSelectIndex / 4;
-        NSUInteger labelToSelectIndexInPage = labelToSelectIndex % 4;
-        LNLabelPageViewController *labelPageToSelect = [self.labelPages objectAtIndex:labelToSelectPage];
-        LNLabelViewController *labelToSelect = [labelPageToSelect.labelViews objectAtIndex:labelToSelectIndexInPage];
-        [labelToSelect clickTitleButton:nil];
+        [self selectLabelAtIndex:index - 1];
     }
     
     NSUInteger page = pageView.page;
@@ -318,6 +326,14 @@
             [self closeOpenPage];
         }];
     }
+}
+
+- (void)selectParentLabelAtIndex:(NSUInteger)index {
+    [self popPageManuallyWithCompletion:^{
+        [self selectLabelAtIndex:index];
+        NSUInteger page = index / 4;
+        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * page, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+    }];
 }
 
 @end

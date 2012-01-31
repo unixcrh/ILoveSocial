@@ -149,4 +149,5 @@
         self.isSelected = _info.isSelected;
     }
 }
+
 @end

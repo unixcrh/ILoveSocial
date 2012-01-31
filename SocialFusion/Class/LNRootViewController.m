@@ -13,6 +13,8 @@
 #define CONTENT_VIEW_OFFSET_X   7
 #define CONTENT_VIEW_OFFSET_Y   64
 
+#define USER_NOT_OPEN   0
+
 @implementation LNRootViewController;
 
 @synthesize labelBarViewController = _labelBarViewController;
@@ -21,6 +23,7 @@
 - (void)dealloc {
     [_labelBarViewController release];
     [_contentViewController release];
+    [_openedUserHeap release];
     [super dealloc];
 }
 
@@ -52,8 +55,18 @@
         NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
         _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
         _labelBarViewController.delegate = self;
+        _openedUserHeap = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (NSUInteger)getOpenedUserIndex:(User *)user {
+    NSUInteger result = USER_NOT_OPEN;
+    NSNumber *storediIndex = [_openedUserHeap objectForKey:user.userID];
+    if(storediIndex) {
+        result = storediIndex.unsignedIntValue;
+    }
+    return result;
 }
 
 #pragma mark -
@@ -80,6 +93,7 @@
     NSDictionary *userDict = notification.object;
     NSString *identifier;
     User *selectedUser;
+    
     if([userDict objectForKey:kWeiboUser]) {
         identifier = kParentWeiboUser;
         selectedUser = [userDict objectForKey:kWeiboUser];
@@ -88,6 +102,16 @@
         identifier = kParentRenrenUser;
         selectedUser = [userDict objectForKey:kRenrenUser];
     }
+    
+    NSUInteger openedUserIndex = [self getOpenedUserIndex:selectedUser];
+    if(openedUserIndex != USER_NOT_OPEN) {
+        [self.labelBarViewController selectParentLabelAtIndex:openedUserIndex];
+        return;
+    }
+    else {
+        [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.labelInfoArray.count] forKey:selectedUser.userID];
+    }
+    
     [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
     LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
     labelInfo.isRemovable = YES;

@@ -34,6 +34,7 @@ typedef void (^PopPageMnuallyCompletion)(void);
 
 - (id)initWithLabelInfoArray:(NSArray *)infoArray;
 - (void)createLabelWithInfo:(LabelInfo *)info;
+- (void)selectParentLabelAtIndex:(NSUInteger)index;
 
 @end
 
