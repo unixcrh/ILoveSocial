@@ -34,6 +34,8 @@
     _firstLoadFlag = YES;
   //  NSLog(@"%@",self.feedData.comments);
     [self.feedData removeComments:self.feedData.comments];
+    
+    [StatusCommentData deleteAllObjectsInManagedObjectContext:self.managedObjectContext];
     //    NSLog(@"%@",self.feedData.comments);
 }
 
