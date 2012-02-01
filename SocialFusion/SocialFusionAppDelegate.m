@@ -46,8 +46,8 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
-    NSLog(@"save context");
-    [self saveContext];
+    //NSLog(@"save context");
+    //[self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -90,8 +90,6 @@ temp.managedObjectContext=self.managedObjectContext;
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-    NSLog(@"save context");
-    [self saveContext];
 }
 
 - (void)dealloc
