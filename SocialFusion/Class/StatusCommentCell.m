@@ -31,14 +31,14 @@
 
 - (void)awakeFromNib
 {
-
+    
     // [self.commentButton setImage:[UIImage imageNamed:@"messageButton-highlight.png"] forState:UIControlStateHighlighted];
 }
 
 - (void)dealloc {
     //NSLog(@"Friend List Cell Dealloc");
-
-
+    
+    
     
     
     
@@ -60,7 +60,7 @@
 {
     
     
-
+    
     
     //状态
     _status.text=[feedData getText];
@@ -68,15 +68,15 @@
     
     CGSize size = CGSizeMake(243, 1000);
     CGSize labelSize = [_status.text sizeWithFont:_status.font 
-                                    constrainedToSize:size];
+                                constrainedToSize:size];
     _status.frame = CGRectMake(_status.frame.origin.x, _status.frame.origin.y,
-                                   _status.frame.size.width, labelSize.height);
+                               _status.frame.size.width, labelSize.height);
     _status.lineBreakMode = UILineBreakModeWordWrap;
     _status.numberOfLines = 0;
     
     
-
-        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+40);
+    
+    self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+40);
     
     //名字
     [_userName setTitle:[feedData getOwner_Name] forState:UIControlStateNormal];
@@ -89,12 +89,12 @@
     //时间
     NSDate* FeedDate=[feedData getUpdateTime];
     
-
     
-
+    
+    
     [_time setText:[CommonFunction getTimeBefore:FeedDate]];
-
-
+    
+    
     
     _commentButton.center=CGPointMake(_commentButton.center.x, self.frame.size.height/2+10);
     
@@ -105,21 +105,21 @@
     }
     else
     {
-         [_secret setImage:nil];
+        [_secret setImage:nil];
     }
     
     if (feedData)
-    if (bo==YES)
-    {
-       self.contentView.backgroundColor=[UIColor colorWithRed:0.99608 green:0.97255 blue:0.80784 alpha:1];
-
-        
-    }
- 
-    else
-    {
-        self.contentView.backgroundColor=[UIColor clearColor];
-    }
+        if (bo==YES)
+        {
+            self.contentView.backgroundColor=[UIColor colorWithRed:0.99608 green:0.97255 blue:0.80784 alpha:1];
+            
+            
+        }
+    
+        else
+        {
+            self.contentView.backgroundColor=[UIColor clearColor];
+        }
     
 }
 

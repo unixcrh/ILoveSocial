@@ -41,11 +41,23 @@
 
 -(void)loadWebView
 {
+  if ([(NewFeedData*)_feedData getPostName]==nil)
+  {
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
     NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
     [infoText release];
+  }
+    else
+    {
+        NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcelldetail" ofType:@"html"];
+        NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+        infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
+         infoText=[infoText setRepost:[(NewFeedData*)_feedData getPostMessage]];
+        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+        [infoText release];
+    }
 }
 
 
