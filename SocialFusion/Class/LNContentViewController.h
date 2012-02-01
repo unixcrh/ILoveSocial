@@ -22,5 +22,6 @@
 - (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier;
 - (void)addUserContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict;
 - (void)removeContentViewAtIndex:(NSUInteger)index;
+- (NSString *)currentContentIdentifierAtIndex:(NSUInteger)index;
 
 @end

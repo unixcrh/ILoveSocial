@@ -11,5 +11,6 @@
 @interface NSString(Pinyin)
 
 - (NSString *)pinyinFirstLetterArray;
+- (NSString *)pinyinFirstLetterAtIndex:(NSUInteger)i;
 
 @end
