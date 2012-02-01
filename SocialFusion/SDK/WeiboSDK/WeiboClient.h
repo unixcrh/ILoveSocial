@@ -96,8 +96,8 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 - (void)favorite:(NSString *)statusID;
 - (void)unFavorite:(NSString *)statusID;
 
-- (void)post:(NSString *)text;
-- (void)post:(NSString *)text withImage:(UIImage *)image;
+- (void)postStatus:(NSString *)status;
+- (void)postStatus:(NSString *)status withImage:(UIImage *)image;
 - (void)repost:(NSString *)statusID 
           text:(NSString *)text 
  commentStatus:(BOOL)commentStatus 
@@ -122,15 +122,6 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 - (void)authorize:(NSArray *)permissions
          delegate:(id<WBSessionDelegate>)delegate ;
 + (void)setTokenWithHTTPResponseString:(NSString *)responseString;
-/*
-- (void)setDelegate:(id)delegate;
-
--(void)oAuth:(SEL)_sSel withFailedSelector:(SEL)_eSel;
-- (void)handleOpenURL:(NSURL *)url;
- 
- 
-*/
-
 
 @end
 

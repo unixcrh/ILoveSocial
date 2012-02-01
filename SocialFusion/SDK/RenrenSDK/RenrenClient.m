@@ -16,8 +16,8 @@ static NSString* kRRSessionKeyURL=@"http://graph.renren.com/renren_api/session_k
 static NSString* kRRSuccessURL=@"http://widget.renren.com/callback.html";
 static NSString* kSDKversion=@"1.0";
 
-static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 static NSString* const AppID = @"150399";
+static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 
 //static NSString* UserID = nil;
 
@@ -36,6 +36,17 @@ static NSString* const AppID = @"150399";
             responseJSONObject = _responseJSONObject,
             hasError = _hasError;
 
+- (void)dealloc {
+    //NSLog(@"RenrenClient dealloc");
+    [_sessionKey release];
+    [_secret release];
+    [_accessToken release];
+    [_expirationDate release];
+    [_request release];
+    [_responseJSONObject release];
+    [super dealloc];
+}
+
 - (id)init
 {
     self = [super init];
@@ -48,20 +59,6 @@ static NSString* const AppID = @"150399";
     }
     
     return self;
-}
-
-- (void)dealloc {
-    NSLog(@"RenrenClient dealloc");
-    [_sessionKey release];
-    [_secret release];
-    [_accessToken release];
- //  [self.responseJSONObject release];
-   //[_responseJSONObject release];
-    [_expirationDate release];
-    [_rrDialog release];
-    [_request release];
-    [_responseJSONObject release];
-    [super dealloc];
 }
 
 - (void)setCompletionBlock:(void (^)(RenrenClient* client))completionBlock {
@@ -80,7 +77,6 @@ static NSString* const AppID = @"150399";
     NSString *accessToken = [defaults objectForKey:@"access_Token"];
     NSDate *expirationDate = [defaults objectForKey:@"expiration_Date"];
     NSString *sessionKey = [defaults objectForKey:@"session_Key"];
-    //NSString *secret = [defaults objectForKey:@"secret_Key"];
     return (accessToken != nil && expirationDate != nil && sessionKey != nil
 			&& NSOrderedDescending == [expirationDate compare:[NSDate date]]);
 }
@@ -96,41 +92,60 @@ static NSString* const AppID = @"150399";
 
 // please modify your permissions here
 - (void)authorize {
-    NSArray *permissions = [[NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share",nil] retain];
-    
-    NSLog(@"人人网 OAuth2.0 请求认证授权");
     if (![RenrenClient authorized]) {
+        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share",nil];
         [self authorizeWithRRAppAuth:YES safariAuth:YES permissions:permissions]; 
     }
 }
 
-/**
- * A private function for opening the authorization dialog.
- * User-Agent Flow
- */
-- (void)authorizeWithRRAppAuth:(BOOL)tryRRAppAuth safariAuth:(BOOL)trySafariAuth permissions:(NSArray *)pm {
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   AppKey, @"client_id",
-                                   @"token", @"response_type",
-                                   kRRSuccessURL, @"redirect_uri",
-                                   @"touch", @"display",
-                                   nil];
-    if (pm != nil) {
-        NSString* scope = [pm componentsJoinedByString:@","];
-        [params setValue:scope forKey:@"scope"];
-    }
+#pragma mark - 
+#pragma mark Authorize methods
 
-	[_rrDialog release];
-	_rrDialog = [[RRDialog alloc] initWithURL:kAuthBaseURL params:params delegate:self];
-	[_rrDialog show];
+- (void)authorizeWithRRAppAuth:(BOOL)tryRRAppAuth safariAuth:(BOOL)trySafariAuth permissions:(NSArray *)permissions {
+    
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	NSArray* graphCookies = [cookies cookiesForURL:
+                             [NSURL URLWithString:@"http://graph.renren.com"]];
+	
+	for (NSHTTPCookie* cookie in graphCookies) {
+		[cookies deleteCookie:cookie];
+	}
+	NSArray* widgetCookies = [cookies cookiesForURL:[NSURL URLWithString:@"http://widget.renren.com"]];
+	
+	for (NSHTTPCookie* cookie in widgetCookies) {
+		[cookies deleteCookie:cookie];
+	}
+    
+    if(![RenrenClient authorized]) {
+        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       AppKey, @"client_id",
+                                       @"token", @"response_type",
+                                       kRRSuccessURL, @"redirect_uri",
+                                       @"touch", @"display",
+                                       nil];
+        if (permissions != nil) {
+            NSString* scope = [permissions componentsJoinedByString:@","];
+            [params setValue:scope forKey:@"scope"];
+        }
+        
+        ROWebDialogViewController *viewController = [[ROWebDialogViewController alloc] init];
+        viewController.params = params;
+        viewController.delegate = self;
+        viewController.serverURL = kAuthBaseURL;
+        
+        [viewController show];
+    }
 }
+
+#pragma mark - 
+#pragma mark Utility methods
 
 + (NSString *)getSecretKeyByToken:(NSString *) token{
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   token, @"oauth_token",
 								   nil];
-	NSString *getKeyUrl = [Request serializeURL:kRRSessionKeyURL params:params];
-    id result = [Request getRequestSessionKeyWithParams:getKeyUrl];
+	NSString *getKeyUrl = [RORequest serializeURL:kRRSessionKeyURL params:params];
+    id result = [RORequest getRequestSessionKeyWithParams:getKeyUrl];
 	if ([result isKindOfClass:[NSDictionary class]]) {
 		NSString *secretkey=[[result objectForKey:@"renren_token"] objectForKey:@"session_secret"];
 		return secretkey;
@@ -143,8 +158,8 @@ static NSString* const AppID = @"150399";
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   token, @"oauth_token",
 								   nil];
-	NSString *getKeyUrl = [Request serializeURL:kRRSessionKeyURL params:params];
-    id result = [Request getRequestSessionKeyWithParams:getKeyUrl];
+	NSString *getKeyUrl = [RORequest serializeURL:kRRSessionKeyURL params:params];
+    id result = [RORequest getRequestSessionKeyWithParams:getKeyUrl];
 	if ([result isKindOfClass:[NSDictionary class]]) {
 		NSString* sessionkey=[[result objectForKey:@"renren_token"] objectForKey:@"session_key"];
 		return sessionkey;
@@ -155,7 +170,7 @@ static NSString* const AppID = @"150399";
 /**
  * 保存用户用oauth登录后的信息
  */
-- (void)createUserSessionInfo{
+- (void)saveUserSessionInfo{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];	
     if (self.accessToken) {
         [defaults setObject:self.accessToken forKey:@"access_Token"];
@@ -195,40 +210,46 @@ static NSString* const AppID = @"150399";
 	[defaults synchronize];
 }
 
-#pragma mark RRDialog Delegate
-/*
- * 登录成功
- */
+#pragma mark - RODialogDelegate Methods -
 
-- (void)rrDialogLogin:(NSString *)token expirationDate:(NSDate *)expirationDate {
-    NSLog(@"renren dialog did login");
-    self.accessToken = token;
-    self.expirationDate = expirationDate;
-    self.secret = [RenrenClient getSecretKeyByToken:token];
-    self.sessionKey = [RenrenClient getSessionKeyByToken:token];	
-    //用户信息保存到本地
-    [self createUserSessionInfo];
-    [self reportCompletion];
+- (void)authDialog:(id)dialog withOperateType:(RODialogOperateType )operateType{
+    if (![dialog isKindOfClass:[ROWebDialogViewController class]])
+        return;
     
-}
-
-- (void)rrDialogNotLogin:(BOOL)cancelled {
-    NSLog(@"renren dialog did not login");
-	/*if ([self.sessionDelegate respondsToSelector:@selector(rrDidNotLogin:)]) {
-		[_sessionDelegate rrDidNotLogin:cancelled];
-	}*/
-    _hasError = YES;
-    [self reportCompletion];
+    ROWebDialogViewController *viewController = (ROWebDialogViewController *)dialog;
+    ROResponse *response = viewController.response;
+    NSDictionary* authDictionary = nil;
+    
+    switch (operateType) {
+        case RODialogOperateSuccess:
+            authDictionary = response.rootObject;
+            NSString* token = [authDictionary objectForKey:@"token"];
+            NSDate* expirationDate = [authDictionary objectForKey:@"expirationDate"];
+            self.accessToken = token;
+            self.expirationDate = expirationDate;
+            self.secret = [RenrenClient getSecretKeyByToken:token];
+            self.sessionKey = [RenrenClient getSessionKeyByToken:token];	
+            //用户信息保存到本地
+            [self saveUserSessionInfo];
+            [self reportCompletion];
+            break;
+        case RODialogOperateFailure:
+            _hasError = YES;
+            [self reportCompletion];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark request
-- (Request*)openUrl:(NSString *)url
+- (RORequest*)openUrl:(NSString *)url
              params:(NSMutableDictionary *)params
          httpMethod:(NSString *)httpMethod
-           delegate:(id<RequestDelegate>)delegate {
+           delegate:(id<RORequestDelegate>)delegate {
     
     [_request release];
-    _request = [[Request getRequestWithParams:params
+    _request = [[RORequest getRequestWithParams:params
                                    httpMethod:httpMethod
                                      delegate:delegate
                                    requestURL:url] retain];
@@ -282,8 +303,8 @@ static NSString* const AppID = @"150399";
 }
 
 
-- (Request*)requestWithParams:(NSMutableDictionary *)params
-                  andDelegate:(id <RequestDelegate>)delegate {
+- (RORequest *)requestWithParams:(NSMutableDictionary *)params
+                  andDelegate:(id <RORequestDelegate>)delegate {
     
     if ([params objectForKey:@"method"] == nil) {
         NSLog(@"API Method must be specified");
@@ -325,7 +346,7 @@ static NSString* const AppID = @"150399";
 }
 
 #pragma mark Request Delegate
-- (void)request:(Request *)request didLoad:(id)result {
+- (void)request:(RORequest *)request didLoad:(id)result {
 	//NSLog(@"数据请求成功 解析数据");
 	self.responseJSONObject = result;
     [self reportCompletion];
@@ -333,7 +354,7 @@ static NSString* const AppID = @"150399";
     
 }
 
-- (void)request:(Request *)request didFailWithError:(NSError *)error {
+- (void)request:(RORequest *)request didFailWithError:(NSError *)error {
 	//NSLog(@"error localizedDescription=======================%@",[error localizedDescription]);
 	NSLog(@"%@",[error localizedDescription]);
     _hasError = YES;
@@ -470,6 +491,14 @@ static NSString* const AppID = @"150399";
                                  nil];
     [tempString release];
 	[self requestWithParams:params andDelegate:self];
+}
+
+- (void)postStatus:(NSString *)status {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"status.set", @"method",
+                                   status, @"status", nil];
+    [self requestWithParams:params andDelegate:self];
+
 }
 
 @end

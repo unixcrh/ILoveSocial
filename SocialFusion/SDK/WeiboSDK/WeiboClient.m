@@ -774,21 +774,21 @@ report_completion:
     [self sendRequest];
 }
 
-- (void)post:(NSString *)text
+- (void)postStatus:(NSString *)status
 {
     self.httpMethod = HTTPMethodPost;
     self.path = @"statuses/update.json";
-    [self.params setObject:[text URLEncodedString] forKey:@"status"];
+    [self.params setObject:[status URLEncodedString] forKey:@"status"];
     [self sendRequest];
 }
 
-- (void)post:(NSString *)text withImage:(UIImage *)image
+- (void)postStatus:(NSString *)status withImage:(UIImage *)image
 {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.2);
     self.httpMethod = HTTPMethodForm;
     self.request.postFormat = ASIMultipartFormDataPostFormat;
     self.path = [NSString stringWithFormat:@"statuses/upload.json"];
-    [self.request setPostValue:[text URLEncodedString] forKey:@"status"]; 
+    [self.request setPostValue:[status URLEncodedString] forKey:@"status"]; 
     NSLog(@"%d\n",    [self.request.postBody length]);
     [self.request setData:imageData withFileName:@"image.jpg" andContentType:@"image/jpeg" forKey:@"pic"];
     [self sendRequest];

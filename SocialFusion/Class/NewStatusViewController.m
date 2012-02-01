@@ -8,6 +8,8 @@
 
 #import "NewStatusViewController.h"
 #import "UIApplication+Addition.h"
+#import "RenrenClient.h"
+#import "WeiboClient.h"
 
 #define TOOLBAR_HEIGHT  22
 
@@ -85,6 +87,16 @@
 
 }
 
+- (BOOL)isTextValid {
+    BOOL result = YES;
+    NSInteger textCount = [self.textCountLabel.text integerValue];
+    if(textCount <= 0 || textCount > 140) {
+        NSLog(@"text count illegal");
+        result = NO;
+    }
+    return result;
+}
+
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)didClickCancelButton:(id)sender {
@@ -92,7 +104,37 @@
 }
 
 - (IBAction)didClickPostButton:(id)sender {
-    [self dismissView];
+    _postCount = 0;
+    if(!_postToWeibo && !_postToRenren) {
+        NSLog(@"没有选中任何平台");
+        return;
+    }
+    if(![self isTextValid]) 
+        return;
+    if(_postToWeibo) {
+        WeiboClient *client = [WeiboClient client];
+        [client setCompletionBlock:^(WeiboClient *client) {
+            _postCount--;
+            NSLog(@"post count:%d", _postCount);
+            if(_postCount == 0) {
+                [self dismissView];
+            }
+        }];
+        _postCount++;
+        [client postStatus:self.textView.text];
+    }
+    if(_postToRenren) {
+        RenrenClient *client = [RenrenClient client];
+        [client setCompletionBlock:^(RenrenClient *client) {
+            _postCount--;
+            NSLog(@"post count:%d", _postCount);
+            if(_postCount == 0) {
+                [self dismissView];
+            }
+        }];
+        _postCount++;
+        [client postStatus:self.textView.text];
+    }
 }
 
 - (IBAction)didClickPostToRenrenButton:(id)sender {
@@ -114,7 +156,7 @@
     
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
-    NSLog(@"keyboard changed, keyboard width = %f, height = %f", kbSize.width,kbSize.height);
+    //NSLog(@"keyboard changed, keyboard width = %f, height = %f", kbSize.width,kbSize.height);
     
     CGRect toolbarFrame = self.toolBarView.frame;
     toolbarFrame.origin.y = self.view.frame.size.height - kbSize.height - TOOLBAR_HEIGHT;

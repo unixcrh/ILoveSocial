@@ -11,6 +11,7 @@
 @interface NewStatusViewController : UIViewController <UITextViewDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
+    NSUInteger _postCount;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;

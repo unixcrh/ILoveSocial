@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RRDialog.h"
-#import "Request.h"
+#import "RORequest.h"
+#import "ROWebDialogViewController.h"
 
 @class RenrenClient;
 typedef void (^RRCompletionBlock)(RenrenClient *client);
 
-@interface RenrenClient : NSObject<RRDialogDelegate, RequestDelegate> {
-    RRDialog *_rrDialog;
-    Request* _request;
+@interface RenrenClient : NSObject<RODialogDelegate, RORequestDelegate> {
+    //RRDialog *_rrDialog;
+    RORequest* _request;
     RRCompletionBlock _completionBlock;
 }
 
@@ -32,22 +32,26 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 - (RRCompletionBlock)completionBlock;
 
 + (id)client;
+// logout
++ (void)signout;
 // return true if user already logged in
 + (BOOL)authorized;
 // authorize with renren dialog
 - (void)authorize;
-// logout
-+ (void)signout;
+
 
 - (void)getUserInfo;
 - (void)getLatestStatus:(NSString *)userID;
 - (void)getFriendsProfile;
 - (void)getNewFeed:(int)pageNumber;
--(void)getComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber;
--(void)getStatus:(NSString*)userID status_ID:(NSString*)status;
+- (void)getComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber;
+- (void)getStatus:(NSString*)userID status_ID:(NSString*)status;
 - (void)getNewFeed:(int)pageNumber  uid:(NSString*)id;
--(void)getSinglePhoto:(NSString*)userID photoID:(NSString*)photoID;
--(void)getBlog:(NSString*)userID status_ID:(NSString*)status;
--(void)getBlogComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber;
--(void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber;
+- (void)getSinglePhoto:(NSString*)userID photoID:(NSString*)photoID;
+- (void)getBlog:(NSString*)userID status_ID:(NSString*)status;
+- (void)getBlogComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber;
+- (void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber;
+
+- (void)postStatus:(NSString *)status;
+
 @end
