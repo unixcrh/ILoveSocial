@@ -149,4 +149,9 @@
     [self.contentViewIndentifierHeap removeObjectAtIndex:index];
 }
 
+- (NSString *)currentContentIdentifierAtIndex:(NSUInteger)index {
+    NSString *result = [self.contentViewIndentifierHeap objectAtIndex:index];
+    return result;
+}
+
 @end

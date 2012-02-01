@@ -25,8 +25,4 @@
     return res;
 }
 
-- (NSString *)nameFirstLetter {
-    return [self.pinyinName substringToIndex:1];
-}
-
 @end

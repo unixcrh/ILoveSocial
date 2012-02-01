@@ -88,9 +88,14 @@
         NSNumber *openedUserIndex = obj;
         if(openedUserIndex.unsignedIntValue == index) {
             [_openedUserHeap removeObjectForKey:key];
-            return;
+            *stop = YES;
         }
     }];
+}
+
+- (void)labelBarView:(LNLabelBarViewController *)labelBar didOpenParentLabelAtIndex:(NSUInteger)index {
+    NSString *identifier = [self.contentViewController currentContentIdentifierAtIndex:index];
+    [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
 }
 
 #pragma mark -

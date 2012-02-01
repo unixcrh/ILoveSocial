@@ -56,7 +56,7 @@
 }
 
 - (NSString *)customSectionNameKeyPath {
-    return @"nameFirstLetter";
+    return @"pinyinName";
 }
 
 #pragma mark -
@@ -65,13 +65,13 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
 {
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 20)] autorelease];
-    [headerView setBackgroundColor:[UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:0.6f]];
+    [headerView setBackgroundColor:[UIColor colorWithRed:225.0f / 255.0f green:217.0f / 255.0f blue:195.0f / 255.0f alpha:0.8f]];
     NSString *section_name = [[[self.fetchedResultsController sections] objectAtIndex:section] name];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, 306, 18)];
     label.text = section_name;
     label.font = [UIFont fontWithName:@"MV Boli" size:16.0f];
     label.textColor = [UIColor whiteColor];
-    label.shadowColor = [UIColor grayColor];
+    label.shadowColor = [UIColor darkGrayColor];
     label.shadowOffset = CGSizeMake(0, 1.0f);
     label.backgroundColor = [UIColor clearColor];
     [headerView addSubview:label];

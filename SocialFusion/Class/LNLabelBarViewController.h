@@ -36,6 +36,7 @@ typedef void (^PopPageMnuallyCompletion)(void);
 - (id)initWithLabelInfoArray:(NSArray *)infoArray;
 - (void)createLabelWithInfo:(LabelInfo *)info;
 - (void)selectParentLabelAtIndex:(NSUInteger)index;
+- (void)selectChildLabelWithIdentifier:(NSString *)identifier;
 
 @end
 
@@ -44,5 +45,6 @@ typedef void (^PopPageMnuallyCompletion)(void);
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectParentLabelAtIndex:(NSUInteger)index;
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectChildLabelWithIndentifier:(NSString *)identifier inParentLabelAtIndex:(NSUInteger)index;
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index;
+- (void)labelBarView:(LNLabelBarViewController *)labelBar didOpenParentLabelAtIndex:(NSUInteger)index;
 
 @end

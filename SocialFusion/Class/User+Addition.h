@@ -12,6 +12,4 @@
 
 + (User *)userWithID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context;
 
-@property (nonatomic, readonly) NSString *nameFirstLetter;
-
 @end

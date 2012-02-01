@@ -216,6 +216,9 @@
     [self pushLabelInfoArray:[NSMutableArray arrayWithArray:labelInfo]];
     [self loadLabelPages];
     LNLabelPageViewController *firstPage = [self.labelPages objectAtIndex:0];
+    if([self.delegate respondsToSelector:@selector(labelBarView:didOpenParentLabelAtIndex:)]) {
+        [self.delegate labelBarView:self didOpenParentLabelAtIndex:_currentParentLabelIndex];
+    }
     [firstPage openLabelPostAnimation];
 }
 
@@ -341,6 +344,18 @@
         NSUInteger page = index / 4;
         [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * page, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
         _selectUserLock = NO;
+    }];
+}
+
+- (void)selectChildLabelWithIdentifier:(NSString *)identifier {
+    if(_pageIndexStack.count <= 0) 
+        return;
+    [self.labelInfoArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        LabelInfo *info = obj;
+        if ([info.identifier isEqualToString:identifier]) {
+            [self selectLabelAtIndex:idx];
+            *stop = YES;
+        }
     }];
 }
 
