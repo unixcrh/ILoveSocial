@@ -20,6 +20,7 @@
 #import "CommonFunction.h"
 #import "NSString+HTMLSet.h"
 #import "RenrenUser.h"
+#import "WeiboUser.h"
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
@@ -272,6 +273,11 @@
     for(NSDictionary *dict in array) {
         
         StatusCommentData* commentsData=[StatusCommentData insertNewComment:1 Dic:dict inManagedObjectContext:self.managedObjectContext];
+        
+        if ([self.currentWeiboUser.userID isEqualToString:commentsData.actor_ID] )
+        {
+            commentsData.actor_ID=[NSString stringWithString:@"self"];
+        }
         [_feedData addCommentsObject:commentsData]; 
     }
     
