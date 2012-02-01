@@ -95,9 +95,15 @@
     [_time setText:[CommonFunction getTimeBefore:FeedDate]];
     
     
-    
-    _commentButton.center=CGPointMake(_commentButton.center.x, self.frame.size.height/2+10);
-    
+    if ([feedData.actor_ID isEqualToString:@"self"])
+    {
+        _commentButton.center=CGPointMake(1000, self.frame.size.height/2+10);
+
+    }
+    else
+    {
+    _commentButton.center=CGPointMake(283, self.frame.size.height/2+10);
+    }
     if ([feedData.secret boolValue]==YES)
     {
         [_secret setImage:[UIImage imageNamed:@"detail_rev_private.png"]];

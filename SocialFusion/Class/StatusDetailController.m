@@ -19,6 +19,7 @@
 #import "StatusCommentData+StatusCommentData_Addition.h"
 #import "CommonFunction.h"
 #import "NSString+HTMLSet.h"
+#import "RenrenUser.h"
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
@@ -242,7 +243,14 @@
 {
     for(NSDictionary *dict in array) {
         StatusCommentData* commentsData=[StatusCommentData insertNewComment:0 Dic:dict inManagedObjectContext:self.managedObjectContext];
+      
+    
+        if ([self.currentRenrenUser.userID isEqualToString:commentsData.actor_ID] )
+        {
+            commentsData.actor_ID=[NSString stringWithString:@"self"];
+        }
         [_feedData addCommentsObject:commentsData];
+     
         
     }
     if (_pageNumber!=1)

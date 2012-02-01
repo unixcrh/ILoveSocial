@@ -10,14 +10,16 @@
 
 @implementation NewFeedDetailBlogViewCell
 
--(void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context
+-(void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei
 {
     detailController.feedData=_feedData;
     detailController.managedObjectContext=context;
-    
+    detailController.currentRenrenUser=ren;
+    detailController.currentWeiboUser=wei;
     
     //  [self.contentView addSubview:detailController.view];
 }
+
 
 
 

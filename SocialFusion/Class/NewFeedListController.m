@@ -446,7 +446,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailBlogViewCell" owner:self options:nil];
                 cell = _newFeedDetailBlogViewCel;
                 
-                [cell initWithFeedData:a context:self.managedObjectContext];
+                [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
                 
                 
                 return cell; 
@@ -459,7 +459,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
             cell = _newFeedDetailViewCel;
             
-            [cell initWithFeedData:a context:self.managedObjectContext];
+            [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
             
         
         return cell;

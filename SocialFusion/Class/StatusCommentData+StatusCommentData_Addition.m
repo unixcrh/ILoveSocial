@@ -34,6 +34,8 @@
 
     result.actor_ID=[[dict objectForKey:@"uid"] stringValue] ;
     
+        
+        
    // result.owner_Head= [dict objectForKey:@"tinyurl"];
     
     result.owner_Name=[dict objectForKey:@"name"];
