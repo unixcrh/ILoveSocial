@@ -404,7 +404,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         if (indexPath.row<5)
         {
     
-        if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+        if(self.tableView.dragging || self.tableView.decelerating )
             return cell;
    
         Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
@@ -412,9 +412,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         {
                 [UIImage loadImageFromURL:data.owner_Head completion:^{
                 Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
-                
-                [cell setData:image1.imageData.data];
-                
+                [cell setData:image1.imageData.data];                
             } cacheInContext:self.managedObjectContext];
             
         }
