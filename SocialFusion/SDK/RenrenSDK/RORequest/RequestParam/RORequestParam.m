@@ -9,6 +9,7 @@
 #import "Renren.h"
 #import "ROUtility.h"
 #import "ROMacroDef.h"
+#import "ROError.h"
 
 @implementation RORequestParam
 @synthesize method = _method;
