@@ -32,6 +32,16 @@ function setPhotoPos(width,height)
 	document.getElementById("upload").style.top=actHeight+'px';
 }
 
+function setBigPhotoPos(width,height)
+{
+	var actWidth=(200-width)/2;
+	var actHeight=(150-height)/2;
+
+	document.getElementById("upload").style.left=actWidth+'px';
+	document.getElementById("upload").style.top=actHeight+'px';
+}
+
+
 function setComment(comment)
 {
 	document.getElementById("photocommentdetail").innerHTML=comment;
