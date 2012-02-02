@@ -109,6 +109,8 @@
 - (void)setCurrentContentIndex:(NSUInteger)currentContentIndex {
     if(currentContentIndex >= self.contentViewControllerHeap.count)
         return;
+    if(currentContentIndex == _currentContentIndex)
+        return;
     UIViewController *vc = [self.contentViewControllerHeap objectAtIndex:_currentContentIndex];
     [vc.view removeFromSuperview];
     _currentContentIndex = currentContentIndex;
@@ -147,6 +149,11 @@
         [vc.view removeFromSuperview];
     [self.contentViewControllerHeap removeObjectAtIndex:index];
     [self.contentViewIndentifierHeap removeObjectAtIndex:index];
+    if(index == _currentContentIndex) {
+        vc = [self.contentViewControllerHeap objectAtIndex:_currentContentIndex - 1];
+        [self.view addSubview:vc.view];
+    }
+    _currentContentIndex--;
 }
 
 - (NSString *)currentContentIdentifierAtIndex:(NSUInteger)index {
