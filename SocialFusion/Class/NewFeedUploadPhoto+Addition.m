@@ -100,22 +100,24 @@
 
 -(NSString*)getPhoto_Comment
 {
+    
+    
     if (![self.photo_comment compare:@""])
     {
         return @"那个人很懒，没有写介绍噢";
     }
     else
     {
-     
-        /*if ([self.photo_comment length]>54)
+     //@人时会出问题
+        if ([self.photo_comment length]>54)
         {
             NSString* returnString=[NSString stringWithFormat:@"%@...",[self.photo_comment substringToIndex:50]];
             return returnString;
-        }*/
-       // else
-       // {
+        }
+        else
+        {
             return self.photo_comment;
-       // }
+        }
     }
 }
 -(NSString*)getTitle

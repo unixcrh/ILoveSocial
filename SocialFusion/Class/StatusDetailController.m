@@ -21,6 +21,9 @@
 #import "NSString+HTMLSet.h"
 #import "RenrenUser.h"
 #import "WeiboUser.h"
+#import "UIImage+Addition.h"
+#import "NSData+NsData_Base64.h"
+#import "NSString+DataURI.h"
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
@@ -41,17 +44,93 @@
     //    NSLog(@"%@",self.feedData.comments);
 }
 
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
+    UIImage* image1=[UIImage imageWithData:_photoData];
+  //  NSLog(@"%@",_photoData);
+    CGSize size;
+    //改变图片大小
+    float a=image1.size.width/200;
+    float b=image1.size.height/150;
+    if (a>b)
+    {
+        size=CGSizeMake(image1.size.width/image1.size.height*200, 150);
+    }
+    else
+    {
+        size=CGSizeMake(200, image1.size.height/image1.size.width*150);
+    }
+    UIGraphicsBeginImageContext(size);
+    [image1 drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    //  return newImage;
+    
+    
+    NSData* imagedata=UIImageJPEGRepresentation(newImage, 10);
+    
+    
+    
+    NSString *imgB64 = [[imagedata base64Encoding] jpgDataURIWithContent];
+    
+    
+    NSString *javascript = [NSString stringWithFormat:@"setBigPhotoPos(%f,%f)", size.width,size.height];
+    
+    [_webView stringByEvaluatingJavaScriptFromString:javascript];
+    
+    
+    javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
+    
+    [_webView stringByEvaluatingJavaScriptFromString:javascript];
+    
+    [_photoData release];
+}
 -(void)loadWebView
 {
   if ([(NewFeedData*)_feedData getPostName]==nil)
   {
+                if (((NewFeedData*)_feedData).pic_URL!=nil)
+                {
+                    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocelldetail" ofType:@"html"];
+                    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+                    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
+                    
+                    Image* image = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
+                    if (!image)
+                    {
+                        [UIImage loadImageFromURL:((NewFeedData*)_feedData).pic_big_URL completion:^{
+                            Image *image1 = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
+                            
+                            _photoData=[[NSData alloc] initWithData: image1.imageData.data];
+                            [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+                            
+  
+                        } cacheInContext:self.managedObjectContext];
+                    }
+                    else
+                    {
+                        _photoData=[[NSData alloc] initWithData: image.imageData.data];
+                        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+                        
+                    }
+                    
+                    
+                  
+                  
+                    [infoText release];
+                }
+      else
+      {
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
     NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
     [infoText release];
+      }
   }
-    else
+  else
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcelldetail" ofType:@"html"];
         NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
@@ -65,6 +144,7 @@
 
 -(void)setFixedInfo
 {
+    _webView.delegate=self;
     _nameLabel.text=[_feedData getFeedName];
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
