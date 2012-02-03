@@ -49,20 +49,20 @@ static BOOL _isShowingToast;
 
 - (void)dismissModalViewController
 {
-	[UIView animateWithDuration:kAnimationDuration animations:^{
-		_backView.alpha = 0.0;
+    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _backView.alpha = 0.0;
         CGRect frame = _modalViewController.view.frame;
         frame.origin.y = SCREEN_HEIGHT;
         _modalViewController.view.frame = frame;
-	} completion:^(BOOL fin){
-		if (fin) {
+    } completion:^(BOOL finished) {
+        if (finished) {
 			[_backView removeFromSuperview];
             [_backView release];
             _backView = nil;
 			[_modalViewController release];
             _modalViewController = nil;
 		}
-	}];
+    }];
 }
 
 - (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y {
@@ -70,15 +70,13 @@ static BOOL _isShowingToast;
         return;
     _isShowingToast = YES;
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - TOAST_VIEW_WIDTH) / 2, y, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
-    backgroundView.backgroundColor = [UIColor colorWithRed:0.6f green:0.8f blue:0 alpha:1.0f];
+    backgroundView.backgroundColor = [UIColor colorWithRed:0.6f green:0.8f blue:0 alpha:0.8f];
     CALayer *layer = backgroundView.layer;
-    //layer.masksToBounds = YES;
     layer.cornerRadius = 5.0f;
     layer.shadowOffset = CGSizeMake(0, 3.0f);
     layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    layer.shadowOpacity = 0.7f;
+    layer.shadowOpacity = 0.5f;
     layer.shadowRadius = 5.0f;
-    
 
     UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
     labelView.text = text;
@@ -94,7 +92,7 @@ static BOOL _isShowingToast;
     [self.keyWindow addSubview:backgroundView];
     [backgroundView release];
     
-    [UIView animateWithDuration:0.3f delay:1.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.3f delay:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         labelView.alpha = 0;
         backgroundView.alpha = 0;
     } completion:^(BOOL finished) {
