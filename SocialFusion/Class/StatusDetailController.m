@@ -144,6 +144,37 @@
 
 -(void)setFixedInfo
 {
+    
+    for (UIView *aView in [_webView subviews])  
+        
+    { 
+        
+        if ([aView isKindOfClass:[UIScrollView class]])  
+            
+        { 
+            
+                    
+            for (UIView *shadowView in aView.subviews)  
+                
+            { 
+                
+                
+                
+                if ([shadowView isKindOfClass:[UIImageView class]]) 
+                    
+                { 
+                    
+                    shadowView.hidden = YES;  //上下滚动出边界时的黑色的图片 也就是拖拽后的上下阴影
+                    
+                } 
+                
+            } 
+            
+        } 
+        
+    }  
+    
+    
     _webView.delegate=self;
     _nameLabel.text=[_feedData getFeedName];
     NSData *imageData = nil;
