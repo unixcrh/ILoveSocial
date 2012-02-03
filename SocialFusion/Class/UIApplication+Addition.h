@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kAnimationDuration 0.5f
+#define kAnimationDuration 0.25
 
 @interface UIApplication (Addition)
 

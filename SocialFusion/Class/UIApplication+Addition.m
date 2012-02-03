@@ -40,11 +40,11 @@ static BOOL _isShowingToast;
 	[self.keyWindow addSubview:_backView];
 	[self.keyWindow addSubview:vc.view];
 	
-	[UIView animateWithDuration:kAnimationDuration animations:^{
+    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect frame = vc.view.frame;
         frame.origin.y = 20;
         vc.view.frame = frame;
-	}];
+    } completion:^(BOOL finished) {}];
 }
 
 - (void)dismissModalViewController
