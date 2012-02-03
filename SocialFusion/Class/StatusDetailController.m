@@ -73,7 +73,7 @@
     [self.feedData removeComments:self.feedData.comments];
     
     [StatusCommentData deleteAllObjectsInManagedObjectContext:self.managedObjectContext];
-    //    NSLog(@"%@",self.feedData.comments);
+ 
 }
 
 
@@ -98,6 +98,11 @@
     
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
     
+    
+
+    [_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"];
+    //NSLog(@"Height:%d",height);
+  //  NSLog(@"爱如完成");
     [_photoData release];
  
     [_activity stopAnimating];

@@ -656,7 +656,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 -(IBAction)resetToNormalList
 {
     
-    self.tableView.allowsSelection=YES;
+    self.tableView.allowsSelection=NO;
     //[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     self.tableView.scrollEnabled=true;
     NSIndexPath* tempIndex=[_indexPath retain];
@@ -665,6 +665,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:tempIndex] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView scrollToRowAtIndexPath:tempIndex atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     [tempIndex release];
+      [self loadExtraDataForOnscreenRows];
 }
 
 @end
