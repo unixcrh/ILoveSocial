@@ -86,9 +86,16 @@
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
     
     [_photoData release];
+ 
+    [_activity stopAnimating];
+    [_activity removeFromSuperview];
+    [_activity release];
+
 }
 -(void)loadWebView
 {
+    
+
   if ([(NewFeedData*)_feedData getPostName]==nil)
   {
                 if (((NewFeedData*)_feedData).pic_URL!=nil)
@@ -206,6 +213,10 @@
     
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
+    _activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activity.center=CGPointMake(153, 300);
+    [self.view addSubview:_activity];
+    [_activity startAnimating];
     
 }
 -(void)addOriStatus

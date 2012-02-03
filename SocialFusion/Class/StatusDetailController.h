@@ -26,6 +26,8 @@
     IBOutlet UIWebView* _webView;
     IBOutlet UIPageControl* _pageControl;
     
+    UIActivityIndicatorView* _activity;
+    
     NSData* _photoData; 
 }
 @property (nonatomic, retain) NewFeedRootData* feedData;
