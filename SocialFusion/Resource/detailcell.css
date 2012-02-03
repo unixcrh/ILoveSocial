@@ -60,10 +60,11 @@ img
 	
 }
 
-#uploadphoto {
-	height:150px;
-	width:200px;
-	position:absolute;
-	left:-30px;
-	top: 5px;
-}
+#upload {
+	margin-left:2px;
+	margin-bottom:5px;
+	margin-top:10px;
+
+	width:286px;
+	-webkit-box-shadow:0px 0px 6px #42380D; 
+	}
