@@ -9,6 +9,8 @@
 #import "RenrenClient.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "ROPasswordFlowRequestParam.h"
+#import "ROPublishPhotoRequestParam.h"
+#include "ROUtility.h"
 
 static NSString* kAuthBaseURL = @"http://graph.renren.com/oauth/authorize";
 //static NSString* kDialogBaseURL = @"http://widget.renren.com/dialog/";
@@ -244,6 +246,17 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 }
 
 #pragma mark request
+
+// 新的接口。
+- (void)sendRequestWithUrl:(NSString *)url param:(RORequestParam *)param httpMethod:(NSString *)httpMethod delegate:(id<RORequestDelegate>)delegate{
+    
+    delegate = delegate?delegate:self;
+    _request = [[RORequest getRequestWithParam:param httpMethod:httpMethod delegate:delegate requestURL:url] retain];
+    [_request connect];
+    return;
+}
+
+// 旧的接口。
 - (RORequest*)openUrl:(NSString *)url
              params:(NSMutableDictionary *)params
          httpMethod:(NSString *)httpMethod
@@ -258,9 +271,19 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
     return _request;
 }
 
-/**
- * 解析 url 参数的function
- */
+#pragma mark - Util Methods -
+-(void)setGeneralRequestArgs: (RORequestParam *)inRequestParam{
+    // 这里假设此前已经调用[self isSessionValid],并且返回Ture。
+    inRequestParam.sessionKey = self.sessionKey;
+    inRequestParam.apiKey = AppKey;
+    inRequestParam.callID = [ROUtility generateCallId];
+    inRequestParam.xn_ss = @"1";
+    inRequestParam.format = @"json";
+    inRequestParam.apiVersion = kSDKversion;
+	
+    inRequestParam.sig = [ROUtility generateSig:[inRequestParam requestParamToDictionary] secretKey:self.secret]; 
+}
+
 - (NSDictionary*)parseURLParams:(NSString *)query {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
 	NSMutableDictionary *params = [[[NSMutableDictionary alloc] init] autorelease];
@@ -303,7 +326,6 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 	return [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
 }
 
-
 - (RORequest *)requestWithParams:(NSMutableDictionary *)params
                   andDelegate:(id <RORequestDelegate>)delegate {
     
@@ -332,6 +354,24 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 				  params:params
 			  httpMethod:@"POST"
 				delegate:delegate];	
+}
+
+- (void)requestWithParam:(RORequestParam *)param andDelegate:(id <RORequestDelegate>)delegate {
+    if (nil == param.method || [param.method length] <= 0) {
+        NSLog(@"API Method must be specified");
+        return;
+    }
+    
+    if (![RenrenClient authorized]) {
+        NSLog(@"Session is not valid! Request abort!!");
+        return;
+    }
+    
+    [self setGeneralRequestArgs:param];
+    
+    [self sendRequestWithUrl:kRestserverBaseURL param:param httpMethod:@"POST" delegate:delegate];
+	
+    return;
 }
 
 //回调
@@ -523,6 +563,14 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
                                    status, @"status", nil];
     [self requestWithParams:params andDelegate:self];
 
+}
+
+- (void)postStatus:(NSString *)status withImage:(UIImage *)image {
+    ROPublishPhotoRequestParam *param = [[ROPublishPhotoRequestParam alloc] init];
+    param.imageFile = image;
+    param.caption = status;
+    [self requestWithParam:param andDelegate:self];
+    [param release];
 }
 
 @end

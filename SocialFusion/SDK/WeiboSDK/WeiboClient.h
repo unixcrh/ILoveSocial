@@ -98,6 +98,7 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)image;
+
 - (void)repost:(NSString *)statusID 
           text:(NSString *)text 
  commentStatus:(BOOL)commentStatus 

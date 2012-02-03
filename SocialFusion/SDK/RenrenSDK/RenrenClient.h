@@ -53,5 +53,6 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 - (void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber;
 
 - (void)postStatus:(NSString *)status;
+- (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;
 
 @end

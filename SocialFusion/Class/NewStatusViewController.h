@@ -18,6 +18,7 @@ typedef enum {
 @interface NewStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
+    BOOL _isPosting;
     PostStatusErrorCode _postStatusErrorCode;
     NSUInteger _postCount;
     UIImageView *_photoFrameImageView;

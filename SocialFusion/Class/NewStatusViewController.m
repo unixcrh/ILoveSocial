@@ -131,6 +131,7 @@
             default:
                 break;
         }
+        _isPosting = NO;
         [self dismissView];
     }
 }
@@ -144,6 +145,9 @@
 - (IBAction)didClickPostButton:(id)sender {
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
+    if(_isPosting)
+        return;
+    _isPosting = YES;
     if(!_postToWeibo && !_postToRenren) {
         [[UIApplication sharedApplication] presentToast:@"没有选中任何平台。" withVerticalPos:TOAST_POS_Y];
         return;
@@ -158,7 +162,12 @@
             [self postStatusCompletion];
         }];
         _postCount++;
-        [client postStatus:self.textView.text];
+        if (self.photoImageView.image) {
+            [client postStatus:self.textView.text withImage:self.photoImageView.image];
+        }
+        else {
+            [client postStatus:self.textView.text];
+        }
     }
     if(_postToRenren) {
         RenrenClient *client = [RenrenClient client];
@@ -168,7 +177,12 @@
             [self postStatusCompletion];
         }];
         _postCount++;
-        [client postStatus:self.textView.text];
+        if (self.photoImageView.image) {
+            [client postStatus:self.textView.text withImage:self.photoImageView.image];
+        }
+        else {
+            [client postStatus:self.textView.text];
+        }
     }
 }
 
@@ -245,7 +259,6 @@
             self.photoImageView.alpha = 1.0f;
         }];
     }];
-    
 }
 
 @end
