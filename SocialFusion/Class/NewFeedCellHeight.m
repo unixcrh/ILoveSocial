@@ -8,7 +8,7 @@
 
 #import "NewFeedCellHeight.h"
 #import "NewFeedListController.h"
-
+#import "NSString+HTMLSet.h"
 @implementation NewFeedCellHeight
 
 -(void)myinit:(NewFeedListController*)deleControl
@@ -44,10 +44,11 @@
  {
      NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
      NSString* string=[dict objectForKey:@"text"];
-     string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-     string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-     string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+     string=[string replaceJSSign];
+
+     string=[string replaceHTMLSign];
      
+     //  string=[string stringByReplacingOccurrencesOfString:@"&" withString:@"\\&"];
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];   
    
    
@@ -66,10 +67,9 @@
          
 
          NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]];
-           outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-         outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-         outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+         outString=[outString replaceJSSign];
          
+         outString=[outString replaceHTMLSign];
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
          scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
          if ([attachment objectForKey:@"thumbnail_pic"]!=nil)
@@ -89,26 +89,18 @@
      {
          
          NSString* outString=[NSString stringWithFormat:@"%@%@",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
-            outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-         outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-         outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-                             outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+         outString=[outString replaceJSSign];
          
+         outString=[outString replaceHTMLSign];
          
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
          
          
          outString=[dict objectForKey:@"description"];
         // NSLog(@":%@:",outString);
-         outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-        //  NSLog(@":%@:",outString);
-         outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-       
-          // NSLog(@":%@:",outString);
-         outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-          // NSLog(@":%@:",outString);         
-         outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-           //NSLog(@":%@:",outString);
+         outString=[outString replaceJSSign];
+         
+         outString=[outString replaceHTMLSign];
  
          
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
@@ -130,10 +122,9 @@
          }
          else
          {
-                string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-                      string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+             string=[string replaceJSSign];
+             
+             string=[string replaceHTMLSign];
              
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
@@ -155,10 +146,9 @@
          }
          else
          {
-               string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-         string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+             string=[string replaceJSSign];
+             
+             string=[string replaceHTMLSign];
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
          }
@@ -175,10 +165,9 @@
          if ([attachments count]==0)
          {
              NSString* string=[dict objectForKey:@"message"];
-               string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-               string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+             string=[string replaceJSSign];
+             
+             string=[string replaceHTMLSign];
          //    NSLog(@"%@",string);
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
@@ -187,21 +176,14 @@
          else
          {
              NSString* string=[dict objectForKey:@"message"];
-               string=[string stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-             string=[string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-             string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-
-             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
+             string=[string replaceJSSign];
+             
+             string=[string replaceHTMLSign];             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
            
              NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"]];
-               outString=[outString stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-             outString=[outString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-             outString=[outString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+             outString=[outString replaceJSSign];
              
-             outString=[outString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-
-          //   NSLog(@"start:%@:end",outString);
+             outString=[outString replaceHTMLSign];          //   NSLog(@"start:%@:end",outString);
              
             // unichar ch=[outString characterAtIndex:[outString length]-1];
             // unichar ch2=[outString characterAtIndex:[outString length]-2];

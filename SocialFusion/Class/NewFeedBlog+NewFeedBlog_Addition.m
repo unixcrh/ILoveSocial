@@ -70,7 +70,7 @@
         result.mydescription=[dict objectForKey:@"description"] ;
         
         
-    result.cellheight=[NSNumber numberWithInt:height];
+        result.cellheight=[NSNumber numberWithInt:height];
        // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
        // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
 

@@ -9,14 +9,44 @@
 #import "NSString+HTMLSet.h"
 
 @implementation NSString (HTMLSet)
+-(NSString*)replaceJSSign 
+{
+    self=[self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
+    self=[self stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+    self=[self stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    self=[self stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    return  self;
+}
 
+-(NSString*)replaceHTMLSign 
+{
+    self=[self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
+
+     self=[self stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
+    self=[self stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
+
+
+    self=[self stringByReplacingOccurrencesOfString:@"¢" withString:@"&cent"];
+
+    self=[self stringByReplacingOccurrencesOfString:@"£" withString:@"&pound"];
+
+    self=[self stringByReplacingOccurrencesOfString:@"¥" withString:@"&yen"];
+
+    self=[self stringByReplacingOccurrencesOfString:@"€" withString:@"&euro"];
+
+    self=[self stringByReplacingOccurrencesOfString:@"§" withString:@"&sect"];
+       self=[self stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
+       self=[self stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
+           self=[self stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
+    return self;
+}
 -(NSString*)setName:(NSString*)name  
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Name#@"];
     [self release];
    // NSLog(@"%@",name);
     NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],name,[array objectAtIndex:1]];
- 
+  
     return returnString;
 }
 

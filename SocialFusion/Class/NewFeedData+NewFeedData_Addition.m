@@ -8,6 +8,7 @@
 
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedRootData+NewFeedRootData_Addition.h"
+#import "NSString+HTMLSet.h"
 //#import "CalculateHeight.h"
 @implementation NewFeedData (NewFeedData_Addition)
 
@@ -82,7 +83,7 @@
 {
     
 
-    return self.message;
+    return [self.message replaceHTMLSign];
 
     
 }
