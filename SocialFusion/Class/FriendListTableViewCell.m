@@ -7,8 +7,6 @@
 //
 
 #import "FriendListTableViewCell.h"
-#import <QuartzCore/QuartzCore.h>
-
 
 @implementation FriendListTableViewCell
 @synthesize defaultHeadImageView = _defaultHeadImageView;

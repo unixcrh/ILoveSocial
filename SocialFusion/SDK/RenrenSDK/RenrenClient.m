@@ -8,6 +8,7 @@
 
 #import "RenrenClient.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "ROPasswordFlowRequestParam.h"
 
 static NSString* kAuthBaseURL = @"http://graph.renren.com/oauth/authorize";
 //static NSString* kDialogBaseURL = @"http://widget.renren.com/dialog/";
@@ -345,22 +346,45 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
     }
 }
 
-#pragma mark Request Delegate
+#pragma mark -
+#pragma mark RORequestDelegate
+
 - (void)request:(RORequest *)request didLoad:(id)result {
 	//NSLog(@"数据请求成功 解析数据");
 	self.responseJSONObject = result;
     [self reportCompletion];
     [self autorelease];
-    
 }
 
 - (void)request:(RORequest *)request didFailWithError:(NSError *)error {
-	//NSLog(@"error localizedDescription=======================%@",[error localizedDescription]);
-	NSLog(@"%@",[error localizedDescription]);
+	NSLog(@"renren request fail with error:%@",[error localizedDescription]);
     _hasError = YES;
     [self reportCompletion];
     [self autorelease];
-};
+}
+
+- (void)request:(RORequest *)request didFailWithROError:(ROError *)error{
+	//password flow授权错误的处理
+	if([request.requestParamObject isKindOfClass:[ROPasswordFlowRequestParam class]]) {
+        // 默认错误处理。
+        NSString *title = [NSString stringWithFormat:@"Error code:%d", [error code]];
+        NSString *description = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+        NSLog(@"renren request error:%@, %@", title, description);
+	}
+    
+    else {
+        // 默认错误处理。
+        NSString *title = [NSString stringWithFormat:@"Error code:%d", [error code]];
+        NSString *description = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+        NSLog(@"renren request error:%@, %@", title, description);
+    }
+    _hasError = YES;
+    [self reportCompletion];
+    [self autorelease];
+}
+
+#pragma mark -
+#pragma mark Public methods
 
 //请求好友列表
 - (void)getFriendsProfile {

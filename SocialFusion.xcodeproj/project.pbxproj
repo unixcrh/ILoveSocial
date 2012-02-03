@@ -241,6 +241,7 @@
 		E19A2D0A141FC3B300BE491A /* sinawbButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D04141FC3B300BE491A /* sinawbButton.png */; };
 		E19A2D0B141FC3B300BE491A /* sinawbButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */; };
 		E19A2D171420A06000BE491A /* FriendListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */; };
+		E1A9513F14DC046B00C49B8C /* new_status_photo_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A9513E14DC046B00C49B8C /* new_status_photo_frame@2x.png */; };
 		E1ABA401141FA6E1002CD0A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA400141FA6E1002CD0A6 /* UIKit.framework */; };
 		E1ABA403141FA6E1002CD0A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA402141FA6E1002CD0A6 /* Foundation.framework */; };
 		E1ABA405141FA6E1002CD0A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA404141FA6E1002CD0A6 /* CoreGraphics.framework */; };
@@ -665,6 +666,7 @@
 		E19A2D04141FC3B300BE491A /* sinawbButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinawbButton.png; sourceTree = "<group>"; };
 		E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinawbButtonPressed.png; sourceTree = "<group>"; };
 		E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListTableViewCell.xib; sourceTree = "<group>"; };
+		E1A9513E14DC046B00C49B8C /* new_status_photo_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_photo_frame@2x.png"; sourceTree = "<group>"; };
 		E1ABA3FC141FA6E1002CD0A6 /* Pocket Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ABA400141FA6E1002CD0A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1ABA402141FA6E1002CD0A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -785,10 +787,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E118413914D9B94A000FF01F /* libsqlite3.dylib in Frameworks */,
 				E1ABA4CE141FAB0F002CD0A6 /* QuartzCore.framework in Frameworks */,
 				73CB895C145EEB5600C6EEB9 /* libz.1.2.5.dylib in Frameworks */,
-				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E1ABA4D2141FAB23002CD0A6 /* SystemConfiguration.framework in Frameworks */,
 				E1ABA4D0141FAB16002CD0A6 /* CFNetwork.framework in Frameworks */,
 				E1ABA4CA141FAACA002CD0A6 /* MessageUI.framework in Frameworks */,
@@ -1142,6 +1144,7 @@
 		E15F990314D5CE1B0069072C /* new_status */ = {
 			isa = PBXGroup;
 			children = (
+				E1A9513E14DC046B00C49B8C /* new_status_photo_frame@2x.png */,
 				7307687914DAC411008DD967 /* detail_photo.png */,
 				E15F990414D5CE3C0069072C /* new_status_bg@2x.png */,
 				E15F990514D5CE3C0069072C /* new_status_btn_cancel@2x.png */,
@@ -1790,6 +1793,7 @@
 				9B13BC4514DA6DBA00C7F5E2 /* new_twee@2x.png in Resources */,
 				7307687714DABE97008DD967 /* photocelldetail.html in Resources */,
 				7307687A14DAC411008DD967 /* detail_photo.png in Resources */,
+				E1A9513F14DC046B00C49B8C /* new_status_photo_frame@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

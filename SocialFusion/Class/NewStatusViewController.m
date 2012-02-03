@@ -7,11 +7,13 @@
 //
 
 #import "NewStatusViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "UIApplication+Addition.h"
 #import "RenrenClient.h"
 #import "WeiboClient.h"
 
 #define TOOLBAR_HEIGHT  22
+#define TOAST_POS_Y   self.toolBarView.frame.origin.y - 30.0f
 
 @interface NewStatusViewController()
 - (void)updateTextCount;
@@ -25,6 +27,8 @@
 @synthesize postWeiboButton = _postWeiboButton;
 @synthesize textCountLabel = _textCountLabel;
 @synthesize toolBarView = _toolBarView;
+@synthesize photoFrameImageView = _photoFrameImageView;
+@synthesize photoImageView = _photoImageView;
 
 - (void)dealloc {
     [_textView release];
@@ -32,6 +36,8 @@
     [_postWeiboButton release];
     [_textCountLabel release];
     [_toolBarView release];
+    [_photoFrameImageView release];
+    [_photoImageView release];
     [super dealloc];
 }
 
@@ -43,6 +49,8 @@
     self.postWeiboButton = nil;
     self.textCountLabel = nil;
     self.toolBarView = nil;
+    self.photoFrameImageView = nil;
+    self.photoImageView = nil;
 }
 
 - (id)init {
@@ -63,6 +71,9 @@
     [self.postWeiboButton setSelected:_postToWeibo];
     self.textView.text = @"";
     [self updateTextCount];
+    
+    self.photoFrameImageView.hidden = YES;
+    self.photoImageView.hidden = YES;
 }
 
 - (void)dismissView {
@@ -90,11 +101,38 @@
 - (BOOL)isTextValid {
     BOOL result = YES;
     NSInteger textCount = [self.textCountLabel.text integerValue];
-    if(textCount <= 0 || textCount > 140) {
-        NSLog(@"text count illegal");
+    if(textCount <= 0) {
         result = NO;
+        [[UIApplication sharedApplication] presentToast:@"请输入内容。" withVerticalPos:TOAST_POS_Y];
+    }
+    else if(textCount > 140) {
+        result = NO;
+        [[UIApplication sharedApplication] presentToast:@"内容超过140字限制。" withVerticalPos:TOAST_POS_Y];
     }
     return result;
+}
+
+- (void)postStatusCompletion {
+    _postCount--;
+    if(_postCount == 0) {
+        switch (_postStatusErrorCode) {
+            case PostStatusErrorAll:
+                [[UIApplication sharedApplication] presentToast:@"发送到微博、人人均失败。" withVerticalPos:TOAST_POS_Y];
+                break;
+            case PostStatusErrorWeibo:
+                [[UIApplication sharedApplication] presentToast:@"发送到微博失败。" withVerticalPos:TOAST_POS_Y];
+                break;
+            case PostStatusErrorRenren:
+                [[UIApplication sharedApplication] presentToast:@"发送到人人失败。" withVerticalPos:TOAST_POS_Y];
+                break;
+            case PostStatusErrorNone:
+                [[UIApplication sharedApplication] presentToast:@"发送成功。" withVerticalPos:TOAST_POS_Y];
+                break;
+            default:
+                break;
+        }
+        [self dismissView];
+    }
 }
 
 #pragma mark -
@@ -105,8 +143,9 @@
 
 - (IBAction)didClickPostButton:(id)sender {
     _postCount = 0;
+    _postStatusErrorCode = PostStatusErrorNone;
     if(!_postToWeibo && !_postToRenren) {
-        NSLog(@"没有选中任何平台");
+        [[UIApplication sharedApplication] presentToast:@"没有选中任何平台。" withVerticalPos:TOAST_POS_Y];
         return;
     }
     if(![self isTextValid]) 
@@ -114,11 +153,9 @@
     if(_postToWeibo) {
         WeiboClient *client = [WeiboClient client];
         [client setCompletionBlock:^(WeiboClient *client) {
-            _postCount--;
-            NSLog(@"post count:%d", _postCount);
-            if(_postCount == 0) {
-                [self dismissView];
-            }
+            if(client.hasError)
+                _postStatusErrorCode |= PostStatusErrorWeibo;
+            [self postStatusCompletion];
         }];
         _postCount++;
         [client postStatus:self.textView.text];
@@ -126,11 +163,9 @@
     if(_postToRenren) {
         RenrenClient *client = [RenrenClient client];
         [client setCompletionBlock:^(RenrenClient *client) {
-            _postCount--;
-            NSLog(@"post count:%d", _postCount);
-            if(_postCount == 0) {
-                [self dismissView];
-            }
+            if(client.hasError)
+                _postStatusErrorCode |= PostStatusErrorRenren;
+            [self postStatusCompletion];
         }];
         _postCount++;
         [client postStatus:self.textView.text];
@@ -187,6 +222,30 @@
     if ((NSString*)_lastChar && [(NSString*)_lastChar compare:@"@"] == NSOrderedSame) {
         [self atButtonClicked:nil];
     }*/
+}
+
+- (void)pickImage:(id)sender {
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+    ipc.delegate = self;
+    ipc.allowsEditing = NO;
+    [self presentModalViewController:ipc animated:YES]; 
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.photoImageView.image = image;
+    [picker dismissViewControllerAnimated:YES completion:^{
+        self.photoFrameImageView.hidden = NO;
+        self.photoImageView.hidden = NO;
+        self.photoFrameImageView.alpha = 0;
+        self.photoImageView.alpha = 0;
+        [UIView animateWithDuration:0.3f animations:^{
+            self.photoFrameImageView.alpha = 1.0f;
+            self.photoImageView.alpha = 1.0f;
+        }];
+    }];
+    
 }
 
 @end
