@@ -24,6 +24,7 @@
 #import "UIImage+Addition.h"
 #import "NSData+NsData_Base64.h"
 #import "NSString+DataURI.h"
+#import "NewFeedTempImageView.h"
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
@@ -33,6 +34,37 @@
     _pageControl.currentPage = index;
 }
 
+
+-(void)showBigImage
+{
+    
+    //Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
+    //UIImage *image = [UIImage imageWithData:imageData.imageData.data];
+    //NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image BigURL:stringURL context:self.managedObjectContext];
+    //[tempImage show];
+    
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    
+    
+    NSString* tempString=[NSString stringWithFormat:@"%@",[request URL]];
+    //NSLog(@"%@",tempString);
+    
+    NSString* commandString=[tempString substringFromIndex:7];
+    if ([commandString isEqualToString:@"showimage"])
+    {
+        [self showBigImage];
+        return NO;
+    }
+
+    return YES;
+}
+
+
+
+
 - (void)clearData
 {
     
@@ -41,7 +73,7 @@
     [self.feedData removeComments:self.feedData.comments];
     
     [StatusCommentData deleteAllObjectsInManagedObjectContext:self.managedObjectContext];
-    //    NSLog(@"%@",self.feedData.comments);
+ 
 }
 
 
@@ -49,46 +81,39 @@
 {
     
     UIImage* image1=[UIImage imageWithData:_photoData];
-  //  NSLog(@"%@",_photoData);
-    CGSize size;
-    //改变图片大小
-    float a=image1.size.width/200;
-    float b=image1.size.height/150;
-    if (a>b)
-    {
-        size=CGSizeMake(image1.size.width/image1.size.height*200, 150);
-    }
-    else
-    {
-        size=CGSizeMake(200, image1.size.height/image1.size.width*150);
-    }
-    UIGraphicsBeginImageContext(size);
-    [image1 drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    //  return newImage;
+  
     
     
-    NSData* imagedata=UIImageJPEGRepresentation(newImage, 10);
+    NSData* imagedata=UIImageJPEGRepresentation(image1, 10);
     
     
     
     NSString *imgB64 = [[imagedata base64Encoding] jpgDataURIWithContent];
     
     
-    NSString *javascript = [NSString stringWithFormat:@"setBigPhotoPos(%f,%f)", size.width,size.height];
+
+    
+    
+    NSString* javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
     
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
     
     
-    javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
-    
-    [_webView stringByEvaluatingJavaScriptFromString:javascript];
-    
+
+    [_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"];
+    //NSLog(@"Height:%d",height);
+  //  NSLog(@"爱如完成");
     [_photoData release];
+ 
+    [_activity stopAnimating];
+    [_activity removeFromSuperview];
+    [_activity release];
+
 }
 -(void)loadWebView
 {
+    
+
   if ([(NewFeedData*)_feedData getPostName]==nil)
   {
                 if (((NewFeedData*)_feedData).pic_URL!=nil)
@@ -206,6 +231,10 @@
     
     _webView.backgroundColor=[UIColor clearColor];
     _webView.opaque=NO;
+    _activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activity.center=CGPointMake(153, 300);
+    [self.view addSubview:_activity];
+    [_activity startAnimating];
     
 }
 -(void)addOriStatus

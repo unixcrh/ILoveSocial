@@ -18,6 +18,7 @@
 -(void)loadWebView
 {
     
+    
     [_blogTitle setText:((NewFeedBlog*)self.feedData).title];
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
