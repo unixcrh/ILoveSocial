@@ -8,7 +8,7 @@
 		<string>新鲜事</string>
 		<key>kLabelIsRetractable</key>
 		<true/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 		<key>kChildLabels</key>
 		<array>
@@ -23,7 +23,7 @@
 		<string>全部</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildRenrenSelfNewFeed</key>
@@ -32,7 +32,7 @@
 		<string>人人</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildWeiboSelfNewFeed</key>
@@ -41,7 +41,7 @@
 		<string>微博</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kParentFriend</key>
@@ -50,14 +50,13 @@
 		<string>联系人</string>
 		<key>kLabelIsRetractable</key>
 		<true/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 		<key>kChildLabels</key>
 		<array>
 			<string>kChildWeiboFriend</string>
 			<string>kChildWeiboFollower</string>
 			<string>kChildRenrenFriend</string>
-			<string>kChildWeiboFriend</string>
 		</array>
 	</dict>
 	<key>kChildRenrenFriend</key>
@@ -66,7 +65,7 @@
 		<string>好友</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildWeiboFriend</key>
@@ -75,7 +74,7 @@
 		<string>关注</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildWeiboFollower</key>
@@ -84,7 +83,7 @@
 		<string>粉丝</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kParentUserInfo</key>
@@ -93,7 +92,7 @@
 		<string>个人档</string>
 		<key>kLabelIsRetractable</key>
 		<true/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 		<key>kChildLabels</key>
 		<array>
@@ -107,7 +106,7 @@
 		<string>新鲜事</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildWeiboNewFeed</key>
@@ -116,7 +115,7 @@
 		<string>微博</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildAlbum</key>
@@ -125,7 +124,7 @@
 		<string>相册</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildBlog</key>
@@ -134,7 +133,7 @@
 		<string>日志</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildRenrenInfo</key>
@@ -143,7 +142,7 @@
 		<string>人人资料</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildWeiboInfo</key>
@@ -152,7 +151,7 @@
 		<string>微博资料</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kParentInbox</key>
@@ -161,7 +160,7 @@
 		<string>收件箱</string>
 		<key>kLabelIsRetractable</key>
 		<true/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 		<key>kChildLabels</key>
 		<array>
@@ -175,7 +174,7 @@
 		<string>新消息</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kChildNewFriend</key>
@@ -184,48 +183,48 @@
 		<string>新联系人</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
 	<key>kSystemDefaultLabels</key>
 	<array>
 		<string>kParentNewFeed</string>
 		<string>kParentFriend</string>
-        <string>kParentPublication</string>
-        <string>kParentInbox</string>
+		<string>kParentPublication</string>
+		<string>kParentInbox</string>
 		<string>kParentUserInfo</string>
 	</array>
 	<key>kParentWeiboUser</key>
 	<dict>
 		<key>kLabelIsRetractable</key>
 		<true/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 		<key>kChildLabels</key>
 		<array>
-            <string>kChildWeiboNewFeed</string>
+			<string>kChildWeiboNewFeed</string>
 			<string>kChildWeiboFriend</string>
 			<string>kChildWeiboFollower</string>
 		</array>
 	</dict>
-    <key>kParentRenrenUser</key>
+	<key>kParentRenrenUser</key>
 	<dict>
 		<key>kLabelIsRetractable</key>
 		<true/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 		<key>kChildLabels</key>
 		<array>
 			<string>kChildRenrenNewFeed</string>
 		</array>
 	</dict>
-    <key>kParentPublication</key>
+	<key>kParentPublication</key>
 	<dict>
-        <key>kLabelName</key>
+		<key>kLabelName</key>
 		<string>发件箱</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
-        <key>kLabelIsParent</key>
+		<key>kLabelIsParent</key>
 		<true/>
 	</dict>
 </dict>
