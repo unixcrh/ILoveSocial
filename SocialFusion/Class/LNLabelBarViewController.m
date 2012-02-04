@@ -214,7 +214,7 @@
     NSString *identifier = label.info.identifier;
     NSArray *labelInfo = [LabelConverter getChildLabelsInfoWithParentLabelIndentifier:identifier andParentLabelName:label.labelName];
     LabelInfo *returnLabelInfo = [labelInfo objectAtIndex:0];
-    returnLabelInfo.targetUser = label.info.targetUser;
+    returnLabelInfo.bgImage = label.info.bgImage;
     [self pushLabelInfoArray:[NSMutableArray arrayWithArray:labelInfo]];
     [self loadLabelPages];
     LNLabelPageViewController *firstPage = [self.labelPages objectAtIndex:0];

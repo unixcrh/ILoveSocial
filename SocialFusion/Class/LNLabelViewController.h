@@ -25,6 +25,7 @@
     BOOL _isParent;
     
     User *_targetUser;
+    UIImage *_bgImage;
 }
 
 @property (nonatomic, copy) NSString *identifier;
@@ -35,6 +36,7 @@
 @property (nonatomic) BOOL isReturnLabel;
 @property (nonatomic) BOOL isParent;
 @property (nonatomic, retain) User *targetUser;
+@property (nonatomic, retain) UIImage *bgImage;
 
 
 

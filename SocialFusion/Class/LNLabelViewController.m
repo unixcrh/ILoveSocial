@@ -24,12 +24,14 @@
 @synthesize isReturnLabel = _isReturnLabel;
 @synthesize isParent = _isParent;
 @synthesize targetUser = _targetUser;
+@synthesize bgImage = _bgImage;
 
 
 - (void)dealloc {
     [_labelName release];
     [_identifier release];
     [_targetUser release];
+    [_bgImage release];
     [super dealloc];
 }
 
@@ -40,6 +42,14 @@
     info.isRetractable = retractable;
     info.isParent = isParent;
     return info;
+}
+
+- (void)setBgImage:(UIImage *)bgImage {
+    if(_bgImage != bgImage) {
+        [_bgImage release];
+        _bgImage = [bgImage retain];
+        self.targetUser = nil;
+    }
 }
 
 @end
@@ -156,16 +166,23 @@
 }
 
 - (void)configureBackgroundImage {
-    if(self.info.targetUser) {
+    if(self.info.bgImage) {
+        self.photoImageView.image = self.info.bgImage;
+        self.photoImageView.alpha = 0.3f;
+    }
+    else if(self.info.targetUser) {
         Image *image = [Image imageWithURL:self.info.targetUser.tinyURL inManagedObjectContext:self.info.targetUser.managedObjectContext];
         if (image == nil) {
             [self.photoImageView loadImageFromURL:self.info.targetUser.tinyURL completion:^{
                 [self.photoImageView halfFadeIn];
+                self.info.bgImage = self.photoImageView.image;
             } cacheInContext:self.info.targetUser.managedObjectContext];
         }
         else {
             NSData *imageData = image.imageData.data;
-            self.photoImageView.image = [UIImage imageWithData:imageData];
+            self.info.bgImage = [UIImage imageWithData:imageData];
+            self.photoImageView.image = self.info.bgImage;
+            self.photoImageView.alpha = 0.3f;
         }
     }
 }
