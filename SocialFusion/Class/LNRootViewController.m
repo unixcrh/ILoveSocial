@@ -102,8 +102,6 @@
 #pragma mark handle notifications
 
 - (void)didSelectFriend:(NSNotification *)notification {
-    //[_labelBarViewController createLabelWithInfo:[LabelInfo labelInfoWithName:[NSString stringWithFormat:@"何若运%d",i] status:PARENT_LABEL_CLOSE isSystem:NO]];
-    
     NSDictionary *userDict = notification.object;
     NSString *identifier;
     User *selectedUser;
@@ -130,6 +128,7 @@
     LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
     labelInfo.isRemovable = YES;
     labelInfo.labelName = selectedUser.name;
+    labelInfo.targetUser = selectedUser;
     [self.labelBarViewController createLabelWithInfo:labelInfo];
 }
 

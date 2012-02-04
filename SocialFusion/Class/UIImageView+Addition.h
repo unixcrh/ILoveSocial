@@ -1,17 +1,21 @@
 //
-//  UIImageView+DispatchLoad.h
+//  UIImageView+Addition.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-8-29.
-//  Copyright 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-2-4.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface UIImageView (DispatchLoad)
+@interface UIImageView (Addition)
+
+- (void)fadeIn;
+- (void)halfFadeIn;
+
 - (void)setImageFromUrl:(NSString*)urlString;
 - (void)setImageFromUrl:(NSString*)urlString 
-              completion:(void (^)(void))completion;
+             completion:(void (^)(void))completion;
 
 - (void)loadImageFromURL:(NSString *)urlString 
               completion:(void (^)())completion 

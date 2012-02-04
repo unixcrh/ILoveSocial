@@ -14,7 +14,7 @@
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "Image+Addition.h"
-#import "UIImageView+DispatchLoad.h"
+#import "UIImageView+Addition.h"
 #import "StatusDetailController.h"
 #import "StatusCommentData+StatusCommentData_Addition.h"
 #import "CommonFunction.h"
@@ -364,19 +364,6 @@
     }
     [self loadData]    ;
 }
-
-
-
-
-
-
-- (void)showHeadImageAnimation:(UIImageView *)imageView {
-    imageView.alpha = 0;
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-        imageView.alpha = 1;
-    } completion:nil];
-}
-
 
 
 

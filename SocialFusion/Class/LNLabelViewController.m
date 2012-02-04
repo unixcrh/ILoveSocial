@@ -7,6 +7,10 @@
 //
 
 #import "LNLabelViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "Image+Addition.h"
+#import "UIImageView+Addition.h"
+#import "User.h"
 
 #define DEGREES_TO_RADIANS(__ANGLE) ((__ANGLE) / 180.0 * M_PI)
 
@@ -19,9 +23,13 @@
 @synthesize isSelected = _isSelected;
 @synthesize isReturnLabel = _isReturnLabel;
 @synthesize isParent = _isParent;
+@synthesize targetUser = _targetUser;
+
 
 - (void)dealloc {
     [_labelName release];
+    [_identifier release];
+    [_targetUser release];
     [super dealloc];
 }
 
@@ -43,11 +51,13 @@
 @synthesize delegate = _delegate;
 @synthesize titleLabel = _titleLabel;
 @synthesize info = _info;
+@synthesize photoImageView = _photoImageView;
 
 - (void)dealloc {
     NSLog(@"LNLabelViewController dealloc");
     [_titleButton release];
     [_titleLabel release];
+    [_photoImageView release];
     _delegate = nil;
     [super dealloc];
 }
@@ -57,6 +67,7 @@
     [super viewDidUnload];
     self.titleButton = nil;
     self.titleLabel = nil;
+    self.photoImageView = nil;
 }
 
 - (void)viewDidLoad
@@ -69,6 +80,9 @@
 	swipeUpGesture.numberOfTouchesRequired = 1;
 	[self.view addGestureRecognizer:swipeUpGesture];
 	[swipeUpGesture release];
+    
+    self.photoImageView.layer.masksToBounds = YES;
+    self.photoImageView.layer.cornerRadius = 5.0f;
 	
 }
 
@@ -147,6 +161,20 @@
         _info = [info retain];
         self.titleLabel.text = _info.labelName;
         self.isSelected = _info.isSelected;
+        
+        if(info.targetUser) {
+            Image *image = [Image imageWithURL:info.targetUser.tinyURL inManagedObjectContext:info.targetUser.managedObjectContext];
+            if (image == nil) {
+                [self.photoImageView loadImageFromURL:info.targetUser.tinyURL completion:^{
+                    [self.photoImageView halfFadeIn];
+                } cacheInContext:info.targetUser.managedObjectContext];
+            }
+            else {
+                NSData *imageData = image.imageData.data;
+                self.photoImageView.image = [UIImage imageWithData:imageData];
+                [self.photoImageView halfFadeIn];
+            }
+        }
     }
 }
 

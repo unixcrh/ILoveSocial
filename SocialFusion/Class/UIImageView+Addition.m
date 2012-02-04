@@ -1,22 +1,36 @@
 //
-//  UIImageView+DispatchLoad.m
+//  UIImageView+Addition.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-8-29.
-//  Copyright 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-2-4.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
-#import "UIImageView+DispatchLoad.h"
+#import "UIImageView+Addition.h"
 #import "Image+Addition.h"
 
-@implementation UIImageView (DispatchLoad)
+@implementation UIImageView (Addition)
+
+- (void)fadeIn {
+    self.alpha = 0;
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+        self.alpha = 1;
+    } completion:nil];
+}
+
+- (void)halfFadeIn {
+    self.alpha = 0;
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+        self.alpha = 0.5f;
+    } completion:nil];
+}
 
 - (void)setImageFromUrl:(NSString*)urlString {
     [self setImageFromUrl:urlString completion:nil];
 }
 
 - (void)setImageFromUrl:(NSString*)urlString 
-              completion:(void (^)(void))completion {
+             completion:(void (^)(void))completion {
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);
     dispatch_async(downloadQueue, ^{
         
@@ -46,15 +60,15 @@
           cacheInContext:(NSManagedObjectContext *)context
 {
 	/*Image *imageObject = [Image imageWithURL:urlString inManagedObjectContext:context];
-    if (imageObject) {
-        NSData *imageData = imageObject.imageData.data;
-        UIImage *img = [UIImage imageWithData:imageData];
-        self.image = img;
-        if (completion) {
-            completion();
-        }
-        return;
-    }*/
+     if (imageObject) {
+     NSData *imageData = imageObject.imageData.data;
+     UIImage *img = [UIImage imageWithData:imageData];
+     self.image = img;
+     if (completion) {
+     completion();
+     }
+     return;
+     }*/
 	
     NSURL *url = [NSURL URLWithString:urlString];    
     dispatch_queue_t downloadQueue = dispatch_queue_create("downloadImageQueue", NULL);

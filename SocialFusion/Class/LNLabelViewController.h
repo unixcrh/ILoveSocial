@@ -13,6 +13,8 @@
 
 #define kDidSelectFriendNotification @"kDidSelectFriendNotification"
 
+@class User;
+
 @interface LabelInfo : NSObject {
 @private
     NSString *_identifier;
@@ -21,6 +23,8 @@
     BOOL _isSelected;
     BOOL _isReturnLabel;
     BOOL _isParent;
+    
+    User *_targetUser;
 }
 
 @property (nonatomic, copy) NSString *identifier;
@@ -30,6 +34,7 @@
 @property (nonatomic) BOOL isSelected;
 @property (nonatomic) BOOL isReturnLabel;
 @property (nonatomic) BOOL isParent;
+@property (nonatomic, retain) User *targetUser;
 
 
 
@@ -42,6 +47,7 @@
     NSUInteger _index;
     id<LNLabelViewControllerDelegate> _delegate;
     UILabel *_titleLabel;
+    UIImageView *_photoImageView;
     LabelInfo *_info;
 }
 
@@ -56,6 +62,7 @@
 @property (nonatomic, copy) NSString *labelName;
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, retain) LabelInfo *info;
 
 - (IBAction)clickTitleButton:(id)sender;

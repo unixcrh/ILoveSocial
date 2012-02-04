@@ -11,7 +11,7 @@
 #import "RenrenUser.h"
 #import "WeiboUser.h"
 #import "Image+Addition.h"
-#import "UIImageView+DispatchLoad.h"
+#import "UIImageView+Addition.h"
 #import "User+Addition.h"
 #import "FriendListRenrenViewController.h"
 #import "FriendListWeiboViewController.h"
@@ -65,7 +65,7 @@
         if(self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             if(indexPath.row < kCustomRowCount) {
                 [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
-                    [self showHeadImageAnimation:relationshipCell.headImageView];
+                    [relationshipCell.headImageView fadeIn];
                 } cacheInContext:self.managedObjectContext];
             }
         }
@@ -112,7 +112,7 @@
     {
         FriendListTableViewCell *relationshipCell = (FriendListTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         [relationshipCell.headImageView loadImageFromURL:usr.tinyURL completion:^{
-            [self showHeadImageAnimation:relationshipCell.headImageView];
+            [relationshipCell.headImageView fadeIn];
         } cacheInContext:self.managedObjectContext];
     }
 }

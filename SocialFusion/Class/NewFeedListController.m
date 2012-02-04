@@ -17,7 +17,7 @@
 #import "NewFeedShareAlbum+Addition.h"
 #import "NewFeedSharePhoto+Addition.h"
 #import "Image+Addition.h"
-#import "UIImageView+DispatchLoad.h"
+#import "UIImageView+Addition.h"
 #import "NewFeedBlog.h"
 #import "StatusDetailController.h"
 #import "UIImage+Addition.h"
@@ -165,14 +165,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self clearData];
     [self loadMoreData];
 }
-
-- (void)showHeadImageAnimation:(UIImageView *)imageView {
-    imageView.alpha = 0;
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-        imageView.alpha = 1;
-    } completion:nil];
-}
-
 
 - (void)loadMoreWeiboData {
     WeiboClient *client = [WeiboClient client];

@@ -205,6 +205,7 @@
 		E13A944214DD1F99000C029F /* toast_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944014DD1F99000C029F /* toast_bg.png */; };
 		E13A944314DD1F99000C029F /* toast_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944114DD1F99000C029F /* toast_bg@2x.png */; };
 		E13A944614DD3F70000C029F /* dividing_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944514DD3F70000C029F /* dividing_line@2x.png */; };
+		E13A944D14DD5372000C029F /* UIImageView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E13A944C14DD5371000C029F /* UIImageView+Addition.m */; };
 		E15F990E14D5CE3C0069072C /* new_status_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990414D5CE3C0069072C /* new_status_bg@2x.png */; };
 		E15F990F14D5CE3C0069072C /* new_status_btn_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990514D5CE3C0069072C /* new_status_btn_cancel@2x.png */; };
 		E15F991014D5CE3C0069072C /* new_status_btn_dest_hl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990614D5CE3C0069072C /* new_status_btn_dest_hl@2x.png */; };
@@ -257,7 +258,6 @@
 		E1ABA489141FA882002CD0A6 /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */; };
 		E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA425141FA882002CD0A6 /* pinyin.c */; };
 		E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */; };
-		E1ABA48E141FA883002CD0A6 /* UIImageView+DispatchLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA42E141FA882002CD0A6 /* UIImageView+DispatchLoad.m */; };
 		E1ABA496141FA883002CD0A6 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */; };
 		E1ABA497141FA883002CD0A6 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA43A141FA882002CD0A6 /* Icon-Small.png */; };
 		E1ABA498141FA883002CD0A6 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA43B141FA882002CD0A6 /* Icon-Small@2x.png */; };
@@ -624,6 +624,8 @@
 		E13A944014DD1F99000C029F /* toast_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toast_bg.png; sourceTree = "<group>"; };
 		E13A944114DD1F99000C029F /* toast_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toast_bg@2x.png"; sourceTree = "<group>"; };
 		E13A944514DD3F70000C029F /* dividing_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dividing_line@2x.png"; sourceTree = "<group>"; };
+		E13A944B14DD5371000C029F /* UIImageView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Addition.h"; sourceTree = "<group>"; };
+		E13A944C14DD5371000C029F /* UIImageView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Addition.m"; sourceTree = "<group>"; };
 		E15F990414D5CE3C0069072C /* new_status_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_bg@2x.png"; sourceTree = "<group>"; };
 		E15F990514D5CE3C0069072C /* new_status_btn_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_btn_cancel@2x.png"; sourceTree = "<group>"; };
 		E15F990614D5CE3C0069072C /* new_status_btn_dest_hl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_btn_dest_hl@2x.png"; sourceTree = "<group>"; };
@@ -694,8 +696,6 @@
 		E1ABA426141FA882002CD0A6 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pinyin.h; path = SocialFusion/Class/pinyin.h; sourceTree = "<group>"; };
 		E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFusionViewController.h; sourceTree = "<group>"; };
 		E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFusionViewController.m; sourceTree = "<group>"; };
-		E1ABA42D141FA882002CD0A6 /* UIImageView+DispatchLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DispatchLoad.h"; sourceTree = "<group>"; };
-		E1ABA42E141FA882002CD0A6 /* UIImageView+DispatchLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DispatchLoad.m"; sourceTree = "<group>"; };
 		E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		E1ABA43A141FA882002CD0A6 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		E1ABA43B141FA882002CD0A6 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
@@ -1221,8 +1221,6 @@
 				E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */,
 				E1E5DF92143C6C1F0098BBD3 /* WeiboDetail+Addition.h */,
 				E1E5DF93143C6C1F0098BBD3 /* WeiboDetail+Addition.m */,
-				E1ABA42D141FA882002CD0A6 /* UIImageView+DispatchLoad.h */,
-				E1ABA42E141FA882002CD0A6 /* UIImageView+DispatchLoad.m */,
 				73B9A3811479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.h */,
 				73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */,
 				7308FF2B14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.h */,
@@ -1247,6 +1245,8 @@
 				73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */,
 				73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */,
 				73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */,
+				E13A944B14DD5371000C029F /* UIImageView+Addition.h */,
+				E13A944C14DD5371000C029F /* UIImageView+Addition.m */,
 				E12F175C14CF080800B32229 /* NSNotificationCenter+Addition.h */,
 				E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */,
 			);
@@ -1823,7 +1823,6 @@
 				E1ABA489141FA882002CD0A6 /* NSString+Pinyin.m in Sources */,
 				E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */,
 				E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */,
-				E1ABA48E141FA883002CD0A6 /* UIImageView+DispatchLoad.m in Sources */,
 				E1ABA4A6141FA883002CD0A6 /* Renren.m in Sources */,
 				E1ABA4A7141FA883002CD0A6 /* RenrenClient.m in Sources */,
 				E1ABA4AA141FA883002CD0A6 /* ASIAuthenticationDialog.m in Sources */,
@@ -1966,6 +1965,7 @@
 				E118414B14D9CDCF000FF01F /* SBJsonBase.m in Sources */,
 				E118414C14D9CDCF000FF01F /* SBJsonParser.m in Sources */,
 				E118414D14D9CDCF000FF01F /* SBJsonWriter.m in Sources */,
+				E13A944D14DD5372000C029F /* UIImageView+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@
 #import "RenrenStatus+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "Image+Addition.h"
-#import "UIImageView+DispatchLoad.h"
+#import "UIImageView+Addition.h"
 #import "User+Addition.h"
 #import "RenrenClient.h"
 #import "WeiboClient.h"
@@ -82,13 +82,6 @@
     [self hideLoadMoreDataButton];
     [self clearData];
     [self loadMoreData];
-}
-
-- (void)showHeadImageAnimation:(UIImageView *)imageView {
-    imageView.alpha = 0;
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-        imageView.alpha = 1;
-    } completion:nil];
 }
 
 - (void)clearData

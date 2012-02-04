@@ -22,7 +22,6 @@ typedef enum {
 }
 
 - (id)initWithType:(RelationshipViewType)type;
-- (void)showHeadImageAnimation:(UIImageView *)imageView;
 - (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath;
 
 @end
