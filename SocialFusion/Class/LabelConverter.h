@@ -14,7 +14,7 @@
 #define kChildRenrenSelfNewFeed @"kChildRenrenSelfNewFeed"
 #define kChildWeiboSelfNewFeed  @"kChildWeiboSelfNewFeed"
 
-#define KParentUserInfo         @"KParentUserInfo"
+#define KParentUserInfo         @"kParentUserInfo"
 #define kChildRenrenNewFeed     @"kChildRenrenNewFeed"
 #define kChildWeiboNewFeed      @"kChildWeiboNewFeed"
 #define kChildRenrenAlbum       @"kChildAlbum"
@@ -60,5 +60,6 @@
 + (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier andParentLabelName:(NSString *)name;
 + (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)parentIdentifier;
 + (NSUInteger)getSystemDefaultLabelCount;
++ (NSUInteger)getSystemDefaultLabelIndex:(NSString *)identifier;
 
 @end

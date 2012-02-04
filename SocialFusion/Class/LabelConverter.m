@@ -103,4 +103,17 @@ static LabelConverter *instance = nil;
     return systemDefaultLabelsIdentifier.count;
 }
 
++ (NSUInteger)getSystemDefaultLabelIndex:(NSString *)identifier {
+    __block NSUInteger result = 0;
+    NSArray *systemDefaultLabelsIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
+    [systemDefaultLabelsIdentifier enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *systemDefaultIdentifier = obj;
+        if([identifier isEqualToString:systemDefaultIdentifier]) {
+            result = idx;
+            *stop = YES;
+        }
+    }];
+    return result;
+}
+
 @end

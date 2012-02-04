@@ -32,6 +32,7 @@ typedef void (^PopPageMnuallyCompletion)(void);
 @property (nonatomic, readonly) NSUInteger pageIndex;
 @property (nonatomic) NSUInteger pageCount;
 @property (nonatomic, assign) id<LNLabelBarViewControllerDelegate> delegate;
+@property (nonatomic, readonly) NSUInteger parentLabelCount;
 
 - (id)initWithLabelInfoArray:(NSArray *)infoArray;
 - (void)createLabelWithInfo:(LabelInfo *)info;

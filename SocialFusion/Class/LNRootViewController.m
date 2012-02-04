@@ -8,7 +8,8 @@
 
 #import "LNRootViewController.h"
 #import "LabelConverter.h"
-#import "User.h"
+#import "RenrenUser+Addition.h"
+#import "WeiboUser+Addition.h"
 
 #define CONTENT_VIEW_OFFSET_X   7
 #define CONTENT_VIEW_OFFSET_Y   64
@@ -64,9 +65,19 @@
 
 - (NSUInteger)getOpenedUserIndex:(User *)user {
     NSUInteger result = USER_NOT_OPEN;
-    NSNumber *storediIndex = [_openedUserHeap objectForKey:user.userID];
-    if(storediIndex) {
-        result = storediIndex.unsignedIntValue;
+    if([user isMemberOfClass:[RenrenUser class]]) {
+        if([self.renrenUser isEqualToUser:(RenrenUser *)user])
+            result = [LabelConverter getSystemDefaultLabelIndex:KParentUserInfo];
+    }
+    else if([user isMemberOfClass:[WeiboUser class]]) {
+        if([self.weiboUser isEqualToUser:(WeiboUser *)user])
+            result = [LabelConverter getSystemDefaultLabelIndex:KParentUserInfo];
+    }
+    else {
+        NSNumber *storediIndex = [_openedUserHeap objectForKey:user.userID];
+        if(storediIndex) {
+            result = storediIndex.unsignedIntValue;
+        }
     }
     return result;
 }
@@ -123,7 +134,7 @@
         return;
     }
     else {
-        [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.labelInfoArray.count] forKey:selectedUser.userID];
+        [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
     }
     
     [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];

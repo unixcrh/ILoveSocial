@@ -96,8 +96,8 @@
 		<true/>
 		<key>kChildLabels</key>
 		<array>
-			<string>kChildRenrenNewFeed</string>
 			<string>kChildWeiboNewFeed</string>
+            <string>kChildRenrenNewFeed</string>
 		</array>
 	</dict>
 	<key>kChildRenrenNewFeed</key>

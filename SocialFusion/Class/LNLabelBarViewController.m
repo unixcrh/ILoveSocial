@@ -361,4 +361,8 @@
     }];
 }
 
+- (NSUInteger)parentLabelCount {
+    return ((NSArray *)[_labelInfoArrayStack objectAtIndex:0]).count;
+}
+
 @end
