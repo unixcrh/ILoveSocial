@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define kAnimationDuration 0.25
+#define kToastBottomVerticalPosition 400.0f
 
 @interface UIApplication (Addition)
 

@@ -15,6 +15,7 @@
 #import "User+Addition.h"
 #import "RenrenClient.h"
 #import "WeiboClient.h"
+#import "UIApplication+Addition.h"
 
 @interface FriendProfileViewController()
 - (void)clearData;
@@ -124,11 +125,12 @@
                 RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
                 [self.renrenUser addFriendsObject:friend];
             }
-            //NSLog(@"renren friend count:%d", array.count);
-            //NSLog(@"add finished");
+            if(array.count > 0)
+                [[UIApplication sharedApplication] presentToast:[NSString stringWithFormat:@"加载%d位人人网好友。", array.count] withVerticalPos:kToastBottomVerticalPosition];
+            else 
+                [[UIApplication sharedApplication] presentToast:[NSString stringWithFormat:@"您在人人网没有好友。", array.count] withVerticalPos:kToastBottomVerticalPosition];
         }
         [self doneLoadingTableViewData];
-        
         _loading = NO;
         
     }];
@@ -155,6 +157,14 @@
             //NSLog(@"new cursor:%d", _nextCursor);
             if (_nextCursor == 0) {
                 [self hideLoadMoreDataButton];
+                if(dictArray.count == 0) {
+                    NSString *weiboType;
+                    if (_type == RelationshipViewTypeWeiboFollowers) 
+                        weiboType = @"粉丝";
+                    else if (_type == RelationshipViewTypeWeiboFriends)
+                        weiboType = @"关注";
+                    [[UIApplication sharedApplication] presentToast:[NSString stringWithFormat:@"当前用户在新浪微博没有%@。", weiboType] withVerticalPos:kToastBottomVerticalPosition];
+                }
             }
             else {
                 [self showLoadMoreDataButton];

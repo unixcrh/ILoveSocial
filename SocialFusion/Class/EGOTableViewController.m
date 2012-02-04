@@ -48,14 +48,17 @@
     if (!_loadMoreDataButton) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 60);
-        NSString *text = NSLocalizedString(@"加载更多数据", nil);
-        //[button setBackgroundImage:[UIImage imageNamed:@"tableviewCell.png"] forState:UIControlStateNormal];
-        //[button setBackgroundImage:[UIImage imageNamed:@"tableviewCell-highlight.png"] forState:UIControlStateHighlighted];
+        NSString *text = NSLocalizedString(@"点击加载更多。", nil);
         [button setTitle:text forState:UIControlStateNormal];
         [button setTitle:text forState:UIControlStateHighlighted];
-        button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+        
+        UIImageView *devideLineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 1.0f)];
+        devideLineView.image = [UIImage imageNamed:@"dividing_line@2x.png"];
+        [button addSubview:devideLineView];
+
         [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor darkTextColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
         [button addTarget:self action:@selector(loadMoreData) forControlEvents:UIControlEventTouchUpInside];
         self.loadMoreDataButton = button;
     }
