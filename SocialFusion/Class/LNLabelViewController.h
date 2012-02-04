@@ -50,6 +50,7 @@
     id<LNLabelViewControllerDelegate> _delegate;
     UILabel *_titleLabel;
     UIImageView *_photoImageView;
+    UIImageView *_bgImageView;
     LabelInfo *_info;
 }
 
@@ -65,6 +66,7 @@
 @property (nonatomic, assign) id<LNLabelViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
+@property (nonatomic, retain) IBOutlet UIImageView *bgImageView;
 @property (nonatomic, retain) LabelInfo *info;
 
 - (IBAction)clickTitleButton:(id)sender;

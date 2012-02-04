@@ -62,12 +62,14 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize info = _info;
 @synthesize photoImageView = _photoImageView;
+@synthesize bgImageView = _bgImageView;
 
 - (void)dealloc {
     NSLog(@"LNLabelViewController dealloc");
     [_titleButton release];
     [_titleLabel release];
     [_photoImageView release];
+    [_bgImageView release];
     _delegate = nil;
     [super dealloc];
 }
@@ -78,6 +80,7 @@
     self.titleButton = nil;
     self.titleLabel = nil;
     self.photoImageView = nil;
+    self.bgImageView = nil;
 }
 
 - (void)viewDidLoad
@@ -165,6 +168,10 @@
         [self.delegate labelView:self didRemoveLabelAtIndex:self.index];
 }
 
+- (void)changeLabelColor {
+    self.bgImageView.image = [UIImage imageNamed:@"label_white.png"];
+}
+
 - (void)configureBackgroundImage {
     if(self.info.bgImage) {
         self.photoImageView.image = self.info.bgImage;
@@ -185,6 +192,10 @@
             self.photoImageView.alpha = 0.3f;
         }
     }
+    else {
+        return;
+    }
+    [self changeLabelColor];
 }
 
 - (void)setInfo:(LabelInfo *)info {
