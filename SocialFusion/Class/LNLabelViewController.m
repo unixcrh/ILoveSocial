@@ -155,26 +155,28 @@
         [self.delegate labelView:self didRemoveLabelAtIndex:self.index];
 }
 
+- (void)configureBackgroundImage {
+    if(self.info.targetUser) {
+        Image *image = [Image imageWithURL:self.info.targetUser.tinyURL inManagedObjectContext:self.info.targetUser.managedObjectContext];
+        if (image == nil) {
+            [self.photoImageView loadImageFromURL:self.info.targetUser.tinyURL completion:^{
+                [self.photoImageView halfFadeIn];
+            } cacheInContext:self.info.targetUser.managedObjectContext];
+        }
+        else {
+            NSData *imageData = image.imageData.data;
+            self.photoImageView.image = [UIImage imageWithData:imageData];
+        }
+    }
+}
+
 - (void)setInfo:(LabelInfo *)info {
     if(_info != info) {
         [_info release];
         _info = [info retain];
         self.titleLabel.text = _info.labelName;
         self.isSelected = _info.isSelected;
-        
-        if(info.targetUser) {
-            Image *image = [Image imageWithURL:info.targetUser.tinyURL inManagedObjectContext:info.targetUser.managedObjectContext];
-            if (image == nil) {
-                [self.photoImageView loadImageFromURL:info.targetUser.tinyURL completion:^{
-                    [self.photoImageView halfFadeIn];
-                } cacheInContext:info.targetUser.managedObjectContext];
-            }
-            else {
-                NSData *imageData = image.imageData.data;
-                self.photoImageView.image = [UIImage imageWithData:imageData];
-                [self.photoImageView halfFadeIn];
-            }
-        }
+        [self configureBackgroundImage];
     }
 }
 

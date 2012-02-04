@@ -88,7 +88,9 @@
         NSNumber *openedUserIndex = obj;
         if(openedUserIndex.unsignedIntValue == index) {
             [_openedUserHeap removeObjectForKey:key];
-            *stop = YES;
+        }
+        else if(openedUserIndex.unsignedIntValue > index){
+            [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:openedUserIndex.unsignedIntValue - 1] forKey:key];
         }
     }];
 }

@@ -21,7 +21,7 @@
 - (void)halfFadeIn {
     self.alpha = 0;
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
-        self.alpha = 0.5f;
+        self.alpha = 0.3f;
     } completion:nil];
 }
 
