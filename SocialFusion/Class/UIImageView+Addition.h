@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kCustomHalfAlpha 0.5f
+
 @interface UIImageView (Addition)
 
 - (void)fadeIn;

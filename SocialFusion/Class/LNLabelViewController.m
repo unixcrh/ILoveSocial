@@ -175,7 +175,7 @@
 - (void)configureBackgroundImage {
     if(self.info.bgImage) {
         self.photoImageView.image = self.info.bgImage;
-        self.photoImageView.alpha = 0.3f;
+        self.photoImageView.alpha = kCustomHalfAlpha;
     }
     else if(self.info.targetUser) {
         Image *image = [Image imageWithURL:self.info.targetUser.tinyURL inManagedObjectContext:self.info.targetUser.managedObjectContext];
@@ -189,7 +189,7 @@
             NSData *imageData = image.imageData.data;
             self.info.bgImage = [UIImage imageWithData:imageData];
             self.photoImageView.image = self.info.bgImage;
-            self.photoImageView.alpha = 0.3f;
+            self.photoImageView.alpha = kCustomHalfAlpha;
         }
     }
     else {
