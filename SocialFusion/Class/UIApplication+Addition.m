@@ -13,8 +13,8 @@ static UIViewController *_modalViewController;
 static UIView *_backView;
 static BOOL _isShowingToast;
 
-#define TOAST_VIEW_WIDTH    200
-#define TOAST_VIEW_HEIGHT   30
+#define TOAST_VIEW_WIDTH    205
+#define TOAST_VIEW_HEIGHT   32
 
 #define SCREEN_WIDTH    320
 #define SCREEN_HEIGHT   480
@@ -69,34 +69,28 @@ static BOOL _isShowingToast;
     if(_isShowingToast)
         return;
     _isShowingToast = YES;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - TOAST_VIEW_WIDTH) / 2, y, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
-    backgroundView.backgroundColor = [UIColor colorWithRed:0.6f green:0.8f blue:0 alpha:0.8f];
-    CALayer *layer = backgroundView.layer;
-    layer.cornerRadius = 5.0f;
-    layer.shadowOffset = CGSizeMake(0, 3.0f);
-    layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    layer.shadowOpacity = 0.5f;
-    layer.shadowRadius = 5.0f;
+    UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - TOAST_VIEW_WIDTH) / 2, y, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
+    bgImageView.image = [UIImage imageNamed:@"toast_bg.png"];
 
-    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
+    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, -3, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
     labelView.text = text;
     labelView.backgroundColor = [UIColor clearColor];
     labelView.textColor = [UIColor whiteColor];
-    labelView.shadowColor = [UIColor darkTextColor];
+    labelView.shadowColor = [UIColor darkGrayColor];
     labelView.shadowOffset = CGSizeMake(0, 1.0f);
     labelView.textAlignment = UITextAlignmentCenter;
     labelView.font = [UIFont boldSystemFontOfSize:14.0f];
     
-    [backgroundView addSubview:labelView];
+    [bgImageView addSubview:labelView];
     [labelView release];
-    [self.keyWindow addSubview:backgroundView];
-    [backgroundView release];
+    [self.keyWindow addSubview:bgImageView];
+    [bgImageView release];
     
     [UIView animateWithDuration:0.3f delay:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         labelView.alpha = 0;
-        backgroundView.alpha = 0;
+        bgImageView.alpha = 0;
     } completion:^(BOOL finished) {
-        [backgroundView removeFromSuperview];
+        [bgImageView removeFromSuperview];
         _isShowingToast = NO;
     }];
 }

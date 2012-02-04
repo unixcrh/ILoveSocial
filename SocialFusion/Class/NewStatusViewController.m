@@ -67,6 +67,8 @@
     [super viewDidLoad];
     [self.textView becomeFirstResponder];
     self.textView.delegate = self;
+    _postToRenren = NO;
+    _postToWeibo = NO;
     [self.postRenrenButton setSelected:_postToRenren];
     [self.postWeiboButton setSelected:_postToWeibo];
     self.textView.text = @"";
@@ -145,15 +147,15 @@
 - (IBAction)didClickPostButton:(id)sender {
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
-    if(_isPosting)
-        return;
-    _isPosting = YES;
     if(!_postToWeibo && !_postToRenren) {
         [[UIApplication sharedApplication] presentToast:@"没有选中任何平台。" withVerticalPos:TOAST_POS_Y];
         return;
     }
     if(![self isTextValid]) 
         return;
+    if(_isPosting)
+        return;
+    _isPosting = YES;
     if(_postToWeibo) {
         WeiboClient *client = [WeiboClient client];
         [client setCompletionBlock:^(WeiboClient *client) {
@@ -248,6 +250,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSLog(@"image info:%@", info);
     self.photoImageView.image = image;
     [picker dismissViewControllerAnimated:YES completion:^{
         self.photoFrameImageView.hidden = NO;
@@ -259,6 +262,11 @@
             self.photoImageView.alpha = 1.0f;
         }];
     }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
