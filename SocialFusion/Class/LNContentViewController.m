@@ -106,6 +106,10 @@
     }];
     [self.contentViewControllerHeap removeObjectAtIndex:index];
     [self refreshScrollViewContentSize];
+    if(_currentContentIndex == index) {
+        [self scrollContentViewAtIndexPathToVisble:_currentContentIndex - 1 animated:YES];
+    }
+
 }
 
 - (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict {

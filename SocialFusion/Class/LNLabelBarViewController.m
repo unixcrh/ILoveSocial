@@ -165,16 +165,16 @@
     }
 }
 
-- (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)label {
-    NSUInteger index = pageView.page * 4 + label.index;
-    if(label.isSelected) {
-        [self selectLabelAtIndex:index - 1];
-    }
-    
+- (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)removedLabel {
+    NSUInteger index = pageView.page * 4 + removedLabel.index;
     NSUInteger page = pageView.page;
     [self.labelInfoArray removeObjectAtIndex:index];
     if([self.delegate respondsToSelector:@selector(labelBarView:didRemoveParentLabelAtIndex:)]) {
         [self.delegate labelBarView:self didRemoveParentLabelAtIndex:index];
+    }
+    
+    if(removedLabel.isSelected) {
+        [self selectLabelAtIndex:index - 1];
     }
     
     if(self.labelInfoArray.count % 4 == 0) {
