@@ -13,7 +13,6 @@
     UIImageView *_headImageView;
     UILabel *_userName;
     UILabel *_latestStatus;
-    UIButton *_commentButton;
     UIImageView *_headFrameIamgeView;
 }
 
@@ -21,7 +20,6 @@
 @property(nonatomic, retain) IBOutlet UIImageView* headImageView;
 @property(nonatomic, retain) IBOutlet UILabel* userName;
 @property(nonatomic, retain) IBOutlet UILabel* latestStatus;
-@property(nonatomic, retain) IBOutlet UIButton *commentButton;
 @property(nonatomic, retain) IBOutlet UIImageView* headFrameIamgeView;
 
 @end

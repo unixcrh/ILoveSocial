@@ -53,9 +53,11 @@
         [button setTitle:text forState:UIControlStateHighlighted];
         button.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
         
-        UIImageView *devideLineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 1.0f)];
-        devideLineView.image = [UIImage imageNamed:@"dividing_line@2x.png"];
+        UIImageView *devideLineView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dividing_line@2x.png"]];
+        devideLineView.frame = CGRectMake(0, 0, 290.0f, 1.0f);
+        devideLineView.center = CGPointMake(self.tableView.frame.size.width / 2, 0);
         [button addSubview:devideLineView];
+        [devideLineView release];
 
         [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];

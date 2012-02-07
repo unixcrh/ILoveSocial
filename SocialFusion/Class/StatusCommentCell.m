@@ -97,12 +97,12 @@
     
     if ([feedData.actor_ID isEqualToString:@"self"])
     {
-        _commentButton.center=CGPointMake(1000, self.frame.size.height/2+10);
+        _commentButton.center = CGPointMake(1000.0f, self.frame.size.height / 2);
 
     }
     else
     {
-    _commentButton.center=CGPointMake(283, self.frame.size.height/2+10);
+        _commentButton.center = CGPointMake(286.0f, self.frame.size.height / 2);
     }
     if ([feedData.secret boolValue]==YES)
     {

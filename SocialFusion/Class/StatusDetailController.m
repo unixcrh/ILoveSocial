@@ -215,8 +215,9 @@
     ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
     ((UIScrollView*)self.view).directionalLockEnabled=YES;
     ((UIScrollView*)self.view).delegate=self;
-    self.tableView.frame=CGRectMake(306, 0, 306, 350);
-    [((UIScrollView*)self.view) addSubview:self.tableView];
+    self.tableView.frame = CGRectMake(306, 0, 306, 350);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
     _pageControl.currentPage=0;
     self.tableView.allowsSelection=NO;    
     if ([_feedData.style intValue]==0)

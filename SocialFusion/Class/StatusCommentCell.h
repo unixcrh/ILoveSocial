@@ -10,7 +10,6 @@
 #import "StatusCommentData+StatusCommentData_Addition.h"
 @interface StatusCommentCell : UITableViewCell
 {
-
     IBOutlet UIButton* _userName;
     IBOutlet UILabel* _status;
     IBOutlet UILabel* _time;

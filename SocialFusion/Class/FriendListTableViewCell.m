@@ -13,13 +13,11 @@
 @synthesize headImageView = _headImageView;
 @synthesize userName = _userName;
 @synthesize latestStatus = _latestStatus;
-@synthesize commentButton = _commentButton;
 @synthesize headFrameIamgeView = _headFrameIamgeView;
 
 
-- (void)awakeFromNib
-{
-    [self.commentButton setImage:[UIImage imageNamed:@"messageButton-highlight.png"] forState:UIControlStateHighlighted];
+- (void)awakeFromNib {
+
 }
 
 - (void)dealloc {
@@ -28,7 +26,6 @@
     [_headImageView release];
     [_userName release];
     [_latestStatus release];
-    [_commentButton release];
     [super dealloc];
 }
 
