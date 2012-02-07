@@ -12,16 +12,21 @@
 
 @implementation PublicationViewController
 
+@synthesize scrollView = _scrollView;
+
 - (void)dealloc {
+    [_scrollView release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.scrollView = nil;
 }
 
 - (void)viewDidLoad {
    [super viewDidLoad];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + 1);
 }
 
 - (IBAction)didClickNewStatusButton:(id)sender  {

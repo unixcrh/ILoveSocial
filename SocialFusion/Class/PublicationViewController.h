@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface PublicationViewController : UIViewController {
-    
+    UIScrollView *_scrollView;
 }
 
-//@property (nonatomic, retain) IBOutlet UIButton *button;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)didClickNewStatusButton:(id)sender;
 
