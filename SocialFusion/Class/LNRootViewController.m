@@ -38,13 +38,12 @@
     [super viewDidLoad];
     
     NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
-    _contentViewController = [[LNContentViewController alloc] initWithlabelIdentifiers:labelIdentifier andUsers:self.userDict];
-    
+    _contentViewController = [[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict];
     [self.view addSubview:self.contentViewController.view];
-    
-    [self.view addSubview:self.labelBarViewController.view];
+    self.contentViewController.delegate = self;
     self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_OFFSET_X, CONTENT_VIEW_OFFSET_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
     
+    [self.view addSubview:self.labelBarViewController.view];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(didSelectFriend:) 
@@ -73,7 +72,7 @@
         if([self.weiboUser isEqualToUser:(WeiboUser *)user])
             result = [LabelConverter getSystemDefaultLabelIndex:KParentUserInfo];
     }
-    else {
+    if(result == USER_NOT_OPEN) {
         NSNumber *storediIndex = [_openedUserHeap objectForKey:user.userID];
         if(storediIndex) {
             result = storediIndex.unsignedIntValue;
@@ -143,6 +142,13 @@
     labelInfo.labelName = selectedUser.name;
     labelInfo.targetUser = selectedUser;
     [self.labelBarViewController createLabelWithInfo:labelInfo];
+}
+
+#pragma mark - 
+#pragma makr LNContentViewController delegate
+
+- (void)contentViewController:(LNContentViewController *)vc didScrollToIndex:(NSUInteger)index {
+    [self.labelBarViewController selectParentLabelAtIndex:index];
 }
 
 @end

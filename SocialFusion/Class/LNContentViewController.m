@@ -14,8 +14,6 @@
 #import "NewFeedListController.h"
 #import "FriendListViewController.h"
 
-#define SCROLL_VIEW_WIDTH self.scrollView.frame.size.width
-
 @interface LNContentViewController()
 - (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict;
 @property (nonatomic, retain) NSMutableArray *contentViewIndentifierHeap;
@@ -27,11 +25,13 @@
 @synthesize contentViewControllerHeap = _contentViewControllerHeap;
 @synthesize currentContentIndex = _currentContentIndex;
 @synthesize contentViewIndentifierHeap = _contentViewIndentifierHeap;
+@synthesize delegate = _delegate;
 
 - (void)dealloc {
     [_contentViewControllerHeap release];
     [_contentViewIndentifierHeap release];
     [_scrollView release];
+    self.delegate = nil;
     [super dealloc];
 }
 
@@ -45,6 +45,12 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.contentViewCount, self.scrollView.frame.size.height);
 }
 
+- (void)scrollContentViewAtIndexPathToVisble:(NSUInteger)index animated:(BOOL)animate{
+    if(animate)
+        animate = abs(index - _currentContentIndex) > 3 ? NO : YES;
+    [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * index, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:animate];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,10 +58,11 @@
     [self.contentViewControllerHeap enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIViewController *vc = obj;
         CGRect frame = vc.view.frame;
-        frame.origin.x = SCROLL_VIEW_WIDTH * idx;
+        frame.origin.x = self.scrollView.frame.size.width * idx;
         vc.view.frame = frame;
         [self.scrollView addSubview:vc.view];
     }];
+    self.scrollView.delegate = self;
 }
 
 - (id)init {
@@ -67,7 +74,7 @@
     return self;
 }
 
-- (id)initWithlabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict {
+- (id)initWithLabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict {
     self = [self init];
     if(self) {
         for(NSString *identifier in identifiers) {
@@ -77,16 +84,27 @@
     return self;
 }
 
-- (void)addContentViewToScrollView {
+- (void)addLastContentViewToScrollView {
     [self refreshScrollViewContentSize];
     UIViewController *vc = [self.contentViewControllerHeap lastObject];
     CGRect frame = vc.view.frame;
-    frame.origin.x = SCROLL_VIEW_WIDTH * (self.contentViewCount - 1);
+    frame.origin.x = self.scrollView.frame.size.width * (self.contentViewCount - 1);
     vc.view.frame = frame;
     [self.scrollView addSubview:vc.view];
 }
 
 - (void)removeContentViewAtIndexFromScrollView:(NSUInteger)index {
+    UIViewController *vc = [self.contentViewControllerHeap objectAtIndex:index];
+    [vc.view removeFromSuperview];
+    [self.contentViewControllerHeap enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if(idx > index) {
+            UIViewController *vc = obj;
+            CGRect frame = vc.view.frame;
+            frame.origin.x -= self.scrollView.frame.size.width;
+            vc.view.frame = frame;
+        }
+    }];
+    [self.contentViewControllerHeap removeObjectAtIndex:index];
     [self refreshScrollViewContentSize];
 }
 
@@ -135,11 +153,8 @@
         return;
     if(currentContentIndex == _currentContentIndex)
         return;
-    UIViewController *vc = [self.contentViewControllerHeap objectAtIndex:_currentContentIndex];
-    [vc.view removeFromSuperview];
+    [self scrollContentViewAtIndexPathToVisble:currentContentIndex animated:YES];
     _currentContentIndex = currentContentIndex;
-    vc = [self.contentViewControllerHeap objectAtIndex:_currentContentIndex];
-    [self.view addSubview:vc.view];
 }
 
 - (NSUInteger)contentViewCount {
@@ -156,8 +171,9 @@
     CoreDataViewController *vc2 = [self addContentViewWithIndentifier:identifier andUsers:vc.userDict];
     if(vc2 == nil)
         return;
+    vc2.view.frame = vc.view.frame;
     [vc.view removeFromSuperview];
-    [self.view addSubview:vc2.view];
+    [self.scrollView addSubview:vc2.view];
     [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc2];
     [self.contentViewIndentifierHeap replaceObjectAtIndex:index withObject:identifier];
 }
@@ -168,25 +184,30 @@
     if(!vc)
         return;
     [self.contentViewControllerHeap addObject:vc];
+    [self addLastContentViewToScrollView];
     [self.contentViewIndentifierHeap addObject:childIdentifier];
 }
 
 - (void)removeContentViewAtIndex:(NSUInteger)index {
-    UIViewController *vc = [self.contentViewControllerHeap objectAtIndex:index];
-    if(self.currentContentIndex == index)
-        [vc.view removeFromSuperview];
-    [self.contentViewControllerHeap removeObjectAtIndex:index];
+    [self removeContentViewAtIndexFromScrollView:index];
     [self.contentViewIndentifierHeap removeObjectAtIndex:index];
-    if(index == _currentContentIndex) {
-        vc = [self.contentViewControllerHeap objectAtIndex:_currentContentIndex - 1];
-        [self.view addSubview:vc.view];
-    }
-    _currentContentIndex--;
+    if(_currentContentIndex >= index)
+        _currentContentIndex--;
 }
 
 - (NSString *)currentContentIdentifierAtIndex:(NSUInteger)index {
     NSString *result = [self.contentViewIndentifierHeap objectAtIndex:index];
     return result;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
+    if(index < 0 || index > self.contentViewCount)
+        return;
+    if([self.delegate respondsToSelector:@selector(contentViewController:didScrollToIndex:)]) {
+        [self.delegate contentViewController:self didScrollToIndex:index];
+    }
 }
 
 @end

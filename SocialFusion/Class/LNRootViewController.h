@@ -15,7 +15,7 @@
 #define kDidSelectNewFeedNotification   @"kDidSelectNewFeedNotification"
 
 
-@interface LNRootViewController : CoreDataViewController<LNLabelBarViewControllerDelegate> {
+@interface LNRootViewController : CoreDataViewController<LNLabelBarViewControllerDelegate, LNContentViewControllerDelegate> {
     LNLabelBarViewController *_labelBarViewController;
     LNContentViewController *_contentViewController;
     NSMutableDictionary *_openedUserHeap;
