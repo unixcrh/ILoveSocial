@@ -51,7 +51,7 @@
     
     for(int i = _labelViews.count - 1; i >= 0; i--) {
         LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
-        if(self.labelInfoSubArray.count - 1 < i) {
+        if(self.labelInfoSubArray.count < i + 1) {
             [label.view setHidden:YES];
             [label.view setUserInteractionEnabled:NO];
         }
@@ -244,8 +244,7 @@
     [self closePageWithReturnLabel:labelView];
 }
 
-- (void)activateLastLabel:(LabelInfo *)info {
-    NSLog(@"activate:%@", info.labelName);
+- (void)activateLastLabel:(LabelInfo *)info delayed:(BOOL)delay{
     [self.labelInfoSubArray addObject:info];
     int labelIndex = self.labelInfoSubArray.count - 1;
     LNLabelViewController *label = [_labelViews objectAtIndex:labelIndex];
@@ -256,17 +255,13 @@
     CGRect newFrame;
     newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + ANIMATION_VERTICAL_MOVE_LENGTH, oldFrame.size.width, oldFrame.size.height);
     label.view.frame = newFrame;
-    [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
+    NSTimeInterval delayTime = 0;
+    if(delay)
+        delayTime = 0.3f;
+    [UIView animateWithDuration:0.3f delay:delayTime options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         label.view.frame = oldFrame;
     } completion:^(BOOL finished) {
-        [self selectLastLabel];
     }];
-}
-
-- (void)selectLastLabel {
-    int labelIndex = self.labelInfoSubArray.count - 1;
-    LNLabelViewController *label = [_labelViews objectAtIndex:labelIndex];
-    [label clickTitleButton:nil];
 }
 
 - (void)setLabelInfoSubArray:(NSMutableArray *)labelInfoSubArray {

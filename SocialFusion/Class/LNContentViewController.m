@@ -204,6 +204,9 @@
     return result;
 }
 
+#pragma mark -
+#pragma mark UIScrollView delegate
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;

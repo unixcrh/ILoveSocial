@@ -191,7 +191,6 @@
 		<string>kParentNewFeed</string>
 		<string>kParentFriend</string>
 		<string>kParentPublication</string>
-		<string>kParentInbox</string>
 		<string>kParentUserInfo</string>
 	</array>
 	<key>kParentWeiboUser</key>

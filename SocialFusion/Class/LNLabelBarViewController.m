@@ -18,6 +18,7 @@
 - (void)popPageIndex;
 - (void)popPageManually;
 - (void)closeOpenPage;
+- (BOOL)isLabelIndexInCurrentPage:(NSUInteger)index;
 @end
 
 @implementation LNLabelBarViewController
@@ -45,21 +46,27 @@
     self.pageControl = nil;
 }
 
-- (void)createLabelPageAtIndex:(NSInteger)index {
+- (void)createLabelPageWithInfoSubArray:(NSMutableArray *)array index:(NSUInteger)index{
     CGRect frame;
     frame.origin.x = self.scrollView.frame.size.width * index;
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
-    
-    NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
-                                                                        NSMakeRange(index * 4, self.labelInfoArray.count < (index + 1) * 4 ? self.labelInfoArray.count - index * 4 : 4)]];
-    LNLabelPageViewController *pageView = [[LNLabelPageViewController alloc] initWithInfoSubArray:labelInfoSubArray pageIndex:index];
-    
+    LNLabelPageViewController *pageView = [[LNLabelPageViewController alloc] initWithInfoSubArray:array pageIndex:index];
     pageView.view.frame = frame;
     [self.scrollView addSubview:pageView.view];
     [self.labelPages addObject:pageView];
     pageView.delegate = self;
     [pageView release];
+}
+
+- (void)createLabelPageAtIndex:(NSInteger)index {
+    NSMutableArray *labelInfoSubArray = [NSMutableArray arrayWithArray:[self.labelInfoArray subarrayWithRange:
+                                                                        NSMakeRange(index * 4, self.labelInfoArray.count < (index + 1) * 4 ? self.labelInfoArray.count - index * 4 : 4)]];
+    [self createLabelPageWithInfoSubArray:labelInfoSubArray index:index];
+}
+
+- (void)createEmptyLabelPage {
+    [self createLabelPageWithInfoSubArray:[NSMutableArray array] index:self.pageCount - 1];
 }
 
 - (void)refreshLabelBarContentSize {
@@ -124,18 +131,14 @@
         [self.labelInfoArray addObject:info];
         if(self.labelInfoArray.count % 4 == 1) {
             self.pageCount = self.pageCount + 1;
-            [self createLabelPageAtIndex:self.pageCount - 1];
+            [self createEmptyLabelPage];
             [self refreshLabelBarContentSize];
-            LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
-            [page selectLastLabel];
         }
-        else {
-            LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
-            [page activateLastLabel:info];
-        }
-        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * (self.pageCount - 1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+        LNLabelPageViewController *page = [self.labelPages objectAtIndex:self.pageCount - 1];
+        [page activateLastLabel:info delayed:![self isLabelIndexInCurrentPage:self.labelInfoArray.count - 1]];
         self.pageControl.currentPage = self.pageCount;
         _selectUserLock = NO;
+        [self selectParentLabelAtIndex:self.labelInfoArray.count - 1];
     }];
     
 }
@@ -159,6 +162,7 @@
     }
     if(label.isParentLabel && [self.delegate respondsToSelector:@selector(labelBarView: didSelectParentLabelAtIndex:)]) {
         [self.delegate labelBarView:self didSelectParentLabelAtIndex:page * 4 + label.index];
+        _currentParentLabelIndex = page * 4 + label.index;
     }
     else if(label.isChildLabel && [self.delegate respondsToSelector:@selector(labelBarView: didSelectChildLabelWithIndentifier: inParentLabelAtIndex:)]) {
         [self.delegate labelBarView:self didSelectChildLabelWithIndentifier:label.info.identifier inParentLabelAtIndex:_currentParentLabelIndex];
@@ -337,15 +341,33 @@
     }
 }
 
-- (void)selectParentLabelAtIndex:(NSUInteger)index {
+- (BOOL)isLabelIndexInCurrentPage:(NSUInteger)index {
+    BOOL result = NO;
+    NSUInteger page = index / 4;
+    if(_currentParentLabelIndex / 4 == page) 
+        result = YES;
+    return result;
+}
+
+- (void)selectParentLabelAtIndex:(NSUInteger)index{
     if(_selectUserLock) 
         return;
     _selectUserLock = YES;
     [self popPageManuallyWithCompletion:^{
-        [self selectLabelAtIndex:index];
-        NSUInteger page = index / 4;
-        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * page, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
-        _selectUserLock = NO;
+        if([self isLabelIndexInCurrentPage:index]) {
+            [self selectLabelAtIndex:index];
+            _selectUserLock = NO;
+        }
+        else {
+            _currentParentLabelIndex = index;
+            [UIView animateWithDuration:0.2f animations:^{
+                NSUInteger page = index / 4;
+                self.scrollView.contentOffset =  CGPointMake(self.scrollView.frame.size.width * page, 0);
+            } completion:^(BOOL finished) {
+                [self selectLabelAtIndex:index];
+                _selectUserLock = NO;
+            }];
+        }
     }];
 }
 

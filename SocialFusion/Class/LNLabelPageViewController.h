@@ -24,8 +24,7 @@
 
 - (id)initWithInfoSubArray:(NSMutableArray *)array pageIndex:(NSUInteger)page;
 - (void)selectOtherPage:(NSUInteger)page;
-- (void)activateLastLabel:(LabelInfo *)info;
-- (void)selectLastLabel;
+- (void)activateLastLabel:(LabelInfo *)info delayed:(BOOL)delay;
 - (void)openLabelPostAnimation;
 - (void)closeParentLabelAnimation;
 - (void)closePageWithReturnLabel:(LNLabelViewController *)labelView;
