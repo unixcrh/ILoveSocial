@@ -21,6 +21,7 @@
 @interface NewStatusViewController()
 - (void)updateTextCount;
 - (void)dismissView;
+- (void)dismissUserPhoto;
 @end
 
 @implementation NewStatusViewController
@@ -32,6 +33,7 @@
 @synthesize toolBarView = _toolBarView;
 @synthesize photoFrameImageView = _photoFrameImageView;
 @synthesize photoImageView = _photoImageView;
+@synthesize photoCancelButton = _photoCancelButton; 
 
 - (void)dealloc {
     [_textView release];
@@ -41,6 +43,7 @@
     [_toolBarView release];
     [_photoFrameImageView release];
     [_photoImageView release];
+    [_photoCancelButton release];
     [super dealloc];
 }
 
@@ -54,6 +57,7 @@
     self.toolBarView = nil;
     self.photoFrameImageView = nil;
     self.photoImageView = nil;
+    self.photoCancelButton = nil;
 }
 
 - (id)init {
@@ -203,6 +207,10 @@
     [self.postWeiboButton setSelected:_postToWeibo];
 }
 
+- (IBAction)didClickPhotoCancelButton:(id)sender {
+    [self dismissUserPhoto];
+}
+
 #pragma mark -
 #pragma mark Keyboard notification
 
@@ -253,6 +261,26 @@
     [self presentModalViewController:ipc animated:YES]; 
 }
 
+- (void)showPhotoCancelButton {
+    self.photoCancelButton.hidden = NO;
+    self.photoCancelButton.alpha = 0;
+    [UIView animateWithDuration:0.3f delay:0.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.photoCancelButton.alpha = 1;
+    } completion:^(BOOL finished) {
+        self.photoCancelButton.userInteractionEnabled = YES;
+    }];
+}
+
+- (void)hidePhotoCancelButton {
+    self.photoCancelButton.alpha = 1;
+    self.photoCancelButton.userInteractionEnabled = NO;
+    [UIView animateWithDuration:0.3f delay:0.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.photoCancelButton.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.photoCancelButton.hidden = YES;
+    }];
+}
+
 - (void)presentUserPhoto:(UIImage *)image {
     self.photoFrameImageView.hidden = NO;
     self.photoImageView.hidden = NO;
@@ -263,6 +291,8 @@
         [UIView animateWithDuration:0.3f animations:^{
             self.photoFrameImageView.center = USER_PHOTO_CENTER;
             self.photoImageView.center = USER_PHOTO_CENTER;
+        } completion:^(BOOL finished) {
+            [self showPhotoCancelButton];
         }];
     }
     else {
@@ -294,6 +324,7 @@
         self.photoFrameImageView.hidden = YES;
         self.photoImageView.hidden = YES;
     }];
+    [self hidePhotoCancelButton];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

@@ -23,6 +23,7 @@ typedef enum {
     NSUInteger _postCount;
     UIImageView *_photoFrameImageView;
     UIImageView *_photoImageView;
+    UIButton *_photoCancelButton;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;
@@ -32,13 +33,15 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIView *toolBarView;
 @property (nonatomic, retain) IBOutlet UIImageView *photoFrameImageView;
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
-
+@property (nonatomic, retain) IBOutlet UIButton *photoCancelButton;
 
 - (IBAction)didClickCancelButton:(id)sender;
 - (IBAction)didClickPostButton:(id)sender;
 
 - (IBAction)didClickPostToRenrenButton:(id)sender;
 - (IBAction)didClickPostToWeiboButton:(id)sender;
+
+- (IBAction)didClickPhotoCancelButton:(id)sender;
 
 - (IBAction)pickImage:(id)sender;
 

@@ -432,12 +432,36 @@
 								<reference key="IBUIFontDescription" ref="328414693"/>
 								<reference key="IBUIFont" ref="230388346"/>
 							</object>
+							<object class="IBUIButton" id="450531335">
+								<reference key="NSNextResponder" ref="232831846"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{283, 0}, {22, 22}}</string>
+								<reference key="NSSuperview" ref="232831846"/>
+								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:225</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIHighlightedTitleColor" ref="733810912"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="333440732"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">new_status_toolbar_btn_cancel@2x.png</string>
+								</object>
+								<reference key="IBUIFontDescription" ref="328414693"/>
+								<reference key="IBUIFont" ref="230388346"/>
+							</object>
 							<object class="IBUIImageView" id="37610595">
 								<reference key="NSNextResponder" ref="232831846"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{240, -29}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="232831846"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="450531335"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
 								<reference key="IBUIBackgroundColor" ref="996465528"/>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -543,6 +567,14 @@
 					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">photoCancelButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="450531335"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didClickCancelButton:</string>
 						<reference key="source" ref="624210177"/>
@@ -604,6 +636,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">35</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">didClickPhotoCancelButton:</string>
+						<reference key="source" ref="450531335"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">45</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -674,6 +715,7 @@
 							<reference ref="638647233"/>
 							<reference ref="890092816"/>
 							<reference ref="37610595"/>
+							<reference ref="450531335"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -742,6 +784,11 @@
 						<reference key="object" ref="37610595"/>
 						<reference key="parent" ref="232831846"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">43</int>
+						<reference key="object" ref="450531335"/>
+						<reference key="parent" ref="232831846"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -768,6 +815,7 @@
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -777,7 +825,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">42</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -793,6 +841,7 @@
 			<string key="new_status_photo_frame@2x.png">{80, 80}</string>
 			<string key="new_status_toolbar_bg@2x.png">{612, 44}</string>
 			<string key="new_status_toolbar_btn_at@2x.png">{44, 44}</string>
+			<string key="new_status_toolbar_btn_cancel@2x.png">{44, 44}</string>
 			<string key="new_status_toolbar_btn_nav@2x.png">{44, 44}</string>
 			<string key="new_status_toolbar_btn_photo@2x.png">{44, 44}</string>
 			<string key="new_status_toolbar_btn_smile@2x.png">{44, 44}</string>
