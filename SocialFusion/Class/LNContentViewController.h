@@ -13,10 +13,14 @@
     NSMutableArray *_contentViewControllerHeap;
     NSUInteger _currentContentIndex;
     NSMutableArray *_contentViewIdentifierHeap;
+    
+    UIScrollView *_scrollView;
 }
 
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain, readonly) NSMutableArray *contentViewControllerHeap;
 @property (nonatomic) NSUInteger currentContentIndex;
+@property (nonatomic, readonly) NSUInteger contentViewCount;
 
 - (id)initWithlabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict;
 - (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier;
