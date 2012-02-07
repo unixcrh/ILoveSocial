@@ -15,6 +15,9 @@
 #define TOOLBAR_HEIGHT  22
 #define TOAST_POS_Y   self.toolBarView.frame.origin.y - 30.0f
 
+#define USER_PHOTO_CENTER CGPointMake(260.0f, -9.0f)
+#define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 100.0f)
+
 @interface NewStatusViewController()
 - (void)updateTextCount;
 - (void)dismissView;
@@ -156,6 +159,7 @@
     if(_isPosting)
         return;
     _isPosting = YES;
+    
     if(_postToWeibo) {
         WeiboClient *client = [WeiboClient client];
         [client setCompletionBlock:^(WeiboClient *client) {
@@ -171,6 +175,7 @@
             [client postStatus:self.textView.text];
         }
     }
+    
     if(_postToRenren) {
         RenrenClient *client = [RenrenClient client];
         [client setCompletionBlock:^(RenrenClient *client) {
@@ -248,19 +253,54 @@
     [self presentModalViewController:ipc animated:YES]; 
 }
 
+- (void)presentUserPhoto:(UIImage *)image {
+    self.photoFrameImageView.hidden = NO;
+    self.photoImageView.hidden = NO;
+    if(!self.photoImageView.image) {
+        self.photoImageView.image = image;
+        self.photoFrameImageView.center = USER_PHOTO_HIDDEN_CENTER;
+        self.photoImageView.center = USER_PHOTO_HIDDEN_CENTER;
+        [UIView animateWithDuration:0.3f animations:^{
+            self.photoFrameImageView.center = USER_PHOTO_CENTER;
+            self.photoImageView.center = USER_PHOTO_CENTER;
+        }];
+    }
+    else {
+        UIImageView *oldImageView = [[UIImageView alloc] initWithImage:self.photoImageView.image];
+        oldImageView.frame = self.photoImageView.frame;
+        self.photoImageView.image = image;
+        self.photoImageView.alpha = 0;
+        [self.toolBarView insertSubview:oldImageView belowSubview:self.photoFrameImageView];
+        [UIView animateWithDuration:0.3f animations:^{
+            self.photoImageView.alpha = 1;
+        }];
+        oldImageView.alpha = 1;
+        [UIView animateWithDuration:0.3f animations:^{
+            oldImageView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [oldImageView removeFromSuperview];
+        }];
+    }
+}
+
+- (void)dismissUserPhoto {
+    self.photoFrameImageView.center = USER_PHOTO_CENTER;
+    self.photoImageView.center = USER_PHOTO_CENTER;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.photoFrameImageView.center = USER_PHOTO_HIDDEN_CENTER;
+        self.photoImageView.center = USER_PHOTO_HIDDEN_CENTER;
+    } completion:^(BOOL finished) {
+        self.photoImageView.image = nil;
+        self.photoFrameImageView.hidden = YES;
+        self.photoImageView.hidden = YES;
+    }];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     NSLog(@"image info:%@", info);
-    self.photoImageView.image = image;
     [picker dismissViewControllerAnimated:YES completion:^{
-        self.photoFrameImageView.hidden = NO;
-        self.photoImageView.hidden = NO;
-        self.photoFrameImageView.alpha = 0;
-        self.photoImageView.alpha = 0;
-        [UIView animateWithDuration:0.3f animations:^{
-            self.photoFrameImageView.alpha = 1.0f;
-            self.photoImageView.alpha = 1.0f;
-        }];
+        [self presentUserPhoto:image];
     }];
 }
 

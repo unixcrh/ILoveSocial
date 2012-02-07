@@ -86,12 +86,19 @@ static BOOL _isShowingToast;
     [self.keyWindow addSubview:bgImageView];
     [bgImageView release];
     
-    [UIView animateWithDuration:0.3f delay:1.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        labelView.alpha = 0;
-        bgImageView.alpha = 0;
+    labelView.alpha = 0;
+    bgImageView.alpha = 0;
+    [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        labelView.alpha = 1;
+        bgImageView.alpha = 1;
     } completion:^(BOOL finished) {
-        [bgImageView removeFromSuperview];
-        _isShowingToast = NO;
+        [UIView animateWithDuration:0.3f delay:1.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            labelView.alpha = 0;
+            bgImageView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [bgImageView removeFromSuperview];
+            _isShowingToast = NO;
+        }];
     }];
 }
 

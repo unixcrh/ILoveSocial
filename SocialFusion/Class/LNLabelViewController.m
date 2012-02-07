@@ -90,7 +90,6 @@
     UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self 
 																							action:@selector(swipeUp:)];
 	swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
-	swipeUpGesture.numberOfTouchesRequired = 1;
 	[self.view addGestureRecognizer:swipeUpGesture];
 	[swipeUpGesture release];
     
