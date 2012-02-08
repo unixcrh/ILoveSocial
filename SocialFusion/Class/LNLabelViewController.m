@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
+#import "UIImage+Addition.h"
 #import "User.h"
 
 #define DEGREES_TO_RADIANS(__ANGLE) ((__ANGLE) / 180.0 * M_PI)
@@ -180,13 +181,14 @@
         Image *image = [Image imageWithURL:self.info.targetUser.tinyURL inManagedObjectContext:self.info.targetUser.managedObjectContext];
         if (image == nil) {
             [self.photoImageView loadImageFromURL:self.info.targetUser.tinyURL completion:^{
+                self.info.bgImage = [self.photoImageView.image convertToGrayscale];
+                self.photoImageView.image = self.info.bgImage;
                 [self.photoImageView halfFadeIn];
-                self.info.bgImage = self.photoImageView.image;
             } cacheInContext:self.info.targetUser.managedObjectContext];
         }
         else {
             NSData *imageData = image.imageData.data;
-            self.info.bgImage = [UIImage imageWithData:imageData];
+            self.info.bgImage = [[UIImage imageWithData:imageData] convertToGrayscale];
             self.photoImageView.image = self.info.bgImage;
             self.photoImageView.alpha = kCustomHalfAlpha;
         }
