@@ -167,6 +167,7 @@
     else if(label.isChildLabel && [self.delegate respondsToSelector:@selector(labelBarView: didSelectChildLabelWithIndentifier: inParentLabelAtIndex:)]) {
         [self.delegate labelBarView:self didSelectChildLabelWithIndentifier:label.info.identifier inParentLabelAtIndex:_currentParentLabelIndex];
     }
+    self.pageControl.currentPage = pageView.page;
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)removedLabel {
@@ -362,7 +363,7 @@
             _currentParentLabelIndex = index;
             [UIView animateWithDuration:0.2f animations:^{
                 NSUInteger page = index / 4;
-                self.scrollView.contentOffset =  CGPointMake(self.scrollView.frame.size.width * page, 0);
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * page, 0);
             } completion:^(BOOL finished) {
                 [self selectLabelAtIndex:index];
                 _selectUserLock = NO;
