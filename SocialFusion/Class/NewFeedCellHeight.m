@@ -88,7 +88,7 @@
      if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
      {
          
-         NSString* outString=[NSString stringWithFormat:@"%@%@",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
+         NSString* outString=[NSString stringWithFormat:@"%@《%@》",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
          outString=[outString replaceJSSign];
          
          outString=[outString replaceHTMLSign];
