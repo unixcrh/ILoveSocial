@@ -42,23 +42,24 @@
 }
 -(NSString*)setName:(NSString*)name  
 {
-    NSArray* array=[self componentsSeparatedByString:@"@#Name#@"];
-    [self release];
+ //   NSArray* array=[self componentsSeparatedByString:@"@#Name#@"];
+ //   [self release];
    // NSLog(@"%@",name);
-    NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],name,[array objectAtIndex:1]];
+  //  NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],name,[array objectAtIndex:1]];
   
-    return returnString;
+    return self;
 }
 
 
 -(NSString*)setTime:(NSString*)time 
 {
-    NSArray* array=[self componentsSeparatedByString:@"@#Time#@"];
+  /*  NSArray* array=[self componentsSeparatedByString:@"@#Time#@"];
     [self release];
     
    // NSLog(@"%@",time);
     NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],time,[array objectAtIndex:1]];
-    return returnString;
+    return returnString;*/
+    return self;
 }
 
 

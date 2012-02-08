@@ -24,7 +24,8 @@
 #import "NewFeedTempImageView.h"
 #import "NewFeedUserListController.h"
 #import "NewFeedDetailBlogViewCell.h"
-
+#import "NSNotificationCenter+Addition.h"
+#import "User+Addition.h"
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);
@@ -392,29 +393,24 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         
         
    
-        
-        if (indexPath.row<5)
-        {
-    
-        if(self.tableView.dragging || self.tableView.decelerating )
-            return cell;
-   
-        Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
-        if (!image)
-        {
-                [UIImage loadImageFromURL:data.owner_Head completion:^{
-                Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
-                [cell setData:image1.imageData.data];                
-            } cacheInContext:self.managedObjectContext];
-            
+        NSData *imageData = nil;
+        if([Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext]) {
+            imageData = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
+        }
+        if(imageData == nil) {
+            if(self.tableView.dragging == NO && self.tableView.decelerating == NO) {
+                if(indexPath.row < 5) {
+                    [cell.photoView loadImageFromURL:data.owner_Head completion:^{
+                        [cell.photoView fadeIn];
+                    } cacheInContext:self.managedObjectContext];
+                }
+            }
+        }
+        else {
+            cell.photoView.image = [UIImage imageWithData:imageData];
         }
         
-        else
-        {
-            [cell setData:image.imageData.data];
-        }
         
-        }
        
         
 
@@ -471,28 +467,27 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
     if(self.tableView.dragging || self.tableView.decelerating || _reloading)
         return;
+    
+    
+    
+    
+    
     NewFeedRootData *data = [self.fetchedResultsController objectAtIndexPath:indexPath];
     Image *image = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
     if (!image)
     {
         NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        [UIImage loadImageFromURL:data.owner_Head completion:^{
-            Image *image1 = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext];
-            
-            [statusCell loadImage:image1.imageData.data];
-            
+        [statusCell.photoView loadImageFromURL:data.owner_Head completion:^{
+            [statusCell.photoView fadeIn];
         } cacheInContext:self.managedObjectContext];
         
     }
+
+
     
-    else
-    {
-        NewFeedStatusCell *statusCell = (NewFeedStatusCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        
-        [statusCell loadImage:image.imageData.data];
-        
-    }
     
+    
+
     if ([data class]==[NewFeedUploadPhoto class])
     {
         NewFeedUploadPhoto* data2=(NewFeedUploadPhoto*)data;
@@ -645,6 +640,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
 }
 
+
+-(void)selectUser:(NSIndexPath *)indexPath
+{
+    /*
+    NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    User *usr =[User userWithID:[_feedData getActor_ID] inManagedObjectContext:self.managedObjectContext];
+    
+    
+    NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
+    if([usr isMemberOfClass:[RenrenUser class]])
+        [userDict setObject:usr forKey:kRenrenUser];
+    else if([usr isMemberOfClass:[WeiboUser class]]) 
+        [userDict setObject:usr forKey:kWeiboUser];
+    [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
+     */
+}
 -(IBAction)resetToNormalList
 {
     

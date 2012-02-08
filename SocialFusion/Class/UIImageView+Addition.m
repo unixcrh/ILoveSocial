@@ -11,6 +11,8 @@
 
 @implementation UIImageView (Addition)
 
+
+
 - (void)fadeIn {
     self.alpha = 0;
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {

@@ -16,13 +16,20 @@
     
     UIWebView* _webView;
     
-    int _style;
+    UIImageView* _photoView;
+    UIImageView* _defaultphotoView;
+    UIButton* _photoOut;
+    
+    UIButton* _name;
+    UILabel* _time;
+    UIImageView* _upCutline;
+    
 
-        NSData* _photoData;
+    NSData* _photoData;
 }
 
 
-
+@property(nonatomic, retain)  UIImageView* photoView;
 
 
 
@@ -33,6 +40,8 @@
 -(void)setList:(NewFeedListController*)list;
 -(void)configureCell:(NewFeedRootData*)feedData;
 -(void)exposeCell;
+
+-(void)selectCellUser;
 -(void)loadImage:(NSData*)image;
 -(void)loadPicture:(NSData*)image;
 -(void)setData:(NSData*)image;
