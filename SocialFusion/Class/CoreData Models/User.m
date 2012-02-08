@@ -2,7 +2,7 @@
 //  User.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-1-28.
+//  Created by Blue Bitch on 12-2-8.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -19,6 +19,8 @@
 @dynamic tinyURL;
 @dynamic pinyinName;
 @dynamic latestStatus;
+@dynamic midURL;
+@dynamic largeURL;
 @dynamic detailInformation;
 @dynamic statuses;
 @dynamic newFeed;

@@ -243,6 +243,7 @@
 		E19A2D0A141FC3B300BE491A /* sinawbButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D04141FC3B300BE491A /* sinawbButton.png */; };
 		E19A2D0B141FC3B300BE491A /* sinawbButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */; };
 		E19A2D171420A06000BE491A /* FriendListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */; };
+		E1A6715C14E29F0800C529A9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A6715B14E29F0800C529A9 /* User.m */; };
 		E1A9513F14DC046B00C49B8C /* new_status_photo_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A9513E14DC046B00C49B8C /* new_status_photo_frame@2x.png */; };
 		E1ABA401141FA6E1002CD0A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA400141FA6E1002CD0A6 /* UIKit.framework */; };
 		E1ABA403141FA6E1002CD0A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA402141FA6E1002CD0A6 /* Foundation.framework */; };
@@ -299,7 +300,6 @@
 		E1E5DFAF143CB4110098BBD3 /* SocialFusion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DFAD143CB4110098BBD3 /* SocialFusion.xcdatamodeld */; };
 		E1EA75B7145699F800D8A906 /* labelviewbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EA75B5145699F800D8A906 /* labelviewbackground.png */; };
 		E1EA75B8145699F800D8A906 /* labelviewbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */; };
-		E1EC716814D309A5005D123E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EC716714D309A5005D123E /* User.m */; };
 		E1EC716C14D309A6005D123E /* NewFeedRootData.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EC716B14D309A6005D123E /* NewFeedRootData.m */; };
 		E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */; };
 		E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB624014247EA000828E24 /* CoreDataViewController.m */; };
@@ -671,6 +671,8 @@
 		E19A2D04141FC3B300BE491A /* sinawbButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinawbButton.png; sourceTree = "<group>"; };
 		E19A2D05141FC3B300BE491A /* sinawbButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinawbButtonPressed.png; sourceTree = "<group>"; };
 		E19A2D161420A06000BE491A /* FriendListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListTableViewCell.xib; sourceTree = "<group>"; };
+		E1A6715A14E29F0800C529A9 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
+		E1A6715B14E29F0800C529A9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
 		E1A9513E14DC046B00C49B8C /* new_status_photo_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_photo_frame@2x.png"; sourceTree = "<group>"; };
 		E1ABA3FC141FA6E1002CD0A6 /* Pocket Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ABA400141FA6E1002CD0A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -759,8 +761,6 @@
 		E1E5DFAE143CB4110098BBD3 /* SocialFusion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialFusion.xcdatamodel; sourceTree = "<group>"; };
 		E1EA75B5145699F800D8A906 /* labelviewbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labelviewbackground.png; sourceTree = "<group>"; };
 		E1EA75B6145699F800D8A906 /* labelviewbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "labelviewbackground@2x.png"; sourceTree = "<group>"; };
-		E1EC716614D309A5005D123E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
-		E1EC716714D309A5005D123E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
 		E1EC716A14D309A6005D123E /* NewFeedRootData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedRootData.h; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.h"; sourceTree = "<group>"; };
 		E1EC716B14D309A6005D123E /* NewFeedRootData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedRootData.m; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.m"; sourceTree = "<group>"; };
 		E1F247D214C3F03F00D2653A /* SocialFusion 1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.1.xcdatamodel"; sourceTree = "<group>"; };
@@ -1307,10 +1307,10 @@
 				731D1D9D147603B5001981B4 /* Image.m */,
 				731D1D99147603B5001981B4 /* RenrenStatus.h */,
 				731D1D9A147603B5001981B4 /* RenrenStatus.m */,
-				E1EC716614D309A5005D123E /* User.h */,
-				E1EC716714D309A5005D123E /* User.m */,
 				E1EC716A14D309A6005D123E /* NewFeedRootData.h */,
 				E1EC716B14D309A6005D123E /* NewFeedRootData.m */,
+				E1A6715A14E29F0800C529A9 /* User.h */,
+				E1A6715B14E29F0800C529A9 /* User.m */,
 			);
 			name = "CoreData Models";
 			sourceTree = "<group>";
@@ -1902,7 +1902,6 @@
 				73C6C9F514CAF06A0031BDD0 /* NewFeedUserListController.m in Sources */,
 				E10296EC14CB5F7B002589A1 /* LabelConverter.m in Sources */,
 				E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */,
-				E1EC716814D309A5005D123E /* User.m in Sources */,
 				E1EC716C14D309A6005D123E /* NewFeedRootData.m in Sources */,
 				73C5D69814D5967C0027647D /* BlogDetailController.m in Sources */,
 				73C5D69D14D59EA90027647D /* NewFeedDetailBlogViewCell.m in Sources */,
@@ -1962,6 +1961,7 @@
 				E118414C14D9CDCF000FF01F /* SBJsonParser.m in Sources */,
 				E118414D14D9CDCF000FF01F /* SBJsonWriter.m in Sources */,
 				E13A944D14DD5372000C029F /* UIImageView+Addition.m in Sources */,
+				E1A6715C14E29F0800C529A9 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
