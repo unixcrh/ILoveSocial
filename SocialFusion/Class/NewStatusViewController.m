@@ -11,6 +11,7 @@
 #import "UIApplication+Addition.h"
 #import "RenrenClient.h"
 #import "WeiboClient.h"
+#import "UIImageView+Addition.h"
 
 #define TOOLBAR_HEIGHT  22
 #define TOAST_POS_Y   self.toolBarView.frame.origin.y - 30.0f
@@ -197,14 +198,30 @@
     }
 }
 
++ (void)setPostPlatformButtonSelected:(UIButton *)button selected:(BOOL)select {
+    [button setUserInteractionEnabled:NO];
+    if(select) {
+        [button setSelected:select];
+        [button.imageView fadeInWithCompletion:^(BOOL finished) {
+            [button setUserInteractionEnabled:YES];
+        }];
+    }
+    else {
+        [button.imageView fadeOutWithCompletion:^(BOOL finished) {
+            [button setSelected:select];
+            [button setUserInteractionEnabled:YES];
+        }];
+    }
+}
+
 - (IBAction)didClickPostToRenrenButton:(id)sender {
     _postToRenren = !_postToRenren;
-    [self.postRenrenButton setSelected:_postToRenren];
+    [NewStatusViewController setPostPlatformButtonSelected:self.postRenrenButton selected:_postToRenren];
 }
 
 - (IBAction)didClickPostToWeiboButton:(id)sender {
     _postToWeibo = !_postToWeibo;
-    [self.postWeiboButton setSelected:_postToWeibo];
+    [NewStatusViewController setPostPlatformButtonSelected:self.postWeiboButton selected:_postToWeibo];
 }
 
 - (IBAction)didClickPhotoCancelButton:(id)sender {

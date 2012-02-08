@@ -14,10 +14,25 @@
 
 
 - (void)fadeIn {
+    [self fadeInWithCompletion:nil];
+}
+
+- (void)fadeInWithCompletion:(void (^)(BOOL finished))completion {
     self.alpha = 0;
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
         self.alpha = 1;
-    } completion:nil];
+    } completion:completion];
+}
+
+- (void)fadeOut {
+    [self fadeOutWithCompletion:nil];
+}
+
+- (void)fadeOutWithCompletion:(void (^)(BOOL finished))completion {
+    self.alpha = 1;
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^(void) {
+        self.alpha = 0;
+    } completion:completion];
 }
 
 - (void)halfFadeIn {

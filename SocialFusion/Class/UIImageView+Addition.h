@@ -14,6 +14,9 @@
 
 - (void)fadeIn;
 - (void)halfFadeIn;
+- (void)fadeInWithCompletion:(void (^)(BOOL finished))completion;
+- (void)fadeOut;
+- (void)fadeOutWithCompletion:(void (^)(BOOL finished))completion;
 
 - (void)setImageFromUrl:(NSString*)urlString;
 - (void)setImageFromUrl:(NSString*)urlString 
