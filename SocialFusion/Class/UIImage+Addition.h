@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Addition)
-+(void)loadImageFromURL:(NSString *)urlString 
++ (void)loadImageFromURL:(NSString *)urlString 
              completion:(void (^)())completion 
          cacheInContext:(NSManagedObjectContext *)context;
+
+- (UIImage *)convertToGrayscale;
 @end

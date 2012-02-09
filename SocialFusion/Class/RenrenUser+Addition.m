@@ -26,6 +26,8 @@
     result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"]];
     result.pinyinName = [result.name pinyinFirstLetterAtIndex:0];
     result.tinyURL = [dict objectForKey:@"tinyurl"];
+    result.midURL = [dict objectForKey:@"headurl"];
+    result.largeURL = [dict objectForKey:@"mainurl"];
     
     return result;
 }
