@@ -30,8 +30,11 @@
 @synthesize feedData=_feedData;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    if (scrollView!=_webView.scrollView)
+    {
    int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
     _pageControl.currentPage = index;
+    }
 }
 
 

@@ -11,5 +11,9 @@
 @interface BlogDetailController : StatusDetailController
 {
     IBOutlet UILabel* _blogTitle;
+    IBOutlet UIView* _titleView;
+    IBOutlet UIButton* _changeButton;
+    int _beginY;
 }
+-(IBAction)upTheName;
 @end
