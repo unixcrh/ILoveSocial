@@ -288,7 +288,7 @@
 														<string key="NSFrame">{{2, 92}, {302, 1}}</string>
 														<reference key="NSSuperview" ref="446002633"/>
 														<reference key="NSWindow"/>
-														<reference key="NSNextKeyView"/>
+														<reference key="NSNextKeyView" ref="574905655"/>
 														<bool key="IBUIUserInteractionEnabled">NO</bool>
 														<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 														<object class="NSCustomResource" key="IBUIImage" id="70432243">
@@ -308,7 +308,7 @@
 														<reference key="IBUIImage" ref="70432243"/>
 													</object>
 												</array>
-												<string key="NSFrameSize">{304, 102}</string>
+												<string key="NSFrameSize">{304, 95}</string>
 												<reference key="NSSuperview" ref="381657395"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="1069248362"/>
@@ -471,14 +471,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_titleView</string>
-						<reference key="source" ref="946551625"/>
-						<reference key="destination" ref="446002633"/>
-					</object>
-					<int key="connectionID">58</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_blogTitle</string>
 						<reference key="source" ref="946551625"/>
 						<reference key="destination" ref="363644414"/>
@@ -495,6 +487,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_headImage</string>
+						<reference key="source" ref="946551625"/>
+						<reference key="destination" ref="436507679"/>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_time</string>
 						<reference key="source" ref="946551625"/>
 						<reference key="destination" ref="394031370"/>
@@ -503,11 +503,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_headImage</string>
+						<string key="label">_titleView</string>
 						<reference key="source" ref="946551625"/>
-						<reference key="destination" ref="436507679"/>
+						<reference key="destination" ref="446002633"/>
 					</object>
-					<int key="connectionID">66</int>
+					<int key="connectionID">58</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -698,31 +698,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">BlogDetailController</string>
 					<string key="superclassName">StatusDetailController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">upTheName</string>
-						<string key="NS.object.0">id</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">_blogTitle</string>
+						<string key="NS.object.0">UILabel</string>
 					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">upTheName</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">upTheName</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_blogTitle">UILabel</string>
-						<string key="_titleView">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_blogTitle">
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">_blogTitle</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">_blogTitle</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="_titleView">
-							<string key="name">_titleView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/BlogDetailController.h</string>
@@ -894,6 +880,7 @@
 						<string key="_pageControl">UIPageControl</string>
 						<string key="_style">UIImageView</string>
 						<string key="_time">UILabel</string>
+						<string key="_titleView">UIView</string>
 						<string key="_webView">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -920,6 +907,10 @@
 						<object class="IBToOneOutletInfo" key="_time">
 							<string key="name">_time</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_titleView">
+							<string key="name">_titleView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_webView">
 							<string key="name">_webView</string>

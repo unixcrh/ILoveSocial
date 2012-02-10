@@ -29,6 +29,11 @@
     UIActivityIndicatorView* _activity;
     
     NSData* _photoData; 
+    
+    IBOutlet UIView* _titleView;
+    
+    
+   
 }
 @property (nonatomic, retain) NewFeedRootData* feedData;
 

@@ -11,11 +11,9 @@
 @interface BlogDetailController : StatusDetailController
 {
     IBOutlet UILabel* _blogTitle;
-    IBOutlet UIView* _titleView;
 
-    int _beginY;
-    float _lastY;
+
 }
--(IBAction)upTheName;
+
 
 @end
