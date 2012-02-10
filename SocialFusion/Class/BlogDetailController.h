@@ -14,6 +14,7 @@
     IBOutlet UIView* _titleView;
     IBOutlet UIButton* _changeButton;
     int _beginY;
+    float _lastY;
 }
 -(IBAction)upTheName;
 -(IBAction)resetToNormal;

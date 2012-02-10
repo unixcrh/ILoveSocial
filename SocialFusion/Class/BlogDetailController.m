@@ -82,13 +82,14 @@
     
     if (_pageControl.currentPage==0)
     {
-    if (_titleView.center.y==-42)
+    if (_titleView.center.y<-41)
     {
+           _beginY=_webView.scrollView.contentOffset.y;
         [UIView animateWithDuration:0.3f animations:^{
             _titleView.center=CGPointMake(152, 50);
             _changeButton.center=CGPointMake(160, 180);
             _webView.frame=CGRectMake(0, 92, 306, 260);
-             _beginY=_webView.scrollView.contentOffset.y;
+          
         }];
     }
     else
@@ -106,13 +107,47 @@
 {
     if (scrollView==_webView.scrollView)
     {
-        if (scrollView.contentOffset.y-_beginY>=0)
+        if (_titleView.center.y<-41)
+        {
+            if (scrollView.contentOffset.y<_lastY)
+            {
+                if ((scrollView.contentOffset.y<92)&&(scrollView.contentOffset.y>0))
+                {
+                    _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y);
+                    _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y);
+                    _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y, 306, 260+scrollView.contentOffset.y);
+                }
+           
+            }
+        }
+        else if (_titleView.center.y>49)
+        {
+            if ((scrollView.contentOffset.y>_lastY)&&scrollView.contentOffset.y>0)
+            {
+                if (scrollView.contentOffset.y-_beginY<92)
+                {
+                    _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y+_beginY);
+                    _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y+_beginY);
+                    _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y+_beginY, 306, 260+scrollView.contentOffset.y-_beginY);
+                }
+                else
+                {
+                    _beginY=0;
+                    _titleView.center=CGPointMake(152, -42);
+                    _changeButton.center=CGPointMake(160, 90);
+                    _webView.frame=CGRectMake(0, 0, 306, 352);
+                }
+                  
+            }
+            
+        }
+        else
         {
             if (scrollView.contentOffset.y-_beginY<92)
             {
-            _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y+_beginY);
-            _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y+_beginY);
-            _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y+_beginY, 306, 260+scrollView.contentOffset.y+_beginY);
+                _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y+_beginY);
+                _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y+_beginY);
+                _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y+_beginY, 306, 260+scrollView.contentOffset.y-_beginY);
             }
             else
             {
@@ -121,14 +156,12 @@
                 _changeButton.center=CGPointMake(160, 90);
                 _webView.frame=CGRectMake(0, 0, 306, 352);
             }
-
+            
         }
-        else
-        {
-            _titleView.center=CGPointMake(152, 50);
-            _changeButton.center=CGPointMake(160, 180);
-            _webView.frame=CGRectMake(0, 92, 306, 260);  
-        }
+        
+        
+        
+        _lastY=scrollView.contentOffset.y;
     }
 }
 -(IBAction)resetToNormal
