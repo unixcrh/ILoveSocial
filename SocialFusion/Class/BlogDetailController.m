@@ -109,53 +109,55 @@
     {
         if (_titleView.center.y<-41)
         {
-            if (scrollView.contentOffset.y<_lastY)
+            _beginY=0;
+            if (scrollView.contentOffset.y<0)
             {
-                if ((scrollView.contentOffset.y<92)&&(scrollView.contentOffset.y>0))
-                {
-                    _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y);
-                    _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y);
-                    _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y, 306, 260+scrollView.contentOffset.y);
-                }
-           
+                _titleView.center=CGPointMake(152, _titleView.center.y-scrollView.contentOffset.y);
+                _changeButton.center=CGPointMake(160,_changeButton.center.y-scrollView.contentOffset.y);
+                _webView.frame=CGRectMake(0, _webView.frame.origin.y-scrollView.contentOffset.y, 306, _webView.frame.size.height+scrollView.contentOffset.y);
+                scrollView.contentOffset=CGPointMake(0, 0);
             }
+  
         }
         else if (_titleView.center.y>49)
         {
+            
             if ((scrollView.contentOffset.y>_lastY)&&scrollView.contentOffset.y>0)
             {
-                if (scrollView.contentOffset.y-_beginY<92)
-                {
+  
                     _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y+_beginY);
                     _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y+_beginY);
                     _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y+_beginY, 306, 260+scrollView.contentOffset.y-_beginY);
-                }
-                else
-                {
-                    _beginY=0;
-                    _titleView.center=CGPointMake(152, -42);
-                    _changeButton.center=CGPointMake(160, 90);
-                    _webView.frame=CGRectMake(0, 0, 306, 352);
-                }
-                  
+                _beginY=scrollView.contentOffset.y;
+                
             }
+            
+        
+            if (_titleView.center.y>49)
+            {
+                _titleView.center=CGPointMake(152, 50);
+                _changeButton.center=CGPointMake(160,180);
+                _webView.frame=CGRectMake(0, 92, 306, 260);
+                
+            }
+            
             
         }
         else
         {
-            if (scrollView.contentOffset.y-_beginY<92)
+            _titleView.center=CGPointMake(152, _titleView.center.y-scrollView.contentOffset.y+_beginY);
+            _changeButton.center=CGPointMake(160,_changeButton.center.y-scrollView.contentOffset.y+_beginY);
+            _webView.frame=CGRectMake(0, _webView.frame.origin.y-scrollView.contentOffset.y+_beginY, 306, _webView.frame.size.height+scrollView.contentOffset.y-_beginY);
+            scrollView.contentOffset=CGPointMake(0, _beginY);
+            
+            if (_titleView.center.y<-42)
             {
-                _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y+_beginY);
-                _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y+_beginY);
-                _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y+_beginY, 306, 260+scrollView.contentOffset.y-_beginY);
-            }
-            else
-            {
-                _beginY=0;
                 _titleView.center=CGPointMake(152, -42);
                 _changeButton.center=CGPointMake(160, 90);
                 _webView.frame=CGRectMake(0, 0, 306, 352);
+
             }
+
             
         }
         
