@@ -16,4 +16,5 @@
     int _beginY;
 }
 -(IBAction)upTheName;
+-(IBAction)resetToNormal;
 @end

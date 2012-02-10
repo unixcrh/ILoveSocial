@@ -36,6 +36,9 @@
     [renren getBlog:[self.feedData getActor_ID] status_ID:[self.feedData getSource_ID]];
     _webView.scrollView.delegate=self;
     _beginY=0;
+    _changeButton.center=CGPointMake(160, 180);
+    [[[UIApplication sharedApplication] keyWindow] addSubview:_changeButton];
+    
     
 }
 
@@ -76,11 +79,14 @@
 -(IBAction)upTheName
 {
    
+    
+    if (_pageControl.currentPage==0)
+    {
     if (_titleView.center.y==-42)
     {
         [UIView animateWithDuration:0.3f animations:^{
             _titleView.center=CGPointMake(152, 50);
-            _changeButton.center=CGPointMake(152, 94);
+            _changeButton.center=CGPointMake(160, 180);
             _webView.frame=CGRectMake(0, 92, 306, 260);
              _beginY=_webView.scrollView.contentOffset.y;
         }];
@@ -89,10 +95,11 @@
     {
     [UIView animateWithDuration:0.3f animations:^{
         _titleView.center=CGPointMake(152, -42);
-           _changeButton.center=CGPointMake(152, 0);
+           _changeButton.center=CGPointMake(160, 90);
         _webView.frame=CGRectMake(0, 0, 306, 352);
         
     }];
+    }
     }
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -104,28 +111,31 @@
             if (scrollView.contentOffset.y-_beginY<92)
             {
             _titleView.center=CGPointMake(152, 50-scrollView.contentOffset.y+_beginY);
-            _changeButton.center=CGPointMake(152,94-scrollView.contentOffset.y+_beginY);
+            _changeButton.center=CGPointMake(160,180-scrollView.contentOffset.y+_beginY);
             _webView.frame=CGRectMake(0, 92-scrollView.contentOffset.y+_beginY, 306, 260+scrollView.contentOffset.y+_beginY);
             }
             else
             {
                 _beginY=0;
                 _titleView.center=CGPointMake(152, -42);
-                _changeButton.center=CGPointMake(152, 0);
+                _changeButton.center=CGPointMake(160, 90);
                 _webView.frame=CGRectMake(0, 0, 306, 352);
             }
 
         }
-    
         else
         {
             _titleView.center=CGPointMake(152, 50);
-            _changeButton.center=CGPointMake(152, 94);
+            _changeButton.center=CGPointMake(160, 180);
             _webView.frame=CGRectMake(0, 92, 306, 260);  
         }
-     //  NSLog(@"%lf,%lf,%lf",scrollView.contentOffset.x,scrollView.contentOffset.y,_titleView.center.y);
-          
     }
 }
+-(IBAction)resetToNormal
+{
+      [_changeButton removeFromSuperview];
+}
+
+
 
 @end
