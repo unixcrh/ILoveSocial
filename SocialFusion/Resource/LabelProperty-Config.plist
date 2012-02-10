@@ -97,7 +97,7 @@
 		<key>kChildLabels</key>
 		<array>
 			<string>kChildWeiboNewFeed</string>
-            <string>kChildRenrenNewFeed</string>
+			<string>kChildRenrenNewFeed</string>
 		</array>
 	</dict>
 	<key>kChildRenrenNewFeed</key>

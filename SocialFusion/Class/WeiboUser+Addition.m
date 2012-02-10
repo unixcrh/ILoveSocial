@@ -40,7 +40,6 @@
     //result.profileImageURL = [dict objectForKey:@"profile_image_url"];
     result.tinyURL = [dict objectForKey:@"profile_image_url"];
     //result.midURL = [dict objectForKey:@"avatar_large"];
-    NSLog(@"mid:%@", result.midURL);
     WeiboDetail *detail = [WeiboDetail insertDetailInformation:dict inManagedObjectContext:context];
     result.detailInformation = detail;
     

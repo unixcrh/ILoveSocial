@@ -68,7 +68,7 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">name</string>
+								<string key="IBUINormalTitle">沈君儒</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="55436310">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -112,8 +112,9 @@
 								<reference key="IBUITextColor" ref="589829944"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">12</float>
+								<float key="IBUIMinimumFontSize">13</float>
 								<int key="IBUINumberOfLines">2</int>
+								<int key="IBUILineBreakMode">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Helvetica</string>
 									<string key="family">Helvetica</string>
@@ -129,7 +130,7 @@
 							<object class="IBUILabel" id="266987608">
 								<reference key="NSNextResponder" ref="762154621"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{185, 3}, {70, 21}}</string>
+								<string key="NSFrame">{{234, 3}, {70, 14}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSNextKeyView" ref="605612343"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -141,7 +142,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">4分钟前</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC42MzkyMTU2ODYzIDAuNjI3NDUwOTgwNCAwLjUwNTg4MjM1MjkAA</bytes>
@@ -151,14 +152,12 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica-Bold</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">2</int>
-									<double key="pointSize">13</double>
+									<int key="type">1</int>
+									<double key="pointSize">10</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">13</double>
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">10</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -172,6 +171,10 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<object class="NSColor" key="IBUITintColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAwIDAAA</bytes>
+								</object>
 								<reference key="IBUIHighlightedTitleColor" ref="55436310"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -301,11 +304,11 @@
 						<reference key="object" ref="500193853"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="368284994"/>
-							<reference ref="64992633"/>
 							<reference ref="266987608"/>
 							<reference ref="276126519"/>
 							<reference ref="605612343"/>
 							<reference ref="160197197"/>
+							<reference ref="64992633"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Friend Profile Table View Cell - FriendProfileTableViewCell</string>

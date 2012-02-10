@@ -11,20 +11,16 @@
 #import "CommonFunction.h"
 @implementation StatusCommentCell
 
+#define COMMENT_BUTTON_OFFSET_Y 17
+#define STATUS_LABEL_OFFSET_Y   40
 
-
-
-+(float)heightForCell:(StatusCommentData*)feedData
++ (float)heightForCell:(StatusCommentData*)feedData
 {
-    NSString* tempString=[feedData getText];
-    CGSize size = CGSizeMake(243, 1000);
+    NSString* tempString = feedData.text;
+    CGSize size = CGSizeMake(250, 1000);
     CGSize labelSize = [tempString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13]
                               constrainedToSize:size];
-    if (labelSize.height<20)
-    {
-        return 60;
-    }
-    return labelSize.height+40;
+    return labelSize.height + STATUS_LABEL_OFFSET_Y;
 }
 
 
@@ -56,82 +52,53 @@
 
 
 
--(void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo
-{
+-(void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo {
     
-    
-    
-    
+    float cellHeight = [StatusCommentCell heightForCell:feedData];
     //状态
-    _status.text=[feedData getText];
+    _status.text = feedData.text;
     
-    
-    CGSize size = CGSizeMake(243, 1000);
-    CGSize labelSize = [_status.text sizeWithFont:_status.font 
-                                constrainedToSize:size];
+    CGSize size = CGSizeMake(_status.frame.size.width, 1000);
+    CGSize labelSize = [_status.text sizeWithFont:_status.font constrainedToSize:size];
     _status.frame = CGRectMake(_status.frame.origin.x, _status.frame.origin.y,
-                               _status.frame.size.width, labelSize.height);
-    _status.lineBreakMode = UILineBreakModeWordWrap;
-    _status.numberOfLines = 0;
-    
-    
-    
-    self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, labelSize.height+40);
+                               _status.frame.size.width, labelSize.height + STATUS_LABEL_OFFSET_Y - _status.frame.origin.y);
     
     //名字
     [_userName setTitle:[feedData getOwner_Name] forState:UIControlStateNormal];
-    
-    
-    
     [_userName sizeToFit];
-    
-    
+        
     //时间
-    NSDate* FeedDate=[feedData getUpdateTime];
-    
-    
-    
-    
+    NSDate* FeedDate = [feedData getUpdateTime];
+
     [_time setText:[CommonFunction getTimeBefore:FeedDate]];
     
     
-    if ([feedData.actor_ID isEqualToString:@"self"])
-    {
-        _commentButton.center = CGPointMake(1000.0f, self.frame.size.height / 2);
+    if ([feedData.actor_ID isEqualToString:@"self"]) {
+        _commentButton.hidden = YES;
 
     }
-    else
-    {
-        _commentButton.center = CGPointMake(286.0f, self.frame.size.height / 2);
+    else {
+        _commentButton.center = CGPointMake(_commentButton.center.x, (cellHeight + COMMENT_BUTTON_OFFSET_Y) / 2);
     }
-    if ([feedData.secret boolValue]==YES)
-    {
+    if ([feedData.secret boolValue] == YES) {
         [_secret setImage:[UIImage imageNamed:@"detail_rev_private.png"]];
-        _secret.center=CGPointMake(_commentButton.center.x-20, _commentButton.center.y-3);
+        _secret.center=CGPointMake(_commentButton.center.x - 20, _commentButton.center.y - 3);
     }
-    else
-    {
+    else {
         [_secret setImage:nil];
     }
     
-    if (feedData)
-        if (bo==YES)
-        {
+    if (feedData) {
+        if (bo==YES) {
             self.contentView.backgroundColor=[UIColor colorWithRed:0.99608 green:0.97255 blue:0.80784 alpha:1];
             
             
         }
-    
-        else
-        {
+        else {
             self.contentView.backgroundColor=[UIColor clearColor];
         }
+    }
     
 }
-
-
-
-
-
 
 @end
