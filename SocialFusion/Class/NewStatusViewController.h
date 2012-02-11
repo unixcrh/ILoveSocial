@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickAtListViewController.h"
 
 typedef enum {
     PostStatusErrorNone     = 0,
@@ -15,7 +16,7 @@ typedef enum {
     PostStatusErrorAll      = 3,
 } PostStatusErrorCode;
 
-@interface NewStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface NewStatusViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
     BOOL _isPosting;
@@ -43,6 +44,7 @@ typedef enum {
 
 - (IBAction)didClickPhotoCancelButton:(id)sender;
 
-- (IBAction)pickImage:(id)sender;
+- (IBAction)didClickPickImageButton:(id)sender;
+- (IBAction)didClickAtButton:(id)sender;
 
 @end

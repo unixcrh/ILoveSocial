@@ -12,6 +12,7 @@
 #import "RenrenClient.h"
 #import "WeiboClient.h"
 #import "UIImageView+Addition.h"
+#import "UIButton+Addition.h"
 
 #define TOOLBAR_HEIGHT  22
 #define TOAST_POS_Y   self.toolBarView.frame.origin.y - 20.0f
@@ -198,34 +199,35 @@
     }
 }
 
-+ (void)setPostPlatformButtonSelected:(UIButton *)button selected:(BOOL)select {
-    [button setUserInteractionEnabled:NO];
-    if(select) {
-        [button setSelected:select];
-        [button.imageView fadeInWithCompletion:^(BOOL finished) {
-            [button setUserInteractionEnabled:YES];
-        }];
-    }
-    else {
-        [button.imageView fadeOutWithCompletion:^(BOOL finished) {
-            [button setSelected:select];
-            [button setUserInteractionEnabled:YES];
-        }];
-    }
-}
-
 - (IBAction)didClickPostToRenrenButton:(id)sender {
     _postToRenren = !_postToRenren;
-    [NewStatusViewController setPostPlatformButtonSelected:self.postRenrenButton selected:_postToRenren];
+    [self.postRenrenButton setPostPlatformButtonSelected:_postToRenren];
 }
 
 - (IBAction)didClickPostToWeiboButton:(id)sender {
     _postToWeibo = !_postToWeibo;
-    [NewStatusViewController setPostPlatformButtonSelected:self.postWeiboButton selected:_postToWeibo];
+    [self.postWeiboButton setPostPlatformButtonSelected:_postToWeibo];
 }
 
 - (IBAction)didClickPhotoCancelButton:(id)sender {
     [self dismissUserPhoto];
+}
+
+- (IBAction)didClickAtButton:(id)sender {
+    PickAtListViewController *vc = [[PickAtListViewController alloc] init];
+    vc.delegate = self;
+    vc.modalPresentationStyle = UIModalPresentationCurrentContext;
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:vc animated:YES];
+    [vc release];
+}
+
+- (IBAction)didClickPickImageButton:(id)sender {
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+    ipc.delegate = self;
+    ipc.allowsEditing = NO;
+    [self presentModalViewController:ipc animated:YES]; 
 }
 
 #pragma mark -
@@ -268,14 +270,6 @@
     if ((NSString*)_lastChar && [(NSString*)_lastChar compare:@"@"] == NSOrderedSame) {
         [self atButtonClicked:nil];
     }*/
-}
-
-- (void)pickImage:(id)sender {
-    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-    ipc.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-    ipc.delegate = self;
-    ipc.allowsEditing = NO;
-    [self presentModalViewController:ipc animated:YES]; 
 }
 
 - (void)showPhotoCancelButton {
@@ -354,6 +348,12 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma makr PickAtListViewController delegate
+- (void)didPickAtUser {
     [self dismissModalViewControllerAnimated:YES];
 }
 

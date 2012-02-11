@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static UIViewController *_modalViewController;
+static UIViewController *_secondModalViewController;
 static UIView *_backView;
 static BOOL _isShowingToast;
 
@@ -20,6 +21,48 @@ static BOOL _isShowingToast;
 #define SCREEN_HEIGHT   480
 
 @implementation UIApplication (Addition)
+
+- (void)presentSecondModalViewController:(UIViewController *)vc {
+    if (!_modalViewController || _secondModalViewController)
+        return;
+    
+	_secondModalViewController = [vc retain];
+	
+	_backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+	_backView.alpha = 0.0f;
+	_backView.backgroundColor = [UIColor clearColor];
+    
+    CGRect frame = vc.view.frame;
+    frame.origin.x = 0;
+    frame.origin.y = 480;
+    vc.view.frame = frame;
+    
+	[self.keyWindow addSubview:_backView];
+	[self.keyWindow addSubview:vc.view];
+	
+    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGRect frame = vc.view.frame;
+        frame.origin.y = 20;
+        vc.view.frame = frame;
+    } completion:^(BOOL finished) {}];
+}
+
+- (void)dismissSecondModalViewController {
+    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _backView.alpha = 0.0;
+        CGRect frame = _modalViewController.view.frame;
+        frame.origin.y = SCREEN_HEIGHT;
+        _modalViewController.view.frame = frame;
+    } completion:^(BOOL finished) {
+        if (finished) {
+			[_backView removeFromSuperview];
+            [_backView release];
+            _backView = nil;
+			[_modalViewController release];
+            _modalViewController = nil;
+		}
+    }];
+}
 
 - (void)presentModalViewController:(UIViewController *)vc
 {
