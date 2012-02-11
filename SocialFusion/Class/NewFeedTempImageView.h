@@ -12,6 +12,7 @@
 {
     UIImageView* _imageView;
     UIButton* _saveButton;
+    UIButton* _cancelButton;
     UIScrollView* _scrollView;
     NSString* _bigURL;
     NSManagedObjectContext *_managedObjectContext;
@@ -26,7 +27,9 @@
 @property (nonatomic, copy) NSString *photoID;
 
 + (NewFeedTempImageView *)tempImageViewWithImage:(UIImage*)image BigURL:(NSString*)bigURL context:(NSManagedObjectContext *)context;
+
 + (NewFeedTempImageView *)tempImageViewWithImage:(UIImage*)image userID:(NSString*)userID photoID:(NSString*)photoID context:(NSManagedObjectContext *)context;
+
 - (void)show;
 
 
