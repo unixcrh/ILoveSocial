@@ -208,12 +208,41 @@
   }
   else
     {
+        if (((NewFeedData*)_feedData).pic_URL!=nil)
+        {
+            NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcellwithphotodetail" ofType:@"html"];
+            NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+            infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
+            infoText=[infoText setRepost:[(NewFeedData*)_feedData getPostMessage]];
+            Image* image = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
+            if (!image)
+            {
+                [UIImage loadImageFromURL:((NewFeedData*)_feedData).pic_big_URL completion:^{
+                    Image *image1 = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
+                    
+                    _photoData=[[NSData alloc] initWithData: image1.imageData.data];
+                    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+                    
+                    
+                } cacheInContext:self.managedObjectContext];
+            }
+            else
+            {
+                _photoData=[[NSData alloc] initWithData: image.imageData.data];
+                [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+                
+            }
+            [infoText release];
+        }
+        else
+        {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcelldetail" ofType:@"html"];
         NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
          infoText=[infoText setRepost:[(NewFeedData*)_feedData getPostMessage]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
+        }
     }
 }
 
