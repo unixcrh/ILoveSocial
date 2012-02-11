@@ -64,7 +64,7 @@
         [_saveButton setImage:[UIImage imageNamed:@"btn_tmp_pic_save@2x.png"] forState:UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_saveButton];
-        self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8f];
     }
     return self;
 }
