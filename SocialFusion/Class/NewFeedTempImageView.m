@@ -58,7 +58,8 @@
         [self addSubview:_scrollView];
         
         _saveButton = [[UIButton alloc] init];
-        _saveButton.frame = CGRectMake(140.0f, 400.0f, 40.0f, 40.0f);
+        _saveButton.frame = CGRectMake(0, 0, 90.0f, 40.0f);
+        _saveButton.center = CGPointMake(160.0f, 440.0f);
 
         [_saveButton setImage:[UIImage imageNamed:@"btn_tmp_pic_save@2x.png"] forState:UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
