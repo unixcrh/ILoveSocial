@@ -31,6 +31,7 @@
     [_scrollView release];
     [_managedObjectContext release];
     [_saveButton release];
+    [_cancelButton release];
     [super dealloc];
 }
 
@@ -57,30 +58,49 @@
         
         [self addSubview:_scrollView];
         
-        _saveButton=[[UIButton alloc] init];
-        _saveButton.frame=CGRectMake(102.5,400, 115, 50);
+        _saveButton = [[UIButton alloc] init];
+        _saveButton.frame = CGRectMake(160.0f - 35.0f, 400.0f, 40.0f, 40.0f);
         
-        [_saveButton setImage:[UIImage imageNamed:@"imageDownload.png"] forState:UIControlStateNormal];
+        _cancelButton = [[UIButton alloc] init];
+        _cancelButton.frame = CGRectMake(160.0f - 5.0f, 400.0f, 40.0f, 40.0f);
+        
+        [_saveButton setImage:[UIImage imageNamed:@"btn_tmp_pic_save@2x.png"] forState:UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_saveButton];
+        
+        [_cancelButton setImage:[UIImage imageNamed:@"btn_tmp_pic_cancel@2x.png"] forState:UIControlStateNormal];
+        [_cancelButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_cancelButton];
+        
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
-        
-        
-
     }
     return self;
 }
 
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if(!error) {
+        [[UIApplication sharedApplication] presentToast:@"保存成功了亲。" withVerticalPos:kToastBottomVerticalPosition];
+    }
+    else {
+        [[UIApplication sharedApplication] presentToast:@"保存失败了亲。" withVerticalPos:kToastBottomVerticalPosition];
+    }
+}
 
 -(void)saveImage
 {
-    [self performSelectorInBackground:@selector(saveImageBack) withObject:nil];
+    UIImageWriteToSavedPhotosAlbum(_imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
--(void)saveImageBack
+
+-(void)dismissView
 {
-    UIImageWriteToSavedPhotosAlbum(_imageView.image, nil, nil, nil);
-    [[UIApplication sharedApplication] presentToast:@"保存成功" withVerticalPos:350];
+    [UIView animateWithDuration:0.3f animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        [self release];
+    }];
 }
+
 - (void)setImage:(UIImage *)image {
     _imageView = [[UIImageView alloc] initWithImage:image];
     _imageView.frame = CGRectMake(0, 0, IMAGE_MAX_WIDTH, image.size.height / image.size.width * IMAGE_MAX_WIDTH);
@@ -107,8 +127,6 @@
     return result;
 }
 
-
-
 + (NewFeedTempImageView *)tempImageViewWithImage:(UIImage*)image userID:(NSString*)userID photoID:(NSString*)photoID context:(NSManagedObjectContext *)context {
     NewFeedTempImageView *result = nil;
     if(image && userID && photoID) {
@@ -122,12 +140,7 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView animateWithDuration:0.3f animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-        [self release];
-    }];
+    [self dismissView];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
