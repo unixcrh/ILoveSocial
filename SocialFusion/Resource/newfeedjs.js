@@ -30,6 +30,10 @@ function setPhotoPos(width,height)
 
 	document.getElementById("upload").style.left=actWidth+'px';
 	document.getElementById("upload").style.top=actHeight+'px';
+	
+	document.getElementById("upload").style.width=width+'px';
+	document.getElementById("upload").style.height=height+'px';
+	
 }
 
 function setBigPhotoPos(width,height)
