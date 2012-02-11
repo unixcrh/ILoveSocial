@@ -30,6 +30,7 @@
     [_imageView release];
     [_scrollView release];
     [_managedObjectContext release];
+    [_saveButton release];
     [super dealloc];
 }
 
@@ -55,6 +56,12 @@
         [layer setBorderColor:[[UIColor whiteColor] CGColor]];
         
         [self addSubview:_scrollView];
+        
+        _saveButton=[[UIButton alloc] init];
+        _saveButton.frame=CGRectMake(102.5,400, 115, 50);
+        
+        [_saveButton setImage:[UIImage imageNamed:@"imageDownload.png"] forState:UIControlStateNormal];
+        [self addSubview:_saveButton];
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     }
     return self;

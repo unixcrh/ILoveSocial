@@ -11,6 +11,7 @@
 @interface NewFeedTempImageView : UIView<UIScrollViewDelegate>
 {
     UIImageView* _imageView;
+    UIButton* _saveButton;
     UIScrollView* _scrollView;
     NSString* _bigURL;
     NSManagedObjectContext *_managedObjectContext;
