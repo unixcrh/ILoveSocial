@@ -11,7 +11,7 @@
 #import "Image+Addition.h"
 #import "UIImage+Addition.h"
 #import "RenrenClient.h"
-
+#import "UIApplication+Addition.h"
 #define IMAGE_MAX_WIDTH     260
 #define IMAGE_MAX_HEIGHT    340
 
@@ -61,12 +61,26 @@
         _saveButton.frame=CGRectMake(102.5,400, 115, 50);
         
         [_saveButton setImage:[UIImage imageNamed:@"imageDownload.png"] forState:UIControlStateNormal];
+        [_saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_saveButton];
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        
+        
+
     }
     return self;
 }
 
+
+-(void)saveImage
+{
+    [self performSelectorInBackground:@selector(saveImageBack) withObject:nil];
+}
+-(void)saveImageBack
+{
+    UIImageWriteToSavedPhotosAlbum(_imageView.image, nil, nil, nil);
+    [[UIApplication sharedApplication] presentToast:@"保存成功" withVerticalPos:350];
+}
 - (void)setImage:(UIImage *)image {
     _imageView = [[UIImageView alloc] initWithImage:image];
     _imageView.frame = CGRectMake(0, 0, IMAGE_MAX_WIDTH, image.size.height / image.size.width * IMAGE_MAX_WIDTH);
