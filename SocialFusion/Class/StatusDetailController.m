@@ -21,68 +21,19 @@
 #import "NSString+HTMLSet.h"
 #import "RenrenUser.h"
 #import "WeiboUser.h"
-#import "UIImage+Addition.h"
-#import "NSData+NsData_Base64.h"
-#import "NSString+DataURI.h"
-#import "NewFeedTempImageView.h"
+
+
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (scrollView!=_webView.scrollView)
+    if (scrollView!=(UIScrollView*)self.view)
     {
    int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
     _pageControl.currentPage = index;
     }
 }
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView==_webView.scrollView)
-    {
-
-        
-        if (_titleView.frame.origin.y+_titleView.frame.size.height>0)
-        {
-            if (_titleView.frame.origin.y>=0)
-            {
-                if (scrollView.contentOffset.y<0)
-                {
-                      _titleView.center=CGPointMake(152, _titleView.frame.size.height/2);
-                    _webView.frame=CGRectMake(0, _titleView.frame.size.height+1, 306, 352-_titleView.frame.size.height-1);
-                   
-
-                    return;
-                }
-            }
-            
-            if (scrollView.contentSize.height==_webView.frame.size.height)
-            {
-                return;
-            }
-            _titleView.center=CGPointMake(152, _titleView.center.y-scrollView.contentOffset.y);
-            _webView.frame=CGRectMake(0, _webView.frame.origin.y-scrollView.contentOffset.y, 306, _webView.frame.size.height+scrollView.contentOffset.y);
-            scrollView.contentOffset=CGPointMake(0, 0); 
-        }
-        else
-        {
-            if (scrollView.contentOffset.y<0)
-            {
-                _titleView.center=CGPointMake(152, _titleView.center.y-scrollView.contentOffset.y);
-                _webView.frame=CGRectMake(0, _webView.frame.origin.y-scrollView.contentOffset.y, 306, _webView.frame.size.height+scrollView.contentOffset.y);
-                scrollView.contentOffset=CGPointMake(0, 0); 
-            }
-        }
-/*        
-        else
-        {
-            _titleView.center=CGPointMake(152, -_titleView.frame.size.height/2-scrollView.contentOffset.y);
-        }
- */
-    }
-}
-
 
 
 
@@ -128,159 +79,14 @@
 }
 
 
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    
-    UIImage* image1=[UIImage imageWithData:_photoData];
-  
-    
-    
-    NSData* imagedata=UIImageJPEGRepresentation(image1, 10);
-    
-    
-    
-    NSString *imgB64 = [[imagedata base64Encoding] jpgDataURIWithContent];
-    
-    
 
-    
-    
-    NSString* javascript = [NSString stringWithFormat:@"document.getElementById('upload').src='%@'", imgB64];
-    
-    [_webView stringByEvaluatingJavaScriptFromString:javascript];
-    
-    
 
-    [_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"];
-    //NSLog(@"Height:%d",height);
-  //  NSLog(@"爱如完成");
-    [_photoData release];
- 
-    [_activity stopAnimating];
-    [_activity removeFromSuperview];
-    [_activity release];
-
-}
--(void)loadWebView
-{
-    
-
-  if ([(NewFeedData*)_feedData getPostName]==nil)
-  {
-                if (((NewFeedData*)_feedData).pic_URL!=nil)
-                {
-                    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocelldetail" ofType:@"html"];
-                    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-                    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
-                    
-                    Image* image = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
-                    if (!image)
-                    {
-                        [UIImage loadImageFromURL:((NewFeedData*)_feedData).pic_big_URL completion:^{
-                            Image *image1 = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
-                            
-                            _photoData=[[NSData alloc] initWithData: image1.imageData.data];
-                            [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-                            
-  
-                        } cacheInContext:self.managedObjectContext];
-                    }
-                    else
-                    {
-                        _photoData=[[NSData alloc] initWithData: image.imageData.data];
-                        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-                        
-                    }
-                    
-                    
-                  
-                  
-                    [infoText release];
-                }
-      else
-      {
-    NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
-    NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-    infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
-    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-    [infoText release];
-      }
-  }
-  else
-    {
-        if (((NewFeedData*)_feedData).pic_URL!=nil)
-        {
-            NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcellwithphotodetail" ofType:@"html"];
-            NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
-            infoText=[infoText setRepost:[(NewFeedData*)_feedData getPostMessage]];
-            Image* image = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
-            if (!image)
-            {
-                [UIImage loadImageFromURL:((NewFeedData*)_feedData).pic_big_URL completion:^{
-                    Image *image1 = [Image imageWithURL:((NewFeedData*)_feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
-                    
-                    _photoData=[[NSData alloc] initWithData: image1.imageData.data];
-                    [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-                    
-                    
-                } cacheInContext:self.managedObjectContext];
-            }
-            else
-            {
-                _photoData=[[NSData alloc] initWithData: image.imageData.data];
-                [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-                
-            }
-            [infoText release];
-        }
-        else
-        {
-        NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcelldetail" ofType:@"html"];
-        NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-        infoText=[infoText setWeibo:[(NewFeedData*)_feedData getName]];
-         infoText=[infoText setRepost:[(NewFeedData*)_feedData getPostMessage]];
-        [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
-        [infoText release];
-        }
-    }
-}
 
 
 -(void)setFixedInfo
 {
     
-    for (UIView *aView in [_webView subviews])  
-        
-    { 
-        
-        if ([aView isKindOfClass:[UIScrollView class]])  
-            
-        { 
-            
-                    
-            for (UIView *shadowView in aView.subviews)  
-                
-            { 
-                
-                
-                
-                if ([shadowView isKindOfClass:[UIImageView class]]) 
-                    
-                { 
-                    
-                    shadowView.hidden = YES;  //上下滚动出边界时的黑色的图片 也就是拖拽后的上下阴影
-                    
-                } 
-                
-            } 
-            
-        } 
-        
-    }  
-    
-    
-    _webView.delegate=self;
+
     _nameLabel.text=[_feedData getFeedName];
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
@@ -310,8 +116,7 @@
     }
     
     
-    _webView.backgroundColor=[UIColor clearColor];
-    _webView.opaque=NO;
+
     _activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _activity.center=CGPointMake(153, 300);
     [self.view addSubview:_activity];
@@ -321,13 +126,13 @@
 -(void)addOriStatus
 {
     [self setFixedInfo];
-    [self loadWebView];
+    [self loadMainView];
 
-    _webView.scrollView.delegate=self;
+}
 
-
+-(void) loadMainView
+{
     
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

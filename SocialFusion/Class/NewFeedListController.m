@@ -26,6 +26,7 @@
 #import "NewFeedDetailBlogViewCell.h"
 #import "NSNotificationCenter+Addition.h"
 #import "User+Addition.h"
+
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
     return ([data2.update_Time compare:data1.update_Time]);

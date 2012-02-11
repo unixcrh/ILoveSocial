@@ -14,7 +14,7 @@
 
 #import "EGOTableViewController.h"
 #import "NewFeedRootData.h"
-@interface StatusDetailController : EGOTableViewController<UIScrollViewDelegate,UIWebViewDelegate>
+@interface StatusDetailController : EGOTableViewController<UIScrollViewDelegate>
 {
     IBOutlet StatusCommentCell *_commentCel;
     int _pageNumber;
@@ -23,7 +23,7 @@
     IBOutlet UIImageView* _style;
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
-    IBOutlet UIWebView* _webView;
+   
     IBOutlet UIPageControl* _pageControl;
     
     UIActivityIndicatorView* _activity;
@@ -36,10 +36,9 @@
    
 }
 @property (nonatomic, retain) NewFeedRootData* feedData;
-
--(void)loadData;
 -(void)setFixedInfo;
--(void)loadWebView;
+-(void)loadMainView;
+-(void)loadData;
 -(void)ProcessRenrenData:(NSArray*)array;
 -(void)ProcessWeiboData:(NSArray*)array;
 @end

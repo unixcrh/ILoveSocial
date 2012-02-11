@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "StatusDetailController.h"
+#import "StatusDetailControllerWithWeb.h"
 @interface NewFeedDetailViewCell : UITableViewCell
 {
-    IBOutlet StatusDetailController* detailController;
+    IBOutlet StatusDetailControllerWithWeb* detailController;
 }
 -(void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei;
 @end

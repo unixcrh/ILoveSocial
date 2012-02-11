@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
-#import "StatusDetailController.h"
+#import "StatusDetailControllerWithWeb.h"
 
-@interface BlogDetailController : StatusDetailController
+@interface BlogDetailController : StatusDetailControllerWithWeb
 {
     IBOutlet UILabel* _blogTitle;
 
