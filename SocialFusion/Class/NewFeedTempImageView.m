@@ -31,7 +31,6 @@
     [_scrollView release];
     [_managedObjectContext release];
     [_saveButton release];
-    [_cancelButton release];
     [super dealloc];
 }
 
@@ -59,19 +58,11 @@
         [self addSubview:_scrollView];
         
         _saveButton = [[UIButton alloc] init];
-        _saveButton.frame = CGRectMake(160.0f - 35.0f, 400.0f, 40.0f, 40.0f);
-        
-        _cancelButton = [[UIButton alloc] init];
-        _cancelButton.frame = CGRectMake(160.0f - 5.0f, 400.0f, 40.0f, 40.0f);
-        
+        _saveButton.frame = CGRectMake(140.0f, 400.0f, 40.0f, 40.0f);
+
         [_saveButton setImage:[UIImage imageNamed:@"btn_tmp_pic_save@2x.png"] forState:UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_saveButton];
-        
-        [_cancelButton setImage:[UIImage imageNamed:@"btn_tmp_pic_cancel@2x.png"] forState:UIControlStateNormal];
-        [_cancelButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_cancelButton];
-        
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     }
     return self;
@@ -86,9 +77,13 @@
     }
 }
 
--(void)saveImage
-{
+- (void)saveImageInBackground {
     UIImageWriteToSavedPhotosAlbum(_imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)saveImage
+{
+    [self performSelectorInBackground:@selector(saveImageInBackground) withObject:nil];
 }
 
 -(void)dismissView

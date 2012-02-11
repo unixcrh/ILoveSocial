@@ -46,6 +46,7 @@
 								<int key="NSvFlags">293</int>
 								<string key="NSFrame">{{8, 0}, {290, 1}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="368284994"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -60,6 +61,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{5, 3}, {180, 21}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="266987608"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -98,6 +100,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{5, 24}, {250, 36}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="276126519"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -132,6 +135,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{234, 3}, {70, 14}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="605612343"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -166,15 +170,11 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{266, 0}, {40, 60}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSColor" key="IBUITintColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwIDAAA</bytes>
-								</object>
 								<reference key="IBUIHighlightedTitleColor" ref="55436310"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -196,6 +196,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{253, 12}, {7, 10}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="64992633"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -203,6 +204,7 @@
 						</array>
 						<string key="NSFrameSize">{306, 59}</string>
 						<reference key="NSSuperview" ref="500193853"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="160197197"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -217,6 +219,7 @@
 				</array>
 				<string key="NSFrameSize">{306, 60}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="762154621"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -366,7 +369,134 @@
 			<nil key="sourceID"/>
 			<int key="maxID">35</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CoreDataTableViewController</string>
+					<string key="superclassName">CoreDataViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">tableView</string>
+						<string key="NS.object.0">UITableView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">tableView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">tableView</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CoreDataTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CoreDataViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CoreDataViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">EGOTableViewController</string>
+					<string key="superclassName">CoreDataTableViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/EGOTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">StatusCommentCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_commentButton">UIButton</string>
+						<string key="_secret">UIImageView</string>
+						<string key="_status">UILabel</string>
+						<string key="_time">UILabel</string>
+						<string key="_userName">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_commentButton">
+							<string key="name">_commentButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_secret">
+							<string key="name">_secret</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_status">
+							<string key="name">_status</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_time">
+							<string key="name">_time</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_userName">
+							<string key="name">_userName</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/StatusCommentCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">StatusDetailController</string>
+					<string key="superclassName">EGOTableViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_commentCel">StatusCommentCell</string>
+						<string key="_headImage">UIImageView</string>
+						<string key="_nameLabel">UILabel</string>
+						<string key="_pageControl">UIPageControl</string>
+						<string key="_style">UIImageView</string>
+						<string key="_time">UILabel</string>
+						<string key="_titleView">UIView</string>
+						<string key="_webView">UIWebView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_commentCel">
+							<string key="name">_commentCel</string>
+							<string key="candidateClassName">StatusCommentCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_headImage">
+							<string key="name">_headImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_nameLabel">
+							<string key="name">_nameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_pageControl">
+							<string key="name">_pageControl</string>
+							<string key="candidateClassName">UIPageControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_style">
+							<string key="name">_style</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_time">
+							<string key="name">_time</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_titleView">
+							<string key="name">_titleView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_webView">
+							<string key="name">_webView</string>
+							<string key="candidateClassName">UIWebView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/StatusDetailController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

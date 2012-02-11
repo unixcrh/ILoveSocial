@@ -12,7 +12,6 @@
 {
     UIImageView* _imageView;
     UIButton* _saveButton;
-    UIButton* _cancelButton;
     UIScrollView* _scrollView;
     NSString* _bigURL;
     NSManagedObjectContext *_managedObjectContext;
