@@ -13,6 +13,7 @@
 #import "PublicationViewController.h"
 #import "NewFeedListController.h"
 #import "FriendListViewController.h"
+#import "UserInfoViewController.h"
 
 @interface LNContentViewController()
 - (id)addContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict;
@@ -140,6 +141,9 @@
     }
     else if([identifier isEqualToString:kParentPublication]) {
         result = [[[PublicationViewController alloc] init] autorelease];
+    }
+    else if([identifier isEqualToString:kChildWeiboInfo]) {
+        result = [[[UserInfoViewController alloc] init] autorelease];
     }
     // test code
     else {

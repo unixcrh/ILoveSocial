@@ -96,6 +96,7 @@
 		<true/>
 		<key>kChildLabels</key>
 		<array>
+			<string>kChildWeiboInfo</string>
 			<string>kChildWeiboNewFeed</string>
 			<string>kChildRenrenNewFeed</string>
 		</array>
@@ -186,7 +187,7 @@
 		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
-	<key>kSystemDefaultLabels</key>
+    <key>kSystemDefaultLabels</key>
 	<array>
 		<string>kParentNewFeed</string>
 		<string>kParentFriend</string>

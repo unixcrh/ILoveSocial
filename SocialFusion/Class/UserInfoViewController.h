@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataViewController.h"
 
-@interface UserInfoViewController : UIViewController
+@interface UserInfoViewController : CoreDataViewController 
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 @end
