@@ -27,6 +27,7 @@
 @synthesize pageControl = _pageControl;
 @synthesize pageCount = _pageCount;
 @synthesize delegate = _delegate;
+@synthesize selectUserLock = _selectUserLock;
 
 - (void)dealloc {
     [_scrollView release];
@@ -123,9 +124,9 @@
     }
 }
 
-- (BOOL)createLabelWithInfo:(LabelInfo *)info {
+- (void)createLabelWithInfo:(LabelInfo *)info {
     if(_selectUserLock) 
-        return NO;
+        return;
     _selectUserLock = YES;
     [self popPageManuallyWithCompletion:^{
         [self.labelInfoArray addObject:info];
@@ -140,7 +141,6 @@
         _selectUserLock = NO;
         [self selectParentLabelAtIndex:self.labelInfoArray.count - 1];
     }];
-    return YES;
 }
 
 - (void)selectLabelAtIndex:(NSUInteger)labelToSelectIndex {

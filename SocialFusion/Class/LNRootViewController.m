@@ -137,21 +137,18 @@
         [self.labelBarViewController selectParentLabelAtIndex:openedUserIndex];
         return;
     }
-    else {
-        [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
-    }
     
-    LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
-    labelInfo.isRemovable = YES;
-    labelInfo.labelName = selectedUser.name;
-    labelInfo.targetUser = selectedUser;
-    if([self.labelBarViewController createLabelWithInfo:labelInfo]) {
+    if(!self.labelBarViewController.isSelectUserLock) {
         NSLog(@"selected user:%@", selectedUser.name);
+        [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
+        LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
+        labelInfo.isRemovable = YES;
+        labelInfo.labelName = selectedUser.name;
+        labelInfo.targetUser = selectedUser;
         [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
+        [self.labelBarViewController createLabelWithInfo:labelInfo];
     }
-    else {
-        [_openedUserHeap removeObjectForKey:selectedUser.userID];
-    }
+
 }
 
 #pragma mark - 
