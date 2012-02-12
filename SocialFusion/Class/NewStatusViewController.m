@@ -215,6 +215,7 @@
 
 - (IBAction)didClickAtButton:(id)sender {
     PickAtListViewController *vc = [[PickAtListViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
     vc.delegate = self;
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

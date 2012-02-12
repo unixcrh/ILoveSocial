@@ -31,6 +31,7 @@
 
 - (IBAction)didClickNewStatusButton:(id)sender  {
     NewStatusViewController *vc = [[NewStatusViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
 }

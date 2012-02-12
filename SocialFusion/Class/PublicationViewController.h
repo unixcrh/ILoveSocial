@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataViewController.h"
 
-@interface PublicationViewController : UIViewController {
+@interface PublicationViewController : CoreDataViewController {
     UIScrollView *_scrollView;
 }
 

@@ -47,7 +47,7 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     //NSLog(@"save context");
-    //[self saveContext];
+    [self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -90,6 +90,7 @@ temp.managedObjectContext=self.managedObjectContext;
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    [self saveContext];
 }
 
 - (void)dealloc
