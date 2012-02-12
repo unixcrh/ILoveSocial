@@ -35,7 +35,7 @@ typedef void (^PopPageMnuallyCompletion)(void);
 @property (nonatomic, readonly) NSUInteger parentLabelCount;
 
 - (id)initWithLabelInfoArray:(NSArray *)infoArray;
-- (void)createLabelWithInfo:(LabelInfo *)info;
+- (BOOL)createLabelWithInfo:(LabelInfo *)info;
 - (void)selectParentLabelAtIndex:(NSUInteger)index;
 - (void)selectChildLabelWithIdentifier:(NSString *)identifier;
 

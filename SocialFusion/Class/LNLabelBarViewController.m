@@ -123,9 +123,9 @@
     }
 }
 
-- (void)createLabelWithInfo:(LabelInfo *)info {
+- (BOOL)createLabelWithInfo:(LabelInfo *)info {
     if(_selectUserLock) 
-        return;
+        return NO;
     _selectUserLock = YES;
     [self popPageManuallyWithCompletion:^{
         [self.labelInfoArray addObject:info];
@@ -140,7 +140,7 @@
         _selectUserLock = NO;
         [self selectParentLabelAtIndex:self.labelInfoArray.count - 1];
     }];
-    
+    return YES;
 }
 
 - (void)selectLabelAtIndex:(NSUInteger)labelToSelectIndex {

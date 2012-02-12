@@ -94,13 +94,17 @@
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index {
     [self.contentViewController removeContentViewAtIndex:index];
+    NSLog(@"open user heap count:%d", _openedUserHeap.count);
     [_openedUserHeap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        NSLog(@"%@", key);
         NSNumber *openedUserIndex = obj;
         if(openedUserIndex.unsignedIntValue == index) {
             [_openedUserHeap removeObjectForKey:key];
+            *stop = YES;
         }
-        else if(openedUserIndex.unsignedIntValue > index){
+    }];
+    [_openedUserHeap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSNumber *openedUserIndex = obj;
+        if(openedUserIndex.unsignedIntValue > index){
             [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:openedUserIndex.unsignedIntValue - 1] forKey:key];
         }
     }];
@@ -137,12 +141,17 @@
         [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
     }
     
-    [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
     LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
     labelInfo.isRemovable = YES;
     labelInfo.labelName = selectedUser.name;
     labelInfo.targetUser = selectedUser;
-    [self.labelBarViewController createLabelWithInfo:labelInfo];
+    if([self.labelBarViewController createLabelWithInfo:labelInfo]) {
+        NSLog(@"selected user:%@", selectedUser.name);
+        [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
+    }
+    else {
+        [_openedUserHeap removeObjectForKey:selectedUser.userID];
+    }
 }
 
 #pragma mark - 

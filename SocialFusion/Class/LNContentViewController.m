@@ -179,6 +179,10 @@
     CoreDataViewController *vc2 = [self addContentViewWithIndentifier:identifier andUsers:vc.userDict];
     if(vc2 == nil)
         return;
+    if(identifier == nil) {
+        NSLog(@"replaceObjectAtIndex! identifier nil!");
+        return;
+    }
     vc2.view.frame = vc.view.frame;
     [vc.view removeFromSuperview];
     [self.scrollView addSubview:vc2.view];
