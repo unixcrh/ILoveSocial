@@ -182,6 +182,11 @@
     [_activity removeFromSuperview];
     [_activity release];
     
+    if( webView.scrollView.contentSize.height<_titleView.frame.size.height+_webView.frame.size.height)
+    {
+        _webView.scrollView.delegate=nil;
+    }
+    
 }
 -(void)setFixedInfo
 {
