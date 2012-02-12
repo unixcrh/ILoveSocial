@@ -40,6 +40,7 @@
 
 @protocol PickAtListViewControllerDelegate <NSObject>
 
-- (void)didPickAtUser;
+- (void)didPickAtUser:(NSString *)result;
+- (void)cancelPickUser;
 
 @end

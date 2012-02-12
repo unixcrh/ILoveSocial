@@ -143,7 +143,6 @@
                 break;
         }
         _isPosting = NO;
-        [self dismissView];
     }
 }
 
@@ -197,6 +196,7 @@
             [client postStatus:self.textView.text];
         }
     }
+    [self dismissView];
 }
 
 - (IBAction)didClickPostToRenrenButton:(id)sender {
@@ -354,7 +354,21 @@
 
 #pragma mark -
 #pragma makr PickAtListViewController delegate
-- (void)didPickAtUser {
+
+- (void)cancelPickUser {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)didPickAtUser:(NSString *)userName {
+    int location = self.textView.selectedRange.location;
+    NSString *content = self.textView.text;
+    NSString *stringToInsert = [userName stringByAppendingString:@" "];
+    NSString *result = [NSString stringWithFormat:@"%@%@%@",[content substringToIndex:location], stringToInsert, [content substringFromIndex:location]];
+    self.textView.text = result;
+    NSRange range = self.textView.selectedRange;
+    range.location = location + stringToInsert.length;
+    self.textView.selectedRange = range;
+    [self updateTextCount];
     [self dismissModalViewControllerAnimated:YES];
 }
 

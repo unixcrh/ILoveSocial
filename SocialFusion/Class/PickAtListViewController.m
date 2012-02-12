@@ -103,11 +103,12 @@
 #pragma makr IBAction
 
 - (IBAction)didClickCancelButton:(id)sender {
-    [self.delegate didPickAtUser];
+    [self.delegate cancelPickUser];
 }
 
 - (IBAction)didClickFinishButton:(id)sender {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    NSString *result = [_atScreenNames objectAtIndex:0];
+    [self.delegate didPickAtUser:result];
 }
 
 - (IBAction)didClickRenrenButton:(id)sender {
@@ -164,7 +165,9 @@
     return 30.0f;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath { 
+    NSString *result = [_atScreenNames objectAtIndex:[indexPath row]];
+    [self.delegate didPickAtUser:result];
 }
 
 #pragma mark -
