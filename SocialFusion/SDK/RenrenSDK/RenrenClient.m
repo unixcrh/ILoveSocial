@@ -573,4 +573,18 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
     [param release];
 }
 
+
+-(void)getAlbum:(NSString*)userID a_ID:(NSString*)a_ID pageNumber:(int)pageNumber
+{
+    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"photos.get",@"method",
+                                 userID,@"uid",
+                                 a_ID,@"aid",
+                                 tempString,@"page",
+                                 @"9",@"count",
+                                 nil];
+    [tempString release];
+	[self requestWithParams:params andDelegate:self];
+}
 @end

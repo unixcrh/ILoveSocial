@@ -71,6 +71,7 @@
 
     result.fromName=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_name"];
 
+    result.media_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
 
     
     return result;

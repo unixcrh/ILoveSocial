@@ -2,8 +2,8 @@
 //  NewFeedShareAlbum.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-1-11.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by He Ruoyun on 12-2-12.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "NewFeedShareAlbum.h"
@@ -11,11 +11,12 @@
 
 @implementation NewFeedShareAlbum
 
-@dynamic photo_url;
-@dynamic share_comment;
 @dynamic album_title;
 @dynamic album_count;
-@dynamic fromName;
+@dynamic photo_url;
 @dynamic fromID;
+@dynamic share_comment;
+@dynamic fromName;
+@dynamic media_ID;
 
 @end

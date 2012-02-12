@@ -12,8 +12,9 @@
 {
         IBOutlet UILabel* _albumTitle;
     IBOutlet UIScrollView* _contentScrollView;
-    UIImageView* _imageView[12];
+    UIImageView* _imageView[18];
     UIButton* _imageOut[12];
+    int _albumPageNumber;
   
 }
 @end
