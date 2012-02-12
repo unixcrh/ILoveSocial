@@ -28,7 +28,7 @@
 - (void)clearData
 {
     
-    _firstLoadFlag = YES;
+    _noAnimationFlag = YES;
     [self.processRenrenUser removeStatuses:self.processRenrenUser.statuses];
     
     [self.processWeiboUser removeStatuses:self.processWeiboUser.statuses];

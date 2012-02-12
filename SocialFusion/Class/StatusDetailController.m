@@ -70,7 +70,7 @@
 - (void)clearData
 {
     
-    _firstLoadFlag = YES;
+    _noAnimationFlag = YES;
   //  NSLog(@"%@",self.feedData.comments);
     [self.feedData removeComments:self.feedData.comments];
     

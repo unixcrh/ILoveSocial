@@ -13,7 +13,6 @@ UITableViewDelegate, UITableViewDataSource> {
     NSFetchedResultsController *_fetchedResultsController;
     UITableView *_tableView;
     NSInteger _playingAnimationCount;
-    BOOL _firstLoadFlag;
     BOOL _noAnimationFlag;
 }
 

@@ -43,6 +43,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(_type == RelationshipViewTypeWeiboFriends || _type == RelationshipViewTypeWeiboFollowers) {
+        [self refresh];
+    }
 }
 
 #pragma mark -
@@ -86,8 +89,8 @@
 
 - (void)clearData
 {
+    _noAnimationFlag = YES;
     if(_type == RelationshipViewTypeRenrenFriends) {
-        _firstLoadFlag = YES;
         [self.renrenUser removeFriends:self.renrenUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {

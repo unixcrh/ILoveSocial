@@ -620,7 +620,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)clearData
 {
     
-    _firstLoadFlag = YES;
+    _noAnimationFlag = YES;
     [self.processRenrenUser removeNewFeed:self.processRenrenUser.newFeed];
     
     [self.processWeiboUser removeNewFeed:self.processWeiboUser.newFeed];

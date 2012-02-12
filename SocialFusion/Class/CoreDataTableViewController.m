@@ -93,9 +93,9 @@
     NSInteger count = [sectionInfo numberOfObjects];
     
     if(count == 0)
-        _firstLoadFlag = YES;
+        _noAnimationFlag = YES;
     else
-        _firstLoadFlag = NO;
+        _noAnimationFlag = NO;
     return count;
 }
 
@@ -125,7 +125,7 @@
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if(!_firstLoadFlag && !_noAnimationFlag)
+    if(!_noAnimationFlag)
         [self.tableView beginUpdates];
 }
 
@@ -133,7 +133,7 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-    if(_firstLoadFlag || _noAnimationFlag)
+    if(_noAnimationFlag)
         return;
     
     UITableView *tableView = self.tableView;
@@ -169,7 +169,7 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     
-	if(_firstLoadFlag || _noAnimationFlag)
+	if(_noAnimationFlag)
         return;
     
 	switch(type) {
@@ -186,7 +186,7 @@
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if(_firstLoadFlag || _noAnimationFlag)
+    if(_noAnimationFlag)
         [self.tableView reloadData];
     else
         [self.tableView endUpdates];
