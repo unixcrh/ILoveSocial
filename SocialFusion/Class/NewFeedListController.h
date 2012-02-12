@@ -18,6 +18,7 @@
 #import "NewFeedDetailViewCell.h"
 #import "NewFeedCellHeight.h"
 #import "NewFeedDetailBlogViewCell.h"
+#import "NewFeedAlbumCell.h"
 typedef   enum kUserFeed {
     kRenrenSelfFeed = 0,
     kWeiboSelfFeed  = 1,
@@ -32,7 +33,8 @@ typedef   enum kUserFeed {
     IBOutlet NewFeedStatusCell *_feedStatusCel;
     IBOutlet NewFeedDetailViewCell *_newFeedDetailViewCel;
     IBOutlet NewFeedDetailBlogViewCell *_newFeedDetailBlogViewCel;
-
+    IBOutlet NewFeedAlbumCell *_newFeedAlbumCel;
+    
     NSIndexPath* _indexPath;
     int _pageNumber;
     int _style;

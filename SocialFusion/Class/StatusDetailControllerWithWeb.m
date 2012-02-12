@@ -204,11 +204,9 @@ for (UIView *aView in [_webView subviews])
         } 
     } 
 }  
-
-
-_webView.delegate=self;
-_webView.backgroundColor=[UIColor clearColor];
-_webView.opaque=NO;
+    _webView.delegate=self;
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
     _webView.scrollView.delegate=self;
 
 }

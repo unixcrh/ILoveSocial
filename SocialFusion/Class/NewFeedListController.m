@@ -441,6 +441,17 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
                 return cell; 
             }
             
+        else if ([a class]==[NewFeedShareAlbum class])
+        {
+            NewFeedAlbumCell* cell;
+            [[NSBundle mainBundle] loadNibNamed:@"NewFeedAlbumCell" owner:self options:nil];
+            cell = _newFeedAlbumCel;
+            
+            [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
+            
+            
+            return cell;
+        }
         else
         {
     

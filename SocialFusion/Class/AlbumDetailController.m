@@ -7,45 +7,32 @@
 //
 
 #import "AlbumDetailController.h"
+#define IMAGE_OUT_V_SPACE 7
+#define IMAGE_OUT_WIDTH 83
+#define IMAGE_OUT_H_SPACE 15
+#define IMAGE_OUT_HEIGHT 63
+#define IMAGE_OUT_BEGIN_X 22
+#define IMAGE_OUT_BEGIN_Y 15
 
 @implementation AlbumDetailController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)setFixedInfo
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    [super setFixedInfo];
+    _contentScrollView.delegate=self;
+    _contentScrollView.delegate=self;
+
+}
+-(void)loadMainView
+{
+    for (int i=0;i<12;i++)
+    {
+        _imageOut[i]=[[UIButton alloc] init];
+        int wid=i%3;
+        int hei=i/3;
+        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+        [_imageOut[i] setImage:[UIImage imageNamed:@"detail_album"] forState:UIControlStateNormal];
+        [_contentScrollView addSubview:_imageOut[i]];
     }
-    return self;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 @end
