@@ -8,12 +8,17 @@
 
 #import "PickAtListViewController.h"
 #import "UIButton+Addition.h"
+#import "User.h"
 
 #define kPlatformRenren NO
 #define kPlatformWeibo  YES
 
 @interface PickAtListViewController()
-- (void)configureAtScreenNamesArray:(NSString*)text;
+- (void)configureAtWeiboScreenNamesArray:(NSString*)text;
+- (void)configureAtRenrenScreenNamesArray:(NSString*)text;
+- (void)updateTableView;
+
+@property (nonatomic, assign) BOOL platformCode;
 @end
 
 @implementation PickAtListViewController
@@ -23,6 +28,8 @@
 @synthesize weiboButton = _weiboButton;
 @synthesize tableView = _tableView;
 @synthesize textField = _textField;
+
+@synthesize platformCode = _platformCode;
 
 - (void)dealloc {
     [_renrenButton release];
@@ -51,14 +58,13 @@
     // Do any additional setup after loading the view from its nib.
     [self.renrenButton setPostPlatformButtonSelected:YES];
     self.textField.text = @"";
-    [self configureAtScreenNamesArray:self.textField.text];
-    [self.tableView reloadData];
+    self.platformCode = kPlatformRenren;
+    [self updateTableView];
 }
 
 - (id)init {
     self = [super init];
     if(self) {
-        _platformCode = kPlatformRenren;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     }
     return self;
@@ -67,7 +73,7 @@
 #pragma mark -
 #pragma mark logic
 
-- (void)configureAtScreenNamesArray:(NSString*)text
+- (void)configureAtWeiboScreenNamesArray:(NSString*)text
 {    
     if (_atScreenNames) {
         [_atScreenNames removeAllObjects];
@@ -76,7 +82,7 @@
         _atScreenNames = [[NSMutableArray alloc] init];
     }
     
-    [_atScreenNames insertObject:[[[NSString alloc] initWithFormat:@"@%@", text] autorelease] atIndex:0];
+    [_atScreenNames insertObject:[NSString stringWithFormat:@"@%@", text] atIndex:0];
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"WeiboUser" inManagedObjectContext:self.managedObjectContext];
     
@@ -95,8 +101,50 @@
     NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     for (int i = 0; i < [array count]; i++) {
-        [_atScreenNames addObject:[[[NSString alloc] initWithFormat:@"@%@", [[array objectAtIndex:i] name]] autorelease]];
+        [_atScreenNames addObject:[NSString stringWithFormat:@"@%@", [[array objectAtIndex:i] name]]];
     }
+}
+
+- (void)configureAtRenrenScreenNamesArray:(NSString*)text
+{    
+    if (_atScreenNames) {
+        [_atScreenNames removeAllObjects];
+    }
+    else {
+        _atScreenNames = [[NSMutableArray alloc] init];
+    }
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"RenrenUser" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    [request setEntity:entityDescription];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[[[NSString alloc] initWithFormat:@"name like[c] \"*%@*\"", text] autorelease]];
+    
+    [request setPredicate:predicate];
+    
+    NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES] autorelease];
+    NSSortDescriptor *sort2 = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSArray *descriptors = [NSArray arrayWithObjects:sort, sort2, nil];
+    [request setSortDescriptors:descriptors];
+    
+    NSError *error;
+    NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    for (int i = 0; i < [array count]; i++) {
+        User *usr = [array objectAtIndex:i];
+        [_atScreenNames addObject:[NSString stringWithFormat:@"@%@(%@)", usr.name, usr.userID]];
+    }
+}
+
+- (void)updateTableView {
+    if(self.platformCode == kPlatformRenren) {
+        [self configureAtRenrenScreenNamesArray:self.textField.text];
+    }
+    else if(self.platformCode == kPlatformWeibo) {
+        [self configureAtWeiboScreenNamesArray:self.textField.text];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -107,35 +155,29 @@
 }
 
 - (IBAction)didClickFinishButton:(id)sender {
-    NSString *result = [_atScreenNames objectAtIndex:0];
-    [self.delegate didPickAtUser:result];
+    if(self.platformCode == kPlatformWeibo) {
+        NSString *result = [_atScreenNames objectAtIndex:0];
+        [self.delegate didPickAtUser:result];
+    }
+    else if(self.platformCode == kPlatformRenren) {
+        [self.delegate cancelPickUser];
+    }
 }
 
 - (IBAction)didClickRenrenButton:(id)sender {
-    _platformCode = kPlatformRenren;
+    self.platformCode = kPlatformRenren;
     [self.renrenButton setPostPlatformButtonSelected:YES];
     [self.weiboButton setPostPlatformButtonSelected:NO];
 }
 
 - (IBAction)didClickWeiboButton:(id)sender {
-    _platformCode = kPlatformWeibo;
+    self.platformCode = kPlatformWeibo;
     [self.renrenButton setPostPlatformButtonSelected:NO];
     [self.weiboButton setPostPlatformButtonSelected:YES];
 }
 
 - (IBAction)atTextFieldEditingChanged:(UITextField*)textField {
-    //[self isAtStringValid:textField.text]
-    if (YES) {
-        [self configureAtScreenNamesArray:textField.text];
-        [_tableView reloadData];
-    }
-    else {
-        if (_atScreenNames) {
-            [_atScreenNames removeAllObjects];
-        }
-        _atScreenNames = [[[NSMutableArray alloc] initWithObjects:[[[NSString alloc] initWithFormat:@"@%@", textField.text] autorelease], nil] autorelease];
-        [_tableView reloadData];
-    }
+    [self updateTableView];
 }
 
 #pragma mark - 
@@ -184,6 +226,16 @@
     CGRect tableViewFrame = self.tableView.frame;
     tableViewFrame.size.height = self.view.frame.size.height - kbSize.height - tableViewFrame.origin.y;
     self.tableView.frame = tableViewFrame;
+}
+
+#pragma mark -
+#pragma mark custom getter & setter
+
+- (void)setPlatformCode:(BOOL)platformCode {
+    if(_platformCode != platformCode) {
+        _platformCode = platformCode;
+        [self updateTableView];
+    }
 }
 
 @end
