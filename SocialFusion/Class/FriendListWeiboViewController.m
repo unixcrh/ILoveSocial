@@ -46,4 +46,12 @@
     relationshipCell.latestStatus.text = usr.latestStatus;
 }
 
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    if(_managedObjectContext != managedObjectContext) {
+        [_managedObjectContext release];
+        _managedObjectContext = [managedObjectContext retain];
+        [self clearData];
+    }
+}
+
 @end

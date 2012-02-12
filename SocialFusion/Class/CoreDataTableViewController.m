@@ -91,11 +91,6 @@
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     NSInteger count = [sectionInfo numberOfObjects];
-    
-    if(count == 0)
-        _noAnimationFlag = YES;
-    else
-        _noAnimationFlag = NO;
     return count;
 }
 

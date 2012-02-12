@@ -48,7 +48,7 @@
 
 - (void)scrollContentViewAtIndexPathToVisble:(NSUInteger)index animated:(BOOL)animate{
     if(animate)
-        animate = abs(index - _currentContentIndex) > 3 ? NO : YES;
+        animate = abs(index - _currentContentIndex) <= 2 && index / 4 == _currentContentIndex / 4 ? YES : NO;
     [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * index, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:animate];
 }
 

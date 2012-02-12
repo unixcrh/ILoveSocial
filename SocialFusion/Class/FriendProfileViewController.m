@@ -18,7 +18,7 @@
 #import "UIApplication+Addition.h"
 
 @interface FriendProfileViewController()
-- (void)clearData;
+
 @end
 
 @implementation FriendProfileViewController
@@ -43,9 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(_type == RelationshipViewTypeWeiboFriends || _type == RelationshipViewTypeWeiboFollowers) {
-        [self refresh];
-    }
+    NSLog(@"wb friend did load");
 }
 
 #pragma mark -
@@ -89,7 +87,6 @@
 
 - (void)clearData
 {
-    _noAnimationFlag = YES;
     if(_type == RelationshipViewTypeRenrenFriends) {
         [self.renrenUser removeFriends:self.renrenUser.friends];
     }

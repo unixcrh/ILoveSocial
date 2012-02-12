@@ -23,5 +23,6 @@ typedef enum {
 
 - (id)initWithType:(RelationshipViewType)type;
 - (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath;
+- (void)clearData;
 
 @end
