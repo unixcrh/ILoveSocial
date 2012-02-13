@@ -49,7 +49,7 @@
         {
         _albumPageNumber= index+1;
         
-        
+ 
         switch (index%3) {
             case 0:
             {
@@ -66,6 +66,43 @@
   
                     }
                     
+                    
+                    if (_albumPageNumber*9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])
+                    {
+                        for (int i=9;i<18;i++)
+                        {
+                        _imageOut[i].frame=CGRectMake(0,0,0,0);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(0,0,0,0);
+                        }
+                    }
+                    else if (_albumPageNumber*9+9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])  
+                 {
+                     int count=[((NewFeedShareAlbum*)self.feedData).album_count intValue];
+                     int leftNumber=count%9;
+                     
+                     for (int i=9;i<9+leftNumber;i++)
+                     {
+                         int wid=i%3;
+                         int hei=(i-9)/3;
+                         _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                         [_imageView[i] setImage:nil];
+                         _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                         
+                     }
+
+                     
+                     
+                     for (int i=leftNumber+9;i<18;i++)
+                     {
+                         _imageOut[i].frame=CGRectMake(0,0,0,0);
+                         [_imageView[i] setImage:nil];
+                         _imageView[i].frame=CGRectMake(0,0,0,0);
+                     }
+
+                 }
+                    else
+                 {
                     for (int i=9;i<18;i++)
                     {
                         int wid=i%3;
@@ -75,16 +112,9 @@
                         _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
              
                     }
+                }
                     
-                    for (int i=0;i<9;i++)
-                    {
-                        int wid=i%3;
-                        int hei=i/3;
-                        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
-                        [_imageView[i] setImage:nil];
-                        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*index+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
-                 
-                    }
+         
                 }
                 else
                 {
@@ -102,6 +132,45 @@
             }
             case 1:
             {
+                
+                if (_albumPageNumber*9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])
+                {
+                    for (int i=18;i<27;i++)
+                    {
+                        _imageOut[i].frame=CGRectMake(0,0,0,0);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(0,0,0,0);
+                    }
+                }
+                
+                else if (_albumPageNumber*9+9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])  
+                {
+                    int count=[((NewFeedShareAlbum*)self.feedData).album_count intValue];
+                    int leftNumber=count%9;
+                    
+                    for (int i=18;i<leftNumber+18;i++)
+                    {
+                        int wid=i%3;
+                        int hei=(i-18)/3;
+                        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                        
+                        
+                    }
+
+                    for (int i=leftNumber+18;i<27;i++)
+                    {
+                        _imageOut[i].frame=CGRectMake(0,0,0,0);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(0,0,0,0);
+                    }
+                    
+                }
+                
+                
+                else   
+                {
                 for (int i=18;i<27;i++)
                 {
                     int wid=i%3;
@@ -112,17 +181,9 @@
                     
      
                 }
-                
-                for (int i=9;i<18;i++)
-                {
-                    int wid=i%3;
-                    int hei=(i-9)/3;
-                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
-                    [_imageView[i] setImage:nil];
-                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
-      
                 }
                 
+        
                 for (int i=0;i<9;i++)
                 {
                     int wid=i%3;
@@ -138,17 +199,7 @@
             case 2:
             {
                 
-                for (int i=18;i<27;i++)
-                {
-                    int wid=i%3;
-                    int hei=(i-18)/3;
-                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
-                    [_imageView[i] setImage:nil];
-                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
-                    
-           
-                }
-                
+                              
                 for (int i=9;i<18;i++)
                 {
                     int wid=i%3;
@@ -159,6 +210,41 @@
            
                 }
                 
+                if (_albumPageNumber*9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])
+                {
+                    for (int i=0;i<9;i++)
+                    {
+                        _imageOut[i].frame=CGRectMake(0,0,0,0);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(0,0,0,0);
+                    }
+                }
+                else if (_albumPageNumber*9+9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])  
+                {
+                    int count=[((NewFeedShareAlbum*)self.feedData).album_count intValue];
+                    int leftNumber=count%9;
+                    for (int i=0;i<leftNumber;i++)
+                    {
+                        int wid=i%3;
+                        int hei=i/3;
+                        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                        
+                    }
+                    
+                    
+                    for (int i=leftNumber;i<9;i++)
+                    {
+                        _imageOut[i].frame=CGRectMake(0,0,0,0);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(0,0,0,0);
+                    }
+                    
+                }
+                
+                else   
+                {
                 for (int i=0;i<9;i++)
                 {
                     int wid=i%3;
@@ -169,14 +255,15 @@
    
                 }
                 
-                
+                }
                 
                 break;
             }
             default:
                 break;
         }
-        
+            
+     
     [self loadPhotoData];
 
         }
