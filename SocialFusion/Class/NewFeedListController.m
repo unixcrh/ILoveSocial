@@ -36,7 +36,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (void)dealloc {
     [super dealloc];
-}
+    [_cellHeightHelper release];
+    }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self=[super initWithNibName:@"NewFeedListController" bundle:nil];
@@ -152,6 +153,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     // NSArray *descriptors = [NSArray arrayWithObject:sort]; 
     // [request setSortDescriptors:descriptors]; 
     [sort release];
+    [sort2 release];
+    [sortDescriptors release];
     request.fetchBatchSize = 5;
 }
 

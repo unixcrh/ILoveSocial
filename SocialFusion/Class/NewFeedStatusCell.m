@@ -25,6 +25,16 @@
 - (void)dealloc {
     NSLog(@"webview release");
 
+    [_time release];
+     [_photoView release];
+     [_defaultphotoView release];
+     [_photoOut release];
+    
+     [_name release];
+    
+     [_upCutline release];
+    
+
     _webView.delegate=nil;    
     [_webView release];
     [super dealloc];
