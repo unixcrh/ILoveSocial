@@ -41,4 +41,5 @@
 -(void)loadData;
 -(void)ProcessRenrenData:(NSArray*)array;
 -(void)ProcessWeiboData:(NSArray*)array;
+
 @end

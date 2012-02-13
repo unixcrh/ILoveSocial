@@ -123,6 +123,8 @@
     [_activity startAnimating];
     
 }
+
+
 -(void)addOriStatus
 {
     [self setFixedInfo];

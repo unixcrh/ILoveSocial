@@ -174,12 +174,12 @@
     
     
     [_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"];
-    //NSLog(@"Height:%d",height);
-    //  NSLog(@"爱如完成");
+
+    
     [_photoData release];
     
     [_activity stopAnimating];
-    [_activity removeFromSuperview];
+    //[_activity removeFromSuperview];
     [_activity release];
     
     if( webView.scrollView.contentSize.height<_titleView.frame.size.height+_webView.frame.size.height)

@@ -17,4 +17,6 @@
     int _albumPageNumber;
   
 }
+
+-(void)loadPhotoData;
 @end

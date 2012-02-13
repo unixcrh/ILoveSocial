@@ -29,6 +29,206 @@
 
 }
 
+/*
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView==_contentScrollView)
+    {
+        scrollView.scrollEnabled=NO;
+    }
+}
+ */
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [super scrollViewDidEndDecelerating:scrollView];
+    if (scrollView==_contentScrollView)
+    {
+        int index = fabs(scrollView.contentOffset.y) / scrollView.frame.size.height;
+        
+        if (index+1!=_albumPageNumber)
+        {
+        _albumPageNumber= index+1;
+        
+        
+        switch (index%3) {
+            case 0:
+            {
+                if (index!=0)
+                {
+                    for (int i=18;i<27;i++)
+                    {
+                        int wid=i%3;
+                        int hei=(i-18)/3;
+                        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index-1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                        
+  
+                    }
+                    
+                    for (int i=9;i<18;i++)
+                    {
+                        int wid=i%3;
+                        int hei=(i-9)/3;
+                        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+             
+                    }
+                    
+                    for (int i=0;i<9;i++)
+                    {
+                        int wid=i%3;
+                        int hei=i/3;
+                        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                        [_imageView[i] setImage:nil];
+                        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*index+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                 
+                    }
+                }
+                else
+                {
+    
+                    
+                    for (int i=0;i<27;i++)
+                    {
+                       
+                        [_imageView[i] setImage:nil];
+                       
+                    }
+              
+                }
+                break;
+            }
+            case 1:
+            {
+                for (int i=18;i<27;i++)
+                {
+                    int wid=i%3;
+                    int hei=(i-18)/3;
+                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                    [_imageView[i] setImage:nil];
+                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                    
+     
+                }
+                
+                for (int i=9;i<18;i++)
+                {
+                    int wid=i%3;
+                    int hei=(i-9)/3;
+                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                    [_imageView[i] setImage:nil];
+                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+      
+                }
+                
+                for (int i=0;i<9;i++)
+                {
+                    int wid=i%3;
+                    int hei=i/3;
+                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                    [_imageView[i] setImage:nil];
+                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index-1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+         
+                }
+                
+                break;
+            }
+            case 2:
+            {
+                
+                for (int i=18;i<27;i++)
+                {
+                    int wid=i%3;
+                    int hei=(i-18)/3;
+                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                    [_imageView[i] setImage:nil];
+                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+                    
+           
+                }
+                
+                for (int i=9;i<18;i++)
+                {
+                    int wid=i%3;
+                    int hei=(i-9)/3;
+                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                    [_imageView[i] setImage:nil];
+                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index-1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+           
+                }
+                
+                for (int i=0;i<9;i++)
+                {
+                    int wid=i%3;
+                    int hei=i/3;
+                    _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+                    [_imageView[i] setImage:nil];
+                    _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*(index+1)+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+   
+                }
+                
+                
+                
+                break;
+            }
+            default:
+                break;
+        }
+        
+    [self loadPhotoData];
+      //      scrollView.scrollEnabled=YES;
+        }
+    }
+
+}
+
+
+-(void)loadPhotoData
+{
+    
+    _activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activity.center=CGPointMake(153, 300);
+    [self.view addSubview:_activity];
+    [_activity startAnimating];
+    
+    RenrenClient *renren = [RenrenClient client];
+    [renren setCompletionBlock:^(RenrenClient *client) {
+        if(!client.hasError) {
+            NSArray *array = client.responseJSONObject;
+            int i=(_albumPageNumber+2)%3*9;
+            for(NSDictionary *dict in array) {
+                
+                Image *image = [Image imageWithURL:[dict objectForKey:@"url_head"] inManagedObjectContext:self.managedObjectContext];
+                if (image == nil)
+                {
+                    [_imageView[i] loadImageFromURL:[dict objectForKey:@"url_head"] completion:^{
+                        [_imageView[i] fadeIn];
+                    } cacheInContext:self.managedObjectContext];
+                    _imageView[i].clipsToBounds=YES;
+                }
+                else
+                {
+                    [_imageView[i] setImage:[UIImage imageWithData:image.imageData.data]];
+                    [_imageView[i] fadeIn];
+                    
+                }
+                i++;
+                
+                
+                
+            } 
+            [_activity stopAnimating];
+            
+            [_activity release];
+        }
+    }];
+    [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
+    
+
+    
+}
 -(void)loadMainView
 {
     _albumPageNumber=1;
@@ -51,6 +251,7 @@
         _imageView[i+9*j].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*j+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
         [_contentScrollView addSubview:_imageView[i+9*j]];
         _imageView[i+9*j].contentMode=UIViewContentModeScaleAspectFill;
+        _imageView[i+9*j].clipsToBounds=YES;
     }
     
     }
@@ -72,13 +273,19 @@
                     } cacheInContext:self.managedObjectContext];
                     _imageView[i].clipsToBounds=YES;
                 }
+             else
+                {
+                    [_imageView[i] setImage:[UIImage imageWithData:image.imageData.data]];
+             
+                }
                 i++;
                 
-            //    [_activity stopAnimating];
-              //  [_activity removeFromSuperview];
-              //  [_activity release];
+     
                 
             } 
+            [_activity stopAnimating];
+            
+            [_activity release];
         }
     }];
     [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
