@@ -29,7 +29,7 @@
 
 }
 
-/*
+
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     if (scrollView==_contentScrollView)
@@ -37,7 +37,7 @@
         scrollView.scrollEnabled=NO;
     }
 }
- */
+ 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [super scrollViewDidEndDecelerating:scrollView];
@@ -178,8 +178,9 @@
         }
         
     [self loadPhotoData];
-      //      scrollView.scrollEnabled=YES;
+
         }
+                 scrollView.scrollEnabled=YES;
     }
 
 }
