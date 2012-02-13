@@ -12,6 +12,7 @@
 #import "WeiboUser+Addition.h"
 #import "WeiboClient.h"
 #import "RenrenClient.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define LOGOUT_RENREN NO
 #define LOGOUT_WEIBO YES
@@ -92,7 +93,15 @@
     self.renrenUser = self.currentRenrenUser;
     self.weiboUser = self.currentWeiboUser;
     vc.userDict = self.userDict;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]; 
+    transition.type = kCATransitionPush; 
+    transition.subtype = kCATransitionFromTop;
+    
+    [self.navigationController pushViewController:vc animated:NO];
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
     [vc release];
 }
 

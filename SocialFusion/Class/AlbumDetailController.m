@@ -21,16 +21,6 @@
 @implementation AlbumDetailController
 
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView==_contentScrollView)
-    {
-        if (scrollView.contentOffset.y>_albumPageNumber*250)
-        {
-            
-        }
-    }
-}
 -(void)setFixedInfo
 {
     [super setFixedInfo];
@@ -45,36 +35,26 @@
     _contentScrollView.pagingEnabled=YES;
     _contentScrollView.directionalLockEnabled=YES;
     [_contentScrollView setContentSize:CGSizeMake(_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* ([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1))];
+    
+    for (int j=0;j<3;j++)
+    {
     for (int i=0;i<9;i++)
     {
-        _imageOut[i]=[[UIButton alloc] init];
-        _imageView[i]=[[UIImageView alloc] init];
+        _imageOut[i+9*j]=[[UIButton alloc] init];
+        _imageView[i+9*j]=[[UIImageView alloc] init];
         int wid=i%3;
         int hei=i/3;
-        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
-        [_imageOut[i] setImage:[UIImage imageNamed:@"detail_album"] forState:UIControlStateNormal];
-        [_contentScrollView addSubview:_imageOut[i]];
+        _imageOut[i+9*j].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*j+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
+        [_imageOut[i+9*j] setImage:[UIImage imageNamed:@"detail_album"] forState:UIControlStateNormal];
+        [_contentScrollView addSubview:_imageOut[i+9*j]];
         
-        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
-[_contentScrollView addSubview:_imageView[i]];
-        _imageView[i].contentMode=UIViewContentModeScaleAspectFill;
+        _imageView[i+9*j].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*j+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
+        [_contentScrollView addSubview:_imageView[i+9*j]];
+        _imageView[i+9*j].contentMode=UIViewContentModeScaleAspectFill;
     }
     
-    for (int i=9;i<18;i++)
-    {
-        _imageOut[i]=[[UIButton alloc] init];
-        _imageView[i]=[[UIImageView alloc] init];
-        int wid=(i-9)%3;
-        int hei=(i-9)/3;
-        _imageOut[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
-        [_imageOut[i] setImage:[UIImage imageNamed:@"detail_album"] forState:UIControlStateNormal];
-        [_contentScrollView addSubview:_imageOut[i]];
-        
-        _imageView[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
-        [_contentScrollView addSubview:_imageView[i]];
-        _imageView[i].contentMode=UIViewContentModeScaleAspectFill;
     }
-    
+      
     
     [_albumTitle setText:((NewFeedShareAlbum*)self.feedData).album_title];
     RenrenClient *renren = [RenrenClient client];
@@ -94,9 +74,9 @@
                 }
                 i++;
                 
-                [_activity stopAnimating];
-                [_activity removeFromSuperview];
-                [_activity release];
+            //    [_activity stopAnimating];
+              //  [_activity removeFromSuperview];
+              //  [_activity release];
                 
             } 
         }
