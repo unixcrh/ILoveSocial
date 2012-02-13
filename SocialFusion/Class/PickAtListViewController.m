@@ -8,7 +8,8 @@
 
 #import "PickAtListViewController.h"
 #import "UIButton+Addition.h"
-#import "User.h"
+#import "RenrenUser+Addition.h"
+#import "RenrenClient.h"
 
 #define kPlatformRenren NO
 #define kPlatformWeibo  YES
@@ -52,8 +53,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.renrenButton setPostPlatformButtonSelected:YES];
@@ -105,15 +105,7 @@
     }
 }
 
-- (void)configureAtRenrenScreenNamesArray:(NSString*)text
-{    
-    if (_atScreenNames) {
-        [_atScreenNames removeAllObjects];
-    }
-    else {
-        _atScreenNames = [[NSMutableArray alloc] init];
-    }
-    
+- (NSArray *)getAllRenrenUserArrayWithHint:(NSString *)text {
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"RenrenUser" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
@@ -130,10 +122,42 @@
     
     NSError *error;
     NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
+    return array;
+}
+
+- (void)setAtScreenNamesWithRenrenArray:(NSArray *)array {
     for (int i = 0; i < [array count]; i++) {
         User *usr = [array objectAtIndex:i];
         [_atScreenNames addObject:[NSString stringWithFormat:@"@%@(%@)", usr.name, usr.userID]];
+    }
+}
+
+- (void)configureAtRenrenScreenNamesArray:(NSString*)text {    
+    if (_atScreenNames) {
+        [_atScreenNames removeAllObjects];
+    }
+    else {
+        _atScreenNames = [[NSMutableArray alloc] init];
+    }
+    NSArray *array = [self getAllRenrenUserArrayWithHint:text];
+    if(array.count == 1) {
+        RenrenClient *client = [RenrenClient client];
+        [client setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSArray *resultArray = client.responseJSONObject;
+                for(NSDictionary *dict in resultArray) {
+                    NSLog(@"dict:%@", dict);
+                    [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
+                }
+                NSArray *newArray = [self getAllRenrenUserArrayWithHint:text];
+                [self setAtScreenNamesWithRenrenArray:newArray];
+                [self.tableView reloadData];
+            }
+        }];
+        [client getFriendsProfile];
+    }
+    else {
+        [self setAtScreenNamesWithRenrenArray:array];
     }
 }
 

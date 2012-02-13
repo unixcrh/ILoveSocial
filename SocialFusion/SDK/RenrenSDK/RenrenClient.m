@@ -426,10 +426,20 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 #pragma mark -
 #pragma mark Public methods
 
-//请求好友列表
+//请求好友信息列表
 - (void)getFriendsProfile {
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
 								 @"friends.getFriends",@"method",
+                                 @"7000", @"count",
+								 nil];
+	[self requestWithParams:params andDelegate:self];
+}
+
+//请求好友ID列表
+- (void)getFriendsID {
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+								 @"friends.get",@"method",
+                                 @"7000", @"count",
 								 nil];
 	[self requestWithParams:params andDelegate:self];
 }
