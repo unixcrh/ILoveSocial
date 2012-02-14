@@ -10,6 +10,7 @@
 #import "UIApplication+Addition.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
+#import "UIButton+Addition.h"
 
 @interface LeaveMessageViewController()
 
@@ -45,6 +46,7 @@
     self = [self init];
     if(self) {
         _dialogist = [usr retain];
+        self.managedObjectContext = usr.managedObjectContext;
         if([usr isMemberOfClass:[RenrenUser class]]) {
             _platformCode = kPlatformRenren;
         }
@@ -70,7 +72,8 @@
 #pragma mark IBAction
 
 - (IBAction)didClickSecretWordsButton:(id)sender {
-    
+    _useSecretWords = !_useSecretWords;
+    [self.secretWordsLightButton setPostPlatformButtonSelected:_useSecretWords];
 }
 
 @end
