@@ -27,11 +27,13 @@ typedef enum {
     UITextView *_textView;
     UILabel *_textCountLabel;
     UIView *_toolBarView;
+    UILabel *titleLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;
 @property (nonatomic, retain) IBOutlet UILabel *textCountLabel;
 @property (nonatomic, retain) IBOutlet UIView *toolBarView;
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 
 - (IBAction)didClickCancelButton:(id)sender;
 - (IBAction)didClickPostButton:(id)sender;

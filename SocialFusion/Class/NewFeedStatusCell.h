@@ -40,8 +40,6 @@
 -(void)setList:(NewFeedListController*)list;
 -(void)configureCell:(NewFeedRootData*)feedData;
 -(void)exposeCell;
-
--(void)selectCellUser;
 -(void)loadImage:(NSData*)image;
 -(void)loadPicture:(NSData*)image;
 -(void)setData:(NSData*)image;

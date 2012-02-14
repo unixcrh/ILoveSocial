@@ -26,11 +26,13 @@
 @synthesize textView = _textView;
 @synthesize textCountLabel = _textCountLabel;
 @synthesize toolBarView = _toolBarView;
+@synthesize titleLabel = _titleLabel;
 
 - (void)dealloc {
     [_textView release];
     [_textCountLabel release];
     [_toolBarView release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -40,6 +42,7 @@
     self.textView = nil;
     self.textCountLabel = nil;
     self.toolBarView = nil;
+    self.titleLabel = nil;
 }
 
 - (id)init {
