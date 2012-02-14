@@ -88,6 +88,7 @@
 - (void)clearData
 {
     if(_type == RelationshipViewTypeRenrenFriends) {
+        _noAnimationFlag = YES;
         [self.renrenUser removeFriends:self.renrenUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {

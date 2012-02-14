@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NewFeedData+NewFeedData_Addition.h"
-#import "NewFeedRootData+NewFeedRootData_Addition.h"
+#import "NewFeedRootData+Addition.h"
 @class NewFeedListController;
 @interface NewFeedStatusCell : UITableViewCell<UIWebViewDelegate> {
 

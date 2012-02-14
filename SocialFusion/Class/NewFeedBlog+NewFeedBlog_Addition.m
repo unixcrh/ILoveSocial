@@ -7,83 +7,40 @@
 //
 
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
+#import "NewFeedRootData+Addition.h"
 
 @implementation NewFeedBlog (NewFeedBlog_Addition)
-+ (NewFeedBlog *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
+
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+    if ([[dict objectForKey:@"feed_type"] intValue] == 21)
+    {
+        //  NSLog(@"%@",dict);
+        self.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
+        self.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
+        self.shareID=[[dict objectForKey:@"source_id"] stringValue]; 
+        self.sharePersonID=[[dict objectForKey:@"actor_id"] stringValue];
+    }
+    
+    self.prefix = [dict objectForKey:@"prefix"] ;
+    self.title = [dict objectForKey:@"title"] ;
+    self.mydescription = [dict objectForKey:@"description"] ;
+}
+
++ (NewFeedBlog *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
-        NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
-        if (!statusID || [statusID isEqualToString:@""]) {
-            return nil;
-        }
-        
-        NewFeedBlog *result = [NewFeedBlog feedWithID:statusID inManagedObjectContext:context];
-        if (!result) {
-            result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedBlog" inManagedObjectContext:context];
-        }
-        
-        
-        result.post_ID = statusID;
-        
-        
-        result.style=[NSNumber numberWithInt:sytle];
-        
-        if ([[dict objectForKey:@"feed_type"] intValue]==21)
-        {
-          //  NSLog(@"%@",dict);
-        result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
-        result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
-        result.shareID=[[dict objectForKey:@"source_id"] stringValue]; 
-        result.sharePersonID=[[dict objectForKey:@"actor_id"] stringValue];
-        }
+    NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
+    if (!statusID || [statusID isEqualToString:@""]) {
+        return nil;
+    }
     
-        else
-        {
-        result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
-        result.source_ID= [[dict objectForKey:@"source_id"] stringValue]; 
-        }
-
-        
-        
-        result.owner_Head= [dict objectForKey:@"headurl"] ;
-        
-        result.owner_Name=[dict objectForKey:@"name"] ;
-        
-        
-        
-        NSDateFormatter *form = [[NSDateFormatter alloc] init];
-        [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        
-        NSString* dateString=[dict objectForKey:@"update_time"];
-        result.update_Time=[form dateFromString: dateString];
-        
-        
-        [form release];
-        
-        
-        result.comment_Count=[NSNumber numberWithInt:    [ [[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
-        
-       // result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
-        
-        result.prefix=[dict objectForKey:@"prefix"] ;
-        result.title=[dict objectForKey:@"title"] ;
-        result.mydescription=[dict objectForKey:@"description"] ;
-        
-        
-        result.cellheight=[NSNumber numberWithInt:height];
-       // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
-       // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
-
-
-        result.get_Time=getDate;
+    NewFeedBlog *result = [NewFeedBlog feedWithID:statusID inManagedObjectContext:context];
+    if (!result) {
+        result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedBlog" inManagedObjectContext:context];
+    }
+    
+    [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
     return result;
-        
-        // 将自己添加到对应user的statuses里
-        // NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];
-        // result.author = [RenrenUser userWithID:authorID inManagedObjectContext:context];
-    
-       
-    
 }
 
 
@@ -109,7 +66,7 @@
     //if (description==nil)
     //description=@"";
     
-   
+    
     
     
     

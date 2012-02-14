@@ -23,18 +23,18 @@
 @synthesize photoView=_photoView;
 
 - (void)dealloc {
-    NSLog(@"webview release");
-
+    NSLog(@"NewFeedStatusCell release");
+    
     [_time release];
-     [_photoView release];
-     [_defaultphotoView release];
-     [_photoOut release];
+    [_photoView release];
+    [_defaultphotoView release];
+    [_photoOut release];
     
-     [_name release];
+    [_name release];
     
-     [_upCutline release];
+    [_upCutline release];
     
-
+    
     _webView.delegate=nil;    
     [_webView release];
     [super dealloc];
@@ -47,7 +47,7 @@
 
 + (float)heightForCell:(NewFeedData*)feedData
 {
-     if ([feedData class]==[NewFeedUploadPhoto class] )
+    if ([feedData class]==[NewFeedUploadPhoto class] )
     {
         return 162;
     }
@@ -56,7 +56,7 @@
         return [feedData.cellheight intValue];
     }
     
-     
+    
     return 0;
     
 }
@@ -65,7 +65,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-    //    _buttonViewShowed=NO;
+        //    _buttonViewShowed=NO;
     }
     return self;
 }
@@ -90,12 +90,12 @@
     [image1 drawInRect:CGRectMake(0, 0, size.width, size.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-  //  return newImage;
-        
+    //  return newImage;
+    
     
     NSData* imagedata=UIImageJPEGRepresentation(newImage, 10);
-
-
+    
+    
     
     NSString *imgB64 = [[imagedata base64Encoding] jpgDataURIWithContent];
     
@@ -120,11 +120,11 @@
 {
     
     NSString *imgB64 = [[image base64Encoding] jpgDataURIWithContent];
-
     
-                    
+    
+    
     NSString *javascript = [NSString stringWithFormat:@"document.getElementById('head').src='%@'", imgB64];
-       
+    
     
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
     
@@ -137,17 +137,17 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
-
-
-if (_photoData!=nil)
-{
-    [self loadImage:_photoData];
-    [_photoData release];
-}
+    
+    
+    if (_photoData!=nil)
+    {
+        [self loadImage:_photoData];
+        [_photoData release];
+    }
     int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
     _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
-
+    
     [UIView animateWithDuration:0.1f animations:^{
         _webView.alpha=1;
     }];
@@ -164,7 +164,7 @@ if (_photoData!=nil)
     [_listController showImage:indexpath];
     
     
-
+    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -173,7 +173,7 @@ if (_photoData!=nil)
     
     NSString* tempString=[NSString stringWithFormat:@"%@",[request URL]];
     //NSLog(@"%@",tempString);
-
+    
     NSString* commandString=[tempString substringFromIndex:7];
     if ([commandString isEqualToString:@"showimage"])
     {
@@ -184,14 +184,14 @@ if (_photoData!=nil)
     {
         [self exposeCell];
     }
-
+    
     return YES;
 }
 -(void)exposeCell
 {
     
     NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
-//    [_listController.tableView selectRowAtIndexPath:indexpath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    //    [_listController.tableView selectRowAtIndexPath:indexpath animated:YES scrollPosition:UITableViewScrollPositionNone];
     
     
     [_listController exposeCell:indexpath];
@@ -205,9 +205,9 @@ if (_photoData!=nil)
 
 -(id)init
 {
-
+    
     self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewFeedStatusCell"];
-
+    
     _webView=[[UIWebView alloc] init];
     _webView.frame=CGRectMake(0, 0, 320, 100);
     [self.contentView addSubview:_webView];
@@ -222,7 +222,7 @@ if (_photoData!=nil)
     //_time.text=@"365天前";
     _time.textColor=[UIColor colorWithRed:0.5647f green:0.55686f blue:0.47059 alpha:1];
     
-
+    
     
     
     
@@ -233,30 +233,31 @@ if (_photoData!=nil)
     
     _photoOut=[[UIButton alloc] init];
     _photoOut.frame=CGRectMake(4, 8, 46, 46);
+    _photoOut.adjustsImageWhenHighlighted = NO;
+    [_photoOut addTarget:self action:@selector(didClickPhotoOutButton) forControlEvents:UIControlEventTouchUpInside];
     
     _defaultphotoView=[[UIImageView alloc] init];
     _defaultphotoView.frame=CGRectMake(8, 12, 37, 37);
-     [_defaultphotoView setImage:[UIImage imageNamed:@"default_renren_tiny.png"]];
+    [_defaultphotoView setImage:[UIImage imageNamed:@"default_renren_tiny.png"]];
     
     _name=[[UIButton alloc] init];
     _name.frame=CGRectMake(57, 9, 210, 18);
     [_name setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-     [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-   // [_name setTitle:@"RoyHeRoyHeRoyHeRoyHeRoy" forState:UIControlStateNormal];
+    [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
+    // [_name setTitle:@"RoyHeRoyHeRoyHeRoyHeRoy" forState:UIControlStateNormal];
     
     [_name setTitleColor:[UIColor colorWithRed:0.32157f green:0.31373 blue:0.26666667 alpha:1] forState:UIControlStateNormal];
     [_name.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0f]];
-   
+    
     [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];
-   
+    
     _upCutline=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
     _upCutline.frame=CGRectMake(8, 3, 290, 1);
     
     
-    [_photoOut addTarget:self action:@selector(selectCellUser) forControlEvents:UIControlEventTouchUpInside];
-     [self.contentView addSubview:_upCutline];
+    [self.contentView addSubview:_upCutline];
     
-        [self.contentView addSubview:_defaultphotoView];
+    [self.contentView addSubview:_defaultphotoView];
     
     [self.contentView addSubview:_photoView];
     
@@ -265,18 +266,13 @@ if (_photoData!=nil)
     [self.contentView addSubview:_name];
     
     [self.contentView addSubview:_time];
-
+    
     
     return  self;
 }
--(void)selectCellUser
-{
-    NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
-    //    [_listController.tableView selectRowAtIndexPath:indexpath animated:YES scrollPosition:UITableViewScrollPositionNone];
-    
-    
-    [_listController selectUser:indexpath];
-}
+
+
+
 -(void)configureCell:(NewFeedRootData*)feedData
 {    
     _photoData=nil;
@@ -287,29 +283,29 @@ if (_photoData!=nil)
     _webView.frame=CGRectMake(0, 0, 320, 100);
     [self.contentView addSubview:_webView];
     
-
+    
     [self.contentView sendSubviewToBack:_webView];
     
     _webView.alpha=0;
     [_photoView setImage:nil];
-   
+    
     if ([feedData getStyle]==0)
     {
-    [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];
+        [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];
     }
     else
     {
-       [_photoOut setImage:[UIImage imageNamed:@"head_wb.png"] forState:UIControlStateNormal];
+        [_photoOut setImage:[UIImage imageNamed:@"head_wb.png"] forState:UIControlStateNormal];
     }
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
         NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         
-      
+        
         infoText=[infoText setWeibo:[(NewFeedUploadPhoto*)feedData getName]];
         infoText=[infoText setComment:[(NewFeedUploadPhoto*)feedData getPhoto_Comment]];
-            
+        
         [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
         [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
         infoText=[infoText setAlbum:[(NewFeedUploadPhoto*)feedData getTitle]];
@@ -318,7 +314,7 @@ if (_photoData!=nil)
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
         
-      
+        
         
     }
     else if ([feedData class]==[NewFeedShareAlbum class])
@@ -335,12 +331,12 @@ if (_photoData!=nil)
         infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
-
         
         
-    
-    
-
+        
+        
+        
+        
     }
     
     
@@ -352,11 +348,11 @@ if (_photoData!=nil)
         [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
         [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
         infoText=[infoText setWeibo:[((NewFeedSharePhoto*)feedData) getShareComment]];
-       
+        
         infoText=[infoText setComment:[(NewFeedSharePhoto*)feedData getPhotoComment]];
         infoText=[infoText setAlbum:[(NewFeedSharePhoto*)feedData getTitle]];
         infoText=[infoText setAuthor:[(NewFeedSharePhoto*)feedData getFromName]];
-               infoText=[infoText setCount:[feedData getCountString]];
+        infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
         
@@ -370,30 +366,30 @@ if (_photoData!=nil)
         [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
         [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
         infoText=[infoText setWeibo:[((NewFeedBlog*)feedData) getName]];
-   
+        
         infoText=[infoText setRepost:[(NewFeedBlog*)feedData getBlog]];
-               infoText=[infoText setCount:[feedData getCountString]];
+        infoText=[infoText setCount:[feedData getCountString]];
         [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
         [infoText release];
-
+        
     }
     
     else
     {
-
+        
         if ([(NewFeedData*)feedData getPostName]==nil)
         {
             if (((NewFeedData*)feedData).pic_URL!=nil)
             {
                 NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocell" ofType:@"html"];
-            
+                
                 NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            
+                
                 [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
                 [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
-              
-                   infoText=[infoText setCount:[feedData getCountString]];
+                
+                infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }
@@ -405,8 +401,8 @@ if (_photoData!=nil)
                 [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
                 [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
-             
-               infoText=[infoText setCount:[feedData getCountString]];
+                
+                infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }
@@ -421,9 +417,9 @@ if (_photoData!=nil)
                 [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
                 [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
-              
+                
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
-                       infoText=[infoText setCount:[feedData getCountString]];
+                infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }
@@ -435,7 +431,7 @@ if (_photoData!=nil)
                 [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
                 [_name setTitle:[feedData getFeedName] forState:UIControlStateNormal];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
-             
+                
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
                 infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
@@ -455,18 +451,20 @@ if (_photoData!=nil)
     _webView.scrollView.scrollEnabled=NO;
     _webView.delegate=self;
     
-   
     
-
+    
+    
     // [_feedData release];
     
     
-  }
+}
 
+#pragma mark -
+#pragma mark UI actions
 
-
-
-
-
+-(void)didClickPhotoOutButton {
+    NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
+    [_listController selectUser:indexpath];
+}
 
 @end

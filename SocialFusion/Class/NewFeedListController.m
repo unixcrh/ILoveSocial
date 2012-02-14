@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RenrenClient.h"
 #import "WeiboClient.h"
-#import "NewFeedRootData+NewFeedRootData_Addition.h"
+#import "NewFeedRootData+Addition.h"
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
@@ -34,10 +34,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 @implementation NewFeedListController
 
-- (void)dealloc {
+-(void)dealloc {
     [super dealloc];
     [_cellHeightHelper release];
-    }
+}
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self=[super initWithNibName:@"NewFeedListController" bundle:nil];
@@ -160,7 +160,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
-        [self hideLoadMoreDataButton];
+    [self hideLoadMoreDataButton];
     _pageNumber=0;
     //  [self hideLoadMoreDataButton];
     if (_currentTime!=nil)
@@ -175,18 +175,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-            
-            
             NSArray *array = client.responseJSONObject;
-            [self processWeiboData:array];
-            
-            
+            [self processWeiboData:array];        
         }
     }];
     
     [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
     
 }
+
 - (void)loadExtraDataForOnscreenRows 
 {
     NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
@@ -217,15 +214,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 -(void)processWeiboData:(NSArray*)array
 {
     for(NSDictionary *dict in array) {
-        int scrollHeight =[_cellHeightHelper getHeight:dict style:1];
+        int scrollHeight = [_cellHeightHelper getHeight:dict style:1];
         
         NewFeedData* data = [NewFeedData insertNewFeed:1 height:scrollHeight getDate:_currentTime Owner:self.processWeiboUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
-        
         [self addNewWeiboData:data];
-        
     }
     
-     
+    
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
     
@@ -238,13 +233,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     for(NSDictionary *dict in array) {
         
         
-      //  NSLog(@"%@",dict);
+        //  NSLog(@"%@",dict);
         int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
         NewFeedRootData *data;
         
         if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
         {
-          //  NSLog(@"%@",dict);
+            //  NSLog(@"%@",dict);
             data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.processRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==30)
@@ -271,7 +266,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
-   // [self loadExtraDataForOnscreenRows];
+    // [self loadExtraDataForOnscreenRows];
     _loading = NO;
 }
 
@@ -285,7 +280,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
-                
+            
         }
     }];
     
@@ -373,8 +368,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     static NSString *StatusCell = @"NewFeedStatusCell";
     
-
-
+    
+    
     if ([indexPath compare:_indexPath])
     {
         NewFeedStatusCell* cell;
@@ -396,7 +391,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         [cell setList:self];
         
         
-   
+        
         NSData *imageData = nil;
         if([Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext]) {
             imageData = [Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;
@@ -415,12 +410,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         }
         
         
-       
         
-
-       
         
-    
+        
+        
+        
+        
         
         
         
@@ -428,22 +423,22 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
     else//展开时的cell
     {
-
+        
         NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-      
-            if ([a class]==[NewFeedBlog class])
-            {
-                NewFeedDetailBlogViewCell* cell;
-                [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailBlogViewCell" owner:self options:nil];
-                cell = _newFeedDetailBlogViewCel;
-                
-                [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
-                
-                
-                return cell; 
-            }
+        
+        if ([a class]==[NewFeedBlog class])
+        {
+            NewFeedDetailBlogViewCell* cell;
+            [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailBlogViewCell" owner:self options:nil];
+            cell = _newFeedDetailBlogViewCel;
             
+            [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
+            
+            
+            return cell; 
+        }
+        
         else if ([a class]==[NewFeedShareAlbum class])
         {
             NewFeedAlbumCell* cell;
@@ -457,15 +452,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         }
         else
         {
-    
-                NewFeedDetailViewCell* cell;
+            
+            NewFeedDetailViewCell* cell;
             [[NSBundle mainBundle] loadNibNamed:@"NewFeedDetailViewCell" owner:self options:nil];
             cell = _newFeedDetailViewCel;
             
             [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
             
-        
-        return cell;
+            
+            return cell;
         }
     }
     
@@ -497,12 +492,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         } cacheInContext:self.managedObjectContext];
         
     }
-
-
     
     
     
-
+    
+    
+    
     if ([data class]==[NewFeedUploadPhoto class])
     {
         NewFeedUploadPhoto* data2=(NewFeedUploadPhoto*)data;
@@ -656,22 +651,18 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
--(void)selectUser:(NSIndexPath *)indexPath
+- (void)selectUser:(NSIndexPath *)indexPath
 {
-    /*
-    NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    User *usr =[User userWithID:[_feedData getActor_ID] inManagedObjectContext:self.managedObjectContext];
-    
-    
+    NewFeedRootData* feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    User *usr = feedData.author;
     NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
     if([usr isMemberOfClass:[RenrenUser class]])
         [userDict setObject:usr forKey:kRenrenUser];
     else if([usr isMemberOfClass:[WeiboUser class]]) 
         [userDict setObject:usr forKey:kWeiboUser];
     [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
-     */
 }
--(IBAction)resetToNormalList
+- (IBAction)resetToNormalList
 {
     
     self.tableView.allowsSelection=NO;
@@ -683,7 +674,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:tempIndex] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView scrollToRowAtIndexPath:tempIndex atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     [tempIndex release];
-      [self loadExtraDataForOnscreenRows];
+    [self loadExtraDataForOnscreenRows];
 }
 
 @end
