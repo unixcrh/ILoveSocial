@@ -11,12 +11,12 @@
 #import "RenrenClient.h"
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
-#define IMAGE_OUT_V_SPACE 7
+#define IMAGE_OUT_V_SPACE 20
 #define IMAGE_OUT_WIDTH 83
-#define IMAGE_OUT_H_SPACE 15
+#define IMAGE_OUT_H_SPACE 20
 #define IMAGE_OUT_HEIGHT 63
-#define IMAGE_OUT_BEGIN_X 22
-#define IMAGE_OUT_BEGIN_Y 15
+#define IMAGE_OUT_BEGIN_X 10
+#define IMAGE_OUT_BEGIN_Y 10
 
 @implementation AlbumDetailController
 
@@ -272,7 +272,16 @@
 
 }
 
-
+-(IBAction)showImageDetail:(id)sender
+{
+    
+    CGRect zoomingRect=((UIButton*)sender).frame;
+    zoomingRect.size.height=zoomingRect.size.height+25;
+ 
+    [_contentScrollView zoomToRect:zoomingRect animated:YES];
+    _contentScrollView.scrollEnabled=NO;
+//    NSLog(@"%lf,%lf,%lf,%lf",((UIButton*)sender).frame.origin.x,((UIButton*)sender).frame.origin.y,((UIButton*)sender).frame.size.width,((UIButton*)sender).frame.size.height);
+}
 -(void)loadPhotoData
 {
     
@@ -317,13 +326,19 @@
 
     
 }
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    NSLog(@"zoom");
+    return _contentView;
+}
 -(void)loadMainView
 {
     _albumPageNumber=1;
     _contentScrollView.pagingEnabled=YES;
     _contentScrollView.directionalLockEnabled=YES;
+    _contentScrollView.maximumZoomScale=10.0;
     [_contentScrollView setContentSize:CGSizeMake(_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* ([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1))];
-    
+    [_contentView setFrame:CGRectMake(0, 0,_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* ([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1))];
     for (int j=0;j<3;j++)
     {
     for (int i=0;i<9;i++)
@@ -334,12 +349,14 @@
         int hei=i/3;
         _imageOut[i+9*j].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*j+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
         [_imageOut[i+9*j] setImage:[UIImage imageNamed:@"detail_album"] forState:UIControlStateNormal];
-        [_contentScrollView addSubview:_imageOut[i+9*j]];
+        [_contentView addSubview:_imageOut[i+9*j]];
         
         _imageView[i+9*j].frame=CGRectMake(IMAGE_OUT_BEGIN_X+3+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 250*j+IMAGE_OUT_BEGIN_Y+3+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-6);
-        [_contentScrollView addSubview:_imageView[i+9*j]];
+        [_contentView addSubview:_imageView[i+9*j]];
         _imageView[i+9*j].contentMode=UIViewContentModeScaleAspectFill;
         _imageView[i+9*j].clipsToBounds=YES;
+        
+        [_imageOut[i+9*j] addTarget:self action:@selector(showImageDetail:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     }
