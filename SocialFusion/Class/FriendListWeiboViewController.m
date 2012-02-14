@@ -27,10 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(_type == RelationshipViewTypeWeiboFriends && self.weiboUser.friends.count == 0) 
-        [self refresh];
-    if(_type == RelationshipViewTypeWeiboFollowers && self.weiboUser.followers.count == 0) 
-        [self refresh];
+    [self refresh];
 }
 
 #pragma mark -

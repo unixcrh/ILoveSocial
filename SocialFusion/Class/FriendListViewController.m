@@ -34,7 +34,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self refresh];
 }
 
 + (FriendListViewController *)getNewFeedListControllerWithType:(RelationshipViewType)type {
