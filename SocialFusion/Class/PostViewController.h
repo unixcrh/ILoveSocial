@@ -1,13 +1,44 @@
 //
-//  PostViewController.h
+//  NewStatusViewController.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-14.
+//  Created by Blue Bitch on 12-1-29.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataViewController.h"
+#import "PickAtListViewController.h"
 
-@interface PostViewController : UIViewController
+typedef enum {
+    PostStatusErrorNone     = 0,
+    PostStatusErrorWeibo    = 1,
+    PostStatusErrorRenren   = 2,
+    PostStatusErrorAll      = 3,
+} PostStatusErrorCode;
+
+#define TOAST_POS_Y   self.toolBarView.frame.origin.y - 20.0f
+
+@interface PostViewController : CoreDataViewController <UITextViewDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {
+    BOOL _isPosting;
+    PostStatusErrorCode _postStatusErrorCode;
+    NSUInteger _postCount;
+    
+    UITextView *_textView;
+    UILabel *_textCountLabel;
+    UIView *_toolBarView;
+}
+
+@property (nonatomic, retain) IBOutlet UITextView *textView;
+@property (nonatomic, retain) IBOutlet UILabel *textCountLabel;
+@property (nonatomic, retain) IBOutlet UIView *toolBarView;
+
+- (IBAction)didClickCancelButton:(id)sender;
+- (IBAction)didClickPostButton:(id)sender;
+- (IBAction)didClickAtButton:(id)sender;
+
+- (BOOL)isTextValid;
+- (void)postStatusCompletion;
+- (void)dismissView;
 
 @end
