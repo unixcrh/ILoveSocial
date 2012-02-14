@@ -244,6 +244,7 @@
     _name.frame=CGRectMake(57, 9, 210, 18);
     [_name setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
+        [_name addTarget:self action:@selector(didClickPhotoOutButton) forControlEvents:UIControlEventTouchUpInside];
     // [_name setTitle:@"RoyHeRoyHeRoyHeRoyHeRoy" forState:UIControlStateNormal];
     
     [_name setTitleColor:[UIColor colorWithRed:0.32157f green:0.31373 blue:0.26666667 alpha:1] forState:UIControlStateNormal];
