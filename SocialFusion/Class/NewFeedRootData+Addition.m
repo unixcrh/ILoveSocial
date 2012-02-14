@@ -87,6 +87,8 @@
         self.owner_Name = [dict objectForKey:@"name"];
         self.comment_Count = [NSNumber numberWithInt:[[[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
         
+        self.author = [RenrenUser insertUserWithName:self.owner_Name userID:self.actor_ID inManagedObjectContext:context];
+        
     }
     else if(style == kNewFeedStyleWeibo)
     {        
@@ -97,9 +99,9 @@
         self.owner_Name = self.author.name;
         self.post_ID = statusID;
             
-        self.actor_ID=[[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
+        self.actor_ID = [[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
         
-        self.owner_Head=[[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
+        self.owner_Head = [[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
 
         NSDateFormatter *form = [[NSDateFormatter alloc] init];
         [form setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];

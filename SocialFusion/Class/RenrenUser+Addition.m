@@ -99,4 +99,13 @@
     return res;
 }
 
++ (RenrenUser *)insertUserWithName:(NSString *)name userID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context {
+    RenrenUser *result = [RenrenUser userWithID:userID inManagedObjectContext:context];
+    if (!result) {
+        result = [NSEntityDescription insertNewObjectForEntityForName:@"RenrenUser" inManagedObjectContext:context];
+    }
+    result.name = name;
+    return result;
+}
+
 @end
