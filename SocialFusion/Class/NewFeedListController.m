@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RenrenClient.h"
 #import "WeiboClient.h"
-#import "NewFeedRootData+NewFeedRootData_Addition.h"
+#import "NewFeedRootData+Addition.h"
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
@@ -651,7 +651,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 
--(void)selectUser:(NSIndexPath *)indexPath
+- (void)selectUser:(NSIndexPath *)indexPath
 {
     NewFeedRootData* feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
     User *usr = feedData.author;
@@ -662,7 +662,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         [userDict setObject:usr forKey:kWeiboUser];
     [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
 }
--(IBAction)resetToNormalList
+- (IBAction)resetToNormalList
 {
     
     self.tableView.allowsSelection=NO;

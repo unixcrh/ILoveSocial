@@ -7,8 +7,13 @@
 //
 
 #import "NewFeedSharePhoto+Addition.h"
+#import "NewFeedRootData+Addition.h"
 
 @implementation NewFeedSharePhoto (Addition)
+
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+}
 
 + (NewFeedSharePhoto *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
@@ -22,6 +27,7 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedSharePhoto" inManagedObjectContext:context];
     }
     
+    [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
     
     result.post_ID = statusID;
     
