@@ -13,9 +13,22 @@
 
 - (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
     [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+
+    self.photo_url=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
+    self.share_comment=[dict objectForKey:@"message"];
+    self.photo_comment=[dict objectForKey:@"description"];
+    
+    self.mediaID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
+    
+    
+    self.fromID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
+    
+    self.fromName=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_name"];
+    
+    self.title=[dict objectForKey:@"title"];
 }
 
-+ (NewFeedSharePhoto *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedSharePhoto *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
     if (!statusID || [statusID isEqualToString:@""]) {
@@ -29,66 +42,7 @@
     
     [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
     
-    result.post_ID = statusID;
-    
-    
-    result.style=[NSNumber numberWithInt:sytle];
-    
-    
-    result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
-    
-    
-    result.owner_Head= [dict objectForKey:@"headurl"] ;
-    
-    result.owner_Name=[dict objectForKey:@"name"] ;
-    
-    
-    
-    NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    
-    NSString* dateString=[dict objectForKey:@"update_time"];
-    result.update_Time=[form dateFromString: dateString];
-    
-    
-    [form release];
-    
-    
-    result.comment_Count=[NSNumber numberWithInt:    [ [[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
-    
-    result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
-    
-    
-    
-    // result.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue] ;
-    // result.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue] ;
-    
-    
-    
-    
-    result.get_Time=getDate;
-    
-    
-    result.photo_url=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
-    result.share_comment=[dict objectForKey:@"message"];
-    result.photo_comment=[dict objectForKey:@"description"];
-   
-    result.mediaID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
-
-    
-    result.fromID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
-    
-    result.fromName=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_name"];
-
-    result.title=[dict objectForKey:@"title"];
- //   result.prefix=[dict objectForKey:@"prefix"];
-
-    result.cellheight=[NSNumber numberWithInt:height];
     return result;
-    
-
-    
 }
 
 

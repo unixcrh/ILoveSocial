@@ -108,7 +108,21 @@
         self.message = [dict objectForKey:@"text"];
     }
     else if(style == kNewFeedStyleRenren) {
+   
+        self.message=[dict objectForKey:@"message"];
         
+        NSArray* attachments=[dict objectForKey:@"attachment"];
+        if ([attachments count]!=0)
+        {
+            NSDictionary* attachment=[attachments objectAtIndex:0];
+            if ([attachment count]!=0)
+            {
+                self.repost_ID=[[attachment objectForKey:@"owner_id"] stringValue];
+                self.repost_Name=[attachment objectForKey:@"owner_name"];
+                self.repost_Status=[attachment objectForKey:@"content"];                
+                self.repost_StatusID=[[attachment objectForKey:@"media_id"] stringValue];
+            }
+        }
     }
 }
 
@@ -127,60 +141,6 @@
         }
         
         [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
-
-        
-        
-       // NSLog(@"%@",result.style);
-        
-        result.actor_ID=[[dict objectForKey:@"actor_id"] stringValue];
-        
-        result.owner_Head= [dict objectForKey:@"headurl"] ;
-        
-        result.owner_Name=[dict objectForKey:@"name"] ;
-        
-        
-        
-        NSDateFormatter *form = [[NSDateFormatter alloc] init];
-        [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        
-        NSString* dateString=[dict objectForKey:@"update_time"];
-        result.update_Time=[form dateFromString: dateString];
-        
-        
-        [form release];
-        
-        
-        result.comment_Count=[NSNumber numberWithInt:    [ [[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
-        
-        result.source_ID= [[dict objectForKey:@"source_id"] stringValue];
-        
-        result.message=[dict objectForKey:@"message"];
-        
-        NSArray* attachments=[dict objectForKey:@"attachment"];
-        if ([attachments count]!=0)
-        {
-            NSDictionary* attachment=[attachments objectAtIndex:0];
-            if ([attachment count]!=0)
-            {
-                result.repost_ID=[[attachment objectForKey:@"owner_id"] stringValue] ;
-                
-                result.repost_Name=[attachment objectForKey:@"owner_name"];
-                
-                
-                result.repost_Status=[attachment objectForKey:@"content"] ;
-                
-                result.repost_StatusID=[[attachment objectForKey:@"media_id"] stringValue] ;
-    
-            }
-        }
-            
-
-        result.cellheight=[NSNumber numberWithInt:height];
-                  
-        
-        result.get_Time=getDate;
- 
 
         return result;
     }

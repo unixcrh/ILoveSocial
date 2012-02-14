@@ -72,6 +72,9 @@
         
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
         self.post_ID = statusID;
+        
+        self.actor_ID = [[dict objectForKey:@"actor_id"] stringValue];
+        self.source_ID = [[dict objectForKey:@"source_id"] stringValue]; 
                 
         NSDateFormatter *form = [[NSDateFormatter alloc] init];
         [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -79,6 +82,10 @@
         NSString* dateString = [dict objectForKey:@"update_time"];
         self.update_Time = [form dateFromString: dateString];
         [form release];
+        
+        self.owner_Head = [dict objectForKey:@"headurl"];
+        self.owner_Name = [dict objectForKey:@"name"];
+        self.comment_Count = [NSNumber numberWithInt:[[[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
         
     }
     else if(style == kNewFeedStyleWeibo)
