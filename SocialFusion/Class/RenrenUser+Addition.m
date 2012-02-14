@@ -105,6 +105,7 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"RenrenUser" inManagedObjectContext:context];
     }
     result.name = name;
+    result.userID = userID;
     return result;
 }
 
