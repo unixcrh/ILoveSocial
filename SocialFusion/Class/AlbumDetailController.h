@@ -17,7 +17,12 @@
     UILabel* _captian[27];
     int _albumPageNumber;
     
+    NSString* _photoID[9];
+    NSString* _bigURL[9];
+    
     IBOutlet UIView* _contentView;
+    
+    
 
   
 }
