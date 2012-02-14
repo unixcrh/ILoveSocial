@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "PostViewController.h"
+#import "User.h"
 
 @interface LeaveMessageViewController : PostViewController {
-    
+    BOOL _useSecretWords;
+    BOOL _platformCode;
+    User *_dialogist;
 }
 
+@property (nonatomic, retain) IBOutlet UIButton *secretWordsTitleButton;
+@property (nonatomic, retain) IBOutlet UIButton *secretWordsLightButton;
+
+- (id)initWithUser:(User *)usr;
+
+- (IBAction)didClickSecretWordsButton:(id)sender;
 
 @end

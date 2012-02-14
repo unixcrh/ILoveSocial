@@ -14,6 +14,7 @@
 @synthesize userName = _userName;
 @synthesize latestStatus = _latestStatus;
 @synthesize headFrameIamgeView = _headFrameIamgeView;
+@synthesize delegate = _delegate;
 
 
 - (void)awakeFromNib {
@@ -41,6 +42,11 @@
     [super setSelected:selected animated:animated];
     //NSLog(@"selected:%d", selected);
     self.userName.highlighted = selected;
+}
+
+- (IBAction)didClickChatButton:(id)sender {
+    //NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
+    [self.delegate frientListCellDidClickChatButton:self];
 }
 
 @end
