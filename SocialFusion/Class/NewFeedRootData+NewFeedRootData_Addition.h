@@ -8,18 +8,22 @@
 
 #import "NewFeedRootData.h"
 
-@interface NewFeedRootData (NewFeedRootData_Addition)
-+ (NewFeedRootData *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
-+ (NewFeedRootData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
--(NSString*)getFeedName;
+#define kNewFeedStyleRenren 0
+#define kNewFeedStyleWeibo  1
 
--(NSString*)getHeadURL;
--(NSDate*)getDate;
--(NSString*)getActor_ID;
--(NSString*)getSource_ID;
--(NSString*)getBlog;
--(int)getComment_Count;
--(int)getStyle;
--(void)setCount:(int)count;
--(NSString*)getCountString;
+@interface NewFeedRootData (NewFeedRootData_Addition)
+
++ (NewFeedRootData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
+- (void)configureNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
+- (NSString*)getFeedName;
+
+- (NSString*)getHeadURL;
+- (NSDate*)getDate;
+- (NSString*)getActor_ID;
+- (NSString*)getSource_ID;
+- (NSString*)getBlog;
+- (int)getComment_Count;
+- (int)getStyle;
+- (void)setCount:(int)count;
+- (NSString*)getCountString;
 @end
