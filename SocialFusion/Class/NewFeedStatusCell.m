@@ -255,7 +255,6 @@
     _upCutline.frame=CGRectMake(8, 3, 290, 1);
     
     
-    [_photoOut addTarget:self action:@selector(selectCellUser) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_upCutline];
     
     [self.contentView addSubview:_defaultphotoView];
@@ -272,10 +271,7 @@
     return  self;
 }
 
--(void)selectCellUser {
-    NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
-    [_listController selectUser:indexpath];
-}
+
 
 -(void)configureCell:(NewFeedRootData*)feedData
 {    
@@ -466,8 +462,9 @@
 #pragma mark -
 #pragma mark UI actions
 
-- (void)didClickPhotoOutButton {
-    
+-(void)didClickPhotoOutButton {
+    NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
+    [_listController selectUser:indexpath];
 }
 
 @end

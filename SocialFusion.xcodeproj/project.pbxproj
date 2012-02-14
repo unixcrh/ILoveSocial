@@ -17,7 +17,7 @@
 		7308FF2F14BD942100EC6481 /* sharealbum.html in Resources */ = {isa = PBXBuildFile; fileRef = 7308FF2E14BD942100EC6481 /* sharealbum.html */; };
 		7308FF3314BDC1D100EC6481 /* newfeedjs.js in Resources */ = {isa = PBXBuildFile; fileRef = 7308FF3214BDC1D100EC6481 /* newfeedjs.js */; };
 		73152F0C1475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F071475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m */; };
-		73152F0D1475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F091475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m */; };
+		73152F0D1475FF5700B3E7FC /* NewFeedRootData+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F091475FF5700B3E7FC /* NewFeedRootData+Addition.m */; };
 		73152F0E1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */; };
 		7317581B14BC73DD00F14700 /* photo_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 7317581A14BC73DD00F14700 /* photo_frame.png */; };
 		7317582214BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7317582114BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.m */; };
@@ -355,8 +355,8 @@
 		7308FF3214BDC1D100EC6481 /* newfeedjs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = newfeedjs.js; sourceTree = "<group>"; };
 		73152F061475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedBlog+NewFeedBlog_Addition.h"; sourceTree = "<group>"; };
 		73152F071475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedBlog+NewFeedBlog_Addition.m"; sourceTree = "<group>"; };
-		73152F081475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedRootData+NewFeedRootData_Addition.h"; sourceTree = "<group>"; };
-		73152F091475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedRootData+NewFeedRootData_Addition.m"; sourceTree = "<group>"; };
+		73152F081475FF5700B3E7FC /* NewFeedRootData+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NewFeedRootData+Addition.h"; sourceTree = "<group>"; };
+		73152F091475FF5700B3E7FC /* NewFeedRootData+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedRootData+Addition.m"; sourceTree = "<group>"; };
 		73152F0A1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewFeedData+NewFeedData_Addition.h"; sourceTree = "<group>"; };
 		73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewFeedData+NewFeedData_Addition.m"; sourceTree = "<group>"; };
 		7317581A14BC73DD00F14700 /* photo_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_frame.png; sourceTree = "<group>"; };
@@ -1328,8 +1328,8 @@
 				7317582114BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.m */,
 				73152F061475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.h */,
 				73152F071475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m */,
-				73152F081475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.h */,
-				73152F091475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m */,
+				73152F081475FF5700B3E7FC /* NewFeedRootData+Addition.h */,
+				73152F091475FF5700B3E7FC /* NewFeedRootData+Addition.m */,
 				73152F0A1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.h */,
 				73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */,
 				73C99C9414BF051D00B251DF /* NewFeedSharePhoto+Addition.h */,
@@ -2003,7 +2003,7 @@
 				7305A696144DB38C00ED59AA /* StatusCommentCell.m in Sources */,
 				73DE4B84144E5EDE00547931 /* CommonFunction.m in Sources */,
 				73152F0C1475FF5700B3E7FC /* NewFeedBlog+NewFeedBlog_Addition.m in Sources */,
-				73152F0D1475FF5700B3E7FC /* NewFeedRootData+NewFeedRootData_Addition.m in Sources */,
+				73152F0D1475FF5700B3E7FC /* NewFeedRootData+Addition.m in Sources */,
 				73152F0E1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m in Sources */,
 				731D1D9B147603B5001981B4 /* RenrenStatus.m in Sources */,
 				731D1D9E147603B5001981B4 /* Image.m in Sources */,

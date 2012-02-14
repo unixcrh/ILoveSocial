@@ -7,7 +7,7 @@
 //
 
 #import "NewFeedData+NewFeedData_Addition.h"
-#import "NewFeedRootData+NewFeedRootData_Addition.h"
+#import "NewFeedRootData+Addition.h"
 #import "NSString+HTMLSet.h"
 //#import "CalculateHeight.h"
 @implementation NewFeedData (NewFeedData_Addition)
@@ -81,11 +81,7 @@
 
 -(NSString*)getName
 {
-    
-
     return [self.message replaceHTMLSign];
-
-    
 }
 
 
@@ -129,12 +125,10 @@
         if (!result) {
             result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedData" inManagedObjectContext:context];
         }
-        result.owner = myUser;
         
-        result.post_ID = statusID;
+        [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+
         
-        
-        result.style = [NSNumber numberWithInt:style];
         
        // NSLog(@"%@",result.style);
         
