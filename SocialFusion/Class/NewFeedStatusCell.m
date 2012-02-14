@@ -437,7 +437,7 @@ if (_photoData!=nil)
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
              
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
-       infoText=[infoText setCount:[feedData getCountString]];
+                infoText=[infoText setCount:[feedData getCountString]];
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 [infoText release];
             }

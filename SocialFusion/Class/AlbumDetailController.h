@@ -7,22 +7,21 @@
 //
 
 #import "StatusDetailController.h"
-
+#import "PhotoInAlbum.h"
 @interface AlbumDetailController : StatusDetailController
 {
         IBOutlet UILabel* _albumTitle;
     IBOutlet UIScrollView* _contentScrollView;
-    UIImageView* _imageView[27];
-    UIButton* _imageOut[27];
-    UILabel* _captian[27];
+
     int _albumPageNumber;
     
+    PhotoInAlbum* _photoInAlbum[27];
     NSString* _photoID[9];
     NSString* _bigURL[9];
     
     IBOutlet UIView* _contentView;
     
-    
+    int _selectedPhoto;
 
   
 }

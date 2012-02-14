@@ -135,6 +135,20 @@
     return result;
 }
 
+
+
++ (NewFeedTempImageView *)tempImageViewWithImage:(UIImage*)image
+{
+    NewFeedTempImageView *result = nil;
+    if(image) {
+        result = [[NewFeedTempImageView alloc] init];
+
+        [result setImage:image];
+    }
+    return result; 
+}
+
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self dismissView];
 }
@@ -158,6 +172,9 @@
         }
     }   
     else {
+        
+        if (_userID!=nil)
+        {
         RenrenClient *renren = [RenrenClient client];
         
         [renren setCompletionBlock:^(RenrenClient *client) {
@@ -182,6 +199,7 @@
             }
         }];
         [renren getSinglePhoto:_userID photoID:_photoID];
+        }
     }
 }
 

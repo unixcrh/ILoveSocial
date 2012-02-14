@@ -116,6 +116,7 @@
 		73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */; };
 		73F1F6BD14C05D5000C0EAF5 /* photocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73F1F6BC14C05D5000C0EAF5 /* photocell.html */; };
 		73F3400F14467EC400F9EDBD /* NewFeedListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F3400D14467EC400F9EDBD /* NewFeedListController.xib */; };
+		73F39BAC14EA61AB000CE342 /* PhotoInAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F39BAB14EA61AA000CE342 /* PhotoInAlbum.m */; };
 		73F4F96D144A9EA400A692F7 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F951144A9EA400A692F7 /* NSMutableURLRequest+Parameters.m */; };
 		73F4F96E144A9EA400A692F7 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F953144A9EA400A692F7 /* NSString+URLEncoding.m */; };
 		73F4F96F144A9EA400A692F7 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F4F955144A9EA400A692F7 /* NSURL+Base.m */; };
@@ -490,6 +491,8 @@
 		73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedData.m; path = "SocialFusion/Class/CoreData Models/NewFeedData.m"; sourceTree = "<group>"; };
 		73F1F6BC14C05D5000C0EAF5 /* photocell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = photocell.html; sourceTree = "<group>"; };
 		73F3400D14467EC400F9EDBD /* NewFeedListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedListController.xib; sourceTree = "<group>"; };
+		73F39BAA14EA61A7000CE342 /* PhotoInAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoInAlbum.h; sourceTree = "<group>"; };
+		73F39BAB14EA61AA000CE342 /* PhotoInAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoInAlbum.m; sourceTree = "<group>"; };
 		73F4F950144A9EA400A692F7 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		73F4F951144A9EA400A692F7 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		73F4F952144A9EA400A692F7 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -898,6 +901,8 @@
 				735323D714E7E79500B4AB61 /* Comment */,
 				73C5D69614D5967B0027647D /* BlogDetailController.h */,
 				73C5D69714D5967B0027647D /* BlogDetailController.m */,
+				73F39BAA14EA61A7000CE342 /* PhotoInAlbum.h */,
+				73F39BAB14EA61AA000CE342 /* PhotoInAlbum.m */,
 				73E4144514E6BC2200E47581 /* StatusDetailControllerWithWeb.h */,
 				73E4144614E6BC2300E47581 /* StatusDetailControllerWithWeb.m */,
 				735323CC14E77B8300B4AB61 /* AlbumDetailController.h */,
@@ -2099,6 +2104,7 @@
 				735323CF14E77B8400B4AB61 /* AlbumDetailController.m in Sources */,
 				735323D614E7E40F00B4AB61 /* NewFeedAlbumCell.m in Sources */,
 				735323E214E7F9C500B4AB61 /* NewFeedShareAlbum.m in Sources */,
+				73F39BAC14EA61AB000CE342 /* PhotoInAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

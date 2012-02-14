@@ -29,6 +29,7 @@
 
 + (NewFeedTempImageView *)tempImageViewWithImage:(UIImage*)image userID:(NSString*)userID photoID:(NSString*)photoID context:(NSManagedObjectContext *)context;
 
++ (NewFeedTempImageView *)tempImageViewWithImage:(UIImage*)image ;
 - (void)show;
 
 
