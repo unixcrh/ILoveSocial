@@ -16,6 +16,8 @@
 #import "FriendListRenrenViewController.h"
 #import "FriendListWeiboViewController.h"
 #import "NSNotificationCenter+Addition.h"
+#import "LeaveMessageViewController.h"
+#import "UIApplication+Addition.h"
 
 @implementation FriendListViewController
 
@@ -53,6 +55,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     FriendListTableViewCell *relationshipCell = (FriendListTableViewCell *)cell;
+    relationshipCell.delegate = self;
     relationshipCell.headImageView.image = nil;
     relationshipCell.latestStatus.text = nil;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -128,6 +131,17 @@
             relationshipCell.latestStatus.alpha = 1;
         } completion:nil];
     }
+}
+
+#pragma mark -
+#pragma mark FriendListTableViewCell delegate
+
+- (void)frientListCellDidClickChatButton:(FriendListTableViewCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    LeaveMessageViewController *vc = [[LeaveMessageViewController alloc] initWithUser:usr];
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
 }
 
 @end

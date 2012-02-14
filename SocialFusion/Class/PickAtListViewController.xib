@@ -219,7 +219,6 @@
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">人人网好友</string>
@@ -254,7 +253,6 @@
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">新浪微博关注</string>
@@ -275,7 +273,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{7, 104}, {306, 348}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:418</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>

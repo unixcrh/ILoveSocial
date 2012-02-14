@@ -11,9 +11,6 @@
 #import "RenrenUser+Addition.h"
 #import "RenrenClient.h"
 
-#define kPlatformRenren NO
-#define kPlatformWeibo  YES
-
 @interface PickAtListViewController()
 - (void)configureAtWeiboScreenNamesArray:(NSString*)text;
 - (void)configureAtRenrenScreenNamesArray:(NSString*)text;

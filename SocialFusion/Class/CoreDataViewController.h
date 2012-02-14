@@ -13,6 +13,9 @@
 #define kCurrentWeiboUser  @"kCurrentWeiboUser"
 #define kCurrentRenrenUser @"kCurrentRenrenUser"
 
+#define kPlatformRenren NO
+#define kPlatformWeibo  YES
+
 @class RenrenUser;
 @class WeiboUser;
 
