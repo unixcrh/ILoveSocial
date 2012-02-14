@@ -13,10 +13,10 @@
 #import "UIImageView+Addition.h"
 #define IMAGE_OUT_V_SPACE 20
 #define IMAGE_OUT_WIDTH 83
-#define IMAGE_OUT_H_SPACE 20
+#define IMAGE_OUT_H_SPACE 17
 #define IMAGE_OUT_HEIGHT 63
 #define IMAGE_OUT_BEGIN_X 10
-#define IMAGE_OUT_BEGIN_Y 10
+#define IMAGE_OUT_BEGIN_Y 5
 
 @implementation AlbumDetailController
 
@@ -264,6 +264,14 @@
         }
             
      
+            
+            for (int i=0;i<27;i++)
+            {
+                CGRect textRect=_imageOut[i].frame;
+                textRect.origin.y=textRect.origin.y+IMAGE_OUT_HEIGHT;
+                textRect.size.height=15;
+                _captian[i].frame=textRect;
+            }
     [self loadPhotoData];
 
         }
@@ -311,6 +319,8 @@
                     [_imageView[i] fadeIn];
                     
                 }
+                
+                [_captian[i] setText:[dict objectForKey:@"caption"]];
                 i++;
                 
                 
@@ -343,6 +353,10 @@
     {
     for (int i=0;i<9;i++)
     {
+        _captian[i+9*j]=[[UILabel alloc] init];
+        _captian[i+9*j].textAlignment=UITextAlignmentCenter;
+        _captian[i+9*j].font=[UIFont systemFontOfSize:10];
+        
         _imageOut[i+9*j]=[[UIButton alloc] init];
         _imageView[i+9*j]=[[UIImageView alloc] init];
         int wid=i%3;
@@ -355,6 +369,14 @@
         [_contentView addSubview:_imageView[i+9*j]];
         _imageView[i+9*j].contentMode=UIViewContentModeScaleAspectFill;
         _imageView[i+9*j].clipsToBounds=YES;
+        
+        
+        CGRect textRect=_imageOut[i+9*j].frame;
+        textRect.origin.y=textRect.origin.y+IMAGE_OUT_HEIGHT;
+        textRect.size.height=15;
+        _captian[i+9*j].frame=textRect;
+        _captian[i+9*j].backgroundColor=[UIColor clearColor];
+         [_contentView addSubview:_captian[i+9*j]];
         
         [_imageOut[i+9*j] addTarget:self action:@selector(showImageDetail:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -383,6 +405,8 @@
                     [_imageView[i] setImage:[UIImage imageWithData:image.imageData.data]];
              
                 }
+                
+                  [_captian[i] setText:[dict objectForKey:@"caption"]];
                 i++;
                 
      
