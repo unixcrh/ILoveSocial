@@ -90,7 +90,6 @@
     // 清空选中状态
     cell.highlighted = NO;
     cell.selected = NO;
-    [self.tableView reloadData];
     
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];

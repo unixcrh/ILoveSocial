@@ -89,12 +89,36 @@
 }
 
 
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+    if(style == kNewFeedStyleWeibo) {
+        self.pic_URL = [dict objectForKey:@"thumbnail_pic"];
+        self.pic_big_URL = [dict objectForKey:@"bmiddle_pic"];
+        
+        NSDictionary* attachment = [dict objectForKey:@"retweeted_status"];
+        if ([attachment count] != 0)
+        {
+            if ([attachment count] != 0)
+            {
+                self.repost_ID = [[[attachment  objectForKey:@"user"] objectForKey:@"id"] stringValue];
+                self.repost_StatusID = [[attachment objectForKey:@"id"] stringValue ];
+                self.repost_Name = [[attachment objectForKey:@"user"] objectForKey:@"screen_name"] ;
+                self.repost_Status = [attachment objectForKey:@"text"] ;
+                self.pic_URL = [attachment objectForKey:@"thumbnail_pic"];
+                self.pic_big_URL = [attachment objectForKey:@"bmiddle_pic"];
+            }
+        }
+        
+        self.message = [dict objectForKey:@"text"];
+    }
+    else if(style == kNewFeedStyleRenren) {
+        
+    }
+}
 
-
-+ (NewFeedData *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
++ (NewFeedData *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    
-    if (sytle==0)//renren
+    if (style==0)//renren
     {
         NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
         if (!statusID || [statusID isEqualToString:@""]) {
@@ -105,12 +129,12 @@
         if (!result) {
             result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedData" inManagedObjectContext:context];
         }
-        
+        result.owner = myUser;
         
         result.post_ID = statusID;
         
         
-        result.style=[NSNumber numberWithInt:sytle];
+        result.style = [NSNumber numberWithInt:style];
         
        // NSLog(@"%@",result.style);
         
@@ -162,30 +186,13 @@
                   
         
         result.get_Time=getDate;
-        
-        
- //       CalculateHeight* calculateHeight=[[CalculateHeight alloc] initWithFeed:result];
-        
-     /*   while ([calculateHeight getHeight]==0)
-        {
-            
-        }
-       */ 
  
 
         return result;
-        
-        // 将自己添加到对应user的statuses里
-        // NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];
-        // result.author = [RenrenUser userWithID:authorID inManagedObjectContext:context];
     }
     else
     {
-        
-        
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
-        
-        //   NSLog(@"%@",statusID);
         if (!statusID || [statusID isEqualToString:@""]) {
             return nil;
         }
@@ -195,112 +202,10 @@
             result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedData" inManagedObjectContext:context];
         }
         
+        [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
         
-        result.owner_Name= [[dict objectForKey:@"user"] objectForKey:@"screen_name"];
-        result.post_ID = statusID;
-        
-        
-        result.style=[NSNumber numberWithInt:sytle];
-        
-        
-        // NSLog(@"%@",result.style);
-        result.actor_ID=[[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
-        
-        result.owner_Head=[[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
-        
-        
-        
-        
-        
-        NSDateFormatter *form = [[NSDateFormatter alloc] init];
-        [form setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];
-        
-        // Sat Oct 15 21:22:56 +0800 2011
-        
-        NSLocale* tempLocale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-        [form setLocale:tempLocale];
-        [tempLocale release];
-        
-        //  [form setShortStandaloneWeekdaySymbols:[NSArray arrayWithObjects:@"Mon",@"Tue",@"Fri",@"Sat",@"Sun",nil]];
-        NSString* dateString=[dict objectForKey:@"created_at"];
-        
-        
-        
-        result.update_Time=[form dateFromString: dateString];
-        
-        
-        [form release];
-        
-        
-        
-        
-        result.comment_Count=[NSNumber numberWithInt:   [[dict objectForKey:@"comment_count"] intValue]];
-        
-        result.source_ID= [[dict objectForKey:@"id"] stringValue];
-        
-        
-        
-        
-        //  NSString *authorID =    result.actor_ID;
-        // result.owner = [WeiboUser userWithID:authorID inManagedObjectContext:context];
-        // result.owner=nil;        
-        
-        
-        //      NSLog(@"%@",result);
-        result.pic_URL=[dict objectForKey:@"thumbnail_pic"];
-        result.pic_big_URL=[dict objectForKey:@"bmiddle_pic"];
-        
-
-        NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
-        if ([attachment count]!=0)
-        {
-            
-            if ([attachment count]!=0)
-            {
-                result.repost_ID=[[[attachment  objectForKey:@"user"] objectForKey:@"id"] stringValue];
-                
-                
-                result.repost_StatusID=[[attachment objectForKey:@"id"] stringValue ];
-                
-                
-                
-                result.repost_Name=[[attachment objectForKey:@"user"] objectForKey:@"screen_name"] ;
-                
-                
-                
-                result.repost_Status=[attachment objectForKey:@"text"] ;
-                
-                result.pic_URL=[attachment objectForKey:@"thumbnail_pic"];
-          
-                result.pic_big_URL=[attachment objectForKey:@"bmiddle_pic"];
-            }
-            
-        }
-
-        
-        result.get_Time=getDate;
-        
-       result.message=[dict objectForKey:@"text"];
-        
-     //   NSLog(@"%@",result.message);
-        result.cellheight=[NSNumber numberWithInt:height];
         return result;
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
