@@ -18,9 +18,9 @@
     PhotoInAlbum* _photoInAlbum[27];
     NSString* _photoID[9];
     NSString* _bigURL[9];
-    
+    UITextView* _infoTextView;
     IBOutlet UIView* _contentView;
-    
+    UIButton* _returnToAlbum;
     int _selectedPhoto;
 
   
@@ -28,4 +28,5 @@
 
 -(void)loadPhotoData;
 -(IBAction)showImageDetail:(id)sender;
+-(void)returnToAlbum;
 @end

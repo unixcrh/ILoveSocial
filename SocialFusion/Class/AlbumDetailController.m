@@ -48,6 +48,7 @@
     [super setFixedInfo];
     _contentScrollView.delegate=self;
     _selectedPhoto=-1;
+    
 
 }
 
@@ -293,18 +294,35 @@
 
 }
 
-
+-(void)returnToAlbum
+{
+    [_contentScrollView zoomToRect:CGRectMake(0, 0, 306, 255) animated:YES];
+    [_infoTextView removeFromSuperview];
+    [_infoTextView release];
+    
+    [_returnToAlbum removeFromSuperview];
+    [_returnToAlbum release];
+    _selectedPhoto=-1;
+}
 -(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     
-  
-    UITextView* textView=[[UITextView alloc] init];
-    textView.frame=CGRectMake(17, 300, 270,40);
-    textView.editable=NO;
-    textView.backgroundColor=[UIColor clearColor];
-    textView.text=_photoInAlbum[_selectedPhoto].captian.text;
+  if (_selectedPhoto!=-1)
+  {
+   _infoTextView =[[UITextView alloc] init];
+    _infoTextView.frame=CGRectMake(17, 300, 270,40);
+    _infoTextView.editable=NO;
+    _infoTextView.backgroundColor=[UIColor clearColor];
+    _infoTextView.text=_photoInAlbum[_selectedPhoto].captian.text;
     
-    [self.view addSubview:textView];
+    _returnToAlbum=[[UIButton alloc] init];
+    _returnToAlbum.frame=CGRectMake(225 ,67, 72, 21);
+    [_returnToAlbum setTitle:@"return" forState:UIControlStateNormal];
+    [_returnToAlbum setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+     [_returnToAlbum setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [_returnToAlbum addTarget:self action:@selector(returnToAlbum) forControlEvents:UIControlEventTouchUpInside];
+    [_titleView addSubview:_returnToAlbum];
+    [self.view addSubview:_infoTextView];
 
     Image *image = [Image imageWithURL:_bigURL[_selectedPhoto%9] inManagedObjectContext:self.managedObjectContext];
     if (image == nil)
@@ -314,17 +332,13 @@
           
         } cacheInContext:self.managedObjectContext];
 
-                  
-       
-        
-        
     }
     else
     {
         [_photoInAlbum[_selectedPhoto].imageView setImage:[UIImage imageWithData:image.imageData.data]];
 
     }
-
+  }
 }
 
 
