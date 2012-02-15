@@ -182,6 +182,8 @@
 
 
 - (void)dealloc {
+    [_pageLine removeFromSuperview];
+    [_pageLine release];
     [self.feedData release];
     //[_feedStatusCel release];
     [super dealloc];
@@ -229,9 +231,6 @@
 
     [self loadData];
     
-    
-
-
 }
 
 

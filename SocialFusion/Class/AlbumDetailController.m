@@ -517,6 +517,30 @@
 }
 
 
+
+#pragma mark - EGORefresh Method
+- (void)refresh {
+    [self hideLoadMoreDataButton];
+    [self clearData];
+    
+  
+_pageNumber=_commentCount[_selectedPhoto%9]/10+1;
+    
+   
+    
+    
+    
+    if(_loading)
+        return;
+    _loading = YES;
+    
+    [self loadData];
+    
+}
+
+
+
+
 -(void)loadData
 {
     
