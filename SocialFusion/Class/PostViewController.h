@@ -20,7 +20,6 @@ typedef enum {
 #define TOAST_POS_Y   self.toolBarView.frame.origin.y - 20.0f
 
 @interface PostViewController : CoreDataViewController <UITextViewDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {
-    BOOL _isPosting;
     PostStatusErrorCode _postStatusErrorCode;
     NSUInteger _postCount;
     

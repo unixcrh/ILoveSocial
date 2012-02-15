@@ -116,7 +116,6 @@
             default:
                 break;
         }
-        _isPosting = NO;
     }
 }
 

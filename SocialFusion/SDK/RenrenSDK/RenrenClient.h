@@ -57,5 +57,6 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;
+- (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret;
 
 @end

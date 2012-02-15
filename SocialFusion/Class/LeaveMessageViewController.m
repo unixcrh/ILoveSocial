@@ -11,6 +11,8 @@
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "UIButton+Addition.h"
+#import "WeiboClient.h"
+#import "RenrenClient.h"
 
 @interface LeaveMessageViewController()
 
@@ -62,9 +64,12 @@
     if(_platformCode == kPlatformWeibo) {
         self.secretWordsLightButton.hidden = YES;
         self.secretWordsTitleButton.hidden = YES;
+        self.textView.text = [NSString stringWithFormat:@"@%@ ", _dialogist.name];
     }
     else if(_platformCode == kPlatformRenren) {
-        
+        self.secretWordsLightButton.hidden = YES;
+        self.secretWordsTitleButton.hidden = YES;
+        self.textView.text = [NSString stringWithFormat:@"@%@(%@) ", _dialogist.name, _dialogist.userID];
     }
 }
 
@@ -74,6 +79,29 @@
 - (IBAction)didClickSecretWordsButton:(id)sender {
     _useSecretWords = !_useSecretWords;
     [self.secretWordsLightButton setPostPlatformButtonSelected:_useSecretWords];
+}
+
+- (IBAction)didClickPostButton:(id)sender {
+    _postCount = 1;
+    if(_platformCode == kPlatformWeibo) {
+        WeiboClient *client = [WeiboClient client];
+        [client setCompletionBlock:^(WeiboClient *client) {
+            if(client.hasError)
+                _postStatusErrorCode |= PostStatusErrorWeibo;
+            [self postStatusCompletion];
+        }];
+        [client postStatus:self.textView.text];
+    }
+    else if(_platformCode == kPlatformRenren) {
+        RenrenClient *client = [RenrenClient client];
+        [client setCompletionBlock:^(RenrenClient *client) {
+            if(client.hasError)
+                _postStatusErrorCode |= PostStatusErrorRenren;
+            [self postStatusCompletion];
+        }];
+        [client postStatus:self.textView.text];
+    }
+    [self dismissView];
 }
 
 @end

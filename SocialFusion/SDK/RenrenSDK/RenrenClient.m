@@ -33,11 +33,11 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 @implementation RenrenClient
 
 @synthesize accessToken = _accessToken,
-            expirationDate = _expirationDate,
-            secret = _secret,
-            sessionKey = _sessionKey,
-            responseJSONObject = _responseJSONObject,
-            hasError = _hasError;
+expirationDate = _expirationDate,
+secret = _secret,
+sessionKey = _sessionKey,
+responseJSONObject = _responseJSONObject,
+hasError = _hasError;
 
 - (void)dealloc {
     //NSLog(@"RenrenClient dealloc");
@@ -258,15 +258,15 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 
 // 旧的接口。
 - (RORequest*)openUrl:(NSString *)url
-             params:(NSMutableDictionary *)params
-         httpMethod:(NSString *)httpMethod
-           delegate:(id<RORequestDelegate>)delegate {
+               params:(NSMutableDictionary *)params
+           httpMethod:(NSString *)httpMethod
+             delegate:(id<RORequestDelegate>)delegate {
     
     [_request release];
     _request = [[RORequest getRequestWithParams:params
-                                   httpMethod:httpMethod
-                                     delegate:delegate
-                                   requestURL:url] retain];
+                                     httpMethod:httpMethod
+                                       delegate:delegate
+                                     requestURL:url] retain];
     [_request connect];
     return _request;
 }
@@ -327,7 +327,7 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 }
 
 - (RORequest *)requestWithParams:(NSMutableDictionary *)params
-                  andDelegate:(id <RORequestDelegate>)delegate {
+                     andDelegate:(id <RORequestDelegate>)delegate {
     
     if ([params objectForKey:@"method"] == nil) {
         NSLog(@"API Method must be specified");
@@ -378,8 +378,8 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 - (void)reportCompletion
 {
     /*if (_preCompletionBlock) {
-        _preCompletionBlock(self);
-    }*/
+     _preCompletionBlock(self);
+     }*/
     //NSLog(@"block retain count:%d", [_completionBlock retainCount]);
     if (_completionBlock) {
         _completionBlock(self);
@@ -447,18 +447,18 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 //请求用户信息
 - (void)getUserInfo {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-								 @"users.getInfo",@"method",
-                                 @"uid,name,sex,birthday,email_hash,tinyurl,headurl,mainurl,hometown_location,work_history,university_history",@"fields",
-								 nil];
+                                   @"users.getInfo",@"method",
+                                   @"uid,name,sex,birthday,email_hash,tinyurl,headurl,mainurl,hometown_location,work_history,university_history",@"fields",
+                                   nil];
     [self requestWithParams:params andDelegate:self];
 }
 
 //请求最近的一条状态
 - (void)getLatestStatus:(NSString *)userID {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-								 @"status.get", @"method",
-                                 userID, @"owner_id",
-								 nil];
+                                   @"status.get", @"method",
+                                   userID, @"owner_id",
+                                   nil];
 	[self requestWithParams:params andDelegate:self];
 }
 
@@ -522,8 +522,8 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
 
 -(void)getStatus:(NSString*)userID status_ID:(NSString*)status
 {
- 
-      NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+    
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  @"status.get",@"method",
                                  status,@"status_id",
                                  userID,@"owner_id",
@@ -572,7 +572,7 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
                                    @"status.set", @"method",
                                    status, @"status", nil];
     [self requestWithParams:params andDelegate:self];
-
+    
 }
 
 - (void)postStatus:(NSString *)status withImage:(UIImage *)image {
@@ -606,9 +606,18 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
                                  userID,@"uid",
                                  p_ID,@"pid",
                                  tempString,@"page",
-
+                                 
                                  nil];
     [tempString release];
+	[self requestWithParams:params andDelegate:self];
+}
+
+- (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"guestbook.post",@"method",
+                                   uid, @"uid", 
+                                   msg, @"content",
+                                   [NSString stringWithFormat:@"%d", isSecret], @"type", nil];
 	[self requestWithParams:params andDelegate:self];
 }
 @end

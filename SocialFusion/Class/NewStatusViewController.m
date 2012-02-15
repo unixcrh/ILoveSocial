@@ -78,9 +78,6 @@
     }
     if(![self isTextValid]) 
         return;
-    if(_isPosting)
-        return;
-    _isPosting = YES;
     
     if(_postToWeibo) {
         WeiboClient *client = [WeiboClient client];
