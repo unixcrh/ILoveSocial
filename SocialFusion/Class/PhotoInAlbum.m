@@ -30,7 +30,7 @@
     _imageView=[[UIImageView alloc] init];
 
     _imageOut.frame=CGRectMake(0,0,IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
-    [_imageOut setImage:[UIImage imageNamed:@"detail_album"] forState:UIControlStateNormal];
+    [_imageOut setImage:[UIImage imageNamed:@"detail_photo"] forState:UIControlStateNormal];
 
     _imageView.frame=CGRectMake(3, 5, IMAGE_OUT_WIDTH-6, IMAGE_OUT_HEIGHT-10);
     [self addSubview:_imageView];
@@ -45,11 +45,22 @@
     textRect.size.height=15;
     _captian.frame=textRect;
     _captian.backgroundColor=[UIColor clearColor];
-    [self addSubview:_captian];
+    [self showCaptian];
     
     return self;
 }
 
+-(void)hideCaptian
+{
+    [_captian removeFromSuperview];
+}
+-(void)showCaptian
+{
+    if (_captian.superview==nil)
+    {
+    [self addSubview:_captian];
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

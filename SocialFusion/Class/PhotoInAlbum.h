@@ -19,5 +19,7 @@
 @property(nonatomic, retain)  UIButton* imageOut;
 @property(nonatomic, retain)  UILabel* captian;
 -(id)init;
+-(void)hideCaptian;
+-(void)showCaptian;
 
 @end

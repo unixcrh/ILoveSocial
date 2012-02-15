@@ -296,13 +296,19 @@
 
 -(void)returnToAlbum
 {
-    [_contentScrollView zoomToRect:CGRectMake(0, 0, 306, 255) animated:YES];
+    int y=_photoInAlbum[_selectedPhoto].frame.origin.y/255;
+    
+    [_contentScrollView zoomToRect:CGRectMake(0, y*255, 306, 255) animated:YES];
+   
+    
     [_infoTextView removeFromSuperview];
     [_infoTextView release];
     
     [_returnToAlbum removeFromSuperview];
     [_returnToAlbum release];
+
     _selectedPhoto=-1;
+    
 }
 -(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
@@ -339,6 +345,14 @@
 
     }
   }
+    else
+    {
+        for (int i=0;i<27;i++)
+        {
+            [_photoInAlbum[i] showCaptian];
+        }
+        scrollView.scrollEnabled=YES;
+    }
 }
 
 
@@ -356,7 +370,7 @@
             break;
         }
     }
-    _photoInAlbum[_selectedPhoto].captian.frame=CGRectMake(0, 0, 0, 0);
+    [_photoInAlbum[_selectedPhoto] hideCaptian];
     [_photoInAlbum[_selectedPhoto].imageOut setImage:[UIImage imageNamed:@"detail_photo.png"] forState:UIControlStateNormal];
     [_contentView bringSubviewToFront:_photoInAlbum[1].imageOut];
     
