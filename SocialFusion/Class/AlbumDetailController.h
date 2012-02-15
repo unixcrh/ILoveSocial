@@ -18,6 +18,7 @@
     PhotoInAlbum* _photoInAlbum[27];
     NSString* _photoID[9];
     NSString* _bigURL[9];
+    int _commentCount[9];
     UITextView* _infoTextView;
     IBOutlet UIView* _contentView;
     UIButton* _returnToAlbum;

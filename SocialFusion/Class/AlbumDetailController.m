@@ -63,7 +63,7 @@
  
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [super scrollViewDidEndDecelerating:scrollView];
+
     if (scrollView==_contentScrollView)
     {
         int index = fabs(scrollView.contentOffset.y) / scrollView.frame.size.height;
@@ -297,16 +297,11 @@
 -(void)returnToAlbum
 {
     int y=_photoInAlbum[_selectedPhoto].frame.origin.y/255;
-    
     [_contentScrollView zoomToRect:CGRectMake(0, y*255, 306, 255) animated:YES];
-   
-    
     [_infoTextView removeFromSuperview];
     [_infoTextView release];
-    
     [_returnToAlbum removeFromSuperview];
     [_returnToAlbum release];
-
     _selectedPhoto=-1;
     
 }
@@ -372,12 +367,16 @@
     }
     [_photoInAlbum[_selectedPhoto] hideCaptian];
     [_photoInAlbum[_selectedPhoto].imageOut setImage:[UIImage imageNamed:@"detail_photo.png"] forState:UIControlStateNormal];
-    [_contentView bringSubviewToFront:_photoInAlbum[1].imageOut];
+   
     
     CGRect zoomingRect=((UIButton*)sender).superview.frame;
 
     [_contentScrollView zoomToRect:zoomingRect animated:YES];
     _contentScrollView.scrollEnabled=NO;
+        
+   _pageNumber=_commentCount[_selectedPhoto%9]/10+1;
+            [self clearData];
+        [self loadData];
     }
     else
     {
@@ -425,7 +424,7 @@
                _photoID[j] =[[NSString alloc ] initWithString:[[dict objectForKey:@"pid"] stringValue]];
                 [_bigURL[j] release];
                 _bigURL[j]=[[NSString alloc] initWithString:[dict objectForKey:@"url_large"]];
-                
+                _commentCount[j]=[[dict objectForKey:@"comment_count"] intValue];
                 i++;
                 
                 
@@ -501,7 +500,8 @@
                 
                 _photoID[i]=[[NSString alloc ] initWithString:[[dict objectForKey:@"pid"] stringValue]];
                 _bigURL[i]=[[NSString alloc] initWithString:[dict objectForKey:@"url_large"]];
-            
+                _commentCount[i]=[[dict objectForKey:@"comment_count"] intValue];
+
                 i++;
                 
      
@@ -515,4 +515,42 @@
     [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
 
 }
+
+
+-(void)loadData
+{
+    
+    if (_selectedPhoto==-1)
+    {
+        
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSArray *array = client.responseJSONObject;
+                 array=[client.responseJSONObject objectForKey:@"comments"];
+                [self ProcessRenrenData:array];
+                
+            }
+        }];
+        
+        [renren getShareComments:((NewFeedShareAlbum*)self.feedData).fromID share_ID:((NewFeedShareAlbum*)self.feedData).source_ID pageNumber:_pageNumber];
+        
+    }
+    else
+    {
+        
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSArray *array = client.responseJSONObject;
+                [self ProcessRenrenData:array];
+            }
+        }];
+        [renren getPhotoComments:((NewFeedShareAlbum*)self.feedData).fromID photo_ID:_photoID[_selectedPhoto%9] pageNumber:_pageNumber];
+    }
+
+
+}
+
+
 @end

@@ -597,4 +597,18 @@ static NSString* const AppKey = @"02f195588a7645db8f1862d989020d88";
     [tempString release];
 	[self requestWithParams:params andDelegate:self];
 }
+
+-(void)getPhotoComments:(NSString*)userID photo_ID:(NSString*)p_ID pageNumber:(int)pageNumber
+{
+    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"photos.getComments",@"method",
+                                 userID,@"uid",
+                                 p_ID,@"pid",
+                                 tempString,@"page",
+
+                                 nil];
+    [tempString release];
+	[self requestWithParams:params andDelegate:self];
+}
 @end

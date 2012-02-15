@@ -26,14 +26,7 @@
 @implementation StatusDetailController
 
 @synthesize feedData=_feedData;
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (scrollView!=(UIScrollView*)self.view)
-    {
-   int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
-    _pageControl.currentPage = index;
-    }
-}
+
 
 
 
@@ -104,7 +97,7 @@
     self.tableView.frame = CGRectMake(306, 0, 306, 350);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    _pageControl.currentPage=0;
+   
     self.tableView.allowsSelection=NO;    
     if ([_feedData.style intValue]==0)
     {
@@ -325,48 +318,20 @@
                 [self ProcessRenrenData:array];
               //[self.tableView reloadData];
             }
-            
-            
-            
-        }];
-    
-            [renren getComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
 
+        }];
+            [renren getComments:[_feedData getActor_ID] status_ID:[_feedData getSource_ID] pageNumber:_pageNumber];
     }
-    
     else
     {
         WeiboClient *weibo = [WeiboClient client];
         [weibo setCompletionBlock:^(WeiboClient *client) {
             if(!client.hasError) {
-                
-  
                 NSArray *array = client.responseJSONObject;
                 [self ProcessWeiboData:array];
-                
             }
-
         }];
-
         [weibo getCommentsOfStatus:[_feedData getSource_ID] page:_pageNumber count:10];
-    }
-    
-    
-    
-    
-}
-
-
-
-
-- (void)loadExtraDataForOnscreenRows 
-{
-    NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-    NSTimeInterval i = 0;
-    for (NSIndexPath *indexPath in visiblePaths)
-    {
-        i += 0.05;
-        [self performSelector:@selector(loadExtraDataForOnScreenRowsHelp:) withObject:indexPath afterDelay:i];
     }
 }
 

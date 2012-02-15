@@ -24,7 +24,6 @@
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
    
-    IBOutlet UIPageControl* _pageControl;
     
     UIActivityIndicatorView* _activity;
     
@@ -41,5 +40,5 @@
 -(void)loadData;
 -(void)ProcessRenrenData:(NSArray*)array;
 -(void)ProcessWeiboData:(NSArray*)array;
-
+- (void)clearData;
 @end
