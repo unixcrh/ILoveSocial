@@ -311,10 +311,16 @@
   if (_selectedPhoto!=-1)
   {
    _infoTextView =[[UITextView alloc] init];
-    _infoTextView.frame=CGRectMake(17, 300, 270,40);
+    _infoTextView.frame=CGRectMake(22, 300, 260,50);
     _infoTextView.editable=NO;
+    
     _infoTextView.backgroundColor=[UIColor clearColor];
+  
+    [_infoTextView setTextColor:[UIColor colorWithRed:0.32157 green:0.31373 blue:0.2666667 alpha:1]];
+    [_infoTextView setFont:[UIFont systemFontOfSize:15]];
     _infoTextView.text=_photoInAlbum[_selectedPhoto].captian.text;
+        _infoTextView.contentOffset=CGPointMake(0, 10);
+
     
     _returnToAlbum=[[UIButton alloc] init];
     _returnToAlbum.frame=CGRectMake(245 ,70, 46, 17);
