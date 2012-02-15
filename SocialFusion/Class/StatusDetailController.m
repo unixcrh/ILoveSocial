@@ -79,7 +79,9 @@
 -(void)setFixedInfo
 {
     
-
+    _pageLine=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page_line.png"]];
+    _pageLine.frame=CGRectMake(305, 0, 1, 350);
+    
     _nameLabel.text=[_feedData getFeedName];
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
@@ -94,6 +96,8 @@
     ((UIScrollView*)self.view).showsVerticalScrollIndicator=NO;
     ((UIScrollView*)self.view).directionalLockEnabled=YES;
     ((UIScrollView*)self.view).delegate=self;
+    [((UIScrollView*)self.view) addSubview:_pageLine];
+
     self.tableView.frame = CGRectMake(306, 0, 306, 350);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];

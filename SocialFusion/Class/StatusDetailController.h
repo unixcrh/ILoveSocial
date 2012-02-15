@@ -31,6 +31,8 @@
     
     IBOutlet UIView* _titleView;
     
+    UIImageView* _pageLine;
+    
     
    
 }
