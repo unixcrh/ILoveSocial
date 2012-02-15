@@ -148,7 +148,6 @@
         [self.contentViewController addUserContentViewWithIndentifier:identifier andUsers:userDict];
         [self.labelBarViewController createLabelWithInfo:labelInfo];
     }
-
 }
 
 #pragma mark - 

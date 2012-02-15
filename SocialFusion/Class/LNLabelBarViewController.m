@@ -113,24 +113,22 @@
 }
 
 - (void)popPageManuallyWithCompletion:(void (^)(void))completion {
-    if(_popPageManuallyCompletion != nil) {
-        return;
-    }
-    if(completion == nil) {
-        _popPageManuallyCompletion = [^{
-            NSLog(@"empty pop page manually completion");
-        } copy];
-    }
-    else {
-        _popPageManuallyCompletion = [completion copy];
-    }
     if(_pageIndexStack.count != 0) {
+        if(_popPageManuallyCompletion != nil) {
+            return;
+        }
+        if(completion == nil) {
+            _popPageManuallyCompletion = [^{
+                NSLog(@"empty pop page manually completion");
+            } copy];
+        }
+        else {
+            _popPageManuallyCompletion = [completion copy];
+        }
         [self popPageManually];
     }
     else {
-        _popPageManuallyCompletion();
-        [_popPageManuallyCompletion release];
-        _popPageManuallyCompletion = nil;
+        completion();
     }
 }
 
