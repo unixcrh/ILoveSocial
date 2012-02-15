@@ -113,7 +113,17 @@
 }
 
 - (void)popPageManuallyWithCompletion:(void (^)(void))completion {
-    _popPageManuallyCompletion = [completion copy];
+    if(_popPageManuallyCompletion != nil) {
+        return;
+    }
+    if(completion == nil) {
+        _popPageManuallyCompletion = [^{
+            NSLog(@"empty pop page manually completion");
+        } copy];
+    }
+    else {
+        _popPageManuallyCompletion = [completion copy];
+    }
     if(_pageIndexStack.count != 0) {
         [self popPageManually];
     }
@@ -353,6 +363,9 @@
 - (void)selectParentLabelAtIndex:(NSUInteger)index{
     if(_selectUserLock) 
         return;
+    if(index == _currentParentLabelIndex) {
+        return;
+    }
     _selectUserLock = YES;
     [self popPageManuallyWithCompletion:^{
         if([self isLabelIndexInCurrentPage:index]) {
