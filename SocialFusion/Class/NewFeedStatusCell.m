@@ -172,20 +172,29 @@
     
     
     NSString* tempString=[NSString stringWithFormat:@"%@",[request URL]];
-    //NSLog(@"%@",tempString);
     
+  //  NSLog(@"%@",tempString);
     NSString* commandString=[tempString substringFromIndex:7];
-    if ([commandString isEqualToString:@"showimage"])
+    NSString* startString=[tempString substringToIndex:5];
+    if ([commandString isEqualToString:@"showimage"])//点击图片
     {
         [self showBigImage];
         return NO;
     }
-    else if ([commandString isEqualToString:@"gotoDetail"])
+    else if ([commandString isEqualToString:@"gotoDetail"])//进入detail页面
     {
         [self exposeCell];
+        return NO;
     }
-    
-    return YES;
+    else if ([startString isEqualToString:@"file:"])//本地request读取
+    {
+        return YES;
+    }
+    else//其他url，调用safari
+    {
+    [[UIApplication sharedApplication] openURL:[request URL]];
+    return NO;
+    }
 }
 -(void)exposeCell
 {
