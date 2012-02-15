@@ -317,10 +317,11 @@
     _infoTextView.text=_photoInAlbum[_selectedPhoto].captian.text;
     
     _returnToAlbum=[[UIButton alloc] init];
-    _returnToAlbum.frame=CGRectMake(225 ,67, 72, 21);
-    [_returnToAlbum setTitle:@"return" forState:UIControlStateNormal];
-    [_returnToAlbum setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-     [_returnToAlbum setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    _returnToAlbum.frame=CGRectMake(245 ,70, 46, 17);
+    [_returnToAlbum setTitle:@"显示全部" forState:UIControlStateNormal];
+      [_returnToAlbum.titleLabel setFont:[UIFont systemFontOfSize:10]];
+      [_returnToAlbum setBackgroundImage:[UIImage imageNamed:@"detail_show_all.png"] forState:UIControlStateNormal];
+      [_returnToAlbum setTitleColor:[UIColor colorWithRed:0.3765 green:0.3725 blue:0.3059 alpha:1] forState:UIControlStateNormal];
     [_returnToAlbum addTarget:self action:@selector(returnToAlbum) forControlEvents:UIControlEventTouchUpInside];
     [_titleView addSubview:_returnToAlbum];
     [self.view addSubview:_infoTextView];

@@ -35,6 +35,7 @@
 		731D1DBF147603B6001981B4 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 731D1DBE147603B6001981B4 /* Status.m */; };
 		7341AC9114D50C97003723A7 /* detailcell.css in Resources */ = {isa = PBXBuildFile; fileRef = 7341AC9014D50C97003723A7 /* detailcell.css */; };
 		7341AC9814D52FD5003723A7 /* blogcelldetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 7341AC9714D52FD5003723A7 /* blogcelldetail.html */; };
+		734415CE14EBF44B0048B546 /* detail_show_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 734415CD14EBF44B0048B546 /* detail_show_all.png */; };
 		734483C0147A7B780031D33A /* NewFeedDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 734483BE147A7B780031D33A /* NewFeedDetailViewCell.m */; };
 		734483C1147A7B780031D33A /* NewFeedDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734483BF147A7B780031D33A /* NewFeedDetailViewCell.xib */; };
 		7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */; };
@@ -390,6 +391,7 @@
 		731D1DBE147603B6001981B4 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Status.m; path = "SocialFusion/Class/CoreData Models/Status.m"; sourceTree = "<group>"; };
 		7341AC9014D50C97003723A7 /* detailcell.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = detailcell.css; sourceTree = "<group>"; };
 		7341AC9714D52FD5003723A7 /* blogcelldetail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blogcelldetail.html; sourceTree = "<group>"; };
+		734415CD14EBF44B0048B546 /* detail_show_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_show_all.png; sourceTree = "<group>"; };
 		734483BD147A7B780031D33A /* NewFeedDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedDetailViewCell.h; sourceTree = "<group>"; };
 		734483BE147A7B780031D33A /* NewFeedDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedDetailViewCell.m; sourceTree = "<group>"; };
 		734483BF147A7B780031D33A /* NewFeedDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedDetailViewCell.xib; sourceTree = "<group>"; };
@@ -1512,6 +1514,7 @@
 				73E4143B14E689E600E47581 /* photo_default.png */,
 				E199635D14E688D600A4F247 /* btn_tmp_pic_cancel@2x.png */,
 				735323D214E7E34000B4AB61 /* detail_album.png */,
+				734415CD14EBF44B0048B546 /* detail_show_all.png */,
 				E199635E14E688D600A4F247 /* btn_tmp_pic_save@2x.png */,
 				73E4143914E66B2800E47581 /* imageDownload.png */,
 				73E4143614E64DC800E47581 /* repostcellwithphotodetail.html */,
@@ -1952,6 +1955,7 @@
 				9B3C6FCC14E7ABBA003B0E52 /* first_weibo@2x.png in Resources */,
 				E183B4DA14E8165C00BBF63A /* pick_at_search_bg@2x.png in Resources */,
 				E12A9F0F14EA935600B03B5F /* LeaveMessageViewController.xib in Resources */,
+				734415CE14EBF44B0048B546 /* detail_show_all.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2118,12 +2122,9 @@
 				735323CF14E77B8400B4AB61 /* AlbumDetailController.m in Sources */,
 				735323D614E7E40F00B4AB61 /* NewFeedAlbumCell.m in Sources */,
 				735323E214E7F9C500B4AB61 /* NewFeedShareAlbum.m in Sources */,
-
 				73F39BAC14EA61AB000CE342 /* PhotoInAlbum.m in Sources */,
-
 				E12A9F0E14EA935600B03B5F /* LeaveMessageViewController.m in Sources */,
 				E12A9F1314EA946E00B03B5F /* PostViewController.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
