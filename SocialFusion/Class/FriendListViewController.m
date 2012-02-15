@@ -136,6 +136,11 @@
 #pragma mark FriendListTableViewCell delegate
 
 - (void)frientListCellDidClickChatButton:(FriendListTableViewCell *)cell {
+    if(_type == RelationshipViewTypeRenrenFriends)
+        [[UIApplication sharedApplication] presentToast:@"本版本暂不支持留言。" withVerticalPos:kToastBottomVerticalPosition];
+    else
+        [[UIApplication sharedApplication] presentToast:@"本版本暂不支持私信。" withVerticalPos:kToastBottomVerticalPosition];
+    return;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     LeaveMessageViewController *vc = [[LeaveMessageViewController alloc] initWithUser:usr];
