@@ -55,6 +55,10 @@
             }
         }
     }
+    else
+    {
+        [super scrollViewDidScroll:scrollView];
+    }
 }
 
 
