@@ -16,5 +16,5 @@
 - (void)presentModalViewController:(UIViewController *)vc;
 - (void)dismissModalViewController;
 - (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y;
-
+- (void)presentToastwithShortInterval:(NSString *)text withVerticalPos:(CGFloat)y;
 @end

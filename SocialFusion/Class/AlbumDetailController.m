@@ -12,7 +12,7 @@
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
 #import "NewFeedTempImageView.h"
-
+#import "UIApplication+Addition.h"
 
 #define IMAGE_OUT_BEGIN_X 10
 #define IMAGE_OUT_BEGIN_Y 5
@@ -68,6 +68,7 @@
     {
         int index = fabs(scrollView.contentOffset.y) / scrollView.frame.size.height;
         
+        [[UIApplication sharedApplication] presentToastwithShortInterval:[NSString stringWithFormat:@"%d/%d页",index+1,([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1)] withVerticalPos:380];
         if (index+1!=_albumPageNumber)
         {
         _albumPageNumber= index+1;
@@ -289,6 +290,10 @@
             }
     [self loadPhotoData];
 
+        }
+        else
+        {
+            _contentScrollView.scrollEnabled=YES;
         }
     }
 

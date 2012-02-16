@@ -108,13 +108,14 @@ static BOOL _isShowingToast;
     }];
 }
 
-- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y {
+- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y andTime:(float)time
+{
     if(_isShowingToast)
         return;
     _isShowingToast = YES;
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - TOAST_VIEW_WIDTH) / 2, y, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
     bgImageView.image = [UIImage imageNamed:@"toast_bg.png"];
-
+    
     UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, -3, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
     labelView.text = text;
     labelView.backgroundColor = [UIColor clearColor];
@@ -135,7 +136,7 @@ static BOOL _isShowingToast;
         labelView.alpha = 1;
         bgImageView.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3f delay:1.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.3f delay:time options:UIViewAnimationOptionCurveEaseInOut animations:^{
             labelView.alpha = 0;
             bgImageView.alpha = 0;
         } completion:^(BOOL finished) {
@@ -144,5 +145,15 @@ static BOOL _isShowingToast;
         }];
     }];
 }
+- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y {
+    [self presentToast:text withVerticalPos:y andTime:1.2f];
+}
+
+
+
+- (void)presentToastwithShortInterval:(NSString *)text withVerticalPos:(CGFloat)y {
+       [self presentToast:text withVerticalPos:y andTime:0.5f];
+}
+
 
 @end
