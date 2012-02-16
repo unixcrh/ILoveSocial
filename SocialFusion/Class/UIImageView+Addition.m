@@ -111,4 +111,16 @@
     dispatch_release(downloadQueue);
 }
 
+- (void)centerizeWithSideLength:(CGFloat)length {
+    if(self.image == nil) 
+        return;
+    UIImage *image = self.image;
+    CGPoint center =  self.center;
+    if(image.size.width < image.size.height)
+        self.frame = CGRectMake(0, 0, length, length * image.size.height / image.size.width);
+    else
+        self.frame = CGRectMake(0, 0, length * image.size.width / image.size.height, length);
+    self.center = center;
+}
+
 @end

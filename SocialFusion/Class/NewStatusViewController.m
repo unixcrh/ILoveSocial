@@ -17,6 +17,8 @@
 #define USER_PHOTO_CENTER CGPointMake(260.0f, -9.0f)
 #define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 100.0f)
 
+#define USER_PHOTO_SIDE_LENGTH 40.0f
+
 @interface NewStatusViewController()
 - (void)dismissUserPhoto;
 @end
@@ -25,14 +27,14 @@
 
 @synthesize postRenrenButton = _postRenrenButton;
 @synthesize postWeiboButton = _postWeiboButton;
-@synthesize photoFrameImageView = _photoFrameImageView;
+@synthesize photoView = _photoView;
 @synthesize photoImageView = _photoImageView;
 @synthesize photoCancelButton = _photoCancelButton; 
 
 - (void)dealloc {
     [_postRenrenButton release];
     [_postWeiboButton release];
-    [_photoFrameImageView release];
+    [_photoView release];
     [_photoImageView release];
     [_photoCancelButton release];
     [super dealloc];
@@ -42,7 +44,7 @@
     [super viewDidUnload];
     self.postRenrenButton = nil;
     self.postWeiboButton = nil;
-    self.photoFrameImageView = nil;
+    self.photoView = nil;
     self.photoImageView = nil;
     self.photoCancelButton = nil;
 }
@@ -62,8 +64,7 @@
     [self.postRenrenButton setSelected:_postToRenren];
     [self.postWeiboButton setSelected:_postToWeibo];
 
-    self.photoFrameImageView.hidden = YES;
-    self.photoImageView.hidden = YES;
+    self.photoView.hidden = YES;
 }
 
 #pragma mark -
@@ -159,15 +160,13 @@
 }
 
 - (void)presentUserPhoto:(UIImage *)image {
-    self.photoFrameImageView.hidden = NO;
-    self.photoImageView.hidden = NO;
+    self.photoView.hidden = NO;
     if(!self.photoImageView.image) {
         self.photoImageView.image = image;
-        self.photoFrameImageView.center = USER_PHOTO_HIDDEN_CENTER;
-        self.photoImageView.center = USER_PHOTO_HIDDEN_CENTER;
+        [self.photoImageView centerizeWithSideLength:USER_PHOTO_SIDE_LENGTH];
+        self.photoView.center = USER_PHOTO_HIDDEN_CENTER;
         [UIView animateWithDuration:0.3f animations:^{
-            self.photoFrameImageView.center = USER_PHOTO_CENTER;
-            self.photoImageView.center = USER_PHOTO_CENTER;
+            self.photoView.center = USER_PHOTO_CENTER;
         } completion:^(BOOL finished) {
             [self showPhotoCancelButton];
         }];
@@ -176,8 +175,9 @@
         UIImageView *oldImageView = [[UIImageView alloc] initWithImage:self.photoImageView.image];
         oldImageView.frame = self.photoImageView.frame;
         self.photoImageView.image = image;
+        [self.photoImageView centerizeWithSideLength:USER_PHOTO_SIDE_LENGTH];
         self.photoImageView.alpha = 0;
-        [self.toolBarView insertSubview:oldImageView belowSubview:self.photoFrameImageView];
+        [self.photoView insertSubview:oldImageView aboveSubview:self.photoImageView];
         [UIView animateWithDuration:0.3f animations:^{
             self.photoImageView.alpha = 1;
         }];
@@ -191,15 +191,12 @@
 }
 
 - (void)dismissUserPhoto {
-    self.photoFrameImageView.center = USER_PHOTO_CENTER;
-    self.photoImageView.center = USER_PHOTO_CENTER;
+    self.photoView.center = USER_PHOTO_CENTER;
     [UIView animateWithDuration:0.3f animations:^{
-        self.photoFrameImageView.center = USER_PHOTO_HIDDEN_CENTER;
-        self.photoImageView.center = USER_PHOTO_HIDDEN_CENTER;
+        self.photoView.center = USER_PHOTO_HIDDEN_CENTER;
     } completion:^(BOOL finished) {
         self.photoImageView.image = nil;
-        self.photoFrameImageView.hidden = YES;
-        self.photoImageView.hidden = YES;
+        self.photoView.hidden = YES;
     }];
     [self hidePhotoCancelButton];
 }

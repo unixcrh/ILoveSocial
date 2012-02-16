@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
-#import "LNLabelViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LNLabelViewController.h"
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
 #import "UIImage+Addition.h"

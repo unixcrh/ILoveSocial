@@ -63,27 +63,27 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 + (NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style
 {
     NewFeedListController* userList;
-    if (style==kRenrenUserFeed)
+    if (style == kRenrenUserFeed)
     {
-        userList=[[[NewFeedUserListController alloc] init] autorelease];
+        userList = [[[NewFeedUserListController alloc] init] autorelease];
         [userList setStyle:kRenrenUserFeed];
     }
-    else if (style==kWeiboUserFeed)
+    else if (style == kWeiboUserFeed)
     {
-        userList=[[[NewFeedUserListController alloc] init] autorelease];
+        userList = [[[NewFeedUserListController alloc] init] autorelease];
         [userList setStyle:kWeiboUserFeed];        
     }
-    else if (style==kAllSelfFeed)
+    else if (style == kAllSelfFeed)
     {
-        userList=[[[NewFeedListController alloc] init] autorelease]; 
+        userList = [[[NewFeedListController alloc] init] autorelease]; 
         [userList setStyle:kAllSelfFeed];
     }
-    else if (style==kRenrenSelfFeed)
+    else if (style == kRenrenSelfFeed)
     {
-        userList=[[[NewFeedListController alloc] init] autorelease]; 
+        userList = [[[NewFeedListController alloc] init] autorelease]; 
         [userList setStyle:kRenrenSelfFeed];
     }
-    else if (style==kWeiboSelfFeed)
+    else if (style == kWeiboSelfFeed)
     {
         userList=[[[NewFeedListController alloc] init] autorelease]; 
         [userList setStyle:kWeiboSelfFeed];
@@ -173,7 +173,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)refresh {
     if(_firstLoad) {
         _firstLoad = NO;
-        if(![self isUserNewFeedArrayEmpte])
+        if(![self isUserNewFeedArrayEmpte] && [self isMemberOfClass:[NewFeedListController class]])
             return;
     }
     [self hideLoadMoreDataButton];

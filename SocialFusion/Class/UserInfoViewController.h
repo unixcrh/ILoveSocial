@@ -8,9 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataViewController.h"
+#import "User.h"
 
-@interface UserInfoViewController : CoreDataViewController 
+typedef enum {
+    kRenrenUserInfo = 0,
+    kWeiboUserInfo  = 1,
+} kUserInfoType;
+
+@interface UserInfoViewController : CoreDataViewController {
+    kUserInfoType _type;
+}
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
+
+@property (nonatomic, retain) User *user;
+
+- (id)initWithType:(kUserInfoType)type;
++ (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type;
 
 @end

@@ -39,7 +39,7 @@
     
     //result.profileImageURL = [dict objectForKey:@"profile_image_url"];
     result.tinyURL = [dict objectForKey:@"profile_image_url"];
-    //result.midURL = [dict objectForKey:@"avatar_large"];
+    result.midURL = [result.tinyURL stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];
     WeiboDetail *detail = [WeiboDetail insertDetailInformation:dict inManagedObjectContext:context];
     result.detailInformation = detail;
     

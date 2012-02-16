@@ -143,7 +143,7 @@
         result = [[[PublicationViewController alloc] init] autorelease];
     }
     else if([identifier isEqualToString:kChildWeiboInfo]) {
-        result = [[[UserInfoViewController alloc] init] autorelease];
+        result = [UserInfoViewController getUserInfoViewControllerWithType:kWeiboUserInfo];
     }
     else {
         NSLog(@"nil identifier:%@", identifier);

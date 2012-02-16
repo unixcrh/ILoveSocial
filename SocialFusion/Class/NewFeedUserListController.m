@@ -28,16 +28,8 @@
 - (void)clearData
 {
     _noAnimationFlag = YES;
-    if(self.processRenrenUser)
-        for(NewFeedRootData *status in self.processRenrenUser.statuses) {
-            if(![self.currentRenrenUser.newFeed containsObject:status])
-                [self.processRenrenUser removeStatusesObject:status];
-        }
-    if(self.processWeiboUser)
-        for(NewFeedRootData *status in self.currentWeiboUser.statuses) {
-            if(![self.currentWeiboUser.newFeed containsObject:status])
-                [self.processWeiboUser removeStatusesObject:status];
-        }
+    [self.processRenrenUser removeStatuses:self.processRenrenUser.statuses];
+    [self.processWeiboUser removeStatuses:self.processWeiboUser.statuses];
 }
 
 - (WeiboUser *)processWeiboUser {

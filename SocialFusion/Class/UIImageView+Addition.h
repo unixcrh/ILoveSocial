@@ -26,4 +26,6 @@
               completion:(void (^)())completion 
           cacheInContext:(NSManagedObjectContext *)context;
 
+- (void)centerizeWithSideLength:(CGFloat)length;
+
 @end

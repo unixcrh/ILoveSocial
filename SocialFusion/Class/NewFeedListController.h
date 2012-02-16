@@ -19,6 +19,7 @@
 #import "NewFeedCellHeight.h"
 #import "NewFeedDetailBlogViewCell.h"
 #import "NewFeedAlbumCell.h"
+
 typedef   enum kUserFeed {
     kRenrenSelfFeed = 0,
     kWeiboSelfFeed  = 1,

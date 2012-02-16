@@ -14,7 +14,7 @@
     BOOL _postToRenren;
     BOOL _postToWeibo;
     
-    UIImageView *_photoFrameImageView;
+    UIView *_photoView;
     UIImageView *_photoImageView;
     UIButton *_photoCancelButton;
 }
@@ -22,7 +22,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *postRenrenButton;
 @property (nonatomic, retain) IBOutlet UIButton *postWeiboButton;
 
-@property (nonatomic, retain) IBOutlet UIImageView *photoFrameImageView;
+@property (nonatomic, retain) IBOutlet UIView *photoView;
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, retain) IBOutlet UIButton *photoCancelButton;
 
