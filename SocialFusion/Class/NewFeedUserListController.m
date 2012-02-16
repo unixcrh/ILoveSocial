@@ -21,18 +21,8 @@
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self=[super initWithNibName:@"NewFeedListController" bundle:nil];
+    self = [super initWithNibName:@"NewFeedListController" bundle:nil];
     return self;
-}
-
-- (void)clearData
-{
-    
-    _noAnimationFlag = YES;
-    [self.processRenrenUser removeStatuses:self.processRenrenUser.statuses];
-    
-    [self.processWeiboUser removeStatuses:self.processWeiboUser.statuses];
-    
 }
 
 - (WeiboUser *)processWeiboUser {

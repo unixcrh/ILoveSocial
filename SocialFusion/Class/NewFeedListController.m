@@ -35,12 +35,12 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 @implementation NewFeedListController
 
 -(void)dealloc {
-    [super dealloc];
     [_cellHeightHelper release];
+    [super dealloc];
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self=[super initWithNibName:@"NewFeedListController" bundle:nil];
+    self = [super initWithNibName:@"NewFeedListController" bundle:nil];
     return self;
 }
 
@@ -234,11 +234,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 -(void)processRenrenData:(NSArray*)array
 {
-       NSLog(@"%@",_currentTime);
+    NSLog(@"_currentTime:%@",_currentTime);
     for(NSDictionary *dict in array) {
-        
-          
-        int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
+    
+        int scrollHeight = [_cellHeightHelper getHeight:dict style:0];
         NewFeedRootData *data;
         
         if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
@@ -257,8 +256,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==32)
         {
-            
-            //   NSLog(@"%@",dict);
             data = [NewFeedSharePhoto insertNewFeed:0    height:scrollHeight  getDate:_currentTime  Owner:self.processRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
         }
         else
@@ -269,7 +266,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
-    // [self loadExtraDataForOnscreenRows];
     _loading = NO;
 }
 
@@ -279,8 +275,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     [renren setCompletionBlock:^(RenrenClient *client) {
         if (!client.hasError) {
-            //NSLog(@"dict:%@", client.responseJSONObject);
-            
+
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
             
@@ -659,13 +654,18 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 {
     NewFeedRootData* feedData=[self.fetchedResultsController objectAtIndexPath:indexPath];
     User *usr = feedData.author;
+    if(usr == nil) {
+        NSLog(@"shit");
+    }
     NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
     if([usr isMemberOfClass:[RenrenUser class]])
         [userDict setObject:usr forKey:kRenrenUser];
     else if([usr isMemberOfClass:[WeiboUser class]]) 
         [userDict setObject:usr forKey:kWeiboUser];
+    NSLog(@"get opened user id. user name:%@, user id:%@", usr.name, usr.userID);
     [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
 }
+
 - (IBAction)resetToNormalList
 {
     

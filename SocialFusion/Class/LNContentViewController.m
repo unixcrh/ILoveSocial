@@ -145,10 +145,9 @@
     else if([identifier isEqualToString:kChildWeiboInfo]) {
         result = [[[UserInfoViewController alloc] init] autorelease];
     }
-    // test code
     else {
         NSLog(@"nil identifier:%@", identifier);
-        result = [NewFeedListController getNewFeedListControllerwithStyle:kAllSelfFeed];
+        abort();
     }
     if([result isKindOfClass:[CoreDataViewController class]]) {
         ((CoreDataViewController *)result).userDict = userDict;
