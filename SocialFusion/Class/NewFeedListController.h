@@ -39,6 +39,7 @@ typedef   enum kUserFeed {
     int _pageNumber;
     int _style;
     NewFeedCellHeight* _cellHeightHelper;
+    BOOL _firstLoad;
     
     int _loadingCount;
 }
@@ -46,6 +47,7 @@ typedef   enum kUserFeed {
 @property (nonatomic, readonly) WeiboUser *processWeiboUser;
 @property (nonatomic, readonly) RenrenUser *processRenrenUser;
 
+@property (nonatomic) int loadingCount;
 
 +(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
 - (void)exposeCell:(NSIndexPath*)indexPath;

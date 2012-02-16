@@ -34,7 +34,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 @interface NewFeedListController()
 
-@property (nonatomic) int loadingCount;
+
 
 @end
 
@@ -54,6 +54,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:@"NewFeedListController" bundle:nil];
+    if(self) {
+        _firstLoad = YES;
+    }
     return self;
 }
 
@@ -160,8 +163,19 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 }
 
+- (BOOL)isUserNewFeedArrayEmpte {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    NSInteger count = [sectionInfo numberOfObjects];
+    return count == 0;
+}
+
 #pragma mark - EGORefresh Method
 - (void)refresh {
+    if(_firstLoad) {
+        _firstLoad = NO;
+        if(![self isUserNewFeedArrayEmpte])
+            return;
+    }
     [self hideLoadMoreDataButton];
     _pageNumber = 0;
     if (_currentTime != nil)
@@ -196,10 +210,13 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (void)setLoadingCount:(int)loadingCount {
     _loadingCount = loadingCount;
-    if(_loadingCount <= 0)
+    if(_loadingCount == 0)
         _loading = NO;
     else
         _loading = YES;
+    if(_loadingCount < 0) {
+        NSLog(@"shit");
+    }
         
 }
 
@@ -211,9 +228,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self.processRenrenUser addNewFeedObject:data];
 }
 
-- (void)processWeiboData:(NSArray*)array
-{
-    NSLog(@"%@",_currentTime);
+- (void)processWeiboData:(NSArray*)array {
     for(NSDictionary *dict in array) {
         int scrollHeight = [_cellHeightHelper getHeight:dict style:1];
         
@@ -221,38 +236,35 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         [self addNewWeiboData:data];
     }
     
-    
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
     self.loadingCount = self.loadingCount - 1;
 }
 
 
-- (void)processRenrenData:(NSArray*)array
-{
-    //NSLog(@"_currentTime:%@",_currentTime);
+- (void)processRenrenData:(NSArray*)array {
     for(NSDictionary *dict in array) {
     
         int scrollHeight = [_cellHeightHelper getHeight:dict style:0];
         NewFeedRootData *data;
                 
-        if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
+        if (([[dict objectForKey:@"feed_type"] intValue] == 20) || ([[dict objectForKey:@"feed_type"] intValue] == 21))
         {
             data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime Dic:dict inManagedObjectContext:self.managedObjectContext];
         }
-        else if ([[dict objectForKey:@"feed_type"] intValue]==30)
+        else if ([[dict objectForKey:@"feed_type"] intValue] == 30)
         {
             data = [NewFeedUploadPhoto insertNewFeed:0   getDate:_currentTime Dic:dict inManagedObjectContext:self.managedObjectContext];
             
         }
-        else if ([[dict objectForKey:@"feed_type"] intValue]==33)
+        else if ([[dict objectForKey:@"feed_type"] intValue] == 33)
         {
             data = [NewFeedShareAlbum insertNewFeed:0  height:scrollHeight getDate:_currentTime Dic:dict inManagedObjectContext:self.managedObjectContext];
             
         }
-        else if ([[dict objectForKey:@"feed_type"] intValue]==32)
+        else if ([[dict objectForKey:@"feed_type"] intValue] == 32)
         {
-            data = [NewFeedSharePhoto insertNewFeed:0 height:scrollHeight  getDate:_currentTime Dic:dict inManagedObjectContext:self.managedObjectContext];
+            data = [NewFeedSharePhoto insertNewFeed:0 height:scrollHeight getDate:_currentTime Dic:dict inManagedObjectContext:self.managedObjectContext];
         }
         else
         {
@@ -314,7 +326,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
 }
 
-- (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     //return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];

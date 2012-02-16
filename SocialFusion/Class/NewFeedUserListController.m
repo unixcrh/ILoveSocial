@@ -68,22 +68,22 @@
 }
 
 - (void)loadMoreRenrenData {
+    self.loadingCount = self.loadingCount + 1;
     RenrenClient *renren = [RenrenClient client];
     
     [renren setCompletionBlock:^(RenrenClient *client) {
-        if (!client.hasError) {
-            //NSLog(@"dict:%@", client.responseJSONObject);
-            
+        if (!client.hasError) {            
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
-            
         }
     }];
+    
     [renren getNewFeed:_pageNumber uid:self.processRenrenUser.userID];
 }
 
 
 - (void)loadMoreWeiboData {
+    self.loadingCount = self.loadingCount + 1;
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
@@ -93,25 +93,19 @@
             [self processWeiboData:array];
         }
     }];
-    
-    // [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
     [client getUserTimeline:self.processWeiboUser.userID SinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
 }
 
 - (void)loadMoreData {
     if(_loading)
         return;
-    _loading = YES;
     _pageNumber++;
+    _currentTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
-    _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
-    
-    if (_style==kRenrenUserFeed)
-    {
+    if (_style == kRenrenUserFeed) {
         [self loadMoreRenrenData];
     }
-    else if(_style==kWeiboUserFeed)
-    {
+    else if(_style == kWeiboUserFeed) {
         [self loadMoreWeiboData];
     }
     

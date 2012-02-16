@@ -66,7 +66,12 @@
     
     self.style = [NSNumber numberWithInt:style];
     self.cellheight = [NSNumber numberWithInt:height];
-     self.get_Time = getDate;
+    
+    // 此处是为了解决创建新标签时原新鲜事排序的变动问题
+    if (!self.get_Time || self.owner == nil) {
+        self.get_Time = getDate;
+    }
+    
     if(style == kNewFeedStyleRenren) {
         
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"post_id"]];
@@ -74,7 +79,7 @@
         
         self.actor_ID = [[dict objectForKey:@"actor_id"] stringValue];
         self.source_ID = [[dict objectForKey:@"source_id"] stringValue]; 
-                
+        
         NSDateFormatter *form = [[NSDateFormatter alloc] init];
         [form setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         
@@ -95,11 +100,11 @@
         
         self.owner_Name = self.author.name;
         self.post_ID = statusID;
-            
+        
         self.actor_ID = [[[dict objectForKey:@"user"] objectForKey:@"id"] stringValue] ;
         
         self.owner_Head = [[dict objectForKey:@"user"] objectForKey:@"profile_image_url"];
-
+        
         NSDateFormatter *form = [[NSDateFormatter alloc] init];
         [form setDateFormat:@"EEE MMM dd HH:mm:ss ZZZ yyyy"];
         
@@ -115,7 +120,7 @@
         
         self.comment_Count = [NSNumber numberWithInt:[[dict objectForKey:@"comment_count"] intValue]];
         self.source_ID = [[dict objectForKey:@"id"] stringValue];
-       
+        
         self.author = [WeiboUser insertUser:[dict objectForKey:@"user"] inManagedObjectContext:context];
     }
 }

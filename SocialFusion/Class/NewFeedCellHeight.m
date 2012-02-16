@@ -13,7 +13,7 @@
 
 - (void)myinit:(NewFeedListController*)deleControl
 {
-    _webView=[[UIWebView alloc] init];    
+    _webView = [[UIWebView alloc] init];    
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
     NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
@@ -29,8 +29,6 @@
 }
 //delegate  webView
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    
-    // NSLog(@"webview跑出来拉！！！");
     [_dele refresh];
 }
 
