@@ -19,10 +19,19 @@
 @synthesize photoImageView = _photoImageView;
 @synthesize user = _user;
 
+@synthesize genderLabel = _genderLabel;
+@synthesize locationLabel = _locationLabel;
+@synthesize blogLabel = _blogLabel;
+@synthesize descriptionTextView = _descriptionTextView;
+
 - (void)dealloc {
     [_scrollView release];
     [_photoImageView release];
     [_user release];
+    [_genderLabel release];
+    [_locationLabel release];
+    [_blogLabel release];
+    [_descriptionTextView release];
     [super dealloc];
 }
 
@@ -33,6 +42,10 @@
     // e.g. self.myOutlet = nil;
     self.scrollView = nil;
     self.photoImageView = nil;
+    self.genderLabel = nil;
+    self.locationLabel = nil;
+    self.blogLabel = nil;
+    self.descriptionTextView = nil;
 }
 
 - (void)viewDidLoad
@@ -54,6 +67,12 @@
             [self.photoImageView fadeIn];
         } cacheInContext:self.managedObjectContext];
     }
+    else 
+      self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
+    
+    //NSString *gender = self.weiboUser
+    //self.genderLabel = 
+    //self.blogLabel
 }
 
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type {

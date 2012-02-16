@@ -22,6 +22,11 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
 
+@property (nonatomic, retain) IBOutlet UILabel *genderLabel;
+@property (nonatomic, retain) IBOutlet UILabel *locationLabel;
+@property (nonatomic, retain) IBOutlet UILabel *blogLabel;
+@property (nonatomic, retain) IBOutlet UITextView *descriptionTextView;
+
 @property (nonatomic, retain) User *user;
 
 - (id)initWithType:(kUserInfoType)type;
