@@ -67,7 +67,7 @@
     self.style = [NSNumber numberWithInt:style];
     self.cellheight = [NSNumber numberWithInt:height];
     self.owner = myUser;
-    
+     self.get_Time = getDate;
     if(style == kNewFeedStyleRenren) {
         
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
@@ -118,7 +118,7 @@
         
         self.comment_Count = [NSNumber numberWithInt:[[dict objectForKey:@"comment_count"] intValue]];
         self.source_ID = [[dict objectForKey:@"id"] stringValue];
-        self.get_Time = getDate;
+       
     }
 }
 

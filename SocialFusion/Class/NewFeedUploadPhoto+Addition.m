@@ -36,6 +36,7 @@
     }    
     
     [result configureNewFeed:style height:0 getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+  
     
     return result;
 }

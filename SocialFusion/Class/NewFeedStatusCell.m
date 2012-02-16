@@ -148,9 +148,10 @@
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
     _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
     
-    [UIView animateWithDuration:0.1f animations:^{
+/*    [UIView animateWithDuration:0.1f animations:^{
         _webView.alpha=1;
     }];
+ */
 }
 
 
@@ -296,7 +297,7 @@
     
     [self.contentView sendSubviewToBack:_webView];
     
-    _webView.alpha=0;
+  //  _webView.alpha=0;
     [_photoView setImage:nil];
     
     if ([feedData getStyle]==0)

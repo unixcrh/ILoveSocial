@@ -131,6 +131,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     return predicate;
 }
 
+
+
 - (void)configureRequest:(NSFetchRequest *)request
 {
     [request setEntity:[NSEntityDescription entityForName:@"NewFeedRootData" inManagedObjectContext:self.managedObjectContext]];
@@ -140,7 +142,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     predicate = [self customPresdicate];
     //  sort = [[NSSortDescriptor alloc] initWithKey:@"1" ascending:YES];
     sort = [[NSSortDescriptor alloc] initWithKey:@"update_Time" ascending:NO];
-    sort2 = [[NSSortDescriptor alloc] initWithKey:@"get_Time" ascending:YES];
+    sort2 = [[NSSortDescriptor alloc] initWithKey:@"get_Time" ascending:YES] ;
     
     
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sort2, sort, nil];
@@ -155,14 +157,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [sort release];
     [sort2 release];
     [sortDescriptors release];
-    request.fetchBatchSize = 5;
+
 }
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
     [self hideLoadMoreDataButton];
     _pageNumber=0;
-    //  [self hideLoadMoreDataButton];
+
+    
     if (_currentTime!=nil)
     {
         [_currentTime release];
@@ -213,6 +216,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 -(void)processWeiboData:(NSArray*)array
 {
+       NSLog(@"%@",_currentTime);
     for(NSDictionary *dict in array) {
         int scrollHeight = [_cellHeightHelper getHeight:dict style:1];
         
@@ -230,16 +234,15 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 -(void)processRenrenData:(NSArray*)array
 {
+       NSLog(@"%@",_currentTime);
     for(NSDictionary *dict in array) {
         
-        
-        //  NSLog(@"%@",dict);
+          
         int scrollHeight =[_cellHeightHelper getHeight:dict style:0];
         NewFeedRootData *data;
         
         if (([[dict objectForKey:@"feed_type"] intValue]==20)||([[dict objectForKey:@"feed_type"] intValue]==21))
         {
-            //  NSLog(@"%@",dict);
             data = [NewFeedBlog insertNewFeed:0  height:scrollHeight  getDate:_currentTime  Owner:self.processRenrenUser  Dic:dict inManagedObjectContext:self.managedObjectContext];
         }
         else if ([[dict objectForKey:@"feed_type"] intValue]==30)
@@ -297,6 +300,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     _pageNumber++;
     _currentTime=[[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
+    NSLog(@"%@",_currentTime);
     if (_style==kAllSelfFeed)
     {
         [self loadMoreRenrenData];
