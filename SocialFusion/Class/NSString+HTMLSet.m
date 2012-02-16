@@ -9,7 +9,7 @@
 #import "NSString+HTMLSet.h"
 
 @implementation NSString (HTMLSet)
--(NSString*)replaceJSSign 
+- (NSString*)replaceJSSign 
 {
     self=[self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
     self=[self stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
@@ -18,7 +18,7 @@
     return  self;
 }
 
--(NSString*)replaceHTMLSign 
+- (NSString*)replaceHTMLSign 
 {
     self=[self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
 
@@ -40,7 +40,7 @@
            self=[self stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
     return self;
 }
--(NSString*)setName:(NSString*)name  
+- (NSString*)setName:(NSString*)name  
 {
  //   NSArray* array=[self componentsSeparatedByString:@"@#Name#@"];
  //   [self release];
@@ -51,7 +51,7 @@
 }
 
 
--(NSString*)setTime:(NSString*)time 
+- (NSString*)setTime:(NSString*)time 
 {
   /*  NSArray* array=[self componentsSeparatedByString:@"@#Time#@"];
     [self release];
@@ -64,7 +64,7 @@
 
 
 
--(NSString*)setWeibo:(NSString*)weibo  
+- (NSString*)setWeibo:(NSString*)weibo  
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Weibo#@"];
     [self release];
@@ -76,7 +76,7 @@
 
 
 
--(NSString*)setRepost:(NSString*)repost
+- (NSString*)setRepost:(NSString*)repost
 {
     
    // NSLog(@"%@",self);
@@ -88,7 +88,7 @@
     return returnString;
 }
 
--(NSString*)setAlbum:(NSString*)album 
+- (NSString*)setAlbum:(NSString*)album 
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Album#@"];
     [self release];
@@ -99,7 +99,7 @@
 }
 
 
--(NSString*)setPhotoMount:(NSString*)photomount 
+- (NSString*)setPhotoMount:(NSString*)photomount 
 {
     NSArray* array=[self componentsSeparatedByString:@"@#PhotoMount#@"];
     [self release];
@@ -111,7 +111,7 @@
 }
 
 
--(NSString*)setAuthor:(NSString*)author
+- (NSString*)setAuthor:(NSString*)author
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Author#@"];
     [self release];
@@ -122,7 +122,7 @@
     return returnString;
 }
 
--(NSString*)setComment :(NSString*)comment 
+- (NSString*)setComment :(NSString*)comment 
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Comment#@"];
     [self release];
@@ -133,7 +133,7 @@
     return returnString;
 }
 
--(NSString*)setCount :(NSString*)count
+- (NSString*)setCount :(NSString*)count
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Count#@"];
     [self release];

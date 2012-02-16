@@ -14,6 +14,6 @@
     NewFeedListController* _dele;
 }
 
--(void)myinit:(NewFeedListController*)deleControl;
--(int)getHeight:(NSDictionary*) dic style:(int)style;
+- (void)myinit:(NewFeedListController*)deleControl;
+- (int)getHeight:(NSDictionary*) dic style:(int)style;
 @end

@@ -52,8 +52,8 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 - (void)getBlog:(NSString*)userID status_ID:(NSString*)status;
 - (void)getBlogComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber;
 - (void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber;
--(void)getAlbum:(NSString*)userID a_ID:(NSString*)a_ID pageNumber:(int)pageNumber;
--(void)getPhotoComments:(NSString*)userID photo_ID:(NSString*)p_ID pageNumber:(int)pageNumber;
+- (void)getAlbum:(NSString*)userID a_ID:(NSString*)a_ID pageNumber:(int)pageNumber;
+- (void)getPhotoComments:(NSString*)userID photo_ID:(NSString*)p_ID pageNumber:(int)pageNumber;
 
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;

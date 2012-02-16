@@ -28,14 +28,14 @@
 /*
  *初始化ROResponseItem
  */
--(id)initWithDictionary:(NSDictionary*)responseDictionary;
+- (id)initWithDictionary:(NSDictionary*)responseDictionary;
 
 /*
  *表示对应的json字典对象。 
  */
--(NSDictionary*)responseDictionary;
+- (NSDictionary*)responseDictionary;
 
 
--(id)valueForItemKey:(NSString*)key;
+- (id)valueForItemKey:(NSString*)key;
 @end
 

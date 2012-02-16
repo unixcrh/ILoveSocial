@@ -168,7 +168,7 @@
     
 }
 
--(void)finished
+- (void)finished
 {
 
     self.currentWeiboUser = [WeiboUser insertUser:nil inManagedObjectContext:self.managedObjectContext];

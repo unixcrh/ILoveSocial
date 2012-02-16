@@ -272,7 +272,7 @@ hasError = _hasError;
 }
 
 #pragma mark - Util Methods -
--(void)setGeneralRequestArgs: (RORequestParam *)inRequestParam{
+- (void)setGeneralRequestArgs: (RORequestParam *)inRequestParam{
     // 这里假设此前已经调用[self isSessionValid],并且返回Ture。
     inRequestParam.sessionKey = self.sessionKey;
     inRequestParam.apiKey = AppKey;
@@ -490,7 +490,7 @@ hasError = _hasError;
 }
 
 
--(void)getComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber
+- (void)getComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber
 {
     
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
@@ -505,7 +505,7 @@ hasError = _hasError;
 	[self requestWithParams:params andDelegate:self];
 }
 
--(void)getBlogComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber
+- (void)getBlogComments:(NSString*)userID status_ID:(NSString*)status pageNumber:(int)pageNumber
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -520,7 +520,7 @@ hasError = _hasError;
 }
 
 
--(void)getStatus:(NSString*)userID status_ID:(NSString*)status
+- (void)getStatus:(NSString*)userID status_ID:(NSString*)status
 {
     
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -532,7 +532,7 @@ hasError = _hasError;
 }
 
 
--(void)getSinglePhoto:(NSString*)userID photoID:(NSString*)photoID
+- (void)getSinglePhoto:(NSString*)userID photoID:(NSString*)photoID
 {
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  @"photos.get",@"method",
@@ -542,7 +542,7 @@ hasError = _hasError;
   	[self requestWithParams:params andDelegate:self];
 }
 
--(void)getBlog:(NSString*)userID status_ID:(NSString*)status
+- (void)getBlog:(NSString*)userID status_ID:(NSString*)status
 {
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  @"blog.get",@"method",
@@ -553,7 +553,7 @@ hasError = _hasError;
     
 }
 
--(void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber
+- (void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -584,7 +584,7 @@ hasError = _hasError;
 }
 
 
--(void)getAlbum:(NSString*)userID a_ID:(NSString*)a_ID pageNumber:(int)pageNumber
+- (void)getAlbum:(NSString*)userID a_ID:(NSString*)a_ID pageNumber:(int)pageNumber
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -598,7 +598,7 @@ hasError = _hasError;
 	[self requestWithParams:params andDelegate:self];
 }
 
--(void)getPhotoComments:(NSString*)userID photo_ID:(NSString*)p_ID pageNumber:(int)pageNumber
+- (void)getPhotoComments:(NSString*)userID photo_ID:(NSString*)p_ID pageNumber:(int)pageNumber
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:

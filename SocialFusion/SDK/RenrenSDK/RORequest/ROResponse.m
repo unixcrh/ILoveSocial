@@ -24,7 +24,7 @@
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     [_rootObject release];
     [_error release];

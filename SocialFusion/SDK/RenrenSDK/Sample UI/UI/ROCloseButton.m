@@ -26,7 +26,7 @@
     return [[[ROCloseButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
 }
 
--(void)drawRect:(CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
     
     CGContextRef context = UIGraphicsGetCurrentContext();

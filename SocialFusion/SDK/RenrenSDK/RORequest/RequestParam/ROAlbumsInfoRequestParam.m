@@ -16,7 +16,7 @@
 @synthesize albumIDs = _albumIDs;
 @synthesize userID = _userID;
 
--(id)init
+- (id)init
 {
 	if (self = [super init]) {
 		self.method = [NSString stringWithFormat:@"photos.getAlbums"];
@@ -27,7 +27,7 @@
 	return self;
 }
 
--(void)addParamToDictionary:(NSMutableDictionary*)dictionary
+- (void)addParamToDictionary:(NSMutableDictionary*)dictionary
 {
 	if (dictionary == nil) {
 		return;
@@ -48,7 +48,7 @@
 	[dictionary setObject:self.userID forKey:@"uid"];
 }
 
--(ROResponse*)requestResultToResponse:(id)result
+- (ROResponse*)requestResultToResponse:(id)result
 {
 	id responseObject = nil;
 	if ([result isKindOfClass:[NSArray class]]) {
@@ -70,7 +70,7 @@
 	}
 }
 
--(void)dealloc
+- (void)dealloc
 {
 	self.page = nil;
 	self.count = nil;

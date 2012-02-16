@@ -303,7 +303,7 @@ static NSString* AccessURL=@"http://api.t.sina.com.cn/oauth/access_token" ;
 }
 
 
--(void) closeView{
+- (void) closeView{
       [self dismissWithSuccess:NO animated:YES];
 }
 - (void)dealloc {
@@ -435,7 +435,7 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
 	return params;
 }
 
--(void) errormsg:(NSString*) errorReason{
+- (void) errormsg:(NSString*) errorReason{
 	if (errorReason) {
 		NSLog(@"%@",errorReason);
 	}
@@ -475,8 +475,8 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
   UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
   if (UIInterfaceOrientationIsLandscape(orientation)) {
     _webView.frame = CGRectInset(_webView.frame,
-      -(kPadding + kBorderWidth),
-      -(kPadding + kBorderWidth));
+      - (kPadding + kBorderWidth),
+      - (kPadding + kBorderWidth));
   }
 }
 

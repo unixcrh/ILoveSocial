@@ -11,7 +11,7 @@
 #import "NSString+HTMLSet.h"
 @implementation NewFeedCellHeight
 
--(void)myinit:(NewFeedListController*)deleControl
+- (void)myinit:(NewFeedListController*)deleControl
 {
     _webView=[[UIWebView alloc] init];    
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
@@ -35,7 +35,7 @@
 }
 
 
--(int)getHeight:(NSDictionary*)dict style:(int)style
+- (int)getHeight:(NSDictionary*)dict style:(int)style
 {
     int scrollHeight ;
     

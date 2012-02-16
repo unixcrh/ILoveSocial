@@ -37,10 +37,10 @@
 +(float)heightForCell:(NewFeedRootData*)feedData;
 
 
--(void)setList:(NewFeedListController*)list;
--(void)configureCell:(NewFeedRootData*)feedData;
--(void)exposeCell;
--(void)loadImage:(NSData*)image;
--(void)loadPicture:(NSData*)image;
--(void)setData:(NSData*)image;
+- (void)setList:(NewFeedListController*)list;
+- (void)configureCell:(NewFeedRootData*)feedData;
+- (void)exposeCell;
+- (void)loadImage:(NSData*)image;
+- (void)loadPicture:(NSData*)image;
+- (void)setData:(NSData*)image;
 @end

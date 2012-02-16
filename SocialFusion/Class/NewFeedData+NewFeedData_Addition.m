@@ -12,55 +12,55 @@
 //#import "CalculateHeight.h"
 @implementation NewFeedData (NewFeedData_Addition)
 
--(NSString*)getBlog
+- (NSString*)getBlog
 {
     return nil;
 }
--(NSString*)getActor_ID
+- (NSString*)getActor_ID
 {
     return self.actor_ID;
 }
--(NSString*)getSource_ID
+- (NSString*)getSource_ID
 {
     return self.source_ID;
 }
 
--(int)getComment_Count
+- (int)getComment_Count
 {
     return [self.comment_Count intValue];
 }
 
 
--(void)setCount:(int)count
+- (void)setCount:(int)count
 {
     self.comment_Count=[NSNumber numberWithInt:count];
 }
--(NSDate*)getDate
+- (NSDate*)getDate
 {
     return self.update_Time;
 }
 
 
 
--(int)getStyle
+- (int)getStyle
 {
     return [self.style intValue];
 }
 
--(NSString*)getFeedName
+- (NSString*)getFeedName
 {
     return self.owner_Name;
 }
 
 
 
--(NSString*)getHeadURL
+- (NSString*)getHeadURL
 {
     return self.owner_Head;
 }
 
 
--(NSString*)getPostMessage
+- (NSString*)getPostMessage
 {
 
     
@@ -73,20 +73,20 @@
 }
 
 
--(NSString*)getPostName
+- (NSString*)getPostName
 {
     return self.repost_Name;
 }
 
 
--(NSString*)getName
+- (NSString*)getName
 {
     return [self.message replaceHTMLSign];
 }
 
 
-- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
     if(style == kNewFeedStyleWeibo) {
         self.pic_URL = [dict objectForKey:@"thumbnail_pic"];
         self.pic_big_URL = [dict objectForKey:@"bmiddle_pic"];
@@ -126,7 +126,7 @@
     }
 }
 
-+ (NewFeedData *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
++ (NewFeedData *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context
 {
     if (style==0)//renren
     {
@@ -140,8 +140,8 @@
             result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedData" inManagedObjectContext:context];
         }
         
-        [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
-
+        [result configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
+        
         return result;
     }
     else
@@ -156,7 +156,7 @@
             result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedData" inManagedObjectContext:context];
         }
         
-        [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+        [result configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
         
         return result;
     }

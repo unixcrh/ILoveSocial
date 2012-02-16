@@ -52,7 +52,7 @@
 
 
 
--(void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo {
+- (void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo {
     
     float cellHeight = [StatusCommentCell heightForCell:feedData];
     //状态

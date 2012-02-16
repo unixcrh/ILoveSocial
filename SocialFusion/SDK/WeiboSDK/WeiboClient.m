@@ -299,11 +299,7 @@ report_completion:
     if (self.httpMethod == HTTPMethodGet && [self.params count]) {
         url = [NSString stringWithFormat:@"%@?%@", url, [self queryString]];
     }
-    
     NSURL *finalURL = [NSURL URLWithString:url];
-    
-    NSLog(@"requestURL: %@", finalURL);
-    
     [_request setURL:finalURL];
 }
 

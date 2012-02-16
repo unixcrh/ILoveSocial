@@ -12,8 +12,8 @@
 + (StatusCommentData *)insertNewComment:(int)style Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (StatusCommentData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 + (void)deleteAllObjectsInManagedObjectContext:(NSManagedObjectContext *)context;
--(NSString*)getText;
--(NSDate*)getUpdateTime;
--(NSString*)getOwner_Name;
--(NSString*)getOwner_HEAD;
+- (NSString*)getText;
+- (NSDate*)getUpdateTime;
+- (NSString*)getOwner_Name;
+- (NSString*)getOwner_HEAD;
 @end

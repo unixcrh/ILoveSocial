@@ -88,7 +88,7 @@ static Renren *sharedRenren = nil;
 
 #pragma mark - General Public Methods -
 
--(BOOL)isSessionValid{
+- (BOOL)isSessionValid{
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	if (nil != defaults){
 		self.accessToken = [defaults objectForKey:@"access_Token"];
@@ -99,7 +99,7 @@ static Renren *sharedRenren = nil;
     return (self.accessToken != nil && self.expirationDate != nil && self.sessionKey != nil && NSOrderedDescending == [self.expirationDate compare:[NSDate date]]);	
 }
 
--(RenrenPay *)getRenrenPayWithSecret:(NSString *)secret andLocalMem:(BOOL)isUsed
+- (RenrenPay *)getRenrenPayWithSecret:(NSString *)secret andLocalMem:(BOOL)isUsed
 {
     RenrenPay *rrPay  = [[[RenrenPay alloc] init] autorelease];
     [rrPay initPayWithRenren:self andSecretKey:secret andLocalMem:isUsed];
@@ -112,7 +112,7 @@ static Renren *sharedRenren = nil;
 /**
  * 保存用户经oauth 2.0登录后的信息,到UserDefaults中。
  */
--(void)saveUserSessionInfo{
+- (void)saveUserSessionInfo{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];	
     if (self.accessToken) {
         [defaults setObject:self.accessToken forKey:@"access_Token"];
@@ -131,7 +131,7 @@ static Renren *sharedRenren = nil;
 /**
  * 删除UserDefaults中保存的用户oauth 2.0信息 
  */
--(void)delUserSessionInfo{
+- (void)delUserSessionInfo{
 	NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"access_Token"];
 	[defaults removeObjectForKey:@"secret_Key"];
@@ -282,7 +282,7 @@ static Renren *sharedRenren = nil;
 /*
  * 用于设置通用的一些参数到param对象中。
  */
--(void)setGeneralRequestArgs: (RORequestParam *)inRequestParam{
+- (void)setGeneralRequestArgs: (RORequestParam *)inRequestParam{
     // 这里假设此前已经调用[self isSessionValid],并且返回Ture。
     inRequestParam.sessionKey = self.sessionKey;
     inRequestParam.apiKey = self.appKey;
@@ -297,7 +297,7 @@ static Renren *sharedRenren = nil;
 /**
  * 用accesstoken 获取调用api 时用到的参数session_secret
  */
--(NSString *)getSecretKeyByToken:(NSString *)token{
+- (NSString *)getSecretKeyByToken:(NSString *)token{
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   token, @"oauth_token",
 								   nil];
@@ -313,7 +313,7 @@ static Renren *sharedRenren = nil;
 /**
  * 用accesstoken 获取调用api 时用到的参数session_key
  */
--(NSString *)getSessionKeyByToken:(NSString *)token{
+- (NSString *)getSessionKeyByToken:(NSString *)token{
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   token, @"oauth_token",
 								   nil];
@@ -604,7 +604,7 @@ static Renren *sharedRenren = nil;
 
 #pragma mark - Packaged API Function Methods -
 
--(void)createAlbum:(ROCreateAlbumRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
+- (void)createAlbum:(ROCreateAlbumRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
 	if (![param.method isEqualToString:@"photos.createAlbum"]) {
 		NSLog(@"API Method Error!");
 		return;
@@ -617,7 +617,7 @@ static Renren *sharedRenren = nil;
     return;
 }
 
--(void)getAlbums:(ROAlbumsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
+- (void)getAlbums:(ROAlbumsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
 	if (![param.method isEqualToString:@"photos.getAlbums"]) {
 		NSLog(@"API Method Error!");
 		return;
@@ -630,7 +630,7 @@ static Renren *sharedRenren = nil;
     return;
 }
 
--(void)getUsersInfo:(ROUserInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
+- (void)getUsersInfo:(ROUserInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
 	if (![param.method isEqualToString:@"users.getInfo"]) {
 		NSLog(@"API Method Error!");
 		return;
@@ -643,7 +643,7 @@ static Renren *sharedRenren = nil;
     return;
 }
 
--(void)publishPhoto:(ROPublishPhotoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
+- (void)publishPhoto:(ROPublishPhotoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
     if (![param.method isEqualToString:@"photos.upload"]) {
 		NSLog(@"API Method Error!");
 		return;
@@ -656,7 +656,7 @@ static Renren *sharedRenren = nil;
     return;
 }
 
--(void)getFriends:(ROGetFriendsRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate
+- (void)getFriends:(ROGetFriendsRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate
 {
 	if (![param.method isEqualToString:@"friends.get"]) {
 		NSLog(@"API Method Error!");
@@ -668,7 +668,7 @@ static Renren *sharedRenren = nil;
 	[self requestWithParam:param andDelegate:self];
 }
 
--(void)getFriendsInfo:(ROGetFriendsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate
+- (void)getFriendsInfo:(ROGetFriendsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate
 {
 	if (![param.method isEqualToString:@"friends.getFriends"]) {
 		NSLog(@"API Method Error!");
@@ -692,7 +692,7 @@ static Renren *sharedRenren = nil;
  *@param image 准备上传图片对象
  *@param caption 上传图片的附加文本，会成为照片的描述
  */
--(void)publishPhotoSimplyWithImage:(UIImage *)image caption:(NSString *)caption
+- (void)publishPhotoSimplyWithImage:(UIImage *)image caption:(NSString *)caption
 {
     
     ROPublishPhotoDialogModel *dialogModel = [ROPublishPhotoDialogModel modelWithRenren:self];

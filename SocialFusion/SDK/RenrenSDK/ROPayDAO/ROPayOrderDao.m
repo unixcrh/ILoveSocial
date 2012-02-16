@@ -28,7 +28,7 @@
 }
 
 // SELECT
--(NSMutableArray *)queryOrderWithUserID:(NSString *)UserID
+- (NSMutableArray *)queryOrderWithUserID:(NSString *)UserID
 {
 	NSMutableArray *result = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
 	
@@ -60,7 +60,7 @@
 	return result;
 }
 
--(ROPayOrderInfo*)getOrderWithOrderNum:(NSString *)orderNum
+- (ROPayOrderInfo*)getOrderWithOrderNum:(NSString *)orderNum
 {
     NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE ORDERNUM='%@'",TABLE_NAME,orderNum];
     
@@ -90,7 +90,7 @@
 
 
 // INSERT
--(void)insertWithPayRecord:(ROPayOrderInfo *)order
+- (void)insertWithPayRecord:(ROPayOrderInfo *)order
 {
     NSString *insertSQL = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (APPID, TRADINGVOLUME, ORDERNUM, ORDERTIME, SERIALNUM, USERID, LOCALORDERSTATUS, SERVERORDERSTATUS,PAYENCODE,DESCRIPTION,ISTESTORDER,CHECKCODE,PAYMENT) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",TABLE_NAME];
 	[[dbManager getDatabase] executeUpdate:insertSQL, order.appID, order.tradingVolume, order.orderNum, order.orderTime, order.serialNum, order.userID, order.localOrderStatus, order.serverOrderStatus, order.payEncode,order.description,order.isTestOrder,order.orderCheckCode,order.payment];
@@ -101,7 +101,7 @@
 
 
 // UPDATE
--(BOOL)updateOrderWithRecord:(ROPayOrderInfo *)order
+- (BOOL)updateOrderWithRecord:(ROPayOrderInfo *)order
 {
 	BOOL success = YES;
 	[[dbManager getDatabase] executeUpdate:[self SQL:@"UPDATE %@ SET TRADINGVOLUME=?, SERIALNUM=?,SERVERORDERSTATUS=?, ORDERTIME=?, PAYENCODE=?, PAYMENT=?, PAYSTATUSCODE=? WHERE ORDERNUM=?" inTable:TABLE_NAME],
@@ -127,7 +127,7 @@
 	return success;
 }
 
--(NSString *)SQL:(NSString *)sql inTable:(NSString *)table {
+- (NSString *)SQL:(NSString *)sql inTable:(NSString *)table {
 	return [NSString stringWithFormat:sql, table];
 }
 

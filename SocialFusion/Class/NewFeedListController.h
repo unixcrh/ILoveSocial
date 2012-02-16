@@ -39,6 +39,8 @@ typedef   enum kUserFeed {
     int _pageNumber;
     int _style;
     NewFeedCellHeight* _cellHeightHelper;
+    
+    int _loadingCount;
 }
 
 @property (nonatomic, readonly) WeiboUser *processWeiboUser;
@@ -46,15 +48,15 @@ typedef   enum kUserFeed {
 
 
 +(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
--(void)exposeCell:(NSIndexPath*)indexPath;
--(void)showImage:(NSIndexPath*)indexPath;
--(void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
--(void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID;
--(void)processRenrenData:(NSArray*)array;
--(void)processWeiboData:(NSArray*)array;
+- (void)exposeCell:(NSIndexPath*)indexPath;
+- (void)showImage:(NSIndexPath*)indexPath;
+- (void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
+- (void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID;
+- (void)processRenrenData:(NSArray*)array;
+- (void)processWeiboData:(NSArray*)array;
 - (void)clearData;
--(IBAction)resetToNormalList;
--(void)setStyle:(int)style;
--(void)selectUser:(NSIndexPath*)indexPath;
+- (IBAction)resetToNormalList;
+- (void)setStyle:(int)style;
+- (void)selectUser:(NSIndexPath*)indexPath;
 
 @end

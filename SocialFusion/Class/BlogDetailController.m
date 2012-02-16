@@ -15,7 +15,7 @@
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
 @implementation BlogDetailController
 
--(void)loadWebView
+- (void)loadWebView
 {
     
     
@@ -40,7 +40,7 @@
 }
 
 
--(void)loadData
+- (void)loadData
 {
     
     RenrenClient *renren = [RenrenClient client];

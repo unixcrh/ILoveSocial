@@ -11,8 +11,8 @@
 
 @implementation NewFeedSharePhoto (Addition)
 
-- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
 
     self.photo_url=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
     self.share_comment=[dict objectForKey:@"message"];
@@ -28,7 +28,7 @@
     self.title=[dict objectForKey:@"title"];
 }
 
-+ (NewFeedSharePhoto *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedSharePhoto *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
     if (!statusID || [statusID isEqualToString:@""]) {
@@ -40,7 +40,7 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedSharePhoto" inManagedObjectContext:context];
     }
     
-    [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+    [result configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
     
     return result;
 }
@@ -56,7 +56,7 @@
     return res;
 }
 
--(NSString*)getShareComment
+- (NSString*)getShareComment
 {
     if (![self.share_comment compare:@""])
     {
@@ -70,7 +70,7 @@
     
 }
 
--(NSString*)getPhotoComment
+- (NSString*)getPhotoComment
 {
     if (![self.photo_comment compare:@""])
     {
@@ -91,12 +91,12 @@
     //return self.prefix;
     
 }
--(NSString*)getTitle
+- (NSString*)getTitle
 {
  
     return  [NSString stringWithFormat:@"相册:《%@》",self.title];
 }
--(NSString*)getFromName
+- (NSString*)getFromName
 {
     return  [NSString stringWithFormat:@"来自:%@",self.fromName];   
 }

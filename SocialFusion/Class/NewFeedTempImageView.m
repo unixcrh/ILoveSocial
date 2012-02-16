@@ -87,7 +87,7 @@
     [self performSelectorInBackground:@selector(saveImageInBackground) withObject:nil];
 }
 
--(void)dismissView
+- (void)dismissView
 {
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 0;
@@ -203,7 +203,7 @@
     }
 }
 
--(void)startAnimation {
+- (void)startAnimation {
     _scrollView.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
     [UIView animateWithDuration:0.3f animations:^{
         _scrollView.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
@@ -215,7 +215,7 @@
     [self startAnimation];
 }
 
--(void)show {
+- (void)show {
     self.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [UIView animateWithDuration:0.3f animations:^{

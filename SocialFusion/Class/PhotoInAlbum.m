@@ -17,7 +17,7 @@
 @synthesize imageOut=_imageOut;
 @synthesize imageView=_imageView;
 @synthesize captian=_captian;
--(id)init
+- (id)init
 {
     self=[super init];
     
@@ -50,11 +50,11 @@
     return self;
 }
 
--(void)hideCaptian
+- (void)hideCaptian
 {
     [_captian removeFromSuperview];
 }
--(void)showCaptian
+- (void)showCaptian
 {
     if (_captian.superview==nil)
     {

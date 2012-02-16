@@ -26,7 +26,7 @@
 @implementation AlbumDetailController
 
 
--(void)dealloc
+- (void)dealloc
 {
     for (int i=0;i<27;i++)
     {
@@ -43,7 +43,7 @@
     [super release];
     
 }
--(void)setFixedInfo
+- (void)setFixedInfo
 {
     [super setFixedInfo];
     _contentScrollView.delegate=self;
@@ -53,7 +53,7 @@
 }
 
 
--(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     if (scrollView==_contentScrollView)
     {
@@ -61,14 +61,14 @@
     }
 }
  
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 
     if (scrollView==_contentScrollView)
     {
         int index = fabs(scrollView.contentOffset.y) / scrollView.frame.size.height;
         
-        [[UIApplication sharedApplication] presentToastwithShortInterval:[NSString stringWithFormat:@"%d/%d页",index+1,([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1)] withVerticalPos:380];
+        [[UIApplication sharedApplication] presentToastwithShortInterval:[NSString stringWithFormat:@"%d / %d 页",index+1,([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1)] withVerticalPos:380];
         if (index+1!=_albumPageNumber)
         {
         _albumPageNumber= index+1;
@@ -299,7 +299,7 @@
 
 }
 
--(void)returnToAlbum
+- (void)returnToAlbum
 {
     int y=_photoInAlbum[_selectedPhoto].frame.origin.y/255;
     [_contentScrollView zoomToRect:CGRectMake(0, y*255, 306, 255) animated:YES];
@@ -310,7 +310,7 @@
     _selectedPhoto=-1;
     
 }
--(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     
   if (_selectedPhoto!=-1)
@@ -363,7 +363,7 @@
 }
 
 
--(IBAction)showImageDetail:(id)sender
+- (IBAction)showImageDetail:(id)sender
 {
  
     
@@ -398,7 +398,7 @@
         [tempImage show];
     }
 }
--(void)loadPhotoData
+- (void)loadPhotoData
 {
     
     _activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -459,7 +459,7 @@
     
     return _contentView;
 }
--(void)loadMainView
+- (void)loadMainView
 {
     _albumPageNumber=1;
     _contentScrollView.pagingEnabled=YES;
@@ -553,7 +553,7 @@ _pageNumber=_commentCount[_selectedPhoto%9]/10+1;
 
 
 
--(void)loadData
+- (void)loadData
 {
     
     if (_selectedPhoto==-1)

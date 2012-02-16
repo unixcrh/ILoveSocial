@@ -10,18 +10,18 @@
 
 @interface NewFeedData (NewFeedData_Addition)
 
-+ (NewFeedData *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedData *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
--(NSString*)getPostMessage;
--(NSString*)getPostName;
--(NSString*)getName;
--(NSString*)getFeedName;
--(NSString*)getHeadURL;
--(NSDate*)getDate;
--(NSString*)getActor_ID;
--(NSString*)getSource_ID;
--(NSString*)getBlog;
--(int)getComment_Count;
--(int)getStyle;
--(void)setCount:(int)count;
+- (NSString*)getPostMessage;
+- (NSString*)getPostName;
+- (NSString*)getName;
+- (NSString*)getFeedName;
+- (NSString*)getHeadURL;
+- (NSDate*)getDate;
+- (NSString*)getActor_ID;
+- (NSString*)getSource_ID;
+- (NSString*)getBlog;
+- (int)getComment_Count;
+- (int)getStyle;
+- (void)setCount:(int)count;
 @end

@@ -11,8 +11,8 @@
 
 @implementation NewFeedUploadPhoto (Addition)
 
-- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
     
     self.photo_big_url = [[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"raw_src"];
     
@@ -23,7 +23,7 @@
     self.title = [dict objectForKey:@"title"];
 }
 
-+ (NewFeedUploadPhoto *)insertNewFeed:(int)style getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedUploadPhoto *)insertNewFeed:(int)style getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
     if (!statusID || [statusID isEqualToString:@""]) {
@@ -35,7 +35,7 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedUploadPhoto" inManagedObjectContext:context];
     }    
     
-    [result configureNewFeed:style height:0 getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+    [result configureNewFeed:style height:0 getDate:getDate Dic:dict inManagedObjectContext:context];
   
     
     return result;
@@ -52,14 +52,14 @@
     return res;
 }
 
--(NSString*)getName
+- (NSString*)getName
 {
     return self.prefix;
      
 }
 
 
--(NSString*)getPhoto_Comment
+- (NSString*)getPhoto_Comment
 {
     
     
@@ -81,7 +81,7 @@
         }
     }
 }
--(NSString*)getTitle
+- (NSString*)getTitle
 {
     return [NSString stringWithFormat:@"来自:《%@》",self.title];;
 }

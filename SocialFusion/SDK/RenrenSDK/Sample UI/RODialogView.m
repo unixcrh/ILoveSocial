@@ -85,7 +85,7 @@
     return [dialogView autorelease];
 }
 
--(id)initWithInternalView:(UIView *)internalView 
+- (id)initWithInternalView:(UIView *)internalView 
               closeButton:(BOOL)visible
              logoBarTitle:(NSString *)title
 {
@@ -102,12 +102,12 @@
     return self;
 }
 
--(void)touchCloseButton:(id)sender
+- (void)touchCloseButton:(id)sender
 {
     [self dismiss:YES];
 }
             
--(UIButton *)closeButton
+- (UIButton *)closeButton
 {
     if(!_closeButton) {
         _closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -119,7 +119,7 @@
     return _closeButton;
 }
 
--(UIView *)backgroundView
+- (UIView *)backgroundView
 {
     if (!_backgroundView) {
         _backgroundView = [[UIView alloc] init];
@@ -130,7 +130,7 @@
     return _backgroundView;
 }
 
--(UIView *)logoBarViewWithTitle:(NSString *)title
+- (UIView *)logoBarViewWithTitle:(NSString *)title
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.backgroundColor = [ROGlobalStyle renrenBlueColor];
@@ -155,7 +155,7 @@
     return [view autorelease];
 }
 
--(void)loadingViewShow:(BOOL)animated tips:(NSString *)tipsText
+- (void)loadingViewShow:(BOOL)animated tips:(NSString *)tipsText
 {
     [self loadingViewHide];
     _closeButton.hidden = YES;
@@ -206,7 +206,7 @@
     [self addSubview:self.loadingView];
 }
 
--(void)loadingViewShowAndAutoHideWithTips:(NSString *)tipsText
+- (void)loadingViewShowAndAutoHideWithTips:(NSString *)tipsText
 {
     [self loadingViewHide];
     _closeButton.hidden = YES;
@@ -253,7 +253,7 @@
   //  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(loadingViewAutoHide:) userInfo:nil repeats:NO];
 }
 
--(void)loadingViewAutoHide:(void *)object
+- (void)loadingViewAutoHide:(void *)object
 {
    // [timer invalidate];
    // [self loadingViewHide];
@@ -263,7 +263,7 @@
 }
                       
                       
--(void)loadingViewHide
+- (void)loadingViewHide
 {
     if (_loadingView != nil) {
         if (_loadingView.superview) {
@@ -277,7 +277,7 @@
     _backgroundView.hidden = NO;
 }
 
--(void)show:(BOOL)animated
+- (void)show:(BOOL)animated
 {
     [self sizeToFitOrientation:NO];
     [self addSubview:self.backgroundView];
@@ -325,7 +325,7 @@
     }
 }
 
--(void)dismiss:(BOOL)animated;
+- (void)dismiss:(BOOL)animated;
 {
     if ([_dialogModel respondsToSelector:@selector(dialogViewWillDisappear)]) {
          [_dialogModel performSelector:@selector(dialogViewWillDisappear)];
@@ -343,7 +343,7 @@
     }    
 }
 
--(void)removeFromSuperview{
+- (void)removeFromSuperview{
     [_dialogBackgroundView removeFromSuperview];
     [super removeFromSuperview];
 }
@@ -445,7 +445,7 @@
      
 }
 
--(void)setVerticalFrame
+- (void)setVerticalFrame
 {
     CGRect viewFrame = self.bounds;
     if (self.loadingView) {
@@ -478,7 +478,7 @@
                                          viewFrame.size.height - 2*kPadding - logoBarFrame.size.height);
 }
 
--(void)setHorizontalFrame
+- (void)setHorizontalFrame
 {
     CGRect viewFrame = self.bounds;
     self.backgroundView.frame = viewFrame;

@@ -24,7 +24,7 @@
 @synthesize commentCount = _commentCount;
 @synthesize type = _type;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {

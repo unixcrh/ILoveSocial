@@ -61,44 +61,44 @@
  * @param visible :YES/NO ,显示/不显示关闭按钮
  * @param title: logoBar的标题
  */
--(id)initWithInternalView:(UIView *)internalView 
+- (id)initWithInternalView:(UIView *)internalView 
               closeButton:(BOOL)visible
              logoBarTitle:(NSString *)title;
 /**
  * 返回一个标题为title的logoBarView
  * @param title: logoBar的标题
  */
--(UIView*)logoBarViewWithTitle:(NSString *)title;
+- (UIView*)logoBarViewWithTitle:(NSString *)title;
 /**
  * 显示dialog 
  * @param animated: 是否动画
  */
--(void)show:(BOOL)animated;
+- (void)show:(BOOL)animated;
 /**
  * 关闭dialog 
  * @param animated: 是否动画
  */
--(void)dismiss:(BOOL)animated;
+- (void)dismiss:(BOOL)animated;
 /**
  * 显示loading视图
  * @param animated: 是否动画
  * @param tipsText: 文本提示，最好不要超过4个字
  */
--(void)loadingViewShow:(BOOL)animated tips:(NSString *)tipsText;
+- (void)loadingViewShow:(BOOL)animated tips:(NSString *)tipsText;
 /**
  * 隐藏loading视图
  */
--(void)loadingViewHide;
+- (void)loadingViewHide;
 /**
  * 显示loading视图，并再两秒后自动隐藏
  * @param tipsText: 文本提示，最好不要超过4个字
  */
--(void)loadingViewShowAndAutoHideWithTips:(NSString *)tipsText;
+- (void)loadingViewShowAndAutoHideWithTips:(NSString *)tipsText;
 /**
  * 动画结束隐藏loading视图
  * @param tipsText: 文本提示，最好不要超过4个字
  */
--(void)loadingViewAutoHide:(void *)object;
+- (void)loadingViewAutoHide:(void *)object;
 /**
  * dialog是否要响应旋转
  */

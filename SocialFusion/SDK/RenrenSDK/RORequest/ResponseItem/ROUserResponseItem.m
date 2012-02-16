@@ -15,7 +15,7 @@
 @synthesize province = _province;
 @synthesize city = _city;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {
@@ -34,7 +34,7 @@
 @synthesize startDate = _startDate;
 @synthesize endDate = _endDate;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {
@@ -54,7 +54,7 @@
 @synthesize year = _year;
 @synthesize department = _department;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {
@@ -71,7 +71,7 @@
 @synthesize name = _name;
 @synthesize gradYear = _gradYear;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {
@@ -101,7 +101,7 @@
 @synthesize universityHistory = _universityHistory;
 @synthesize highSchoolHistory = _highSchoolHistory;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {
@@ -154,7 +154,7 @@
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     [_hometownLocation release];
     [_highSchoolHistory release];

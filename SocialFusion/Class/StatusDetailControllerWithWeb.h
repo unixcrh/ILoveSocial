@@ -12,7 +12,7 @@
 {
      IBOutlet UIWebView* _webView;
 }
--(void)loadWebView;
+- (void)loadWebView;
 
 
 @end

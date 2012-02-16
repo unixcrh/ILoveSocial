@@ -32,7 +32,7 @@
 
 - (NSDictionary*)parseURLParams:(NSString *)query;
 
--(void) errormsg:(NSString*) errorReason;
+- (void) errormsg:(NSString*) errorReason;
  
 - (void)show;
 

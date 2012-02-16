@@ -21,7 +21,7 @@
 @synthesize sig = _sig;
 @synthesize xn_ss = _xn_ss;
 
--(id)init
+- (id)init
 {
 	if (self = [super init]) {
 		self.format = [NSString stringWithFormat:@"JSON"];
@@ -32,7 +32,7 @@
 	return self;
 }
 
--(NSMutableDictionary*)requestParamToDictionary
+- (NSMutableDictionary*)requestParamToDictionary
 {
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.format,@"format",
 																						self.apiVersion,@"v",
@@ -51,12 +51,12 @@
 	return dictionary;
 }
 
--(void)addParamToDictionary:(NSMutableDictionary*)dictionary
+- (void)addParamToDictionary:(NSMutableDictionary*)dictionary
 {
 	return;
 }
 
--(ROResponse*)requestResultToResponse:(id)result
+- (ROResponse*)requestResultToResponse:(id)result
 {
 	id responseObject = nil;
 	if (![result isKindOfClass:[NSArray class]]) {
@@ -69,7 +69,7 @@
 	return [ROResponse responseWithRootObject:result];
 }
 
--(void)dealloc
+- (void)dealloc
 {
 	self.method = nil;
 	self.format = nil;

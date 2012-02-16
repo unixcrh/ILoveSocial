@@ -30,7 +30,7 @@
 
 
 
--(void)showBigImage
+- (void)showBigImage
 {
     
     //Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
@@ -76,7 +76,7 @@
 
 
 
--(void)setFixedInfo
+- (void)setFixedInfo
 {
     
     _pageLine=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page_line.png"]];
@@ -122,14 +122,14 @@
 }
 
 
--(void)addOriStatus
+- (void)addOriStatus
 {
     [self setFixedInfo];
     [self loadMainView];
 
 }
 
--(void) loadMainView
+- (void) loadMainView
 {
     
 }
@@ -146,7 +146,7 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
       [self addOriStatus ];
@@ -156,7 +156,7 @@
     [super viewDidLoad];
   
 }
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     _pageNumber=0;
@@ -168,7 +168,7 @@
     [super viewDidUnload];
 }
 
--(void)viewDidDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
     //[_feedStatusCel removeFromSuperview];
     //[_feedStatusCel release];
@@ -253,7 +253,7 @@
 
 
 
--(void)ProcessRenrenData:(NSArray*)array
+- (void)ProcessRenrenData:(NSArray*)array
 {
     for(NSDictionary *dict in array) {
         StatusCommentData* commentsData=[StatusCommentData insertNewComment:0 Dic:dict inManagedObjectContext:self.managedObjectContext];
@@ -281,7 +281,7 @@
      [self.tableView reloadData];
 }
 
--(void)ProcessWeiboData:(NSArray*)array
+- (void)ProcessWeiboData:(NSArray*)array
 {
     for(NSDictionary *dict in array) {
         
@@ -310,7 +310,7 @@
 
 }
 
--(void)loadData
+- (void)loadData
 {
     if ([_feedData getStyle]==0)
     {
@@ -344,7 +344,7 @@
 
 
 
--(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 

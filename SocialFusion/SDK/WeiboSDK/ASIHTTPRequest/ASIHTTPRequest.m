@@ -1797,7 +1797,7 @@ static NSOperationQueue *sharedQueue = nil;
 }
 
 
--(void)removeUploadProgressSoFar
+- (void)removeUploadProgressSoFar
 {
 	long long progressToRemove = -[self totalBytesSent];
 	[ASIHTTPRequest performSelector:@selector(request:didSendBytes:) onTarget:&queue withObject:self amount:&progressToRemove callerToRetain:self];
@@ -3251,7 +3251,7 @@ static NSOperationQueue *sharedQueue = nil;
 	if ([[self class] isBandwidthThrottled]) {
 		[bandwidthThrottlingLock lock];
 		if (maxBandwidthPerSecond > 0) {
-			long long maxiumumSize  = (long long)maxBandwidthPerSecond-(long long)bandwidthUsedInLastSecond;
+			long long maxiumumSize  = (long long)maxBandwidthPerSecond- (long long)bandwidthUsedInLastSecond;
 			if (maxiumumSize < 0) {
 				// We aren't supposed to read any more data right now, but we'll read a single byte anyway so the CFNetwork's buffer isn't full
 				bufferSize = 1;
@@ -4596,7 +4596,7 @@ static NSOperationQueue *sharedQueue = nil;
 	// We'll split our bandwidth allowance into 4 (which is the default for an ASINetworkQueue's max concurrent operations count) to give all running requests a fighting chance of reading data this cycle
 	long long toRead = maxBandwidthPerSecond/4;
 	if (maxBandwidthPerSecond > 0 && (bandwidthUsedInLastSecond + toRead > maxBandwidthPerSecond)) {
-		toRead = (long long)maxBandwidthPerSecond-(long long)bandwidthUsedInLastSecond;
+		toRead = (long long)maxBandwidthPerSecond- (long long)bandwidthUsedInLastSecond;
 		if (toRead < 0) {
 			toRead = 0;
 		}

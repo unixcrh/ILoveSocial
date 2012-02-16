@@ -17,7 +17,7 @@
 @synthesize secretKey = _secretKey;
 @synthesize scope = _scope;
 
--(id)init
+- (id)init
 {
 	if (self = [super init]) {
 		self.grantType = [NSString stringWithFormat:@"password"];
@@ -26,7 +26,7 @@
 	return self;
 }
 
--(NSMutableDictionary*)requestParamToDictionary
+- (NSMutableDictionary*)requestParamToDictionary
 {
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.userName,@"username",
 																						self.passWord,@"password",
@@ -40,7 +40,7 @@
 	return dictionary;
 }
 
--(ROResponse*)requestResultToResponse:(id)result
+- (ROResponse*)requestResultToResponse:(id)result
 {
 	id responseObject = nil;
 	if (![result isKindOfClass:[NSArray class]]) {
@@ -56,7 +56,7 @@
 	return [ROResponse responseWithRootObject:responseObject];
 }
 
--(void)dealloc
+- (void)dealloc
 {
 	self.userName = nil;
 	self.passWord = nil;

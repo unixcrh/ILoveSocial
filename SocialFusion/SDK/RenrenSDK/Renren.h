@@ -85,7 +85,7 @@
  * 判断用户登录后的当前会话生命周期是否有效。
  * @return 当前session有效,返回YES,否则, NO.
  */
--(BOOL)isSessionValid;
+- (BOOL)isSessionValid;
 
 /*
  * 取得登录用户的userID
@@ -98,7 +98,7 @@
  * @param isUsed 是否使用本地存储。
  * @return 返回RenrenPay对象。
  */
--(RenrenPay *)getRenrenPayWithSecret:(NSString *)secret andLocalMem:(BOOL)isUsed;
+- (RenrenPay *)getRenrenPayWithSecret:(NSString *)secret andLocalMem:(BOOL)isUsed;
 
 /*
  * 提供给其他扩展功能使用，可以发出http请求，取得Json数据
@@ -169,7 +169,7 @@
  * @param caption 照片的描述
  * @return 一键上传图片界面所用视图
  */
--(void)publishPhotoSimplyWithImage:(UIImage *)image caption:(NSString *)caption;
+- (void)publishPhotoSimplyWithImage:(UIImage *)image caption:(NSString *)caption;
 
 #pragma mark - Packaged API Function Methods -
 
@@ -178,42 +178,42 @@
  * @param param包含接口参数所需数据成员的ROCreateAlbumRequestParam对象。
  * @param delegate 实现RenrenDelegate协议的类型对象。
  */
--(void)createAlbum:(ROCreateAlbumRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
+- (void)createAlbum:(ROCreateAlbumRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
 
 /**
  * 获取相册信息，可以返回全部相册列表，也可指定相册id
  * @param param包含接口参数所需数据成员的ROAlbumsInfoRequestParam对象。
  * @param delegate 实现RenrenDelegate协议的类型对象。
  */
--(void)getAlbums:(ROAlbumsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
+- (void)getAlbums:(ROAlbumsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
 
 /**
  * 获取用户详细信息，可以指定多个用户id
  * @param param包含接口参数所需数据成员的ROUserInfoRequestParam对象。
  * @param delegate 实现RenrenDelegate协议的类型对象。
  */
--(void)getUsersInfo:(ROUserInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
+- (void)getUsersInfo:(ROUserInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
 
 /**
  * 上传照片，默认上传至“快速上传”相册。
  * @param param包含接口参数所需数据成员的ROPublishPhotoRequestParam对象。
  * @param delegate 实现RenrenDelegate协议的类型对象。
  */
--(void)publishPhoto:(ROPublishPhotoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
+- (void)publishPhoto:(ROPublishPhotoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
 
 /**
  * 获取好友id列表
  * @param param包含接口参数所需数据成员的ROGetFriendsRequestParam对象。
  * @param delegate 实现RenrenDelegate协议的类型对象。
  */
--(void)getFriends:(ROGetFriendsRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
+- (void)getFriends:(ROGetFriendsRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
 
 /**
  * 获取好友详细信息
  * @param param包含接口参数所需数据成员的ROGetFriendsInfoRequestParam对象。
  * @param delegate 实现RenrenDelegate协议的类型对象。
  */
--(void)getFriendsInfo:(ROGetFriendsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
+- (void)getFriendsInfo:(ROGetFriendsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate;
 
 
 @end

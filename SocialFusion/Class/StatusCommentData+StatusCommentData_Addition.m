@@ -149,23 +149,23 @@
 
 
 
--(NSDate*)getUpdateTime
+- (NSDate*)getUpdateTime
 {
     return self.update_Time;
 }
--(NSString*)getOwner_Name
+- (NSString*)getOwner_Name
 {
     return self.owner_Name;
 }
--(NSString*)getOwner_HEAD
+- (NSString*)getOwner_HEAD
 {
     return self.owner_Head;
 }
--(NSString*)getText
+- (NSString*)getText
 {
     return self.text;
 }
--(NSString*)getHeadURL
+- (NSString*)getHeadURL
 {
     return self.owner_Head;
 }

@@ -18,7 +18,7 @@
 @synthesize headLogoUrl = _headLogoUrl;
 @synthesize tinyLogoUrl = _tinyLogoUrl;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {

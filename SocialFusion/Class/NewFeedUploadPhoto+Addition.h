@@ -9,9 +9,9 @@
 #import "NewFeedUploadPhoto.h"
 
 @interface NewFeedUploadPhoto (Addition)
-+ (NewFeedUploadPhoto *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedUploadPhoto *)insertNewFeed:(int)sytle getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedUploadPhoto *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
--(NSString*)getName;
--(NSString*)getPhoto_Comment;
--(NSString*)getTitle;
+- (NSString*)getName;
+- (NSString*)getPhoto_Comment;
+- (NSString*)getTitle;
 @end

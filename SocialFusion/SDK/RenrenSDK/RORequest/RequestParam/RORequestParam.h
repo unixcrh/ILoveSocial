@@ -68,16 +68,16 @@
 /**
  *将封装好的各个参数解析为字典
  */
--(NSMutableDictionary*)requestParamToDictionary;
+- (NSMutableDictionary*)requestParamToDictionary;
 
 /**
  *将返回的数据整理为ROResponse
  */
--(ROResponse *)requestResultToResponse:(id)result;
+- (ROResponse *)requestResultToResponse:(id)result;
 
 /**
  *将派生类中封装的各个参数加入字典
  */
--(void)addParamToDictionary:(NSMutableDictionary*)dictionary;
+- (void)addParamToDictionary:(NSMutableDictionary*)dictionary;
 
 @end

@@ -27,7 +27,7 @@
     return [[[self alloc] initWithDictionary:responseDictionary] autorelease];
 }
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [self init];
     if (self) {
@@ -37,12 +37,12 @@
     return self;
 }
 
--(NSDictionary*)responseDictionary
+- (NSDictionary*)responseDictionary
 {
     return _responseDictionary;
 }
 
--(id)valueForItemKey:(NSString*)key
+- (id)valueForItemKey:(NSString*)key
 {
     if (!key) {
         return nil;
@@ -55,7 +55,7 @@
     
 }
 
--(void)dealloc
+- (void)dealloc
 {
     [_responseDictionary release];
     [super dealloc];

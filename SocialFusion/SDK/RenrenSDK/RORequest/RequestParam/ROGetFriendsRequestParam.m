@@ -16,7 +16,7 @@
 @synthesize page = _page;
 @synthesize count = _count;
 
--(id)init
+- (id)init
 {
 	if (self = [super init]) {
 		self.method = [NSString stringWithFormat:@"friends.get"];
@@ -27,7 +27,7 @@
 	return self;
 }
 
--(void)addParamToDictionary:(NSMutableDictionary*)dictionary
+- (void)addParamToDictionary:(NSMutableDictionary*)dictionary
 {
 	if (dictionary == nil) {
 		return;
@@ -42,7 +42,7 @@
 	}
 }
 
--(ROResponse*)requestResultToResponse:(id)result
+- (ROResponse*)requestResultToResponse:(id)result
 {
 	id responseObject = nil;
 	if ([result isKindOfClass:[NSArray class]]) {
@@ -57,7 +57,7 @@
 	}
 }
 
--(void)dealloc
+- (void)dealloc
 {
 	self.page = nil;
 	self.count = nil;

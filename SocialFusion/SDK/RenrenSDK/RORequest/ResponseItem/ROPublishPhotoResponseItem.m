@@ -20,7 +20,7 @@
 @synthesize srcBigUrl = _srcBigUrl;
 @synthesize caption = _caption;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {

@@ -39,7 +39,7 @@
     [super dealloc];
 }
 
--(id)initWithRenren:(Renren *)renren
+- (id)initWithRenren:(Renren *)renren
 {
     self = [super initWithRenren:renren];
     if (self) {
@@ -58,7 +58,7 @@
     return self;
 }
 
--(UIView *)dialogInternal
+- (UIView *)dialogInternal
 {   
     if(_internal == nil){
         _internal = [[ROPublishPhotoInternal alloc] initWithFrame:CGRectZero];
@@ -68,7 +68,7 @@
     return _internal;
 }
 
--(void)dialogLoadingViewWasHidden:(RODialogView *)dialogView
+- (void)dialogLoadingViewWasHidden:(RODialogView *)dialogView
 {
     if (self.dialogView == dialogView) {
         //还可以做一些其他的操作

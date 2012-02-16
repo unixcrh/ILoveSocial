@@ -21,5 +21,5 @@
 
 
 +(float)heightForCell:(StatusCommentData*)feedData;
--(void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo;
+- (void)configureCell:(StatusCommentData*)feedData colorStyle:(BOOL)bo;
 @end

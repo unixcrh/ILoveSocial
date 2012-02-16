@@ -194,7 +194,7 @@ static const NSTimeInterval kTimeoutInterval = 60.0;
     _connection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
 
--(BOOL)isKindOfUIImage{
+- (BOOL)isKindOfUIImage{
     NSString *iskind=nil;	
     for (NSString *key in [_params keyEnumerator]) {
         if ([key isEqualToString:@"upload"]) {

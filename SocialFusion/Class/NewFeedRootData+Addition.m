@@ -13,16 +13,16 @@
 @implementation NewFeedRootData (NewFeedRootData_Addition)
 
 
--(NSString*)getBlog
+- (NSString*)getBlog
 {
     return nil;
 }
--(NSString*)getActor_ID
+- (NSString*)getActor_ID
 {
     
     return self.actor_ID;
 }
--(NSString*)getSource_ID
+- (NSString*)getSource_ID
 {
     return self.source_ID;
 }
@@ -36,41 +36,40 @@
     self.comment_Count=[NSNumber numberWithInt:  count];
 }
 
--(NSDate*)getDate {
+- (NSDate*)getDate {
     return self.update_Time;
 }
 
 
 
--(int)getStyle {
+- (int)getStyle {
     return [self.style intValue];
 }
 
--(NSString*)getFeedName {
+- (NSString*)getFeedName {
     return self.owner_Name;
 }
 
 
 
--(NSString*)getHeadURL {
+- (NSString*)getHeadURL {
     return self.owner_Head;
 }
 
 
--(int)getCellHeight
+- (int)getCellHeight
 {
     return [self.cellheight intValue];
 }
 
-- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
     
     self.style = [NSNumber numberWithInt:style];
     self.cellheight = [NSNumber numberWithInt:height];
-    self.owner = myUser;
      self.get_Time = getDate;
     if(style == kNewFeedStyleRenren) {
         
-        NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
+        NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"post_id"]];
         self.post_ID = statusID;
         
         self.actor_ID = [[dict objectForKey:@"actor_id"] stringValue];
@@ -92,8 +91,6 @@
     }
     else if(style == kNewFeedStyleWeibo)
     {        
-        self.author = [WeiboUser insertUser:[dict objectForKey:@"user"] inManagedObjectContext:context];
-        
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
         
         self.owner_Name = self.author.name;
@@ -119,10 +116,11 @@
         self.comment_Count = [NSNumber numberWithInt:[[dict objectForKey:@"comment_count"] intValue]];
         self.source_ID = [[dict objectForKey:@"id"] stringValue];
        
+        self.author = [WeiboUser insertUser:[dict objectForKey:@"user"] inManagedObjectContext:context];
     }
 }
 
--(NSString*)getCountString
+- (NSString*)getCountString
 {
     return [NSString stringWithFormat:@"评论:%d",[self.comment_Count intValue]];
 }

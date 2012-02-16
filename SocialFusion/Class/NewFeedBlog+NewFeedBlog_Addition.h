@@ -9,9 +9,9 @@
 #import "NewFeedBlog.h"
 
 @interface NewFeedBlog (NewFeedBlog_Addition)
-+ (NewFeedBlog *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedBlog *)insertNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 + (NewFeedBlog *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
--(NSString*)getBlog;
--(NSString*)getName;
+- (NSString*)getBlog;
+- (NSString*)getName;
 
 @end

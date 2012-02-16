@@ -10,7 +10,7 @@
 
 @implementation NewFeedAlbumCell
 
--(void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei
+- (void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei
 {
     detailController.feedData=_feedData;
     detailController.managedObjectContext=context;

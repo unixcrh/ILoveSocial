@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (HTMLSet)
--(NSString*)replaceJSSign ;
--(NSString*)replaceHTMLSign ;
--(NSString*)setName:(NSString*)name;
--(NSString*)setTime:(NSString*)time ;
--(NSString*)setWeibo:(NSString*)weibo  ;
--(NSString*)setRepost:(NSString*)repost;
--(NSString*)setAlbum:(NSString*)album ;
--(NSString*)setPhotoMount:(NSString*)photomount; 
--(NSString*)setAuthor:(NSString*)author;
--(NSString*)setComment :(NSString*)comment; 
--(NSString*)setCount :(NSString*)count; 
+- (NSString*)replaceJSSign ;
+- (NSString*)replaceHTMLSign ;
+- (NSString*)setName:(NSString*)name;
+- (NSString*)setTime:(NSString*)time ;
+- (NSString*)setWeibo:(NSString*)weibo  ;
+- (NSString*)setRepost:(NSString*)repost;
+- (NSString*)setAlbum:(NSString*)album ;
+- (NSString*)setPhotoMount:(NSString*)photomount; 
+- (NSString*)setAuthor:(NSString*)author;
+- (NSString*)setComment :(NSString*)comment; 
+- (NSString*)setCount :(NSString*)count; 
 
 @end

@@ -70,7 +70,7 @@
     return self;
 }
 
--(void)loadPicture:(NSData*)image
+- (void)loadPicture:(NSData*)image
 {
     
     UIImage* image1=[UIImage imageWithData:image];
@@ -111,12 +111,12 @@
 }
 
 
--(void)setData:(NSData*)image
+- (void)setData:(NSData*)image
 {
     _photoData =[[NSData alloc] initWithData:image];
 }
 
--(void)loadImage:(NSData*)image
+- (void)loadImage:(NSData*)image
 {
     
     NSString *imgB64 = [[image base64Encoding] jpgDataURIWithContent];
@@ -155,7 +155,7 @@
 }
 
 
--(void)showBigImage
+- (void)showBigImage
 {
     
     NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
@@ -197,7 +197,7 @@
     return NO;
     }
 }
--(void)exposeCell
+- (void)exposeCell
 {
     
     NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
@@ -207,13 +207,13 @@
     [_listController exposeCell:indexpath];
 }
 
--(void)setList:(NewFeedListController*)list
+- (void)setList:(NewFeedListController*)list
 {
     _listController=list;
 }
 
 
--(id)init
+- (id)init
 {
     
     self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewFeedStatusCell"];
@@ -284,7 +284,7 @@
 
 
 
--(void)configureCell:(NewFeedRootData*)feedData
+- (void)configureCell:(NewFeedRootData*)feedData
 {    
     _photoData=nil;
     [_webView removeFromSuperview];
@@ -473,7 +473,7 @@
 #pragma mark -
 #pragma mark UI actions
 
--(void)didClickPhotoOutButton {
+- (void)didClickPhotoOutButton {
     NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
     [_listController selectUser:indexpath];
 }

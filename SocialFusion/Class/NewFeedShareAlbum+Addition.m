@@ -11,8 +11,8 @@
 
 @implementation NewFeedShareAlbum (Addition)
 
-- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
     
     self.photo_url = [[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
     self.album_count = [NSNumber numberWithInt:[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"photo_count"] intValue]];
@@ -25,7 +25,7 @@
     self.media_ID = [[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
 }
 
-+ (NewFeedShareAlbum *)insertNewFeed:(int)style  height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedShareAlbum *)insertNewFeed:(int)style  height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
     if (!statusID || [statusID isEqualToString:@""]) {
@@ -37,7 +37,7 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedShareAlbum" inManagedObjectContext:context];
     }
     
-    [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+    [result configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
     
     return result;
     
@@ -60,7 +60,7 @@
     return res;
 }
 
--(NSString*)getShareComment
+- (NSString*)getShareComment
 {
     if (![self.share_comment compare:@""])
     {
@@ -73,24 +73,24 @@
     //return self.prefix;
     
 }
--(int)getAlbumQuan
+- (int)getAlbumQuan
 {
     return [self.album_count intValue];
 }
--(NSString*)getAubumName
+- (NSString*)getAubumName
 {
     return [NSString stringWithFormat:@"相册:《%@》",self.album_title];
     
 }
 
 
--(NSString*)getAblbumQuantity
+- (NSString*)getAblbumQuantity
 {
     return [NSString stringWithFormat:@"共%d张照片",[self getAlbumQuan]];
 
 }
 
--(NSString*)getFromName
+- (NSString*)getFromName
 {
       return [NSString stringWithFormat:@"来自:%@", self.fromName];
 }

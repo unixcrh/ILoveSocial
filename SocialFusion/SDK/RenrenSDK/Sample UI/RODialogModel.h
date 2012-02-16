@@ -15,16 +15,16 @@
 /**
  * 由model调用,显示dialog的LoadingView
  */
--(void)dialogShowLoadingView;
+- (void)dialogShowLoadingView;
 /**
  * 由model调用,隐藏dialog的LoadingView
  */
--(void)dialogHideLoadingView;
+- (void)dialogHideLoadingView;
 /**
  *当dialog的loadingView隐藏的时候
  *
  */
--(void)dialogLoadingViewWasHidden:(RODialogView *)dialogView;
+- (void)dialogLoadingViewWasHidden:(RODialogView *)dialogView;
 
 /**
  * dialogView的显示时机，可以做的一些操作，默认什么都不做。
@@ -88,12 +88,12 @@
 /**
  *用renren生成一个dialogModel
  */
--(id)initWithRenren:(Renren *)renren;
+- (id)initWithRenren:(Renren *)renren;
 
 /**
  *返回每个model生成的Internal。
  *
  */
--(UIView *)dialogInternal;
+- (UIView *)dialogInternal;
 
 @end

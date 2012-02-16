@@ -19,10 +19,25 @@
     [super viewDidUnload];
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:@"NewFeedListController" bundle:nil];
     return self;
+}
+
+- (void)clearData
+{
+    _noAnimationFlag = YES;
+    if(self.processRenrenUser)
+        for(NewFeedRootData *status in self.processRenrenUser.statuses) {
+            if(![self.currentRenrenUser.newFeed containsObject:status])
+                [self.processRenrenUser removeStatusesObject:status];
+        }
+    if(self.processWeiboUser)
+        for(NewFeedRootData *status in self.currentWeiboUser.statuses) {
+            if(![self.currentWeiboUser.newFeed containsObject:status])
+                [self.processWeiboUser removeStatusesObject:status];
+        }
 }
 
 - (WeiboUser *)processWeiboUser {
@@ -33,7 +48,7 @@
     return self.renrenUser;
 }
 
--(NSPredicate *)customPresdicate {
+- (NSPredicate *)customPresdicate {
     NSPredicate *predicate;
     if(_style == kRenrenUserFeed) {
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.processRenrenUser.statuses];

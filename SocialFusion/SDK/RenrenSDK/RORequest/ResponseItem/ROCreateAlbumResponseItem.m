@@ -11,7 +11,7 @@
 @implementation ROCreateAlbumResponseItem
 @synthesize albumId = _albumId;
 
--(id)initWithDictionary:(NSDictionary*)responseDictionary
+- (id)initWithDictionary:(NSDictionary*)responseDictionary
 {
     self = [super initWithDictionary:responseDictionary];
     if (self) {

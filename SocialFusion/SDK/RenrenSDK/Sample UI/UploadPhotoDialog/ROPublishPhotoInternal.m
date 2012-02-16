@@ -175,7 +175,7 @@
     }
 }
  //设置竖屏时布局
--(void)setVerticalFrame
+- (void)setVerticalFrame
 {
     _userNameLabel.frame = CGRectMake(70, 10, 200, 23);
     
@@ -196,7 +196,7 @@
     _optionBackgroundView.frame = CGRectMake(0, self.frame.size.height-50, self.frame.size.width, 50);
 }
   //设置横屏时布局
--(void)setHorizontalFrame
+- (void)setHorizontalFrame
 {
     _userNameLabel.frame = CGRectMake(70, 0, 340, 23);
     

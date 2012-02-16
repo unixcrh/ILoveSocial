@@ -11,8 +11,9 @@
 
 @implementation NewFeedBlog (NewFeedBlog_Addition)
 
-- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
-    [super configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+- (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
+    
     if ([[dict objectForKey:@"feed_type"] intValue] == 21)
     {
         //  NSLog(@"%@",dict);
@@ -27,7 +28,7 @@
     self.mydescription = [dict objectForKey:@"description"] ;
 }
 
-+ (NewFeedBlog *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Owner:(User*)myUser Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NewFeedBlog *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 {
     NSString *statusID = [NSString stringWithFormat:@"%@", [[dict objectForKey:@"post_id"] stringValue]];
     if (!statusID || [statusID isEqualToString:@""]) {
@@ -39,7 +40,7 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"NewFeedBlog" inManagedObjectContext:context];
     }
     
-    [result configureNewFeed:style height:height getDate:getDate Owner:myUser Dic:dict inManagedObjectContext:context];
+    [result configureNewFeed:style height:height getDate:getDate Dic:dict inManagedObjectContext:context];
     return result;
 }
 
@@ -54,12 +55,12 @@
     return res;
 }
 
--(NSString*)getBlog
+- (NSString*)getBlog
 {
     return self.mydescription;
 }
 
--(NSString*)getName
+- (NSString*)getName
 {
     
     

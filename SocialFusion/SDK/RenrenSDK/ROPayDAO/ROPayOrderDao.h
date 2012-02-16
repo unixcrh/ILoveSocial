@@ -17,11 +17,11 @@
 
 @property (nonatomic, retain) ROPayDB *dbManager;
 
--(NSString *)SQL:(NSString *)sql inTable:(NSString *)table;
--(NSMutableArray *)queryOrderWithUserID:(NSString *)UserID;
--(void)insertWithPayRecord:(ROPayOrderInfo *)order;
--(BOOL)updateOrderWithRecord:(ROPayOrderInfo *)order;
--(BOOL)deleteOrderWithUserID:(NSString *)UserID;
--(ROPayOrderInfo*)getOrderWithOrderNum:(NSString *)orderNum;
+- (NSString *)SQL:(NSString *)sql inTable:(NSString *)table;
+- (NSMutableArray *)queryOrderWithUserID:(NSString *)UserID;
+- (void)insertWithPayRecord:(ROPayOrderInfo *)order;
+- (BOOL)updateOrderWithRecord:(ROPayOrderInfo *)order;
+- (BOOL)deleteOrderWithUserID:(NSString *)UserID;
+- (ROPayOrderInfo*)getOrderWithOrderNum:(NSString *)orderNum;
 
 @end

@@ -27,7 +27,7 @@
   
 }
 
--(void)loadPhotoData;
--(IBAction)showImageDetail:(id)sender;
--(void)returnToAlbum;
+- (void)loadPhotoData;
+- (IBAction)showImageDetail:(id)sender;
+- (void)returnToAlbum;
 @end

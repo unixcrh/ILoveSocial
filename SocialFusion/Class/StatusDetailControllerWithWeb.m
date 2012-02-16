@@ -64,11 +64,11 @@
 
 
 
--(void)loadMainView
+- (void)loadMainView
 {
     [self loadWebView];
 }
--(void)loadWebView
+- (void)loadWebView
 {
     
     
@@ -154,7 +154,7 @@
     }
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     
     UIImage* image1=[UIImage imageWithData:_photoData];
@@ -192,7 +192,7 @@
     }
     
 }
--(void)setFixedInfo
+- (void)setFixedInfo
 {
     [super setFixedInfo];
 for (UIView *aView in [_webView subviews])  

@@ -42,7 +42,7 @@
     return [[[self alloc] initWithRenren:renren] autorelease];
 }
 
--(id)initWithRenren:(Renren *)renren
+- (id)initWithRenren:(Renren *)renren
 {
     self = [self init];
     if (self) {
@@ -53,14 +53,14 @@
 
 
 
--(UIView *)dialogInternal
+- (UIView *)dialogInternal
 {   
     //子类必须实现这个方法
     return nil;
 }
 #pragma mark --protocol RODialogModel 
 
--(void)dialogShowLoadingView
+- (void)dialogShowLoadingView
 {
     BOOL autoHidden = self.wasLoaded;
     BOOL animated = self.isLoading;
@@ -74,12 +74,12 @@
     }
 }
 
--(void)dialogHideLoadingView
+- (void)dialogHideLoadingView
 {
     [self.dialogView loadingViewHide];
 }
 
--(void)dialogLoadingViewWasHidden:(RODialogView *)dialogView
+- (void)dialogLoadingViewWasHidden:(RODialogView *)dialogView
 {
     
 }
