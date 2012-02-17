@@ -1340,7 +1340,7 @@
 			isa = PBXGroup;
 			children = (
 				E19A2D0F142092CF00BE491A /* CoreData Models */,
-				E19A2D0E142092BC00BE491A /* Trivals */,
+				E19A2D0E142092BC00BE491A /* Tools */,
 				E19A2D0D1420928D00BE491A /* Categories */,
 				E1ABA41C141FA882002CD0A6 /* ViewContrlloers */,
 			);
@@ -1403,7 +1403,7 @@
 			path = SocialFusion/Class;
 			sourceTree = "<group>";
 		};
-		E19A2D0E142092BC00BE491A /* Trivals */ = {
+		E19A2D0E142092BC00BE491A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
 				E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */,
@@ -1417,7 +1417,7 @@
 				E1ABA426141FA882002CD0A6 /* pinyin.h */,
 				E1ABA425141FA882002CD0A6 /* pinyin.c */,
 			);
-			name = Trivals;
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		E19A2D0F142092CF00BE491A /* CoreData Models */ = {
