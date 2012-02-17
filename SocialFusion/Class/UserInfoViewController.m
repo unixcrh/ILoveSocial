@@ -8,10 +8,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "UserInfoViewController.h"
-#import "UIImageView+Addition.h"
-#import "Image+Addition.h"
 #import "RenrenUser+Addition.h"
-#import "WeiboUser+Addition.h"
+#import "RenrenUserInfoViewController.h"
+#import "WeiboUserInfoViewController.h"
 
 @implementation UserInfoViewController
 
@@ -56,27 +55,14 @@
     
     self.photoImageView.layer.masksToBounds = YES;
     self.photoImageView.layer.cornerRadius = 5.0f;
-        
-    if(!self.weiboUser.midURL) {
-        self.weiboUser.midURL = [self.weiboUser.tinyURL stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];
-    }
-    
-    Image *image = [Image imageWithURL:self.weiboUser.midURL inManagedObjectContext:self.managedObjectContext];
-    if (image == nil) {
-        [self.photoImageView loadImageFromURL:self.weiboUser.midURL completion:^{
-            [self.photoImageView fadeIn];
-        } cacheInContext:self.managedObjectContext];
-    }
-    else 
-      self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
-    
-    //NSString *gender = self.weiboUser
-    //self.genderLabel = 
-    //self.blogLabel
 }
 
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type {
-    UserInfoViewController *vc = [[[UserInfoViewController alloc] initWithType:type] autorelease];
+    UserInfoViewController *vc;
+    if(type == kRenrenUserInfo)
+        vc = [[[RenrenUserInfoViewController alloc] initWithType:type] autorelease];
+    else if(type == kWeiboUserInfo)
+        vc = [[[WeiboUserInfoViewController alloc] initWithType:type] autorelease];
     return vc;
 }
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoViewController.h"
 
-@interface WeiboUserInfoViewController : UIViewController
+@interface WeiboUserInfoViewController : UserInfoViewController
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoViewController.h"
 
-@interface RenrenUserInfoViewController : UIViewController
+@interface RenrenUserInfoViewController : UserInfoViewController
 
 @end
