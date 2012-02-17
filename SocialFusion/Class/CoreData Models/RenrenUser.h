@@ -2,19 +2,20 @@
 //  RenrenUser.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
-//  Copyright (c) 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-2-17.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "User.h"
 
-@class RenrenUser;
+@class RenrenDetail, RenrenUser;
 
 @interface RenrenUser : User
 
 @property (nonatomic, retain) NSSet *friends;
+@property (nonatomic, retain) RenrenDetail *detailInfo;
 @end
 
 @interface RenrenUser (CoreDataGeneratedAccessors)
@@ -23,4 +24,5 @@
 - (void)removeFriendsObject:(RenrenUser *)value;
 - (void)addFriends:(NSSet *)values;
 - (void)removeFriends:(NSSet *)values;
+
 @end

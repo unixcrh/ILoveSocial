@@ -23,9 +23,12 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"WeiboDetail" inManagedObjectContext:context];
     }
     
+    result.headURL = [[dict objectForKey:@"profile_image_url"] stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];
+    
     result.gender = [dict objectForKey:@"gender"];
-    result.selfDescription = [dict objectForKey:@"description"];
+    result.selfDescription = [[dict objectForKey:@"description"] stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
     result.location = [dict objectForKey:@"location"];
+    NSLog(@"self des:%@", result.selfDescription);
     result.verified = [NSNumber numberWithBool:[[dict objectForKey:@"verified"] boolValue]];
     
     result.domainURL = [dict objectForKey:@"domain"];

@@ -7,6 +7,7 @@
 //
 
 #import "WeiboUser.h"
+#import "WeiboDetail.h"
 
 @interface WeiboUser (Addition)
 

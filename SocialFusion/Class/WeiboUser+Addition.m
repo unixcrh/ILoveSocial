@@ -33,15 +33,11 @@
     result.pinyinName = [result.name pinyinFirstLetterAtIndex:0];
     NSDictionary *statusDict = [dict objectForKey:@"status"];
     result.latestStatus = [statusDict objectForKey:@"text"];
-    
-    //NSString *dateString = [dict objectForKey:@"created_at"];
-    //result.createdAt = [NSDate dateFromStringRepresentation:dateString];
-    
-    //result.profileImageURL = [dict objectForKey:@"profile_image_url"];
     result.tinyURL = [dict objectForKey:@"profile_image_url"];
-    result.midURL = [result.tinyURL stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];
+    
     WeiboDetail *detail = [WeiboDetail insertDetailInformation:dict inManagedObjectContext:context];
-    result.detailInformation = detail;
+    
+    result.detailInfo = detail;
     
     return result;
 }

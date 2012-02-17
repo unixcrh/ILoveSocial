@@ -2,14 +2,15 @@
 //  RenrenDetail.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
-//  Copyright (c) 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-2-17.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "DetailInformation.h"
 
+@class RenrenUser;
 
 @interface RenrenDetail : DetailInformation
 
@@ -21,5 +22,6 @@
 @property (nonatomic, retain) NSString * birthday;
 @property (nonatomic, retain) NSString * emailHash;
 @property (nonatomic, retain) NSString * universityHistory;
+@property (nonatomic, retain) RenrenUser *owner;
 
 @end

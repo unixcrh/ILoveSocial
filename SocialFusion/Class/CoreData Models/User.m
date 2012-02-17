@@ -2,12 +2,11 @@
 //  User.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-8.
+//  Created by Blue Bitch on 12-2-17.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "User.h"
-#import "DetailInformation.h"
 #import "NewFeedRootData.h"
 
 
@@ -19,9 +18,6 @@
 @dynamic tinyURL;
 @dynamic pinyinName;
 @dynamic latestStatus;
-@dynamic midURL;
-@dynamic largeURL;
-@dynamic detailInformation;
 @dynamic statuses;
 @dynamic newFeed;
 

@@ -7,6 +7,7 @@
 //
 
 #import "RenrenUser+Addition.h"
+#import "RenrenStatus.h"
 #import "NSString+Pinyin.h"
 #import "RenrenStatus+Addition.h"
 #import "RenrenDetail+Addition.h"
@@ -26,8 +27,6 @@
     result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"]];
     result.pinyinName = [result.name pinyinFirstLetterAtIndex:0];
     result.tinyURL = [dict objectForKey:@"tinyurl"];
-    result.midURL = [dict objectForKey:@"headurl"];
-    result.largeURL = [dict objectForKey:@"mainurl"];
     
     return result;
 }
@@ -42,7 +41,7 @@
     NSString *userID = [[dict objectForKey:@"uid"] stringValue];
     RenrenUser *result = [RenrenUser insertUserHelp:dict userID:userID inManagedObjectContext:context];
     RenrenDetail *detail = [RenrenDetail insertDetailInformation:dict userID:userID inManagedObjectContext:context];
-    result.detailInformation = detail;
+    result.detailInfo = detail;
     return result;
 }
 

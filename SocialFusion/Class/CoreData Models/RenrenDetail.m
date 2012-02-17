@@ -2,11 +2,12 @@
 //  RenrenDetail.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
-//  Copyright (c) 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-2-17.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "RenrenDetail.h"
+#import "RenrenUser.h"
 
 
 @implementation RenrenDetail
@@ -19,5 +20,6 @@
 @dynamic birthday;
 @dynamic emailHash;
 @dynamic universityHistory;
+@dynamic owner;
 
 @end

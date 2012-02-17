@@ -2,14 +2,14 @@
 //  User.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-8.
+//  Created by Blue Bitch on 12-2-17.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DetailInformation, NewFeedRootData;
+@class NewFeedRootData;
 
 @interface User : NSManagedObject
 
@@ -19,9 +19,6 @@
 @property (nonatomic, retain) NSString * tinyURL;
 @property (nonatomic, retain) NSString * pinyinName;
 @property (nonatomic, retain) NSString * latestStatus;
-@property (nonatomic, retain) NSString * midURL;
-@property (nonatomic, retain) NSString * largeURL;
-@property (nonatomic, retain) DetailInformation *detailInformation;
 @property (nonatomic, retain) NSSet *statuses;
 @property (nonatomic, retain) NSSet *newFeed;
 @end

@@ -8,7 +8,7 @@
 
 
 #import "RenrenUser.h"
-#import "RenrenStatus.h"
+#import "RenrenDetail.h"
 
 @interface RenrenUser (Addition)
 

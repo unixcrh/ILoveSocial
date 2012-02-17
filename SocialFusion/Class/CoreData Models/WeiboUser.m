@@ -2,11 +2,12 @@
 //  WeiboUser.m
 //  SocialFusion
 //
-//  Created by He Ruoyun on 11-11-18.
-//  Copyright (c) 2011年 Tongji Apple Club. All rights reserved.
+//  Created by Blue Bitch on 12-2-17.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "WeiboUser.h"
+#import "WeiboDetail.h"
 #import "WeiboStatus.h"
 #import "WeiboUser.h"
 
@@ -16,5 +17,6 @@
 @dynamic followers;
 @dynamic friends;
 @dynamic favorites;
+@dynamic detailInfo;
 
 @end
