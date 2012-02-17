@@ -39,10 +39,14 @@
     result.mainURL = [dict objectForKey:@"mainurl"];
     
     NSDictionary *hometown = [dict objectForKey:@"hometown_location"];
-    NSString *province = [hometown objectForKey:@"province"];
-    NSString *city = [hometown objectForKey:@"city"];
-    NSString *hometownLocation = [NSString stringWithFormat:@"%@ %@", province, city];
-    result.hometownLocation = hometownLocation;
+    if(hometown) {
+        NSString *province = [hometown objectForKey:@"province"];
+        NSString *city = [hometown objectForKey:@"city"];
+        NSString *hometownLocation = nil;
+        if(province && city)
+            hometownLocation = [NSString stringWithFormat:@"%@ %@", province, city];
+        result.hometownLocation = hometownLocation;
+    }
     
     NSDictionary *university = [[dict objectForKey:@"university_history"] lastObject];
     if(university) {
