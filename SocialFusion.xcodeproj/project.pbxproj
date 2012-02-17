@@ -102,6 +102,8 @@
 		73CB895C145EEB5600C6EEB9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */; };
 		73D21C6314B59F7E00EFA9A5 /* repostcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73D21C6214B59F7E00EFA9A5 /* repostcell.html */; };
 		73D21C6514B5A10900EFA9A5 /* normalcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73D21C6414B5A10900EFA9A5 /* normalcell.html */; };
+		73DA39E114EDED750081E38B /* WebStringToImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA39E014EDED750081E38B /* WebStringToImageConverter.m */; };
+		73DA39E814EE21B20081E38B /* blogtemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 73DA39E714EE21B20081E38B /* blogtemplate.html */; };
 		73DD21F6144BC945003BED92 /* WBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DD21F5144BC945003BED92 /* WBDialog.m */; };
 		73DD2216144C0216003BED92 /* Renren12.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2214144C0216003BED92 /* Renren12.png */; };
 		73DD2217144C0216003BED92 /* Renren12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2215144C0216003BED92 /* Renren12@2x.png */; };
@@ -480,6 +482,9 @@
 		73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		73D21C6214B59F7E00EFA9A5 /* repostcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = repostcell.html; sourceTree = "<group>"; };
 		73D21C6414B5A10900EFA9A5 /* normalcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = normalcell.html; sourceTree = "<group>"; };
+		73DA39DF14EDED750081E38B /* WebStringToImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebStringToImageConverter.h; sourceTree = "<group>"; };
+		73DA39E014EDED750081E38B /* WebStringToImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebStringToImageConverter.m; sourceTree = "<group>"; };
+		73DA39E714EE21B20081E38B /* blogtemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blogtemplate.html; sourceTree = "<group>"; };
 		73DD21F4144BC945003BED92 /* WBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBDialog.h; sourceTree = "<group>"; };
 		73DD21F5144BC945003BED92 /* WBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBDialog.m; sourceTree = "<group>"; };
 		73DD2214144C0216003BED92 /* Renren12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Renren12.png; sourceTree = "<group>"; };
@@ -1227,6 +1232,8 @@
 		E15F990114D5CDE00069072C /* Publication */ = {
 			isa = PBXGroup;
 			children = (
+				73DA39DF14EDED750081E38B /* WebStringToImageConverter.h */,
+				73DA39E014EDED750081E38B /* WebStringToImageConverter.m */,
 				E12A9F0B14EA935600B03B5F /* LeaveMessageViewController.h */,
 				E12A9F0C14EA935600B03B5F /* LeaveMessageViewController.m */,
 				E12A9F0D14EA935600B03B5F /* LeaveMessageViewController.xib */,
@@ -1521,6 +1528,7 @@
 			children = (
 				E199638514E7022400A4F247 /* user_info */,
 				73E4143B14E689E600E47581 /* photo_default.png */,
+				73DA39E714EE21B20081E38B /* blogtemplate.html */,
 				E199635D14E688D600A4F247 /* btn_tmp_pic_cancel@2x.png */,
 				735323D214E7E34000B4AB61 /* detail_album.png */,
 				734415CD14EBF44B0048B546 /* detail_show_all.png */,
@@ -1968,6 +1976,7 @@
 				E1E257D214ED441A003064CD /* pub_bg.png in Resources */,
 				E1E257D314ED441A003064CD /* pub_bg@2x.png in Resources */,
 				E1E257D514ED94B0003064CD /* user_info_photo_frame@2x.png in Resources */,
+				73DA39E814EE21B20081E38B /* blogtemplate.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2137,6 +2146,7 @@
 				73F39BAC14EA61AB000CE342 /* PhotoInAlbum.m in Sources */,
 				E12A9F0E14EA935600B03B5F /* LeaveMessageViewController.m in Sources */,
 				E12A9F1314EA946E00B03B5F /* PostViewController.m in Sources */,
+				73DA39E114EDED750081E38B /* WebStringToImageConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

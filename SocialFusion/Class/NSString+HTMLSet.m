@@ -115,8 +115,7 @@
 {
     NSArray* array=[self componentsSeparatedByString:@"@#Author#@"];
     [self release];
-    
-    
+
    // NSLog(@"%@",author);
     NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],author,[array objectAtIndex:1]];
     return returnString;
@@ -141,4 +140,25 @@
     NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],count,[array objectAtIndex:1]];
     return returnString;
 }
+
+
+- (NSString*)setBlogTitle :(NSString*)title 
+{
+    NSArray* array=[self componentsSeparatedByString:@"@#Title#@"];
+    [self release];
+    NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],title,[array objectAtIndex:1]];
+    return returnString;
+}
+
+
+- (NSString*)setBlogDetail :(NSString*)blog 
+{
+    NSArray* array=[self componentsSeparatedByString:@"@#blog#@"];
+    [self release];
+    NSString* returnString=[[NSString alloc] initWithFormat:@"%@%@%@",[array objectAtIndex:0],blog,[array objectAtIndex:1]];
+    return returnString;
+}
+
+
+
 @end

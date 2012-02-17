@@ -20,5 +20,6 @@
 - (NSString*)setAuthor:(NSString*)author;
 - (NSString*)setComment :(NSString*)comment; 
 - (NSString*)setCount :(NSString*)count; 
-
+- (NSString*)setBlogTitle :(NSString*)title ;
+- (NSString*)setBlogDetail :(NSString*)blog;
 @end
