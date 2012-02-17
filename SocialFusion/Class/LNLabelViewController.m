@@ -153,6 +153,7 @@
     if(self.isReturnLabel) {
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didCloseLabelAtIndex:)])
             [self.delegate labelView:self didCloseLabelAtIndex:self.index];
+        return;
     }
     else if(self.isRetractable && self.isSelected){ 
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didOpenLabelAtIndex:)])

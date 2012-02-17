@@ -70,6 +70,7 @@
 {
     [super viewDidLoad];
     
+    [self configureUI];
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if (!renren.hasError) {

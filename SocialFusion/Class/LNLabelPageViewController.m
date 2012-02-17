@@ -116,7 +116,6 @@
 #pragma mark Animations
 
 - (void)closeParentLabelAnimation {
-    [self.view setUserInteractionEnabled:YES];
     [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
@@ -129,6 +128,7 @@
         if([self.delegate respondsToSelector:@selector(labelPageView: didFinishCloseLabel:)]) {
             [self.delegate labelPageView:self didFinishCloseLabel:nil];
         }
+        [self.view setUserInteractionEnabled:YES];
     }];
 }
 
