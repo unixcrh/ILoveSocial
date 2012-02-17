@@ -96,6 +96,7 @@
 		<true/>
 		<key>kChildLabels</key>
 		<array>
+			<string>kChildRenrenInfo</string>
 			<string>kChildWeiboInfo</string>
 			<string>kChildWeiboNewFeed</string>
 			<string>kChildRenrenNewFeed</string>
@@ -216,6 +217,7 @@
 		<true/>
 		<key>kChildLabels</key>
 		<array>
+			<string>kChildRenrenInfo</string>
 			<string>kChildRenrenNewFeed</string>
 		</array>
 	</dict>

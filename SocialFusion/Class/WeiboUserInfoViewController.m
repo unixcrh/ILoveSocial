@@ -13,25 +13,29 @@
 
 @implementation WeiboUserInfoViewController
 
+@synthesize blogLabel = _blogLabel;
+@synthesize descriptionTextView = _descriptionTextView;
+@synthesize locationLabel = _locationLabel;
+
 - (void)dealloc {
+    [_blogLabel release];
+    [_descriptionTextView release];
+    [_locationLabel release];
     [super dealloc];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.blogLabel = nil;
+    self.descriptionTextView = nil;
+    self.locationLabel = nil;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    if(!self.weiboUser.detailInfo.headURL) {
-//        self.weiboUser.detailInfo.headURL = [self.weiboUser.tinyURL stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];
-//    }
-    
+        
     Image *image = [Image imageWithURL:self.weiboUser.detailInfo.headURL inManagedObjectContext:self.managedObjectContext];
     if (image == nil) {
         [self.photoImageView loadImageFromURL:self.weiboUser.detailInfo.headURL completion:^{

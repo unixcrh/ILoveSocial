@@ -17,20 +17,17 @@
 @synthesize scrollView = _scrollView;
 @synthesize photoImageView = _photoImageView;
 @synthesize user = _user;
+@synthesize photoView = _photoView;
 
 @synthesize genderLabel = _genderLabel;
-@synthesize locationLabel = _locationLabel;
-@synthesize blogLabel = _blogLabel;
-@synthesize descriptionTextView = _descriptionTextView;
 
 - (void)dealloc {
     [_scrollView release];
     [_photoImageView release];
     [_user release];
     [_genderLabel release];
-    [_locationLabel release];
-    [_blogLabel release];
-    [_descriptionTextView release];
+    [_photoView release];
+    
     [super dealloc];
 }
 
@@ -42,9 +39,7 @@
     self.scrollView = nil;
     self.photoImageView = nil;
     self.genderLabel = nil;
-    self.locationLabel = nil;
-    self.blogLabel = nil;
-    self.descriptionTextView = nil;
+    self.photoView = nil;
 }
 
 - (void)viewDidLoad
@@ -53,8 +48,8 @@
     // Do any additional setup after loading the view from its nib.
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + 1);
     
-    self.photoImageView.layer.masksToBounds = YES;
-    self.photoImageView.layer.cornerRadius = 5.0f;
+    self.photoView.layer.masksToBounds = YES;
+    self.photoView.layer.cornerRadius = 5.0f;
 }
 
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type {

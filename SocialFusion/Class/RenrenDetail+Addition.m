@@ -23,13 +23,16 @@
     
     result.ownerID = userID;
     
+    result.headURL = [dict objectForKey:@"headURL"];
+    result.mainURL = [dict objectForKey:@"mainURL"];
+    
     NSString *sex = [dict objectForKey:@"sex"];
     if(sex) {
         bool isMan = [sex boolValue];
         if(isMan)
-            result.gender = [NSString stringWithString:@"男"];
+            result.gender = [NSString stringWithString:@"m"];
         else
-            result.gender = [NSString stringWithString:@"女"];
+            result.gender = [NSString stringWithString:@"f"];
     }
     result.birthday = [dict objectForKey:@"birthday"];
     result.headURL = [dict objectForKey:@"headurl"];
@@ -46,9 +49,26 @@
         NSString *department = [university objectForKey:@"department"];
         NSString *name = [university objectForKey:@"name"];
         NSString *year = [university objectForKey:@"year"];
-        NSString *universityInfo = [NSString stringWithFormat:@"%@, %@, %@", name, department, year];
+        NSString *universityInfo = [NSString stringWithFormat:@"%@ %@ %@", name, department, year];
         result.universityHistory = universityInfo;
     }
+    
+    NSDictionary *highschool = [[dict objectForKey:@"hs_history"] lastObject];
+    if(highschool) {
+        NSString *name = [highschool objectForKey:@"name"];
+        NSString *year = [highschool objectForKey:@"grad_year"];
+        NSString *hsInfo = [NSString stringWithFormat:@"%@ %@", name, year];
+        result.highSchoolHistory = hsInfo;
+    }
+    
+    NSDictionary *company = [[dict objectForKey:@"work_info"] lastObject];
+    if(company) {
+        NSString *name = [company objectForKey:@"company_name"];
+        NSString *date = [company objectForKey:@"start_date"];
+        NSString *companyInfo = [NSString stringWithFormat:@"%@ %@", name, date];
+        result.workHistory = companyInfo;
+    }
+    
     return result;
 }
 

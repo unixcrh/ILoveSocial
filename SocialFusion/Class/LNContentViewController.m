@@ -145,6 +145,9 @@
     else if([identifier isEqualToString:kChildWeiboInfo]) {
         result = [UserInfoViewController getUserInfoViewControllerWithType:kWeiboUserInfo];
     }
+    else if([identifier isEqualToString:kChildRenrenInfo]) {
+        result = [UserInfoViewController getUserInfoViewControllerWithType:kRenrenUserInfo];
+    }
     else {
         NSLog(@"nil identifier:%@", identifier);
         abort();

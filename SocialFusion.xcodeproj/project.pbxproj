@@ -326,12 +326,12 @@
 		E1E257E414EE839A003064CD /* WeiboUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E257E314EE839A003064CD /* WeiboUserInfoViewController.m */; };
 		E1E257E614EE83BF003064CD /* RenrenUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E257E514EE83BF003064CD /* RenrenUserInfoViewController.xib */; };
 		E1E257E814EE869C003064CD /* user_info_renren_detail_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257E714EE869C003064CD /* user_info_renren_detail_bg@2x.png */; };
-		E1E2580714EE8E35003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580614EE8E34003064CD /* RenrenDetail.m */; };
 		E1E2580A14EE8E39003064CD /* RenrenUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580914EE8E38003064CD /* RenrenUser.m */; };
 		E1E2580D14EE8E3B003064CD /* WeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580C14EE8E3B003064CD /* WeiboUser.m */; };
 		E1E2581014EE8E3E003064CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580F14EE8E3D003064CD /* User.m */; };
 		E1E2581314EE8E43003064CD /* WeiboDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581214EE8E43003064CD /* WeiboDetail.m */; };
 		E1E2581614EE8E45003064CD /* DetailInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581514EE8E44003064CD /* DetailInformation.m */; };
+		E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581814EEBB5A003064CD /* RenrenDetail.m */; };
 		E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF51143B36600098BBD3 /* FriendListViewController.m */; };
 		E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */; };
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
@@ -830,8 +830,6 @@
 		E1E257E514EE83BF003064CD /* RenrenUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenrenUserInfoViewController.xib; sourceTree = "<group>"; };
 		E1E257E714EE869C003064CD /* user_info_renren_detail_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_renren_detail_bg@2x.png"; sourceTree = "<group>"; };
 		E1E257E914EE886C003064CD /* SocialFusion 1.0.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.2.xcdatamodel"; sourceTree = "<group>"; };
-		E1E2580514EE8E33003064CD /* RenrenDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenDetail.h; path = "SocialFusion/Class/CoreData Models/RenrenDetail.h"; sourceTree = "<group>"; };
-		E1E2580614EE8E34003064CD /* RenrenDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenDetail.m; path = "SocialFusion/Class/CoreData Models/RenrenDetail.m"; sourceTree = "<group>"; };
 		E1E2580814EE8E38003064CD /* RenrenUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenUser.h; path = "SocialFusion/Class/CoreData Models/RenrenUser.h"; sourceTree = "<group>"; };
 		E1E2580914EE8E38003064CD /* RenrenUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenUser.m; path = "SocialFusion/Class/CoreData Models/RenrenUser.m"; sourceTree = "<group>"; };
 		E1E2580B14EE8E3B003064CD /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboUser.h; path = "SocialFusion/Class/CoreData Models/WeiboUser.h"; sourceTree = "<group>"; };
@@ -842,6 +840,8 @@
 		E1E2581214EE8E43003064CD /* WeiboDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboDetail.m; path = "SocialFusion/Class/CoreData Models/WeiboDetail.m"; sourceTree = "<group>"; };
 		E1E2581414EE8E44003064CD /* DetailInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailInformation.h; path = "SocialFusion/Class/CoreData Models/DetailInformation.h"; sourceTree = "<group>"; };
 		E1E2581514EE8E44003064CD /* DetailInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailInformation.m; path = "SocialFusion/Class/CoreData Models/DetailInformation.m"; sourceTree = "<group>"; };
+		E1E2581714EEBB57003064CD /* RenrenDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenDetail.h; path = "SocialFusion/Class/CoreData Models/RenrenDetail.h"; sourceTree = "<group>"; };
+		E1E2581814EEBB5A003064CD /* RenrenDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenDetail.m; path = "SocialFusion/Class/CoreData Models/RenrenDetail.m"; sourceTree = "<group>"; };
 		E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
 		E1E5DF51143B36600098BBD3 /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
 		E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
@@ -1447,8 +1447,6 @@
 				731D1D9A147603B5001981B4 /* RenrenStatus.m */,
 				E1EC716A14D309A6005D123E /* NewFeedRootData.h */,
 				E1EC716B14D309A6005D123E /* NewFeedRootData.m */,
-				E1E2580514EE8E33003064CD /* RenrenDetail.h */,
-				E1E2580614EE8E34003064CD /* RenrenDetail.m */,
 				E1E2580814EE8E38003064CD /* RenrenUser.h */,
 				E1E2580914EE8E38003064CD /* RenrenUser.m */,
 				E1E2580B14EE8E3B003064CD /* WeiboUser.h */,
@@ -1459,6 +1457,8 @@
 				E1E2581214EE8E43003064CD /* WeiboDetail.m */,
 				E1E2581414EE8E44003064CD /* DetailInformation.h */,
 				E1E2581514EE8E44003064CD /* DetailInformation.m */,
+				E1E2581714EEBB57003064CD /* RenrenDetail.h */,
+				E1E2581814EEBB5A003064CD /* RenrenDetail.m */,
 			);
 			name = "CoreData Models";
 			sourceTree = "<group>";
@@ -2162,12 +2162,12 @@
 				73DA39E114EDED750081E38B /* WebStringToImageConverter.m in Sources */,
 				E1E257E014EE8384003064CD /* RenrenUserInfoViewController.m in Sources */,
 				E1E257E414EE839A003064CD /* WeiboUserInfoViewController.m in Sources */,
-				E1E2580714EE8E35003064CD /* RenrenDetail.m in Sources */,
 				E1E2580A14EE8E39003064CD /* RenrenUser.m in Sources */,
 				E1E2580D14EE8E3B003064CD /* WeiboUser.m in Sources */,
 				E1E2581014EE8E3E003064CD /* User.m in Sources */,
 				E1E2581314EE8E43003064CD /* WeiboDetail.m in Sources */,
 				E1E2581614EE8E45003064CD /* DetailInformation.m in Sources */,
+				E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

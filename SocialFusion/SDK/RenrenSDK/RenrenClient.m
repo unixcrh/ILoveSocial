@@ -447,9 +447,17 @@ hasError = _hasError;
 //请求用户信息
 - (void)getUserInfo {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"users.getInfo",@"method",
-                                   @"uid,name,sex,birthday,email_hash,tinyurl,headurl,mainurl,hometown_location,work_history,university_history",@"fields",
-                                   nil];
+                                   @"users.getInfo", @"method",
+                                   @"uid,name,sex,birthday,email_hash,tinyurl,headurl,mainurl,hometown_location,work_history,hs_history,university_history", @"fields", nil];
+    [self requestWithParams:params andDelegate:self];
+}
+
+//请求用户信息
+- (void)getUserInfoWithUserID:(NSString *)uid {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"users.getInfo", @"method",
+                                   @"uid,name,sex,birthday,email_hash,tinyurl,headurl,mainurl,hometown_location,work_history,hs_history,university_history", @"fields", 
+                                   uid, @"uids", nil];
     [self requestWithParams:params andDelegate:self];
 }
 

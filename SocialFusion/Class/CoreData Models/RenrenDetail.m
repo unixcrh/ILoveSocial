@@ -2,7 +2,7 @@
 //  RenrenDetail.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-17.
+//  Created by Blue Bitch on 12-2-18.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @dynamic birthday;
 @dynamic emailHash;
 @dynamic universityHistory;
+@dynamic highSchoolHistory;
 @dynamic owner;
 
 @end

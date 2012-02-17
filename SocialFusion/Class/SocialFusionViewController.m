@@ -205,7 +205,6 @@
     // get user info
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
-        NSLog(@"weibo did get user info");
         if (!renren.hasError) {
             NSArray *result = client.responseJSONObject;
             NSDictionary* dict = [result lastObject];

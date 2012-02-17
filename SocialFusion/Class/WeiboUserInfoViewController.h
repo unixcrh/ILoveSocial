@@ -11,4 +11,8 @@
 
 @interface WeiboUserInfoViewController : UserInfoViewController
 
+@property (nonatomic, retain) IBOutlet UILabel *blogLabel;
+@property (nonatomic, retain) IBOutlet UITextView *descriptionTextView;
+@property (nonatomic, retain) IBOutlet UILabel *locationLabel;
+
 @end

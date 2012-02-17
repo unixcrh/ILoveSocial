@@ -2,7 +2,7 @@
 //  RenrenDetail.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-17.
+//  Created by Blue Bitch on 12-2-18.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * birthday;
 @property (nonatomic, retain) NSString * emailHash;
 @property (nonatomic, retain) NSString * universityHistory;
+@property (nonatomic, retain) NSString * highSchoolHistory;
 @property (nonatomic, retain) RenrenUser *owner;
 
 @end
