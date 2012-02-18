@@ -25,7 +25,7 @@
     int _selectedPhoto;
     
     int _firstToAlbum;
-
+    int _numberOfPhoto;
   
 }
 
