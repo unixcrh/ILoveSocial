@@ -445,7 +445,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             return cell; 
         }
         
-        else if ([a class]==[NewFeedShareAlbum class] || [a class]==[NewFeedSharePhoto class])
+        else if ([a class]==[NewFeedShareAlbum class] || [a class]==[NewFeedSharePhoto class]||[a class]==[NewFeedUploadPhoto class])
         {
             NewFeedAlbumCell* cell;
             [[NSBundle mainBundle] loadNibNamed:@"NewFeedAlbumCell" owner:self options:nil];
