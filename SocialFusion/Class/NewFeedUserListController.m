@@ -65,6 +65,7 @@
     
     [renren setCompletionBlock:^(RenrenClient *client) {
         if (!client.hasError) {            
+            [self clearData];
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
         }
@@ -79,9 +80,8 @@
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-            
+            [self clearData];
             NSArray *array = client.responseJSONObject;
-            
             [self processWeiboData:array];
         }
     }];
@@ -89,7 +89,7 @@
 }
 
 - (void)loadMoreData {
-    if(_loading)
+    if(_loadingFlag)
         return;
     _pageNumber++;
     _currentTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];

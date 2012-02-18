@@ -142,14 +142,14 @@
 		
 	} else if (scrollView.isDragging) {
 		
-		BOOL _loading = NO;
+		BOOL _loadingFlag = NO;
 		if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceIsLoading:)]) {
-			_loading = [_delegate egoRefreshTableHeaderDataSourceIsLoading:self];
+			_loadingFlag = [_delegate egoRefreshTableHeaderDataSourceIsLoading:self];
 		}
 		
-		if (_state == EGOOPullRefreshPulling && scrollView.contentOffset.y > -70.0f && scrollView.contentOffset.y < 0.0f && !_loading) {
+		if (_state == EGOOPullRefreshPulling && scrollView.contentOffset.y > -70.0f && scrollView.contentOffset.y < 0.0f && !_loadingFlag) {
 			[self setState:EGOOPullRefreshNormal];
-		} else if (_state == EGOOPullRefreshNormal && scrollView.contentOffset.y < -90.0f && !_loading) {
+		} else if (_state == EGOOPullRefreshNormal && scrollView.contentOffset.y < -90.0f && !_loadingFlag) {
 			[self setState:EGOOPullRefreshPulling];
 		}
 		
@@ -163,11 +163,11 @@
 
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
 	
-	BOOL _loading = NO;
+	BOOL _loadingFlag = NO;
 	if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceIsLoading:)]) {
-		_loading = [_delegate egoRefreshTableHeaderDataSourceIsLoading:self];
+		_loadingFlag = [_delegate egoRefreshTableHeaderDataSourceIsLoading:self];
 	}
-	if (_state == EGOOPullRefreshPulling && !_loading) {
+	if (_state == EGOOPullRefreshPulling && !_loadingFlag) {
 		if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDidTriggerRefresh:)]) {
 			[_delegate egoRefreshTableHeaderDidTriggerRefresh:self];
 		}

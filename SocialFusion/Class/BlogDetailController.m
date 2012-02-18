@@ -34,18 +34,21 @@
         }
     }];
     [renren getBlog:[self.feedData getActor_ID] status_ID:[self.feedData getSource_ID]];
-
+    
     
     
 }
 
 
-- (void)loadData
-{
+- (void)loadData {
+    if(_loadingFlag)
+        return;
+    _loadingFlag = YES;
     
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
+            [self clearData];
             NSArray *array;
             if  (((NewFeedBlog*)self.feedData).shareID!=nil)
             {

@@ -106,7 +106,7 @@
 #pragma mark Animations
 
 - (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
-    if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+    if(self.tableView.dragging || self.tableView.decelerating || _reloadingFlag)
         return;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     Image *image = [Image imageWithURL:usr.tinyURL inManagedObjectContext:self.managedObjectContext];

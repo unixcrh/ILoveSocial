@@ -72,8 +72,8 @@
         
         [[UIApplication sharedApplication] presentToastwithShortInterval:[NSString stringWithFormat:@"%d / %d 页",index+1,total] withVerticalPos:380];
         
-
-            if (index+1!=_albumPageNumber)
+        
+        if (index+1!=_albumPageNumber)
         {
             _albumPageNumber= index+1;
             
@@ -90,7 +90,7 @@
                             
                             _photoInAlbum[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 255*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT+15);
                             [_photoInAlbum[i].imageView setImage:nil];
- 
+                            
                         }
                         
                         
@@ -309,7 +309,7 @@
     _activity.center=CGPointMake(153, 300);
     [self.view addSubview:_activity];
     [_activity startAnimating];
-
+    
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
@@ -341,12 +341,12 @@
     }];
     if ([self.feedData class]==[NewFeedShareAlbum class])
     {
-    [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
+        [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
     }
     else
     {
         [renren getAlbum:((NewFeedSharePhoto*)self.feedData).fromID a_ID:((NewFeedSharePhoto*)self.feedData).albumID pageNumber:_albumPageNumber];
-
+        
     }
     
     
@@ -375,12 +375,12 @@
                     [_contentScrollView setContentSize:CGSizeMake(_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* (size/9+1))];
                     [_contentView setFrame:CGRectMake(0, 0,_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* (size/9+1))];
                     _numberOfPhoto=size;
-                    } 
+                } 
                 [self loadAlbumData];
             }
         }];
         [renren getAlbumInfo:((NewFeedSharePhoto*)self.feedData).fromID a_ID:((NewFeedSharePhoto*)self.feedData).albumID];
-
+        
         
         
     }
@@ -527,12 +527,12 @@
     }];
     if ([self.feedData class]==[NewFeedShareAlbum class])
     {
-    [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
+        [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
     }
     else
     {
         [renren getAlbum:((NewFeedSharePhoto*)self.feedData).fromID a_ID:((NewFeedSharePhoto*)self.feedData).albumID pageNumber:_albumPageNumber];
-
+        
     }
     
     
@@ -546,27 +546,27 @@
 
 -(void)loadtoAlbumData
 {
-
+    
     
     [_contentScrollView setContentSize:CGSizeMake(_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* ([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1))];
     [_contentView setFrame:CGRectMake(0, 0,_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* ([((NewFeedShareAlbum*)self.feedData).album_count intValue]/9+1))];
     
     _firstToAlbum=0;
     [_albumTitle setText:((NewFeedShareAlbum*)self.feedData).album_title];
-
+    
     _numberOfPhoto=[((NewFeedShareAlbum*)self.feedData).album_count intValue]+1;
     [self loadAlbumData];
     
-
+    
 }
 -(void)loadToPhoto
 {
     _firstToAlbum=1;
     [_contentScrollView setContentSize:CGSizeMake(_contentScrollView.frame.size.width, _contentScrollView.frame.size.height)];
     [_contentView setFrame:CGRectMake(0, 0,_contentScrollView.frame.size.width, _contentScrollView.frame.size.height)];
-  
+    
     [_albumTitle setText:((NewFeedSharePhoto*)self.feedData).title];
-   
+    
     _photoID[0]=((NewFeedSharePhoto*)self.feedData).mediaID;
     _commentCount[0]=[((NewFeedSharePhoto*)self.feedData).comment_Count intValue];
     
@@ -576,7 +576,7 @@
     _selectedPhoto=0;
     
     [self clearData];
-
+    
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
@@ -590,7 +590,7 @@
                 _bigURL[0]=[[NSString alloc] initWithString:[dict objectForKey:@"url_large"]];
                 
             } 
-    
+            
             [_contentScrollView zoomToRect:_photoInAlbum[0].frame animated:YES];
         }
     }];
@@ -610,7 +610,7 @@
     _contentScrollView.pagingEnabled=YES;
     _contentScrollView.directionalLockEnabled=YES;
     _contentScrollView.maximumZoomScale=10.0;
-  
+    
     for (int j=0;j<3;j++)
     {
         for (int i=0;i<9;i++)
@@ -639,22 +639,12 @@
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
+    
     [self hideLoadMoreDataButton];
-    [self clearData];
-    
-    
-    _pageNumber=_commentCount[_selectedPhoto%9]/10+1;
-    
-    
-    
-    
-    
-    if(_loading)
-        return;
-    _loading = YES;
+    _clearDataFlag = YES;
+    _pageNumber = _commentCount[_selectedPhoto % 9] / 10 + 1;
     
     [self loadData];
-    
 }
 
 
@@ -662,36 +652,38 @@
 
 - (void)loadData
 {
- if ([self.feedData class]==[NewFeedShareAlbum class])
- {
-    if (_selectedPhoto==-1)
+    if(_loadingFlag)
+        return;
+    _loadingFlag = YES;
+    
+    if ([self.feedData class]==[NewFeedShareAlbum class])
     {
-        
-        RenrenClient *renren = [RenrenClient client];
-        [renren setCompletionBlock:^(RenrenClient *client) {
-            if(!client.hasError) {
-                NSArray *array = client.responseJSONObject;
-                array=[client.responseJSONObject objectForKey:@"comments"];
-                [self ProcessRenrenData:array];
-                
-            }
-        }];
-        
-        [renren getShareComments:((NewFeedShareAlbum*)self.feedData).fromID share_ID:((NewFeedShareAlbum*)self.feedData).source_ID pageNumber:_pageNumber];
+        if (_selectedPhoto==-1) {
+            RenrenClient *renren = [RenrenClient client];
+            [renren setCompletionBlock:^(RenrenClient *client) {
+                if(!client.hasError) {
+                    [self clearData];
+                    NSArray *array = client.responseJSONObject;
+                    array=[client.responseJSONObject objectForKey:@"comments"];
+                    [self ProcessRenrenData:array];
+                    
+                }
+            }];
+            
+            [renren getShareComments:((NewFeedShareAlbum*)self.feedData).fromID share_ID:((NewFeedShareAlbum*)self.feedData).source_ID pageNumber:_pageNumber];
+        }
+        else {
+            RenrenClient *renren = [RenrenClient client];
+            [renren setCompletionBlock:^(RenrenClient *client) {
+                if(!client.hasError) {
+                    [self clearData];
+                    NSArray *array = client.responseJSONObject;
+                    [self ProcessRenrenData:array];
+                }
+            }];
+            [renren getPhotoComments:((NewFeedShareAlbum*)self.feedData).fromID photo_ID:_photoID[_selectedPhoto%9] pageNumber:_pageNumber];
+        }
     }
-    else
-    {
-        
-        RenrenClient *renren = [RenrenClient client];
-        [renren setCompletionBlock:^(RenrenClient *client) {
-            if(!client.hasError) {
-                NSArray *array = client.responseJSONObject;
-                [self ProcessRenrenData:array];
-            }
-        }];
-        [renren getPhotoComments:((NewFeedShareAlbum*)self.feedData).fromID photo_ID:_photoID[_selectedPhoto%9] pageNumber:_pageNumber];
-    }
- }
     else
     {
         if (_firstToAlbum==1)
@@ -714,19 +706,19 @@
             {
                 
                 
-                    
-                    RenrenClient *renren = [RenrenClient client];
-                    [renren setCompletionBlock:^(RenrenClient *client) {
-                        if(!client.hasError) {
-                            NSArray *array = client.responseJSONObject;
-                            [self ProcessRenrenData:array];
-                        }
-                    }];
-                    [renren getPhotoComments:((NewFeedShareAlbum*)self.feedData).fromID photo_ID:_photoID[_selectedPhoto%9] pageNumber:_pageNumber];
+                
+                RenrenClient *renren = [RenrenClient client];
+                [renren setCompletionBlock:^(RenrenClient *client) {
+                    if(!client.hasError) {
+                        NSArray *array = client.responseJSONObject;
+                        [self ProcessRenrenData:array];
+                    }
+                }];
+                [renren getPhotoComments:((NewFeedShareAlbum*)self.feedData).fromID photo_ID:_photoID[_selectedPhoto%9] pageNumber:_pageNumber];
                 
             }
-        
-  
+            
+            
         }
     }
     

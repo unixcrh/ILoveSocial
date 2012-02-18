@@ -49,23 +49,25 @@
 #pragma mark -
 #pragma mark EGORefresh Method
 - (void)refresh {
+    _clearDataFlag = YES;
     [self hideLoadMoreDataButton];
-    [self clearData];
+    _nextCursor = 0;
     [self loadMoreData];
 }
 
 - (void)clearData
 {
+    if(!_clearDataFlag)
+        return;
+    _clearDataFlag = NO;
     if(_type == RelationshipViewTypeRenrenFriends) {
         _noAnimationFlag = YES;
         [self.renrenUser removeFriends:self.renrenUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFriends) {
-        _nextCursor = -1;
         [self.weiboUser removeFriends:self.weiboUser.friends];
     }
     else if(_type == RelationshipViewTypeWeiboFollowers) {
-        _nextCursor = -1;
         [self.weiboUser removeFollowers:self.weiboUser.followers];
     }
 }
@@ -83,6 +85,7 @@
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
+            [self clearData];
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
@@ -94,7 +97,7 @@
                 [[UIApplication sharedApplication] presentToast:[NSString stringWithFormat:@"您在人人网没有好友。", array.count] withVerticalPos:kToastBottomVerticalPosition];
         }
         [self doneLoadingTableViewData];
-        _loading = NO;
+        _loadingFlag = NO;
         
     }];
     [renren getFriendsProfile];
@@ -104,6 +107,7 @@
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
+            [self clearData];
             //NSLog(@"dict:%@", client.responseJSONObject);
             NSArray *dictArray = [client.responseJSONObject objectForKey:@"users"];
             //NSLog(@"count:%d", [dictArray count]);
@@ -117,7 +121,7 @@
                 }
             }
             _nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
-            //NSLog(@"new cursor:%d", _nextCursor);
+            NSLog(@"new cursor:%d", _nextCursor);
             if (_nextCursor == 0) {
                 [self hideLoadMoreDataButton];
                 if(dictArray.count == 0) {
@@ -133,7 +137,7 @@
                 [self showLoadMoreDataButton];
             }
             [self doneLoadingTableViewData];
-            _loading = NO;
+            _loadingFlag = NO;
         }
     }];
     if (_type == RelationshipViewTypeWeiboFriends) {
@@ -145,9 +149,9 @@
 }
 
 - (void)loadMoreData {
-    if(_loading)
+    if(_loadingFlag)
         return;
-    _loading = YES;
+    _loadingFlag = YES;
     if(_type == RelationshipViewTypeRenrenFriends) {
         [self loadMoreRenrenData];
     }

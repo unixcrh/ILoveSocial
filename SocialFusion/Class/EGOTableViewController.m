@@ -97,8 +97,8 @@
         [userDefault synchronize];
     }
     
-    _reloading = NO;
-    _loading = NO;
+    _reloadingFlag = NO;
+    _loadingFlag = NO;
 }
 
 - (void)loadMoreData
@@ -112,7 +112,7 @@
 }
 
 - (void)reloadTableViewDataSource {
-	_reloading = YES;
+	_reloadingFlag = YES;
 	[self refresh];
 }
 
@@ -121,7 +121,7 @@
         [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
         
     } completion:^(BOOL finished) {
-        _reloading = NO;
+        _reloadingFlag = NO;
    
     }];
 	[self.egoHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading];
@@ -132,7 +132,7 @@
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view {
-	return _reloading; // should return if data source model is reloading
+	return _reloadingFlag; // should return if data source model is reloading
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	

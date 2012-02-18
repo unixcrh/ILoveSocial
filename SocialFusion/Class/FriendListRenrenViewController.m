@@ -84,7 +84,7 @@
 
 - (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
     [super loadExtraDataForOnScreenRowsHelp:indexPath];
-    if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+    if(self.tableView.dragging || self.tableView.decelerating || _reloadingFlag)
         return;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if(!usr.latestStatus) {

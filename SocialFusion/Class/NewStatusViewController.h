@@ -12,7 +12,7 @@
 
 
 #import "WebStringToImageConverter.h"
-@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate,WebStringToImageConverterDelegate> {
+@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, WebStringToImageConverterDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
     

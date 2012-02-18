@@ -171,18 +171,19 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 #pragma mark - EGORefresh Method
 - (void)refresh {
+    
     if(_firstLoad) {
         _firstLoad = NO;
         if(![self isUserNewFeedArrayEmpte] && [self isMemberOfClass:[NewFeedListController class]])
             return;
     }
     [self hideLoadMoreDataButton];
-    _pageNumber = 0;
     if (_currentTime != nil)
     {
         [_currentTime release];
     }
-    [self clearData];
+    _clearDataFlag = YES;
+    _pageNumber = 0;
     [self loadMoreData];
 }
 
@@ -211,9 +212,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)setLoadingCount:(int)loadingCount {
     _loadingCount = loadingCount;
     if(_loadingCount == 0)
-        _loading = NO;
+        _loadingFlag = NO;
     else
-        _loading = YES;
+        _loadingFlag = YES;
     if(_loadingCount < 0) {
         NSLog(@"shit");
     }
@@ -283,6 +284,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if (!client.hasError) {
+            [self clearData];
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
         }
@@ -296,6 +298,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
+            [self clearData];
             NSArray *array = client.responseJSONObject;
             [self processWeiboData:array];        
         }
@@ -305,7 +308,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 - (void)loadMoreData {
-    if(_loading)
+    if(_loadingFlag)
         return;
     _pageNumber++;
     _currentTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
@@ -468,7 +471,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 - (void)loadExtraDataForOnScreenRowsHelp:(NSIndexPath *)indexPath {
-    if(self.tableView.dragging || self.tableView.decelerating || _reloading)
+    if(self.tableView.dragging || self.tableView.decelerating || _reloadingFlag)
         return;
     
     
@@ -609,8 +612,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 - (void)clearData
-{
-    _noAnimationFlag = YES;
+{   if(!_clearDataFlag)
+        return;
+    _clearDataFlag = NO;
+    _noAnimationFlag = NO;
     [self.processRenrenUser removeNewFeed:self.processRenrenUser.newFeed];
     [self.processWeiboUser removeNewFeed:self.processWeiboUser.newFeed];
 }

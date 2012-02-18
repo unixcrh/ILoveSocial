@@ -11,8 +11,9 @@
 
 @interface EGOTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate> {
     EGORefreshTableHeaderView *_egoHeaderView;
-    BOOL _reloading;
-    BOOL _loading;
+    BOOL _reloadingFlag;
+    BOOL _loadingFlag;
+    BOOL _clearDataFlag;
     
     UIButton *_loadMoreDataButton;
     
