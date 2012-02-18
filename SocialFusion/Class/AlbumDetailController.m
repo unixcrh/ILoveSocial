@@ -70,7 +70,7 @@
         
         int total=fabs(scrollView.contentSize.height) / scrollView.frame.size.height;
         
-        [[UIApplication sharedApplication] presentToastwithShortInterval:[NSString stringWithFormat:@"%d / %d 页",index+1,total+1] withVerticalPos:380];
+        [[UIApplication sharedApplication] presentToastwithShortInterval:[NSString stringWithFormat:@"%d / %d 页",index+1,total] withVerticalPos:380];
         
 
             if (index+1!=_albumPageNumber)
@@ -94,7 +94,7 @@
                         }
                         
                         
-                        if (_albumPageNumber*9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])
+                        if (_albumPageNumber*9>_numberOfPhoto)
                         {
                             for (int i=9;i<18;i++)
                             {
@@ -103,9 +103,9 @@
                                 
                             }
                         }
-                        else if (_albumPageNumber*9+9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])  
+                        else if (_albumPageNumber*9+9>_numberOfPhoto)  
                         {
-                            int count=[((NewFeedShareAlbum*)self.feedData).album_count intValue];
+                            int count=_numberOfPhoto;
                             int leftNumber=count%9;
                             
                             for (int i=9;i<9+leftNumber;i++)
@@ -148,6 +148,7 @@
                     {
                         
                         
+                        
                         for (int i=0;i<27;i++)
                         {
                             
@@ -162,7 +163,7 @@
                 case 1:
                 {
                     
-                    if (_albumPageNumber*9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])
+                    if (_albumPageNumber*9>_numberOfPhoto)
                     {
                         for (int i=18;i<27;i++)
                         {
@@ -174,9 +175,9 @@
                         }
                     }
                     
-                    else if (_albumPageNumber*9+9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])  
+                    else if (_albumPageNumber*9+9>_numberOfPhoto)  
                     {
-                        int count=[((NewFeedShareAlbum*)self.feedData).album_count intValue];
+                        int count=_numberOfPhoto;
                         int leftNumber=count%9;
                         
                         for (int i=18;i<leftNumber+18;i++)
@@ -231,7 +232,7 @@
                         _photoInAlbum[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 255*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT+15);
                         [_photoInAlbum[i].imageView setImage:nil];                }
                     
-                    if (_albumPageNumber*9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])
+                    if (_albumPageNumber*9>_numberOfPhoto)
                     {
                         for (int i=0;i<9;i++)
                         {
@@ -241,9 +242,9 @@
                             _photoInAlbum[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 255*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT+15);
                             [_photoInAlbum[i].imageView setImage:nil];                    }
                     }
-                    else if (_albumPageNumber*9+9>[((NewFeedShareAlbum*)self.feedData).album_count intValue])  
+                    else if (_albumPageNumber*9+9>_numberOfPhoto)  
                     {
-                        int count=[((NewFeedShareAlbum*)self.feedData).album_count intValue];
+                        int count=_numberOfPhoto;
                         int leftNumber=count%9;
                         for (int i=0;i<leftNumber;i++)
                         {
@@ -373,7 +374,7 @@
                     int size=[[dict objectForKey:@"size"] intValue];
                     [_contentScrollView setContentSize:CGSizeMake(_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* (size/9+1))];
                     [_contentView setFrame:CGRectMake(0, 0,_contentScrollView.frame.size.width, _contentScrollView.frame.size.height* (size/9+1))];
-                        
+                    _numberOfPhoto=size;
                     } 
                 [self loadAlbumData];
             }
@@ -524,8 +525,15 @@
             
         }
     }];
+    if ([self.feedData class]==[NewFeedShareAlbum class])
+    {
     [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
-    
+    }
+    else
+    {
+        [renren getAlbum:((NewFeedSharePhoto*)self.feedData).fromID a_ID:((NewFeedSharePhoto*)self.feedData).albumID pageNumber:_albumPageNumber];
+
+    }
     
     
 }
@@ -545,7 +553,8 @@
     
     _firstToAlbum=0;
     [_albumTitle setText:((NewFeedShareAlbum*)self.feedData).album_title];
-    
+
+    _numberOfPhoto=[((NewFeedShareAlbum*)self.feedData).album_count intValue]+1;
     [self loadAlbumData];
     
 
