@@ -114,10 +114,7 @@
     
     
 
-    _activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activity.center=CGPointMake(153, 300);
-    [self.view addSubview:_activity];
-    [_activity startAnimating];
+ 
     
 }
 

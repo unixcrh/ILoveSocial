@@ -43,6 +43,7 @@
 				<string key="NSFrameSize">{306, 345}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC44MjExNjc4ODMyIDAuMzQ2NzE1MzI4NSAxIDAAA</bytes>
@@ -942,7 +943,6 @@
 						<string key="_commentCel">StatusCommentCell</string>
 						<string key="_headImage">UIImageView</string>
 						<string key="_nameLabel">UILabel</string>
-						<string key="_pageControl">UIPageControl</string>
 						<string key="_style">UIImageView</string>
 						<string key="_time">UILabel</string>
 						<string key="_titleView">UIView</string>
@@ -959,10 +959,6 @@
 						<object class="IBToOneOutletInfo" key="_nameLabel">
 							<string key="name">_nameLabel</string>
 							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_pageControl">
-							<string key="name">_pageControl</string>
-							<string key="candidateClassName">UIPageControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_style">
 							<string key="name">_style</string>

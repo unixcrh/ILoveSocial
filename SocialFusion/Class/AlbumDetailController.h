@@ -23,6 +23,8 @@
     IBOutlet UIView* _contentView;
     UIButton* _returnToAlbum;
     int _selectedPhoto;
+    
+    int _firstToAlbum;
 
   
 }

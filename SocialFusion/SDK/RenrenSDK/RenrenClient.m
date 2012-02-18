@@ -96,7 +96,7 @@ hasError = _hasError;
 // please modify your permissions here
 - (void)authorize {
     if (![RenrenClient authorized]) {
-        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share",nil];
+        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share read_user_album",nil];
         [self authorizeWithRRAppAuth:YES safariAuth:YES permissions:permissions]; 
     }
 }
@@ -617,6 +617,18 @@ hasError = _hasError;
                                  
                                  nil];
     [tempString release];
+	[self requestWithParams:params andDelegate:self];
+}
+
+-(void)getAlbumInfo:(NSString*)userID a_ID:(NSString*)a_ID
+{
+
+    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"photos.getAlbums",@"method",
+                                 userID,@"uid",
+                                 a_ID,@"aids",
+                                 nil];
+
 	[self requestWithParams:params andDelegate:self];
 }
 
