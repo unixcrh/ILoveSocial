@@ -19,10 +19,14 @@
     self.photo_url = [[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"src"];
     self.photo_comment=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"content"];
     
+    self.photo_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
+
     self.prefix = [dict objectForKey:@"prefix"];
     self.title = [dict objectForKey:@"title"];
     
     self.album_ID=[[dict objectForKey:@"source_id"] stringValue];
+    
+    
 }
 
 + (NewFeedUploadPhoto *)insertNewFeed:(int)style getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
