@@ -26,6 +26,10 @@
     self.fromName=[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_name"];
     
     self.title=[dict objectForKey:@"title"];
+    
+    NSString* albumString=[dict objectForKey:@"href"];
+  
+    self.albumID=[[albumString lastPathComponent] substringFromIndex:6];
 }
 
 + (NewFeedSharePhoto *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;

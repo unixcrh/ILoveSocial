@@ -21,6 +21,8 @@
     
     self.prefix = [dict objectForKey:@"prefix"];
     self.title = [dict objectForKey:@"title"];
+    
+    self.album_ID=[[dict objectForKey:@"source_id"] stringValue];
 }
 
 + (NewFeedUploadPhoto *)insertNewFeed:(int)style getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;

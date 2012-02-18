@@ -18,7 +18,7 @@
 -(void)startConvertBlogWithTitle:(NSString*)title detail:(NSString*)string
 {
      UIWebView* webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, 0, 450 , 480);
+    webView.frame=CGRectMake(0, 0, 420 , 480);
     webView.delegate=self;
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogtemplate" ofType:@"html"];
     
@@ -34,12 +34,12 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-   // float width= [[_webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollWidth"] floatValue];
+   float width= [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollWidth"] floatValue];
     
     float height= [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
     //  float height=_webView.scrollView.contentSize.height;
     
-    [webView setFrame:CGRectMake(0, 0, 450, height)];
+    [webView setFrame:CGRectMake(0, 0, width, height)];
     UIGraphicsBeginImageContext(webView.frame.size); 
     
     [webView.layer renderInContext:UIGraphicsGetCurrentContext()]; 
@@ -47,10 +47,11 @@
 
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-    
+    webView.delegate=nil;
+    [webView release];
+
     [_delegate webStringToImageConverter:self didFinishLoadWebViewWithImage:viewImage];
 
     
-    [webView release];
 }
 @end
