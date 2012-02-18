@@ -56,7 +56,7 @@
 }
 
 - (NSString *)customSectionNameKeyPath {
-    return @"pinyinName";
+    return @"pinyinNameFirstLetter";
 }
 
 #pragma mark -
@@ -90,6 +90,25 @@
     if(!usr.latestStatus) {
         [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
     }
+}
+
+#pragma mark -
+#pragma mark NSFetchRequestController
+
+- (void)configureRequest:(NSFetchRequest *)request
+{
+    [request setEntity:[NSEntityDescription entityForName:@"RenrenUser" inManagedObjectContext:self.managedObjectContext]];
+    NSPredicate *predicate;
+    NSArray *descriptors;
+    if(_type == RelationshipViewTypeRenrenFriends) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.renrenUser.friends];
+        NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"pinyinNameFirstLetter" ascending:YES] autorelease];
+        NSSortDescriptor *sort2 = [[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES] autorelease];
+        NSSortDescriptor *sort3 = [[[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES] autorelease];
+        descriptors = [NSArray arrayWithObjects:sort, sort2, sort3, nil];
+    }
+    [request setPredicate:predicate];
+    [request setSortDescriptors:descriptors]; 
 }
 
 @end

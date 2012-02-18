@@ -135,7 +135,9 @@
     vc.delegate = self;
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:^{
+        [vc updateTableView];
+    }];
     [vc release];
 }
 

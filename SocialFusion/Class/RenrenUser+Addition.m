@@ -25,7 +25,9 @@
     
     result.userID = userID;
     result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"]];
-    result.pinyinName = [result.name pinyinFirstLetterAtIndex:0];
+    result.firstName = [NSString stringWithFormat:@"%c", [result.name characterAtIndex:0]];
+    result.pinyinNameFirstLetter = [result.name pinyinFirstLetterAtIndex:0];
+    result.pinyinName = [result.name pinyinFirstLetterArray];
     result.tinyURL = [dict objectForKey:@"tinyurl"];
     
     return result;

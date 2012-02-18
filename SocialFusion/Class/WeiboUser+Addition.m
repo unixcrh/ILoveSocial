@@ -30,7 +30,7 @@
     
     result.userID = userID;
     result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"screen_name"]];
-    result.pinyinName = [result.name pinyinFirstLetterAtIndex:0];
+    result.pinyinName = [result.name pinyinFirstLetterArray];
     NSDictionary *statusDict = [dict objectForKey:@"status"];
     result.latestStatus = [statusDict objectForKey:@"text"];
     result.tinyURL = [dict objectForKey:@"profile_image_url"];

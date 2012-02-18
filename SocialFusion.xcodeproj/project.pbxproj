@@ -311,6 +311,8 @@
 		E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */; };
 		E1ABA4DA141FAC8D002CD0A6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */; };
 		E1ABA4DB141FAC8D002CD0A6 /* SocialFusionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */; };
+		E1ADB18E14EFFDE30064DF5F /* RenrenUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ADB18D14EFFDE30064DF5F /* RenrenUser.m */; };
+		E1ADB19114EFFDE40064DF5F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ADB19014EFFDE40064DF5F /* User.m */; };
 		E1BF1C9514E1555A003750CF /* new_status_toolbar_btn_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF1C9414E1555A003750CF /* new_status_toolbar_btn_cancel@2x.png */; };
 		E1BF1C9D14E1ACB3003750CF /* publication_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF1C9C14E1ACB3003750CF /* publication_btn_bg@2x.png */; };
 		E1BF1C9F14E1B33E003750CF /* publication_btn_bg_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BF1C9E14E1B33E003750CF /* publication_btn_bg_disabled@2x.png */; };
@@ -326,9 +328,7 @@
 		E1E257E414EE839A003064CD /* WeiboUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E257E314EE839A003064CD /* WeiboUserInfoViewController.m */; };
 		E1E257E614EE83BF003064CD /* RenrenUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E257E514EE83BF003064CD /* RenrenUserInfoViewController.xib */; };
 		E1E257E814EE869C003064CD /* user_info_renren_detail_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257E714EE869C003064CD /* user_info_renren_detail_bg@2x.png */; };
-		E1E2580A14EE8E39003064CD /* RenrenUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580914EE8E38003064CD /* RenrenUser.m */; };
 		E1E2580D14EE8E3B003064CD /* WeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580C14EE8E3B003064CD /* WeiboUser.m */; };
-		E1E2581014EE8E3E003064CD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2580F14EE8E3D003064CD /* User.m */; };
 		E1E2581314EE8E43003064CD /* WeiboDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581214EE8E43003064CD /* WeiboDetail.m */; };
 		E1E2581614EE8E45003064CD /* DetailInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581514EE8E44003064CD /* DetailInformation.m */; };
 		E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581814EEBB5A003064CD /* RenrenDetail.m */; };
@@ -810,6 +810,10 @@
 		E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E1ABA4D8141FAC8D002CD0A6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialFusionViewController.xib; sourceTree = "<group>"; };
+		E1ADB18C14EFFDE30064DF5F /* RenrenUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenUser.h; path = "SocialFusion/Class/CoreData Models/RenrenUser.h"; sourceTree = "<group>"; };
+		E1ADB18D14EFFDE30064DF5F /* RenrenUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenUser.m; path = "SocialFusion/Class/CoreData Models/RenrenUser.m"; sourceTree = "<group>"; };
+		E1ADB18F14EFFDE40064DF5F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
+		E1ADB19014EFFDE40064DF5F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
 		E1BF1C9414E1555A003750CF /* new_status_toolbar_btn_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_toolbar_btn_cancel@2x.png"; sourceTree = "<group>"; };
 		E1BF1C9C14E1ACB3003750CF /* publication_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "publication_btn_bg@2x.png"; sourceTree = "<group>"; };
 		E1BF1C9E14E1B33E003750CF /* publication_btn_bg_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "publication_btn_bg_disabled@2x.png"; sourceTree = "<group>"; };
@@ -830,12 +834,8 @@
 		E1E257E514EE83BF003064CD /* RenrenUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenrenUserInfoViewController.xib; sourceTree = "<group>"; };
 		E1E257E714EE869C003064CD /* user_info_renren_detail_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_renren_detail_bg@2x.png"; sourceTree = "<group>"; };
 		E1E257E914EE886C003064CD /* SocialFusion 1.0.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.2.xcdatamodel"; sourceTree = "<group>"; };
-		E1E2580814EE8E38003064CD /* RenrenUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenUser.h; path = "SocialFusion/Class/CoreData Models/RenrenUser.h"; sourceTree = "<group>"; };
-		E1E2580914EE8E38003064CD /* RenrenUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenUser.m; path = "SocialFusion/Class/CoreData Models/RenrenUser.m"; sourceTree = "<group>"; };
 		E1E2580B14EE8E3B003064CD /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboUser.h; path = "SocialFusion/Class/CoreData Models/WeiboUser.h"; sourceTree = "<group>"; };
 		E1E2580C14EE8E3B003064CD /* WeiboUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboUser.m; path = "SocialFusion/Class/CoreData Models/WeiboUser.m"; sourceTree = "<group>"; };
-		E1E2580E14EE8E3D003064CD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
-		E1E2580F14EE8E3D003064CD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
 		E1E2581114EE8E43003064CD /* WeiboDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboDetail.h; path = "SocialFusion/Class/CoreData Models/WeiboDetail.h"; sourceTree = "<group>"; };
 		E1E2581214EE8E43003064CD /* WeiboDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboDetail.m; path = "SocialFusion/Class/CoreData Models/WeiboDetail.m"; sourceTree = "<group>"; };
 		E1E2581414EE8E44003064CD /* DetailInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailInformation.h; path = "SocialFusion/Class/CoreData Models/DetailInformation.h"; sourceTree = "<group>"; };
@@ -1447,18 +1447,18 @@
 				731D1D9A147603B5001981B4 /* RenrenStatus.m */,
 				E1EC716A14D309A6005D123E /* NewFeedRootData.h */,
 				E1EC716B14D309A6005D123E /* NewFeedRootData.m */,
-				E1E2580814EE8E38003064CD /* RenrenUser.h */,
-				E1E2580914EE8E38003064CD /* RenrenUser.m */,
 				E1E2580B14EE8E3B003064CD /* WeiboUser.h */,
 				E1E2580C14EE8E3B003064CD /* WeiboUser.m */,
-				E1E2580E14EE8E3D003064CD /* User.h */,
-				E1E2580F14EE8E3D003064CD /* User.m */,
 				E1E2581114EE8E43003064CD /* WeiboDetail.h */,
 				E1E2581214EE8E43003064CD /* WeiboDetail.m */,
 				E1E2581414EE8E44003064CD /* DetailInformation.h */,
 				E1E2581514EE8E44003064CD /* DetailInformation.m */,
 				E1E2581714EEBB57003064CD /* RenrenDetail.h */,
 				E1E2581814EEBB5A003064CD /* RenrenDetail.m */,
+				E1ADB18C14EFFDE30064DF5F /* RenrenUser.h */,
+				E1ADB18D14EFFDE30064DF5F /* RenrenUser.m */,
+				E1ADB18F14EFFDE40064DF5F /* User.h */,
+				E1ADB19014EFFDE40064DF5F /* User.m */,
 			);
 			name = "CoreData Models";
 			sourceTree = "<group>";
@@ -2160,14 +2160,14 @@
 				73DA39E114EDED750081E38B /* WebStringToImageConverter.m in Sources */,
 				E1E257E014EE8384003064CD /* RenrenUserInfoViewController.m in Sources */,
 				E1E257E414EE839A003064CD /* WeiboUserInfoViewController.m in Sources */,
-				E1E2580A14EE8E39003064CD /* RenrenUser.m in Sources */,
 				E1E2580D14EE8E3B003064CD /* WeiboUser.m in Sources */,
-				E1E2581014EE8E3E003064CD /* User.m in Sources */,
 				E1E2581314EE8E43003064CD /* WeiboDetail.m in Sources */,
 				E1E2581614EE8E45003064CD /* DetailInformation.m in Sources */,
 				E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */,
 				7339DF0814EF5C2900CA4738 /* NewFeedUploadPhoto.m in Sources */,
 				7339DF0B14EF5C2900CA4738 /* NewFeedSharePhoto.m in Sources */,
+				E1ADB18E14EFFDE30064DF5F /* RenrenUser.m in Sources */,
+				E1ADB19114EFFDE40064DF5F /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

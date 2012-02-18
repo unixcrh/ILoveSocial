@@ -9,7 +9,6 @@
 #import "PickAtListViewController.h"
 #import "UIButton+Addition.h"
 #import "RenrenUser+Addition.h"
-#import "RenrenClient.h"
 
 @interface PickAtListViewController()
 - (void)configureAtWeiboScreenNamesArray:(NSString*)text;
@@ -56,7 +55,7 @@
     [self.renrenButton setPostPlatformButtonSelected:YES];
     self.textField.text = @"";
     self.platformCode = kPlatformRenren;
-    [self updateTableView];
+    //[self updateTableView];
 }
 
 - (id)init {
@@ -87,8 +86,10 @@
     [request setEntity:entityDescription];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:[[[NSString alloc] initWithFormat:@"name like[c] \"*%@*\"", text] autorelease]];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"pinyinName like[c] \"*%@*\"", text]];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, predicate2, nil]];
     
-    [request setPredicate:predicate];
+    [request setPredicate:compoundPredicate];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     
@@ -108,13 +109,16 @@
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     [request setEntity:entityDescription];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[[[NSString alloc] initWithFormat:@"name like[c] \"*%@*\"", text] autorelease]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name like[c] \"*%@*\"", text]];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"pinyinName like[c] \"*%@*\"", text]];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, predicate2, nil]];
     
-    [request setPredicate:predicate];
+    [request setPredicate:compoundPredicate];
     
-    NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES] autorelease];
-    NSSortDescriptor *sort2 = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
-    NSArray *descriptors = [NSArray arrayWithObjects:sort, sort2, nil];
+    NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"pinyinNameFirstLetter" ascending:YES] autorelease];
+    NSSortDescriptor *sort2 = [[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES] autorelease];
+    NSSortDescriptor *sort3 = [[[NSSortDescriptor alloc] initWithKey:@"pinyinName" ascending:YES] autorelease];
+    NSArray *descriptors = [NSArray arrayWithObjects:sort, sort2, sort3, nil];
     [request setSortDescriptors:descriptors];
     
     NSError *error;
@@ -137,25 +141,7 @@
         _atScreenNames = [[NSMutableArray alloc] init];
     }
     NSArray *array = [self getAllRenrenUserArrayWithHint:text];
-    if(array.count == 1) {
-        RenrenClient *client = [RenrenClient client];
-        [client setCompletionBlock:^(RenrenClient *client) {
-            if(!client.hasError) {
-                NSArray *resultArray = client.responseJSONObject;
-                for(NSDictionary *dict in resultArray) {
-                    NSLog(@"dict:%@", dict);
-                    [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
-                }
-                NSArray *newArray = [self getAllRenrenUserArrayWithHint:text];
-                [self setAtScreenNamesWithRenrenArray:newArray];
-                [self.tableView reloadData];
-            }
-        }];
-        [client getFriendsProfile];
-    }
-    else {
-        [self setAtScreenNamesWithRenrenArray:array];
-    }
+    [self setAtScreenNamesWithRenrenArray:array];
 }
 
 - (void)updateTableView {

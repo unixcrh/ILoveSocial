@@ -2,7 +2,7 @@
 //  RenrenUser.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-17.
+//  Created by Blue Bitch on 12-2-18.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -13,6 +13,8 @@
 
 @implementation RenrenUser
 
+@dynamic pinyinNameFirstLetter;
+@dynamic firstName;
 @dynamic friends;
 @dynamic detailInfo;
 

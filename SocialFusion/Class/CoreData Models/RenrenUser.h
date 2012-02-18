@@ -2,7 +2,7 @@
 //  RenrenUser.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-17.
+//  Created by Blue Bitch on 12-2-18.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -14,6 +14,8 @@
 
 @interface RenrenUser : User
 
+@property (nonatomic, retain) NSString * pinyinNameFirstLetter;
+@property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSSet *friends;
 @property (nonatomic, retain) RenrenDetail *detailInfo;
 @end

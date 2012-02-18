@@ -51,4 +51,27 @@
     }
 }
 
+#pragma mark -
+#pragma mark NSFetchRequestController
+
+- (void)configureRequest:(NSFetchRequest *)request
+{
+    [request setEntity:[NSEntityDescription entityForName:@"WeiboUser" inManagedObjectContext:self.managedObjectContext]];
+    NSPredicate *predicate;
+    NSArray *descriptors;
+    if(_type == RelationshipViewTypeWeiboFriends) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.weiboUser.friends];
+        NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES] autorelease];
+        descriptors = [NSArray arrayWithObject:sort];
+    }
+    else if(_type == RelationshipViewTypeWeiboFollowers) {
+        predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.weiboUser.followers];
+        NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updateDate" ascending:YES] autorelease];;
+        descriptors = [NSArray arrayWithObject:sort];
+    }
+    [request setPredicate:predicate];
+    [request setSortDescriptors:descriptors]; 
+    request.fetchBatchSize = 20;
+}
+
 @end

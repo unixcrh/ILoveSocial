@@ -36,6 +36,8 @@
 
 - (IBAction)atTextFieldEditingChanged:(UITextField*)textField;
 
+- (void)updateTableView;
+
 @end
 
 @protocol PickAtListViewControllerDelegate <NSObject>
