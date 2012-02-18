@@ -540,72 +540,62 @@
     {
         for (int i=0;i<9;i++)
         {
-            
             _photoInAlbum[i+9*j]=[[PhotoInAlbum alloc] init];
-            
             int wid=i%3;
             int hei=i/3;
             _photoInAlbum[i+9*j].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 255*j+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT+15);
-            
             [ _photoInAlbum[i+9*j].imageOut addTarget:self action:@selector(showImageDetail:) forControlEvents:UIControlEventTouchUpInside];
             [_contentView addSubview:_photoInAlbum[i+9*j]];
         }
     }
     [_albumTitle setText:((NewFeedSharePhoto*)self.feedData).title];
+    _photoID[0]=((NewFeedSharePhoto*)self.feedData).mediaID;
+    _commentCount[0]=[((NewFeedSharePhoto*)self.feedData).comment_Count intValue];
     
-       [_contentScrollView zoomToRect:_photoInAlbum[0].frame animated:YES];
     _contentScrollView.scrollEnabled=NO;
     
     _pageNumber=_commentCount[_selectedPhoto%9]/10+1;
+    _selectedPhoto=0;
+    
     [self clearData];
-    [self loadData];
-
-    
-    
-    
-    
-    
     
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
             NSArray *array = client.responseJSONObject;
-            int i=0;
+            
             for(NSDictionary *dict in array) {
                 
-                Image *image = [Image imageWithURL:[dict objectForKey:@"url_head"] inManagedObjectContext:self.managedObjectContext];
-                if (image == nil)
-                {
-                    [_photoInAlbum[i].imageView loadImageFromURL:[dict objectForKey:@"url_head"] completion:^{
-                        [_photoInAlbum[i].imageView fadeIn];
-                    } cacheInContext:self.managedObjectContext];
-                    
-                }
-                else
-                {
-                    [_photoInAlbum[i].imageView setImage:[UIImage imageWithData:image.imageData.data]];
-                    
-                }
+                [_photoInAlbum[0].captian setText:[dict objectForKey:@"caption"]];
                 
-                [_photoInAlbum[i].captian setText:[dict objectForKey:@"caption"]];
-            
-                _photoID[i]=[[NSString alloc ] initWithString:[[dict objectForKey:@"pid"] stringValue]];
-                _bigURL[i]=[[NSString alloc] initWithString:[dict objectForKey:@"url_large"]];
-                _commentCount[i]=[[dict objectForKey:@"comment_count"] intValue];                
-                i++;
-
+                
+                _bigURL[0]=[[NSString alloc] initWithString:[dict objectForKey:@"url_large"]];
+                
             } 
             [_activity stopAnimating];
-            
             [_activity release];
+            [_contentScrollView zoomToRect:_photoInAlbum[0].frame animated:YES];
         }
     }];
-    [renren getAlbum:((NewFeedShareAlbum*)self.feedData).fromID a_ID:((NewFeedShareAlbum*)self.feedData).media_ID pageNumber:_albumPageNumber];
+    [renren getSinglePhoto:((NewFeedSharePhoto*)self.feedData).fromID photoID:((NewFeedSharePhoto*)self.feedData).mediaID ];
+    
+    
+    
+    
+    
+    
     
 }
 - (void)loadMainView
 {
-    [self loadtoAlbumData];
+    if ([self.feedData class]==[NewFeedShareAlbum class])
+    {
+        [self loadtoAlbumData];
+    }
+    else
+    {
+        [self loadToPhoto];
+    }
 }
 
 
@@ -650,7 +640,6 @@
         }];
         
         [renren getShareComments:((NewFeedShareAlbum*)self.feedData).fromID share_ID:((NewFeedShareAlbum*)self.feedData).source_ID pageNumber:_pageNumber];
-        
     }
     else
     {
