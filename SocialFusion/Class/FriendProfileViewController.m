@@ -120,11 +120,12 @@
                     [self.weiboUser addFriendsObject:usr];
                 }
             }
+            int perCursor = _nextCursor;
             _nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
             NSLog(@"new cursor:%d", _nextCursor);
             if (_nextCursor == 0) {
                 [self hideLoadMoreDataButton];
-                if(dictArray.count == 0) {
+                if(dictArray.count == 0 && perCursor == 0) {
                     NSString *weiboType;
                     if (_type == RelationshipViewTypeWeiboFollowers) 
                         weiboType = @"粉丝";
@@ -136,9 +137,9 @@
             else {
                 [self showLoadMoreDataButton];
             }
-            [self doneLoadingTableViewData];
-            _loadingFlag = NO;
         }
+        [self doneLoadingTableViewData];
+        _loadingFlag = NO;
     }];
     if (_type == RelationshipViewTypeWeiboFriends) {
         [client getFriendsOfUser:self.weiboUser.userID cursor:_nextCursor count:20];
