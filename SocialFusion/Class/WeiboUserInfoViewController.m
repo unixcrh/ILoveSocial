@@ -45,9 +45,9 @@
     else 
         self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
     if([self.weiboUser.detailInfo.gender isEqualToString:@"m"]) 
-        self.genderLabel.text = @"汉子";
+        self.genderLabel.text = @"男";
     else if([self.weiboUser.detailInfo.gender isEqualToString:@"f"]) 
-        self.genderLabel.text = @"妹子";
+        self.genderLabel.text = @"女";
     else
         self.genderLabel.text = @"未知";
     self.locationLabel.text = self.weiboUser.detailInfo.location;

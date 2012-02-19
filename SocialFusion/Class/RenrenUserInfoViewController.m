@@ -54,9 +54,9 @@
         [self.photoImageView centerizeWithSideLength:PHOTO_FRAME_SIDE_LENGTH];
     }
     if([self.renrenUser.detailInfo.gender isEqualToString:@"m"]) 
-        self.genderLabel.text = @"汉子";
+        self.genderLabel.text = @"男";
     else if([self.renrenUser.detailInfo.gender isEqualToString:@"f"]) 
-        self.genderLabel.text = @"妹子";
+        self.genderLabel.text = @"女";
     else
         self.genderLabel.text = @"未知";
     self.birthDayLabel.text = self.renrenUser.detailInfo.birthday;
