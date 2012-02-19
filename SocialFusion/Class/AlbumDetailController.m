@@ -89,20 +89,15 @@
                         {
                             int wid=i%3;
                             int hei=(i-18)/3;
-                            
                             _photoInAlbum[i].frame=CGRectMake(IMAGE_OUT_BEGIN_X+wid*(IMAGE_OUT_V_SPACE+IMAGE_OUT_WIDTH), 255*(index-1)+IMAGE_OUT_BEGIN_Y+hei*(IMAGE_OUT_H_SPACE+IMAGE_OUT_HEIGHT), IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT+15);
                             [_photoInAlbum[i].imageView setImage:nil];
-                            
                         }
-                        
-                        
                         if (_albumPageNumber*9>_numberOfPhoto)
                         {
                             for (int i=9;i<18;i++)
                             {
                                 _photoInAlbum[i].frame=CGRectMake(0, 0, 0, 0);
                                 [_photoInAlbum[i].imageView setImage:nil];
-                                
                             }
                         }
                         else if (_albumPageNumber*9+9>_numberOfPhoto)  
@@ -312,6 +307,15 @@
     [self.view addSubview:_activity];
     [_activity startAnimating];
     
+    
+    if (_numberOfPhoto<9)
+    {
+        for (int i=_numberOfPhoto;i<9;i++)
+        {
+           // _photoInAlbum[i].frame=CGRectMake(0, 0, 0, 0);
+            _photoInAlbum[i].hidden=YES;
+        }
+    }
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
@@ -324,12 +328,10 @@
                     [_photoInAlbum[i].imageView loadImageFromURL:[dict objectForKey:@"url_head"] completion:^{
                         [_photoInAlbum[i].imageView fadeIn];
                     } cacheInContext:self.managedObjectContext];
-                    
                 }
                 else
                 {
                     [_photoInAlbum[i].imageView setImage:[UIImage imageWithData:image.imageData.data]];
-                    
                 }
                 [_photoInAlbum[i].captian setText:[dict objectForKey:@"caption"]];
                 _photoID[i]=[[NSString alloc ] initWithString:[[dict objectForKey:@"pid"] stringValue]];
@@ -443,6 +445,8 @@
             [_photoInAlbum[_selectedPhoto].imageView setImage:[UIImage imageWithData:image.imageData.data]];
             
         }
+        _albumTitle.frame=CGRectMake(15, 68, 191, 21);
+  
     }
     else
     {
@@ -451,6 +455,7 @@
             [_photoInAlbum[i] showCaptian];
         }
         scrollView.scrollEnabled=YES;
+                    _albumTitle.frame=CGRectMake(15, 68, 276, 21);  
     }
 }
 

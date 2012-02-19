@@ -18,6 +18,8 @@
 
     NSString* _userID;
     NSString* _photoID;
+    
+
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
