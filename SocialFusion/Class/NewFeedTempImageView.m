@@ -22,6 +22,8 @@
 @synthesize userID = _userID;
 @synthesize photoID = _photoID;
 
+
+
 - (void)dealloc {
     NSLog(@"ShowImage dealloc");
     [_bigURL release];
@@ -41,7 +43,7 @@
         self.frame = CGRectMake(0, 0, 320, 480);
         
         _scrollView = [[UIScrollView alloc] init];
-        _scrollView.maximumZoomScale = 2.5;
+        _scrollView.maximumZoomScale = 3;
         _scrollView.delegate = self;
         
         //设置layer
@@ -65,9 +67,16 @@
         [_saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_saveButton];
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8f];
+        
+        
+        UITapGestureRecognizer* gesture;
+        gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissView)];
+        [_scrollView addGestureRecognizer:gesture];
+        [gesture release];
     }
     return self;
 }
+
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if(!error) {
@@ -152,9 +161,29 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self dismissView];
 }
+ 
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return _imageView;
+}
+
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    
+    CGPoint temppoint=scrollView.center;
+
+    scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, _imageView.frame.size.width, _imageView.frame.size.height);
+    
+    if (scrollView.frame.size.width>320)
+    {
+        scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y,320   , scrollView.frame.size.height);
+    }
+    if  (scrollView.frame.size.height>440)
+    {
+        scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y,scrollView.frame.size.width  , 440);
+
+    }
+    scrollView.center=temppoint;
 }
 
 - (void)loadImage {
