@@ -384,8 +384,8 @@
                 NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
                 
                 [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-                NSLog(@"feed data:%@", feedData);
-                NSLog(@"author data:%@", feedData.author);
+                //NSLog(@"feed data:%@", feedData);
+                //NSLog(@"author data:%@", feedData.author);
                 [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 
@@ -450,13 +450,7 @@
     _webView.opaque=NO;
     _webView.scrollView.scrollEnabled=NO;
     _webView.delegate=self;
-    
-    
-    
-    
-    // [_feedData release];
-    
-    
+
 }
 
 #pragma mark -

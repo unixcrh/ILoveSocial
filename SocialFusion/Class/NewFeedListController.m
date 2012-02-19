@@ -331,24 +331,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-    
-    if (_indexPath==nil)
-    {
+    if (_indexPath == nil || [indexPath compare:_indexPath]) {
         return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
-    else
-    {
-        if ([indexPath compare:_indexPath])
-            
-        {
-            return [NewFeedStatusCell heightForCell:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        }
-        else
-        {
-            return 389;
-        }
+    else {
+        return 389;
     }
     
 }
