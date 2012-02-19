@@ -220,7 +220,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
-    if(index < 0 || index > self.contentViewCount)
+    _currentContentIndex = index;
+    if(index < 0 || index >= self.contentViewCount)
         return;
     if([self.delegate respondsToSelector:@selector(contentViewController:didScrollToIndex:)]) {
         [self.delegate contentViewController:self didScrollToIndex:index];

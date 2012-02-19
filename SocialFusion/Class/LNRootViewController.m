@@ -139,7 +139,7 @@
     }
     
     if(!self.labelBarViewController.isSelectUserLock) {
-        NSLog(@"selected user:%@， user id:%@", selectedUser.name, selectedUser.userID);
+        NSLog(@"selected user:%@, user id:%@", selectedUser.name, selectedUser.userID);
         [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
         LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
         labelInfo.isRemovable = YES;

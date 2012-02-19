@@ -221,7 +221,7 @@
 - (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label {
     _currentParentLabelIndex = pageView.page * 4 + label.index;
     [_scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
-    NSMutableArray *labelPages = [[[NSMutableArray alloc]init] autorelease];
+    NSMutableArray *labelPages = [[[NSMutableArray alloc] init] autorelease];
     [self pushLabelPages:labelPages];
     [self pushPageIndex:pageView.page];
     NSString *identifier = label.info.identifier;
@@ -339,7 +339,7 @@
     }];
 }
 
-- (void)popPageManually {
+- (void)popPageManually {    
     if(self.pageControl.currentPage == 0) {
         [self closeOpenPage];
     }
@@ -368,15 +368,16 @@
     [self popPageManuallyWithCompletion:^{
         if([self isLabelIndexInCurrentPage:index]) {
             [self selectLabelAtIndex:index];
+            _currentParentLabelIndex = index;
             _selectUserLock = NO;
         }
         else {
-            _currentParentLabelIndex = index;
             [UIView animateWithDuration:0.2f animations:^{
                 NSUInteger page = index / 4;
                 self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * page, 0);
             } completion:^(BOOL finished) {
                 [self selectLabelAtIndex:index];
+                _currentParentLabelIndex = index;
                 _selectUserLock = NO;
             }];
         }

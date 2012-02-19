@@ -82,6 +82,7 @@
     self.titleLabel = nil;
     self.photoImageView = nil;
     self.bgImageView = nil;
+    NSLog(@"LNLabelViewController viewDidUnload");
 }
 
 - (void)viewDidLoad

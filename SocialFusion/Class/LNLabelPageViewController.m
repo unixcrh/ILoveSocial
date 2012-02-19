@@ -287,6 +287,8 @@
 }
 
 - (void)closePageWithReturnLabel:(LNLabelViewController *)labelView {
+    if(self.view.isUserInteractionEnabled == NO)
+        return;
     [self.view setUserInteractionEnabled:NO];
     [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 1; i < _labelInfoSubArray.count; i++) {
