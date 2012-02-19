@@ -122,7 +122,7 @@
             }
             int perCursor = _nextCursor;
             _nextCursor = [[client.responseJSONObject objectForKey:@"next_cursor"] intValue];
-            NSLog(@"new cursor:%d", _nextCursor);
+            //NSLog(@"new cursor:%d", _nextCursor);
             if (_nextCursor == 0) {
                 [self hideLoadMoreDataButton];
                 if(dictArray.count == 0 && perCursor == 0) {

@@ -472,7 +472,7 @@ hasError = _hasError;
 
 - (void)getNewFeed:(int)pageNumber
 {
-    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
+    NSString* tempString = [[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  @"feed.get",@"method",
                                  @"10,20,21,30,32,33",@"type",
