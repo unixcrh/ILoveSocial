@@ -15,7 +15,7 @@
 
 + (NewFeedRootData *)feedWithID:(NSString *)statusID inManagedObjectContext:(NSManagedObjectContext *)context;
 - (void)configureNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
-- (NSString*)getFeedName;
+- (NSString*)getAuthorName;
 
 - (NSString*)getHeadURL;
 - (NSDate*)getDate;

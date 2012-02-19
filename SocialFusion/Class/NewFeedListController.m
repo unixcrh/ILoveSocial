@@ -385,29 +385,21 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     static NSString *StatusCell = @"NewFeedStatusCell";
     
-    
-    
-    if ([indexPath compare:_indexPath])
-    {
+    if ([indexPath compare:_indexPath]) {
         NewFeedStatusCell* cell;
         
         //  if ([self.fetchedResultsController objectAtIndexPath:indexPath])
-        NewFeedRootData *data= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NewFeedRootData *data = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         
         cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
         if (cell == nil) {
             cell=[[NewFeedStatusCell alloc] init];
         }
-        
-        
-        
-        
+        NSLog(@"cell for row:%d", indexPath.row);
         [cell configureCell:data];
         
         [cell setList:self];
-        
-        
         
         NSData *imageData = nil;
         if([Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext]) {
@@ -428,8 +420,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         
         return cell;
     }
-    else//展开时的cell
-    {
+    //展开时的cell
+    else {
         
         NewFeedRootData* a= [self.fetchedResultsController objectAtIndexPath:indexPath];
         

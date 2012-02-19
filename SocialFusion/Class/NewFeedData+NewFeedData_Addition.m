@@ -47,7 +47,7 @@
     return [self.style intValue];
 }
 
-- (NSString*)getFeedName
+- (NSString*)getAuthorName
 {
     return self.owner_Name;
 }

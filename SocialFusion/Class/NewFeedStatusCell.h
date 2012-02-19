@@ -24,7 +24,6 @@
     UILabel* _time;
     UIImageView* _upCutline;
     
-
     NSData* _photoData;
 }
 
@@ -34,7 +33,7 @@
 
 
 
-+(float)heightForCell:(NewFeedRootData*)feedData;
++ (float)heightForCell:(NewFeedRootData*)feedData;
 
 
 - (void)setList:(NewFeedListController*)list;
@@ -43,4 +42,5 @@
 - (void)loadImage:(NSData*)image;
 - (void)loadPicture:(NSData*)image;
 - (void)setData:(NSData*)image;
+
 @end

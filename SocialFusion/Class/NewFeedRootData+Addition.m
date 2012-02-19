@@ -46,8 +46,8 @@
     return [self.style intValue];
 }
 
-- (NSString*)getFeedName {
-    return self.owner_Name;
+- (NSString*)getAuthorName {
+    return self.author.name;
 }
 
 
@@ -98,6 +98,8 @@
     {        
         NSString *statusID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"]];
         
+        self.author = [WeiboUser insertUser:[dict objectForKey:@"user"] inManagedObjectContext:context];
+        
         self.owner_Name = self.author.name;
         self.post_ID = statusID;
         
@@ -120,8 +122,6 @@
         
         self.comment_Count = [NSNumber numberWithInt:[[dict objectForKey:@"comment_count"] intValue]];
         self.source_ID = [[dict objectForKey:@"id"] stringValue];
-        
-        self.author = [WeiboUser insertUser:[dict objectForKey:@"user"] inManagedObjectContext:context];
     }
 }
 

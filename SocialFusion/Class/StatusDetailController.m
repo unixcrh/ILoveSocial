@@ -85,7 +85,7 @@
     _pageLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page_line.png"]];
     _pageLine.frame = CGRectMake(305, 0, 1, 350);
     
-    _nameLabel.text = [_feedData getFeedName];
+    _nameLabel.text = [_feedData getAuthorName];
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
         imageData = [Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext].imageData.data;

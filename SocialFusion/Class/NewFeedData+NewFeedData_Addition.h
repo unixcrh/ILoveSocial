@@ -15,7 +15,7 @@
 - (NSString*)getPostMessage;
 - (NSString*)getPostName;
 - (NSString*)getName;
-- (NSString*)getFeedName;
+- (NSString*)getAuthorName;
 - (NSString*)getHeadURL;
 - (NSDate*)getDate;
 - (NSString*)getActor_ID;
