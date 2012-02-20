@@ -21,7 +21,7 @@
 #import "NewFeedBlog.h"
 #import "StatusDetailController.h"
 #import "UIImage+Addition.h"
-#import "NewFeedTempImageView.h"
+#import "DetailImageViewController.h"
 #import "NewFeedUserListController.h"
 #import "NewFeedDetailBlogViewCell.h"
 #import "NSNotificationCenter+Addition.h"
@@ -342,30 +342,17 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
-    // Return the number of sections.
     return 1;
 }
 
-
-
-
-- (void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL {
-    Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
-    UIImage *image = [UIImage imageWithData:imageData.imageData.data];
-    NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image BigURL:stringURL context:self.managedObjectContext];
-    [tempImage show];
+- (void)showImage:(NSString*)smallURL bigURL:(NSString*)bigURL {
+    [DetailImageViewController showDetailImageWithURL:bigURL context:self.managedObjectContext];
 }
 
 
-- (void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID {
-    Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
-    UIImage *image = [UIImage imageWithData:imageData.imageData.data];
-    NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image userID:userID photoID:photoID context:self.managedObjectContext];
-    [tempImage show];
+- (void)showImage:(NSString*)smallURL userID:(NSString*)userID photoID:(NSString*)photoID {    
+    [DetailImageViewController showDetailImageWithRenrenUserID:userID photoID:photoID context:self.managedObjectContext];
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
