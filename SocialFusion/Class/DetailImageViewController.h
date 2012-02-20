@@ -1,5 +1,5 @@
 //
-//  ShowImage.h
+//  DetailImageViewController.h
 //  SocialFusion
 //
 //  Created by He Ruoyun on 12-1-16.

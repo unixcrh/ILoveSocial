@@ -20,6 +20,10 @@
 @synthesize photoView = _photoView;
 
 @synthesize genderLabel = _genderLabel;
+@synthesize followButton = _followButton;
+@synthesize atButton = _atButton;
+@synthesize relationshipLabel = _relationshipLabel;
+@synthesize nameLabel = _nameLabel;
 
 - (void)dealloc {
     [_scrollView release];
@@ -27,7 +31,10 @@
     [_user release];
     [_genderLabel release];
     [_photoView release];
-    
+    [_followButton release];
+    [_atButton release];
+    [_relationshipLabel release];
+    [_nameLabel release];
     [super dealloc];
 }
 
@@ -40,6 +47,10 @@
     self.photoImageView = nil;
     self.genderLabel = nil;
     self.photoView = nil;
+    self.followButton = nil;
+    self.atButton = nil;
+    self.relationshipLabel = nil;
+    self.nameLabel = nil;
 }
 
 - (void)viewDidLoad
