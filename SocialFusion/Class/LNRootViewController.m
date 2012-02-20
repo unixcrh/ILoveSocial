@@ -110,7 +110,7 @@
     }];
 }
 
-- (void)labelBarView:(LNLabelBarViewController *)labelBar didOpenParentLabelAtIndex:(NSUInteger)index {
+- (void)labelBarView:(LNLabelBarViewController *)labelBar willOpenParentLabelAtIndex:(NSUInteger)index {
     NSString *identifier = [self.contentViewController currentContentIdentifierAtIndex:index];
     [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
 }

@@ -16,6 +16,10 @@
 #define ANIMATION_HORIZONTAL_MOVE_LENGTH   258
 #define ANIMATION_VERTICAL_MOVE_LENGTH   40
 
+@interface LNLabelPageViewController();
+
+@end
+
 @implementation LNLabelPageViewController
 
 @synthesize page = _page;
@@ -125,8 +129,8 @@
             label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
-        if([self.delegate respondsToSelector:@selector(labelPageView: didFinishCloseLabel:)]) {
-            [self.delegate labelPageView:self didFinishCloseLabel:nil];
+        if([self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
+            [self.delegate labelPageView:self didCloseLabel:nil];
         }
         [self.view setUserInteractionEnabled:YES];
     }];
@@ -174,6 +178,9 @@
             label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didStretchOpenLabel:)]) {
+            [self.delegate labelPageView:self didStretchOpenLabel:[_labelViews objectAtIndex:0]];
+        }
     }];
 }
 
@@ -216,7 +223,14 @@
 }
 
 - (void)labelView:(LNLabelViewController *)labelView didOpenLabelAtIndex:(NSUInteger)index {
+    if(self.view.isUserInteractionEnabled == NO)
+        return;
     [self.view setUserInteractionEnabled:NO];
+    
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: willOpenLabel:)]) {
+        [self.delegate labelPageView:self willOpenLabel:labelView];
+    }
+    
     [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
@@ -299,10 +313,28 @@
             label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
-            [self.delegate labelPageView:self didCloseLabel:labelView];
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: willCloseLabel:)]) {
+            [self.delegate labelPageView:self willCloseLabel:labelView];
         }
     }];
+}
+
+- (void)reserveParentLabelPageData {
+    _reservedFrame = self.view.frame;
+    for(int i = 0; i < _labelViews.count; i++) {
+        LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
+        label.reservedFrame = label.view.frame;
+    }
+}
+
+- (void)forceRefreshParentLabelPageData {
+    self.view.frame = _reservedFrame;
+    for(NSUInteger i = 0; i < _labelInfoSubArray.count; i++) {
+        LNLabelViewController *label = [_labelViews objectAtIndex:i];
+        LabelInfo *info = [_labelInfoSubArray objectAtIndex:i];
+        label.titleLabel.text = info.labelName;
+        label.view.frame = label.reservedFrame;
+    }
 }
 
 @end

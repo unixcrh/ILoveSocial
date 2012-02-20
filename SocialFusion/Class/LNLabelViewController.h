@@ -52,6 +52,8 @@
     UIImageView *_photoImageView;
     UIImageView *_bgImageView;
     LabelInfo *_info;
+    
+    CGRect _reservedFrame;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *titleButton;
@@ -68,6 +70,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImageView;
 @property (nonatomic, retain) LabelInfo *info;
+@property (nonatomic, assign) CGRect reservedFrame;
 
 - (IBAction)clickTitleButton:(id)sender;
 

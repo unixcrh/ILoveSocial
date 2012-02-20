@@ -15,6 +15,8 @@
     NSUInteger _page;
     id<LNLabelPageViewControllerDelegate> _delegate;
     NSMutableArray *_labelInfoSubArray;
+    
+    CGRect _reservedFrame;
 }
 
 @property NSUInteger page;
@@ -29,14 +31,22 @@
 - (void)closeParentLabelAnimation;
 - (void)closePageWithReturnLabel:(LNLabelViewController *)labelView;
 
+- (void)reserveParentLabelPageData;
+- (void)forceRefreshParentLabelPageData;
+
 @end
 
 @protocol LNLabelPageViewControllerDelegate <NSObject>
 
+@optional
+- (void)labelPageView:(LNLabelPageViewController *)pageView didStretchOpenLabel:(LNLabelViewController *)label;
+
+@required
 - (void)labelPageView:(LNLabelPageViewController *)pageView didSelectLabel:(LNLabelViewController *)label;
 - (void)labelPageView:(LNLabelPageViewController *)pageView didRemoveLabel:(LNLabelViewController *)label;
+- (void)labelPageView:(LNLabelPageViewController *)pageView willOpenLabel:(LNLabelViewController *)label;
 - (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label;
+- (void)labelPageView:(LNLabelPageViewController *)pageView willCloseLabel:(LNLabelViewController *)label;
 - (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabel:(LNLabelViewController *)label;
-- (void)labelPageView:(LNLabelPageViewController *)pageView didFinishCloseLabel:(LNLabelViewController *)label;
 
 @end
