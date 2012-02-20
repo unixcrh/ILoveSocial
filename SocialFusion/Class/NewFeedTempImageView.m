@@ -13,7 +13,7 @@
 #import "RenrenClient.h"
 #import "UIApplication+Addition.h"
 #define IMAGE_MAX_WIDTH     260
-#define IMAGE_MAX_HEIGHT    340
+#define IMAGE_MAX_HEIGHT    480
 
 @implementation NewFeedTempImageView
 
@@ -46,14 +46,15 @@
         _scrollView.maximumZoomScale = 3;
         _scrollView.delegate = self;
         
+        /*
         //设置layer
         CALayer *layer=[_scrollView layer];
         //是否设置边框以及是否可见
         [layer setMasksToBounds:YES];
         //设置边框圆角的弧度
         [layer setCornerRadius:10.0];
-    
-           [self addSubview:_scrollView];
+    */
+        [self addSubview:_scrollView];
         
 
         
@@ -100,6 +101,10 @@
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade   ];
+        
+                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        
         [self removeFromSuperview];
         [self release];
     }];
@@ -117,6 +122,8 @@
     }
     _scrollView.center = CGPointMake(160, 240);
     _scrollView.contentSize = _imageView.frame.size;
+    
+    /*
     CALayer* layer=[_imageView layer];
     
     
@@ -126,6 +133,7 @@
     [layer setMasksToBounds:YES];
     
     [layer setCornerRadius:10.0];
+     */
     
     [_scrollView addSubview:_imageView];
 }
@@ -179,7 +187,7 @@
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     
-    CGPoint temppoint=scrollView.center;
+  
 
     scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, _imageView.frame.size.width, _imageView.frame.size.height);
     
@@ -187,12 +195,12 @@
     {
         scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y,320   , scrollView.frame.size.height);
     }
-    if  (scrollView.frame.size.height>440)
+    if  (scrollView.frame.size.height>480)
     {
-        scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y,scrollView.frame.size.width  , 440);
+        scrollView.frame=CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y,scrollView.frame.size.width  , 480);
 
     }
-    scrollView.center=temppoint;
+    scrollView.center=CGPointMake(160, 240);
 }
 
 - (void)loadImage {
@@ -256,6 +264,9 @@
 - (void)show {
     self.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade   ];
+    [UIApplication sharedApplication].keyWindow.frame=CGRectMake(0, 0, 320, 480);
+    // [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self];
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 1;
     }];
