@@ -52,12 +52,11 @@
         [layer setMasksToBounds:YES];
         //设置边框圆角的弧度
         [layer setCornerRadius:10.0];
-        //设置边框线的宽
-        [layer setBorderWidth:2];
-        //设置边框线的颜色
-        [layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    
+           [self addSubview:_scrollView];
         
-        [self addSubview:_scrollView];
+
+        
         
         _saveButton = [[UIButton alloc] init];
         _saveButton.frame = CGRectMake(0, 0, 90.0f, 40.0f);
@@ -118,6 +117,16 @@
     }
     _scrollView.center = CGPointMake(160, 240);
     _scrollView.contentSize = _imageView.frame.size;
+    CALayer* layer=[_imageView layer];
+    
+    
+    
+    
+    
+    [layer setMasksToBounds:YES];
+    
+    [layer setCornerRadius:10.0];
+    
     [_scrollView addSubview:_imageView];
 }
 
