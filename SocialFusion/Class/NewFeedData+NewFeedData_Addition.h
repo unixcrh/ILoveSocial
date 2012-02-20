@@ -21,6 +21,7 @@
 - (NSString*)getActor_ID;
 - (NSString*)getSource_ID;
 - (NSString*)getBlog;
+- (NSString*)getPostMessage;
 - (int)getComment_Count;
 - (int)getStyle;
 - (void)setCount:(int)count;

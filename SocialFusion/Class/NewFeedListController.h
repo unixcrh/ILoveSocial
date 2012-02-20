@@ -28,7 +28,7 @@ typedef   enum kUserFeed {
     kWeiboUserFeed  = 4,
 } kUserFeed;
 
-@interface NewFeedListController : EGOTableViewController {
+@interface NewFeedListController : EGOTableViewController<StatusCellDelegate> {
     NSDate* _currentTime;
 
     IBOutlet NewFeedStatusCell *_feedStatusCel;
@@ -43,8 +43,8 @@ typedef   enum kUserFeed {
     BOOL _firstLoad;
     
     int _loadingCount;
+    
  
-    NSArray* _visiable;
 }
 
 @property (nonatomic, readonly) WeiboUser *processWeiboUser;

@@ -26,6 +26,7 @@
 #import "NewFeedDetailBlogViewCell.h"
 #import "NSNotificationCenter+Addition.h"
 #import "User+Addition.h"
+#import "NSString+HTMLSet.h"
 
 static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2, void *context)
 {
@@ -370,8 +371,14 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *StatusCell = @"NewFeedStatusCell";
-    
+    static NSString *NormalCell = @"NewFeedStatusNormalCell";
+    static NSString *RepostCell = @"NewFeedStatusRepostCell";
+    static NSString *NormalCellWithPhoto = @"NewFeedStatusNormalCellWithPhoto";
+    static NSString *RepostCellWithPhoto = @"NewFeedStatusRepostCellWithPhoto";
+    static NSString *ShareAlbumCell = @"NewFeedStatusShareAlbumCell";
+    static NSString *SharePhotoCell = @"NewFeedStatusSharePhotoCell";
+    static NSString *UploadPhotoCell = @"NewFeedStatusUploadPhotoCell";
+    static NSString *BlogCell = @"NewFeedStatusBlogCell";
     if ([indexPath compare:_indexPath]) {
         NewFeedStatusCell* cell;
         
@@ -379,15 +386,128 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         NewFeedRootData *data = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         
-        cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:StatusCell];
-        if (cell == nil) {
-            cell=[[NewFeedStatusCell alloc] init];
+    
+        
+        
+        
+        if ([data class]==[NewFeedBlog class])
+        {
+            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:BlogCell];
+            if (cell == nil) {
+                cell=[[NewFeedStatusCell alloc] initWithType:kBlog];
+            }
+            else if ([cell loaded]==NO)
+            {
+                   cell=[[NewFeedStatusCell alloc] initWithType:kBlog];
+            }
+            
         }
-     //   NSLog(@"cell for row:%d", indexPath.row);
-        [cell configureCell:data loadWeb:YES];
+        else if ([data class]==[NewFeedShareAlbum class])
+        {
+            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:ShareAlbumCell];
+            if (cell == nil) {
+                cell=[[NewFeedStatusCell alloc] initWithType:kShareAlbum];
+            }
+            else if ([cell loaded]==NO)
+            {
+                cell=[[NewFeedStatusCell alloc] initWithType:kShareAlbum];
+            }
+            
+        }
+        else if ([data class]==[NewFeedSharePhoto class])
+        {
+            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:SharePhotoCell];
+            
+            
+            if (cell == nil) {
+                cell=[[NewFeedStatusCell alloc] initWithType:kSharePhoto];
+            }
+        }
+        else if ([data class]==[NewFeedUploadPhoto class])
+        {
+            cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:UploadPhotoCell];
+            
+            
+            if (cell == nil) {
+                cell=[[NewFeedStatusCell alloc] initWithType:kUploadPhoto];
+            }
+            else if ([cell loaded]==NO)
+            {
+                cell=[[NewFeedStatusCell alloc] initWithType:kUploadPhoto];
+            }
+            
+        }
+        else 
+        {
+            if (((NewFeedData*)data).repost_ID==nil)
+            {
+                if (((NewFeedData*)data).pic_URL==nil)
+                {
+                    cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:NormalCell];
+                    
+                    
+                    if (cell == nil) {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kNormal];
+                    }
+                    else if ([cell loaded]==NO)
+                    {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kNormal];
+                    }
+                    
+                }
+                else
+                {
+                    cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:NormalCellWithPhoto];
+                    
+                    
+                    if (cell == nil) {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kNormalWithPhoto];
+                    }
+                    else if ([cell loaded]==NO)
+                    {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kNormalWithPhoto];
+                    }
+                    
+                }
+            }
+            else
+            {
+                if (((NewFeedData*)data).pic_URL==nil)
+                {
+                    cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:RepostCell];
+                    
+                    
+                    if (cell == nil) {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kRepost];
+                    }
+                    else if ([cell loaded]==NO)
+                    {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kRepost];
+                    }
+                    
+                }
+                else
+                {
+                    cell = (NewFeedStatusCell *)[tableView dequeueReusableCellWithIdentifier:RepostCellWithPhoto];
+
+                    if (cell == nil) {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kRepostWithPhoto];
+                    }
+                    else if ([cell loaded]==NO)
+                    {
+                        cell=[[NewFeedStatusCell alloc] initWithType:kRepostWithPhoto];
+                    }
+                    
+                }
+            }
+        }
+        
+        [cell configureCell:data];
         
         
+        cell.delegate=self;
         [cell setList:self];
+        
         
         NSData *imageData = nil;
         if([Image imageWithURL:data.owner_Head inManagedObjectContext:self.managedObjectContext]) {
@@ -655,4 +775,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self loadExtraDataForOnscreenRows];
 }
 
+
+
+- (void)statusCellWebViewDidLoad:(UIWebView*)webView  indexPath:(NSIndexPath*)path Cell:(NewFeedStatusCell*)cell
+{
+     NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:path];
+    [cell configureCell:_feedData];
+}
 @end

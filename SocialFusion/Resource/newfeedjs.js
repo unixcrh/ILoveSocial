@@ -10,19 +10,22 @@ function setName(name)
 function setWeibo(weibo)
 {
 	document.getElementById("weibo").innerHTML=weibo;
-	
 }
 
-function setTime(time)
+function setCommentCount(count)
 {
-	document.getElementById("time").innerHTML=time;
+	document.getElementById("count").innerHTML=count;
 }
 function setRepost(repost)
 {
 		document.getElementById("blog").innerHTML=repost;
 	
 }
+function setRealRepost(repost)
+{
+			document.getElementById("realrepostdata").innerHTML=repost;
 
+}
 function setPhotoPos(width,height)
 {
 	var actWidth=(98-width)/2;
@@ -36,6 +39,10 @@ function setPhotoPos(width,height)
 	
 }
 
+function resetPhoto()
+{
+		document.getElementById("upload").src="photo_default.png";
+}
 function setBigPhotoPos(width,height)
 {
 	var actWidth=(200-width)/2;
@@ -48,10 +55,15 @@ function setBigPhotoPos(width,height)
 
 function setComment(comment)
 {
+	document.getElementById("photo_raw_comment").innerHTML=comment;
+}
+
+
+function setDetailComment(comment)
+{
 	document.getElementById("photocommentdetail").innerHTML=comment;
 
 }
-
 function setStyle(style)
 {
 	if (style==0)
@@ -77,6 +89,25 @@ function setTitle(title)
 function gotoDetail()
 {
 	window.location.href="//gotoDetail";
+}
+
+
+function setAlbumName(album)
+{
+		document.getElementById("albumName").innerHTML=album;
+
+}
+
+function setPhotoNumber(number)
+{
+		document.getElementById("photonumber").innerHTML=number;
+
+}
+
+function setAlbumAuthor(author)
+{
+		document.getElementById("albumauthor").innerHTML=author;
+
 }
 
 
