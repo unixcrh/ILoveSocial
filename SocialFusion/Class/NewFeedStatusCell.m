@@ -142,7 +142,7 @@
         [self loadImage:_photoData];
         [_photoData release];
     }
-    _webView.hidden=NO;
+   // _webView.hidden=NO;
     int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
     _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
@@ -304,11 +304,11 @@
     [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
     [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
     
-    
+    [_webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML='';"];
   //  _webView.alpha=0;
     [_photoView setImage:nil];
     
-    
+    //  _webView.hidden=YES;
     
     if ([feedData getStyle]==0)
     {
@@ -322,7 +322,7 @@
     
     if (load==YES)
     {
-        _webView.hidden=YES;
+      
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];

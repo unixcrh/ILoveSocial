@@ -386,6 +386,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
      //   NSLog(@"cell for row:%d", indexPath.row);
         [cell configureCell:data loadWeb:YES];
         
+        
         [cell setList:self];
         
         NSData *imageData = nil;
