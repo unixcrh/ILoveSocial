@@ -43,6 +43,8 @@ typedef   enum kUserFeed {
     BOOL _firstLoad;
     
     int _loadingCount;
+ 
+    NSArray* _visiable;
 }
 
 @property (nonatomic, readonly) WeiboUser *processWeiboUser;

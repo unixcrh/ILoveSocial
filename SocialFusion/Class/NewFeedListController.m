@@ -370,8 +370,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         if (cell == nil) {
             cell=[[NewFeedStatusCell alloc] init];
         }
-        NSLog(@"cell for row:%d", indexPath.row);
-        [cell configureCell:data];
+     //   NSLog(@"cell for row:%d", indexPath.row);
+        [cell configureCell:data loadWeb:YES];
+        
         
         [cell setList:self];
         

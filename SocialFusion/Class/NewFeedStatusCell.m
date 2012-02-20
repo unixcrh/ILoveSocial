@@ -136,11 +136,13 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
     if (_photoData!=nil)
     {
         [self loadImage:_photoData];
         [_photoData release];
     }
+   // _webView.hidden=NO;
     int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
     self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
     _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
@@ -215,6 +217,15 @@
     [self.contentView addSubview:_webView];
     
     
+    _webView.dataDetectorTypes=UIDataDetectorTypeLink;
+    _webView.userInteractionEnabled=YES;
+    
+    _webView.backgroundColor=[UIColor clearColor];
+    _webView.opaque=NO;
+    _webView.scrollView.scrollEnabled=NO;
+    _webView.delegate=self;
+    
+    
     
     _time=[[UILabel alloc] init];
     _time.frame=CGRectMake(246, 11, 50, 18);
@@ -276,21 +287,28 @@
 
 
 
-- (void)configureCell:(NewFeedRootData*)feedData
+- (void)configureCell:(NewFeedRootData*)feedData loadWeb:(BOOL)load
 {    
     _photoData=nil;
-    [_webView removeFromSuperview];
-    [_webView release];
+   // [_webView removeFromSuperview];
+  //  [_webView release];
     
-    _webView=[[UIWebView alloc] init];
-    _webView.frame=CGRectMake(0, 0, 320, 100);
-    [self.contentView addSubview:_webView];
+  //  _webView=[[UIWebView alloc] init];
+  //  _webView.frame=CGRectMake(0, 0, 320, 100);
+   // [self.contentView addSubview:_webView];
     
     
-    [self.contentView sendSubviewToBack:_webView];
+ //   [self.contentView sendSubviewToBack:_webView];
     
+    
+    [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
+    [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+    
+    [_webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML='';"];
   //  _webView.alpha=0;
     [_photoView setImage:nil];
+    
+    //  _webView.hidden=YES;
     
     if ([feedData getStyle]==0)
     {
@@ -300,6 +318,11 @@
     {
         [_photoOut setImage:[UIImage imageNamed:@"head_wb.png"] forState:UIControlStateNormal];
     }
+    
+    
+    if (load==YES)
+    {
+      
     if ([feedData class]==[NewFeedUploadPhoto class])
     {
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
@@ -309,8 +332,7 @@
         infoText=[infoText setWeibo:[(NewFeedUploadPhoto*)feedData getName]];
         infoText=[infoText setComment:[(NewFeedUploadPhoto*)feedData getPhoto_Comment]];
         
-        [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-        [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+     
         infoText=[infoText setAlbum:[(NewFeedUploadPhoto*)feedData getTitle]];
         
         infoText=[infoText setCount:[feedData getCountString]];
@@ -325,8 +347,6 @@
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharealbum" ofType:@"html"];
         NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         
-        [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-        [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];  
         infoText=[infoText setWeibo:[((NewFeedShareAlbum*)feedData) getShareComment]];
         infoText=[infoText setAlbum:[(NewFeedShareAlbum*)feedData getAubumName]];
         infoText=[infoText setPhotoMount:[(NewFeedShareAlbum*)feedData getAblbumQuantity]];
@@ -343,8 +363,7 @@
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharephotocell" ofType:@"html"];
         NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         
-        [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-        [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+   
         infoText=[infoText setWeibo:[((NewFeedSharePhoto*)feedData) getShareComment]];
         
         infoText=[infoText setComment:[(NewFeedSharePhoto*)feedData getPhotoComment]];
@@ -361,8 +380,7 @@
         NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
         NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
         
-        [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-        [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+     
         infoText=[infoText setWeibo:[((NewFeedBlog*)feedData) getName]];
         
         infoText=[infoText setRepost:[(NewFeedBlog*)feedData getBlog]];
@@ -383,10 +401,7 @@
                 
                 NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
                 
-                [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-                //NSLog(@"feed data:%@", feedData);
-                //NSLog(@"author data:%@", feedData.author);
-                [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+  
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 
                 infoText=[infoText setCount:[feedData getCountString]];
@@ -398,8 +413,7 @@
                 NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcell" ofType:@"html"];
                 NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
                 
-                [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-                [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+              
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 
                 infoText=[infoText setCount:[feedData getCountString]];
@@ -414,8 +428,7 @@
                 NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcell" ofType:@"html"];
                 NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
                 
-                [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-                [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+         
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
@@ -428,8 +441,7 @@
                 NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcellwithphoto" ofType:@"html"];
                 NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
                 
-                [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
-                [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
+              
                 infoText=[infoText setWeibo:[(NewFeedData*)feedData getName]];
                 
                 infoText=[infoText setRepost:[(NewFeedData*)feedData getPostMessage]];
@@ -442,14 +454,8 @@
             
         }
     }
-    
-    _webView.dataDetectorTypes=UIDataDetectorTypeLink;
-    _webView.userInteractionEnabled=YES;
-    
-    _webView.backgroundColor=[UIColor clearColor];
-    _webView.opaque=NO;
-    _webView.scrollView.scrollEnabled=NO;
-    _webView.delegate=self;
+    }
+ 
 
 }
 

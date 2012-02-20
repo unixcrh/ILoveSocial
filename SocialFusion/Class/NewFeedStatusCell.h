@@ -37,7 +37,7 @@
 
 
 - (void)setList:(NewFeedListController*)list;
-- (void)configureCell:(NewFeedRootData*)feedData;
+- (void)configureCell:(NewFeedRootData*)feedData loadWeb:(BOOL)load;
 - (void)exposeCell;
 - (void)loadImage:(NSData*)image;
 - (void)loadPicture:(NSData*)image;
