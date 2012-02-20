@@ -15,4 +15,7 @@
 @property (nonatomic, retain) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, retain) IBOutlet UILabel *locationLabel;
 
+- (IBAction)didClickFollowButton;
+- (IBAction)didClickAtButton;
+
 @end
