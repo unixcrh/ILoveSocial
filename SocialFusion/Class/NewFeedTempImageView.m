@@ -266,6 +266,8 @@
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade   ];
     [UIApplication sharedApplication].keyWindow.frame=CGRectMake(0, 0, 320, 480);
+    
+ 
     // [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self];
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 1;
