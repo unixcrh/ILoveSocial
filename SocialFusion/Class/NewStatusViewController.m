@@ -214,4 +214,11 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+#pragma mark -
+#pragma mark WebStringToImageConverter delegate
+
+- (void)webStringToImageConverter:(WebStringToImageConverter *)converter  didFinishLoadWebViewWithImage:(UIImage*)image {
+    
+}
+
 @end

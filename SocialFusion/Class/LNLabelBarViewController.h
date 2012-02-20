@@ -44,9 +44,13 @@ typedef void (^PopPageMnuallyCompletion)(void);
 
 @protocol LNLabelBarViewControllerDelegate <NSObject>
 
+@optional
+- (void)labelBarView:(LNLabelBarViewController *)labelBar didOpenParentLabelAtIndex:(NSUInteger)index;
+
+@required
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectParentLabelAtIndex:(NSUInteger)index;
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectChildLabelWithIndentifier:(NSString *)identifier inParentLabelAtIndex:(NSUInteger)index;
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index;
-- (void)labelBarView:(LNLabelBarViewController *)labelBar didOpenParentLabelAtIndex:(NSUInteger)index;
+- (void)labelBarView:(LNLabelBarViewController *)labelBar willOpenParentLabelAtIndex:(NSUInteger)index;
 
 @end

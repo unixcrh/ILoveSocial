@@ -64,6 +64,7 @@
 @synthesize info = _info;
 @synthesize photoImageView = _photoImageView;
 @synthesize bgImageView = _bgImageView;
+@synthesize reservedFrame = _reservedFrame;
 
 - (void)dealloc {
     NSLog(@"LNLabelViewController dealloc");
