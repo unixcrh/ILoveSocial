@@ -45,7 +45,7 @@
     
     //Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
     //UIImage *image = [UIImage imageWithData:imageData.imageData.data];
-    //NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image BigURL:stringURL context:self.managedObjectContext];
+    //DetailImageViewController* tempImage = [DetailImageViewController detailImageViewWithImage:image BigURL:stringURL context:self.managedObjectContext];
     //[tempImage show];
     
 }

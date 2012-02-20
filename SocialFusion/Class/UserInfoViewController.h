@@ -24,6 +24,10 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIView *photoView;
 
 @property (nonatomic, retain) IBOutlet UILabel *genderLabel;
+@property (nonatomic, retain) IBOutlet UIButton *followButton;
+@property (nonatomic, retain) IBOutlet UIButton *atButton;
+@property (nonatomic, retain) IBOutlet UILabel *relationshipLabel;
+@property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 
 @property (nonatomic, retain) User *user;
 

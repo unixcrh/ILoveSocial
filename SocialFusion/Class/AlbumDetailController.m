@@ -11,7 +11,7 @@
 #import "RenrenClient.h"
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
-#import "NewFeedTempImageView.h"
+#import "DetailImageViewController.h"
 #import "UIApplication+Addition.h"
 #import "NewFeedSharePhoto+Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
@@ -491,8 +491,7 @@
     {
         Image* imageData = [Image imageWithURL:_bigURL[_selectedPhoto%9] inManagedObjectContext:self.managedObjectContext];
         UIImage *image = [UIImage imageWithData:imageData.imageData.data];
-        NewFeedTempImageView* tempImage = [NewFeedTempImageView tempImageViewWithImage:image];
-        [tempImage show];
+        [DetailImageViewController showDetailImageWithImage:image];
     }
 }
 - (void)loadPhotoData

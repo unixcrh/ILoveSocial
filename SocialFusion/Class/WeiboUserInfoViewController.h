@@ -15,4 +15,13 @@
 @property (nonatomic, retain) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, retain) IBOutlet UILabel *locationLabel;
 
+@property (nonatomic, retain) IBOutlet UIButton *statusCountButton;
+@property (nonatomic, retain) IBOutlet UIButton *followerCountButton;
+@property (nonatomic, retain) IBOutlet UIButton *friendCountButton;
+
+- (IBAction)didClickFollowButton;
+- (IBAction)didClickAtButton;
+
+- (IBAction)didClickBasicInfoButton:(id)sender;
+
 @end
