@@ -388,7 +388,7 @@
             _selectUserLock = NO;
         }
         else {
-            [UIView animateWithDuration:0.2f animations:^{
+            [UIView animateWithDuration:0.3f animations:^{
                 NSUInteger page = index / 4;
                 self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * page, 0);
             } completion:^(BOOL finished) {

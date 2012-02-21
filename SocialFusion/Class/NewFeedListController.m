@@ -240,7 +240,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
-    self.loadingCount = self.loadingCount - 1;
 }
 
 
@@ -276,7 +275,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }
     [self showLoadMoreDataButton];
     [self doneLoadingTableViewData];
-    self.loadingCount = self.loadingCount - 1;
 }
 
 
@@ -289,6 +287,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
         }
+        self.loadingCount = self.loadingCount - 1;
     }];
     
     [renren getNewFeed:_pageNumber];
@@ -303,6 +302,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             NSArray *array = client.responseJSONObject;
             [self processWeiboData:array];        
         }
+        self.loadingCount = self.loadingCount - 1;
     }];
     
     [client getFriendsTimelineSinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];

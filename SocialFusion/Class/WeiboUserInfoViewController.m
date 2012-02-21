@@ -14,7 +14,7 @@
 #import "UIApplication+Addition.h"
 #import "LeaveMessageViewController.h"
 
-#define WEIBO_USER_INFO_SCROLL_VIEW_HEIGHT 520.0f
+#define WEIBO_USER_INFO_SCROLL_VIEW_HEIGHT 530.0f
 
 @interface WeiboUserInfoViewController()
 - (void)setRelationshipState;
@@ -25,9 +25,9 @@
 @synthesize blogLabel = _blogLabel;
 @synthesize descriptionTextView = _descriptionTextView;
 @synthesize locationLabel = _locationLabel;
-@synthesize statusCountButton = _statusCountButton;
-@synthesize friendCountButton = _friendCountButton;
-@synthesize followerCountButton = _followerCountButton;
+@synthesize statusCountLabel = _statusCountLabel;
+@synthesize friendCountLabel = _friendCountLabel;
+@synthesize followerCountLabel = _followerCountLabel;
 
 
 - (void)dealloc {
@@ -35,9 +35,9 @@
     [_descriptionTextView release];
     [_locationLabel release];
     
-    [_statusCountButton release];
-    [_followerCountButton release];
-    [_friendCountButton release];
+    [_statusCountLabel release];
+    [_friendCountLabel release];
+    [_followerCountLabel release];
     
     [super dealloc];
 }
@@ -49,9 +49,9 @@
     self.descriptionTextView = nil;
     self.locationLabel = nil;
     
-    self.statusCountButton = nil;
-    self.friendCountButton = nil;
-    self.followerCountButton = nil;
+    self.statusCountLabel = nil;
+    self.friendCountLabel = nil;
+    self.followerCountLabel = nil;
 }
 
 - (void)viewDidLoad
@@ -67,9 +67,9 @@
     else 
         self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
     
-    self.friendCountButton.titleLabel.text = self.weiboUser.detailInfo.friendsCount;
-    self.followerCountButton.titleLabel.text = self.weiboUser.detailInfo.followersCount;
-    self.statusCountButton.titleLabel.text = self.weiboUser.detailInfo.statusesCount;
+    self.friendCountLabel.text = self.weiboUser.detailInfo.friendsCount;
+    self.followerCountLabel.text = self.weiboUser.detailInfo.followersCount;
+    self.statusCountLabel.text = self.weiboUser.detailInfo.statusesCount;
     
     if([self.weiboUser.detailInfo.gender isEqualToString:@"m"]) 
         self.genderLabel.text = @"男";

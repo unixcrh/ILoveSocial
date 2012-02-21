@@ -271,7 +271,7 @@
     label.view.frame = newFrame;
     NSTimeInterval delayTime = 0;
     if(delay)
-        delayTime = 0.3f;
+        delayTime = 0.5f;
     [UIView animateWithDuration:0.3f delay:delayTime options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         label.view.frame = oldFrame;
     } completion:^(BOOL finished) {
@@ -333,6 +333,8 @@
         LNLabelViewController *label = [_labelViews objectAtIndex:i];
         LabelInfo *info = [_labelInfoSubArray objectAtIndex:i];
         label.titleLabel.text = info.labelName;
+    }
+    for(LNLabelViewController *label in _labelViews) {
         label.view.frame = label.reservedFrame;
     }
 }
