@@ -99,7 +99,7 @@
         [userDict setObject:usr forKey:kRenrenUser];
     else if([usr isMemberOfClass:[WeiboUser class]]) 
         [userDict setObject:usr forKey:kWeiboUser];
-    [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
+    [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
 }
 
 #pragma mark -

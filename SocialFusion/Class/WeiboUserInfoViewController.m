@@ -13,6 +13,8 @@
 #import "WeiboClient.h"
 #import "UIApplication+Addition.h"
 #import "LeaveMessageViewController.h"
+#import "NSNotificationCenter+Addition.h"
+#import "LabelConverter.h"
 
 #define WEIBO_USER_INFO_SCROLL_VIEW_HEIGHT 530.0f
 
@@ -28,6 +30,9 @@
 @synthesize statusCountLabel = _statusCountLabel;
 @synthesize friendCountLabel = _friendCountLabel;
 @synthesize followerCountLabel = _followerCountLabel;
+@synthesize statusCountButton = _statusCountButton;
+@synthesize friendCountButton = _friendCountButton;
+@synthesize followerCountButton = _followerCountButton;
 
 
 - (void)dealloc {
@@ -38,6 +43,10 @@
     [_statusCountLabel release];
     [_friendCountLabel release];
     [_followerCountLabel release];
+    
+    [_statusCountButton release];
+    [_followerCountButton release];
+    [_friendCountButton release];
     
     [super dealloc];
 }
@@ -52,6 +61,10 @@
     self.statusCountLabel = nil;
     self.friendCountLabel = nil;
     self.followerCountLabel = nil;
+    
+    self.statusCountButton = nil;
+    self.friendCountButton = nil;
+    self.followerCountButton = nil;
 }
 
 - (void)viewDidLoad
@@ -119,19 +132,13 @@
             
             [self.followButton setSelected:followedByMe];
             [self adjustFollowButtonHeightImage:followedByMe];
-            
-            NSString *gender = nil;
-            if([self.weiboUser.detailInfo.gender isEqualToString:@"m"]) 
-                gender = @"他";
-            else if([self.weiboUser.detailInfo.gender isEqualToString:@"f"]) 
-                gender = @"她";
-                        
+                                    
             NSString *state = nil;
             if (followingMe) {
-                state = [NSString stringWithFormat:@"%@正在关注你", gender];
+                state = [NSString stringWithFormat:@"%@正关注你。", self.weiboUser.name];
             }
             else {
-                state = [NSString stringWithFormat:@"%@没有关注你", gender];
+                state = [NSString stringWithFormat:@"%@未关注你。", self.weiboUser.name];
             }
             self.relationshipLabel.text = state;
         }];
@@ -185,7 +192,17 @@
 }
 
 - (IBAction)didClickBasicInfoButton:(id)sender {
-    
+    NSString *identifier = nil;
+    if([sender isEqual:self.statusCountButton]) {
+        identifier = kChildWeiboNewFeed;
+    }
+    else if([sender isEqual:self.friendCountButton]) {
+        identifier = kChildWeiboFriend;
+    }
+    else if([sender isEqual:self.followerCountButton]) {
+        identifier = kChildWeiboFollower;
+    }
+    [NSNotificationCenter postSelectChildLabelNotificationWithIdentifier:identifier];
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "LabelConverter.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
+#import "NSNotificationCenter+Addition.h"
 
 #define CONTENT_VIEW_OFFSET_X   7
 #define CONTENT_VIEW_OFFSET_Y   64
@@ -45,10 +46,8 @@
     
     [self.view addSubview:self.labelBarViewController.view];
     
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(didSelectFriend:) 
-                   name:kDidSelectFriendNotification 
-                 object:nil];
+    [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
+    [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
 }
 
 - (id)init {
@@ -118,7 +117,13 @@
 #pragma mark -
 #pragma mark handle notifications
 
-- (void)didSelectFriend:(NSNotification *)notification {
+- (void)selectChildLabelNotification:(NSNotification *)notification {
+    NSString *identifier = notification.object;
+    [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
+    [self.contentViewController setContentViewAtIndex:self.contentViewController.currentContentIndex forIdentifier:identifier];
+}
+
+- (void)selectFriendNotification:(NSNotification *)notification {
     NSDictionary *userDict = notification.object;
     NSString *identifier;
     User *selectedUser;

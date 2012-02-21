@@ -11,8 +11,6 @@
 
 @protocol LNLabelViewControllerDelegate;
 
-#define kDidSelectFriendNotification @"kDidSelectFriendNotification"
-
 @class User;
 
 @interface LabelInfo : NSObject {

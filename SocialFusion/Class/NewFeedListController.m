@@ -744,7 +744,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
         [userDict setObject:usr forKey:kRenrenUser];
     else if([usr isMemberOfClass:[WeiboUser class]]) 
         [userDict setObject:usr forKey:kWeiboUser];
-    [NSNotificationCenter postDidSelectFriendNotificationWithUserDict:userDict];
+    [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
 }
 
 - (IBAction)resetToNormalList

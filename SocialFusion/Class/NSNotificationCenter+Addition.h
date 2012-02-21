@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#define kDidSelectFriendNotification @"kDidSelectFriendNotification"
+#define kSelectFriendNotification @"kSelectFriendNotification"
+#define kSelectChildLabelNotification @"kSelectChildLabelNotification"
 
 @interface NSNotificationCenter (Addition)
 
-+ (void)postDidSelectFriendNotificationWithUserDict:(NSDictionary *)userDict;
++ (void)postSelectFriendNotificationWithUserDict:(NSDictionary *)userDict;
++ (void)postSelectChildLabelNotificationWithIdentifier:(NSString *)identifier;
++ (void)registerSelectFriendNotificationWithSelector:(SEL)selector target:(id)aTarget;
++ (void)registerSelectChildLabelNotificationWithSelector:(SEL)aSelector target:(id)aTarget;
 
 @end

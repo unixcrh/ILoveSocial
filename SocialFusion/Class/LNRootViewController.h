@@ -11,10 +11,6 @@
 #import "LNLabelBarViewController.h"
 #import "LNContentViewController.h"
 
-#define kDidSelectFriendNotification    @"kDidSelectFriendNotification"
-#define kDidSelectNewFeedNotification   @"kDidSelectNewFeedNotification"
-
-
 @interface LNRootViewController : CoreDataViewController<LNLabelBarViewControllerDelegate, LNContentViewControllerDelegate> {
     LNLabelBarViewController *_labelBarViewController;
     LNContentViewController *_contentViewController;
