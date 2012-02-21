@@ -14,11 +14,11 @@
     NSMutableArray *_contentViewControllerHeap;
     NSUInteger _currentContentIndex;
     NSMutableArray *_contentViewIdentifierHeap;
-    UIScrollView *_scrollView;
     id<LNContentViewControllerDelegate> _delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIView *bgView;
 @property (nonatomic, retain, readonly) NSMutableArray *contentViewControllerHeap;
 @property (nonatomic) NSUInteger currentContentIndex;
 @property (nonatomic, readonly) NSUInteger contentViewCount;

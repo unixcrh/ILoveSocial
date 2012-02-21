@@ -3,7 +3,7 @@
 //  SocialFusion
 //
 //  Created by Blue Bitch on 12-1-29.
-//  Copyright (c) 2012年 TJU. All rights reserved.
+//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
 #import "PublicationViewController.h"

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "LNContentViewController.h"
 #import "LabelConverter.h"
 #import "CoreDataViewController.h"
@@ -27,11 +28,13 @@
 @synthesize currentContentIndex = _currentContentIndex;
 @synthesize contentViewIndentifierHeap = _contentViewIndentifierHeap;
 @synthesize delegate = _delegate;
+@synthesize bgView = _bgView;
 
 - (void)dealloc {
     [_contentViewControllerHeap release];
     [_contentViewIndentifierHeap release];
     [_scrollView release];
+    [_bgView release];
     self.delegate = nil;
     [super dealloc];
 }
@@ -40,6 +43,7 @@
 {
     [super viewDidUnload];
     self.scrollView = nil;
+    self.bgView = nil;
 }
 
 - (void)refreshScrollViewContentSize {
@@ -64,6 +68,9 @@
         [self.scrollView addSubview:vc.view];
     }];
     self.scrollView.delegate = self;
+    
+    self.bgView.layer.masksToBounds = YES;
+    self.bgView.layer.cornerRadius = 7.0f;
 }
 
 - (id)init {
