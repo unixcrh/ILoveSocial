@@ -96,8 +96,8 @@
 		<true/>
 		<key>kChildLabels</key>
 		<array>
-			<string>kChildRenrenInfo</string>
-			<string>kChildWeiboInfo</string>
+			<string>kChildCurrentRenrenInfo</string>
+			<string>kChildCurrentWeiboInfo</string>
 			<string>kChildWeiboNewFeed</string>
 			<string>kChildRenrenNewFeed</string>
 		</array>
@@ -138,7 +138,7 @@
 		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
-	<key>kChildRenrenInfo</key>
+	<key>kChildCurrentRenrenInfo</key>
 	<dict>
 		<key>kLabelName</key>
 		<string>人人资料</string>
@@ -147,10 +147,28 @@
 		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
-	<key>kChildWeiboInfo</key>
+	<key>kChildCurrentWeiboInfo</key>
 	<dict>
 		<key>kLabelName</key>
 		<string>微博资料</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<false/>
+	</dict>
+    <key>kChildRenrenInfo</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>资料</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<false/>
+	</dict>
+	<key>kChildWeiboInfo</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>资料</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>

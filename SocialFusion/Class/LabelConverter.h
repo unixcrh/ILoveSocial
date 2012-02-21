@@ -21,11 +21,15 @@
 #define kChildRenrenBlog        @"kChildBlog"
 #define kChildRenrenInfo        @"kChildRenrenInfo"
 #define kChildWeiboInfo         @"kChildWeiboInfo"
+#define kChildCurrentRenrenInfo @"kChildCurrentRenrenInfo"
+#define kChildCurrentWeiboInfo  @"kChildCurrentWeiboInfo"
 
 #define kParentFriend       @"kParentFriend"
 #define kChildRenrenFriend  @"kChildRenrenFriend"
 #define kChildWeiboFriend   @"kChildWeiboFriend"
 #define kChildWeiboFollower @"kChildWeiboFollower"
+#define kChildCurrentWeiboFriend    @"kChildCurrentWeiboFriend"
+#define kChildCurrentWeiboFollower  @"kChildCurrentWeiboFollower"
 
 #define kParentInbox        @"kParentInbox"
 #define kChildNewMessage    @"kChildNewMessage"
@@ -60,6 +64,6 @@
 + (NSArray *)getChildLabelsInfoWithParentLabelIndentifier:(NSString *)identifier andParentLabelName:(NSString *)name;
 + (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)parentIdentifier;
 + (NSUInteger)getSystemDefaultLabelCount;
-+ (NSUInteger)getSystemDefaultLabelIndex:(NSString *)identifier;
++ (NSUInteger)getSystemDefaultLabelIndexWithIdentifier:(NSString *)identifier;
 
 @end

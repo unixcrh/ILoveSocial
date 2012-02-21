@@ -14,6 +14,11 @@
 
 #define PHOTO_FRAME_SIDE_LENGTH 100.0f
 
+@interface RenrenUserInfoViewController()
+- (void)configureRelationshipUI;
+- (void)configureUI;
+@end
+
 @implementation RenrenUserInfoViewController
 
 @synthesize birthDayLabel = _birthDayLabel;
@@ -41,7 +46,26 @@
     self.companyLabel = nil;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self configureUI];
+    RenrenClient *renren = [RenrenClient client];
+    [renren setCompletionBlock:^(RenrenClient *client) {
+        if (!renren.hasError) {
+            NSArray *result = client.responseJSONObject;
+            NSDictionary* dict = [result lastObject];
+            NSLog(@"renren user info:%@", dict);
+            self.renrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+            [self configureUI];
+        };
+    }];
+	[renren getUserInfoWithUserID:self.renrenUser.userID];
+}
+
 - (void)configureUI {
+    [super configureUI];
     Image *image = [Image imageWithURL:self.renrenUser.detailInfo.mainURL inManagedObjectContext:self.managedObjectContext];
     if (image == nil) {
         [self.photoImageView loadImageFromURL:self.renrenUser.detailInfo.mainURL completion:^{
@@ -64,24 +88,48 @@
     self.universityLabel.text = self.renrenUser.detailInfo.universityHistory;
     self.companyLabel.text = self.renrenUser.detailInfo.workHistory;
     self.highSchoolLabel.text = self.renrenUser.detailInfo.highSchoolHistory;
+    self.nameLabel.text = self.renrenUser.name;
+    [self configureRelationshipUI];
 }
 
-- (void)viewDidLoad
+- (void)configureRelationshipUI
 {
-    [super viewDidLoad];
-    
-    [self configureUI];
-    RenrenClient *renren = [RenrenClient client];
-    [renren setCompletionBlock:^(RenrenClient *client) {
-        if (!renren.hasError) {
-            NSArray *result = client.responseJSONObject;
-            NSDictionary* dict = [result lastObject];
-            NSLog(@"renren user info:%@", dict);
-            self.renrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
-            [self configureUI];
-        };
-    }];
-	[renren getUserInfoWithUserID:self.renrenUser.userID];
+    if ([self.renrenUser isEqualToUser:self.currentRenrenUser]) {
+        self.followButton.hidden = YES;
+        self.relationshipLabel.text = @"当前人人用户。";
+        self.atButton.hidden = YES;
+    }
+    else {
+        [self.followButton setUserInteractionEnabled:NO];
+        //        WeiboClient *client = [WeiboClient client];
+        //        
+        //        [client setCompletionBlock:^(WeiboClient *client) {
+        //            [self.followButton setUserInteractionEnabled:YES];
+        //            NSDictionary *dict = client.responseJSONObject;
+        //            dict = [dict objectForKey:@"target"];
+        //            
+        //            BOOL followedByMe = [[dict objectForKey:@"followed_by"] boolValue];
+        //            BOOL followingMe = [[dict objectForKey:@"following"] boolValue];
+        //            
+        //            [self.followButton setSelected:followedByMe];
+        //            [self adjustFollowButtonHeightImage:followedByMe];
+        //            
+        //            NSString *state = nil;
+        //            if (followingMe) {
+        //                state = [NSString stringWithFormat:@"%@正关注你。", self.weiboUser.name];
+        //            }
+        //            else {
+        //                state = [NSString stringWithFormat:@"%@未关注你。", self.weiboUser.name];
+        //            }
+        //            self.relationshipLabel.text = state;
+        //        }];
+        //        
+        //        [client getRelationshipWithUser:self.weiboUser.userID];
+    }
+}
+
+- (User *)processUser {
+    return self.renrenUser;
 }
 
 @end

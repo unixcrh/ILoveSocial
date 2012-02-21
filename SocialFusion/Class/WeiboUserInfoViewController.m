@@ -19,7 +19,6 @@
 #define WEIBO_USER_INFO_SCROLL_VIEW_HEIGHT 530.0f
 
 @interface WeiboUserInfoViewController()
-- (void)setRelationshipState;
 @end
 
 @implementation WeiboUserInfoViewController
@@ -71,6 +70,10 @@
 {
     [super viewDidLoad];
         
+    [self configureUI];
+}
+
+- (void)configureUI {
     Image *image = [Image imageWithURL:self.weiboUser.detailInfo.headURL inManagedObjectContext:self.managedObjectContext];
     if (image == nil) {
         [self.photoImageView loadImageFromURL:self.weiboUser.detailInfo.headURL completion:^{
@@ -90,12 +93,13 @@
         self.genderLabel.text = @"女";
     else
         self.genderLabel.text = @"未知";
+    
     self.locationLabel.text = self.weiboUser.detailInfo.location;
     self.blogLabel.text = self.weiboUser.detailInfo.blogURL;
     self.descriptionTextView.text = self.weiboUser.detailInfo.selfDescription;
     self.nameLabel.text = self.weiboUser.name;
     
-    [self setRelationshipState];
+    [self configureRelationshipUI];
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, WEIBO_USER_INFO_SCROLL_VIEW_HEIGHT);
 }
@@ -111,11 +115,11 @@
     [self.followButton setImage:[UIImage imageNamed:highlightImageName] forState:UIControlStateHighlighted];
 }
 
-- (void)setRelationshipState
+- (void)configureRelationshipUI
 {
     if ([self.weiboUser isEqualToUser:self.currentWeiboUser]) {
         self.followButton.hidden = YES;
-        self.relationshipLabel.text = @"";
+        self.relationshipLabel.text = @"当前微博用户。";
         self.atButton.hidden = YES;
     }
     else {
@@ -193,16 +197,27 @@
 
 - (IBAction)didClickBasicInfoButton:(id)sender {
     NSString *identifier = nil;
+    BOOL isCurrentUser = [self.currentWeiboUser isEqualToUser:self.weiboUser];
     if([sender isEqual:self.statusCountButton]) {
         identifier = kChildWeiboNewFeed;
     }
     else if([sender isEqual:self.friendCountButton]) {
-        identifier = kChildWeiboFriend;
+        if(isCurrentUser)
+            identifier = kChildCurrentWeiboFriend;
+        else
+            identifier = kChildWeiboFriend;
     }
     else if([sender isEqual:self.followerCountButton]) {
-        identifier = kChildWeiboFollower;
+        if(isCurrentUser)
+            identifier = kChildCurrentWeiboFollower;
+        else
+            identifier = kChildWeiboFollower;
     }
     [NSNotificationCenter postSelectChildLabelNotificationWithIdentifier:identifier];
+}
+
+- (User *)processUser {
+    return self.weiboUser;
 }
 
 @end

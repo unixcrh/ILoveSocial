@@ -29,9 +29,12 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UILabel *relationshipLabel;
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 
-@property (nonatomic, retain) User *user;
+@property (nonatomic, readonly) User *processUser;
 
 - (id)initWithType:(kUserInfoType)type;
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type;
+
+- (void)configureRelationshipUI;
+- (void)configureUI;
 
 @end

@@ -12,11 +12,13 @@
 #import "RenrenUserInfoViewController.h"
 #import "WeiboUserInfoViewController.h"
 
+@interface UserInfoViewController()
+@end
+
 @implementation UserInfoViewController
 
 @synthesize scrollView = _scrollView;
 @synthesize photoImageView = _photoImageView;
-@synthesize user = _user;
 @synthesize photoView = _photoView;
 
 @synthesize genderLabel = _genderLabel;
@@ -28,7 +30,6 @@
 - (void)dealloc {
     [_scrollView release];
     [_photoImageView release];
-    [_user release];
     [_genderLabel release];
     [_photoView release];
     [_followButton release];
@@ -61,6 +62,8 @@
     
     self.photoView.layer.masksToBounds = YES;
     self.photoView.layer.cornerRadius = 5.0f;
+    
+    self.relationshipLabel.text = nil;
 }
 
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type {
@@ -78,6 +81,14 @@
         _type = type;
     }
     return self;
+}
+
+- (void)configureUI {
+    self.nameLabel.text = self.processUser.name;
+}
+
+- (User *)processUser {
+    return nil;
 }
 
 @end

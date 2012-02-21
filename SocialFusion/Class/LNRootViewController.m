@@ -65,11 +65,11 @@
     NSUInteger result = USER_NOT_OPEN;
     if([user isMemberOfClass:[RenrenUser class]]) {
         if([self.renrenUser isEqualToUser:(RenrenUser *)user])
-            result = [LabelConverter getSystemDefaultLabelIndex:KParentUserInfo];
+            result = [LabelConverter getSystemDefaultLabelIndexWithIdentifier:KParentUserInfo];
     }
     else if([user isMemberOfClass:[WeiboUser class]]) {
         if([self.weiboUser isEqualToUser:(WeiboUser *)user])
-            result = [LabelConverter getSystemDefaultLabelIndex:KParentUserInfo];
+            result = [LabelConverter getSystemDefaultLabelIndexWithIdentifier:KParentUserInfo];
     }
     if(result == USER_NOT_OPEN) {
         NSNumber *storediIndex = [_openedUserHeap objectForKey:user.userID];
@@ -119,8 +119,15 @@
 
 - (void)selectChildLabelNotification:(NSNotification *)notification {
     NSString *identifier = notification.object;
-    [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
-    [self.contentViewController setContentViewAtIndex:self.contentViewController.currentContentIndex forIdentifier:identifier];
+    if([identifier isEqualToString:kChildCurrentWeiboFollower] || [identifier isEqualToString:kChildCurrentWeiboFriend]) {
+        NSUInteger parentFriendLabelIndex = [LabelConverter getSystemDefaultLabelIndexWithIdentifier:kParentFriend];
+        [self.contentViewController setContentViewAtIndex:parentFriendLabelIndex forIdentifier:[identifier stringByReplacingOccurrencesOfString:@"Current" withString:@""]];
+        [self.labelBarViewController selectParentLabelAtIndex:parentFriendLabelIndex];
+    }
+    else {
+        [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
+        [self.contentViewController setContentViewAtIndex:self.contentViewController.currentContentIndex forIdentifier:identifier];
+    }
 }
 
 - (void)selectFriendNotification:(NSNotification *)notification {

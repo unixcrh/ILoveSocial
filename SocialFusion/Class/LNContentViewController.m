@@ -134,10 +134,10 @@
     else if([identifier isEqualToString:kChildRenrenFriend]) {
         result = [FriendListViewController getNewFeedListControllerWithType:RelationshipViewTypeRenrenFriends];
     }
-    else if([identifier isEqualToString:kChildWeiboFriend]) {
+    else if([identifier isEqualToString:kChildWeiboFriend] || [identifier isEqualToString:kChildCurrentWeiboFriend]) {
         result = result = [FriendListViewController getNewFeedListControllerWithType:RelationshipViewTypeWeiboFriends];
     }
-    else if([identifier isEqualToString:kChildWeiboFollower]) {
+    else if([identifier isEqualToString:kChildWeiboFollower] || [identifier isEqualToString:kChildCurrentWeiboFollower]) {
         result = [FriendListViewController getNewFeedListControllerWithType:RelationshipViewTypeWeiboFollowers];
     }
     else if([identifier isEqualToString:kChildRenrenNewFeed]) {
@@ -149,10 +149,10 @@
     else if([identifier isEqualToString:kParentPublication]) {
         result = [[[PublicationViewController alloc] init] autorelease];
     }
-    else if([identifier isEqualToString:kChildWeiboInfo]) {
+    else if([identifier isEqualToString:kChildWeiboInfo] || [identifier isEqualToString:kChildCurrentWeiboInfo]) {
         result = [UserInfoViewController getUserInfoViewControllerWithType:kWeiboUserInfo];
     }
-    else if([identifier isEqualToString:kChildRenrenInfo]) {
+    else if([identifier isEqualToString:kChildRenrenInfo] || [identifier isEqualToString:kChildCurrentRenrenInfo]) {
         result = [UserInfoViewController getUserInfoViewControllerWithType:kRenrenUserInfo];
     }
     else {
@@ -190,7 +190,7 @@
         return;
     if(identifier == nil) {
         NSLog(@"replaceObjectAtIndex! identifier nil!");
-        return;
+        abort();
     }
     vc2.view.frame = vc.view.frame;
     [vc.view removeFromSuperview];
