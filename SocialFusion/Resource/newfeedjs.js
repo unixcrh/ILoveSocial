@@ -42,6 +42,10 @@ function setPhotoPos(width,height)
 function resetPhoto()
 {
 		document.getElementById("upload").src="photo_default.png";
+			document.getElementById("upload").style.width=98+'px';
+	document.getElementById("upload").style.height=73+'px';		
+		document.getElementById("upload").style.left=0+'px';
+		document.getElementById("upload").style.top=0+'px';
 }
 function setBigPhotoPos(width,height)
 {

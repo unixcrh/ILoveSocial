@@ -450,9 +450,15 @@
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
-         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setPhotoNumber('%d')",  [(NewFeedShareAlbum*)feedData getAlbumQuan]  ]];
-       
-        outString=[(NewFeedShareAlbum*)feedData getAuthorName];
+        outString=[(NewFeedShareAlbum*)feedData getAblbumQuantity];
+        outString=[outString replaceJSSign];
+        outString=[outString replaceHTMLSign];
+        
+        
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setPhotoNumber('%@')",  outString ]];
+        
+        
+        outString=[(NewFeedShareAlbum*)feedData getFromName];
         outString=[outString replaceJSSign];
         
         outString=[outString replaceHTMLSign];
@@ -483,7 +489,9 @@
         outString=[outString replaceHTMLSign];
         
         
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",outString]];
+        
+        
         
         
         outString=[(NewFeedSharePhoto*)feedData getTitle];
@@ -494,7 +502,7 @@
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
-        outString=[(NewFeedSharePhoto*)feedData getAuthorName];
+        outString=[(NewFeedSharePhoto*)feedData getFromName];
         outString=[outString replaceJSSign];
         
         outString=[outString replaceHTMLSign];
@@ -525,7 +533,7 @@
         outString=[outString replaceHTMLSign];
         
         
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",outString]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
         
 
         
