@@ -585,6 +585,7 @@
             
             outString=[(NewFeedData*)feedData getPostMessage];
             
+               
             
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRealRepost('%@')",outString]];
             

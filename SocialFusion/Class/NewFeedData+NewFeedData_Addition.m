@@ -64,7 +64,15 @@
 {
 
     
-    return [NSString stringWithFormat:@"<span style=\"font-weight:bold;\">%@:</span>%@",self.repost_Name,self.repost_Status];
+    NSString* string=self.repost_Name;
+    string=[string replaceHTMLSign];
+    string=[string replaceJSSign];
+    
+    NSString* string1=self.repost_Status;
+    string1=[string1 replaceHTMLSign];
+    string1=[string1 replaceJSSign];
+    
+    return [NSString stringWithFormat:@"<span style=\"font-weight:bold;\">%@:</span>%@",string,string1];
     
     // NSLog(@"%@",[tempString stringByAppendingFormat:@"%@",post_Status]);
    // return [tempString stringByAppendingFormat:@":%@",self.repost_Status] ;

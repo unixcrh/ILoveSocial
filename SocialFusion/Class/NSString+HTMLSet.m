@@ -11,34 +11,36 @@
 @implementation NSString (HTMLSet)
 - (NSString*)replaceJSSign 
 {
-    self=[self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
-    self=[self stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-    self=[self stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    self=[self stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-    return  self;
+    NSString* returnString;
+    returnString=[self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    return  returnString;
 }
 
 - (NSString*)replaceHTMLSign 
 {
-    self=[self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
+    NSString* returnString;
+    returnString=[self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
 
-     self=[self stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
-    self=[self stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
+     returnString=[returnString stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
 
 
-    self=[self stringByReplacingOccurrencesOfString:@"¢" withString:@"&cent"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"¢" withString:@"&cent"];
 
-    self=[self stringByReplacingOccurrencesOfString:@"£" withString:@"&pound"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"£" withString:@"&pound"];
 
-    self=[self stringByReplacingOccurrencesOfString:@"¥" withString:@"&yen"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"¥" withString:@"&yen"];
 
-    self=[self stringByReplacingOccurrencesOfString:@"€" withString:@"&euro"];
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"€" withString:@"&euro"];
 
-    self=[self stringByReplacingOccurrencesOfString:@"§" withString:@"&sect"];
-       self=[self stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
-       self=[self stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
-           self=[self stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
-    return self;
+    returnString=[returnString stringByReplacingOccurrencesOfString:@"§" withString:@"&sect"];
+       returnString=[returnString stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
+       returnString=[returnString stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
+           returnString=[returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
+    return returnString;
 }
 - (NSString*)setName:(NSString*)name  
 {
