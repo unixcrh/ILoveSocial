@@ -7,18 +7,16 @@
 //
 
 #import "WeiboUserInfoViewController.h"
-#import "UIImageView+Addition.h"
-#import "Image+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "WeiboClient.h"
 #import "UIApplication+Addition.h"
-#import "LeaveMessageViewController.h"
 #import "NSNotificationCenter+Addition.h"
 #import "LabelConverter.h"
 
 #define WEIBO_USER_INFO_SCROLL_VIEW_HEIGHT 530.0f
 
 @interface WeiboUserInfoViewController()
+- (void)configureRelationshipUI;
 @end
 
 @implementation WeiboUserInfoViewController
@@ -74,25 +72,11 @@
 }
 
 - (void)configureUI {
-    Image *image = [Image imageWithURL:self.weiboUser.detailInfo.headURL inManagedObjectContext:self.managedObjectContext];
-    if (image == nil) {
-        [self.photoImageView loadImageFromURL:self.weiboUser.detailInfo.headURL completion:^{
-            [self.photoImageView fadeIn];
-        } cacheInContext:self.managedObjectContext];
-    }
-    else 
-        self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
+    [super configureUI];
     
     self.friendCountLabel.text = self.weiboUser.detailInfo.friendsCount;
     self.followerCountLabel.text = self.weiboUser.detailInfo.followersCount;
     self.statusCountLabel.text = self.weiboUser.detailInfo.statusesCount;
-    
-    if([self.weiboUser.detailInfo.gender isEqualToString:@"m"]) 
-        self.genderLabel.text = @"男";
-    else if([self.weiboUser.detailInfo.gender isEqualToString:@"f"]) 
-        self.genderLabel.text = @"女";
-    else
-        self.genderLabel.text = @"未知";
     
     self.locationLabel.text = self.weiboUser.detailInfo.location;
     self.blogLabel.text = self.weiboUser.detailInfo.blogURL;
@@ -156,6 +140,9 @@
     [self adjustFollowButtonHeightImage:self.followButton.isSelected];
 }
 
+#pragma mark -
+#pragma mark IBActions
+
 - (IBAction)didClickFollowButton {
     WeiboClient *client = [WeiboClient client];
     [self.followButton setUserInteractionEnabled:NO];
@@ -188,13 +175,6 @@
     }
 }    
 
-- (IBAction)didClickAtButton {
-    User *usr = (User *)self.weiboUser;
-    LeaveMessageViewController *vc = [[LeaveMessageViewController alloc] initWithUser:usr];
-    [[UIApplication sharedApplication] presentModalViewController:vc];
-    [vc release];
-}
-
 - (IBAction)didClickBasicInfoButton:(id)sender {
     NSString *identifier = nil;
     BOOL isCurrentUser = [self.currentWeiboUser isEqualToUser:self.weiboUser];
@@ -218,6 +198,14 @@
 
 - (User *)processUser {
     return self.weiboUser;
+}
+
+- (NSString *)headImageURL {
+    return self.weiboUser.detailInfo.headURL;
+}
+
+- (NSString *)processUserGender {
+    return self.weiboUser.detailInfo.gender;
 }
 
 @end

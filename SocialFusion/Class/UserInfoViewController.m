@@ -11,6 +11,12 @@
 #import "RenrenUser+Addition.h"
 #import "RenrenUserInfoViewController.h"
 #import "WeiboUserInfoViewController.h"
+#import "UIImageView+Addition.h"
+#import "Image+Addition.h"
+#import "LeaveMessageViewController.h"
+#import "UIApplication+Addition.h"
+
+#define PHOTO_FRAME_SIDE_LENGTH 100.0f
 
 @interface UserInfoViewController()
 @end
@@ -85,9 +91,43 @@
 
 - (void)configureUI {
     self.nameLabel.text = self.processUser.name;
+    
+    Image *image = [Image imageWithURL:self.headImageURL inManagedObjectContext:self.managedObjectContext];
+    if (image == nil) {
+        [self.photoImageView loadImageFromURL:self.headImageURL completion:^{
+            [self.photoImageView centerizeWithSideLength:PHOTO_FRAME_SIDE_LENGTH];
+            [self.photoImageView fadeIn];
+        } cacheInContext:self.managedObjectContext];
+    }
+    else {
+        self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
+        [self.photoImageView centerizeWithSideLength:PHOTO_FRAME_SIDE_LENGTH];
+    }
+    
+    if([self.processUserGender isEqualToString:@"m"]) 
+        self.genderLabel.text = @"男";
+    else if([self.processUserGender isEqualToString:@"f"]) 
+        self.genderLabel.text = @"女";
+    else
+        self.genderLabel.text = @"未知";
+}
+
+- (IBAction)didClickAtButton {
+    User *usr = self.processUser;
+    LeaveMessageViewController *vc = [[LeaveMessageViewController alloc] initWithUser:usr];
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
 }
 
 - (User *)processUser {
+    return nil;
+}
+
+- (NSString *)headImageURL {
+    return nil;
+}
+
+- (NSString *)processUserGender {
     return nil;
 }
 

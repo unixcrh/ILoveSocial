@@ -30,11 +30,14 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 
 @property (nonatomic, readonly) User *processUser;
+@property (nonatomic, readonly) NSString *headImageURL;
+@property (nonatomic, readonly) NSString *processUserGender;
 
 - (id)initWithType:(kUserInfoType)type;
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type;
 
-- (void)configureRelationshipUI;
 - (void)configureUI;
+
+- (IBAction)didClickAtButton;
 
 @end

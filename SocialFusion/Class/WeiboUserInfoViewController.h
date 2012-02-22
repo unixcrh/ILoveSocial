@@ -24,8 +24,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *friendCountButton;
 
 - (IBAction)didClickFollowButton;
-- (IBAction)didClickAtButton;
-
 - (IBAction)didClickBasicInfoButton:(id)sender;
 
 @end

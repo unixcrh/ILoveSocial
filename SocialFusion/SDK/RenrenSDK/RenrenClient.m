@@ -610,10 +610,10 @@ hasError = _hasError;
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",pageNumber];
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"photos.getComments",@"method",
-                                 userID,@"uid",
-                                 p_ID,@"pid",
-                                 tempString,@"page",
+                                 @"photos.getComments", @"method",
+                                 userID, @"uid",
+                                 p_ID, @"pid",
+                                 tempString, @"page",
                                  
                                  nil];
     [tempString release];
@@ -624,9 +624,9 @@ hasError = _hasError;
 {
 
     NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"photos.getAlbums",@"method",
-                                 userID,@"uid",
-                                 a_ID,@"aids",
+                                 @"photos.getAlbums", @"method",
+                                 userID, @"uid",
+                                 a_ID, @"aids",
                                  nil];
 
 	[self requestWithParams:params andDelegate:self];
@@ -634,10 +634,19 @@ hasError = _hasError;
 
 - (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"guestbook.post",@"method",
+                                   @"guestbook.post", @"method",
                                    uid, @"uid", 
                                    msg, @"content",
                                    [NSString stringWithFormat:@"%d", isSecret], @"type", nil];
 	[self requestWithParams:params andDelegate:self];
 }
+
+- (void)getRelationshipWithUserID:(NSString *)uid1 andAnotherUserID:(NSString *)uid2 {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"friends.areFriends", @"method",
+                                   uid1, @"uids1", 
+                                   uid2, @"uids2", nil];
+	[self requestWithParams:params andDelegate:self];
+}
+
 @end

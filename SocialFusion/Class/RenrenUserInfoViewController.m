@@ -7,16 +7,11 @@
 //
 
 #import "RenrenUserInfoViewController.h"
-#import "UIImageView+Addition.h"
-#import "Image+Addition.h"
 #import "RenrenUser+Addition.h"
 #import "RenrenClient.h"
 
-#define PHOTO_FRAME_SIDE_LENGTH 100.0f
-
 @interface RenrenUserInfoViewController()
 - (void)configureRelationshipUI;
-- (void)configureUI;
 @end
 
 @implementation RenrenUserInfoViewController
@@ -66,23 +61,7 @@
 
 - (void)configureUI {
     [super configureUI];
-    Image *image = [Image imageWithURL:self.renrenUser.detailInfo.mainURL inManagedObjectContext:self.managedObjectContext];
-    if (image == nil) {
-        [self.photoImageView loadImageFromURL:self.renrenUser.detailInfo.mainURL completion:^{
-            [self.photoImageView centerizeWithSideLength:PHOTO_FRAME_SIDE_LENGTH];
-            [self.photoImageView fadeIn];
-        } cacheInContext:self.managedObjectContext];
-    }
-    else {
-        self.photoImageView.image = [UIImage imageWithData:image.imageData.data];
-        [self.photoImageView centerizeWithSideLength:PHOTO_FRAME_SIDE_LENGTH];
-    }
-    if([self.renrenUser.detailInfo.gender isEqualToString:@"m"]) 
-        self.genderLabel.text = @"男";
-    else if([self.renrenUser.detailInfo.gender isEqualToString:@"f"]) 
-        self.genderLabel.text = @"女";
-    else
-        self.genderLabel.text = @"未知";
+    
     self.birthDayLabel.text = self.renrenUser.detailInfo.birthday;
     self.hometownLabel.text = self.renrenUser.detailInfo.hometownLocation;
     self.universityLabel.text = self.renrenUser.detailInfo.universityHistory;
@@ -100,36 +79,34 @@
         self.atButton.hidden = YES;
     }
     else {
-        [self.followButton setUserInteractionEnabled:NO];
-        //        WeiboClient *client = [WeiboClient client];
-        //        
-        //        [client setCompletionBlock:^(WeiboClient *client) {
-        //            [self.followButton setUserInteractionEnabled:YES];
-        //            NSDictionary *dict = client.responseJSONObject;
-        //            dict = [dict objectForKey:@"target"];
-        //            
-        //            BOOL followedByMe = [[dict objectForKey:@"followed_by"] boolValue];
-        //            BOOL followingMe = [[dict objectForKey:@"following"] boolValue];
-        //            
-        //            [self.followButton setSelected:followedByMe];
-        //            [self adjustFollowButtonHeightImage:followedByMe];
-        //            
-        //            NSString *state = nil;
-        //            if (followingMe) {
-        //                state = [NSString stringWithFormat:@"%@正关注你。", self.weiboUser.name];
-        //            }
-        //            else {
-        //                state = [NSString stringWithFormat:@"%@未关注你。", self.weiboUser.name];
-        //            }
-        //            self.relationshipLabel.text = state;
-        //        }];
-        //        
-        //        [client getRelationshipWithUser:self.weiboUser.userID];
+        RenrenClient *client = [RenrenClient client];
+        [client setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+                NSArray *array = client.responseJSONObject;
+                NSDictionary *dict = array.lastObject;
+                NSString *isFriend = [[dict objectForKey:@"are_friends"] stringValue];
+                if([isFriend isEqualToString:@"0"]) {
+                    self.relationshipLabel.text = [NSString stringWithFormat:@"%@不是你的好友。", self.renrenUser.name];
+                }
+                else {
+                    self.relationshipLabel.text = [NSString stringWithFormat:@"%@是你的好友。", self.renrenUser.name];
+                }
+            }
+        }];
+        [client getRelationshipWithUserID:self.renrenUser.userID andAnotherUserID:self.currentRenrenUser.userID];
     }
 }
 
 - (User *)processUser {
     return self.renrenUser;
+}
+
+- (NSString *)headImageURL {
+    return self.renrenUser.detailInfo.mainURL;
+}
+
+- (NSString *)processUserGender {
+    return self.renrenUser.detailInfo.gender;
 }
 
 @end

@@ -39,7 +39,6 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 // authorize with renren dialog
 - (void)authorize;
 
-
 - (void)getUserInfo;
 - (void)getUserInfoWithUserID:(NSString *)uid;
 - (void)getLatestStatus:(NSString *)userID;
@@ -55,8 +54,8 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 - (void)getShareComments:(NSString*)userID share_ID:(NSString*)share pageNumber:(int)pageNumber;
 - (void)getAlbum:(NSString*)userID a_ID:(NSString*)a_ID pageNumber:(int)pageNumber;
 - (void)getPhotoComments:(NSString*)userID photo_ID:(NSString*)p_ID pageNumber:(int)pageNumber;
--(void)getAlbumInfo:(NSString*)userID a_ID:(NSString*)a_ID;
-
+- (void)getAlbumInfo:(NSString*)userID a_ID:(NSString*)a_ID;
+- (void)getRelationshipWithUserID:(NSString *)uid1 andAnotherUserID:(NSString *)uid2;
 
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;
