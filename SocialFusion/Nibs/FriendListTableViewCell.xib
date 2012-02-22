@@ -71,7 +71,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">default_renren_tiny.png</string>
+									<string key="NSResourceName">default_head_img_tiny@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUIImageView" id="328360257">
@@ -123,6 +123,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{56, 24}, {210, 35}}</string>
 								<reference key="NSSuperview" ref="639310529"/>
+								<reference key="NSNextKeyView" ref="773165449"/>
 								<reference key="IBUIBackgroundColor" ref="579938941"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -163,6 +164,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{266, 0}, {40, 60}}</string>
 								<reference key="NSSuperview" ref="639310529"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -413,7 +415,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>btn_msg.png</string>
-				<string>default_renren_tiny.png</string>
+				<string>default_head_img_tiny@2x.png</string>
 				<string>dividing_line@2x.png</string>
 				<string>head_renren.png</string>
 			</object>

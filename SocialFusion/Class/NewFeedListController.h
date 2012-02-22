@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "EGOTableViewController.h"
-//#import "DragRefreshTableViewController.h"
 #import "NewFeedRootData.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
@@ -43,8 +42,6 @@ typedef   enum kUserFeed {
     BOOL _firstLoad;
     
     int _loadingCount;
-    
- 
 }
 
 @property (nonatomic, readonly) WeiboUser *processWeiboUser;
@@ -52,7 +49,7 @@ typedef   enum kUserFeed {
 
 @property (nonatomic) int loadingCount;
 
-+(NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
++ (NewFeedListController*)getNewFeedListControllerwithStyle:(kUserFeed)style;
 - (void)exposeCell:(NSIndexPath*)indexPath;
 - (void)showImage:(NSIndexPath*)indexPath;
 - (void)showImage:(NSString*)smallURL bigURL:(NSString*)stringURL;
