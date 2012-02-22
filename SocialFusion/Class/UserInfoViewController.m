@@ -70,6 +70,8 @@
     self.photoView.layer.cornerRadius = 5.0f;
     
     self.relationshipLabel.text = nil;
+    
+    self.scrollView.scrollsToTop = NO;
 }
 
 + (UserInfoViewController *)getUserInfoViewControllerWithType:(kUserInfoType)type {

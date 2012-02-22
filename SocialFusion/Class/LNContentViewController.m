@@ -71,6 +71,8 @@
     
     self.bgView.layer.masksToBounds = YES;
     self.bgView.layer.cornerRadius = 7.0f;
+    
+    self.scrollView.scrollsToTop = NO;
 }
 
 - (id)init {
@@ -171,6 +173,18 @@
     if(currentContentIndex == _currentContentIndex)
         return;
     [self scrollContentViewAtIndexPathToVisble:currentContentIndex animated:YES];
+    
+    UIViewController *oldVC = [_contentViewControllerHeap objectAtIndex:_currentContentIndex];
+    UIViewController *newVC = [_contentViewControllerHeap objectAtIndex:currentContentIndex];
+    if([oldVC isKindOfClass:[EGOTableViewController class]]) {
+        EGOTableViewController *vc = (EGOTableViewController *)oldVC;
+        vc.tableView.scrollsToTop = NO;
+    }
+    if([newVC isKindOfClass:[EGOTableViewController class]]) {
+        EGOTableViewController *vc = (EGOTableViewController *)newVC;
+        vc.tableView.scrollsToTop = YES;
+    }
+
     _currentContentIndex = currentContentIndex;
 }
 
@@ -197,6 +211,11 @@
     [self.scrollView addSubview:vc2.view];
     [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc2];
     [self.contentViewIndentifierHeap replaceObjectAtIndex:index withObject:identifier];
+    
+    if([vc2 isKindOfClass:[EGOTableViewController class]]) {
+        EGOTableViewController *vc = (EGOTableViewController *)vc2;
+        vc.tableView.scrollsToTop = YES;
+    }
 }
 
 - (void)addUserContentViewWithIndentifier:(NSString *)identifier andUsers:(NSDictionary *)userDict {
@@ -227,7 +246,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
-    _currentContentIndex = index;
+    self.currentContentIndex = index;
     if(index < 0 || index >= self.contentViewCount)
         return;
     if([self.delegate respondsToSelector:@selector(contentViewController:didScrollToIndex:)]) {

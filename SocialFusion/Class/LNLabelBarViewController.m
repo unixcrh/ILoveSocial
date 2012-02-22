@@ -90,6 +90,8 @@
     [super viewDidLoad];
     self.scrollView.delegate = self;
     [self loadLabelPages];
+    
+    self.scrollView.scrollsToTop = NO;
 }
 
 - (id)init {

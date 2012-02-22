@@ -107,6 +107,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     
     _cellHeightHelper = [[NewFeedCellHeight alloc] init];
     [_cellHeightHelper myinit:self];
+    
+    self.tableView.scrollsToTop = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,19 +119,17 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 
 - (NSPredicate *)customPresdicate {
-    NSPredicate *predicate;
+    NSPredicate *predicate = nil;
     if(_style == kAllSelfFeed) {
-        NSLog(@"renren name:%@ and weibo name:%@", self.processRenrenUser.name, self.processWeiboUser.name);
+        //NSLog(@"renren name:%@ and weibo name:%@", self.processRenrenUser.name, self.processWeiboUser.name);
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@||SELF IN %@", self.processRenrenUser.newFeed, self.processWeiboUser.newFeed];
-        
-        NSLog(@"%@",self.processRenrenUser.newFeed);
     }
     else if(_style == kRenrenSelfFeed) {
-        NSLog(@"renren name:%@", self.processRenrenUser.name);
+        //NSLog(@"renren name:%@", self.processRenrenUser.name);
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.processRenrenUser.newFeed];
     }
     else if(_style == kWeiboSelfFeed) {
-        NSLog(@"renren name:%@", self.processWeiboUser.name);
+        //NSLog(@"renren name:%@", self.processWeiboUser.name);
         predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", self.processWeiboUser.newFeed];
     }
     return predicate;

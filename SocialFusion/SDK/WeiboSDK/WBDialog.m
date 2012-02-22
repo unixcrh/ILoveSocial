@@ -146,7 +146,7 @@ static NSString* AccessURL=@"http://api.t.sina.com.cn/oauth/access_token" ;
   CGFloat width = floor(scale_factor * frame.size.width) - kPadding * 2;
   CGFloat height = floor(scale_factor * frame.size.height) - kPadding * 2;
 
-  _orientation = [UIApplication sharedApplication].statusBarOrientation;
+  _orientation = (UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation;
   if (UIInterfaceOrientationIsLandscape(_orientation)) {
     self.frame = CGRectMake(kPadding, kPadding, height, width);
   } else {
@@ -447,7 +447,7 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
 // UIDeviceOrientationDidChangeNotification
 
 - (void)deviceOrientationDidChange:(void*)object {
-  UIDeviceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+  UIDeviceOrientation orientation = (UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation;
   if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
     [self updateWebOrientation];
 
@@ -465,12 +465,6 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
 - (void)keyboardWillShow:(NSNotification*)notification {
 
   _showingKeyboard = YES;
-
-  //if (RRIsDeviceIPad()) {
-    // On the iPad the screen is large enough that we don't need to
-    // resize the dialog to accomodate the keyboard popping up
-   // return;
- // }
 
   UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
   if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -607,7 +601,6 @@ else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t
     return [NSString stringWithFormat:@"%d", time(NULL)];
 }
 
-#pragma mark Ëé∑ÂæóÈöèÊó∂Â≠óÁ¨¶‰∏≤
 - (NSString *)_generateNonce 
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);

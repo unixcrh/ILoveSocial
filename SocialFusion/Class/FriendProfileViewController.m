@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"wb friend did load");
+    self.tableView.scrollsToTop = NO;
 }
 
 #pragma mark -
