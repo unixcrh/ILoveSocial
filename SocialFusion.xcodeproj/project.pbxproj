@@ -42,7 +42,6 @@
 		735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */; };
 		735210111446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100F1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor@2x.png */; };
 		735323CF14E77B8400B4AB61 /* AlbumDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735323CD14E77B8300B4AB61 /* AlbumDetailController.m */; };
-		735323D014E77B8400B4AB61 /* NewFeedAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735323CE14E77B8400B4AB61 /* NewFeedAlbumCell.xib */; };
 		735323D314E7E34100B4AB61 /* detail_album.png in Resources */ = {isa = PBXBuildFile; fileRef = 735323D214E7E34000B4AB61 /* detail_album.png */; };
 		735323D614E7E40F00B4AB61 /* NewFeedAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735323D514E7E40E00B4AB61 /* NewFeedAlbumCell.m */; };
 		735323E214E7F9C500B4AB61 /* NewFeedShareAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 735323E114E7F9C500B4AB61 /* NewFeedShareAlbum.m */; };
@@ -94,7 +93,6 @@
 		73C99C9B14BF0FE900B251DF /* sharephotocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73C99C9A14BF0FE900B251DF /* sharephotocell.html */; };
 		73CA9B3814C308E500D85492 /* NewFeedCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CA9B3714C308E500D85492 /* NewFeedCellHeight.m */; };
 		73CB550214C1A71C00C0DA29 /* repostcellwithphoto.html in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550114C1A71C00C0DA29 /* repostcellwithphoto.html */; };
-		73CB550514C1BF9E00C0DA29 /* repost_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550414C1BF9E00C0DA29 /* repost_shadow.png */; };
 		73CB550714C1D45400C0DA29 /* repost_board.png in Resources */ = {isa = PBXBuildFile; fileRef = 73CB550614C1D45400C0DA29 /* repost_board.png */; };
 		73CB895C145EEB5600C6EEB9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */; };
 		73D21C6314B59F7E00EFA9A5 /* repostcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73D21C6214B59F7E00EFA9A5 /* repostcell.html */; };
@@ -330,6 +328,7 @@
 		E1C0D70B14F33EE400F380C6 /* user_info_btn_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D70814F33EE400F380C6 /* user_info_btn_top@2x.png */; };
 		E1C0D70D14F3B3F500F380C6 /* content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D70C14F3B3F400F380C6 /* content_bg@2x.png */; };
 		E1C0D70F14F520D600F380C6 /* default_head_img_large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D70E14F520D500F380C6 /* default_head_img_large@2x.png */; };
+		E1C0D71414F5487000F380C6 /* NewFeedAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735323CE14E77B8400B4AB61 /* NewFeedAlbumCell.xib */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
 		E1E257D214ED441A003064CD /* pub_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257D014ED441A003064CD /* pub_bg.png */; };
@@ -1832,6 +1831,7 @@
 		E1ABA3F3141FA6E1002CD0A6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = TJU;
 			};
 			buildConfigurationList = E1ABA3F6141FA6E1002CD0A6 /* Build configuration list for PBXProject "SocialFusion" */;
@@ -1920,7 +1920,6 @@
 				7398960814C157F900696C1C /* tape.png in Resources */,
 				7398960914C157F900696C1C /* repost_shadow.png in Resources */,
 				73CB550214C1A71C00C0DA29 /* repostcellwithphoto.html in Resources */,
-				73CB550514C1BF9E00C0DA29 /* repost_shadow.png in Resources */,
 				73CB550714C1D45400C0DA29 /* repost_board.png in Resources */,
 				E11DF22314C569F600DDC51A /* mvboli.ttf in Resources */,
 				E11DF22714C5810000DDC51A /* head_renren@2x.png in Resources */,
@@ -2014,9 +2013,8 @@
 				E199637A14E6E37C00A4F247 /* PickAtListViewController.xib in Resources */,
 				E199638414E6F3AC00A4F247 /* WeiboUserInfoViewController.xib in Resources */,
 				E199638714E7023B00A4F247 /* user_info_weibo_detail_bg@2x.png in Resources */,
-				735323D014E77B8400B4AB61 /* NewFeedAlbumCell.xib in Resources */,
+				E1C0D71414F5487000F380C6 /* NewFeedAlbumCell.xib in Resources */,
 				735323D314E7E34100B4AB61 /* detail_album.png in Resources */,
-				735323D014E77B8400B4AB61 /* NewFeedAlbumCell.xib in Resources */,
 				9B3C6FC814E7ABBA003B0E52 /* first_background@2x.png in Resources */,
 				9B3C6FC914E7ABBA003B0E52 /* first_img1@2x.png in Resources */,
 				9B3C6FCA14E7ABBA003B0E52 /* first_renren@2x.png in Resources */,
@@ -2039,11 +2037,8 @@
 				E1C0D70A14F33EE400F380C6 /* user_info_btn_middle@2x.png in Resources */,
 				E1C0D70B14F33EE400F380C6 /* user_info_btn_top@2x.png in Resources */,
 				E1C0D70D14F3B3F500F380C6 /* content_bg@2x.png in Resources */,
-
 				73467CD514F511C900255F2A /* RepostViewController.xib in Resources */,
-
 				E1C0D70F14F520D600F380C6 /* default_head_img_large@2x.png in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

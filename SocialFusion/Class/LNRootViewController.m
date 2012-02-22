@@ -49,7 +49,7 @@
     [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
     
-    [self dropLabelBar];
+    //[self dropLabelBar];
 }
 
 - (id)init {
