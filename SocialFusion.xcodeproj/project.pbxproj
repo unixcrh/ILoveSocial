@@ -35,6 +35,8 @@
 		734415CE14EBF44B0048B546 /* detail_show_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 734415CD14EBF44B0048B546 /* detail_show_all.png */; };
 		734483C0147A7B780031D33A /* NewFeedDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 734483BE147A7B780031D33A /* NewFeedDetailViewCell.m */; };
 		734483C1147A7B780031D33A /* NewFeedDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734483BF147A7B780031D33A /* NewFeedDetailViewCell.xib */; };
+		73467CD414F511C900255F2A /* RepostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73467CD214F511C800255F2A /* RepostViewController.m */; };
+		73467CD514F511C900255F2A /* RepostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73467CD314F511C800255F2A /* RepostViewController.xib */; };
 		7352100C1446C1550010DCD4 /* feedRepostCellRepostbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */; };
 		7352100D1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */; };
 		735210101446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */; };
@@ -406,6 +408,9 @@
 		734483BD147A7B780031D33A /* NewFeedDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedDetailViewCell.h; sourceTree = "<group>"; };
 		734483BE147A7B780031D33A /* NewFeedDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedDetailViewCell.m; sourceTree = "<group>"; };
 		734483BF147A7B780031D33A /* NewFeedDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedDetailViewCell.xib; sourceTree = "<group>"; };
+		73467CD114F511C800255F2A /* RepostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepostViewController.h; sourceTree = "<group>"; };
+		73467CD214F511C800255F2A /* RepostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepostViewController.m; sourceTree = "<group>"; };
+		73467CD314F511C800255F2A /* RepostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepostViewController.xib; sourceTree = "<group>"; };
 		7352100A1446C1550010DCD4 /* feedRepostCellRepostbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedRepostCellRepostbutton.png; sourceTree = "<group>"; };
 		7352100B1446C1550010DCD4 /* feedRepostCellRepostbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedRepostCellRepostbutton@2x.png"; sourceTree = "<group>"; };
 		7352100E1446EC080010DCD4 /* feedRepostCellRepostbuttonCusor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedRepostCellRepostbuttonCusor.png; sourceTree = "<group>"; };
@@ -1268,6 +1273,9 @@
 				E15F992014D5CE8D0069072C /* PublicationViewController.h */,
 				E15F992114D5CE8D0069072C /* PublicationViewController.m */,
 				E15F992214D5CE8D0069072C /* PublicationViewController.xib */,
+				73467CD114F511C800255F2A /* RepostViewController.h */,
+				73467CD214F511C800255F2A /* RepostViewController.m */,
+				73467CD314F511C800255F2A /* RepostViewController.xib */,
 				E15F991B14D5CE810069072C /* NewStatusViewController.h */,
 				E15F991C14D5CE810069072C /* NewStatusViewController.m */,
 				E15F991D14D5CE810069072C /* NewStatusViewController.xib */,
@@ -2028,6 +2036,7 @@
 				E1C0D70A14F33EE400F380C6 /* user_info_btn_middle@2x.png in Resources */,
 				E1C0D70B14F33EE400F380C6 /* user_info_btn_top@2x.png in Resources */,
 				E1C0D70D14F3B3F500F380C6 /* content_bg@2x.png in Resources */,
+				73467CD514F511C900255F2A /* RepostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2200,6 +2209,7 @@
 				7339DF0B14EF5C2900CA4738 /* NewFeedSharePhoto.m in Sources */,
 				E1ADB18E14EFFDE30064DF5F /* RenrenUser.m in Sources */,
 				E1ADB19114EFFDE40064DF5F /* User.m in Sources */,
+				73467CD414F511C900255F2A /* RepostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

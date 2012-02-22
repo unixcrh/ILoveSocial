@@ -13,7 +13,8 @@
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "Image+Addition.h"
 #import "NSString+HTMLSet.h"
-
+#import "RepostViewController.h"
+#import "UIApplication+Addition.h"
 @implementation StatusDetailControllerWithWeb
 
 
@@ -219,7 +220,17 @@ for (UIView *aView in [_webView subviews])
 
 }
 
-
+-(IBAction)repost
+{
+    RepostViewController *vc = [[RepostViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    [vc setStyle:kRenrenStatus];
+    vc.feedData=self.feedData;
+   
+    
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
+}
 
 
 

@@ -649,4 +649,14 @@ hasError = _hasError;
 	[self requestWithParams:params andDelegate:self];
 }
 
+
+-(void)forwardStatus:(NSString*)user_ID statusID:(NSString*)status_ID andStatusString:(NSString*)status
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"status.forward", @"method",
+                                   status, @"status", 
+                                   status_ID, @"forward_id", 
+                                   user_ID,@"forward_owner",nil];
+	[self requestWithParams:params andDelegate:self];
+}
 @end

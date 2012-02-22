@@ -57,6 +57,9 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 - (void)getAlbumInfo:(NSString*)userID a_ID:(NSString*)a_ID;
 - (void)getRelationshipWithUserID:(NSString *)uid1 andAnotherUserID:(NSString *)uid2;
 
+
+-(void)forwardStatus:(NSString*)user_ID statusID:(NSString*)status_ID andStatusString:(NSString*)status;
+
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;
 - (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret;

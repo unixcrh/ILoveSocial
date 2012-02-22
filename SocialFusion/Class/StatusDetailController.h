@@ -43,4 +43,7 @@
 - (void)ProcessRenrenData:(NSArray*)array;
 - (void)ProcessWeiboData:(NSArray*)array;
 - (void)clearData;
+
+
+-(IBAction)repost;
 @end

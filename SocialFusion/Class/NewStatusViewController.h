@@ -11,8 +11,7 @@
 #import "PickAtListViewController.h"
 
 
-#import "WebStringToImageConverter.h"
-@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, WebStringToImageConverterDelegate> {
+@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
     
