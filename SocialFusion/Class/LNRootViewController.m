@@ -12,8 +12,8 @@
 #import "WeiboUser+Addition.h"
 #import "NSNotificationCenter+Addition.h"
 
-#define CONTENT_VIEW_OFFSET_X   7
-#define CONTENT_VIEW_OFFSET_Y   64
+#define CONTENT_VIEW_ORIGIN_X   7
+#define CONTENT_VIEW_ORIGIN_Y   64
 
 #define USER_NOT_OPEN   0
 
@@ -42,12 +42,14 @@
     _contentViewController = [[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict];
     [self.view addSubview:self.contentViewController.view];
     self.contentViewController.delegate = self;
-    self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_OFFSET_X, CONTENT_VIEW_OFFSET_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
+    self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
     
     [self.view addSubview:self.labelBarViewController.view];
     
     [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
+    
+    [self dropLabelBar];
 }
 
 - (id)init {
@@ -167,6 +169,44 @@
 
 - (void)contentViewController:(LNContentViewController *)vc didScrollToIndex:(NSUInteger)index {
     [self.labelBarViewController selectParentLabelAtIndex:index];
+}
+
+#pragma mark -
+#pragma mark Animations
+
+- (void)dropLabelBar {
+    CGRect labelBarFrame = self.labelBarViewController.view.frame;
+    CGFloat offset = 460.0f - labelBarFrame.size.height;
+    if(labelBarFrame.origin.y == offset)
+        return;
+    labelBarFrame.origin.y = offset;
+    
+    CGRect contentFrame = self.contentViewController.view.frame;
+    contentFrame.origin.y = CONTENT_VIEW_ORIGIN_Y + offset;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.labelBarViewController.view.frame = labelBarFrame;
+        self.contentViewController.view.frame = contentFrame;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)raiseLabelBar {
+    CGRect labelBarFrame = self.labelBarViewController.view.frame;
+    if(labelBarFrame.origin.y == 0)
+        return;
+    labelBarFrame.origin.y = 0;
+    
+    CGRect contentFrame = self.contentViewController.view.frame;
+    contentFrame.origin.y = CONTENT_VIEW_ORIGIN_Y;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.labelBarViewController.view.frame = labelBarFrame;
+        self.contentViewController.view.frame = contentFrame;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 @end

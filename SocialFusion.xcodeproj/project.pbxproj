@@ -539,8 +539,8 @@
 		73F4F9C4144AAD8D00A692F7 /* WBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRequest.m; sourceTree = "<group>"; };
 		73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addition.h"; sourceTree = "<group>"; };
 		73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
-		73FBBFBF14C3F6B100694B1B /* DetailImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailImageViewController.h; sourceTree = "<group>"; };
-		73FBBFC014C3F6B200694B1B /* DetailImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = DetailImageViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		73FBBFBF14C3F6B100694B1B /* DetailImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailImageViewController.h; path = SocialFusion/Class/DetailImageViewController.h; sourceTree = "<group>"; };
+		73FBBFC014C3F6B200694B1B /* DetailImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; name = DetailImageViewController.m; path = SocialFusion/Class/DetailImageViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B3C6FC314E7ABBA003B0E52 /* first_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_background@2x.png"; sourceTree = "<group>"; };
 		9B3C6FC414E7ABBA003B0E52 /* first_img1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_img1@2x.png"; sourceTree = "<group>"; };
 		9B3C6FC514E7ABBA003B0E52 /* first_renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_renren@2x.png"; sourceTree = "<group>"; };
@@ -823,7 +823,7 @@
 		E1ADB18D14EFFDE30064DF5F /* RenrenUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenUser.m; path = "SocialFusion/Class/CoreData Models/RenrenUser.m"; sourceTree = "<group>"; };
 		E1ADB18F14EFFDE40064DF5F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
 		E1ADB19014EFFDE40064DF5F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
-		E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
+		E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailImageViewController.xib; path = SocialFusion/Class/DetailImageViewController.xib; sourceTree = "<group>"; };
 		E1ADB1A014F26E040064DF5F /* user_info_btn_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_btn_follow@2x.png"; sourceTree = "<group>"; };
 		E1ADB1A114F26E040064DF5F /* user_info_btn_not_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_btn_not_follow@2x.png"; sourceTree = "<group>"; };
 		E1ADB1A414F277560064DF5F /* user_info_btn_at@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_btn_at@2x.png"; sourceTree = "<group>"; };
@@ -922,9 +922,6 @@
 			children = (
 				73ABE37E14416E730067B45F /* NewFeedStatusCell.h */,
 				73ABE37F14416E730067B45F /* NewFeedStatusCell.m */,
-				73FBBFBF14C3F6B100694B1B /* DetailImageViewController.h */,
-				73FBBFC014C3F6B200694B1B /* DetailImageViewController.m */,
-				E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */,
 			);
 			name = NewFeedCell;
 			sourceTree = "<group>";
@@ -1431,6 +1428,9 @@
 		E19A2D0E142092BC00BE491A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				73FBBFBF14C3F6B100694B1B /* DetailImageViewController.h */,
+				73FBBFC014C3F6B200694B1B /* DetailImageViewController.m */,
+				E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */,
 				E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */,
 				E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */,
 				E1FB623F14247EA000828E24 /* CoreDataViewController.h */,
