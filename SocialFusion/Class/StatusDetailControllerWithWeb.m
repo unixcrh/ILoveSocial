@@ -83,8 +83,8 @@
         if (((NewFeedData*)self.feedData).pic_URL!=nil)
         {
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocelldetail" ofType:@"html"];
-            NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            infoText=[infoText setWeibo:[(NewFeedData*)self.feedData getName]];
+            NSString *infoText = [[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+            infoText = [infoText setWeibo:[(NewFeedData*)self.feedData getName]];
             
             Image* image = [Image imageWithURL:((NewFeedData*)self.feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
             if (!image)

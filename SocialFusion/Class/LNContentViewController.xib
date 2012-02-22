@@ -40,13 +40,13 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="190844679">
+					<object class="IBUIImageView" id="365451573">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{-7, 0}, {320, 400}}</string>
+						<string key="NSFrame">{{-7, -16}, {320, 410}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="906416786"/>
+						<reference key="NSNextKeyView" ref="94654596"/>
 						<string key="NSReuseIdentifierKey">_NS:569</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -55,16 +55,16 @@
 							<string key="NSResourceName">content_bg@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIView" id="906416786">
+					<object class="IBUIView" id="94654596">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIScrollView" id="602437783">
-								<reference key="NSNextResponder" ref="906416786"/>
+								<reference key="NSNextResponder" ref="94654596"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{0, 11}, {306, 389}}</string>
-								<reference key="NSSuperview" ref="906416786"/>
+								<reference key="NSSuperview" ref="94654596"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:206</string>
@@ -81,7 +81,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="602437783"/>
 						<string key="NSReuseIdentifierKey">_NS:212</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1025870940">
+						<object class="NSColor" key="IBUIBackgroundColor" id="942482591">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -93,8 +93,8 @@
 				<string key="NSFrameSize">{306, 389}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="190844679"/>
-				<reference key="IBUIBackgroundColor" ref="1025870940"/>
+				<reference key="NSNextKeyView" ref="365451573"/>
+				<reference key="IBUIBackgroundColor" ref="942482591"/>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 		</object>
@@ -121,7 +121,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bgView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="906416786"/>
+						<reference key="destination" ref="94654596"/>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
@@ -142,8 +142,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="906416786"/>
-							<reference ref="190844679"/>
+							<reference ref="94654596"/>
+							<reference ref="365451573"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -160,7 +160,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
-						<reference key="object" ref="906416786"/>
+						<reference key="object" ref="94654596"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="602437783"/>
@@ -170,11 +170,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="602437783"/>
-						<reference key="parent" ref="906416786"/>
+						<reference key="parent" ref="94654596"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="190844679"/>
+						<reference key="object" ref="365451573"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -273,7 +273,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">content_bg@2x.png</string>
-			<string key="NS.object.0">{640, 800}</string>
+			<string key="NS.object.0">{640, 820}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

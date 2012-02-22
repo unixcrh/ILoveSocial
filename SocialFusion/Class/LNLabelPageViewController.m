@@ -231,6 +231,12 @@
         [self.delegate labelPageView:self willOpenLabel:labelView];
     }
     
+    if(self.labelInfoSubArray.count == 1) {
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelPageView: didOpenLabel:)]) {
+            [self.delegate labelPageView:self didOpenLabel:labelView];
+        }
+        return;
+    }
     [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);

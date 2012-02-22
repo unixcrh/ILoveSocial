@@ -12,6 +12,7 @@
 #import "UIImage+Addition.h"
 #import "RenrenClient.h"
 #import "UIApplication+Addition.h"
+#import "UIImageView+Addition.h"
 
 #define IMAGE_MAX_WIDTH     320
 #define IMAGE_MAX_HEIGHT    480
@@ -90,10 +91,7 @@
     self.imageView.frame = frame;
     self.scrollView.contentSize = size;
     
-    self.imageView.alpha = 0;
-    [UIView animateWithDuration:0.3f animations:^(void) {
-        self.imageView.alpha = 1.0f;
-    }];
+    [self.imageView fadeIn];
 }
 
 #pragma mark -
@@ -163,9 +161,8 @@
 
 - (void)hideActivityView {
     [self.activityView stopAnimating];
-    self.imageView.alpha = 0;
+    self.activityView.alpha = 1.0f;
     [UIView animateWithDuration:0.3f animations:^(void) {
-        self.imageView.alpha = 1.0f;
         self.activityView.alpha = 0;
     }];
 }

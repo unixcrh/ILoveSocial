@@ -27,6 +27,8 @@
 - (void)viewDidLoad {
    [super viewDidLoad];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + 1);
+    
+    self.scrollView.scrollsToTop = NO;
 }
 
 - (IBAction)didClickNewStatusButton:(id)sender  {

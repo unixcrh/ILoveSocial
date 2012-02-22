@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="736663168">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 44}</string>
+						<string key="NSFrameSize">{320, 28}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSNextKeyView" ref="579052360"/>
 						<string key="NSReuseIdentifierKey">_NS:569</string>
@@ -101,7 +101,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 80}</string>
+				<string key="NSFrameSize">{320, 64}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="736663168"/>
 				<reference key="IBUIBackgroundColor" ref="342273641"/>

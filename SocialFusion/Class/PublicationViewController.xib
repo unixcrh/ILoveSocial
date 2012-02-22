@@ -58,14 +58,11 @@
 								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
 								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">发状态（微博）</string>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="877166640">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleColor" id="365319842">
+								<object class="NSColor" key="IBUIHighlightedTitleColor" id="365319842">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 								</object>
+								<reference key="IBUINormalTitleColor" ref="365319842"/>
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="807132319">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -93,7 +90,6 @@
 								<reference key="NSNextKeyView" ref="874061812"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -101,7 +97,7 @@
 								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
 								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">写日志（长微博）</string>
-								<reference key="IBUIHighlightedTitleColor" ref="877166640"/>
+								<reference key="IBUIHighlightedTitleColor" ref="365319842"/>
 								<reference key="IBUINormalTitleColor" ref="365319842"/>
 								<reference key="IBUINormalTitleShadowColor" ref="807132319"/>
 								<reference key="IBUINormalBackgroundImage" ref="103938123"/>
@@ -122,7 +118,10 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">传照片</string>
-								<reference key="IBUIHighlightedTitleColor" ref="877166640"/>
+								<object class="NSColor" key="IBUIHighlightedTitleColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+								</object>
 								<reference key="IBUINormalTitleColor" ref="365319842"/>
 								<reference key="IBUINormalTitleShadowColor" ref="807132319"/>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
@@ -374,10 +373,10 @@
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>

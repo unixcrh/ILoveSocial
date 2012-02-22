@@ -19,6 +19,11 @@
     [super viewDidUnload];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.scrollsToTop = YES;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:@"NewFeedListController" bundle:nil];

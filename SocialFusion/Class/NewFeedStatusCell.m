@@ -348,7 +348,7 @@
     
     _defaultphotoView=[[UIImageView alloc] init];
     _defaultphotoView.frame=CGRectMake(8, 12, 37, 37);
-    [_defaultphotoView setImage:[UIImage imageNamed:@"default_renren_tiny.png"]];
+    [_defaultphotoView setImage:[UIImage imageNamed:@"default_head_img_tiny@2x.png"]];
     
     _name=[[UIButton alloc] init];
     _name.frame=CGRectMake(57, 9, 210, 18);
