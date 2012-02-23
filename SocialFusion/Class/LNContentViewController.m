@@ -52,7 +52,7 @@
 
 - (void)scrollContentViewAtIndexPathToVisble:(NSUInteger)index animated:(BOOL)animate{
     if(animate)
-        animate = abs(index - _currentContentIndex) <= 2 && index / 4 == _currentContentIndex / 4 ? YES : NO;
+        animate = abs(index - _currentContentIndex) <= 3 && index / 4 == _currentContentIndex / 4 ? YES : NO;
     [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * index, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:animate];
 }
 
@@ -117,7 +117,7 @@
     [self.contentViewControllerHeap removeObjectAtIndex:index];
     [self refreshScrollViewContentSize];
     if(_currentContentIndex == index) {
-        [self scrollContentViewAtIndexPathToVisble:_currentContentIndex - 1 animated:YES];
+        self.currentContentIndex = self.currentContentIndex - 1;
     }
 
 }
@@ -174,7 +174,9 @@
         return;
     [self scrollContentViewAtIndexPathToVisble:currentContentIndex animated:YES];
     
-    UIViewController *oldVC = [_contentViewControllerHeap objectAtIndex:_currentContentIndex];
+    UIViewController *oldVC = nil;
+    if(_currentContentIndex < _contentViewControllerHeap.count)
+        oldVC = [_contentViewControllerHeap objectAtIndex:_currentContentIndex];
     UIViewController *newVC = [_contentViewControllerHeap objectAtIndex:currentContentIndex];
     if([oldVC isKindOfClass:[EGOTableViewController class]]) {
         EGOTableViewController *vc = (EGOTableViewController *)oldVC;
@@ -235,8 +237,8 @@
 - (void)removeContentViewAtIndex:(NSUInteger)index {
     [self removeContentViewAtIndexFromScrollView:index];
     [self.contentViewIndentifierHeap removeObjectAtIndex:index];
-    if(_currentContentIndex >= index)
-        _currentContentIndex--;
+    if(self.currentContentIndex >= index)
+        self.currentContentIndex = self.currentContentIndex - 1;
 }
 
 - (NSString *)currentContentIdentifierAtIndex:(NSUInteger)index {
@@ -250,9 +252,9 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
-    self.currentContentIndex = index;
     if(index < 0 || index >= self.contentViewCount)
         return;
+    self.currentContentIndex = index;
     if([self.delegate respondsToSelector:@selector(contentViewController:didScrollToIndex:)]) {
         [self.delegate contentViewController:self didScrollToIndex:index];
     }
