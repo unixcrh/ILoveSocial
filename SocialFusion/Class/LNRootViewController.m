@@ -7,25 +7,38 @@
 //
 
 #import "LNRootViewController.h"
+#import "LoginViewController.h"
 #import "LabelConverter.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NSNotificationCenter+Addition.h"
 
-#define CONTENT_VIEW_ORIGIN_X   7
-#define CONTENT_VIEW_ORIGIN_Y   64
+#define CONTENT_VIEW_ORIGIN_X   7.0f
+#define CONTENT_VIEW_ORIGIN_Y   64.0f
+
+#define LABEL_BAR_VIEW_HEIGHT   64.0f
+#define LABEL_BAR_VIEW_ORIGIN_Y 396.0f
 
 #define USER_NOT_OPEN   0
 
-@implementation LNRootViewController;
+@interface LNRootViewController()
+@property (nonatomic, retain) LoginViewController *loginViewController;
+- (void)loadContentView;
+- (void)loadLabelBarView;
+- (void)loadLoginView;
+@end
+
+@implementation LNRootViewController
 
 @synthesize labelBarViewController = _labelBarViewController;
 @synthesize contentViewController = _contentViewController;
+@synthesize loginViewController = _loginViewController;
 
 - (void)dealloc {
     [_labelBarViewController release];
     [_contentViewController release];
     [_openedUserHeap release];
+    [_loginViewController release];
     [super dealloc];
 }
 
@@ -38,26 +51,17 @@
 {
     [super viewDidLoad];
     
-    NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
-    _contentViewController = [[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict];
-    [self.view addSubview:self.contentViewController.view];
-    self.contentViewController.delegate = self;
-    self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
-    
-    [self.view addSubview:self.labelBarViewController.view];
-    
     [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
     
+    [self loadLabelBarView];
+    [self loadLoginView];
     //[self dropLabelBar];
 }
 
 - (id)init {
     self = [super init];
     if(self) {
-        NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
-        _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
-        _labelBarViewController.delegate = self;
         _openedUserHeap = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -80,6 +84,33 @@
         }
     }
     return result;
+}
+
+#pragma mark -
+#pragma mark UI methods
+
+- (void)loadContentView {
+    NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
+    _contentViewController = [[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict];
+    self.contentViewController.delegate = self;
+    self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
+    [self.view addSubview:self.contentViewController.view];
+}
+
+- (void)loadLabelBarView {
+    NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
+    _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
+    _labelBarViewController.delegate = self;
+    CGRect frame = _labelBarViewController.view.frame;
+    frame.origin.y = LABEL_BAR_VIEW_ORIGIN_Y;
+    _labelBarViewController.view.frame = frame;
+    [self.view addSubview:self.labelBarViewController.view];
+}
+
+- (void)loadLoginView {
+    _loginViewController = [[LoginViewController alloc] init];
+    self.loginViewController.managedObjectContext = self.managedObjectContext;
+    [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
 }
 
 #pragma mark -
@@ -174,7 +205,7 @@
 #pragma mark -
 #pragma mark Animations
 
-- (void)dropLabelBar {
+- (void)dropLabelBarView {
     CGRect labelBarFrame = self.labelBarViewController.view.frame;
     CGFloat offset = 460.0f - labelBarFrame.size.height;
     if(labelBarFrame.origin.y == offset)
@@ -192,7 +223,7 @@
     }];
 }
 
-- (void)raiseLabelBar {
+- (void)raiseLabelBarView {
     CGRect labelBarFrame = self.labelBarViewController.view.frame;
     if(labelBarFrame.origin.y == 0)
         return;
@@ -204,6 +235,19 @@
     [UIView animateWithDuration:0.3f animations:^{
         self.labelBarViewController.view.frame = labelBarFrame;
         self.contentViewController.view.frame = contentFrame;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)dropLoginView {
+    CGRect frame = self.loginViewController.view.frame;
+    if(frame.origin.y == 460.0f)
+        return;
+    frame.origin.y = 460.0f;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.loginViewController.view.frame = frame;
     } completion:^(BOOL finished) {
         
     }];

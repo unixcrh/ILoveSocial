@@ -7,11 +7,9 @@
 //
 
 #import "SocialFusionAppDelegate.h"
-#import "SocialFusionViewController.h"
 #import "LNRootViewController.h"
 
 @implementation SocialFusionAppDelegate
-
 
 @synthesize window = _window;
 @synthesize rootViewController = _rootViewController;
@@ -22,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _rootViewController = [[SocialFusionViewController alloc] init];
+    _rootViewController = [[LNRootViewController alloc] init];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
     _rootViewController.managedObjectContext = self.managedObjectContext;
