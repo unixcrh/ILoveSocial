@@ -9,6 +9,9 @@
 #import "LNLabelBarViewController.h"
 #import "LabelConverter.h"
 
+#define SCROLL_BG_VIEW_HEIGHT   88.0f
+#define SCROLL_VIEW_ORIGIN_Y    44.0f
+
 @interface LNLabelBarViewController()
 - (void)pushLabelPages:(NSMutableArray *)labelPages;
 - (void)popLabelPages;
@@ -430,12 +433,12 @@
 
 - (void)showBasicLabelsAnimationWithCompletion:(void (^)(void))completion {
     CGRect frame = self.scrollView.frame;
-    if(frame.origin.y == 0) {
+    if(frame.origin.y == SCROLL_VIEW_ORIGIN_Y) {
         if(completion)
             completion();
         return;
     }
-    frame.origin.y = 0;
+    frame.origin.y = SCROLL_VIEW_ORIGIN_Y;
     [UIView animateWithDuration:0.3f animations:^{
         self.scrollView.frame = frame;
     } completion:^(BOOL finished) {
@@ -446,13 +449,12 @@
 
 - (void)hideBasicLabelsAnimationWithCompletion:(void (^)(void))completion {
     CGRect frame = self.scrollView.frame;
-    CGFloat height = self.scrollView.frame.size.height;
-    if(frame.origin.y == height) {
+    if(frame.origin.y == SCROLL_BG_VIEW_HEIGHT) {
         if(completion)
             completion();
         return;
     }
-    frame.origin.y = height;
+    frame.origin.y = SCROLL_BG_VIEW_HEIGHT;
     [UIView animateWithDuration:0.3f animations:^{
         self.scrollView.frame = frame;
     } completion:^(BOOL finished) {
@@ -463,12 +465,12 @@
 
 - (void)showLoginLabelAnimationWithCompletion:(void (^)(void))completion {
     CGRect frame = self.loginButton.frame;
-    if(frame.origin.y == 0) {
+    if(frame.origin.y == SCROLL_VIEW_ORIGIN_Y) {
         if(completion)
             completion();
         return;
     }
-    frame.origin.y = 0;
+    frame.origin.y = SCROLL_VIEW_ORIGIN_Y;
     [UIView animateWithDuration:0.3f animations:^{
         self.loginButton.frame = frame;
     } completion:^(BOOL finished) {
@@ -478,14 +480,13 @@
 }
 
 - (void)hideLoginLabelAnimationWithCompletion:(void (^)(void))completion {
-    CGFloat height = self.scrollView.frame.size.height;
     CGRect frame = self.loginButton.frame;
-    if(frame.origin.y == height) {
+    if(frame.origin.y == SCROLL_BG_VIEW_HEIGHT) {
         if(completion)
             completion();
         return;
     }
-    frame.origin.y = height;
+    frame.origin.y = SCROLL_BG_VIEW_HEIGHT;
     [UIView animateWithDuration:0.3f animations:^{
         self.loginButton.frame = frame;
     } completion:^(BOOL finished) {
@@ -506,10 +507,10 @@
     else {
         CGRect frame;
         frame = self.scrollView.frame;
-        frame.origin.y = self.scrollView.frame.size.height;
+        frame.origin.y = SCROLL_BG_VIEW_HEIGHT;
         self.scrollView.frame = frame;
         frame = self.loginButton.frame;
-        frame.origin.y = 0;
+        frame.origin.y = SCROLL_VIEW_ORIGIN_Y;
         self.loginButton.frame = frame;
         self.scrollView.userInteractionEnabled = NO;
         self.loginButton.userInteractionEnabled = YES;
@@ -528,10 +529,10 @@
     else {
         CGRect frame;
         frame = self.scrollView.frame;
-        frame.origin.y = 0;
+        frame.origin.y = SCROLL_VIEW_ORIGIN_Y;
         self.scrollView.frame = frame;
         frame = self.loginButton.frame;
-        frame.origin.y = self.scrollView.frame.size.height;
+        frame.origin.y = SCROLL_BG_VIEW_HEIGHT;
         self.loginButton.frame = frame;
         self.scrollView.userInteractionEnabled = YES;
         self.loginButton.userInteractionEnabled = NO;
@@ -542,7 +543,6 @@
 #pragma mark IBActions
 
 - (IBAction)didClickLoginButton:(id)sender {
-    self.loginButton.userInteractionEnabled = NO;
     [self.delegate didSelectLoginLabel];
 }
 

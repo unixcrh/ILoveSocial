@@ -218,7 +218,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrame">{{30, 100}, {260, 40}}</string>
+						<string key="NSFrame">{{30, 180}, {260, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="895610434"/>
@@ -351,7 +351,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrame">{{30, 150}, {260, 40}}</string>
+						<string key="NSFrame">{{30, 230}, {260, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="422444302"/>
@@ -628,15 +628,10 @@
 					<string key="className">LoginViewController</string>
 					<string key="superclassName">CoreDataViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="didClickFinishButton:">id</string>
 						<string key="didClickRenrenLoginButton:">id</string>
 						<string key="didClickWeiboLoginButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="didClickFinishButton:">
-							<string key="name">didClickFinishButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="didClickRenrenLoginButton:">
 							<string key="name">didClickRenrenLoginButton:</string>
 							<string key="candidateClassName">id</string>
