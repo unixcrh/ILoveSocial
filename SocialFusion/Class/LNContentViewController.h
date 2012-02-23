@@ -23,6 +23,7 @@
 @property (nonatomic) NSUInteger currentContentIndex;
 @property (nonatomic, readonly) NSUInteger contentViewCount;
 @property (nonatomic, assign) id<LNContentViewControllerDelegate> delegate;
+@property (nonatomic, readonly) BOOL isFake; 
 
 - (id)initWithLabelIdentifiers:(NSArray *)identifiers andUsers:(NSDictionary *)userDict;
 - (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier;

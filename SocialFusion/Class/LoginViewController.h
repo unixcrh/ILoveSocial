@@ -14,9 +14,13 @@
 @property(nonatomic, retain) UIAlertView *hasLoggedInAlertView;
 @property(nonatomic, retain) IBOutlet UILabel *weiboUserNameLabel;
 @property(nonatomic, retain) IBOutlet UILabel *renrenUserNameLabel;
+@property(nonatomic, retain) IBOutlet UIImageView *weiboPhotoImageView;
+@property(nonatomic, retain) IBOutlet UIImageView *renrenPhotoImageView;
+@property(nonatomic, retain) IBOutlet UIView *weiboPhotoView;
+@property(nonatomic, retain) IBOutlet UIView *renrenPhotoView;
+@property(nonatomic, readonly) BOOL isLoginValid;
 
 - (IBAction)didClickRenrenLoginButton:(id)sender;
 - (IBAction)didClickWeiboLoginButton:(id)sender;
-- (IBAction)didClickFinishButton:(id)sender;
 
 @end

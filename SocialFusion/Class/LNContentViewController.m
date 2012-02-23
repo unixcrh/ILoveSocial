@@ -70,7 +70,7 @@
     self.scrollView.delegate = self;
     
     self.bgView.layer.masksToBounds = YES;
-    self.bgView.layer.cornerRadius = 7.0f;
+    self.bgView.layer.cornerRadius = 5.0f;
     
     self.scrollView.scrollsToTop = NO;
 }
@@ -190,6 +190,10 @@
 
 - (NSUInteger)contentViewCount {
     return self.contentViewControllerHeap.count;
+}
+
+- (BOOL)isFake{
+    return (self.contentViewCount == 0);
 }
 
 - (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier {

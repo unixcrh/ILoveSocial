@@ -28,6 +28,8 @@
 @synthesize renrenUserNameLabel = _renrenUserNameLabel;
 @synthesize hasLoggedInAlertView = _hasLoggedInAlertView;
 @synthesize logoutClient = _logoutClient;
+@synthesize weiboPhotoImageView = _weiboPhotoImageView, renrenPhotoImageView = _renrenPhotoImageView;
+@synthesize weiboPhotoView = _weiboPhotoView, renrenPhotoView = _renrenPhotoView;
 
 
 - (void)dealloc
@@ -38,6 +40,10 @@
 		[self.hasLoggedInAlertView dismissWithClickedButtonIndex:-1 animated:NO];
 	}
     [_hasLoggedInAlertView release];
+    [_weiboPhotoImageView release];
+    [_renrenPhotoImageView release];
+    [_weiboPhotoView release];
+    [_renrenPhotoView release];
     [super dealloc];
 }
 
@@ -46,12 +52,21 @@
     [super viewDidUnload];
     self.weiboUserNameLabel = nil;
     self.renrenUserNameLabel = nil;
+    self.weiboPhotoImageView = nil;
+    self.renrenPhotoImageView = nil;
+    self.weiboPhotoView = nil;
+    self.renrenPhotoView = nil;
 }
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
-    [super viewDidLoad];      
+    [super viewDidLoad];
+    self.weiboPhotoView.layer.masksToBounds = YES;
+    self.weiboPhotoView.layer.cornerRadius = 2.0f;
+    self.renrenPhotoView.layer.masksToBounds = YES;
+    self.renrenPhotoView.layer.cornerRadius = 2.0f;
+    
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if ([RenrenClient authorized]) {
         NSString *renrenID = [ud objectForKey:@"renren_ID"];
@@ -60,6 +75,7 @@
             [self rrDidLogin];
         }
         else {
+            self.renrenUser = self.currentRenrenUser;
             [self.renrenUserNameLabel setText:[ud stringForKey:@"renren_Name"]];
         }
 	} else {
@@ -67,41 +83,18 @@
 	}
     
 	if ([WeiboClient authorized]) {
-        
-        
         NSString *weiboID = [ud objectForKey:@"weibo_ID"];
         self.currentWeiboUser = [WeiboUser userWithID:weiboID inManagedObjectContext:self.managedObjectContext];
         if(self.currentWeiboUser == nil) {
             [self wbDidLogin];
         }
         else {
-            // [self wbDidLogin];
-            
+            self.weiboUser = self.currentWeiboUser;
             [self.weiboUserNameLabel setText:[ud stringForKey:@"weibo_Name"]];
         }
 	} else {
 		[self.weiboUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
 	}
-}
-
-- (IBAction)didClickFinishButton:(id)sender
-{
-    if(![RenrenClient authorized] && ![WeiboClient authorized])
-        return;
-    LNRootViewController *vc = [[LNRootViewController alloc] init];
-    self.renrenUser = self.currentRenrenUser;
-    self.weiboUser = self.currentWeiboUser;
-    vc.userDict = self.userDict;
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]; 
-    transition.type = kCATransitionPush; 
-    transition.subtype = kCATransitionFromTop;
-    
-    [self.navigationController pushViewController:vc animated:NO];
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];
-    [vc release];
 }
 
 - (void)showHasLoggedInAlert:(BOOL)whoCalled {
@@ -167,12 +160,6 @@
     
 }
 
-- (void)finished
-{
-    
-    self.currentWeiboUser = [WeiboUser insertUser:nil inManagedObjectContext:self.managedObjectContext];
-    [self.managedObjectContext processPendingChanges];
-}
 - (void)wbDidLogin {
     NSLog(@"weibo did login");
     // get user info
@@ -192,6 +179,7 @@
             
             
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+            self.weiboUser = self.currentWeiboUser;
             [self.managedObjectContext processPendingChanges];
         }
     }];
@@ -216,6 +204,7 @@
             [ud synchronize];
             [self.renrenUserNameLabel setText:renrenName];
             self.currentRenrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+            self.renrenUser = self.currentRenrenUser;
             [self.managedObjectContext processPendingChanges];
         };
     }];
@@ -252,10 +241,8 @@
     self.hasLoggedInAlertView = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)isLoginValid {
+    return ([RenrenClient authorized] && [WeiboClient authorized]);
 }
 
 @end

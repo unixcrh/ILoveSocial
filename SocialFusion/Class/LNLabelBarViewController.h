@@ -13,10 +13,8 @@
 typedef void (^PopPageMnuallyCompletion)(void);
 
 @interface LNLabelBarViewController : UIViewController<UIScrollViewDelegate ,LNLabelPageViewControllerDelegate> {
-    UIScrollView *_scrollView;
     NSMutableArray *_labelPagesStack;
     NSMutableArray *_labelInfoArrayStack;
-    UIPageControl *_pageControl;
     NSUInteger _pageCount;
     NSMutableArray *_pageIndexStack;
     NSUInteger _currentParentLabelIndex;
@@ -27,6 +25,8 @@ typedef void (^PopPageMnuallyCompletion)(void);
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, retain) IBOutlet UIButton *loginButton;
+
 @property (nonatomic, readonly) NSMutableArray *labelInfoArray;
 @property (nonatomic, readonly) NSMutableArray *labelPages;
 @property (nonatomic, readonly) NSUInteger pageIndex;
@@ -35,10 +35,15 @@ typedef void (^PopPageMnuallyCompletion)(void);
 @property (nonatomic, readonly) NSUInteger parentLabelCount;
 @property (nonatomic, readonly,getter = isSelectUserLock) BOOL selectUserLock;
 
+- (IBAction)didClickLoginButton:(id)sender;
+
 - (id)initWithLabelInfoArray:(NSArray *)infoArray;
 - (void)createLabelWithInfo:(LabelInfo *)info;
 - (void)selectParentLabelAtIndex:(NSUInteger)index;
 - (void)selectChildLabelWithIdentifier:(NSString *)identifier;
+
+- (void)showLoginLabelAnimated:(BOOL)animated;
+- (void)hideLoginLabelAnimated:(BOOL)animated;
 
 @end
 
@@ -52,5 +57,6 @@ typedef void (^PopPageMnuallyCompletion)(void);
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectChildLabelWithIndentifier:(NSString *)identifier inParentLabelAtIndex:(NSUInteger)index;
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index;
 - (void)labelBarView:(LNLabelBarViewController *)labelBar willOpenParentLabelAtIndex:(NSUInteger)index;
+- (void)didSelectLoginLabel;
 
 @end

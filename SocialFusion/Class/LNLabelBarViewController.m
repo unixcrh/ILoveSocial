@@ -28,6 +28,7 @@
 @synthesize pageCount = _pageCount;
 @synthesize delegate = _delegate;
 @synthesize selectUserLock = _selectUserLock;
+@synthesize loginButton = _loginButton;
 
 - (void)dealloc {
     [_scrollView release];
@@ -36,6 +37,7 @@
     [_pageControl release];
     [_pageIndexStack release];
     [_popPageManuallyCompletion release];
+    [_loginButton release];
     _delegate = nil;
     [super dealloc];
 }
@@ -45,6 +47,7 @@
     [super viewDidUnload];
     self.scrollView = nil;
     self.pageControl = nil;
+    self.loginButton = nil;
 }
 
 - (void)createLabelPageWithInfoSubArray:(NSMutableArray *)array index:(NSUInteger)index{
@@ -130,7 +133,8 @@
         [self popPageManually];
     }
     else {
-        completion();
+        if(completion)
+            completion();
     }
 }
 
@@ -266,9 +270,11 @@
     }
     
     if(_popPageManuallyCompletion) {
-        _popPageManuallyCompletion();
-        [_popPageManuallyCompletion release];
-        _popPageManuallyCompletion = nil;
+        if(_popPageManuallyCompletion) {
+            _popPageManuallyCompletion();
+            [_popPageManuallyCompletion release];
+            _popPageManuallyCompletion = nil;
+        }
     }
 }
 
@@ -353,7 +359,8 @@
     [UIView animateWithDuration:0.3f animations:^{
         self.scrollView.contentOffset = CGPointMake(0, 0);
     } completion:^(BOOL finished) {
-        completion();
+        if(completion)
+            completion();
     }];
 }
 
@@ -416,6 +423,127 @@
 
 - (NSUInteger)parentLabelCount {
     return ((NSArray *)[_labelInfoArrayStack objectAtIndex:0]).count;
+}
+
+#pragma mark -
+#pragma mark Login animations
+
+- (void)showBasicLabelsAnimationWithCompletion:(void (^)(void))completion {
+    CGRect frame = self.scrollView.frame;
+    if(frame.origin.y == 0) {
+        if(completion)
+            completion();
+        return;
+    }
+    frame.origin.y = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.scrollView.frame = frame;
+    } completion:^(BOOL finished) {
+        if(completion)
+            completion();
+    }];
+}
+
+- (void)hideBasicLabelsAnimationWithCompletion:(void (^)(void))completion {
+    CGRect frame = self.scrollView.frame;
+    CGFloat height = self.scrollView.frame.size.height;
+    if(frame.origin.y == height) {
+        if(completion)
+            completion();
+        return;
+    }
+    frame.origin.y = height;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.scrollView.frame = frame;
+    } completion:^(BOOL finished) {
+        if(completion)
+            completion();
+    }];
+}
+
+- (void)showLoginLabelAnimationWithCompletion:(void (^)(void))completion {
+    CGRect frame = self.loginButton.frame;
+    if(frame.origin.y == 0) {
+        if(completion)
+            completion();
+        return;
+    }
+    frame.origin.y = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.loginButton.frame = frame;
+    } completion:^(BOOL finished) {
+        if(completion)
+            completion();
+    }];
+}
+
+- (void)hideLoginLabelAnimationWithCompletion:(void (^)(void))completion {
+    CGFloat height = self.scrollView.frame.size.height;
+    CGRect frame = self.loginButton.frame;
+    if(frame.origin.y == height) {
+        if(completion)
+            completion();
+        return;
+    }
+    frame.origin.y = height;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.loginButton.frame = frame;
+    } completion:^(BOOL finished) {
+        if(completion)
+            completion();
+    }];
+}
+
+- (void)showLoginLabelAnimated:(BOOL)animated {
+    if(animated) {
+        self.scrollView.userInteractionEnabled = NO;
+        [self hideBasicLabelsAnimationWithCompletion:^{
+            [self showLoginLabelAnimationWithCompletion:^{
+                self.loginButton.userInteractionEnabled = YES;
+            }];
+        }];
+    }
+    else {
+        CGRect frame;
+        frame = self.scrollView.frame;
+        frame.origin.y = self.scrollView.frame.size.height;
+        self.scrollView.frame = frame;
+        frame = self.loginButton.frame;
+        frame.origin.y = 0;
+        self.loginButton.frame = frame;
+        self.scrollView.userInteractionEnabled = NO;
+        self.loginButton.userInteractionEnabled = YES;
+    }
+}
+
+- (void)hideLoginLabelAnimated:(BOOL)animated {
+    if(animated) {
+        self.loginButton.userInteractionEnabled = NO;
+        [self hideLoginLabelAnimationWithCompletion:^{
+            [self showBasicLabelsAnimationWithCompletion:^{
+                self.scrollView.userInteractionEnabled = YES;
+            }];
+        }];
+    }
+    else {
+        CGRect frame;
+        frame = self.scrollView.frame;
+        frame.origin.y = 0;
+        self.scrollView.frame = frame;
+        frame = self.loginButton.frame;
+        frame.origin.y = self.scrollView.frame.size.height;
+        self.loginButton.frame = frame;
+        self.scrollView.userInteractionEnabled = YES;
+        self.loginButton.userInteractionEnabled = NO;
+    }
+}
+
+#pragma mark -
+#pragma mark IBActions
+
+- (IBAction)didClickLoginButton:(id)sender {
+    self.loginButton.userInteractionEnabled = NO;
+    [self.delegate didSelectLoginLabel];
 }
 
 @end

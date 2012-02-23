@@ -12,12 +12,13 @@
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NSNotificationCenter+Addition.h"
+#import "UIApplication+Addition.h"
 
 #define CONTENT_VIEW_ORIGIN_X   7.0f
 #define CONTENT_VIEW_ORIGIN_Y   64.0f
 
 #define LABEL_BAR_VIEW_HEIGHT   64.0f
-#define LABEL_BAR_VIEW_ORIGIN_Y 396.0f
+#define LABEL_BAR_VIEW_DROP_Y 396.0f
 
 #define USER_NOT_OPEN   0
 
@@ -26,6 +27,10 @@
 - (void)loadContentView;
 - (void)loadLabelBarView;
 - (void)loadLoginView;
+- (void)loadFakeContentView;
+
+- (void)raiseLoginViewAnimated:(BOOL)animated;
+- (void)dropLoginViewAnimated:(BOOL)animated;
 @end
 
 @implementation LNRootViewController
@@ -54,9 +59,11 @@
     [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
     
+    [self loadFakeContentView];
     [self loadLabelBarView];
     [self loadLoginView];
-    //[self dropLabelBar];
+    [self raiseLoginViewAnimated:NO];
+    [self.labelBarViewController showLoginLabelAnimated:NO];
 }
 
 - (id)init {
@@ -89,28 +96,42 @@
 #pragma mark -
 #pragma mark UI methods
 
+- (void)loadFakeContentView {
+    [self.contentViewController.view removeFromSuperview];
+    self.contentViewController = [[[LNContentViewController alloc] init] autorelease];
+    self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
+    [self.view addSubview:self.contentViewController.view];
+    self.contentViewController.view.userInteractionEnabled = NO;
+}
+
 - (void)loadContentView {
+    if(self.contentViewController.contentViewCount == 0)
+        return;
+    [self.contentViewController.view removeFromSuperview];
     NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
-    _contentViewController = [[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict];
+    self.contentViewController = [[[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict] autorelease];
     self.contentViewController.delegate = self;
     self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
     [self.view addSubview:self.contentViewController.view];
+    self.contentViewController.view.userInteractionEnabled = YES;
 }
 
 - (void)loadLabelBarView {
     NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
-    _labelBarViewController = [[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo];
+    self.labelBarViewController = [[[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo] autorelease];
     _labelBarViewController.delegate = self;
     CGRect frame = _labelBarViewController.view.frame;
-    frame.origin.y = LABEL_BAR_VIEW_ORIGIN_Y;
+    frame.origin.y = LABEL_BAR_VIEW_DROP_Y;
     _labelBarViewController.view.frame = frame;
     [self.view addSubview:self.labelBarViewController.view];
+    self.labelBarViewController.view.userInteractionEnabled = YES;
 }
 
 - (void)loadLoginView {
-    _loginViewController = [[LoginViewController alloc] init];
+    self.loginViewController = [[[LoginViewController alloc] init] autorelease];
     self.loginViewController.managedObjectContext = self.managedObjectContext;
     [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
+    self.loginViewController.view.userInteractionEnabled = NO;
 }
 
 #pragma mark -
@@ -145,6 +166,17 @@
 - (void)labelBarView:(LNLabelBarViewController *)labelBar willOpenParentLabelAtIndex:(NSUInteger)index {
     NSString *identifier = [self.contentViewController currentContentIdentifierAtIndex:index];
     [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
+}
+
+- (void)didSelectLoginLabel {
+    if(!self.loginViewController.isLoginValid) {
+        [[UIApplication sharedApplication] presentToast:@"请登陆人人网和新浪微博。" withVerticalPos:kToastBottomVerticalPosition];
+    }
+    else {
+        self.userDict = self.loginViewController.userDict;
+        [self dropLoginViewAnimated:YES];
+        [self.labelBarViewController hideLoginLabelAnimated:YES];
+    }
 }
 
 #pragma mark -
@@ -205,11 +237,15 @@
 #pragma mark -
 #pragma mark Animations
 
-- (void)dropLabelBarView {
+- (void)dropLabelBarViewAnimationWithCompletion:(void (^)(void))completion {
     CGRect labelBarFrame = self.labelBarViewController.view.frame;
     CGFloat offset = 460.0f - labelBarFrame.size.height;
-    if(labelBarFrame.origin.y == offset)
+    if(labelBarFrame.origin.y == offset) {
+        if(completion)
+            completion();
         return;
+    }
+        
     labelBarFrame.origin.y = offset;
     
     CGRect contentFrame = self.contentViewController.view.frame;
@@ -219,14 +255,19 @@
         self.labelBarViewController.view.frame = labelBarFrame;
         self.contentViewController.view.frame = contentFrame;
     } completion:^(BOOL finished) {
-        
+        if(completion)
+            completion();
     }];
 }
 
-- (void)raiseLabelBarView {
+- (void)raiseLabelBarViewAnimationWithCompletion:(void (^)(void))completion {
     CGRect labelBarFrame = self.labelBarViewController.view.frame;
-    if(labelBarFrame.origin.y == 0)
+    if(labelBarFrame.origin.y == 0) {
+        if(completion)
+            completion();
         return;
+    }
+    
     labelBarFrame.origin.y = 0;
     
     CGRect contentFrame = self.contentViewController.view.frame;
@@ -236,21 +277,102 @@
         self.labelBarViewController.view.frame = labelBarFrame;
         self.contentViewController.view.frame = contentFrame;
     } completion:^(BOOL finished) {
-        
+        if(completion)
+            completion();
     }];
 }
 
-- (void)dropLoginView {
+- (void)dropLoginViewAnimationWithCompletion:(void (^)(void))completion {
     CGRect frame = self.loginViewController.view.frame;
-    if(frame.origin.y == 460.0f)
+    if(frame.origin.y == 460.0f) {
+        if(completion)
+            completion();
         return;
+    }
+    
     frame.origin.y = 460.0f;
     
     [UIView animateWithDuration:0.3f animations:^{
         self.loginViewController.view.frame = frame;
     } completion:^(BOOL finished) {
-        
+        if(completion)
+            completion();
     }];
+}
+
+- (void)raiseLoginViewAnimationWithCompletion:(void (^)(void))completion {
+    CGRect frame = self.loginViewController.view.frame;
+    if(frame.origin.y == 0) {
+        if(completion)
+            completion();
+        return;
+    }
+    
+    frame.origin.y = 0;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.loginViewController.view.frame = frame;
+    } completion:^(BOOL finished) {
+        if(completion)
+            completion();
+    }];
+}
+
+- (void)dropLoginViewAnimated:(BOOL)animated {
+    if(animated) {
+        self.loginViewController.view.userInteractionEnabled = NO;
+        [self dropLoginViewAnimationWithCompletion:^{
+            [self raiseLabelBarViewAnimationWithCompletion:^{
+                self.contentViewController.view.userInteractionEnabled = YES;
+                [self loadContentView];
+            }];
+        }];
+    }
+    else {
+        CGRect frame;
+        frame = self.loginViewController.view.frame;
+        frame.origin.y = 460.0f;
+        self.loginViewController.view.frame = frame;
+        
+        frame = self.contentViewController.view.frame;
+        frame.origin.y = CONTENT_VIEW_ORIGIN_Y;
+        self.contentViewController.view.frame = frame;
+        
+        frame = self.labelBarViewController.view.frame;
+        frame.origin.y = 0;
+        self.labelBarViewController.view.frame = frame;
+        
+        self.contentViewController.view.userInteractionEnabled = YES;
+        self.loginViewController.view.userInteractionEnabled = NO;
+    }
+}
+
+- (void)raiseLoginViewAnimated:(BOOL)animated {
+    if(animated) {
+        self.contentViewController.view.userInteractionEnabled = NO;
+        [self dropLabelBarViewAnimationWithCompletion:^{
+            [self raiseLoginViewAnimationWithCompletion:^{
+                self.loginViewController.view.userInteractionEnabled = YES;
+            }];
+        }];
+    }
+    else {
+        CGRect frame;
+        frame = self.loginViewController.view.frame;
+        frame.origin.y = 0;
+        self.loginViewController.view.frame = frame;
+        
+        frame = self.contentViewController.view.frame;
+        frame.origin.y = 460.0f;
+        self.contentViewController.view.frame = frame;
+        
+        frame = self.labelBarViewController.view.frame;
+        frame.origin.y = LABEL_BAR_VIEW_DROP_Y;
+        self.labelBarViewController.view.frame = frame;
+        
+        self.contentViewController.view.userInteractionEnabled = NO;
+        self.loginViewController.view.userInteractionEnabled = YES;
+    }
 }
 
 @end
