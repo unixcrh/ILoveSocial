@@ -42,4 +42,6 @@ typedef enum {
 - (void)postStatusCompletion;
 - (void)dismissView;
 
+- (void)updateTextCount;
+
 @end

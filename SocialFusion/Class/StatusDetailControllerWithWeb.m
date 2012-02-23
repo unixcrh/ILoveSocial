@@ -224,7 +224,15 @@ for (UIView *aView in [_webView subviews])
 {
     RepostViewController *vc = [[RepostViewController alloc] init];
     vc.managedObjectContext = self.managedObjectContext;
+    
+    if ([self.feedData getStyle]==0)
+    {
     [vc setStyle:kRenrenStatus];
+    }
+    else
+    {
+         [vc setStyle:kWeiboStatus];
+    }
     vc.feedData=self.feedData;
    
     

@@ -22,12 +22,20 @@ typedef  enum kShareStyle {
 } kShareStyle;
 @interface RepostViewController : PostViewController
 {
+    BOOL _repostToRenren;
+    BOOL _repostToWeibo;
     kShareStyle _style;
     NewFeedRootData* _feedData;
+    
+    IBOutlet UIButton* _repostToRenrenBut;
+        IBOutlet UIButton* _repostToWeiboBut;
 }
+
 
 @property (nonatomic, retain) NewFeedRootData* feedData;
 
 -(void)setStyle:(kShareStyle)style;
+- (IBAction)didClickPostToRenrenButton;
+- (IBAction)didClickPostToWeiboButton;
 
 @end

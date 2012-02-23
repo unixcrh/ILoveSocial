@@ -17,7 +17,7 @@
 #define TOOLBAR_HEIGHT  22
 
 @interface PostViewController()
-- (void)updateTextCount;
+
 - (void)dismissView;
 @end
 
