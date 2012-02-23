@@ -218,7 +218,7 @@
 
 - (void)rrDidLogout
 {
-    [self.weiboUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
+    [self.renrenUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
 }
 
 //alertView登出的delegate

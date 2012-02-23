@@ -64,6 +64,13 @@
     [self loadLoginView];
     [self raiseLoginViewAnimated:NO];
     [self.labelBarViewController showLoginLabelAnimated:NO];
+    
+    self.labelBarViewController.view.alpha = 0;
+    self.loginViewController.view.alpha = 0;
+    [UIView animateWithDuration:0.5f animations:^{
+        self.labelBarViewController.view.alpha = 1.0f;
+        self.loginViewController.view.alpha = 1.0f;
+    }];
 }
 
 - (id)init {
@@ -174,6 +181,7 @@
     }
     else {
         self.userDict = self.loginViewController.userDict;
+        self.labelBarViewController.loginButton.userInteractionEnabled = NO;
         [self dropLoginViewAnimated:YES];
     }
 }

@@ -13,7 +13,6 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUILabel</string>
 			<string>IBUIButton</string>
-			<string>IBUIImageView</string>
 			<string>IBUIView</string>
 			<string>IBUIScrollView</string>
 			<string>IBProxyObject</string>
@@ -45,7 +44,7 @@
 							<object class="IBUIButton" id="639913094">
 								<reference key="NSNextResponder" ref="90969752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{23, 60}, {260, 50}}</string>
+								<string key="NSFrame">{{13, 70}, {280, 40}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="470598740"/>
@@ -84,7 +83,7 @@
 							<object class="IBUIButton" id="477999194">
 								<reference key="NSNextResponder" ref="90969752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{23, 170}, {260, 50}}</string>
+								<string key="NSFrame">{{13, 190}, {280, 40}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="874061812"/>
@@ -107,9 +106,10 @@
 							<object class="IBUIButton" id="74764777">
 								<reference key="NSNextResponder" ref="90969752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{23, 280}, {260, 50}}</string>
+								<string key="NSFrame">{{13, 310}, {280, 40}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -166,7 +166,7 @@
 							<object class="IBUILabel" id="470598740">
 								<reference key="NSNextResponder" ref="90969752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{28, 115}, {250, 50}}</string>
+								<string key="NSFrame">{{28, 125}, {250, 50}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="477999194"/>
@@ -191,7 +191,7 @@
 							<object class="IBUILabel" id="874061812">
 								<reference key="NSNextResponder" ref="90969752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{28, 225}, {250, 50}}</string>
+								<string key="NSFrame">{{28, 245}, {250, 50}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="74764777"/>
@@ -229,27 +229,11 @@
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="319783477">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{306, 389}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="90969752"/>
-						<string key="NSReuseIdentifierKey">_NS:567</string>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">pub_bg.png</string>
-						</object>
-					</object>
 				</array>
 				<string key="NSFrameSize">{306, 389}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="319783477"/>
+				<reference key="NSNextKeyView" ref="90969752"/>
 				<reference key="IBUIBackgroundColor" ref="807132319"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -295,7 +279,6 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="90969752"/>
-							<reference ref="319783477"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -353,11 +336,6 @@
 						<reference key="object" ref="874061812"/>
 						<reference key="parent" ref="90969752"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="319783477"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -368,12 +346,11 @@
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
@@ -431,9 +408,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="pub_bg.png">{306, 389}</string>
-			<string key="publication_btn_bg@2x.png">{520, 100}</string>
-			<string key="publication_btn_bg_disabled@2x.png">{520, 100}</string>
+			<string key="publication_btn_bg@2x.png">{560, 80}</string>
+			<string key="publication_btn_bg_disabled@2x.png">{560, 80}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
