@@ -105,7 +105,7 @@
 }
 
 - (void)loadContentView {
-    if(self.contentViewController.contentViewCount == 0)
+    if(![self.contentViewController isFake])
         return;
     [self.contentViewController.view removeFromSuperview];
     NSArray *labelIdentifier = [LabelConverter getSystemDefaultLabelsIdentifier];
