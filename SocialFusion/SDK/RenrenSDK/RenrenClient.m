@@ -96,7 +96,7 @@ hasError = _hasError;
 // please modify your permissions here
 - (void)authorize {
     if (![RenrenClient authorized]) {
-        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share read_user_album",nil];
+        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share read_user_album  publish_share",nil];
         [self authorizeWithRRAppAuth:YES safariAuth:YES permissions:permissions]; 
     }
 }
@@ -658,5 +658,23 @@ hasError = _hasError;
                                    status_ID, @"forward_id", 
                                    user_ID,@"forward_owner",nil];
 	[self requestWithParams:params andDelegate:self];
+}
+
+
+
+-(void)share:(int)type  share_ID:(NSString*)share_ID  user_ID:(NSString*)user_ID comment:(NSString *)comment
+{
+    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",type];
+    
+    NSLog(@"%@    %@    %@",tempString,share_ID,user_ID);
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"share.share", @"method",
+                                   tempString,@"type",
+                                   share_ID, @"ugc_id", 
+                                   user_ID, @"user_id",
+                                   comment,@"comment",
+                                   nil];
+	[self requestWithParams:params andDelegate:self];
+    [tempString release];
 }
 @end

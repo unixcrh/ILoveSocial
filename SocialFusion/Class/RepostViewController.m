@@ -14,9 +14,10 @@
 #import "WeiboClient.h"
 #import "UIButton+Addition.h"
 #import "Image+Addition.h"
+#import "NewFeedBlog.h"
 @implementation RepostViewController
 @synthesize feedData=_feedData;
-
+@synthesize blogData=_blogData;
 
 
 -(void)viewDidLoad
@@ -47,6 +48,8 @@
         self.textView.selectedRange=NSMakeRange(0, 0);
         [self updateTextCount];
     }
+    
+
 
 }
 
@@ -198,7 +201,29 @@
         }
     }
     
-    
+    else if (_style==kNewBlog)
+    {
+        if (_repostToRenren==YES)
+        {
+            
+            RenrenClient *client = [RenrenClient client];
+            [client setCompletionBlock:^(RenrenClient *client) {
+                if(client.hasError)
+                    _postStatusErrorCode |= PostStatusErrorRenren;
+                [self postStatusCompletion];
+            }];
+            _postCount++;
+            [client share:kNewBlog share_ID:((NewFeedBlog*)_feedData).source_ID user_ID:((NewFeedBlog*)_feedData).author.userID comment:self.textView.text];
+        }
+        if (_repostToWeibo==YES)
+        {
+            
+            
+            WebStringToImageConverter* webStringConverter=[[WebStringToImageConverter alloc] init];
+            webStringConverter.delegate=self;
+            [webStringConverter startConvertBlogWithTitle:((NewFeedBlog*)_feedData).title detail:_blogData];
+        }
+    }
     [self dismissView];
 }
 
@@ -217,6 +242,23 @@
 -(void)setStyle:(kShareStyle)style
 {
     _style=style;
+}
+
+- (void)webStringToImageConverter:(WebStringToImageConverter *)converter  didFinishLoadWebViewWithImage:(UIImage*)image
+{
+    WeiboClient *client = [WeiboClient client];
+    [client setCompletionBlock:^(WeiboClient *client) {
+        if(client.hasError)
+        {
+            _postStatusErrorCode |= PostStatusErrorRenren;
+        }
+        [self postStatusCompletion];
+    }];
+    _postCount++;
+    
+    [client postStatus:self.textView.text withImage:image];
+    
+
 }
 
 @end

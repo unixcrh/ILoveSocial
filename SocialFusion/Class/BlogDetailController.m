@@ -13,8 +13,15 @@
 #import "RenrenClient.h"
 #import "NSString+HTMLSet.h"
 #import "NewFeedBlog+NewFeedBlog_Addition.h"
+#import "RepostViewController.h"
+#import "UIApplication+Addition.h"
 @implementation BlogDetailController
 
+
+-(void) dealloc{
+    [_blogDetail release];
+    [super dealloc];
+}
 - (void)loadWebView
 {
     
@@ -28,6 +35,7 @@
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcelldetail" ofType:@"html"];
             NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
             infoText=[infoText setWeibo:content];
+            _blogDetail=[[NSString alloc] initWithString:infoText];
             [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
             [infoText release];
             
@@ -75,6 +83,24 @@
         [renren getBlogComments:[self.feedData getActor_ID] status_ID:[self.feedData getSource_ID] pageNumber:_pageNumber];
     }       
     
+}
+
+-(IBAction)repost
+{
+    RepostViewController *vc = [[RepostViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    
+
+   
+    
+        [vc setStyle:kNewBlog];
+    
+    
+    vc.feedData=self.feedData;
+    
+    vc.blogData=_blogDetail;
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
 }
 
 

@@ -60,6 +60,9 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 
 -(void)forwardStatus:(NSString*)user_ID statusID:(NSString*)status_ID andStatusString:(NSString*)status;
 
+-(void)share:(int)type  share_ID:(NSString*)share_ID  user_ID:(NSString*)user_ID  comment:(NSString*)comment;
+
+
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;
 - (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret;
