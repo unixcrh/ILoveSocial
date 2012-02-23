@@ -175,7 +175,6 @@
     else {
         self.userDict = self.loginViewController.userDict;
         [self dropLoginViewAnimated:YES];
-        [self.labelBarViewController hideLoginLabelAnimated:YES];
     }
 }
 
@@ -251,7 +250,7 @@
     CGRect contentFrame = self.contentViewController.view.frame;
     contentFrame.origin.y = CONTENT_VIEW_ORIGIN_Y + offset;
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         self.labelBarViewController.view.frame = labelBarFrame;
         self.contentViewController.view.frame = contentFrame;
     } completion:^(BOOL finished) {
@@ -273,7 +272,7 @@
     CGRect contentFrame = self.contentViewController.view.frame;
     contentFrame.origin.y = CONTENT_VIEW_ORIGIN_Y;
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         self.labelBarViewController.view.frame = labelBarFrame;
         self.contentViewController.view.frame = contentFrame;
     } completion:^(BOOL finished) {
@@ -292,7 +291,7 @@
     
     frame.origin.y = 460.0f;
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         self.loginViewController.view.frame = frame;
     } completion:^(BOOL finished) {
         if(completion)
@@ -310,7 +309,7 @@
     
     frame.origin.y = 0;
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         self.loginViewController.view.frame = frame;
     } completion:^(BOOL finished) {
         if(completion)
@@ -324,7 +323,8 @@
         [self dropLoginViewAnimationWithCompletion:^{
             [self raiseLabelBarViewAnimationWithCompletion:^{
                 self.contentViewController.view.userInteractionEnabled = YES;
-                [self loadContentView];
+                [self.labelBarViewController hideLoginLabelAnimated:YES];
+                [self performSelector:@selector(loadContentView) withObject:nil afterDelay:0.6f];
             }];
         }];
     }
