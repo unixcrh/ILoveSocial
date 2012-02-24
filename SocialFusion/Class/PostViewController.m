@@ -66,20 +66,44 @@
     [[UIApplication sharedApplication] dismissModalViewController];
 }
 
+- (int)sinaCountWord:(NSString*)s
+{
+    int i,n=[s length],l=0,a=0,b=0;
+    unichar c;
+    for(i=0;i<n;i++){
+        
+        c=[s characterAtIndex:i];
+        
+        if(isblank(c)){
+            
+            b++;
+            
+        }else if(isascii(c)){
+            
+            a++;
+            
+        }else{
+            
+            l++;
+            
+        }
+        
+    }
+    
+    if(a==0 && l==0) return 0;
+    
+    return l+(int)ceilf((float)(a+b)/2.0);
+    
+}
+
+
+
+
+
 - (void)updateTextCount {
     NSString *text = self.textView.text;
-    int bytes = [text lengthOfBytesUsingEncoding:NSUTF16StringEncoding];
-    const char *ptr = [text cStringUsingEncoding:NSUTF16StringEncoding];
-    int words = 0;
-    for (int i = 0; i < bytes; i++) {
-        if (*ptr) {
-            words++;
-        }
-        ptr++;
-    }
-    words += 1;
-    words /= 2;
-    self.textCountLabel.text = [NSString stringWithFormat:@"%d", words];
+
+    self.textCountLabel.text = [NSString stringWithFormat:@"%d", [self sinaCountWord:text]];
     
 }
 
@@ -119,6 +143,19 @@
     }
 }
 
+-(void) showTextWarning
+{
+    NSInteger textCount = [self.textCountLabel.text integerValue];
+    if ((textCount>=WEIBO_MAX_WORD)&&(_lastTextViewCount<WEIBO_MAX_WORD))
+    {
+        [[UIApplication sharedApplication] presentToast:@"超出140字部分无法发送至微博" withVerticalPos:TOAST_POS_Y];
+    }
+    if ((textCount>=240)&&(_lastTextViewCount<240))
+    {
+        [[UIApplication sharedApplication] presentToast:@"超出240部分将无法发送至人人" withVerticalPos:TOAST_POS_Y];
+    }
+    _lastTextViewCount=textCount;
+}
 #pragma mark -
 #pragma mark IBAction
 - (IBAction)didClickCancelButton:(id)sender {
@@ -167,6 +204,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     [self updateTextCount];
+    [self showTextWarning];
 }
 
 #pragma mark -

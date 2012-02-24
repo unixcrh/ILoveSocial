@@ -18,7 +18,7 @@ typedef enum {
 } PostStatusErrorCode;
 
 #define TOAST_POS_Y   self.toolBarView.frame.origin.y - 20.0f
-
+#define WEIBO_MAX_WORD 140
 @interface PostViewController : CoreDataViewController <UITextViewDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {
     PostStatusErrorCode _postStatusErrorCode;
     NSUInteger _postCount;
@@ -27,6 +27,8 @@ typedef enum {
     UILabel *_textCountLabel;
     UIView *_toolBarView;
     UILabel *titleLabel;
+    
+    NSInteger _lastTextViewCount;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;
@@ -42,6 +44,8 @@ typedef enum {
 - (void)postStatusCompletion;
 - (void)dismissView;
 
-- (void)updateTextCount;
+- (int)sinaCountWord:(NSString*)s;
 
+- (void)updateTextCount;
+-(void) showTextWarning;
 @end

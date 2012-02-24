@@ -13,11 +13,12 @@
 #import "WeiboClient.h"
 #import "UIImageView+Addition.h"
 #import "UIButton+Addition.h"
-
+#import "NSString+WeiboSubString.h"
 #define USER_PHOTO_CENTER CGPointMake(260.0f, -9.0f)
 #define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 100.0f)
 
 #define USER_PHOTO_SIDE_LENGTH 40.0f
+
 
 @interface NewStatusViewController()
 - (void)dismissUserPhoto;
@@ -77,8 +78,8 @@
         [[UIApplication sharedApplication] presentToast:@"没有选中任何平台。" withVerticalPos:TOAST_POS_Y];
         return;
     }
-    if(![self isTextValid]) 
-        return;
+   // if(![self isTextValid]) 
+     //   return;
     
     if(_postToWeibo) {
         WeiboClient *client = [WeiboClient client];
@@ -89,10 +90,25 @@
         }];
         _postCount++;
         if (self.photoImageView.image) {
-            [client postStatus:self.textView.text withImage:self.photoImageView.image];
+            
+            if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
+            {
+                [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
+            }
+            else
+            {
+                [client postStatus:self.textView.text withImage:self.photoImageView.image];
+            }
         }
         else {
-            [client postStatus:self.textView.text];
+            if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
+            {
+            [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD]];
+            }
+            else
+            {
+                [client postStatus:self.textView.text];
+            }
         }
     }
     
@@ -214,6 +230,35 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+
+-(NSString*)getSubstringToIndex:(NSString*)string  index:(int)index
+{
+    int i,n=[string length];
+    unichar c;
+    int a=0;
+    int b=0;
+    int l=0;
+    for(i=0;i<n;i++){
+        c=[string characterAtIndex:i];
+        if(isblank(c)){
+            a++;
+        }else if(isascii(c)){
+            b++;
+        }else{
+            l++;
+        }
+        if (l+(int)ceilf((float)(a+b)/2.0)>index)
+        {
+            break;
+        }
+        
+    }
+        
+   return [string substringToIndex:a+b+l];
+    
+
+}
 
 
 @end
