@@ -102,13 +102,13 @@
     if(_postCount == 0) {
         switch (_postStatusErrorCode) {
             case PostStatusErrorAll:
-                [[UIApplication sharedApplication] presentToast:@"发送到微博、人人均失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"发送到微博、人人均失败。" withVerticalPos:kToastBottomVerticalPosition];
                 break;
             case PostStatusErrorWeibo:
-                [[UIApplication sharedApplication] presentToast:@"发送到微博失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"发送到微博失败。" withVerticalPos:kToastBottomVerticalPosition];
                 break;
             case PostStatusErrorRenren:
-                [[UIApplication sharedApplication] presentToast:@"发送到人人失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"发送到人人失败。" withVerticalPos:kToastBottomVerticalPosition];
                 break;
             case PostStatusErrorNone:
                 [[UIApplication sharedApplication] presentToast:@"发送成功。" withVerticalPos:kToastBottomVerticalPosition];
