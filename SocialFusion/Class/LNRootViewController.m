@@ -59,15 +59,15 @@
     [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
     
-    [self loadFakeContentView];
     [self loadLabelBarView];
+    [self loadFakeContentView];
     [self loadLoginView];
     [self raiseLoginViewAnimated:NO];
     [self.labelBarViewController showLoginLabelAnimated:NO];
     
     self.labelBarViewController.view.alpha = 0;
     self.loginViewController.view.alpha = 0;
-    [UIView animateWithDuration:0.5f animations:^{
+    [UIView animateWithDuration:0.4f animations:^{
         self.labelBarViewController.view.alpha = 1.0f;
         self.loginViewController.view.alpha = 1.0f;
     }];
@@ -107,7 +107,7 @@
     [self.contentViewController.view removeFromSuperview];
     self.contentViewController = [[[LNContentViewController alloc] init] autorelease];
     self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
-    [self.view addSubview:self.contentViewController.view];
+    [self.view insertSubview:self.contentViewController.view belowSubview:self.labelBarViewController.view];
     self.contentViewController.view.userInteractionEnabled = NO;
 }
 
@@ -119,10 +119,11 @@
     self.contentViewController = [[[LNContentViewController alloc] initWithLabelIdentifiers:labelIdentifier andUsers:self.userDict] autorelease];
     self.contentViewController.delegate = self;
     self.contentViewController.view.frame = CGRectMake(CONTENT_VIEW_ORIGIN_X, CONTENT_VIEW_ORIGIN_Y, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height);
-    [self.view addSubview:self.contentViewController.view];
+    [self.view insertSubview:self.contentViewController.view belowSubview:self.labelBarViewController.view];
     self.contentViewController.view.userInteractionEnabled = YES;
 }
 
+// make sure label bar view is load before all the other views.
 - (void)loadLabelBarView {
     NSArray *labelInfo = [LabelConverter getSystemDefaultLabelsInfo];
     self.labelBarViewController = [[[LNLabelBarViewController alloc] initWithLabelInfoArray:labelInfo] autorelease];

@@ -133,7 +133,7 @@
 		9B3C6FC814E7ABBA003B0E52 /* first_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C6FC314E7ABBA003B0E52 /* first_background@2x.png */; };
 		9B3C6FC914E7ABBA003B0E52 /* first_img1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C6FC414E7ABBA003B0E52 /* first_img1@2x.png */; };
 		9B3C6FCA14E7ABBA003B0E52 /* first_renren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C6FC514E7ABBA003B0E52 /* first_renren@2x.png */; };
-		9B3C6FCB14E7ABBA003B0E52 /* first_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C6FC614E7ABBA003B0E52 /* first_start@2x.png */; };
+		9B3C6FCB14E7ABBA003B0E52 /* login_btn_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C6FC614E7ABBA003B0E52 /* login_btn_arrow@2x.png */; };
 		9B3C6FCC14E7ABBA003B0E52 /* first_weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B3C6FC714E7ABBA003B0E52 /* first_weibo@2x.png */; };
 		9B6FEAA314DD6DE800E1E677 /* label_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B6FEAA114DD6DE800E1E677 /* label_white.png */; };
 		9B6FEAA414DD6DE800E1E677 /* label_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B6FEAA214DD6DE800E1E677 /* label_white@2x.png */; };
@@ -218,6 +218,7 @@
 		E12A9F0F14EA935600B03B5F /* LeaveMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E12A9F0D14EA935600B03B5F /* LeaveMessageViewController.xib */; };
 		E12A9F1314EA946E00B03B5F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9F1114EA946E00B03B5F /* PostViewController.m */; };
 		E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */; };
+		E136C84614F7B9FC004DE43B /* login_btn_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E136C84514F7B9FC004DE43B /* login_btn_info@2x.png */; };
 		E13A944214DD1F99000C029F /* toast_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944014DD1F99000C029F /* toast_bg.png */; };
 		E13A944314DD1F99000C029F /* toast_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944114DD1F99000C029F /* toast_bg@2x.png */; };
 		E13A944614DD3F70000C029F /* dividing_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944514DD3F70000C029F /* dividing_line@2x.png */; };
@@ -553,7 +554,7 @@
 		9B3C6FC314E7ABBA003B0E52 /* first_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_background@2x.png"; sourceTree = "<group>"; };
 		9B3C6FC414E7ABBA003B0E52 /* first_img1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_img1@2x.png"; sourceTree = "<group>"; };
 		9B3C6FC514E7ABBA003B0E52 /* first_renren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_renren@2x.png"; sourceTree = "<group>"; };
-		9B3C6FC614E7ABBA003B0E52 /* first_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_start@2x.png"; sourceTree = "<group>"; };
+		9B3C6FC614E7ABBA003B0E52 /* login_btn_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_arrow@2x.png"; sourceTree = "<group>"; };
 		9B3C6FC714E7ABBA003B0E52 /* first_weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first_weibo@2x.png"; sourceTree = "<group>"; };
 		9B6FEAA114DD6DE800E1E677 /* label_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label_white.png; sourceTree = "<group>"; };
 		9B6FEAA214DD6DE800E1E677 /* label_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label_white@2x.png"; sourceTree = "<group>"; };
@@ -695,6 +696,7 @@
 		E12A9F1114EA946E00B03B5F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		E12F175C14CF080800B32229 /* NSNotificationCenter+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Addition.h"; sourceTree = "<group>"; };
 		E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Addition.m"; sourceTree = "<group>"; };
+		E136C84514F7B9FC004DE43B /* login_btn_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_info@2x.png"; sourceTree = "<group>"; };
 		E13A944014DD1F99000C029F /* toast_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toast_bg.png; sourceTree = "<group>"; };
 		E13A944114DD1F99000C029F /* toast_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toast_bg@2x.png"; sourceTree = "<group>"; };
 		E13A944514DD3F70000C029F /* dividing_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dividing_line@2x.png"; sourceTree = "<group>"; };
@@ -1605,7 +1607,6 @@
 				9B3C6FC314E7ABBA003B0E52 /* first_background@2x.png */,
 				9B3C6FC414E7ABBA003B0E52 /* first_img1@2x.png */,
 				9B3C6FC514E7ABBA003B0E52 /* first_renren@2x.png */,
-				9B3C6FC614E7ABBA003B0E52 /* first_start@2x.png */,
 				9B3C6FC714E7ABBA003B0E52 /* first_weibo@2x.png */,
 				736444FF14B9EDD00054AF56 /* blogcell.html */,
 				7341AC9714D52FD5003723A7 /* blogcelldetail.html */,
@@ -1804,6 +1805,8 @@
 		E1C0D71614F5DC1200F380C6 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				9B3C6FC614E7ABBA003B0E52 /* login_btn_arrow@2x.png */,
+				E136C84514F7B9FC004DE43B /* login_btn_info@2x.png */,
 				E1C0D72114F5E75A00F380C6 /* login_user_name_frame@2x.png */,
 				E1C0D71914F5DD4E00F380C6 /* login_bg@2x.png */,
 				E1C0D71714F5DC3D00F380C6 /* login_photo_frame@2x.png */,
@@ -2051,7 +2054,7 @@
 				9B3C6FC814E7ABBA003B0E52 /* first_background@2x.png in Resources */,
 				9B3C6FC914E7ABBA003B0E52 /* first_img1@2x.png in Resources */,
 				9B3C6FCA14E7ABBA003B0E52 /* first_renren@2x.png in Resources */,
-				9B3C6FCB14E7ABBA003B0E52 /* first_start@2x.png in Resources */,
+				9B3C6FCB14E7ABBA003B0E52 /* login_btn_arrow@2x.png in Resources */,
 				9B3C6FCC14E7ABBA003B0E52 /* first_weibo@2x.png in Resources */,
 				E183B4DA14E8165C00BBF63A /* pick_at_search_bg@2x.png in Resources */,
 				E12A9F0F14EA935600B03B5F /* LeaveMessageViewController.xib in Resources */,
@@ -2076,6 +2079,7 @@
 				E1C0D71A14F5DD4E00F380C6 /* login_bg@2x.png in Resources */,
 				E1C0D72014F5DDA300F380C6 /* LoginViewController.xib in Resources */,
 				E1C0D72214F5E75A00F380C6 /* login_user_name_frame@2x.png in Resources */,
+				E136C84614F7B9FC004DE43B /* login_btn_info@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

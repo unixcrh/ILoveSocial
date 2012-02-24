@@ -167,27 +167,27 @@
     return result;
 }
 
+- (void)forceRefreshScrollsToTopProperty {
+    [_contentViewControllerHeap enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIViewController *vc = obj;
+        if([vc isKindOfClass:[EGOTableViewController class]]) {
+            EGOTableViewController *ego = (EGOTableViewController *)vc;
+            if(idx == self.currentContentIndex)
+                ego.tableView.scrollsToTop = YES;
+            else 
+                ego.tableView.scrollsToTop = NO;
+        }
+    }];
+}
+
 - (void)setCurrentContentIndex:(NSUInteger)currentContentIndex {
     if(currentContentIndex >= self.contentViewControllerHeap.count)
         return;
     if(currentContentIndex == _currentContentIndex)
         return;
     [self scrollContentViewAtIndexPathToVisble:currentContentIndex animated:YES];
-    
-    UIViewController *oldVC = nil;
-    if(_currentContentIndex < _contentViewControllerHeap.count)
-        oldVC = [_contentViewControllerHeap objectAtIndex:_currentContentIndex];
-    UIViewController *newVC = [_contentViewControllerHeap objectAtIndex:currentContentIndex];
-    if([oldVC isKindOfClass:[EGOTableViewController class]]) {
-        EGOTableViewController *vc = (EGOTableViewController *)oldVC;
-        vc.tableView.scrollsToTop = NO;
-    }
-    if([newVC isKindOfClass:[EGOTableViewController class]]) {
-        EGOTableViewController *vc = (EGOTableViewController *)newVC;
-        vc.tableView.scrollsToTop = YES;
-    }
-
     _currentContentIndex = currentContentIndex;
+    [self forceRefreshScrollsToTopProperty];
 }
 
 - (NSUInteger)contentViewCount {
