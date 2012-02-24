@@ -26,6 +26,7 @@
     
     _repostToRenren=NO;
     _repostToWeibo=NO;
+    _comment=NO;
     
     if (_style==kRenrenStatus)
     {
@@ -48,9 +49,13 @@
         self.textView.selectedRange=NSMakeRange(0, 0);
         [self updateTextCount];
     }
-    
     if (_style==kNewBlog)
     {
+       if (((NewFeedBlog*)_feedData).shareID!=nil)
+       {
+           _commentBut.hidden=YES;
+           _commentLabelBut.hidden=YES;
+       }
         [self didClickPostToRenrenButton];
     }
     
@@ -90,6 +95,22 @@
             {
                 [client forwardStatus:((NewFeedData*)_feedData).author.userID statusID:((NewFeedData*)_feedData).source_ID andStatusString:self.textView.text];
                 
+            }
+        
+            
+            
+            
+            if (_comment==YES)
+            {
+                RenrenClient *client1 = [RenrenClient client];
+                [client1 setCompletionBlock:^(RenrenClient *client1) {
+                    if(client1.hasError)
+                        _postStatusErrorCode |= PostStatusErrorRenren;
+                    [self postStatusCompletion];
+                }];
+                _postCount++;
+                [client1 comment:((NewFeedData*)_feedData).source_ID userID:((NewFeedData*)_feedData).author.userID  text:self.textView.text toID:nil];
+
             }
         }
         if (_repostToWeibo==YES)
@@ -199,7 +220,7 @@
             }];
             _postCount++;
            
-            [client repost:((NewFeedData*)_feedData).source_ID text:self.textView.text commentStatus:YES commentOrigin:NO];
+            [client repost:((NewFeedData*)_feedData).source_ID text:self.textView.text commentStatus:_comment commentOrigin:NO];
             
         }
     }
@@ -219,6 +240,19 @@
             if (((NewFeedBlog*)_feedData).shareID==nil)
             {
             [client share:kNewBlog share_ID:((NewFeedBlog*)_feedData).source_ID user_ID:((NewFeedBlog*)_feedData).author.userID comment:self.textView.text];
+                if (_comment==YES)
+                {
+                    RenrenClient *client2 = [RenrenClient client];
+                    [client2 setCompletionBlock:^(RenrenClient *client2) {
+                        if(client2.hasError)
+                            _postStatusErrorCode |= PostStatusErrorRenren;
+                        [self postStatusCompletion];
+                    }];
+                    _postCount++;
+                    [client2 commentBlog:((NewFeedBlog*)_feedData).source_ID  uid:((NewFeedBlog*)_feedData).author.userID content:self.textView.text toID:nil secret:0];
+
+
+                }
             }
             else
             {
@@ -227,8 +261,6 @@
         }
         if (_repostToWeibo==YES)
         {
-            
-            
             WebStringToImageConverter* webStringConverter=[WebStringToImageConverter webStringToImage];
             webStringConverter.delegate=self;
             [webStringConverter startConvertBlogWithTitle:((NewFeedBlog*)_feedData).title detail:_blogData];
@@ -247,6 +279,12 @@
 {
     _repostToWeibo = !_repostToWeibo;
     [_repostToWeiboBut setPostPlatformButtonSelected:_repostToWeibo];
+}
+
+- (IBAction)didClickComment
+{
+    _comment = !_comment;
+    [_commentBut setPostPlatformButtonSelected:_comment];
 }
 
 -(void)setStyle:(kShareStyle)style

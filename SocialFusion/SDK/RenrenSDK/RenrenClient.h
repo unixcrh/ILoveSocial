@@ -62,6 +62,17 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 
 -(void)share:(int)type  share_ID:(NSString*)share_ID  user_ID:(NSString*)user_ID  comment:(NSString*)comment;
 
+- (void)comment:(NSString *)statusID
+         userID:(NSString*)user_ID
+           text:(NSString *)text
+           toID:(NSString*)to_ID;
+
+-(void)commentBlog:(NSString*)blog_ID
+               uid:(NSString*)u_ID
+           content:(NSString*)content
+              toID:(NSString*)to_ID
+            secret:(int)secret;
+
 
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;

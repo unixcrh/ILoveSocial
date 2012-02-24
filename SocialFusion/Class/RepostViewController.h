@@ -24,6 +24,8 @@ typedef  enum kShareStyle {
 {
     BOOL _repostToRenren;
     BOOL _repostToWeibo;
+    
+    BOOL _comment;
     kShareStyle _style;
     NewFeedRootData* _feedData;
     
@@ -31,6 +33,9 @@ typedef  enum kShareStyle {
     
     IBOutlet UIButton* _repostToRenrenBut;
     IBOutlet UIButton* _repostToWeiboBut;
+    
+    IBOutlet UIButton* _commentBut;
+    IBOutlet UIButton* _commentLabelBut;
 }
 
 
@@ -41,5 +46,6 @@ typedef  enum kShareStyle {
 -(void)setStyle:(kShareStyle)style;
 - (IBAction)didClickPostToRenrenButton;
 - (IBAction)didClickPostToWeiboButton;
+- (IBAction)didClickComment;
 
 @end

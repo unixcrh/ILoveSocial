@@ -96,7 +96,7 @@ hasError = _hasError;
 // please modify your permissions here
 - (void)authorize {
     if (![RenrenClient authorized]) {
-        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share read_user_album  publish_share",nil];
+        NSArray *permissions = [NSArray arrayWithObjects:@"read_user_feed photo_upload publish_feed status_update operate_like read_user_status read_user_status read_user_photo read_user_blog read_user_comment read_user_share read_user_album  publish_share publish_comment publish_blog",nil];
         [self authorizeWithRRAppAuth:YES safariAuth:YES permissions:permissions]; 
     }
 }
@@ -666,7 +666,7 @@ hasError = _hasError;
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",type];
     
-    NSLog(@"%@    %@    %@",tempString,share_ID,user_ID);
+   // NSLog(@"%@    %@    %@",tempString,share_ID,user_ID);
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"share.share", @"method",
                                    tempString,@"type",
@@ -676,5 +676,40 @@ hasError = _hasError;
                                    nil];
 	[self requestWithParams:params andDelegate:self];
     [tempString release];
+}
+
+
+- (void)comment:(NSString *)statusID
+         userID:(NSString*)user_ID
+           text:(NSString *)text
+           toID:(NSString*)to_ID;
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"status.addComment", @"method",
+                                   user_ID, @"owner_id", 
+                                   statusID, @"status_id",
+                                   text,@"content",
+                                   to_ID,@"rid",
+                                   nil];
+	[self requestWithParams:params andDelegate:self];
+}
+
+-(void)commentBlog:(NSString*)blog_ID
+               uid:(NSString*)u_ID
+           content:(NSString*)content
+              toID:(NSString*)to_ID
+            secret:(int)secret
+{
+    NSString* tempString=[[NSString alloc] initWithFormat:@"%d",secret];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"blog.addComment", @"method",
+                                   blog_ID, @"id", 
+                                   u_ID, @"uid",
+                                   content,@"content",
+                                   to_ID,@"rid",
+                                   tempString,@"type",nil];
+	[self requestWithParams:params andDelegate:self];
+    [tempString release];
+
 }
 @end

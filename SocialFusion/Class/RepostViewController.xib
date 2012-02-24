@@ -375,7 +375,6 @@
 								<string key="NSFrame">{{60, 0}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="483012100"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -394,6 +393,55 @@
 								</object>
 								<reference key="IBUIFontDescription" ref="37085435"/>
 								<reference key="IBUIFont" ref="54538869"/>
+							</object>
+							<object class="IBUIButton" id="146622432">
+								<reference key="NSNextResponder" ref="483012100"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{210, 0}, {22, 22}}</string>
+								<reference key="NSSuperview" ref="483012100"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="7403170"/>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
+								<reference key="IBUIHighlightedTitleColor" ref="336350534"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="372546890"/>
+								<reference key="IBUISelectedImage" ref="1008222773"/>
+								<reference key="IBUIHighlightedBackgroundImage" ref="891834330"/>
+								<reference key="IBUISelectedBackgroundImage" ref="891834330"/>
+								<reference key="IBUINormalBackgroundImage" ref="891834330"/>
+								<reference key="IBUIFontDescription" ref="37085435"/>
+								<reference key="IBUIFont" ref="54538869"/>
+							</object>
+							<object class="IBUIButton" id="7403170">
+								<reference key="NSNextResponder" ref="483012100"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{234, 0}, {72, 22}}</string>
+								<reference key="NSSuperview" ref="483012100"/>
+								<reference key="NSWindow"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
+								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
+								<string key="IBUINormalTitle">同时评论</string>
+								<reference key="IBUIHighlightedTitleColor" ref="336350534"/>
+								<object class="NSColor" key="IBUISelectedTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleColor" ref="336350534"/>
+								<reference key="IBUIHighlightedTitleShadowColor" ref="540421369"/>
+								<reference key="IBUISelectedTitleShadowColor" ref="540421369"/>
+								<reference key="IBUINormalTitleShadowColor" ref="540421369"/>
+								<reference key="IBUIFontDescription" ref="806275659"/>
+								<reference key="IBUIFont" ref="470384364"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{7, 186}, {306, 22}}</string>
@@ -472,6 +520,22 @@
 					<int key="connectionID">40</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_commentBut</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="146622432"/>
+					</object>
+					<int key="connectionID">45</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_commentLabelBut</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="7403170"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didClickPostToWeiboButton</string>
 						<reference key="source" ref="1061698737"/>
@@ -515,6 +579,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">didClickComment</string>
+						<reference key="source" ref="7403170"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">44</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -566,6 +639,8 @@
 							<reference ref="410573096"/>
 							<reference ref="627812399"/>
 							<reference ref="399633312"/>
+							<reference ref="7403170"/>
+							<reference ref="146622432"/>
 						</array>
 						<reference key="parent" ref="278398035"/>
 					</object>
@@ -629,6 +704,16 @@
 						<reference key="object" ref="399633312"/>
 						<reference key="parent" ref="483012100"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">41</int>
+						<reference key="object" ref="146622432"/>
+						<reference key="parent" ref="483012100"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">42</int>
+						<reference key="object" ref="7403170"/>
+						<reference key="parent" ref="483012100"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -647,6 +732,10 @@
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="41.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="42.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -660,7 +749,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -727,10 +816,15 @@
 					<string key="className">RepostViewController</string>
 					<string key="superclassName">PostViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="didClickComment">id</string>
 						<string key="didClickPostToRenrenButton">id</string>
 						<string key="didClickPostToWeiboButton">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="didClickComment">
+							<string key="name">didClickComment</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="didClickPostToRenrenButton">
 							<string key="name">didClickPostToRenrenButton</string>
 							<string key="candidateClassName">id</string>
@@ -741,10 +835,20 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_commentBut">UIButton</string>
+						<string key="_commentLabelBut">UIButton</string>
 						<string key="_repostToRenrenBut">UIButton</string>
 						<string key="_repostToWeiboBut">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_commentBut">
+							<string key="name">_commentBut</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_commentLabelBut">
+							<string key="name">_commentLabelBut</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="_repostToRenrenBut">
 							<string key="name">_repostToRenrenBut</string>
 							<string key="candidateClassName">UIButton</string>
