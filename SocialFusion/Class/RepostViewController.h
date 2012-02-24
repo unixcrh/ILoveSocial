@@ -16,7 +16,8 @@ typedef  enum kShareStyle {
     kAlbum          =6,
     kShare          =20,
     kRenrenStatus   =30,
-    kWeiboStatus    =40
+    kWeiboStatus    =40,
+
     
 } kShareStyle;
 @interface RepostViewController : PostViewController<WebStringToImageConverterDelegate>

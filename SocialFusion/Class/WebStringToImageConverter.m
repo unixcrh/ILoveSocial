@@ -15,10 +15,16 @@
 {
     [super dealloc];
 }
+
++(WebStringToImageConverter*) webStringToImage
+{
+    WebStringToImageConverter* webStringToImage=[[WebStringToImageConverter alloc] init];
+    return  webStringToImage;
+}
 -(void)startConvertBlogWithTitle:(NSString*)title detail:(NSString*)string
 {
      UIWebView* webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, 0, 420 , 480);
+    webView.frame=CGRectMake(0, 0, 400 , 480);
     webView.delegate=self;
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogtemplate" ofType:@"html"];
     
@@ -52,6 +58,8 @@
 
     [_delegate webStringToImageConverter:self didFinishLoadWebViewWithImage:viewImage];
 
+    
+    [self release];
     
 }
 @end

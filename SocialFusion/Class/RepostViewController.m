@@ -49,8 +49,11 @@
         [self updateTextCount];
     }
     
-
-
+    if (_style==kNewBlog)
+    {
+        [self didClickPostToRenrenButton];
+    }
+    
 }
 
 -(void)forwardWeibo:(NSString*)statusID
@@ -195,7 +198,7 @@
                 [self postStatusCompletion];
             }];
             _postCount++;
-            
+           
             [client repost:((NewFeedData*)_feedData).source_ID text:self.textView.text commentStatus:YES commentOrigin:NO];
             
         }
@@ -213,13 +216,20 @@
                 [self postStatusCompletion];
             }];
             _postCount++;
+            if (((NewFeedBlog*)_feedData).shareID==nil)
+            {
             [client share:kNewBlog share_ID:((NewFeedBlog*)_feedData).source_ID user_ID:((NewFeedBlog*)_feedData).author.userID comment:self.textView.text];
+            }
+            else
+            {
+                [client share:kShare share_ID:((NewFeedBlog*)_feedData).shareID user_ID:((NewFeedBlog*)_feedData).sharePersonID comment:self.textView.text];
+            }
         }
         if (_repostToWeibo==YES)
         {
             
             
-            WebStringToImageConverter* webStringConverter=[[WebStringToImageConverter alloc] init];
+            WebStringToImageConverter* webStringConverter=[WebStringToImageConverter webStringToImage];
             webStringConverter.delegate=self;
             [webStringConverter startConvertBlogWithTitle:((NewFeedBlog*)_feedData).title detail:_blogData];
         }

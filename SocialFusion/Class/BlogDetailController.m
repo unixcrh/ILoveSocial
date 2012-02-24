@@ -35,15 +35,14 @@
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcelldetail" ofType:@"html"];
             NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
             infoText=[infoText setWeibo:content];
-            _blogDetail=[[NSString alloc] initWithString:infoText];
+            _blogDetail=[[NSString alloc] initWithString:content];
+
             [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
             [infoText release];
             
         }
     }];
     [renren getBlog:[self.feedData getActor_ID] status_ID:[self.feedData getSource_ID]];
-    
-    
     
 }
 
