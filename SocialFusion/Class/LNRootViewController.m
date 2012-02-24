@@ -178,7 +178,7 @@
 
 - (void)didSelectLoginLabel {
     if(!self.loginViewController.isLoginValid) {
-        [[UIApplication sharedApplication] presentToast:@"请登陆人人网和新浪微博。" withVerticalPos:kToastBottomVerticalPosition];
+        [[UIApplication sharedApplication] presentToast:@"请登录人人网和新浪微博。" withVerticalPos:kToastBottomVerticalPosition];
     }
     else {
         self.userDict = self.loginViewController.userDict;
