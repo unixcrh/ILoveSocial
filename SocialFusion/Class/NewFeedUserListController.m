@@ -77,6 +77,7 @@
             NSArray *array = client.responseJSONObject;
             [self processRenrenData:array];
         }
+                self.loadingCount = self.loadingCount - 1;
     }];
     
     [renren getNewFeed:_pageNumber uid:self.processRenrenUser.userID];
@@ -92,6 +93,7 @@
             NSArray *array = client.responseJSONObject;
             [self processWeiboData:array];
         }
+                self.loadingCount = self.loadingCount - 1;
     }];
     [client getUserTimeline:self.processWeiboUser.userID SinceID:nil maxID:nil startingAtPage:_pageNumber count:30 feature:0];
 }
