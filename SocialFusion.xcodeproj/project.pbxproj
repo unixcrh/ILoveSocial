@@ -221,8 +221,9 @@
 		E12A9F1314EA946E00B03B5F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9F1114EA946E00B03B5F /* PostViewController.m */; };
 		E12F175E14CF080800B32229 /* NSNotificationCenter+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */; };
 		E136C84614F7B9FC004DE43B /* login_btn_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E136C84514F7B9FC004DE43B /* login_btn_info@2x.png */; };
-		E13A944214DD1F99000C029F /* toast_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944014DD1F99000C029F /* toast_bg.png */; };
-		E13A944314DD1F99000C029F /* toast_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944114DD1F99000C029F /* toast_bg@2x.png */; };
+		E136C84914F7CC15004DE43B /* toast_bg_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E136C84814F7CC15004DE43B /* toast_bg_red@2x.png */; };
+		E13A944214DD1F99000C029F /* toast_bg_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944014DD1F99000C029F /* toast_bg_green.png */; };
+		E13A944314DD1F99000C029F /* toast_bg_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944114DD1F99000C029F /* toast_bg_green@2x.png */; };
 		E13A944614DD3F70000C029F /* dividing_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13A944514DD3F70000C029F /* dividing_line@2x.png */; };
 		E13A944D14DD5372000C029F /* UIImageView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E13A944C14DD5371000C029F /* UIImageView+Addition.m */; };
 		E15F990E14D5CE3C0069072C /* new_status_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990414D5CE3C0069072C /* new_status_bg@2x.png */; };
@@ -703,8 +704,9 @@
 		E12F175C14CF080800B32229 /* NSNotificationCenter+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Addition.h"; sourceTree = "<group>"; };
 		E12F175D14CF080800B32229 /* NSNotificationCenter+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Addition.m"; sourceTree = "<group>"; };
 		E136C84514F7B9FC004DE43B /* login_btn_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_info@2x.png"; sourceTree = "<group>"; };
-		E13A944014DD1F99000C029F /* toast_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toast_bg.png; sourceTree = "<group>"; };
-		E13A944114DD1F99000C029F /* toast_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toast_bg@2x.png"; sourceTree = "<group>"; };
+		E136C84814F7CC15004DE43B /* toast_bg_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toast_bg_red@2x.png"; sourceTree = "<group>"; };
+		E13A944014DD1F99000C029F /* toast_bg_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toast_bg_green.png; sourceTree = "<group>"; };
+		E13A944114DD1F99000C029F /* toast_bg_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toast_bg_green@2x.png"; sourceTree = "<group>"; };
 		E13A944514DD3F70000C029F /* dividing_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dividing_line@2x.png"; sourceTree = "<group>"; };
 		E13A944B14DD5371000C029F /* UIImageView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Addition.h"; sourceTree = "<group>"; };
 		E13A944C14DD5371000C029F /* UIImageView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Addition.m"; sourceTree = "<group>"; };
@@ -1705,8 +1707,9 @@
 				E1FB62AF1424BC9F00828E24 /* tableviewCellTopShadow@2x.png */,
 				7398960514C157F900696C1C /* tape.png */,
 				7359F96214B3FB310032F09A /* temp.css */,
-				E13A944014DD1F99000C029F /* toast_bg.png */,
-				E13A944114DD1F99000C029F /* toast_bg@2x.png */,
+				E13A944014DD1F99000C029F /* toast_bg_green.png */,
+				E13A944114DD1F99000C029F /* toast_bg_green@2x.png */,
+				E136C84814F7CC15004DE43B /* toast_bg_red@2x.png */,
 				736341F414B6E5DC00A697A5 /* top.png */,
 				7317582314BC808100F14700 /* uploadphotocell.html */,
 				73DD2218144C0347003BED92 /* Weibo12.png */,
@@ -2038,8 +2041,8 @@
 				7307687714DABE97008DD967 /* photocelldetail.html in Resources */,
 				7307687A14DAC411008DD967 /* detail_photo.png in Resources */,
 				E1A9513F14DC046B00C49B8C /* new_status_photo_frame@2x.png in Resources */,
-				E13A944214DD1F99000C029F /* toast_bg.png in Resources */,
-				E13A944314DD1F99000C029F /* toast_bg@2x.png in Resources */,
+				E13A944214DD1F99000C029F /* toast_bg_green.png in Resources */,
+				E13A944314DD1F99000C029F /* toast_bg_green@2x.png in Resources */,
 				E13A944614DD3F70000C029F /* dividing_line@2x.png in Resources */,
 				9B6FEAA314DD6DE800E1E677 /* label_white.png in Resources */,
 				9B6FEAA414DD6DE800E1E677 /* label_white@2x.png in Resources */,
@@ -2090,6 +2093,7 @@
 				E1C0D72014F5DDA300F380C6 /* LoginViewController.xib in Resources */,
 				E1C0D72214F5E75A00F380C6 /* login_user_name_frame@2x.png in Resources */,
 				E136C84614F7B9FC004DE43B /* login_btn_info@2x.png in Resources */,
+				E136C84914F7CC15004DE43B /* toast_bg_red@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

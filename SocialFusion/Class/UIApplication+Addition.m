@@ -108,13 +108,16 @@ static BOOL _isShowingToast;
     }];
 }
 
-- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y andTime:(float)time
+- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y andTime:(float)time isError:(BOOL)isError
 {
     if(_isShowingToast)
         return;
     _isShowingToast = YES;
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - TOAST_VIEW_WIDTH) / 2, y, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
-    bgImageView.image = [UIImage imageNamed:@"toast_bg.png"];
+    if(isError)
+        bgImageView.image = [UIImage imageNamed:@"toast_bg_red@2x.png"];
+    else
+        bgImageView.image = [UIImage imageNamed:@"toast_bg_green.png"];
     
     UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, -3, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
     labelView.text = text;
@@ -145,14 +148,17 @@ static BOOL _isShowingToast;
         }];
     }];
 }
-- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y {
-    [self presentToast:text withVerticalPos:y andTime:1.2f];
+
+- (void)presentErrorToast:(NSString *)text withVerticalPos:(CGFloat)y {
+    [self presentToast:text withVerticalPos:y andTime:1.2f isError:YES];
 }
 
-
+- (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y {
+    [self presentToast:text withVerticalPos:y andTime:1.2f isError:NO];
+}
 
 - (void)presentToastwithShortInterval:(NSString *)text withVerticalPos:(CGFloat)y {
-       [self presentToast:text withVerticalPos:y andTime:0.5f];
+       [self presentToast:text withVerticalPos:y andTime:0.5f isError:NO];
 }
 
 
