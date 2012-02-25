@@ -220,7 +220,7 @@
 
 + (DetailImageViewController *)showDetailImageWithURL:(NSString*)bigURL context:(NSManagedObjectContext *)context {
     if(!bigURL)
-        return;
+        return nil;
     DetailImageViewController *vc = [[DetailImageViewController alloc] init];
     [vc show];
     [vc loadImageWithURL:bigURL context:context];
@@ -229,7 +229,7 @@
 
 + (DetailImageViewController *)showDetailImageWithRenrenUserID:(NSString*)userID photoID:(NSString *)photoID context:(NSManagedObjectContext *)context {
     if(!userID || !photoID)
-        return;
+        return nil;
     DetailImageViewController *vc = [[DetailImageViewController alloc] init];
     [vc show];
     [vc loadImageWithRenrenUserID:userID photoID:photoID context:context];
@@ -238,7 +238,7 @@
 
 + (DetailImageViewController *)showDetailImageWithImage:(UIImage *)image {
     if(!image)
-        return;
+        return nil;
     DetailImageViewController *vc = [[DetailImageViewController alloc] init];
     [vc show];
     [vc setImage:image];

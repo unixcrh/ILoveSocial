@@ -7,15 +7,16 @@
 //
 
 #import "LoginViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "LNRootViewController.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "WeiboClient.h"
 #import "RenrenClient.h"
-#import <QuartzCore/QuartzCore.h>
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
 #import "AppInfoViewController.h"
+#import "UIApplication+Addition.h"
 
 #define LOGOUT_RENREN NO
 #define LOGOUT_WEIBO YES
@@ -263,6 +264,7 @@
 }
 
 - (IBAction)didClickInfoButton:(id)sender {
+        
     AppInfoViewController *vc = [[AppInfoViewController alloc] init];
     vc.delegate = self;
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;

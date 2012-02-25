@@ -14,11 +14,11 @@ static UIViewController *_secondModalViewController;
 static UIView *_backView;
 static BOOL _isShowingToast;
 
-#define TOAST_VIEW_WIDTH    205
-#define TOAST_VIEW_HEIGHT   32
+#define TOAST_VIEW_WIDTH    205.0f
+#define TOAST_VIEW_HEIGHT   32.0f
 
-#define SCREEN_WIDTH    320
-#define SCREEN_HEIGHT   480
+#define SCREEN_WIDTH    320.0f
+#define SCREEN_HEIGHT   480.0f
 
 @implementation UIApplication (Addition)
 
@@ -119,15 +119,17 @@ static BOOL _isShowingToast;
     else
         bgImageView.image = [UIImage imageNamed:@"toast_bg_green.png"];
     
-    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, -3, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
+    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, TOAST_VIEW_WIDTH - 8.0f, TOAST_VIEW_HEIGHT)];
+    labelView.center = CGPointMake(TOAST_VIEW_WIDTH / 2 + 2.0f, TOAST_VIEW_HEIGHT / 2 - 3.0f);
+    labelView.font = [UIFont boldSystemFontOfSize:14.0f];
     labelView.minimumFontSize = 10.0f;
+    labelView.adjustsFontSizeToFitWidth = YES;
     labelView.text = text;
     labelView.backgroundColor = [UIColor clearColor];
     labelView.textColor = [UIColor whiteColor];
     labelView.shadowColor = [UIColor darkGrayColor];
     labelView.shadowOffset = CGSizeMake(0, 1.0f);
     labelView.textAlignment = UITextAlignmentCenter;
-    labelView.font = [UIFont boldSystemFontOfSize:14.0f];
     
     [bgImageView addSubview:labelView];
     [labelView release];

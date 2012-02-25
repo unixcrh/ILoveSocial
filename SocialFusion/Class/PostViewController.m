@@ -127,11 +127,11 @@
     NSInteger textCount = [self.textCountLabel.text integerValue];
     if ((textCount>=WEIBO_MAX_WORD)&&(_lastTextViewCount<WEIBO_MAX_WORD))
     {
-        [[UIApplication sharedApplication] presentToast:@"超出140字部分无法发送至新浪微博。" withVerticalPos:TOAST_POS_Y];
+        [[UIApplication sharedApplication] presentToast:@"超出140字部分将无法发送至新浪微博。" withVerticalPos:TOAST_POS_Y];
     }
     if ((textCount>=240)&&(_lastTextViewCount<240))
     {
-        [[UIApplication sharedApplication] presentToast:@"超出240部分将无法发送至人人网。" withVerticalPos:TOAST_POS_Y];
+        [[UIApplication sharedApplication] presentToast:@"超出240字部分将无法发送至人人网。" withVerticalPos:TOAST_POS_Y];
     }
     _lastTextViewCount=textCount;
 }
@@ -175,7 +175,7 @@
     self.toolBarView.frame = toolbarFrame;
     
     CGRect textViewFrame = self.textView.frame;
-    textViewFrame.size.height = self.view.frame.size.height - kbSize.height - textViewFrame.origin.y - toolbarFrame.size.height;
+    textViewFrame.size.height = self.view.frame.size.height - kbSize.height - textViewFrame.origin.y - TOOLBAR_HEIGHT;
     self.textView.frame = textViewFrame;
     
 }

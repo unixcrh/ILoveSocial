@@ -17,8 +17,10 @@ typedef enum {
     PostStatusErrorAll      = 3,
 } PostStatusErrorCode;
 
-#define TOAST_POS_Y   self.toolBarView.frame.origin.y - 20.0f
-#define WEIBO_MAX_WORD 140
+#define TOAST_POS_Y   (self.toolBarView.frame.origin.y + self.toolBarView.frame.size.height - 40.0f)
+#define WEIBO_MAX_WORD  140
+#define TOOLBAR_HEIGHT  22.0f
+
 @interface PostViewController : CoreDataViewController <UITextViewDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {
     PostStatusErrorCode _postStatusErrorCode;
     NSUInteger _postCount;
