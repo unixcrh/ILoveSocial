@@ -67,7 +67,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
+    self.descriptionTextView.scrollsToTop = NO;
+    
     [self configureUI];
 }
 

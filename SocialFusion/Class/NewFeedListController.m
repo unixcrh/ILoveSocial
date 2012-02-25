@@ -108,7 +108,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     _cellHeightHelper = [[NewFeedCellHeight alloc] init];
     [_cellHeightHelper myinit:self];
     
-    self.tableView.scrollsToTop = YES;
+    self.tableView.scrollsToTop = NO;
 }
 
 - (void)didReceiveMemoryWarning
