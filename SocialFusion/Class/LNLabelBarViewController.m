@@ -228,13 +228,16 @@
 }
 
 - (void)labelPageView:(LNLabelPageViewController *)pageView willOpenLabel:(LNLabelViewController *)label {
+    
+}
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label {
+    
     for(NSUInteger i = 0; i < self.labelPages.count; i++) {
         LNLabelPageViewController *page = [self.labelPages objectAtIndex:i];
         [page reserveParentLabelPageData];
     } 
-}
-
-- (void)labelPageView:(LNLabelPageViewController *)pageView didOpenLabel:(LNLabelViewController *)label {
+    
     _currentParentLabelIndex = pageView.page * 4 + label.index;
     [_scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
     
@@ -261,17 +264,17 @@
     [self popLabelPages];
     [_scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width * pageIndex, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
     self.pageControl.currentPage = pageIndex;
-    LNLabelPageViewController *page = [self.labelPages objectAtIndex:pageIndex];
-    [page closeParentLabelAnimation];
-}
-
-- (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabel:(LNLabelViewController *)label {
     
     for(NSUInteger i = 0; i < self.labelPages.count; i++) {
         LNLabelPageViewController *page = [self.labelPages objectAtIndex:i];
         [page forceRefreshParentLabelPageData];
     }
     
+    LNLabelPageViewController *page = [self.labelPages objectAtIndex:pageIndex];
+    [page closeParentLabelAnimation];
+}
+
+- (void)labelPageView:(LNLabelPageViewController *)pageView didCloseLabel:(LNLabelViewController *)label {
     if(_popPageManuallyCompletion) {
         if(_popPageManuallyCompletion) {
             _popPageManuallyCompletion();

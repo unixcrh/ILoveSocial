@@ -22,6 +22,8 @@
 @property(nonatomic, assign) BOOL logoutClient;
 - (void)rrDidLogin;
 - (void)wbDidLogin;
+- (void)refreshRenrenUserInfoUI;
+- (void)refreshWeiboUserInfoUI;
 @end
 
 @implementation LoginViewController
@@ -77,23 +79,7 @@
         }
         else {
             self.renrenUser = self.currentRenrenUser;
-            [self.renrenUserNameLabel setText:[ud stringForKey:@"renren_Name"]];
-            
-            self.renrenPhotoImageView.clipsToBounds=YES;
-            self.renrenPhotoImageView.contentMode=UIViewContentModeScaleAspectFill;
-            Image *image = [Image imageWithURL:[ud stringForKey:@"renren_Head"] inManagedObjectContext:self.managedObjectContext];
-            if (image == nil)
-            {
-                [self.renrenPhotoImageView loadImageFromURL:[ud stringForKey:@"renren_Head"] completion:^{
-                    [self.renrenPhotoImageView fadeIn];
-                } cacheInContext:self.managedObjectContext];
-            }
-            else
-            {
-                [self.renrenPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
-            }
-            
-            
+            [self refreshRenrenUserInfoUI];
         }
 	} else {
 		[self.renrenUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
@@ -107,24 +93,7 @@
         }
         else {
             self.weiboUser = self.currentWeiboUser;
-            [self.weiboUserNameLabel setText:[ud stringForKey:@"weibo_Name"]];
-            
-            self.weiboPhotoImageView.clipsToBounds=YES;
-            self.weiboPhotoImageView.contentMode=UIViewContentModeScaleAspectFill;
-            Image *image = [Image imageWithURL:[ud stringForKey:@"weibo_Head"] inManagedObjectContext:self.managedObjectContext];
-            if (image == nil)
-            {
-                [self.weiboPhotoImageView loadImageFromURL:[ud stringForKey:@"weibo_Head"] completion:^{
-                    [self.weiboPhotoImageView fadeIn];
-                } cacheInContext:self.managedObjectContext];
-            }
-            else
-            {
-                [self.weiboPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
-            }
-            
-            
-            
+            [self refreshWeiboUserInfoUI];
         }
 	} else {
 		[self.weiboUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
@@ -195,110 +164,55 @@
 }
 
 - (void)wbDidLogin {
-    NSLog(@"weibo did login");
-    // get user info
     WeiboClient *weibo = [WeiboClient client];
     [weibo setCompletionBlock:^(WeiboClient *client) {
         if (!weibo.hasError) {
-            NSLog(@"weibo did get user info");
             NSDictionary *dict = client.responseJSONObject;
-            NSLog(@"weibo user info:%@", dict);
-            NSString *weiboName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"screen_name"]];
-            NSString *weiboID = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
-            NSString *weiboHead=[dict objectForKey:@"profile_image_url"];
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setValue:weiboName forKey:@"weibo_Name"];
-            [ud setValue:weiboID forKey:@"weibo_ID"];
-            [ud setValue:weiboHead forKey:@"weibo_Head"];
-            [ud synchronize];
-            [self.weiboUserNameLabel setText:weiboName];
-            
-            self.weiboPhotoImageView.clipsToBounds=YES;
-            self.weiboPhotoImageView.contentMode=UIViewContentModeScaleAspectFill;
-            Image *image = [Image imageWithURL:weiboHead inManagedObjectContext:self.managedObjectContext];
-            if (image == nil)
-            {
-                [self.weiboPhotoImageView loadImageFromURL:weiboHead completion:^{
-                    [self.weiboPhotoImageView fadeIn];
-                } cacheInContext:self.managedObjectContext];
-            }
-            else
-            {
-                  [self.weiboPhotoImageView fadeIn];
-                [self.weiboPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
-            }
-            
-            
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
-            self.weiboUser = self.currentWeiboUser;
             [self.managedObjectContext processPendingChanges];
+            
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            [ud setValue:self.currentWeiboUser.userID forKey:@"weibo_ID"];
+            [ud synchronize];
+            
+            self.weiboUser = self.currentWeiboUser;
+            [self refreshWeiboUserInfoUI];
         }
     }];
     [weibo getUser:[WeiboClient currentUserID]];
 }
 
-- (void)rrDidLogin
-{
-    NSLog(@"renren did login");
-    // get user info
+- (void)rrDidLogin {
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if (!renren.hasError) {
             NSArray *result = client.responseJSONObject;
             NSDictionary* dict = [result lastObject];
-            NSLog(@"renren user info:%@", dict);
-            NSString *renrenName = [dict objectForKey:@"name"];
-            NSString *renrenID = [dict objectForKey:@"uid"];
-            NSString *picURL=[dict objectForKey:@"headurl"];
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setValue:renrenName forKey:@"renren_Name"];
-            [ud setValue:renrenID forKey:@"renren_ID"];
-              [ud setValue:picURL forKey:@"renren_Head"];
-            [ud synchronize];
-            [self.renrenUserNameLabel setText:renrenName];
-            
-            
-            self.renrenPhotoImageView.clipsToBounds=YES;
-            self.renrenPhotoImageView.contentMode=UIViewContentModeScaleAspectFill;
-            Image *image = [Image imageWithURL:picURL inManagedObjectContext:self.managedObjectContext];
-            if (image == nil)
-            {
-                [self.renrenPhotoImageView loadImageFromURL:picURL completion:^{
-                    [self.renrenPhotoImageView fadeIn];
-                } cacheInContext:self.managedObjectContext];
-            }
-            else
-            {
-                  [self.renrenPhotoImageView fadeIn];
-                [self.renrenPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
-            }
-            
-
-            
-            
             self.currentRenrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
-            self.renrenUser = self.currentRenrenUser;
             [self.managedObjectContext processPendingChanges];
+           
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            [ud setValue:self.currentRenrenUser.userID forKey:@"renren_ID"];
+            [ud synchronize];
+
+            self.renrenUser = self.currentRenrenUser;
+            [self refreshRenrenUserInfoUI];
         };
     }];
 	[renren getUserInfo];
 }
 
-- (void)wbDidLogout
-{
+- (void)wbDidLogout {
     [self.weiboUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
     [self.weiboPhotoImageView fadeOut];
 }
 
-- (void)rrDidLogout
-{
+- (void)rrDidLogout {
     [self.renrenUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
     [self.renrenPhotoImageView  fadeOut];
 }
 
-//alertView登出的delegate
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if(self.logoutClient == LOGOUT_RENREN) {
         if (buttonIndex == 0) {
             [RenrenClient signout];
@@ -318,6 +232,34 @@
 
 - (BOOL)isLoginValid {
     return ([RenrenClient authorized] && [WeiboClient authorized]);
+}
+
+- (void)refreshRenrenUserInfoUI {
+    self.renrenUserNameLabel.text = self.currentRenrenUser.name;
+    Image *image = [Image imageWithURL:self.currentRenrenUser.tinyURL inManagedObjectContext:self.managedObjectContext];
+    if (image == nil) {
+        [self.renrenPhotoImageView loadImageFromURL:self.currentRenrenUser.tinyURL completion:^{
+            [self.renrenPhotoImageView fadeIn];
+        } cacheInContext:self.managedObjectContext];
+    }
+    else {
+        [self.renrenPhotoImageView fadeIn];
+        [self.renrenPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
+    }
+}
+
+- (void)refreshWeiboUserInfoUI {
+    self.weiboUserNameLabel.text = self.currentWeiboUser.name;
+    Image *image = [Image imageWithURL:self.currentWeiboUser.tinyURL inManagedObjectContext:self.managedObjectContext];
+    if (image == nil) {
+        [self.weiboPhotoImageView loadImageFromURL:self.currentWeiboUser.tinyURL completion:^{
+            [self.renrenPhotoImageView fadeIn];
+        } cacheInContext:self.managedObjectContext];
+    }
+    else {
+        [self.weiboPhotoImageView fadeIn];
+        [self.weiboPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
+    }
 }
 
 @end

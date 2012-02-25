@@ -123,12 +123,10 @@
     [UIView animateWithDuration:0.3f delay:0 options:!UIViewAnimationOptionAllowUserInteraction animations:^{
         for(int i = 0; i < _labelViews.count; i++) {
             LNLabelViewController *label = ((LNLabelViewController *)[_labelViews objectAtIndex:i]);
-            //CGRect oldFrame = label.view.frame;
-            //CGRect newFrame;
-            //newFrame = CGRectMake(LABEL_OFFSET_X + label.index * LABEL_SPACE, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
-            LabelInfo *info = [_labelInfoSubArray objectAtIndex:i];
-            label.titleLabel.text = info.labelName;
-            label.view.frame = label.reservedFrame;
+            CGRect oldFrame = label.view.frame;
+            CGRect newFrame;
+            newFrame = CGRectMake(LABEL_OFFSET_X + label.index * LABEL_SPACE, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            label.view.frame = newFrame;
         }
     } completion:^(BOOL finished) {
         if([self.delegate respondsToSelector:@selector(labelPageView: didCloseLabel:)]) {
@@ -339,8 +337,7 @@
     self.view.frame = _reservedFrame;
     for(NSUInteger i = 0; i < _labelInfoSubArray.count; i++) {
         LNLabelViewController *label = [_labelViews objectAtIndex:i];
-        LabelInfo *info = [_labelInfoSubArray objectAtIndex:i];
-        label.titleLabel.text = info.labelName;
+        label.titleLabel.text = label.labelName;
     }
     for(LNLabelViewController *label in _labelViews) {
         label.view.frame = label.reservedFrame;
