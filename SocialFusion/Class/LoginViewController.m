@@ -264,13 +264,18 @@
 
 - (IBAction)didClickInfoButton:(id)sender {
     AppInfoViewController *vc = [[AppInfoViewController alloc] init];
-    //vc.delegate = self;
+    vc.delegate = self;
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:vc animated:YES completion:^{
-        
-    }];
+    [self presentModalViewController:vc animated:YES];
     [vc release];
+}
+
+#pragma mark -
+#pragma mark AppInfoViewController delegate
+
+- (void)didFinishShow {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

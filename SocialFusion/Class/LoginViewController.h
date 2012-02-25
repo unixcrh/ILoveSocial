@@ -8,8 +8,9 @@
 
 #import "CoreDataViewController.h"
 #import "WeiboClient.h"
+#import "AppInfoViewController.h"
 
-@interface LoginViewController : CoreDataViewController<UIAlertViewDelegate, WBSessionDelegate>
+@interface LoginViewController : CoreDataViewController<UIAlertViewDelegate, WBSessionDelegate, AppInfoViewControllerDelegate>
 
 @property(nonatomic, retain) UIAlertView *hasLoggedInAlertView;
 @property(nonatomic, retain) IBOutlet UILabel *weiboUserNameLabel;
