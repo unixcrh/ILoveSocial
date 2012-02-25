@@ -333,7 +333,11 @@
             [self raiseLabelBarViewAnimationWithCompletion:^{
                 self.contentViewController.view.userInteractionEnabled = YES;
                 [self.labelBarViewController hideLoginLabelAnimated:YES];
+                
                 [self performSelector:@selector(loadContentView) withObject:nil afterDelay:0.6f];
+                
+                [self.loginViewController.view removeFromSuperview];
+                self.loginViewController = nil;
             }];
         }];
     }

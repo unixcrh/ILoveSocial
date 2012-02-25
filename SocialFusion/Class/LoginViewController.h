@@ -22,5 +22,6 @@
 
 - (IBAction)didClickRenrenLoginButton:(id)sender;
 - (IBAction)didClickWeiboLoginButton:(id)sender;
+- (IBAction)didClickInfoButton:(id)sender;
 
 @end

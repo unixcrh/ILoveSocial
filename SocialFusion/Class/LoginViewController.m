@@ -15,6 +15,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"
+#import "AppInfoViewController.h"
+
 #define LOGOUT_RENREN NO
 #define LOGOUT_WEIBO YES
 
@@ -120,49 +122,6 @@
     }
 }
 
-- (IBAction)didClickWeiboLoginButton:(id)sender
-{
-	if (![WeiboClient authorized]) {
-        /*  WeiboClient *weibo = [WeiboClient client];
-         [weibo setCompletionBlock:^(WeiboClient *client) {
-         [self wbDidLogin];
-         }];
-         
-         [weibo authWithUsername:@"wzc345@gmail.com" password:@"5656496" autosave:YES];
-         */
-        
-        WeiboClient *weibo = [WeiboClient client];
-        // [weibo setDelegate:self];
-        //[weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
-        [weibo authorize:nil delegate:self];
-        
-        
-    }
-    else {
-        [self showHasLoggedInAlert:LOGOUT_WEIBO];
-    }
-}
-
-
-- (IBAction)didClickRenrenLoginButton:(id)sender
-{    
-	if (![RenrenClient authorized]) {
-        RenrenClient *renren = [RenrenClient client];
-        [renren setCompletionBlock:^(RenrenClient *client) {
-            [self rrDidLogin];
-        }];
-        [renren authorize];
-	}
-    else {
-        [self showHasLoggedInAlert:LOGOUT_RENREN];
-    }
-}
-
-- (void)wbDidNotLogin:(BOOL)cancelled
-{
-    
-}
-
 - (void)wbDidLogin {
     WeiboClient *weibo = [WeiboClient client];
     [weibo setCompletionBlock:^(WeiboClient *client) {
@@ -260,6 +219,58 @@
         [self.weiboPhotoImageView fadeIn];
         [self.weiboPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
     }
+}
+
+#pragma mark -
+#pragma mark IBActions 
+
+- (IBAction)didClickWeiboLoginButton:(id)sender
+{
+	if (![WeiboClient authorized]) {
+        /*  WeiboClient *weibo = [WeiboClient client];
+         [weibo setCompletionBlock:^(WeiboClient *client) {
+         [self wbDidLogin];
+         }];
+         
+         [weibo authWithUsername:@"wzc345@gmail.com" password:@"5656496" autosave:YES];
+         */
+        
+        WeiboClient *weibo = [WeiboClient client];
+        // [weibo setDelegate:self];
+        //[weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
+        [weibo authorize:nil delegate:self];
+        
+        
+    }
+    else {
+        [self showHasLoggedInAlert:LOGOUT_WEIBO];
+    }
+}
+
+
+- (IBAction)didClickRenrenLoginButton:(id)sender
+{    
+	if (![RenrenClient authorized]) {
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            [self rrDidLogin];
+        }];
+        [renren authorize];
+	}
+    else {
+        [self showHasLoggedInAlert:LOGOUT_RENREN];
+    }
+}
+
+- (IBAction)didClickInfoButton:(id)sender {
+    AppInfoViewController *vc = [[AppInfoViewController alloc] init];
+    //vc.delegate = self;
+    vc.modalPresentationStyle = UIModalPresentationCurrentContext;
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:vc animated:YES completion:^{
+        
+    }];
+    [vc release];
 }
 
 @end
