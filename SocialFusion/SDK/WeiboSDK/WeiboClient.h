@@ -7,7 +7,7 @@
 //
 
 #import "OAuthHTTPRequest.h"
-#import "WBDialog.h"
+#import "WBWebDialogViewController.h"
 @class WeiboClient;
 @class User;
 @class SocialFusionViewController;

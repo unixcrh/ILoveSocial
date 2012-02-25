@@ -11,8 +11,8 @@
 #import "OAAsynchronousDataFetcher.h"
 #import "OAToken.h"
 #import "OAServiceTicket.h"
-@protocol WBDialogDelegate;
 
+@protocol WBDialogDelegate;
 
 @interface WBWebDialogViewController : ROBaseDialogViewController<UIWebViewDelegate>
 {

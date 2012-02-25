@@ -102,7 +102,6 @@
 		73D21C6514B5A10900EFA9A5 /* normalcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73D21C6414B5A10900EFA9A5 /* normalcell.html */; };
 		73DA39E114EDED750081E38B /* WebStringToImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA39E014EDED750081E38B /* WebStringToImageConverter.m */; };
 		73DA39E814EE21B20081E38B /* blogtemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 73DA39E714EE21B20081E38B /* blogtemplate.html */; };
-		73DD21F6144BC945003BED92 /* WBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DD21F5144BC945003BED92 /* WBDialog.m */; };
 		73DD2216144C0216003BED92 /* Renren12.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2214144C0216003BED92 /* Renren12.png */; };
 		73DD2217144C0216003BED92 /* Renren12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2215144C0216003BED92 /* Renren12@2x.png */; };
 		73DD221A144C0347003BED92 /* Weibo12.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DD2218144C0347003BED92 /* Weibo12.png */; };
@@ -508,8 +507,6 @@
 		73DA39DF14EDED750081E38B /* WebStringToImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebStringToImageConverter.h; sourceTree = "<group>"; };
 		73DA39E014EDED750081E38B /* WebStringToImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebStringToImageConverter.m; sourceTree = "<group>"; };
 		73DA39E714EE21B20081E38B /* blogtemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blogtemplate.html; sourceTree = "<group>"; };
-		73DD21F4144BC945003BED92 /* WBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBDialog.h; sourceTree = "<group>"; };
-		73DD21F5144BC945003BED92 /* WBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBDialog.m; sourceTree = "<group>"; };
 		73DD2214144C0216003BED92 /* Renren12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Renren12.png; sourceTree = "<group>"; };
 		73DD2215144C0216003BED92 /* Renren12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Renren12@2x.png"; sourceTree = "<group>"; };
 		73DD2218144C0347003BED92 /* Weibo12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Weibo12.png; sourceTree = "<group>"; };
@@ -1768,8 +1765,6 @@
 				E1ABA478141FA882002CD0A6 /* Base64Transcoder.h */,
 				736B52D214F89CC2007A7EEB /* WBWebDialogViewController.h */,
 				736B52D314F89CC2007A7EEB /* WBWebDialogViewController.m */,
-				73DD21F4144BC945003BED92 /* WBDialog.h */,
-				73DD21F5144BC945003BED92 /* WBDialog.m */,
 				E1ABA482141FA882002CD0A6 /* OAuthHTTPRequest.h */,
 				E1ABA483141FA882002CD0A6 /* OAuthHTTPRequest.m */,
 				E1ABA484141FA882002CD0A6 /* WeiboClient.h */,
@@ -2159,7 +2154,6 @@
 				73F4F978144A9EA400A692F7 /* OAServiceTicket.m in Sources */,
 				73F4F979144A9EA400A692F7 /* OAToken.m in Sources */,
 				73F4F9C5144AAD8D00A692F7 /* WBRequest.m in Sources */,
-				73DD21F6144BC945003BED92 /* WBDialog.m in Sources */,
 				7319DCD7144D6FFC006FE917 /* StatusDetailController.m in Sources */,
 				7305A696144DB38C00ED59AA /* StatusCommentCell.m in Sources */,
 				73DE4B84144E5EDE00547931 /* CommonFunction.m in Sources */,

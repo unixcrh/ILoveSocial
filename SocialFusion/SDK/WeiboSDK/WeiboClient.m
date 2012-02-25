@@ -14,8 +14,6 @@
 #import "OADataFetcher.h"
 #import "OAToken.h"
 
-#import "WBDialog.h"
-#import "WBWebDialogViewController.h"
 #define RequestURL @"http://api.t.sina.com.cn/oauth/request_token" 
 #define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
 
@@ -380,7 +378,6 @@ report_completion:
 - (void)authorize:(NSArray *)permissions
          delegate:(id<WBSessionDelegate>)delegate {
     
-    NSLog(@"OAuth2.0 请求认证授权 。。。");
     _sessionDelegate = delegate;
     [self authorizeWithRRAppAuth:YES safariAuth:YES]; 
 }
@@ -427,19 +424,12 @@ report_completion:
     
     NSString *responseBody = [[NSString alloc] initWithData:data
                                                    encoding:NSUTF8StringEncoding];
-    // NSLog(@"Ëé∑ÂæóÊú™ÊéàÊùÉÁöÑKEY:%@",responseBody);
     
     OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
     
     
     
     NSString *tt = [token.key URLEncodedString];
-    
-    
-    NSLog(@"oauthtoken:%@",tt);
-    
-    
-    
     
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    tt, @"oauth_token",
@@ -468,24 +458,8 @@ report_completion:
 
 
 - (void)wbDialogLogin:(NSString *)token {
-    //       self.accessToken = token;
-    // self.expirationDate = expirationDate;
-    //    self.secret=[self getSecretKeyByToken:token];
-    //  self.sessionKey=[self getSessionKeyByToken:token];	
-    //用户信息保存到本地
-    //   if ([self.sessionDelegate respondsToSelector:@selector(wbDidLogin)]) {  
     [_sessionDelegate wbDidLogin];
-    //    }
-    
 }
-
-
-- (void)dialog:(WBDialog*)dialog didFailWithError:(NSError *)error
-{
-    
-}
-////////////////////////////////////////////////////////
-
 
 
 
