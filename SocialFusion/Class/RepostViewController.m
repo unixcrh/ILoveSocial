@@ -364,11 +364,13 @@
             _postCount++;
             if (_commetData!=nil)
             {
-            [client2 commentBlog:((NewFeedBlog*)_feedData).source_ID  uid:((NewFeedBlog*)_feedData).author.userID content:self.textView.text toID:_commetData.actor_ID secret:0];     
+                
+            
+            [client2 commentShare:((NewFeedBlog*)_feedData).shareID  uid:((NewFeedBlog*)_feedData).sharePersonID content:self.textView.text toID:_commetData.actor_ID ];     
             }
             else
             {
-            [client2 commentBlog:((NewFeedBlog*)_feedData).source_ID  uid:((NewFeedBlog*)_feedData).author.userID content:self.textView.text toID:nil secret:0];
+            [client2 commentShare:((NewFeedBlog*)_feedData).shareID  uid:((NewFeedBlog*)_feedData).sharePersonID content:self.textView.text toID:nil ];
             }
         }
 

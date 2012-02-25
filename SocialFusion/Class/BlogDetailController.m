@@ -115,6 +115,7 @@
     vc.feedData=self.feedData;
     
     vc.commetData=data;
+    vc.blogData=_blogDetail;
     
     [vc setcommentPage:YES];
     [[UIApplication sharedApplication] presentModalViewController:vc];
