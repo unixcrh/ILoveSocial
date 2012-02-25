@@ -183,7 +183,13 @@
     else {
         self.userDict = self.loginViewController.userDict;
         self.labelBarViewController.loginButton.userInteractionEnabled = NO;
-        [self dropLoginViewAnimated:YES];
+        if(self.loginViewController.modalViewController) {
+            [self.loginViewController dismissViewControllerAnimated:YES completion:^{
+                [self dropLoginViewAnimated:YES];
+            }];
+        }
+        else 
+            [self dropLoginViewAnimated:YES];
     }
 }
 
