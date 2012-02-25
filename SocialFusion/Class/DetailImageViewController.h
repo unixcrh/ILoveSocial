@@ -8,23 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailImageViewController : UIViewController<UIScrollViewDelegate> {
-    UIImageView* _imageView;
-    UIButton* _saveButton;
-    UIScrollView* _scrollView;
-    UIActivityIndicatorView *_activityView;
-}
+@protocol DetailImageViewControllerDelegate;
+
+@interface DetailImageViewController : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIButton *saveButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityView;
+@property (nonatomic, assign) id<DetailImageViewControllerDelegate> delegate;
 
 - (IBAction)didClickSaveButton:(id)sender;
 
-+ (void)showDetailImageWithURL:(NSString*)bigURL context:(NSManagedObjectContext *)context;
-+ (void)showDetailImageWithRenrenUserID:(NSString*)userID photoID:(NSString *)photoID context:(NSManagedObjectContext *)context;
-+ (void)showDetailImageWithImage:(UIImage *)image;
++ (DetailImageViewController *)showDetailImageWithURL:(NSString*)bigURL context:(NSManagedObjectContext *)context;
++ (DetailImageViewController *)showDetailImageWithRenrenUserID:(NSString*)userID photoID:(NSString *)photoID context:(NSManagedObjectContext *)context;
++ (DetailImageViewController *)showDetailImageWithImage:(UIImage *)image;
+
+@end
+
+@protocol DetailImageViewControllerDelegate <NSObject>
+
+@optional
+- (void)didFinishShow;
 
 @end
 

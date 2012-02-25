@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PostViewController.h"
 #import "PickAtListViewController.h"
+#import "DetailImageViewController.h"
 
 
-@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate> {
+@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, DetailImageViewControllerDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
     
@@ -33,5 +34,7 @@
 
 - (IBAction)didClickPhotoCancelButton:(id)sender;
 - (IBAction)didClickPickImageButton:(id)sender;
+
+- (IBAction)didClickPhotoFrameButton:(id)sender;
 
 @end

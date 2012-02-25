@@ -14,8 +14,9 @@
 #import "UIImageView+Addition.h"
 #import "UIButton+Addition.h"
 #import "NSString+WeiboSubString.h"
-#define USER_PHOTO_CENTER CGPointMake(260.0f, -9.0f)
-#define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 100.0f)
+
+#define USER_PHOTO_CENTER CGPointMake(260.0f, 29.0f)
+#define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 150.0f)
 
 #define USER_PHOTO_SIDE_LENGTH 40.0f
 
@@ -75,11 +76,13 @@
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
     if(!_postToWeibo && !_postToRenren) {
-        [[UIApplication sharedApplication] presentToast:@"没有选中任何平台。" withVerticalPos:TOAST_POS_Y];
+        [[UIApplication sharedApplication] presentToast:@"请选择发送平台。" withVerticalPos:TOAST_POS_Y];
         return;
     }
-   // if(![self isTextValid]) 
-     //   return;
+    if([self.textView.text isEqualToString:@""] && !self.photoImageView.image) {
+        [[UIApplication sharedApplication] presentToast:@"请输入内容或添加照片。" withVerticalPos:TOAST_POS_Y];
+        return;
+    }
     
     if(_postToWeibo) {
         WeiboClient *client = [WeiboClient client];
@@ -152,6 +155,20 @@
     [self presentModalViewController:ipc animated:YES]; 
 }
 
+- (IBAction)didClickPhotoFrameButton:(id)sender {
+    [self.textView resignFirstResponder];
+    DetailImageViewController *vc = [DetailImageViewController showDetailImageWithImage:self.photoImageView.image];
+    vc.saveButton.hidden = YES;
+    vc.delegate = self;
+}
+
+#pragma mark -
+#pragma mark DetailImageViewController delegate
+
+- (void)didFinishShow {
+    [self.textView becomeFirstResponder];
+}
+
 #pragma mark -
 #pragma mark pick photo methods
 
@@ -219,7 +236,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    NSLog(@"image info:%@", info);
     [picker dismissViewControllerAnimated:YES completion:^{
         [self presentUserPhoto:image];
     }];
@@ -252,12 +268,8 @@
         {
             break;
         }
-        
     }
-        
-   return [string substringToIndex:a+b+l];
-    
-
+   return [string substringToIndex:a+b+l];    
 }
 
 

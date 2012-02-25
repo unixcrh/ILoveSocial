@@ -74,7 +74,7 @@
 {
     if ([self.renrenUser isEqualToUser:self.currentRenrenUser]) {
         self.followButton.hidden = YES;
-        self.relationshipLabel.text = @"当前人人用户。";
+        self.relationshipLabel.text = @"当前人人网用户。";
         self.atButton.hidden = YES;
     }
     else {

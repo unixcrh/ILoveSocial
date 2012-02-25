@@ -14,8 +14,6 @@
 #import "UIImageView+Addition.h"
 #import "UIButton+Addition.h"
 
-#define TOOLBAR_HEIGHT  22
-
 @interface PostViewController()
 
 - (void)dismissView;
@@ -96,29 +94,10 @@
     
 }
 
-
-
-
-
 - (void)updateTextCount {
     NSString *text = self.textView.text;
-
     self.textCountLabel.text = [NSString stringWithFormat:@"%d", [self sinaCountWord:text]];
     
-}
-
-- (BOOL)isTextValid {
-    BOOL result = YES;
-    NSInteger textCount = [self.textCountLabel.text integerValue];
-    if(textCount <= 0) {
-        result = NO;
-        [[UIApplication sharedApplication] presentToast:@"请输入内容。" withVerticalPos:TOAST_POS_Y];
-    }
-    else if(textCount > 140) {
-        result = NO;
-        [[UIApplication sharedApplication] presentToast:@"内容超过140字限制。" withVerticalPos:TOAST_POS_Y];
-    }
-    return result;
 }
 
 - (void)postStatusCompletion {
@@ -126,13 +105,13 @@
     if(_postCount == 0) {
         switch (_postStatusErrorCode) {
             case PostStatusErrorAll:
-                [[UIApplication sharedApplication] presentErrorToast:@"发送到微博、人人均失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"发送到新浪微博、人人网均失败。" withVerticalPos:kToastBottomVerticalPosition];
                 break;
             case PostStatusErrorWeibo:
-                [[UIApplication sharedApplication] presentErrorToast:@"发送到微博失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"发送到新浪微博失败。" withVerticalPos:kToastBottomVerticalPosition];
                 break;
             case PostStatusErrorRenren:
-                [[UIApplication sharedApplication] presentErrorToast:@"发送到人人失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"发送到人人网失败。" withVerticalPos:kToastBottomVerticalPosition];
                 break;
             case PostStatusErrorNone:
                 [[UIApplication sharedApplication] presentToast:@"发送成功。" withVerticalPos:kToastBottomVerticalPosition];
@@ -143,21 +122,23 @@
     }
 }
 
--(void) showTextWarning
+- (void)showTextWarning
 {
     NSInteger textCount = [self.textCountLabel.text integerValue];
     if ((textCount>=WEIBO_MAX_WORD)&&(_lastTextViewCount<WEIBO_MAX_WORD))
     {
-        [[UIApplication sharedApplication] presentToast:@"超出140字部分无法发送至微博" withVerticalPos:TOAST_POS_Y];
+        [[UIApplication sharedApplication] presentToast:@"超出140字部分将不会发送至新浪微博。" withVerticalPos:TOAST_POS_Y];
     }
     if ((textCount>=240)&&(_lastTextViewCount<240))
     {
-        [[UIApplication sharedApplication] presentToast:@"超出240部分将无法发送至人人" withVerticalPos:TOAST_POS_Y];
+        [[UIApplication sharedApplication] presentToast:@"超出240字部分将不会发送至人人网。" withVerticalPos:TOAST_POS_Y];
     }
     _lastTextViewCount=textCount;
 }
+
 #pragma mark -
 #pragma mark IBAction
+
 - (IBAction)didClickCancelButton:(id)sender {
     [self dismissView];
 }
@@ -190,7 +171,7 @@
     //NSLog(@"keyboard changed, keyboard width = %f, height = %f", kbSize.width,kbSize.height);
     
     CGRect toolbarFrame = self.toolBarView.frame;
-    toolbarFrame.origin.y = self.view.frame.size.height - kbSize.height - TOOLBAR_HEIGHT;
+    toolbarFrame.origin.y = self.view.frame.size.height - kbSize.height - toolbarFrame.size.height;
     self.toolBarView.frame = toolbarFrame;
     
     CGRect textViewFrame = self.textView.frame;
