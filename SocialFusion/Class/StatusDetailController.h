@@ -24,6 +24,7 @@
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
    
+    UIButton* _commentButton;
     
     UIActivityIndicatorView* _activity;
     
@@ -46,4 +47,5 @@
 
 
 -(IBAction)repost;
+-(IBAction)comment:(id)sender;
 @end

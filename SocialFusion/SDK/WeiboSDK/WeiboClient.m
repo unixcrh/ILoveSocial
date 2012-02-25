@@ -870,7 +870,7 @@ report_completion:
         [self.params setObject:statusID forKey:@"id"];
     }
     if (cid) {
-        [self.params setObject:cid forKey:@"cir"];
+        [self.params setObject:cid forKey:@"cid"];
     }
     [self.params setObject:text forKey:@"comment"];
     if (commentOrigin) {

@@ -710,6 +710,21 @@ hasError = _hasError;
                                    tempString,@"type",nil];
 	[self requestWithParams:params andDelegate:self];
     [tempString release];
+}
 
+
+-(void)commentShare:(NSString*)share_id
+                uid:(NSString*)u_ID
+            content:(NSString*)content
+               toID:(NSString*)to_ID
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"share.addComment", @"method",
+                                   share_id, @"share_id", 
+                                   u_ID, @"user_id",
+                                   content,@"content",
+                                   to_ID,@"to_user_id",
+                                    nil];
+	[self requestWithParams:params andDelegate:self];
 }
 @end

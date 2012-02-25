@@ -74,6 +74,14 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
             secret:(int)secret;
 
 
+-(void)commentShare:(NSString*)share_id
+               uid:(NSString*)u_ID
+           content:(NSString*)content
+               toID:(NSString*)to_ID;
+
+
+
+
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;
 - (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret;

@@ -15,6 +15,7 @@
 #import "NSString+HTMLSet.h"
 #import "RepostViewController.h"
 #import "UIApplication+Addition.h"
+#import "StatusCommentData+StatusCommentData_Addition.h"
 @implementation StatusDetailControllerWithWeb
 
 
@@ -237,6 +238,35 @@ for (UIView *aView in [_webView subviews])
  
     vc.feedData=self.feedData;
    
+    [vc setcommentPage:NO];
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
+}
+
+-(IBAction)comment:(id)sender
+{
+    UITableViewCell* cell=(UITableViewCell*)((UIButton*)sender).superview.superview;
+    NSIndexPath* indexPath=[self.tableView indexPathForCell:cell];
+    
+    StatusCommentData* data=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    
+    
+    RepostViewController *vc = [[RepostViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    if ([self.feedData getStyle]==0)
+    {
+        [vc setStyle:kRenrenStatus];
+    }
+    else
+    {
+        [vc setStyle:kWeiboStatus];
+    }
+    [vc setcommentPage:YES];
+    vc.feedData=self.feedData;
+
+    vc.commetData=data;
+    
     
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];

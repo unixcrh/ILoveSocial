@@ -10,6 +10,7 @@
 #import "PostViewController.h"
 #import "WebStringToImageConverter.h"
 #import "NewFeedRootData.h"
+#import "StatusCommentData.h"
 typedef  enum kShareStyle {
     kNewBlog           =1,
     kPhoto          =2,
@@ -24,25 +25,33 @@ typedef  enum kShareStyle {
 {
     BOOL _repostToRenren;
     BOOL _repostToWeibo;
-    
+
+    BOOL _commentPage;
     BOOL _comment;
     kShareStyle _style;
     NewFeedRootData* _feedData;
+    StatusCommentData* _commetData;
     
     NSString* _blogData;
     
     IBOutlet UIButton* _repostToRenrenBut;
     IBOutlet UIButton* _repostToWeiboBut;
     
+    IBOutlet UIButton* _repostToRenrenLabelBut;
+    IBOutlet UIButton* _repostToWeiboLabelBut;
+    
     IBOutlet UIButton* _commentBut;
     IBOutlet UIButton* _commentLabelBut;
+    
+    
 }
 
 
 @property (nonatomic, retain) NewFeedRootData* feedData;
+@property (nonatomic, retain) StatusCommentData* commetData;
 @property (nonatomic, retain) NSString* blogData;
 
-
+-(void)setcommentPage:(BOOL)bol;
 -(void)setStyle:(kShareStyle)style;
 - (IBAction)didClickPostToRenrenButton;
 - (IBAction)didClickPostToWeiboButton;

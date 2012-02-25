@@ -30,6 +30,7 @@
     [_pageLine removeFromSuperview];
     [_pageLine release];
     [self.feedData release];
+    [_commentButton release];
     //[_feedStatusCel release];
     [super dealloc];
 }
@@ -101,11 +102,20 @@
     ((UIScrollView*)self.view).delegate = self;
     [((UIScrollView*)self.view) addSubview:_pageLine];
     
-    self.tableView.frame = CGRectMake(306, 0, 306, 350);
+    self.tableView.frame = CGRectMake(306, 30, 306, 350);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
     self.tableView.allowsSelection = NO;    
+    
+    _commentButton=[[UIButton alloc] init];
+    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+    [_commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
+    _commentButton.frame=CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 30);
+    [_commentButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    _commentButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    [self.view addSubview:_commentButton];
+    
     if ([_feedData.style intValue] == 0)
     {
         [_style setImage:[UIImage imageNamed:@"detail_renren.png"]];

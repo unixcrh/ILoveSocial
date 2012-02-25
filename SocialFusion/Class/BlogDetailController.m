@@ -98,9 +98,30 @@
     vc.feedData=self.feedData;
     
     vc.blogData=_blogDetail;
+    
+    [vc setcommentPage:NO];
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
 }
+-(IBAction)comment:(id)sender
+{
+    UITableViewCell* cell=(UITableViewCell*)((UIButton*)sender).superview.superview;
+    NSIndexPath* indexPath=[self.tableView indexPathForCell:cell];
+    StatusCommentData* data=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    RepostViewController *vc = [[RepostViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    [vc setStyle:kNewBlog];
+    
+    vc.feedData=self.feedData;
+    
+    vc.commetData=data;
+    
+    [vc setcommentPage:YES];
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
+}
+
+
 
 
 

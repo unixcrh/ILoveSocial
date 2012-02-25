@@ -60,7 +60,7 @@
 					<object class="IBUILabel" id="1001139427">
 						<reference key="NSNextResponder" ref="278398035"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{130, 10}, {60, 30}}</string>
+						<string key="NSFrame">{{42, 10}, {236, 30}}</string>
 						<reference key="NSSuperview" ref="278398035"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="180075562"/>
@@ -81,7 +81,7 @@
 						</object>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">18</float>
+						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -276,7 +276,7 @@
 					<object class="IBUIButton" id="52005041">
 						<reference key="NSNextResponder" ref="278398035"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{43, 43}, {72, 22}}</string>
+						<string key="NSFrame">{{43, 43}, {90, 22}}</string>
 						<reference key="NSSuperview" ref="278398035"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="885271574"/>
@@ -302,7 +302,7 @@
 					<object class="IBUIButton" id="1061698737">
 						<reference key="NSNextResponder" ref="278398035"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{161, 43}, {85, 22}}</string>
+						<string key="NSFrame">{{161, 43}, {90, 22}}</string>
 						<reference key="NSSuperview" ref="278398035"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="835853180"/>
@@ -375,6 +375,7 @@
 								<string key="NSFrame">{{60, 0}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="483012100"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="146622432"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -424,6 +425,7 @@
 								<string key="NSFrame">{{234, 0}, {72, 22}}</string>
 								<reference key="NSSuperview" ref="483012100"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -536,6 +538,22 @@
 					<int key="connectionID">46</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_repostToRenrenLabelBut</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="52005041"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_repostToWeiboLabelBut</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1061698737"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didClickPostToWeiboButton</string>
 						<reference key="source" ref="1061698737"/>
@@ -613,9 +631,7 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="278398035"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="1061698737"/>
 							<reference ref="483012100"/>
-							<reference ref="52005041"/>
 							<reference ref="835853180"/>
 							<reference ref="885271574"/>
 							<reference ref="603163302"/>
@@ -624,6 +640,8 @@
 							<reference ref="501590855"/>
 							<reference ref="1001139427"/>
 							<reference ref="570616556"/>
+							<reference ref="52005041"/>
+							<reference ref="1061698737"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -749,7 +767,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">46</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -838,7 +856,9 @@
 						<string key="_commentBut">UIButton</string>
 						<string key="_commentLabelBut">UIButton</string>
 						<string key="_repostToRenrenBut">UIButton</string>
+						<string key="_repostToRenrenLabelBut">UIButton</string>
 						<string key="_repostToWeiboBut">UIButton</string>
+						<string key="_repostToWeiboLabelBut">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_commentBut">
@@ -853,8 +873,16 @@
 							<string key="name">_repostToRenrenBut</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="_repostToRenrenLabelBut">
+							<string key="name">_repostToRenrenLabelBut</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="_repostToWeiboBut">
 							<string key="name">_repostToWeiboBut</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_repostToWeiboLabelBut">
+							<string key="name">_repostToWeiboLabelBut</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>
