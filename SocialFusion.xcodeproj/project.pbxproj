@@ -53,6 +53,7 @@
 		736341F514B6E5DC00A697A5 /* top.png in Resources */ = {isa = PBXBuildFile; fileRef = 736341F414B6E5DC00A697A5 /* top.png */; };
 		736444FD14B9D89F0054AF56 /* head_renren.png in Resources */ = {isa = PBXBuildFile; fileRef = 736444FC14B9D89F0054AF56 /* head_renren.png */; };
 		7364450014B9EDD00054AF56 /* blogcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 736444FF14B9EDD00054AF56 /* blogcell.html */; };
+		736B52D414F89CC2007A7EEB /* WBWebDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 736B52D314F89CC2007A7EEB /* WBWebDialogViewController.m */; };
 		736BA58114C802AE009037EE /* NSString+HTMLSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 736BA58014C802AE009037EE /* NSString+HTMLSet.m */; };
 		736DD40014D817BD0029B516 /* detail_rev_private.png in Resources */ = {isa = PBXBuildFile; fileRef = 736DD3FE14D817BD0029B516 /* detail_rev_private.png */; };
 		736DD40114D817BD0029B516 /* detail_rev_private@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 736DD3FF14D817BD0029B516 /* detail_rev_private@2x.png */; };
@@ -440,6 +441,8 @@
 		736341F414B6E5DC00A697A5 /* top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top.png; sourceTree = "<group>"; };
 		736444FC14B9D89F0054AF56 /* head_renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_renren.png; sourceTree = "<group>"; };
 		736444FF14B9EDD00054AF56 /* blogcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blogcell.html; sourceTree = "<group>"; };
+		736B52D214F89CC2007A7EEB /* WBWebDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBWebDialogViewController.h; sourceTree = "<group>"; };
+		736B52D314F89CC2007A7EEB /* WBWebDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBWebDialogViewController.m; sourceTree = "<group>"; };
 		736BA57F14C802AD009037EE /* NSString+HTMLSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTMLSet.h"; sourceTree = "<group>"; };
 		736BA58014C802AE009037EE /* NSString+HTMLSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTMLSet.m"; sourceTree = "<group>"; };
 		736DD3FE14D817BD0029B516 /* detail_rev_private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_rev_private.png; sourceTree = "<group>"; };
@@ -1763,6 +1766,8 @@
 				E1ABA460141FA882002CD0A6 /* ASIHTTPRequest */,
 				E1ABA477141FA882002CD0A6 /* Base64Transcoder.c */,
 				E1ABA478141FA882002CD0A6 /* Base64Transcoder.h */,
+				736B52D214F89CC2007A7EEB /* WBWebDialogViewController.h */,
+				736B52D314F89CC2007A7EEB /* WBWebDialogViewController.m */,
 				73DD21F4144BC945003BED92 /* WBDialog.h */,
 				73DD21F5144BC945003BED92 /* WBDialog.m */,
 				E1ABA482141FA882002CD0A6 /* OAuthHTTPRequest.h */,
@@ -2270,6 +2275,7 @@
 				E1C0D71F14F5DDA300F380C6 /* LoginViewController.m in Sources */,
 				737E839E14F7D9E7002058C6 /* NSString+Cut.m in Sources */,
 				737E83A214F7EF92002058C6 /* NSString+WeiboSubString.m in Sources */,
+				736B52D414F89CC2007A7EEB /* WBWebDialogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

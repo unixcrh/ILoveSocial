@@ -15,7 +15,7 @@
 #import "OAToken.h"
 
 #import "WBDialog.h"
-
+#import "WBWebDialogViewController.h"
 #define RequestURL @"http://api.t.sina.com.cn/oauth/request_token" 
 #define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
 
@@ -449,7 +449,7 @@ report_completion:
     
     
     
-    WBDialog *rrDialog = [[WBDialog alloc] initWithURL:@"http://api.t.sina.com.cn/oauth/authorize" params:params delegate:self];
+    WBWebDialogViewController *rrDialog = [[WBWebDialogViewController alloc] initWithURL:@"http://api.t.sina.com.cn/oauth/authorize" params:params delegate:self];
     [rrDialog show];
     
     
