@@ -149,13 +149,18 @@
                 NSString* outString=[NSString stringWithFormat:@"%@:%@ [来自人人]",((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status];
                 if ([self sinaCountWord:outString]>WEIBO_MAX_WORD)
                 {
-                    UITextView* textView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+                    UITextView* textView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 1000)];
                     //textView.scrollEnabled=YES;
-                   // [textView setText:outString];
+                    [textView setText:outString];
                     //textView.bounds=CGRectMake(0, 0, textView.contentSize.width, textView.contentSize.height);
-                    NSLog(@"%f",textView.contentSize.height);
+                    
+                    
+                    UIFont *font = [UIFont systemFontOfSize:14];
+                    CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(320, 500) lineBreakMode:UILineBreakModeWordWrap];
+                    size.height=size.height+20;
+     
                    // textView.contentSize.height
-                    UIGraphicsBeginImageContext(textView.bounds.size); 
+                    UIGraphicsBeginImageContext(size); 
                     
                     [textView.layer renderInContext:UIGraphicsGetCurrentContext()]; 
                     
@@ -164,7 +169,7 @@
                     UIGraphicsEndImageContext();
                     [textView release];
                     
-                    [client postStatus:[NSString stringWithFormat:@"%@nimasdasekkjkimei的状态 ［来自人人］",((NewFeedData*)_feedData).repost_Name] withImage:viewImage];
+                    [client postStatus:[NSString stringWithFormat:@"%@abc的状态 ［来自人人］",((NewFeedData*)_feedData).repost_Name] withImage:viewImage];
                     
                     
                 }
