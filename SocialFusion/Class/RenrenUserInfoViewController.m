@@ -51,7 +51,6 @@
         if (!renren.hasError) {
             NSArray *result = client.responseJSONObject;
             NSDictionary* dict = [result lastObject];
-            NSLog(@"renren user info:%@", dict);
             self.renrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             [self configureUI];
         };

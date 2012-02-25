@@ -286,7 +286,6 @@
 		E1ABA487141FA882002CD0A6 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA420141FA882002CD0A6 /* FriendProfileViewController.m */; };
 		E1ABA489141FA882002CD0A6 /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */; };
 		E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA425141FA882002CD0A6 /* pinyin.c */; };
-		E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */; };
 		E1ABA496141FA883002CD0A6 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */; };
 		E1ABA497141FA883002CD0A6 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA43A141FA882002CD0A6 /* Icon-Small.png */; };
 		E1ABA498141FA883002CD0A6 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA43B141FA882002CD0A6 /* Icon-Small@2x.png */; };
@@ -790,8 +789,6 @@
 		E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Pinyin.m"; sourceTree = "<group>"; };
 		E1ABA425141FA882002CD0A6 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pinyin.c; path = SocialFusion/Class/pinyin.c; sourceTree = "<group>"; };
 		E1ABA426141FA882002CD0A6 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pinyin.h; path = SocialFusion/Class/pinyin.h; sourceTree = "<group>"; };
-		E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFusionViewController.h; sourceTree = "<group>"; };
-		E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFusionViewController.m; sourceTree = "<group>"; };
 		E1ABA439141FA882002CD0A6 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		E1ABA43A141FA882002CD0A6 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		E1ABA43B141FA882002CD0A6 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
@@ -1591,8 +1588,6 @@
 				E1779B8D14C73AB4001CE627 /* LabelNavigation */,
 				E1E6E8E41451E63600FCB08B /* Friend */,
 				7309DDBD1447E95C00774011 /* NewFeed */,
-				E1ABA42B141FA882002CD0A6 /* SocialFusionViewController.h */,
-				E1ABA42C141FA882002CD0A6 /* SocialFusionViewController.m */,
 			);
 			name = ViewContrlloers;
 			path = SocialFusion/Class;
@@ -2110,7 +2105,6 @@
 				E1ABA487141FA882002CD0A6 /* FriendProfileViewController.m in Sources */,
 				E1ABA489141FA882002CD0A6 /* NSString+Pinyin.m in Sources */,
 				E1ABA48A141FA882002CD0A6 /* pinyin.c in Sources */,
-				E1ABA48D141FA882002CD0A6 /* SocialFusionViewController.m in Sources */,
 				E1ABA4A6141FA883002CD0A6 /* Renren.m in Sources */,
 				E1ABA4A7141FA883002CD0A6 /* RenrenClient.m in Sources */,
 				E1ABA4AA141FA883002CD0A6 /* ASIAuthenticationDialog.m in Sources */,
