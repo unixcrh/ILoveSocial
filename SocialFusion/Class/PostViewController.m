@@ -14,8 +14,6 @@
 #import "UIImageView+Addition.h"
 #import "UIButton+Addition.h"
 
-#define TOOLBAR_HEIGHT  22
-
 @interface PostViewController()
 
 - (void)dismissView;
@@ -96,10 +94,6 @@
     
 }
 
-
-
-
-
 - (void)updateTextCount {
     NSString *text = self.textView.text;
     self.textCountLabel.text = [NSString stringWithFormat:@"%d", [self sinaCountWord:text]];
@@ -141,8 +135,10 @@
     }
     _lastTextViewCount=textCount;
 }
+
 #pragma mark -
 #pragma mark IBAction
+
 - (IBAction)didClickCancelButton:(id)sender {
     [self dismissView];
 }
@@ -175,11 +171,11 @@
     //NSLog(@"keyboard changed, keyboard width = %f, height = %f", kbSize.width,kbSize.height);
     
     CGRect toolbarFrame = self.toolBarView.frame;
-    toolbarFrame.origin.y = self.view.frame.size.height - kbSize.height - TOOLBAR_HEIGHT;
+    toolbarFrame.origin.y = self.view.frame.size.height - kbSize.height - toolbarFrame.size.height;
     self.toolBarView.frame = toolbarFrame;
     
     CGRect textViewFrame = self.textView.frame;
-    textViewFrame.size.height = self.view.frame.size.height - kbSize.height - textViewFrame.origin.y - TOOLBAR_HEIGHT;
+    textViewFrame.size.height = self.view.frame.size.height - kbSize.height - textViewFrame.origin.y - toolbarFrame.size.height;
     self.textView.frame = textViewFrame;
     
 }

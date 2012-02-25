@@ -15,8 +15,8 @@
 #import "UIButton+Addition.h"
 #import "NSString+WeiboSubString.h"
 
-#define USER_PHOTO_CENTER CGPointMake(260.0f, -9.0f)
-#define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 100.0f)
+#define USER_PHOTO_CENTER CGPointMake(260.0f, 29.0f)
+#define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 150.0f)
 
 #define USER_PHOTO_SIDE_LENGTH 40.0f
 
@@ -236,7 +236,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    NSLog(@"image info:%@", info);
     [picker dismissViewControllerAnimated:YES completion:^{
         [self presentUserPhoto:image];
     }];
