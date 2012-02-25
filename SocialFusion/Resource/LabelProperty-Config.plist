@@ -29,7 +29,7 @@
 	<key>kChildRenrenSelfNewFeed</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>人人</string>
+		<string>人人网</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
@@ -38,7 +38,7 @@
 	<key>kChildWeiboSelfNewFeed</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>微博</string>
+		<string>新浪微博</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
@@ -156,7 +156,7 @@
 		<key>kLabelIsParent</key>
 		<false/>
 	</dict>
-    <key>kChildRenrenInfo</key>
+	<key>kChildRenrenInfo</key>
 	<dict>
 		<key>kLabelName</key>
 		<string>资料</string>

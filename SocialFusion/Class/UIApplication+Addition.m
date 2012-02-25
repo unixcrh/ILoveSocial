@@ -120,6 +120,7 @@ static BOOL _isShowingToast;
         bgImageView.image = [UIImage imageNamed:@"toast_bg_green.png"];
     
     UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, -3, TOAST_VIEW_WIDTH, TOAST_VIEW_HEIGHT)];
+    labelView.minimumFontSize = 10.0f;
     labelView.text = text;
     labelView.backgroundColor = [UIColor clearColor];
     labelView.textColor = [UIColor whiteColor];

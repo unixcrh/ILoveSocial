@@ -105,7 +105,7 @@
 {
     if ([self.weiboUser isEqualToUser:self.currentWeiboUser]) {
         self.followButton.hidden = YES;
-        self.relationshipLabel.text = @"当前微博用户。";
+        self.relationshipLabel.text = @"当前新浪微博用户。";
         self.atButton.hidden = YES;
     }
     else {

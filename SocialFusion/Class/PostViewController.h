@@ -40,7 +40,6 @@ typedef enum {
 - (IBAction)didClickPostButton:(id)sender;
 - (IBAction)didClickAtButton:(id)sender;
 
-- (BOOL)isTextValid;
 - (void)postStatusCompletion;
 - (void)dismissView;
 

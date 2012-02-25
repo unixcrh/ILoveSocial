@@ -17,10 +17,10 @@
 #import "NewFeedBlog.h"
 #import "NSString+WeiboSubString.h"
 #import <QuartzCore/QuartzCore.h>
+
 @implementation RepostViewController
 @synthesize feedData=_feedData;
 @synthesize blogData=_blogData;
-
 
 -(void)viewDidLoad
 {
@@ -146,7 +146,7 @@
             if (((NewFeedData*)_feedData).repost_ID!=nil)
             {
                 
-                NSString* outString=[NSString stringWithFormat:@"%@:%@ [来自人人]",((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status];
+                NSString* outString=[NSString stringWithFormat:@"%@:%@ [来自人人网]",((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status];
                 if ([self sinaCountWord:outString]>WEIBO_MAX_WORD)
                 {
                     UITextView* textView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 1000)];
@@ -158,8 +158,8 @@
                     UIFont *font = [UIFont systemFontOfSize:14];
                     CGSize size = [textView.text sizeWithFont:font constrainedToSize:CGSizeMake(320, 500) lineBreakMode:UILineBreakModeWordWrap];
                     size.height=size.height+20;
-     
-                   // textView.contentSize.height
+                    
+                    // textView.contentSize.height
                     UIGraphicsBeginImageContext(size); 
                     
                     [textView.layer renderInContext:UIGraphicsGetCurrentContext()]; 
@@ -169,7 +169,7 @@
                     UIGraphicsEndImageContext();
                     [textView release];
                     
-                    [client postStatus:[NSString stringWithFormat:@"%@abc的状态 ［来自人人］",((NewFeedData*)_feedData).repost_Name] withImage:viewImage];
+                    [client postStatus:[NSString stringWithFormat:@"%@abc的状态 ［来自人人网］",((NewFeedData*)_feedData).repost_Name] withImage:viewImage];
                     
                     
                 }
@@ -180,7 +180,7 @@
             }
             else
             {
-                [client postStatus:[NSString stringWithFormat:@"%@:%@ [来自人人]",((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message]];
+                [client postStatus:[NSString stringWithFormat:@"%@:%@ [来自人人网]",((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message]];
             }
             
         }
@@ -216,11 +216,11 @@
                 if (((NewFeedData*)_feedData).repost_ID!=nil)
                 {
                     
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@ [来自微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status]];
+                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@ [来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status]];
                 }
                 else
                 {
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自微博]",self.textView.text,((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message]];
+                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message]];
                 }
             }
             else
@@ -238,16 +238,12 @@
                 }
                 if (((NewFeedData*)_feedData).repost_ID!=nil)
                 {
-                    
-                    
-                    
-                    
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@ [来自微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status] withImage:[UIImage imageWithData:imageData]];
+                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@ [来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status] withImage:[UIImage imageWithData:imageData]];
                     
                 }
                 else
                 {
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自微博]",self.textView.text,((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message] withImage:[UIImage imageWithData:imageData]];
+                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message] withImage:[UIImage imageWithData:imageData]];
                 }
                 
             }
@@ -351,12 +347,12 @@
     
     if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
     {
-    [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD] withImage:image];
+        [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD] withImage:image];
     }
     else
     {
         [client postStatus:self.textView.text withImage:image];
-
+        
     }
     
 }

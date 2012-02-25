@@ -29,6 +29,7 @@
 @synthesize imageView = _imageView;
 @synthesize saveButton = _saveButton;
 @synthesize activityView = _activityView;
+@synthesize delegate = _delegate;
 
 - (void)dealloc {
     NSLog(@"DetailImageViewController dealloc");
@@ -36,6 +37,7 @@
     [_scrollView release];
     [_saveButton release];
     [_activityView release];
+    self.delegate = nil;
     [super dealloc];
 }
 
@@ -129,6 +131,9 @@
         self.view.alpha = 0;
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(didFinishShow)]) {
+            [self.delegate didFinishShow];
+        }
         [self release];
     }];
 }
@@ -213,28 +218,31 @@
     }];
 }
 
-+ (void)showDetailImageWithURL:(NSString*)bigURL context:(NSManagedObjectContext *)context {
++ (DetailImageViewController *)showDetailImageWithURL:(NSString*)bigURL context:(NSManagedObjectContext *)context {
     if(!bigURL)
         return;
     DetailImageViewController *vc = [[DetailImageViewController alloc] init];
     [vc show];
     [vc loadImageWithURL:bigURL context:context];
+    return vc;
 }
 
-+ (void)showDetailImageWithRenrenUserID:(NSString*)userID photoID:(NSString *)photoID context:(NSManagedObjectContext *)context {
++ (DetailImageViewController *)showDetailImageWithRenrenUserID:(NSString*)userID photoID:(NSString *)photoID context:(NSManagedObjectContext *)context {
     if(!userID || !photoID)
         return;
     DetailImageViewController *vc = [[DetailImageViewController alloc] init];
     [vc show];
     [vc loadImageWithRenrenUserID:userID photoID:photoID context:context];
+    return vc;
 }
 
-+ (void)showDetailImageWithImage:(UIImage *)image {
++ (DetailImageViewController *)showDetailImageWithImage:(UIImage *)image {
     if(!image)
         return;
     DetailImageViewController *vc = [[DetailImageViewController alloc] init];
     [vc show];
     [vc setImage:image];
+    return vc;
 }
 
 @end
