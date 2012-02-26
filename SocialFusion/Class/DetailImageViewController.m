@@ -185,7 +185,7 @@
 - (void)loadImageWithURL:(NSString *)url context:(NSManagedObjectContext *)context {
     if([url isGifURL]) {
         [self.imageView setHidden:YES];
-        NSString* htmlStr = [NSString stringWithFormat:@"<html><head><link href=\"pocketsocial.css\" rel=\"stylesheet\" type=\"text/css\"/></head><body><div id=\"gifImg\"><img src=\"%@\"></div></body></html>", url];
+        NSString* htmlStr = [NSString stringWithFormat:@"<html><head><link href=\"pocketsocial.css\" rel=\"stylesheet\" type=\"text/css\"/></head><body><div id=\"gifImg\"><span><img src=\"%@\" alt=""/></span></div></body></html>", url];
         [self.webView loadHTMLString:htmlStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
     }
     else {
