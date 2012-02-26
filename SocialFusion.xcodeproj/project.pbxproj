@@ -84,7 +84,6 @@
 		739E37F114D3E9B800509275 /* detail_rev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 739E37EF14D3E9B500509275 /* detail_rev@2x.png */; };
 		739E37F214D3E9B800509275 /* detail_rev.png in Resources */ = {isa = PBXBuildFile; fileRef = 739E37F014D3E9B700509275 /* detail_rev.png */; };
 		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
-		73B75BB114BB29C700D7ACA1 /* NSData+NsData_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */; };
 		73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */; };
 		73B9A3831479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */; };
 		73C5D69814D5967C0027647D /* BlogDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C5D69714D5967B0027647D /* BlogDetailController.m */; };
@@ -357,6 +356,7 @@
 		E1E2581614EE8E45003064CD /* DetailInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581514EE8E44003064CD /* DetailInformation.m */; };
 		E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581814EEBB5A003064CD /* RenrenDetail.m */; };
 		E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */ = {isa = PBXBuildFile; fileRef = E1E56AE214FA5F5000B959DE /* pocketsocial.css */; };
+		E1E56AEC14FA91EF00B959DE /* NSData+NSData_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */; };
 		E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF51143B36600098BBD3 /* FriendListViewController.m */; };
 		E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */; };
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
@@ -485,8 +485,6 @@
 		739E37F014D3E9B700509275 /* detail_rev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_rev.png; sourceTree = "<group>"; };
 		73ABE37E14416E730067B45F /* NewFeedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedStatusCell.h; sourceTree = "<group>"; };
 		73ABE37F14416E730067B45F /* NewFeedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedStatusCell.m; sourceTree = "<group>"; };
-		73B75BAF14BB29C700D7ACA1 /* NSData+NsData_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NsData_Base64.h"; sourceTree = "<group>"; };
-		73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NsData_Base64.m"; sourceTree = "<group>"; };
 		73B75BB314BB2A1100D7ACA1 /* NSString+DataURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DataURI.h"; sourceTree = "<group>"; };
 		73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DataURI.m"; sourceTree = "<group>"; };
 		73B9A3811479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StatusCommentData+StatusCommentData_Addition.h"; sourceTree = "<group>"; };
@@ -898,6 +896,8 @@
 		E1E2581714EEBB57003064CD /* RenrenDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenDetail.h; path = "SocialFusion/Class/CoreData Models/RenrenDetail.h"; sourceTree = "<group>"; };
 		E1E2581814EEBB5A003064CD /* RenrenDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenDetail.m; path = "SocialFusion/Class/CoreData Models/RenrenDetail.m"; sourceTree = "<group>"; };
 		E1E56AE214FA5F5000B959DE /* pocketsocial.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pocketsocial.css; sourceTree = "<group>"; };
+		E1E56AEA14FA91EF00B959DE /* NSData+NSData_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSData_Base64.h"; sourceTree = "<group>"; };
+		E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSData_Base64.m"; sourceTree = "<group>"; };
 		E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
 		E1E5DF51143B36600098BBD3 /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
 		E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
@@ -1448,8 +1448,6 @@
 				73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */,
 				73C99C9414BF051D00B251DF /* NewFeedSharePhoto+Addition.h */,
 				73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */,
-				73B75BAF14BB29C700D7ACA1 /* NSData+NsData_Base64.h */,
-				73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */,
 				736BA57F14C802AD009037EE /* NSString+HTMLSet.h */,
 				736BA58014C802AE009037EE /* NSString+HTMLSet.m */,
 				737E839C14F7D9E7002058C6 /* NSString+Addition.h */,
@@ -1460,6 +1458,8 @@
 				E1ABA424141FA882002CD0A6 /* NSString+Pinyin.m */,
 				73B75BB314BB2A1100D7ACA1 /* NSString+DataURI.h */,
 				73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */,
+				E1E56AEA14FA91EF00B959DE /* NSData+NSData_Base64.h */,
+				E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */,
 				73FBBFB714C3BCEA00694B1B /* UIImage+Addition.h */,
 				73FBBFB814C3BCEA00694B1B /* UIImage+Addition.m */,
 				E13A944B14DD5371000C029F /* UIImageView+Addition.h */,
@@ -2191,7 +2191,6 @@
 				731D1DBF147603B6001981B4 /* Status.m in Sources */,
 				73B9A3831479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m in Sources */,
 				734483C0147A7B780031D33A /* NewFeedDetailViewCell.m in Sources */,
-				73B75BB114BB29C700D7ACA1 /* NSData+NsData_Base64.m in Sources */,
 				73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */,
 				7317582214BC7A7A00F14700 /* NewFeedUploadPhoto+Addition.m in Sources */,
 				7308FF2D14BD8EBD00EC6481 /* NewFeedShareAlbum+Addition.m in Sources */,
@@ -2296,6 +2295,7 @@
 				736B52D414F89CC2007A7EEB /* WBWebDialogViewController.m in Sources */,
 				E1B787BB14F8F487000AAD67 /* AppInfoViewController.m in Sources */,
 				73F41BF214FA052700A6112E /* NewBlogViewController.m in Sources */,
+				E1E56AEC14FA91EF00B959DE /* NSData+NSData_Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -169,10 +169,10 @@
 }
 
 - (void)hideActivityView {
-    [self.activityView stopAnimating];
     self.activityView.alpha = 1.0f;
     [UIView animateWithDuration:0.3f animations:^(void) {
         self.activityView.alpha = 0;
+        [self.activityView stopAnimating];
     }];
 }
 

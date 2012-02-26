@@ -1,18 +1,18 @@
 //
-//  NSData+NsData_Base64.m
+//  NSData+NSData_Base64.m
 //  SocialFusion
 //
 //  Created by He Ruoyun on 12-1-9.
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
-#import "NSData+NsData_Base64.h"
+#import "NSData+NSData_Base64.h"
 static char encodingTable[64] = {
     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
     'Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f',
     'g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v',
     'w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/' };
-@implementation NSData (NsData_Base64)
+@implementation NSData (NSData_Base64)
 - (id)initWithString:(NSString *)string {
     if ((self = [super init])) {
         [self initWithBase64EncodedString:string];

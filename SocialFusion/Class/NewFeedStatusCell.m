@@ -13,7 +13,7 @@
 #import "NewFeedUploadPhoto+Addition.h"
 #import "NewFeedListController.h"
 #import "Base64Transcoder.h"
-#import "NSData+NsData_Base64.m"
+#import "NSData+NSData_Base64.m"
 #import "NSString+DataURI.h"
 #import "NewFeedShareAlbum+Addition.h"
 #import "NewFeedSharePhoto+Addition.h"
@@ -313,8 +313,6 @@
     [infoText release];
       [self.contentView addSubview:_webView];
     
-    
-    _webView.dataDetectorTypes=UIDataDetectorTypeLink;
     _webView.userInteractionEnabled=YES;
     
     _webView.backgroundColor=[UIColor clearColor];

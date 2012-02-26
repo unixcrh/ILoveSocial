@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (DataURI)
-- (NSString *) pngDataURIWithContent;
-- (NSString *) jpgDataURIWithContent;
+- (NSString *)pngDataURIWithContent;
+- (NSString *)jpgDataURIWithContent;
 @end

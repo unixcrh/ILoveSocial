@@ -1,5 +1,5 @@
 //
-//  NSData+NsData_Base64.h
+//  NSData+NSData_Base64.h
 //  SocialFusion
 //
 //  Created by He Ruoyun on 12-1-9.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSData (NsData_Base64)
+@interface NSData (NSData_Base64)
 
 + (NSData *)dataWithBase64EncodedString:(NSString *)string;
 - (id)initWithBase64EncodedString:(NSString *)string;

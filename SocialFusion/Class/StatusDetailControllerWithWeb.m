@@ -8,7 +8,7 @@
 
 #import "StatusDetailControllerWithWeb.h"
 #import "UIImage+Addition.h"
-#import "NSData+NsData_Base64.h"
+#import "NSData+NSData_Base64.h"
 #import "NSString+DataURI.h"
 #import "NewFeedData+NewFeedData_Addition.h"
 #import "Image+Addition.h"

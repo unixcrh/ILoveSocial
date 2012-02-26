@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (HTMLSet)
-- (NSString*)replaceJSSign ;
-- (NSString*)replaceHTMLSign ;
+- (NSString*)replaceJSSign;
+- (NSString*)replaceHTMLSign;
+- (NSString*)decodeHTMLSign;
 - (NSString*)setName:(NSString*)name;
 - (NSString*)setTime:(NSString*)time ;
 - (NSString*)setWeibo:(NSString*)weibo  ;
