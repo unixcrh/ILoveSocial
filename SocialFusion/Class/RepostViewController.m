@@ -16,13 +16,18 @@
 #import "UIButton+Addition.h"
 #import "Image+Addition.h"
 #import "NewFeedBlog.h"
+#import "NewFeedShareAlbum.h"
+#import "NewFeedSharePhoto.h"
+#import "NewFeedUploadPhoto.h"
 #import "NSString+WeiboSubString.h"
 #import <QuartzCore/QuartzCore.h>
 @implementation RepostViewController
 @synthesize feedData=_feedData;
 @synthesize blogData=_blogData;
 @synthesize commetData=_commetData;
-
+@synthesize photoID=_photoID;
+@synthesize photoComment=_photoComment;
+@synthesize photoURL=_photoURL;
 
 
 -(void)dealloc
@@ -30,6 +35,9 @@
     [_feedData release];
     [_commetData release];
     [_blogData release];
+    [_photoID release];
+    [_photoURL release];
+    [_photoComment release];
     [super dealloc];
     
 }
@@ -381,6 +389,109 @@
             webStringConverter.delegate=self;
             [webStringConverter startConvertBlogWithTitle:((NewFeedBlog*)_feedData).title detail:_blogData];
         }
+    }
+    
+    
+    else if (_style==kPhoto)
+    {
+        if (_repostToRenren==YES)
+        {
+            RenrenClient *client = [RenrenClient client];
+            [client setCompletionBlock:^(RenrenClient *client) {
+                if(client.hasError)
+                    _postStatusErrorCode |= PostStatusErrorRenren;
+                [self postStatusCompletion];
+            }];
+            _postCount++;
+            
+            NSString* userID;
+            if ([_feedData class]==[NewFeedSharePhoto class])
+            {
+                userID=((NewFeedSharePhoto*)_feedData).fromID;
+            }
+            else if ([_feedData class]==[NewFeedUploadPhoto class])
+            {
+                userID=((NewFeedSharePhoto*)_feedData).author.userID;
+            }
+            else
+            {
+                userID=((NewFeedShareAlbum*)_feedData).fromID;
+            }
+            
+            if (_photoID!=nil)
+            {
+            [client share:kPhoto share_ID:_photoID user_ID:userID comment:self.textView.text];
+            }
+            else
+            {
+            [client share:kShare share_ID:(_feedData).source_ID user_ID:_feedData.author.userID comment:self.textView.text];
+            }
+        }
+        if (_repostToWeibo==YES)
+        {
+            
+            NSData *imageData = nil;
+            Image *image = [Image imageWithURL:_photoURL inManagedObjectContext:self.managedObjectContext];
+            if (image==nil)
+            {
+                imageData = [Image imageWithURL:_photoURL  inManagedObjectContext:self.managedObjectContext].imageData.data;
+                
+            }
+            else
+            {
+                imageData=image.imageData.data;
+            }
+            WeiboClient *client = [WeiboClient client];
+            [client setCompletionBlock:^(WeiboClient *client) {
+                if(client.hasError)
+                {
+                    _postStatusErrorCode |= PostStatusErrorRenren;
+                }
+                [self postStatusCompletion];
+            }];
+            _postCount++;  
+            [client postStatus:[NSString stringWithFormat:@"%@ //%@[来自人人网]",self.textView.text,_photoComment] withImage:[UIImage imageWithData:imageData]];
+        }
+        if (_comment==YES)
+        {
+            RenrenClient *client = [RenrenClient client];
+            [client setCompletionBlock:^(RenrenClient *client) {
+                if(client.hasError)
+                    _postStatusErrorCode |= PostStatusErrorRenren;
+                [self postStatusCompletion];
+            }];
+            _postCount++;
+            
+            NSString* userID;
+            if ([_feedData class]==[NewFeedSharePhoto class])
+            {
+                userID=((NewFeedSharePhoto*)_feedData).fromID;
+            }
+            else if ([_feedData class]==[NewFeedUploadPhoto class])
+            {
+                userID=((NewFeedSharePhoto*)_feedData).author.userID;
+            }
+            else
+            {
+                userID=((NewFeedShareAlbum*)_feedData).fromID;
+            }
+            
+            if (_photoID!=nil)
+            {
+                [client commentPhoto:_photoID uid:userID content:self.textView.text toID:nil];
+            }
+            else if ([_feedData class]==[NewFeedUploadPhoto class])
+            {
+                [client commentPhoto:((NewFeedUploadPhoto*)_feedData).photo_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
+
+            }
+            else
+            {
+                [client commentShare:(_feedData).source_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
+
+            }
+        }
+
     }
     [self dismissView];
 }

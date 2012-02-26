@@ -43,6 +43,9 @@ typedef  enum kShareStyle {
     IBOutlet UIButton* _commentBut;
     IBOutlet UIButton* _commentLabelBut;
     
+    NSString* _photoID;
+    NSString* _photoURL;
+    NSString* _photoComment;
     
 }
 
@@ -50,6 +53,11 @@ typedef  enum kShareStyle {
 @property (nonatomic, retain) NewFeedRootData* feedData;
 @property (nonatomic, retain) StatusCommentData* commetData;
 @property (nonatomic, retain) NSString* blogData;
+
+@property (nonatomic, retain) NSString* photoID;
+@property (nonatomic, retain) NSString* photoURL;
+@property (nonatomic, retain) NSString* photoComment;
+
 
 -(void)setcommentPage:(BOOL)bol;
 -(void)setStyle:(kShareStyle)style;

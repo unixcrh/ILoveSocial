@@ -792,16 +792,15 @@
 {
     RepostViewController *vc = [[RepostViewController alloc] init];
     vc.managedObjectContext = self.managedObjectContext;
-    
-    
-    
-    
-    [vc setStyle:kNewBlog];
-    
-    
+    [vc setStyle:kPhoto];
     vc.feedData=self.feedData;
-    
-
+    NSLog(@"%d",_selectedPhoto);
+    if (_selectedPhoto!=-1)
+    {
+        vc.photoURL=_bigURL[_selectedPhoto%9];
+        vc.photoID=_photoID[_selectedPhoto%9];
+        vc.photoComment=_photoInAlbum[_selectedPhoto].captian.text;
+    }
     [vc setcommentPage:NO];
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
