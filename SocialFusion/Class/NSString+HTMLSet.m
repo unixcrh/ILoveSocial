@@ -52,7 +52,7 @@
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
     
     static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
-    static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*\\u0020";
+    static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*";
     static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     
     returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
