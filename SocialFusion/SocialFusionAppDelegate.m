@@ -44,33 +44,12 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
-    //NSLog(@"save context");
     [self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    
-    
-    NSLog(@"%@",self.managedObjectContext);
-   // self.viewController.managedObjectContext = _manageObjectModel1;
-    NSLog(@"active");
-    
-    /*
- 
-    UINavigationController *navigationController = [NavigationToolBar SFNavigationController];
-    
-
-    navigationController.viewControllers = [NSArray arrayWithObject:self.viewController];    
-    SocialFusionViewController* temp=   [navigationController.viewControllers objectAtIndex:1];
-    
-temp.managedObjectContext=self.managedObjectContext;
-    */
-    //self.window.rootViewController = navigationController;
-    
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
