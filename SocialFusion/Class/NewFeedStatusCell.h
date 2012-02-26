@@ -68,6 +68,4 @@ typedef  enum kFeedType {
 
 - (void)statusCellWebViewDidLoad:(UIWebView*)webView  indexPath:(NSIndexPath*)path Cell:(NewFeedStatusCell*)cell;
 
-
-
 @end

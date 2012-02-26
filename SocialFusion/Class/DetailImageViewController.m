@@ -13,6 +13,7 @@
 #import "RenrenClient.h"
 #import "UIApplication+Addition.h"
 #import "UIImageView+Addition.h"
+#import "NSString+Addition.h"
 
 #define IMAGE_MAX_WIDTH     320
 #define IMAGE_MAX_HEIGHT    480
@@ -30,6 +31,7 @@
 @synthesize saveButton = _saveButton;
 @synthesize activityView = _activityView;
 @synthesize delegate = _delegate;
+@synthesize webView = _webView;
 
 - (void)dealloc {
     NSLog(@"DetailImageViewController dealloc");
@@ -37,6 +39,7 @@
     [_scrollView release];
     [_saveButton release];
     [_activityView release];
+    [_webView release];
     self.delegate = nil;
     [super dealloc];
 }
@@ -47,6 +50,7 @@
     self.scrollView = nil;
     self.saveButton = nil; 
     self.activityView = nil;
+    self.webView = nil;
 }
 
 - (void)viewDidLoad {
@@ -179,18 +183,26 @@
 }
 
 - (void)loadImageWithURL:(NSString *)url context:(NSManagedObjectContext *)context {
-    [self showActivityView];
-    Image* image = [Image imageWithURL:url inManagedObjectContext:context];
-    if (!image) {
-        [UIImage loadImageFromURL:url completion:^{
-            Image *image = [Image imageWithURL:url inManagedObjectContext:context];
-            [self setImage:[UIImage imageWithData:image.imageData.data]];
-            [self hideActivityView];
-        } cacheInContext:context];
+    if([url isGifURL]) {
+        [self.imageView setHidden:YES];
+        NSString* htmlStr = [NSString stringWithFormat:@"<html><head><link href=\"pocketsocial.css\" rel=\"stylesheet\" type=\"text/css\"/></head><body><div id=\"gifImg\"><img src=\"%@\"></div></body></html>", url];
+        [self.webView loadHTMLString:htmlStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
     }
     else {
-        [self setImage:[UIImage imageWithData:image.imageData.data]];
-        [self hideActivityView];
+        [self.webView setHidden:YES];
+        [self showActivityView];
+        Image* image = [Image imageWithURL:url inManagedObjectContext:context];
+        if (!image) {
+            [UIImage loadImageFromURL:url completion:^{
+                Image *image = [Image imageWithURL:url inManagedObjectContext:context];
+                [self setImage:[UIImage imageWithData:image.imageData.data]];
+                [self hideActivityView];
+            } cacheInContext:context];
+        }
+        else {
+            [self setImage:[UIImage imageWithData:image.imageData.data]];
+            [self hideActivityView];
+        }
     }
 }
 
@@ -243,6 +255,19 @@
     [vc show];
     [vc setImage:image];
     return vc;
+}
+
+#pragma mark -
+#pragma mark UIWebView delegate
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self showActivityView];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self hideActivityView];
 }
 
 @end

@@ -353,6 +353,7 @@
 		E1E2581314EE8E43003064CD /* WeiboDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581214EE8E43003064CD /* WeiboDetail.m */; };
 		E1E2581614EE8E45003064CD /* DetailInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581514EE8E44003064CD /* DetailInformation.m */; };
 		E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581814EEBB5A003064CD /* RenrenDetail.m */; };
+		E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */ = {isa = PBXBuildFile; fileRef = E1E56AE214FA5F5000B959DE /* pocketsocial.css */; };
 		E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF51143B36600098BBD3 /* FriendListViewController.m */; };
 		E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */; };
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
@@ -452,7 +453,7 @@
 		736DD40714D81F200029B516 /* StatusCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusCommentData.m; path = "SocialFusion/Class/CoreData Models/StatusCommentData.m"; sourceTree = "<group>"; };
 		7370AFC514E2565E00AB4473 /* page_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_line.png; sourceTree = "<group>"; };
 		7370AFC614E2565E00AB4473 /* page_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page_line@2x.png"; sourceTree = "<group>"; };
-		737E839C14F7D9E7002058C6 /* NSString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSString+Addition.h"; sourceTree = "<group>"; };
+		737E839C14F7D9E7002058C6 /* NSString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Addition.h"; sourceTree = "<group>"; };
 		737E839D14F7D9E7002058C6 /* NSString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Addition.m"; sourceTree = "<group>"; };
 		737E83A014F7EF91002058C6 /* NSString+WeiboSubString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WeiboSubString.h"; sourceTree = "<group>"; };
 		737E83A114F7EF91002058C6 /* NSString+WeiboSubString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WeiboSubString.m"; sourceTree = "<group>"; };
@@ -889,6 +890,7 @@
 		E1E2581514EE8E44003064CD /* DetailInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailInformation.m; path = "SocialFusion/Class/CoreData Models/DetailInformation.m"; sourceTree = "<group>"; };
 		E1E2581714EEBB57003064CD /* RenrenDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenDetail.h; path = "SocialFusion/Class/CoreData Models/RenrenDetail.h"; sourceTree = "<group>"; };
 		E1E2581814EEBB5A003064CD /* RenrenDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenDetail.m; path = "SocialFusion/Class/CoreData Models/RenrenDetail.m"; sourceTree = "<group>"; };
+		E1E56AE214FA5F5000B959DE /* pocketsocial.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pocketsocial.css; sourceTree = "<group>"; };
 		E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
 		E1E5DF51143B36600098BBD3 /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
 		E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
@@ -1709,6 +1711,7 @@
 				E1FB62AF1424BC9F00828E24 /* tableviewCellTopShadow@2x.png */,
 				7398960514C157F900696C1C /* tape.png */,
 				7359F96214B3FB310032F09A /* temp.css */,
+				E1E56AE214FA5F5000B959DE /* pocketsocial.css */,
 				E13A944014DD1F99000C029F /* toast_bg_green.png */,
 				E13A944114DD1F99000C029F /* toast_bg_green@2x.png */,
 				E136C84814F7CC15004DE43B /* toast_bg_red@2x.png */,
@@ -2102,6 +2105,7 @@
 				E136C84914F7CC15004DE43B /* toast_bg_red@2x.png in Resources */,
 				E1B787BE14F8F4CF000AAD67 /* AppInfoViewController.xib in Resources */,
 				E1B787C014F8F75D000AAD67 /* login_logo@2x.png in Resources */,
+				E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

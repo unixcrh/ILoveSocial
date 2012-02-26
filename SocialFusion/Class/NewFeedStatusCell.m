@@ -344,7 +344,7 @@
     _photoOut=[[UIButton alloc] init];
     _photoOut.frame=CGRectMake(4, 8, 46, 46);
     _photoOut.adjustsImageWhenHighlighted = NO;
-    [_photoOut addTarget:self action:@selector(didClickPhotoOutButton) forControlEvents:UIControlEventTouchUpInside];
+    [_photoOut addTarget:self action:@selector(didClickPhotoFrameButton) forControlEvents:UIControlEventTouchUpInside];
     
     _defaultphotoView=[[UIImageView alloc] init];
     _defaultphotoView.frame=CGRectMake(8, 12, 37, 37);
@@ -354,7 +354,7 @@
     _name.frame=CGRectMake(57, 9, 210, 18);
     [_name setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-    [_name addTarget:self action:@selector(didClickPhotoOutButton) forControlEvents:UIControlEventTouchUpInside];    
+    [_name addTarget:self action:@selector(didClickPhotoFrameButton) forControlEvents:UIControlEventTouchUpInside];    
     [_name setTitleColor:[UIColor colorWithRed:0.32157f green:0.31373 blue:0.26666667 alpha:1] forState:UIControlStateNormal];
     [_name.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0f]];
     
@@ -614,7 +614,7 @@
 #pragma mark -
 #pragma mark UI actions
 
-- (void)didClickPhotoOutButton {
+- (void)didClickPhotoFrameButton {
     NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
     [_listController selectUser:indexpath];
 }

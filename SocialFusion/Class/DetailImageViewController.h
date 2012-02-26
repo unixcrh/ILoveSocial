@@ -10,9 +10,10 @@
 
 @protocol DetailImageViewControllerDelegate;
 
-@interface DetailImageViewController : UIViewController<UIScrollViewDelegate>
+@interface DetailImageViewController : UIViewController<UIScrollViewDelegate, UIWebViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIButton *saveButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityView;
