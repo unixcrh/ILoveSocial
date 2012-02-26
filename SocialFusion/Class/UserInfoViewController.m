@@ -15,6 +15,7 @@
 #import "Image+Addition.h"
 #import "LeaveMessageViewController.h"
 #import "UIApplication+Addition.h"
+#import "DetailImageViewController.h"
 
 #define PHOTO_FRAME_SIDE_LENGTH 100.0f
 
@@ -116,11 +117,20 @@
         self.genderLabel.text = @"未知";
 }
 
+#pragma mark -
+#pragma mark IBActions
+
 - (IBAction)didClickAtButton {
     User *usr = self.processUser;
     LeaveMessageViewController *vc = [[LeaveMessageViewController alloc] initWithUser:usr];
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
+}
+
+- (IBAction)didClickPhotoFrameButton {
+    if(self.photoImageView.image) {
+        [DetailImageViewController showDetailImageWithImage:self.photoImageView.image];
+    }
 }
 
 - (User *)processUser {

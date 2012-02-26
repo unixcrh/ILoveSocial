@@ -39,5 +39,6 @@ typedef enum {
 - (void)configureUI;
 
 - (IBAction)didClickAtButton;
+- (IBAction)didClickPhotoFrameButton;
 
 @end
