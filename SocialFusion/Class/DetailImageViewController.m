@@ -185,6 +185,7 @@
 - (void)loadImageWithURL:(NSString *)url context:(NSManagedObjectContext *)context {
     if([url isGifURL]) {
         [self.imageView setHidden:YES];
+        [self.saveButton setHidden:YES];
         NSString* htmlStr = [NSString stringWithFormat:@"<html><head><link href=\"pocketsocial.css\" rel=\"stylesheet\" type=\"text/css\"/></head><body><div id=\"gifImg\"><span><img src=\"%@\" alt=""/></span></div></body></html>", url];
         [self.webView loadHTMLString:htmlStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
     }
@@ -262,12 +263,19 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    [self.webView setHidden:YES];
     [self showActivityView];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [self.webView setHidden:NO];
+    self.webView.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.webView.alpha = 1;
+    }];
     [self hideActivityView];
+    self.webView.scrollView.contentOffset = CGPointMake((self.webView.scrollView.contentSize.width - 320.0f), (self.webView.scrollView.contentSize.height - 480.0f) / 2);
 }
 
 @end
