@@ -358,7 +358,7 @@
             RenrenClient *client2 = [RenrenClient client];
             [client2 setCompletionBlock:^(RenrenClient *client2) {
                 if(client2.hasError)
-                    _postStatusErrorCode |= PostStatusErrorRenren;
+                    _postStatusErrorCode |= PostStatusErrorWeibo;
                 [self postStatusCompletion];
             }];
             _postCount++;

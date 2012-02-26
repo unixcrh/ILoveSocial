@@ -109,11 +109,17 @@
     self.tableView.allowsSelection = NO;    
     
     _commentButton=[[UIButton alloc] init];
-    [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+    [_commentButton setTitle:[NSString stringWithFormat:@"  评论(%d)",[self.feedData.comment_Count intValue]] forState:UIControlStateNormal];
     [_commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
-    _commentButton.frame=CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, 30);
-    [_commentButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    _commentButton.frame=CGRectMake(306, 0, 306, 30);
+    [_commentButton setTitleColor:[UIColor colorWithRed:0.33333 green:0.33333 blue:0.33333 alpha:1 ] forState:UIControlStateNormal];
     _commentButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    [_commentButton.titleLabel setFont:[UIFont systemFontOfSize:13.5]];
+    [_commentButton setBackgroundImage:[UIImage imageNamed:@"btn_msg_new@2x.png"] forState:UIControlStateNormal];
+    //[_commentButton setImage:[UIImage imageNamed:@"btn_msg_new@2x.png"] forState:UIControlStateNormal];
+    //[_commentButton setBackgroundColor:[UIColor colorWithRed:0.99608 green:0.98039 blue:0.86274 alpha:1]];
+  
+    
     [self.view addSubview:_commentButton];
     
     if ([_feedData.style intValue] == 0)
@@ -218,7 +224,7 @@
 - (void)loadMoreData {
     if(_loadingFlag)
         return;
-    _loadingFlag = YES;
+   
     
     if ([_feedData getStyle] == 0)
     {
@@ -255,6 +261,7 @@
     }
     
     _loadingFlag = NO;
+    
     [self doneLoadingTableViewData];
     [self.tableView reloadData];
 }
