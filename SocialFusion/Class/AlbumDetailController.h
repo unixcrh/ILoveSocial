@@ -8,6 +8,7 @@
 
 #import "StatusDetailController.h"
 #import "PhotoInAlbum.h"
+ 
 @interface AlbumDetailController : StatusDetailController
 {
         IBOutlet UILabel* _albumTitle;
@@ -16,8 +17,10 @@
     int _albumPageNumber;
     
     PhotoInAlbum* _photoInAlbum[27];
+    
     NSString* _photoID[9];
     NSString* _bigURL[9];
+    
     int _commentCount[9];
     UITextView* _infoTextView;
     IBOutlet UIView* _contentView;

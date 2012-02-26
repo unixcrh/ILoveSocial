@@ -79,6 +79,11 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
            content:(NSString*)content
                toID:(NSString*)to_ID;
 
+-(void)commentPhoto:(NSString*)share_id
+                uid:(NSString*)u_ID
+            content:(NSString*)content
+               toID:(NSString*)to_ID;
+
 
 
 

@@ -727,4 +727,22 @@ hasError = _hasError;
                                     nil];
 	[self requestWithParams:params andDelegate:self];
 }
+
+-(void)commentPhoto:(NSString*)share_id
+                uid:(NSString*)u_ID
+            content:(NSString*)content
+               toID:(NSString*)to_ID;
+
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"photos.addComment", @"method",
+                                   share_id, @"pid", 
+                                   u_ID, @"uid",
+                                   content,@"content",
+                                   to_ID,@"rid",
+                                   nil];
+	[self requestWithParams:params andDelegate:self];
+}
+
+
 @end
