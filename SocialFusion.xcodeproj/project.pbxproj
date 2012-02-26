@@ -2116,12 +2116,9 @@
 				E136C84914F7CC15004DE43B /* toast_bg_red@2x.png in Resources */,
 				E1B787BE14F8F4CF000AAD67 /* AppInfoViewController.xib in Resources */,
 				E1B787C014F8F75D000AAD67 /* login_logo@2x.png in Resources */,
-<<<<<<< HEAD
 				E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */,
-=======
 				73F41BF314FA052700A6112E /* NewBlogViewController.xib in Resources */,
 				73F41BFA14FA4FAC00A6112E /* btn_msg_new@2x.png in Resources */,
->>>>>>> ed3fa1f729c4bb28e300f678adc4ec16f50be9ea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
