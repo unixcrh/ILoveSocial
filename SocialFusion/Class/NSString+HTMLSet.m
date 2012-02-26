@@ -19,6 +19,23 @@
     return  returnString;
 }
 
+- (NSString *)replaceRegEx:(NSString *)regEx withString:(NSString *)substitute {
+    NSString *returnString = [NSString stringWithFormat:@"%@", self];
+    NSRange searchRange = NSMakeRange(0, returnString.length);
+    NSRange range = [returnString rangeOfString:regEx options:NSRegularExpressionSearch];
+    while (range.location != NSNotFound) {
+        NSString* subStr = [returnString substringWithRange:range];
+        NSLog(@"substr:%@", subStr);
+        NSString *substituteStr = [NSString stringWithFormat:substitute, subStr, subStr];
+        NSLog(@"substitute str:%@", substituteStr);
+        returnString = [returnString stringByReplacingCharactersInRange:range withString:substituteStr];
+        NSUInteger newRangeLoc = range.location + substituteStr.length;
+        searchRange = NSMakeRange(newRangeLoc, returnString.length - newRangeLoc);
+        range = [returnString rangeOfString:regEx options:NSRegularExpressionSearch range:searchRange];
+    }
+    return returnString;
+}
+
 - (NSString*)replaceHTMLSign 
 {
     NSString* returnString;
@@ -33,6 +50,15 @@
     returnString = [returnString stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
+    
+    static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
+    static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*\\u0020";
+    static NSString *linkRegEx = @"http://[[a-z][A-Z][0-9]/?%&=.]+";
+    
+    returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
+    returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='weiboAtClicked(\"%@\")'>%@</a></span>"];
+    returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='lkClicked(\"%@\")'>%@</a></span>"];
+    
     return returnString;
 }
 

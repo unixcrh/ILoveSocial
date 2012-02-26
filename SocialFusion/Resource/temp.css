@@ -162,3 +162,7 @@ a {
 	right:0px;
 		word-break:break-all;
 }
+
+.highlight{color:#66cc33; font-weight:bold;}
+.highlight a:link{text-decoration:none; color:#66cc33;}
+.highlight a:visited{text-decoration:none; color:#66cc33;}

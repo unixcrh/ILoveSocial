@@ -20,14 +20,9 @@
 #import "NSString+HTMLSet.h"
 #import "NewFeedData+NewFeedData_Addition.h"
 
-
-
-
-
 @implementation NewFeedStatusCell
 @synthesize photoView=_photoView;
 @synthesize delegate=_delegate;
-
 
 - (void)dealloc {
     NSLog(@"NewFeedStatusCell release");
@@ -42,7 +37,7 @@
     [_upCutline release];
     
     
-    _webView.delegate=nil;    
+    _webView.delegate = nil;    
     [_webView release];
     [super dealloc];
 }
@@ -54,7 +49,7 @@
 
 + (float)heightForCell:(NewFeedData*)feedData
 {
-    if ([feedData class]==[NewFeedUploadPhoto class] )
+    if ([feedData class] == [NewFeedUploadPhoto class] )
     {
         return 162;
     }
@@ -71,8 +66,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        //    _buttonViewShowed=NO;
+
     }
     return self;
 }
@@ -80,7 +74,7 @@
 - (void)loadPicture:(NSData*)image
 {
     
-    UIImage* image1=[UIImage imageWithData:image];
+    UIImage* image1 = [UIImage imageWithData:image];
     CGSize size;
     //改变图片大小
     float a=image1.size.width/98;
@@ -120,27 +114,15 @@
 
 - (void)setData:(NSData*)image
 {
-    _photoData =[[NSData alloc] initWithData:image];
+    _photoData = [[NSData alloc] initWithData:image];
 }
 
 - (void)loadImage:(NSData*)image
 {
-    
     NSString *imgB64 = [[image base64Encoding] jpgDataURIWithContent];
-    
-    
-    
     NSString *javascript = [NSString stringWithFormat:@"document.getElementById('head').src='%@'", imgB64];
-    
-    
     [_webView stringByEvaluatingJavaScriptFromString:javascript];
-    
 }
-
-
-
-
-
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     
@@ -149,18 +131,16 @@
         [self loadImage:_photoData];
         [_photoData release];
     }
-    // _webView.hidden=NO;
     
-    NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
+    NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
     [_delegate statusCellWebViewDidLoad:webView indexPath:indexpath Cell:self];
-    _loaded=YES;
+    _loaded = YES;
 }
-
 
 - (void)showBigImage
 {
     
-    NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
+    NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
     //    [_listController.tableView selectRowAtIndexPath:indexpath animated:YES scrollPosition:UITableViewScrollPositionNone];
     
     
@@ -174,11 +154,11 @@
 {
     
     
-    NSString* tempString=[NSString stringWithFormat:@"%@",[request URL]];
+    NSString* tempString = [NSString stringWithFormat:@"%@",[request URL]];
     
     //  NSLog(@"%@",tempString);
-    NSString* commandString=[tempString substringFromIndex:7];
-    NSString* startString=[tempString substringToIndex:5];
+    NSString* commandString = [tempString substringFromIndex:7];
+    NSString* startString = [tempString substringToIndex:5];
     if ([commandString isEqualToString:@"showimage"])//点击图片
     {
         [self showBigImage];
@@ -202,23 +182,22 @@
 - (void)exposeCell
 {
     
-    NSIndexPath* indexpath=[_listController.tableView indexPathForCell:self];
+    NSIndexPath* indexpath = [_listController.tableView indexPathForCell:self];
     //    [_listController.tableView selectRowAtIndexPath:indexpath animated:YES scrollPosition:UITableViewScrollPositionNone];
     
     
     [_listController exposeCell:indexpath];
 }
 
-
 -(BOOL)loaded
 {
     return _loaded;
 }
+
 - (void)setList:(NewFeedListController*)list
 {
     _listController=list;
 }
-
 
 - (id)initWithType:(kFeedType)type
 {
@@ -233,11 +212,10 @@
     static NSString *UploadPhotoCell = @"NewFeedStatusUploadPhotoCell";
     static NSString *BlogCell = @"NewFeedStatusBlogCell";
     
-    
-    NSLog(@"alloc");
-    _webView=[[UIWebView alloc] init];
-    _webView.frame=CGRectMake(0, 0, 320, 100);
-    _loaded=NO;    
+    _webView = [[UIWebView alloc] init];
+    _webView.frame = CGRectMake(0, 0, 320, 100);
+    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+    _loaded = NO;    
     NSString *infoSouceFile ;
     NSString *infoText;
     
@@ -245,28 +223,28 @@
         case kUploadPhoto:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"uploadphotocell" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:UploadPhotoCell];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:UploadPhotoCell];
 
             break;
         }
         case kShareAlbum:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharealbum" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ShareAlbumCell];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ShareAlbumCell];
 
             break;
         }
         case kSharePhoto:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"sharephotocell" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SharePhotoCell];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SharePhotoCell];
 
             break;
         }
         case kBlog:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogcell" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BlogCell];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BlogCell];
 
             break;
         }
@@ -274,14 +252,14 @@
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocell" ofType:@"html"];
             
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NormalCellWithPhoto];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NormalCellWithPhoto];
 
             break;
         }
         case kNormal:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcell" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NormalCell];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NormalCell];
 
             break;
         }
@@ -289,14 +267,14 @@
         case kRepost:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcell" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RepostCell];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RepostCell];
 
             break;
         }
         case kRepostWithPhoto:
         {
             infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcellwithphoto" ofType:@"html"];
-            self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RepostCellWithPhoto];
+            self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:RepostCellWithPhoto];
 
             break;
         }
@@ -304,51 +282,46 @@
             break;
     }
     
-    infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-    
-    
-    
-    
+    infoText = [[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+   
     [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
     [infoText release];
       [self.contentView addSubview:_webView];
     
-    _webView.userInteractionEnabled=YES;
+    _webView.userInteractionEnabled = YES;
     
-    _webView.backgroundColor=[UIColor clearColor];
-    _webView.opaque=NO;
-    _webView.scrollView.scrollEnabled=NO;
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
+    _webView.scrollView.scrollEnabled = NO;
     _webView.delegate=self;
     
     
     
-    _time=[[UILabel alloc] init];
+    _time = [[UILabel alloc] init];
     _time.frame=CGRectMake(246, 11, 50, 18);
-    _time.backgroundColor=[UIColor clearColor];
+    _time.backgroundColor = [UIColor clearColor];
     _time.textAlignment=UITextAlignmentRight;
-    _time.font=[UIFont fontWithName:@"Helvetica" size:9.0f];
+    _time.font = [UIFont fontWithName:@"Helvetica" size:9.0f];
 
-    _time.textColor=[UIColor colorWithRed:0.5647f green:0.55686f blue:0.47059 alpha:1];
+    _time.textColor = [UIColor colorWithRed:0.5647f green:0.55686f blue:0.47059 alpha:1];
     
     
     
     
     
-    _photoView=[[UIImageView alloc] init];
+    _photoView = [[UIImageView alloc] init];
     _photoView.frame=CGRectMake(8, 12, 37, 37);
-    
-    
-    
-    _photoOut=[[UIButton alloc] init];
+   
+    _photoOut = [[UIButton alloc] init];
     _photoOut.frame=CGRectMake(4, 8, 46, 46);
     _photoOut.adjustsImageWhenHighlighted = NO;
     [_photoOut addTarget:self action:@selector(didClickPhotoFrameButton) forControlEvents:UIControlEventTouchUpInside];
     
-    _defaultphotoView=[[UIImageView alloc] init];
+    _defaultphotoView = [[UIImageView alloc] init];
     _defaultphotoView.frame=CGRectMake(8, 12, 37, 37);
     [_defaultphotoView setImage:[UIImage imageNamed:@"default_head_img_tiny@2x.png"]];
     
-    _name=[[UIButton alloc] init];
+    _name = [[UIButton alloc] init];
     _name.frame=CGRectMake(57, 9, 210, 18);
     [_name setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
@@ -358,9 +331,8 @@
     
     [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];
     
-    _upCutline=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
+    _upCutline = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
     _upCutline.frame=CGRectMake(8, 3, 290, 1);
-    
     
     [self.contentView addSubview:_upCutline];
     
@@ -373,7 +345,6 @@
     [self.contentView addSubview:_name];
     
     [self.contentView addSubview:_time];
-
     
     return  self;
 }
@@ -382,18 +353,14 @@
 
 - (void)configureCell:(NewFeedRootData*)feedData 
 {    
-    
-    
     _photoData=nil;
 
-    
-    
     [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
     [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
     
     [_photoView setImage:nil];
     
-    if ([feedData getStyle]==0)
+    if ([feedData getStyle] == 0)
     {
         [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];
     }
@@ -401,161 +368,133 @@
     {
         [_photoOut setImage:[UIImage imageNamed:@"head_wb.png"] forState:UIControlStateNormal];
     }
-    
-    
-    
-    
 
-    if ([feedData class]==[NewFeedBlog class])
+    if ([feedData class] == [NewFeedBlog class])
     {
-        NSString* outString=[(NewFeedBlog*)feedData getName];
-        outString=[outString replaceJSSign];
+        NSString* outString = [(NewFeedBlog*)feedData getName];
+        outString = [outString replaceJSSign];
         
-        outString=[outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         
-        outString=[(NewFeedBlog*)feedData getBlog];
-        outString=[outString replaceJSSign];
+        outString = [(NewFeedBlog*)feedData getBlog];
+        outString = [outString replaceJSSign];
 
-        outString=[outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
             
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')",[feedData.comment_Count intValue]]];
-
-        
-        
-        
     }
-    else if ([feedData class]==[NewFeedShareAlbum class])
+    else if ([feedData class] == [NewFeedShareAlbum class])
     {
-     
-        NSString* outString=[(NewFeedShareAlbum*)feedData getShareComment];
-        outString=[outString replaceJSSign];
+        NSString* outString = [(NewFeedShareAlbum*)feedData getShareComment];
+        outString = [outString replaceJSSign];
         
-        outString=[outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
 
-        outString=[(NewFeedShareAlbum*)feedData getAubumName];
-        outString=[outString replaceJSSign];
-        
-        outString=[outString replaceHTMLSign];
+        outString = [(NewFeedShareAlbum*)feedData getAubumName];
+        outString = [outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
-        outString=[(NewFeedShareAlbum*)feedData getAblbumQuantity];
-        outString=[outString replaceJSSign];
-        outString=[outString replaceHTMLSign];
+        outString = [(NewFeedShareAlbum*)feedData getAblbumQuantity];
+        outString = [outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
         
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setPhotoNumber('%@')",  outString ]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setPhotoNumber('%@')",  outString]];
         
         
-        outString=[(NewFeedShareAlbum*)feedData getFromName];
-        outString=[outString replaceJSSign];
+        outString = [(NewFeedShareAlbum*)feedData getFromName];
+        outString = [outString replaceJSSign];
         
-        outString=[outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign];
         
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString  ]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')",[feedData.comment_Count intValue]]];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"resetPhoto()"]];
-        
-        
-        
+
     }
-    else if ([feedData class]==[NewFeedSharePhoto class])
+    else if ([feedData class] == [NewFeedSharePhoto class])
     {
         
-        NSString* outString=[(NewFeedSharePhoto*)feedData getShareComment];
-        outString=[outString replaceJSSign];
-        
-        outString=[outString replaceHTMLSign];
+        NSString* outString = [(NewFeedSharePhoto*)feedData getShareComment];
+        outString = [outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
-        outString=[(NewFeedSharePhoto*)feedData getPhotoComment];
-        outString=[outString replaceJSSign];
-        
-        outString=[outString replaceHTMLSign];
-        
+        outString = [(NewFeedSharePhoto*)feedData getPhotoComment];
+        outString = [outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",outString]];
-        
-        
-        
-        
-        outString=[(NewFeedSharePhoto*)feedData getTitle];
-        outString=[outString replaceJSSign];
-        
-        outString=[outString replaceHTMLSign];
+
+        outString = [(NewFeedSharePhoto*)feedData getTitle];
+        outString = [outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
-        outString=[(NewFeedSharePhoto*)feedData getFromName];
-        outString=[outString replaceJSSign];
+        outString = [(NewFeedSharePhoto*)feedData getFromName];
+        outString = [outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
-        outString=[outString replaceHTMLSign];
-        
-        
-
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString  ]];
-        
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')",[feedData.comment_Count intValue]]];
-        
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')", [feedData.comment_Count intValue]]];
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"resetPhoto()"]];
-        
-        
-        
+            
     }
-    else if ([feedData class]==[NewFeedUploadPhoto class])
+    else if ([feedData class] == [NewFeedUploadPhoto class])
     {
-        NSString* outString=[(NewFeedUploadPhoto*)feedData getName];
-        outString=[outString replaceJSSign];
+        NSString* outString = [(NewFeedUploadPhoto*)feedData getName];
+        outString = [outString replaceJSSign];
         
-        outString=[outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
-        outString=[(NewFeedUploadPhoto*)feedData getPhoto_Comment];
-        outString=[outString replaceJSSign];
+        outString = [(NewFeedUploadPhoto*)feedData getPhoto_Comment];
+        outString = [outString replaceJSSign];
         
-        outString=[outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
         
-
+        outString = [(NewFeedUploadPhoto*)feedData getTitle];
+        outString = [outString replaceJSSign];
         
-        outString=[(NewFeedUploadPhoto*)feedData getTitle];
-        outString=[outString replaceJSSign];
+        outString = [outString replaceHTMLSign];
         
-        outString=[outString replaceHTMLSign];
-        
-        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTitle('%@')",  outString  ]];
+        [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTitle('%@')", outString]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')",[feedData.comment_Count intValue]]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"resetPhoto()"]];
         
     }
-    else if ([feedData class]==[NewFeedData class])
+    else if ([feedData class] == [NewFeedData class])
     {
         if (((NewFeedData*)feedData).repost_ID==nil)
         {
             
-            NSString* outString=[(NewFeedData*)feedData getName];
-            outString=[outString replaceJSSign];
+            NSString* outString = [(NewFeedData*)feedData getName];
+            outString = [outString replaceJSSign];
             
-            outString=[outString replaceHTMLSign];
+            outString = [outString replaceHTMLSign];
             
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
             
@@ -569,44 +508,35 @@
                 
                 [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"resetPhoto()"]];
             }
-
-        
+ 
         }
         else
         {
-            NSString* outString=[(NewFeedData*)feedData getName];
-            outString=[outString replaceJSSign];
+            NSString* outString = [(NewFeedData*)feedData getName];
+            outString = [outString replaceJSSign];
             
-            outString=[outString replaceHTMLSign];
+            outString = [outString replaceHTMLSign];
             
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
             
-            outString=[(NewFeedData*)feedData getPostMessage];
-            
-               
-            
+            outString = [(NewFeedData*)feedData getPostMessage];
+
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRealRepost('%@')",outString]];
             
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')",[feedData.comment_Count intValue]]];
-            
-            
-            
+
             if (((NewFeedData*)feedData).pic_URL!=nil)
             {
                 [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"resetPhoto()"]];
-                
-                
             }
         
         }
     }
-    
-    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
-    self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
-    _webView.frame=CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
 
-    
-    
+    int scrollHeight = [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, _webView.scrollView.contentSize.width, scrollHeight);
+    _webView.frame = CGRectMake(0, 0,_webView.scrollView.contentSize.width, scrollHeight);
+
 }
 
 #pragma mark -
