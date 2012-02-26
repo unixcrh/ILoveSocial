@@ -52,10 +52,13 @@
     
 
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+    UIGraphicsEndImageContext();
     webView.delegate=nil;
     [webView release];
 
+    
+    
+  
     [_delegate webStringToImageConverter:self didFinishLoadWebViewWithImage:viewImage];
 
     

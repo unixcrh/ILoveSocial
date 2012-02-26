@@ -16,6 +16,7 @@
 #import "NewFeedSharePhoto+Addition.h"
 #import "NewFeedUploadPhoto+Addition.h"
 #import "User.h"
+#import "RepostViewController.h"
 #define IMAGE_OUT_BEGIN_X 10
 #define IMAGE_OUT_BEGIN_Y 5
 #define IMAGE_OUT_V_SPACE 20
@@ -785,6 +786,27 @@
     }
     
 }
+
+
+-(IBAction)repost
+{
+    RepostViewController *vc = [[RepostViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    
+    
+    
+    
+    [vc setStyle:kNewBlog];
+    
+    
+    vc.feedData=self.feedData;
+    
+
+    [vc setcommentPage:NO];
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
+}
+
 
 
 @end
