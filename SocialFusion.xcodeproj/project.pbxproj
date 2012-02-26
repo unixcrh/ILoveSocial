@@ -318,7 +318,6 @@
 		E1ABA4DB141FAC8D002CD0A6 /* SocialFusionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ABA4D9141FAC8D002CD0A6 /* SocialFusionViewController.xib */; };
 		E1ADB18E14EFFDE30064DF5F /* RenrenUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ADB18D14EFFDE30064DF5F /* RenrenUser.m */; };
 		E1ADB19114EFFDE40064DF5F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ADB19014EFFDE40064DF5F /* User.m */; };
-		E1ADB19B14F219EA0064DF5F /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */; };
 		E1ADB1A214F26E040064DF5F /* user_info_btn_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADB1A014F26E040064DF5F /* user_info_btn_follow@2x.png */; };
 		E1ADB1A314F26E040064DF5F /* user_info_btn_not_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADB1A114F26E040064DF5F /* user_info_btn_not_follow@2x.png */; };
 		E1ADB1A514F277560064DF5F /* user_info_btn_at@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1ADB1A414F277560064DF5F /* user_info_btn_at@2x.png */; };
@@ -357,6 +356,7 @@
 		E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581814EEBB5A003064CD /* RenrenDetail.m */; };
 		E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */ = {isa = PBXBuildFile; fileRef = E1E56AE214FA5F5000B959DE /* pocketsocial.css */; };
 		E1E56AEC14FA91EF00B959DE /* NSData+NSData_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */; };
+		E1E56AEE14FA99B400B959DE /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E56AED14FA99B400B959DE /* DetailImageViewController.xib */; };
 		E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF51143B36600098BBD3 /* FriendListViewController.m */; };
 		E1E5DF60143B47900098BBD3 /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */; };
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
@@ -848,7 +848,6 @@
 		E1ADB18D14EFFDE30064DF5F /* RenrenUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RenrenUser.m; path = "SocialFusion/Class/CoreData Models/RenrenUser.m"; sourceTree = "<group>"; };
 		E1ADB18F14EFFDE40064DF5F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
 		E1ADB19014EFFDE40064DF5F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
-		E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailImageViewController.xib; path = SocialFusion/Class/DetailImageViewController.xib; sourceTree = "<group>"; };
 		E1ADB1A014F26E040064DF5F /* user_info_btn_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_btn_follow@2x.png"; sourceTree = "<group>"; };
 		E1ADB1A114F26E040064DF5F /* user_info_btn_not_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_btn_not_follow@2x.png"; sourceTree = "<group>"; };
 		E1ADB1A414F277560064DF5F /* user_info_btn_at@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_info_btn_at@2x.png"; sourceTree = "<group>"; };
@@ -898,6 +897,7 @@
 		E1E56AE214FA5F5000B959DE /* pocketsocial.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pocketsocial.css; sourceTree = "<group>"; };
 		E1E56AEA14FA91EF00B959DE /* NSData+NSData_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSData_Base64.h"; sourceTree = "<group>"; };
 		E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSData_Base64.m"; sourceTree = "<group>"; };
+		E1E56AED14FA99B400B959DE /* DetailImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
 		E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
 		E1E5DF51143B36600098BBD3 /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
 		E1E5DF5F143B47900098BBD3 /* FriendListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
@@ -1478,7 +1478,7 @@
 			children = (
 				73FBBFBF14C3F6B100694B1B /* DetailImageViewController.h */,
 				73FBBFC014C3F6B200694B1B /* DetailImageViewController.m */,
-				E1ADB19A14F219E90064DF5F /* DetailImageViewController.xib */,
+				E1E56AED14FA99B400B959DE /* DetailImageViewController.xib */,
 				E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */,
 				E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */,
 				E1FB623F14247EA000828E24 /* CoreDataViewController.h */,
@@ -2098,7 +2098,6 @@
 				73DA39E814EE21B20081E38B /* blogtemplate.html in Resources */,
 				E1E257E614EE83BF003064CD /* RenrenUserInfoViewController.xib in Resources */,
 				E1E257E814EE869C003064CD /* user_info_renren_detail_bg@2x.png in Resources */,
-				E1ADB19B14F219EA0064DF5F /* DetailImageViewController.xib in Resources */,
 				E1ADB1A214F26E040064DF5F /* user_info_btn_follow@2x.png in Resources */,
 				E1ADB1A314F26E040064DF5F /* user_info_btn_not_follow@2x.png in Resources */,
 				E1ADB1A514F277560064DF5F /* user_info_btn_at@2x.png in Resources */,
@@ -2119,6 +2118,7 @@
 				E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */,
 				73F41BF314FA052700A6112E /* NewBlogViewController.xib in Resources */,
 				73F41BFA14FA4FAC00A6112E /* btn_msg_new@2x.png in Resources */,
+				E1E56AEE14FA99B400B959DE /* DetailImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
