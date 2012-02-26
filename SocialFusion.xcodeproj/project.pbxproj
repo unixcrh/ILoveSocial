@@ -60,7 +60,7 @@
 		736DD40814D81F210029B516 /* StatusCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736DD40714D81F200029B516 /* StatusCommentData.m */; };
 		7370AFC714E2565E00AB4473 /* page_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7370AFC514E2565E00AB4473 /* page_line.png */; };
 		7370AFC814E2565E00AB4473 /* page_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7370AFC614E2565E00AB4473 /* page_line@2x.png */; };
-		737E839E14F7D9E7002058C6 /* NSString+Cut.m in Sources */ = {isa = PBXBuildFile; fileRef = 737E839D14F7D9E7002058C6 /* NSString+Cut.m */; };
+		737E839E14F7D9E7002058C6 /* NSString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 737E839D14F7D9E7002058C6 /* NSString+Addition.m */; };
 		737E83A214F7EF92002058C6 /* NSString+WeiboSubString.m in Sources */ = {isa = PBXBuildFile; fileRef = 737E83A114F7EF91002058C6 /* NSString+WeiboSubString.m */; };
 		7390665C143F095E00835332 /* NewFeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7390665A143F095C00835332 /* NewFeedListController.m */; };
 		7398960714C157F900696C1C /* repost_underline.png in Resources */ = {isa = PBXBuildFile; fileRef = 7398960414C157F900696C1C /* repost_underline.png */; };
@@ -452,8 +452,8 @@
 		736DD40714D81F200029B516 /* StatusCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusCommentData.m; path = "SocialFusion/Class/CoreData Models/StatusCommentData.m"; sourceTree = "<group>"; };
 		7370AFC514E2565E00AB4473 /* page_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_line.png; sourceTree = "<group>"; };
 		7370AFC614E2565E00AB4473 /* page_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page_line@2x.png"; sourceTree = "<group>"; };
-		737E839C14F7D9E7002058C6 /* NSString+Cut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Cut.h"; sourceTree = "<group>"; };
-		737E839D14F7D9E7002058C6 /* NSString+Cut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Cut.m"; sourceTree = "<group>"; };
+		737E839C14F7D9E7002058C6 /* NSString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSString+Addition.h"; sourceTree = "<group>"; };
+		737E839D14F7D9E7002058C6 /* NSString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Addition.m"; sourceTree = "<group>"; };
 		737E83A014F7EF91002058C6 /* NSString+WeiboSubString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WeiboSubString.h"; sourceTree = "<group>"; };
 		737E83A114F7EF91002058C6 /* NSString+WeiboSubString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WeiboSubString.m"; sourceTree = "<group>"; };
 		73906659143F095C00835332 /* NewFeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeedListController.h; sourceTree = "<group>"; };
@@ -1439,9 +1439,9 @@
 				73B75BAF14BB29C700D7ACA1 /* NSData+NsData_Base64.h */,
 				73B75BB014BB29C700D7ACA1 /* NSData+NsData_Base64.m */,
 				736BA57F14C802AD009037EE /* NSString+HTMLSet.h */,
-				737E839C14F7D9E7002058C6 /* NSString+Cut.h */,
-				737E839D14F7D9E7002058C6 /* NSString+Cut.m */,
 				736BA58014C802AE009037EE /* NSString+HTMLSet.m */,
+				737E839C14F7D9E7002058C6 /* NSString+Addition.h */,
+				737E839D14F7D9E7002058C6 /* NSString+Addition.m */,
 				737E83A014F7EF91002058C6 /* NSString+WeiboSubString.h */,
 				737E83A114F7EF91002058C6 /* NSString+WeiboSubString.m */,
 				E1ABA423141FA882002CD0A6 /* NSString+Pinyin.h */,
@@ -2274,7 +2274,7 @@
 				E1ADB19114EFFDE40064DF5F /* User.m in Sources */,
 				73467CD414F511C900255F2A /* RepostViewController.m in Sources */,
 				E1C0D71F14F5DDA300F380C6 /* LoginViewController.m in Sources */,
-				737E839E14F7D9E7002058C6 /* NSString+Cut.m in Sources */,
+				737E839E14F7D9E7002058C6 /* NSString+Addition.m in Sources */,
 				737E83A214F7EF92002058C6 /* NSString+WeiboSubString.m in Sources */,
 				736B52D414F89CC2007A7EEB /* WBWebDialogViewController.m in Sources */,
 				E1B787BB14F8F487000AAD67 /* AppInfoViewController.m in Sources */,

@@ -35,8 +35,6 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 
 @interface NewFeedListController()
 
-
-
 @end
 
 @implementation NewFeedListController
@@ -762,11 +760,14 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [self loadExtraDataForOnscreenRows];
 }
 
-
-
 - (void)statusCellWebViewDidLoad:(UIWebView*)webView  indexPath:(NSIndexPath*)path Cell:(NewFeedStatusCell*)cell
 {
      NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:path];
     [cell configureCell:_feedData];
 }
+
+#pragma mark - 
+#pragma mark GIF methos
+
+
 @end
