@@ -8,6 +8,7 @@
 
 #import "NewBlogViewController.h"
 #import "UIButton+Addition.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation NewBlogViewController
 @synthesize blogTextView = _blogTextView;
@@ -43,6 +44,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, self.scrollView.frame.size.height);
+    self.blogTextView.text = @"";
+    [self didClickBlogTitleButton:nil];
 }
 
 #pragma mark -
@@ -59,10 +63,46 @@
 }
 
 - (IBAction)didClickBlogTitleButton:(id)sender {
-    
+    _currentPage = 0;
+    [self.blogBodyButton setPostPlatformButtonSelected:NO];
+    [self.blogTitleButton setPostPlatformButtonSelected:YES];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+    [self.textView becomeFirstResponder];
 }
 
 - (IBAction)didClickBlogBodyButton:(id)sender {
+    _currentPage = 1;
+    [self.blogBodyButton setPostPlatformButtonSelected:YES];
+    [self.blogTitleButton setPostPlatformButtonSelected:NO];
+    [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
+    [self.blogTextView becomeFirstResponder];
+}
+
+#pragma mark -
+#pragma mark UIScrollView delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
+    _currentPage = index;
+    if(_currentPage == 0) {
+        [self didClickBlogTitleButton:nil];
+    }
+    else if(_currentPage == 1) {
+        [self didClickBlogBodyButton:nil];
+    }
+}
+
+#pragma mark -
+#pragma mark UITextView delegate 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [super textViewDidChange:textView];
+    [self.view.layer removeAllAnimations];
+    if(_currentPage == 0)
+        [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
+    else if(_currentPage == 1)
+        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
     
 }
 

@@ -8,9 +8,10 @@
 
 #import "PostViewController.h"
 
-@interface NewBlogViewController : PostViewController {
+@interface NewBlogViewController : PostViewController<UIScrollViewDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
+    NSUInteger _currentPage;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *blogTextView;
