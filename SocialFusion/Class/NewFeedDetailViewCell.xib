@@ -142,7 +142,7 @@
 													<object class="IBUIButton" id="740464892">
 														<reference key="NSNextResponder" ref="985197908"/>
 														<int key="NSvFlags">292</int>
-														<string key="NSFrame">{{257, 35}, {15, 19}}</string>
+														<string key="NSFrame">{{242.5, 22.5}, {44, 44}}</string>
 														<reference key="NSSuperview" ref="985197908"/>
 														<reference key="NSWindow"/>
 														<reference key="NSNextKeyView" ref="469337084"/>
@@ -536,11 +536,11 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="283938503"/>
 							<reference ref="1004029588"/>
-							<reference ref="740464892"/>
 							<reference ref="239937264"/>
 							<reference ref="469337084"/>
 							<reference ref="369212633"/>
 							<reference ref="115320193"/>
+							<reference ref="740464892"/>
 						</array>
 						<reference key="parent" ref="977345865"/>
 					</object>
@@ -853,17 +853,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">StatusDetailController</string>
 					<string key="superclassName">EGOTableViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">repost</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">repost</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="comment:">id</string>
+						<string key="repost">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="comment:">
+							<string key="name">comment:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="repost">
 							<string key="name">repost</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_commentCel">StatusCommentCell</string>
 						<string key="_headImage">UIImageView</string>
