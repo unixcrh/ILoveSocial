@@ -43,7 +43,7 @@
      NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
      NSString* string=[dict objectForKey:@"text"];
 
-     string=[string replaceHTMLSign];
+     string=[string replaceHTMLSign:kWeibo];
      
      //  string=[string stringByReplacingOccurrencesOfString:@"&" withString:@"\\&"];
     [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];   
@@ -66,7 +66,7 @@
          NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]];
      
          
-         outString=[outString replaceHTMLSign];
+         outString=[outString replaceHTMLSign:kWeibo];
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
          scrollHeight=  [[_webView stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] intValue];
          if ([attachment objectForKey:@"thumbnail_pic"]!=nil)
@@ -88,7 +88,7 @@
          NSString* outString=[NSString stringWithFormat:@"%@《%@》",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
          
          
-         outString=[outString replaceHTMLSign];
+         outString=[outString replaceHTMLSign:kRenren];
          
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
          
@@ -96,7 +96,7 @@
          outString=[dict objectForKey:@"description"];
         // NSLog(@":%@:",outString);
          
-         outString=[outString replaceHTMLSign];
+         outString=[outString replaceHTMLSign:kRenren];
  
          
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
@@ -119,7 +119,7 @@
          else
          {
              
-             string=[string replaceHTMLSign];
+             string=[string replaceHTMLSign:kRenren];
              
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
@@ -142,7 +142,7 @@
          else
          {
              
-             string=[string replaceHTMLSign];
+             string=[string replaceHTMLSign:kRenren];
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
              
          }
@@ -160,7 +160,7 @@
          {
              NSString* string=[dict objectForKey:@"message"];
              
-             string=[string replaceHTMLSign];
+             string=[string replaceHTMLSign:kRenren];
          //    NSLog(@"%@",string);
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('')"]];
@@ -170,13 +170,13 @@
          {
              NSString* string=[dict objectForKey:@"message"];
              
-             string=[string replaceHTMLSign];  
+             string=[string replaceHTMLSign:kRenren];  
              
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
            
              NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"]];
              
-             outString=[outString replaceHTMLSign];          //   NSLog(@"start:%@:end",outString);
+             outString=[outString replaceHTMLSign:kRenren];          //   NSLog(@"start:%@:end",outString);
              
             // unichar ch=[outString characterAtIndex:[outString length]-1];
             // unichar ch2=[outString characterAtIndex:[outString length]-2];

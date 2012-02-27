@@ -379,7 +379,7 @@
         
         outString = [(NewFeedBlog*)feedData getBlog];
 
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
@@ -390,18 +390,18 @@
     {
         NSString* outString = [(NewFeedShareAlbum*)feedData getShareComment];
         
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
 
         outString = [(NewFeedShareAlbum*)feedData getAubumName];
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
         outString = [(NewFeedShareAlbum*)feedData getAblbumQuantity];
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setPhotoNumber('%@')",  outString]];
@@ -409,7 +409,7 @@
         
         outString = [(NewFeedShareAlbum*)feedData getFromName];
         
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString]];
         
@@ -423,23 +423,23 @@
     {
         
         NSString* outString = [(NewFeedSharePhoto*)feedData getShareComment];
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         outString = [(NewFeedSharePhoto*)feedData getPhotoComment];
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",outString]];
 
         outString = [(NewFeedSharePhoto*)feedData getTitle];
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
         outString = [(NewFeedSharePhoto*)feedData getFromName];
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString]];
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setCommentCount('评论:%d')", [feedData.comment_Count intValue]]];
@@ -455,14 +455,14 @@
         
         outString = [(NewFeedUploadPhoto*)feedData getPhoto_Comment];
         
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
         
         outString = [(NewFeedUploadPhoto*)feedData getTitle];
         
-        outString = [outString replaceHTMLSign];
+        outString = [outString replaceHTMLSign:[feedData.style intValue]];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setTitle('%@')", outString]];
         

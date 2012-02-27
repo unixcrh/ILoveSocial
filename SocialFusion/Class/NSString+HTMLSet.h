@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef  enum kReplayHTMLStyle {
+    kRenren=0,
+    kWeibo=0
+} kReplayHTMLStyle;
+
 
 @interface NSString (HTMLSet)
 - (NSString*)replaceJSSign;
-- (NSString*)replaceHTMLSign;
+- (NSString*)replaceHTMLSign:(kReplayHTMLStyle)style;
 - (NSString*)decodeHTMLSign;
 - (NSString*)setName:(NSString*)name;
 - (NSString*)setTime:(NSString*)time ;

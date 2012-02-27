@@ -65,11 +65,11 @@
 
     
     NSString* string=self.repost_Name;
-    string=[string replaceHTMLSign];
+    string=[string replaceHTMLSign:[self.style intValue]];
 
     
     NSString* string1=self.repost_Status;
-    string1=[string1 replaceHTMLSign];
+    string1=[string1 replaceHTMLSign :[self.style intValue]];
 
     
     return [NSString stringWithFormat:@"<span style=\"font-weight:bold;\">%@:</span>%@",string,string1];
@@ -89,7 +89,7 @@
 
 - (NSString*)getName
 {
-    return [self.message replaceHTMLSign];
+    return [self.message replaceHTMLSign:[self.style intValue]];
 }
 
 

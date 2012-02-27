@@ -63,7 +63,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     return returnString;
 }
 
-- (NSString*)replaceHTMLSign 
+- (NSString*)replaceHTMLSign :(kReplayHTMLStyle)style
 {
     NSString* returnString = [NSString stringWithString:self];
     /*
@@ -80,12 +80,18 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
     */
     
+    if (style==kWeibo)
+    {
     returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='weiboAtClicked(\"%@\")'>%@</a></span>"];
+    }
+    else
+    {
     returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
+    }
     returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='%@'  onclick=\"event.cancelBubble=true;\">%@</a></span>"];
     
     returnString=[returnString replaceJSSign];
-     NSLog(@"%@",returnString);
+    // NSLog(@"%@",returnString);
     return returnString;
 }
 
