@@ -26,7 +26,7 @@
 - (void)dealloc {
     [_secretWordsTitleButton release];
     [_secretWordsLightButton release];
-    [_dialogist release];
+    [_processUser release];
     [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 - (id)initWithUser:(User *)usr{
     self = [self init];
     if(self) {
-        _dialogist = [usr retain];
+        _processUser = [usr retain];
         self.managedObjectContext = usr.managedObjectContext;
         if([usr isMemberOfClass:[RenrenUser class]]) {
             _platformCode = kPlatformRenren;
@@ -64,12 +64,12 @@
     if(_platformCode == kPlatformWeibo) {
         self.secretWordsLightButton.hidden = YES;
         self.secretWordsTitleButton.hidden = YES;
-        self.textView.text = [NSString stringWithFormat:@"@%@ ", _dialogist.name];
+        self.textView.text = [NSString stringWithFormat:@"@%@ ", _processUser.name];
     }
     else if(_platformCode == kPlatformRenren) {
         self.secretWordsLightButton.hidden = YES;
         self.secretWordsTitleButton.hidden = YES;
-        self.textView.text = [NSString stringWithFormat:@"@%@(%@) ", _dialogist.name, _dialogist.userID];
+        self.textView.text = [NSString stringWithFormat:@"@%@(%@) ", _processUser.name, _processUser.userID];
     }
 }
 

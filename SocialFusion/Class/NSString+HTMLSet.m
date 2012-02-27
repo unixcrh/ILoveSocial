@@ -46,7 +46,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
         NSLog(@"substr:%@", subStr);
         NSString *substituteStr = nil;
         if(isReplacingRenrenAtRegEx) {
-            substituteStr = [NSString stringWithFormat:substitute, [subStr substringWithRange:NSMakeRange(1, subStr.length - 13)], [subStr substringToIndex:subStr.length - 12]];
+            substituteStr = [NSString stringWithFormat:substitute, [subStr substringWithRange:NSMakeRange(subStr.length - 11, 9)], [subStr substringToIndex:subStr.length - 12]];
         }
         else if(isReplacingWeiboAtRegEx) {
             substituteStr = [NSString stringWithFormat:substitute, [subStr substringFromIndex:1], subStr];
@@ -63,7 +63,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     return returnString;
 }
 
-- (NSString*)replaceHTMLSign :(kReplayHTMLStyle)style
+- (NSString*)replaceHTMLSign:(kReplayHTMLStyle)style
 {
     NSString* returnString = [NSString stringWithString:self];
     /*
@@ -80,17 +80,15 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
     */
     
-    if (style==kWeibo)
-    {
+    if (style == kWeibo) {
     returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='weiboAtClicked(\"%@\")'>%@</a></span>"];
     }
-    else
-    {
+    else if(style == kRenren){
     returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
     }
-    returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='%@'  onclick=\"event.cancelBubble=true;\">%@</a></span>"];
+    returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='%@' onclick=\"event.cancelBubble=true;\">%@</a></span>"];
     
-    returnString=[returnString replaceJSSign];
+    returnString = [returnString replaceJSSign];
     // NSLog(@"%@",returnString);
     return returnString;
 }

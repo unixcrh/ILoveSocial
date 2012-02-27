@@ -9,13 +9,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UserInfoViewController.h"
 #import "RenrenUser+Addition.h"
+#import "WeiboUser+Addition.h"
 #import "RenrenUserInfoViewController.h"
 #import "WeiboUserInfoViewController.h"
 #import "UIImageView+Addition.h"
 #import "Image+Addition.h"
-#import "LeaveMessageViewController.h"
 #import "UIApplication+Addition.h"
 #import "DetailImageViewController.h"
+#import "NewStatusViewController.h"
 
 #define PHOTO_FRAME_SIDE_LENGTH 100.0f
 
@@ -121,8 +122,9 @@
 #pragma mark IBActions
 
 - (IBAction)didClickAtButton {
-    User *usr = self.processUser;
-    LeaveMessageViewController *vc = [[LeaveMessageViewController alloc] initWithUser:usr];
+    NewStatusViewController *vc = [[NewStatusViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    vc.processUser = self.processUser;
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
 }

@@ -108,7 +108,7 @@
         [[UIApplication sharedApplication] presentToast:@"保存成功。" withVerticalPos:kToastBottomVerticalPosition];
     }
     else {
-        [[UIApplication sharedApplication] presentToast:@"保存失败。" withVerticalPos:kToastBottomVerticalPosition];
+        [[UIApplication sharedApplication] presentErrorToast:@"保存失败。" withVerticalPos:kToastBottomVerticalPosition];
     }
     [self hideActivityView];
 }

@@ -10,6 +10,7 @@
 #import "PostViewController.h"
 #import "PickAtListViewController.h"
 #import "DetailImageViewController.h"
+#import "User.h"
 
 
 @interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, DetailImageViewControllerDelegate> {
@@ -28,6 +29,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, retain) IBOutlet UIButton *photoCancelButton;
 
+@property (nonatomic, retain) User *processUser;
 
 - (IBAction)didClickPostToRenrenButton:(id)sender;
 - (IBAction)didClickPostToWeiboButton:(id)sender;
