@@ -67,6 +67,22 @@
     return _loadMoreDataButton;
 }
 
+-(void)startLoading
+{
+    _activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activityView.frame=CGRectMake(15, 15, 30, 30);
+    [self.tableView.tableFooterView addSubview:_activityView];
+    [_activityView startAnimating];
+}
+
+-(void)stopLoading
+{
+  
+        [_activityView stopAnimating];
+        [_activityView removeFromSuperview];
+        [_activityView release];
+    
+}
 - (void)showLoadMoreDataButton
 {
     [self.tableView setTableFooterView:self.loadMoreDataButton];
@@ -112,12 +128,15 @@
 }
 
 - (void)reloadTableViewDataSource {
+
 	_reloadingFlag = YES;
 	[self refresh];
 }
 
 - (void)doneLoadingTableViewData {
-    [UIView animateWithDuration:0.2f animations:^(void) {
+    
+
+        [UIView animateWithDuration:0.2f animations:^(void) {
         [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
         
     } completion:^(BOOL finished) {

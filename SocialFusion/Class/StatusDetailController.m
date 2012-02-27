@@ -102,7 +102,7 @@
     ((UIScrollView*)self.view).delegate = self;
     [((UIScrollView*)self.view) addSubview:_pageLine];
     
-    self.tableView.frame = CGRectMake(306, 30, 306, 350);
+    self.tableView.frame = CGRectMake(306, 30, 306, 320);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
@@ -287,6 +287,8 @@
         _showMoreButton = NO;
     }
     _loadingFlag = NO;
+    
+    
     [self doneLoadingTableViewData];
     [self.tableView reloadData];
     

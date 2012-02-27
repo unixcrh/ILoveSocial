@@ -42,6 +42,8 @@ typedef   enum kUserFeed {
     BOOL _firstLoad;
     
     int _loadingCount;
+    
+
 }
 
 @property (nonatomic, readonly) WeiboUser *processWeiboUser;
@@ -60,5 +62,6 @@ typedef   enum kUserFeed {
 - (IBAction)resetToNormalList;
 - (void)setStyle:(int)style;
 - (void)selectUser:(NSIndexPath*)indexPath;
+-(void)startLoading;
 
 @end
