@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">11A494a</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.AppKitVersion">1128</string>
+		<string key="IBDocument.HIToolboxVersion">564.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -398,7 +398,7 @@
 							<object class="IBUIButton" id="146622432">
 								<reference key="NSNextResponder" ref="483012100"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{210, 0}, {22, 22}}</string>
+								<string key="NSFrame">{{210, 1}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="483012100"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="7403170"/>
@@ -422,7 +422,7 @@
 							<object class="IBUIButton" id="7403170">
 								<reference key="NSNextResponder" ref="483012100"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{234, 0}, {72, 22}}</string>
+								<string key="NSFrame">{{234, 1}, {72, 22}}</string>
 								<reference key="NSSuperview" ref="483012100"/>
 								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -600,6 +600,15 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didClickComment</string>
+						<reference key="source" ref="146622432"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">didClickComment</string>
 						<reference key="source" ref="7403170"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
@@ -766,7 +775,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">48</int>
+			<int key="maxID">49</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
