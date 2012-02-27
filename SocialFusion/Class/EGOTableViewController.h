@@ -16,7 +16,7 @@
     BOOL _clearDataFlag;
     
     UIButton *_loadMoreDataButton;
-    
+    UIActivityIndicatorView* _activityView;
 }
 
 @property(nonatomic, retain) EGORefreshTableHeaderView *egoHeaderView;
@@ -28,5 +28,6 @@
 - (void)doneLoadingTableViewData;
 - (void)showLoadMoreDataButton;
 - (void)hideLoadMoreDataButton;
-
+-(void)startLoading;
+-(void)stopLoading;
 @end

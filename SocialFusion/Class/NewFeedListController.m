@@ -211,7 +211,11 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)setLoadingCount:(int)loadingCount {
     _loadingCount = loadingCount;
     if(_loadingCount == 0)
+    {
+        [self stopLoading];
         _loadingFlag = NO;
+    }
+
     else
         _loadingFlag = YES;
     if(_loadingCount < 0) {
@@ -310,8 +314,9 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     if(_loadingFlag)
         return;
     _pageNumber++;
-    _currentTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
+    _currentTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
+    [self startLoading];
     if (_style == kAllSelfFeed)
     {
         [self loadMoreRenrenData];

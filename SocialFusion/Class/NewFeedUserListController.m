@@ -102,6 +102,8 @@
     if(_loadingFlag)
         return;
     _pageNumber++;
+    [self startLoading];
+
     _currentTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
     if (_style == kRenrenUserFeed) {

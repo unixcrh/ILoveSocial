@@ -428,7 +428,7 @@
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         outString = [(NewFeedSharePhoto*)feedData getPhotoComment];
-        outString = [outString replaceHTMLSign:[feedData.style intValue]];
+        outString = [outString replaceJSSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",outString]];
 
@@ -454,9 +454,10 @@
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         outString = [(NewFeedUploadPhoto*)feedData getPhoto_Comment];
-        
-        outString = [outString replaceHTMLSign:[feedData.style intValue]];
-        
+        NSLog(@"%@",outString);
+
+        outString = [outString replaceJSSign];
+        NSLog(@"%@",outString);
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
         
