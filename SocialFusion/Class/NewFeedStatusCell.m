@@ -214,7 +214,7 @@
     
     _webView = [[UIWebView alloc] init];
     _webView.frame = CGRectMake(0, 0, 320, 100);
-   // _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     _loaded = NO;    
     NSString *infoSouceFile ;
     NSString *infoText;
