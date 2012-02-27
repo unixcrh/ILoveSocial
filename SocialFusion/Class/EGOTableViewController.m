@@ -60,7 +60,7 @@
         [devideLineView release];
 
         [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+        button.showsTouchWhenHighlighted=YES;
         [button addTarget:self action:@selector(loadMoreData) forControlEvents:UIControlEventTouchUpInside];
         self.loadMoreDataButton = button;
     }

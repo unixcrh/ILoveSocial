@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 typedef  enum kReplayHTMLStyle {
     kRenren=0,
-    kWeibo=0
+    kWeibo=1
 } kReplayHTMLStyle;
 
 
