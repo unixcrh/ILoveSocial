@@ -24,12 +24,6 @@ typedef enum {
 @interface PostViewController : CoreDataViewController <UITextViewDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {
     PostStatusErrorCode _postStatusErrorCode;
     NSUInteger _postCount;
-    
-    UITextView *_textView;
-    UILabel *_textCountLabel;
-    UIView *_toolBarView;
-    UILabel *titleLabel;
-    
     NSInteger _lastTextViewCount;
 }
 

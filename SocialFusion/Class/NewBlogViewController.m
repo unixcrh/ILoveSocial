@@ -7,32 +7,24 @@
 //
 
 #import "NewBlogViewController.h"
+#import "UIButton+Addition.h"
 
 @implementation NewBlogViewController
+@synthesize blogTextView = _blogTextView;
+@synthesize postRenrenButton = _postRenrenButton;
+@synthesize postWeiboButton = _postWeiboButton;
+@synthesize blogBodyButton = _blogBodyButton;
+@synthesize blogTitleButton = _blogTitleButton;
+@synthesize scrollView = _scrollView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+- (void)dealloc {
+    [_blogTextView release];
+    [_postRenrenButton release];
+    [_postWeiboButton release];
+    [_blogBodyButton release];
+    [_blogTitleButton release];
+    [_scrollView release];
+    [super dealloc];
 }
 
 - (void)viewDidUnload
@@ -40,12 +32,38 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.blogTextView = nil;
+    self.postRenrenButton = nil;
+    self.postWeiboButton = nil;
+    self.blogBodyButton = nil;
+    self.blogTitleButton = nil;
+    self.scrollView = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)viewDidLoad
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    [super viewDidLoad];
+}
+
+#pragma mark -
+#pragma mark IBActions
+
+- (IBAction)didClickPostToRenrenButton:(id)sender {
+    _postToRenren = !_postToRenren;
+    [self.postRenrenButton setPostPlatformButtonSelected:_postToRenren];
+}
+
+- (IBAction)didClickPostToWeiboButton:(id)sender {
+    _postToWeibo = !_postToWeibo;
+    [self.postWeiboButton setPostPlatformButtonSelected:_postToWeibo];
+}
+
+- (IBAction)didClickBlogTitleButton:(id)sender {
+    
+}
+
+- (IBAction)didClickBlogBodyButton:(id)sender {
+    
 }
 
 @end

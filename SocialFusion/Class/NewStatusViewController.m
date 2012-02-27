@@ -81,7 +81,7 @@
 }
 
 #pragma mark -
-#pragma mark IBAction
+#pragma mark IBActions
 
 - (IBAction)didClickPostButton:(id)sender {
     _postCount = 0;
