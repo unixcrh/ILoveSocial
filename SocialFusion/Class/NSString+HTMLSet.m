@@ -8,6 +8,10 @@
 
 #import "NSString+HTMLSet.h"
 
+static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
+static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*";
+static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
+
 @implementation NSString (HTMLSet)
 
 - (NSString*)replaceJSSign
@@ -19,15 +23,28 @@
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     return  returnString;
 }
+
 - (NSString *)replaceRegEx:(NSString *)regEx withString:(NSString *)substitute {
     NSString *returnString = [NSString stringWithFormat:@"%@", self];
     NSRange searchRange = NSMakeRange(0, returnString.length);
     NSRange range = [returnString rangeOfString:regEx options:NSRegularExpressionSearch];
-    while (range.location != NSNotFound) {
+    BOOL isReplacingWeiboAtRegEx = [regEx isEqualToString:weiboAtRegEx];
+    while(range.location != NSNotFound) {
+        if(isReplacingWeiboAtRegEx) {
+            NSUInteger newRangeLoc = range.location + range.length;
+            if(returnString.length > newRangeLoc) {
+                unichar charAfterSubStr = [returnString characterAtIndex:range.location + range.length];
+                if(charAfterSubStr == '.' || charAfterSubStr == '(') {
+                    searchRange = NSMakeRange(newRangeLoc, returnString.length - newRangeLoc);
+                    range = [returnString rangeOfString:regEx options:NSRegularExpressionSearch range:searchRange];
+                    continue;
+                }
+            }
+        }
         NSString* subStr = [returnString substringWithRange:range];
         NSLog(@"substr:%@", subStr);
         NSString *substituteStr = [NSString stringWithFormat:substitute, subStr, subStr];
-        NSLog(@"substitute str:%@", substituteStr);
+        //NSLog(@"substitute str:%@", substituteStr);
         returnString = [returnString stringByReplacingCharactersInRange:range withString:substituteStr];
         NSUInteger newRangeLoc = range.location + substituteStr.length;
         searchRange = NSMakeRange(newRangeLoc, returnString.length - newRangeLoc);
@@ -38,7 +55,7 @@
 
 - (NSString*)replaceHTMLSign 
 {
-    NSString* returnString=[NSString stringWithString:self];
+    NSString* returnString = [NSString stringWithString:self];
     /*
     returnString = [self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
@@ -52,16 +69,11 @@
     returnString = [returnString stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
     */
-    static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
-    static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*";
-    static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     
-    returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
     returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='weiboAtClicked(\"%@\")'>%@</a></span>"];
+    returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
     returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='lkClicked(\"%@\")'>%@</a></span>"];
     
-    
- //  
     returnString=[returnString replaceJSSign];
      NSLog(@"%@",returnString);
     return returnString;
