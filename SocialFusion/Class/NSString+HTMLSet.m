@@ -8,7 +8,7 @@
 
 #import "NSString+HTMLSet.h"
 
-static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
+static NSString *renrenAtRegEx = @"@[^@]*\\([0-9]{9,}\\)\\u0020";
 static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]-_]*";
 static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
 
@@ -31,17 +31,6 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     BOOL isReplacingWeiboAtRegEx = [regEx isEqualToString:weiboAtRegEx];
     BOOL isReplacingRenrenAtRegEx = [regEx isEqualToString:renrenAtRegEx];
     while(range.location != NSNotFound) {
-        if(isReplacingWeiboAtRegEx) {
-            NSUInteger newRangeLoc = range.location + range.length;
-            if(returnString.length > newRangeLoc) {
-                unichar charAfterSubStr = [returnString characterAtIndex:range.location + range.length];
-                if(charAfterSubStr == '.' || charAfterSubStr == '(') {
-                    searchRange = NSMakeRange(newRangeLoc, returnString.length - newRangeLoc);
-                    range = [returnString rangeOfString:regEx options:NSRegularExpressionSearch range:searchRange];
-                    continue;
-                }
-            }
-        }
         NSString* subStr = [returnString substringWithRange:range];
         NSLog(@"substr:%@", subStr);
         NSString *substituteStr = nil;
@@ -54,6 +43,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
         else {
             substituteStr = [NSString stringWithFormat:substitute, subStr, subStr];
         }
+        NSLog(@"substituteStr:%@", substituteStr);
         //NSLog(@"substitute str:%@", substituteStr);
         returnString = [returnString stringByReplacingCharactersInRange:range withString:substituteStr];
         NSUInteger newRangeLoc = range.location + substituteStr.length;

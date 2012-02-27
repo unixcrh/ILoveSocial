@@ -16,5 +16,6 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)didClickNewStatusButton:(id)sender;
+- (IBAction)didClickNewBlogButton:(id)sender;
 
 @end

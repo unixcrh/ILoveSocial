@@ -16,10 +16,6 @@
 @interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, DetailImageViewControllerDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
-    
-    UIView *_photoView;
-    UIImageView *_photoImageView;
-    UIButton *_photoCancelButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *postRenrenButton;

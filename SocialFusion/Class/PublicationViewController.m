@@ -9,6 +9,7 @@
 #import "PublicationViewController.h"
 #import "NewStatusViewController.h"
 #import "UIApplication+Addition.h"
+#import "NewBlogViewController.h"
 
 @implementation PublicationViewController
 
@@ -30,8 +31,18 @@
     self.scrollView.scrollsToTop = NO;
 }
 
+#pragma mark -
+#pragma mark IBActions
+
 - (IBAction)didClickNewStatusButton:(id)sender  {
     NewStatusViewController *vc = [[NewStatusViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
+}
+
+- (IBAction)didClickNewBlogButton:(id)sender {
+    NewBlogViewController *vc = [[NewBlogViewController alloc] init];
     vc.managedObjectContext = self.managedObjectContext;
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
