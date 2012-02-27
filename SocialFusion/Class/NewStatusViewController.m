@@ -246,9 +246,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-
-
--(NSString*)getSubstringToIndex:(NSString*)string  index:(int)index
+- (NSString*)getSubstringToIndex:(NSString*)string index:(int)index
 {
     int i,n=[string length];
     unichar c;

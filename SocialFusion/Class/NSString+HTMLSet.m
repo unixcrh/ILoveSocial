@@ -29,6 +29,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     NSRange searchRange = NSMakeRange(0, returnString.length);
     NSRange range = [returnString rangeOfString:regEx options:NSRegularExpressionSearch];
     BOOL isReplacingWeiboAtRegEx = [regEx isEqualToString:weiboAtRegEx];
+    BOOL isReplacingRenrenAtRegEx = [regEx isEqualToString:renrenAtRegEx];
     while(range.location != NSNotFound) {
         if(isReplacingWeiboAtRegEx) {
             NSUInteger newRangeLoc = range.location + range.length;
@@ -43,7 +44,16 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
         }
         NSString* subStr = [returnString substringWithRange:range];
         NSLog(@"substr:%@", subStr);
-        NSString *substituteStr = [NSString stringWithFormat:substitute, subStr, subStr];
+        NSString *substituteStr = nil;
+        if(isReplacingRenrenAtRegEx) {
+            substituteStr = [NSString stringWithFormat:substitute, [subStr substringWithRange:NSMakeRange(1, subStr.length - 13)], [subStr substringToIndex:subStr.length - 12]];
+        }
+        else if(isReplacingWeiboAtRegEx) {
+            substituteStr = [NSString stringWithFormat:substitute, [subStr substringFromIndex:1], subStr];
+        }
+        else {
+            substituteStr = [NSString stringWithFormat:substitute, subStr, subStr];
+        }
         //NSLog(@"substitute str:%@", substituteStr);
         returnString = [returnString stringByReplacingCharactersInRange:range withString:substituteStr];
         NSUInteger newRangeLoc = range.location + substituteStr.length;
