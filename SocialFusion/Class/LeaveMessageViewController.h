@@ -13,7 +13,7 @@
 @interface LeaveMessageViewController : PostViewController {
     BOOL _useSecretWords;
     BOOL _platformCode;
-    User *_dialogist;
+    User *_processUser;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *secretWordsTitleButton;

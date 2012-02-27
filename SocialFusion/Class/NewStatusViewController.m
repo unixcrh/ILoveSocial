@@ -14,6 +14,8 @@
 #import "UIImageView+Addition.h"
 #import "UIButton+Addition.h"
 #import "NSString+WeiboSubString.h"
+#import "RenrenUser+Addition.h"
+#import "WeiboUser+Addition.h"
 
 #define USER_PHOTO_CENTER CGPointMake(260.0f, 29.0f)
 #define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 150.0f)
@@ -32,6 +34,7 @@
 @synthesize photoView = _photoView;
 @synthesize photoImageView = _photoImageView;
 @synthesize photoCancelButton = _photoCancelButton; 
+@synthesize processUser = _processUser;
 
 - (void)dealloc {
     [_postRenrenButton release];
@@ -39,6 +42,7 @@
     [_photoView release];
     [_photoImageView release];
     [_photoCancelButton release];
+    [_processUser release];
     [super dealloc];
 }
 
@@ -67,6 +71,13 @@
     [self.postWeiboButton setSelected:_postToWeibo];
 
     self.photoView.hidden = YES;
+    
+    if (self.processUser) {
+        if([self.processUser isKindOfClass:[WeiboUser class]])
+            self.textView.text = [NSString stringWithFormat:@"@%@ ", self.processUser.name];
+        else if([self.processUser isKindOfClass:[RenrenUser class]])
+            self.textView.text = [NSString stringWithFormat:@"@%@(%@) ", self.processUser.name, self.processUser.userID];
+    }
 }
 
 #pragma mark -
