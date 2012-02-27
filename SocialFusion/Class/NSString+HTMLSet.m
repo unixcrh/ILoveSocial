@@ -9,7 +9,7 @@
 #import "NSString+HTMLSet.h"
 
 static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
-static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*";
+static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]-_]*";
 static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
 
 @implementation NSString (HTMLSet)
