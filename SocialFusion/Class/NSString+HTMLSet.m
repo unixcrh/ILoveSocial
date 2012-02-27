@@ -9,7 +9,8 @@
 #import "NSString+HTMLSet.h"
 
 @implementation NSString (HTMLSet)
-- (NSString*)replaceJSSign 
+
+- (NSString*)replaceJSSign
 {
     NSString* returnString;
     returnString = [self stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\'"];
@@ -18,7 +19,6 @@
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     return  returnString;
 }
-
 - (NSString *)replaceRegEx:(NSString *)regEx withString:(NSString *)substitute {
     NSString *returnString = [NSString stringWithFormat:@"%@", self];
     NSRange searchRange = NSMakeRange(0, returnString.length);
@@ -38,7 +38,8 @@
 
 - (NSString*)replaceHTMLSign 
 {
-    NSString* returnString;
+    NSString* returnString=[NSString stringWithString:self];
+    /*
     returnString = [self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
@@ -50,7 +51,7 @@
     returnString = [returnString stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
-    
+    */
     static NSString *renrenAtRegEx = @"@.*\\([0-9]{9,}\\)\\u0020";
     static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]]*";
     static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
@@ -59,6 +60,10 @@
     returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='weiboAtClicked(\"%@\")'>%@</a></span>"];
     returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='lkClicked(\"%@\")'>%@</a></span>"];
     
+    
+ //  
+    returnString=[returnString replaceJSSign];
+     NSLog(@"%@",returnString);
     return returnString;
 }
 

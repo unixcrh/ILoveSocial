@@ -214,7 +214,7 @@
     
     _webView = [[UIWebView alloc] init];
     _webView.frame = CGRectMake(0, 0, 320, 100);
-    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+   // _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     _loaded = NO;    
     NSString *infoSouceFile ;
     NSString *infoText;
@@ -372,15 +372,12 @@
     if ([feedData class] == [NewFeedBlog class])
     {
         NSString* outString = [(NewFeedBlog*)feedData getName];
-        outString = [outString replaceJSSign];
-        
-        outString = [outString replaceHTMLSign];
+
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         
         outString = [(NewFeedBlog*)feedData getBlog];
-        outString = [outString replaceJSSign];
 
         outString = [outString replaceHTMLSign];
         
@@ -392,21 +389,18 @@
     else if ([feedData class] == [NewFeedShareAlbum class])
     {
         NSString* outString = [(NewFeedShareAlbum*)feedData getShareComment];
-        outString = [outString replaceJSSign];
         
         outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
 
         outString = [(NewFeedShareAlbum*)feedData getAubumName];
-        outString = [outString replaceJSSign];
         outString = [outString replaceHTMLSign];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
         outString = [(NewFeedShareAlbum*)feedData getAblbumQuantity];
-        outString = [outString replaceJSSign];
         outString = [outString replaceHTMLSign];
         
         
@@ -414,7 +408,6 @@
         
         
         outString = [(NewFeedShareAlbum*)feedData getFromName];
-        outString = [outString replaceJSSign];
         
         outString = [outString replaceHTMLSign];
         
@@ -430,26 +423,22 @@
     {
         
         NSString* outString = [(NewFeedSharePhoto*)feedData getShareComment];
-        outString = [outString replaceJSSign];
         outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         outString = [(NewFeedSharePhoto*)feedData getPhotoComment];
-        outString = [outString replaceJSSign];
         outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setComment('%@')",outString]];
 
         outString = [(NewFeedSharePhoto*)feedData getTitle];
-        outString = [outString replaceJSSign];
         outString = [outString replaceHTMLSign];
         
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumName('%@')",outString]];
         
         outString = [(NewFeedSharePhoto*)feedData getFromName];
-        outString = [outString replaceJSSign];
         outString = [outString replaceHTMLSign];
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setAlbumAuthor('%@')",  outString]];
@@ -460,14 +449,11 @@
     else if ([feedData class] == [NewFeedUploadPhoto class])
     {
         NSString* outString = [(NewFeedUploadPhoto*)feedData getName];
-        outString = [outString replaceJSSign];
-        
-        outString = [outString replaceHTMLSign];
+
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         outString = [(NewFeedUploadPhoto*)feedData getPhoto_Comment];
-        outString = [outString replaceJSSign];
         
         outString = [outString replaceHTMLSign];
         
@@ -475,7 +461,6 @@
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
         
         outString = [(NewFeedUploadPhoto*)feedData getTitle];
-        outString = [outString replaceJSSign];
         
         outString = [outString replaceHTMLSign];
         
@@ -492,9 +477,7 @@
         {
             
             NSString* outString = [(NewFeedData*)feedData getName];
-            outString = [outString replaceJSSign];
-            
-            outString = [outString replaceHTMLSign];
+
             
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
             
@@ -513,9 +496,7 @@
         else
         {
             NSString* outString = [(NewFeedData*)feedData getName];
-            outString = [outString replaceJSSign];
-            
-            outString = [outString replaceHTMLSign];
+      
             
             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
             

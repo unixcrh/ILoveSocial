@@ -28,7 +28,7 @@
     
     result.gender = [dict objectForKey:@"gender"];
     result.selfDescription = [dict objectForKey:@"description"];
-    result.selfDescription = [result.selfDescription decodeHTMLSign];
+  //  result.selfDescription = [result.selfDescription decodeHTMLSign];
     result.location = [dict objectForKey:@"location"];
     //NSLog(@"self des:%@", result.selfDescription);
     result.verified = [NSNumber numberWithBool:[[dict objectForKey:@"verified"] boolValue]];

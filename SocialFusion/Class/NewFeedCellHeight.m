@@ -42,7 +42,6 @@
  {
      NSDictionary* attachment=[dict objectForKey:@"retweeted_status"];
      NSString* string=[dict objectForKey:@"text"];
-     string=[string replaceJSSign];
 
      string=[string replaceHTMLSign];
      
@@ -65,7 +64,7 @@
          
 
          NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachment objectForKey:@"user"] objectForKey:@"screen_name"],[attachment objectForKey:@"text"]];
-         outString=[outString replaceJSSign];
+     
          
          outString=[outString replaceHTMLSign];
          [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setRepost('%@')",outString]];
@@ -87,7 +86,7 @@
      {
          
          NSString* outString=[NSString stringWithFormat:@"%@《%@》",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"]];
-         outString=[outString replaceJSSign];
+         
          
          outString=[outString replaceHTMLSign];
          
@@ -96,7 +95,6 @@
          
          outString=[dict objectForKey:@"description"];
         // NSLog(@":%@:",outString);
-         outString=[outString replaceJSSign];
          
          outString=[outString replaceHTMLSign];
  
@@ -120,7 +118,6 @@
          }
          else
          {
-             string=[string replaceJSSign];
              
              string=[string replaceHTMLSign];
              
@@ -144,7 +141,6 @@
          }
          else
          {
-             string=[string replaceJSSign];
              
              string=[string replaceHTMLSign];
              [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];                                                                         
@@ -163,7 +159,6 @@
          if ([attachments count]==0)
          {
              NSString* string=[dict objectForKey:@"message"];
-             string=[string replaceJSSign];
              
              string=[string replaceHTMLSign];
          //    NSLog(@"%@",string);
@@ -174,12 +169,12 @@
          else
          {
              NSString* string=[dict objectForKey:@"message"];
-             string=[string replaceJSSign];
              
-             string=[string replaceHTMLSign];             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
+             string=[string replaceHTMLSign];  
+             
+             [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",string]];         
            
              NSString* outString=[NSString stringWithFormat:@"%@:%@",[[attachments objectAtIndex:0] objectForKey:@"owner_name"], [[attachments objectAtIndex:0] objectForKey:@"content"]];
-             outString=[outString replaceJSSign];
              
              outString=[outString replaceHTMLSign];          //   NSLog(@"start:%@:end",outString);
              
