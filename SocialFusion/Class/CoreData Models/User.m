@@ -2,8 +2,8 @@
 //  User.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-18.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by 紫川 王 on 12-2-29.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "User.h"
@@ -16,8 +16,8 @@
 @dynamic updateDate;
 @dynamic name;
 @dynamic tinyURL;
-@dynamic latestStatus;
 @dynamic pinyinName;
+@dynamic latestStatus;
 @dynamic statuses;
 @dynamic newFeed;
 

@@ -7,10 +7,9 @@
 //
 
 #import "RenrenUser+Addition.h"
-#import "RenrenStatus.h"
 #import "NSString+Pinyin.h"
-#import "RenrenStatus+Addition.h"
 #import "RenrenDetail+Addition.h"
+#import "RenrenClient.h"
 
 @implementation RenrenUser (Addition)
 
@@ -108,6 +107,20 @@
     result.name = name;
     result.userID = userID;
     return result;
+}
+
+- (void)loadLatestStatus {
+    NSString *userID = self.userID;
+    RenrenClient *renren = [RenrenClient client];
+    [renren setCompletionBlock:^(RenrenClient *client) {
+        if(!client.hasError) {
+            NSDictionary *dict = client.responseJSONObject;
+            NSString *authorID = [NSString stringWithFormat:@"%@", [dict objectForKey:@"uid"]];
+            User *author = [RenrenUser userWithID:authorID inManagedObjectContext:self.managedObjectContext];
+            author.latestStatus = [NSString stringWithFormat:@"%@",[dict objectForKey:@"message"]];
+        }
+    }];
+    [renren getLatestStatus:userID];
 }
 
 @end

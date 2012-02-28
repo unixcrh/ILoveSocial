@@ -8,7 +8,7 @@
 
 #import "FriendListRenrenViewController.h"
 #import "FriendListTableViewCell.h"
-#import "RenrenStatus+Addition.h"
+#import "RenrenUser+Addition.h"
 
 @implementation FriendListRenrenViewController
 
@@ -45,8 +45,9 @@
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if(!usr.latestStatus) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
-            if(indexPath.row < kCustomRowCount) {
-                [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
+            if(indexPath.row < kCustomRowCount && [usr isMemberOfClass:[RenrenUser class]]) {
+                RenrenUser *renreUser = (RenrenUser *)usr;
+                [renreUser loadLatestStatus];
             }
         }
     }
@@ -88,7 +89,10 @@
         return;
     User *usr = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if(!usr.latestStatus) {
-        [RenrenStatus loadLatestStatus:usr inManagedObjectContext:self.managedObjectContext];
+        if([usr isMemberOfClass:[RenrenUser class]]) {
+            RenrenUser *renreUser = (RenrenUser *)usr;
+            [renreUser loadLatestStatus];
+        }
     }
 }
 

@@ -522,7 +522,6 @@
                     [client commentShare:(_feedData).source_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
                     
                 }
->>>>>>> 7b34d59d7a75403c88596b7111f4e7c73d137cb0
             }
         }
         

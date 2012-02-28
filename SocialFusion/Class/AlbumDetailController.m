@@ -43,9 +43,9 @@
         [_bigURL[i]  release];
         
     }
-    [super release];
-    
+    [super dealloc];
 }
+
 - (void)setFixedInfo
 {
     [super setFixedInfo];

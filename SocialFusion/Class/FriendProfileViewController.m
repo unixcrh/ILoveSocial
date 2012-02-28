@@ -8,7 +8,6 @@
 
 #import "FriendProfileViewController.h"
 #import "RenrenUser+Addition.h"
-#import "RenrenStatus+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "Image+Addition.h"
 #import "UIImageView+Addition.h"

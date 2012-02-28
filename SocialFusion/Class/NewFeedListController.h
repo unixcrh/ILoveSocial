@@ -62,6 +62,5 @@ typedef   enum kUserFeed {
 - (IBAction)resetToNormalList;
 - (void)setStyle:(int)style;
 - (void)selectUser:(NSIndexPath*)indexPath;
--(void)startLoading;
 
 @end

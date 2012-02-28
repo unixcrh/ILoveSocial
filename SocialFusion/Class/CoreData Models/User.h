@@ -2,8 +2,8 @@
 //  User.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-18.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by 紫川 王 on 12-2-29.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,8 +17,8 @@
 @property (nonatomic, retain) NSDate * updateDate;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * tinyURL;
-@property (nonatomic, retain) NSString * latestStatus;
 @property (nonatomic, retain) NSString * pinyinName;
+@property (nonatomic, retain) NSString * latestStatus;
 @property (nonatomic, retain) NSSet *statuses;
 @property (nonatomic, retain) NSSet *newFeed;
 @end
