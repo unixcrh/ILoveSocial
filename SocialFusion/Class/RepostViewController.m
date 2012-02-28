@@ -441,8 +441,11 @@
             _postCount++;  
             [client postStatus:[NSString stringWithFormat:@"%@ //%@[来自人人网]",self.textView.text,_photoComment] withImage:[UIImage imageWithData:imageData]];
         }
-        if (_comment==YES)
+   
+        
+        if (_commentPage==YES)
         {
+            
             RenrenClient *client = [RenrenClient client];
             [client setCompletionBlock:^(RenrenClient *client) {
                 if(client.hasError)
@@ -467,17 +470,59 @@
             
             if (_photoID!=nil)
             {
-                [client commentPhoto:_photoID uid:userID content:self.textView.text toID:nil];
+                [client commentPhoto:_photoID uid:userID content:self.textView.text toID:_commetData.actor_ID];
             }
             else if ([_feedData class]==[NewFeedUploadPhoto class])
             {
-                [client commentPhoto:((NewFeedUploadPhoto*)_feedData).photo_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
-                
+                [client commentPhoto:((NewFeedUploadPhoto*)_feedData).photo_ID uid:_feedData.author.userID content:self.textView.text toID:_commetData.actor_ID];                
             }
             else
             {
-                [client commentShare:(_feedData).source_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
+                [client commentShare:(_feedData).source_ID uid:_feedData.author.userID content:self.textView.text toID:_commetData.actor_ID];
                 
+            }
+        }
+        else
+        {
+            if (_comment==YES)
+            {
+                RenrenClient *client = [RenrenClient client];
+                [client setCompletionBlock:^(RenrenClient *client) {
+                    if(client.hasError)
+                        _postStatusErrorCode |= PostStatusErrorRenren;
+                    [self postStatusCompletion];
+                }];
+                _postCount++;
+                
+                NSString* userID;
+                if ([_feedData class]==[NewFeedSharePhoto class])
+                {
+                    userID=((NewFeedSharePhoto*)_feedData).fromID;
+                }
+                else if ([_feedData class]==[NewFeedUploadPhoto class])
+                {
+                    userID=((NewFeedSharePhoto*)_feedData).author.userID;
+                }
+                else
+                {
+                    userID=((NewFeedShareAlbum*)_feedData).fromID;
+                }
+                
+                if (_photoID!=nil)
+                {
+                    [client commentPhoto:_photoID uid:userID content:self.textView.text toID:nil];
+                }
+                else if ([_feedData class]==[NewFeedUploadPhoto class])
+                {
+                    [client commentPhoto:((NewFeedUploadPhoto*)_feedData).photo_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
+                    
+                }
+                else
+                {
+                    [client commentShare:(_feedData).source_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
+                    
+                }
+>>>>>>> 7b34d59d7a75403c88596b7111f4e7c73d137cb0
             }
         }
         

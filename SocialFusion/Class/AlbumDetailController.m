@@ -686,6 +686,7 @@
     
     [self hideLoadMoreDataButton];
     _clearDataFlag = YES;
+    
     _pageNumber = _commentCount[_selectedPhoto % 9] / 10 + 1;
     
     [self loadData];
@@ -794,7 +795,7 @@
     vc.managedObjectContext = self.managedObjectContext;
     [vc setStyle:kPhoto];
     vc.feedData=self.feedData;
-    NSLog(@"%d",_selectedPhoto);
+   // NSLog(@"%d",_selectedPhoto);
     if (_selectedPhoto!=-1)
     {
         vc.photoURL=_bigURL[_selectedPhoto%9];
@@ -806,6 +807,30 @@
     [vc release];
 }
 
+
+-(IBAction)comment:(id)sender
+{
+    
+    UITableViewCell* cell=(UITableViewCell*)((UIButton*)sender).superview.superview;
+    NSIndexPath* indexPath=[self.tableView indexPathForCell:cell];
+    StatusCommentData* data=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    RepostViewController *vc = [[RepostViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    [vc setStyle:kPhoto];
+    [vc setcommentPage:YES];
+    vc.feedData=self.feedData;
+    if (_selectedPhoto!=-1)
+    {
+        vc.photoURL=_bigURL[_selectedPhoto%9];
+        vc.photoID=_photoID[_selectedPhoto%9];
+        vc.photoComment=_photoInAlbum[_selectedPhoto].captian.text;
+    }
+    vc.commetData=data;
+    
+    
+    [[UIApplication sharedApplication] presentModalViewController:vc];
+    [vc release];
+}
 
 
 @end
