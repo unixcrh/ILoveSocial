@@ -67,6 +67,7 @@
 
 - (IBAction)didClickBlogTitleButton:(id)sender {
     _currentPage = 0;
+    [self updateTextCount];
     [self.blogBodyButton setPostPlatformButtonSelected:NO];
     [self.blogTitleButton setPostPlatformButtonSelected:YES];
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
@@ -75,6 +76,7 @@
 
 - (IBAction)didClickBlogBodyButton:(id)sender {
     _currentPage = 1;
+    [self updateTextCount];
     [self.blogBodyButton setPostPlatformButtonSelected:YES];
     [self.blogTitleButton setPostPlatformButtonSelected:NO];
     [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:YES];
@@ -85,31 +87,31 @@
 - (IBAction)didClickPostButton:(id)sender {
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
-
     
     
-        if (_postToRenren==YES)
-        {
-            RenrenClient *client = [RenrenClient client];
-            [client setCompletionBlock:^(RenrenClient *client) {
-                if(client.hasError)
-                    _postStatusErrorCode |= PostStatusErrorRenren;
-                [self postStatusCompletion];
-            }];
-            _postCount++;
-      
-                [client postBlog:self.textView.text content:[_blogTextView.text stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"]];
-            
-        }
-        if (_postToWeibo==YES)
-        {
-            WebStringToImageConverter* webStringConverter=[WebStringToImageConverter webStringToImage];
-            webStringConverter.delegate=self;
-            [webStringConverter startConvertBlogWithTitle:self.textView.text   detail:_blogTextView.text];
-            
-        }
-
-       [self dismissView];
+    
+    if (_postToRenren==YES)
+    {
+        RenrenClient *client = [RenrenClient client];
+        [client setCompletionBlock:^(RenrenClient *client) {
+            if(client.hasError)
+                _postStatusErrorCode |= PostStatusErrorRenren;
+            [self postStatusCompletion];
+        }];
+        _postCount++;
+        
+        [client postBlog:self.textView.text content:[_blogTextView.text stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"]];
+        
+    }
+    if (_postToWeibo==YES)
+    {
+        WebStringToImageConverter* webStringConverter=[WebStringToImageConverter webStringToImage];
+        webStringConverter.delegate=self;
+        [webStringConverter startConvertBlogWithTitle:self.textView.text   detail:_blogTextView.text];
+        
+    }
+    
+    [self dismissView];
 }
 
 
@@ -200,7 +202,6 @@
         [client postStatus:titleString withImage:image];
         
     }
-    
 }
 
 @end
