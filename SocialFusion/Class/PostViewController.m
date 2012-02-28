@@ -122,20 +122,6 @@
     }
 }
 
-- (void)showTextWarning
-{
-    NSInteger textCount = [self.textCountLabel.text integerValue];
-    if ((textCount>=WEIBO_MAX_WORD)&&(_lastTextViewCount<WEIBO_MAX_WORD))
-    {
-        [[UIApplication sharedApplication] presentToast:@"超出140字部分将不会发送至新浪微博。" withVerticalPos:TOAST_POS_Y];
-    }
-    if ((textCount>=RENREN_MAX_WORD)&&(_lastTextViewCount<RENREN_MAX_WORD))
-    {
-        [[UIApplication sharedApplication] presentToast:@"超出240字部分将不会发送至人人网。" withVerticalPos:TOAST_POS_Y];
-    }
-    _lastTextViewCount=textCount;
-}
-
 #pragma mark -
 #pragma mark IBAction
 
@@ -209,6 +195,10 @@
 
 - (UITextView *)processTextView {
     return self.textView;
+}
+
+- (void)showTextWarning {
+    
 }
 
 @end

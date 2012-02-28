@@ -13,7 +13,15 @@
 #import "WeiboClient.h"
 #import "NSString+WeiboSubString.h"
 #import "RenrenClient.h"
+#import "UIApplication+Addition.h"
+
+#define RENREN_BLOG_TITLE_MAX_WORD 100
+
+@interface NewBlogViewController()
+@end
+
 @implementation NewBlogViewController
+
 @synthesize blogTextView = _blogTextView;
 @synthesize postRenrenButton = _postRenrenButton;
 @synthesize postWeiboButton = _postWeiboButton;
@@ -22,6 +30,7 @@
 @synthesize scrollView = _scrollView;
 
 - (void)dealloc {
+    NSLog(@"NewBlogViewController dealloc");
     [_blogTextView release];
     [_postRenrenButton release];
     [_postWeiboButton release];
@@ -85,12 +94,25 @@
 
 
 - (IBAction)didClickPostButton:(id)sender {
+    
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
     
+    if(!_postToWeibo && !_postToRenren) {
+        [[UIApplication sharedApplication] presentToast:@"请选择发送平台。" withVerticalPos:TOAST_POS_Y];
+        return;
+    }
+    if([self.blogTextView.text isEqualToString:@""]) {
+        [[UIApplication sharedApplication] presentToast:@"请输入日志正文。" withVerticalPos:TOAST_POS_Y];
+        return;
+    }
+    if([self.textView.text isEqualToString:@""] && _postToRenren == YES) {
+        [[UIApplication sharedApplication] presentToast:@"请输入日志标题。" withVerticalPos:TOAST_POS_Y];
+        return;
+    }
+
     
-    
-    if (_postToRenren==YES)
+    if (_postToRenren == YES)
     {
         RenrenClient *client = [RenrenClient client];
         [client setCompletionBlock:^(RenrenClient *client) {
@@ -100,18 +122,19 @@
         }];
         _postCount++;
         
-        [client postBlog:self.textView.text content:[_blogTextView.text stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"]];
-        
-    }
-    if (_postToWeibo==YES)
-    {
-        WebStringToImageConverter* webStringConverter=[WebStringToImageConverter webStringToImage];
-        webStringConverter.delegate=self;
-        [webStringConverter startConvertBlogWithTitle:self.textView.text   detail:_blogTextView.text];
+        [client postBlog:self.textView.text content:[self.blogTextView.text stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"]];
         
     }
     
-    [self dismissView];
+    if (_postToWeibo == YES)
+    {
+        WebStringToImageConverter* webStringConverter = [WebStringToImageConverter webStringToImage];
+        webStringConverter.delegate = self;
+        [webStringConverter startConvertBlogWithTitle:self.textView.text detail:self.blogTextView.text];
+    }
+    else {
+        [self dismissView];
+    }
 }
 
 
@@ -141,7 +164,6 @@
         [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
     else if(_currentPage == 1)
         [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:NO];
-    
 }
 
 - (UITextView *)processTextView {
@@ -190,18 +212,25 @@
         [self postStatusCompletion];
     }];
     _postCount++;
-    
-    
-    NSString* titleString=[NSString stringWithFormat:@"发表了日志《%@》",self.textView.text];
-    if ([titleString integerValue]>WEIBO_MAX_WORD)
+    [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:image];
+    [self dismissView];
+}
+
+#pragma mark - 
+#pragma mark Override methods
+
+- (void)showTextWarning
+{
+    NSInteger textCount = [self.textCountLabel.text integerValue];
+    if (_currentPage == 0 && (textCount >= WEIBO_MAX_WORD) && (_lastTextViewCount < WEIBO_MAX_WORD))
     {
-        [client postStatus:[titleString getSubstringToIndex:WEIBO_MAX_WORD] withImage:image];
+        [[UIApplication sharedApplication] presentToast:@"超出140字部分将不会发送至新浪微博。" withVerticalPos:TOAST_POS_Y];
     }
-    else
+    if (_currentPage == 0 && (textCount >= RENREN_BLOG_TITLE_MAX_WORD) && (_lastTextViewCount < RENREN_BLOG_TITLE_MAX_WORD))
     {
-        [client postStatus:titleString withImage:image];
-        
+        [[UIApplication sharedApplication] presentToast:@"超出100字部分将不会发送至人人网。" withVerticalPos:TOAST_POS_Y];
     }
+    _lastTextViewCount = textCount;
 }
 
 @end

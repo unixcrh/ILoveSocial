@@ -9,32 +9,30 @@
 #import "NSString+WeiboSubString.h"
 
 @implementation NSString (WeiboSubString)
--(NSString*)getSubstringToIndex:(int)index
+
+- (NSString*)getStatusSubstringWithCount:(int)count
 {
-    int i,n=[self length];
+    int i,n = [self length];
     unichar c;
-    int a=0;
-    int b=0;
-    int l=0;
-    for(i=0;i<n;i++){
-        c=[self characterAtIndex:i];
-        if(isblank(c)){
+    int a = 0;
+    int b = 0;
+    int l = 0;
+    for(i = 0; i < n; i++){
+        c = [self characterAtIndex:i];
+        if(isblank(c)) {
             a++;
-        }else if(isascii(c)){
+        }
+        else if(isascii(c)){
             b++;
-        }else{
+        }
+        else {
             l++;
         }
-        if (l+(int)ceilf((float)(a+b)/2.0)>=index)
-        {
+        if(l + (int)floorf((float)(a + b) / 2.0f) >= count) {
             break;
         }
-        
     }
-    
-    return [self substringToIndex:a+b+l];
-    
-    
+    return [self substringToIndex:a + b + l];
 }
 
 

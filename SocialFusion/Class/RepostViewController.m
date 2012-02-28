@@ -21,6 +21,7 @@
 #import "NewFeedUploadPhoto.h"
 #import "NSString+WeiboSubString.h"
 #import <QuartzCore/QuartzCore.h>
+
 @implementation RepostViewController
 @synthesize feedData=_feedData;
 @synthesize blogData=_blogData;
@@ -28,7 +29,6 @@
 @synthesize photoID=_photoID;
 @synthesize photoComment=_photoComment;
 @synthesize photoURL=_photoURL;
-
 
 -(void)dealloc
 {
@@ -41,8 +41,6 @@
     [super dealloc];
     
 }
-
-
 
 -(void)setcommentPage:(BOOL)bol
 {
@@ -90,15 +88,15 @@
     }
     else
     {
- if (_commetData!=nil)
- {
+        if (_commetData!=nil)
+        {
             self.titleLabel.text=[NSString stringWithFormat:@"回复%@",_commetData.owner_Name];
- }
+        }
         else
         {
             self.titleLabel.text=[NSString stringWithFormat:@"评论"];
         }
-     _commentBut.hidden=YES;
+        _commentBut.hidden=YES;
         _commentLabelBut.hidden=YES;
         [_repostToRenrenLabelBut setTitle:[NSString stringWithFormat:@"同时转发到人人网"] forState:UIControlStateNormal];
         [_repostToWeiboLabelBut setTitle:[NSString stringWithFormat:@"同时转发到新浪微博"] forState:UIControlStateNormal];
@@ -114,16 +112,7 @@
         [self postStatusCompletion];
     }];
     
-    if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
-    {
-        [client2 repost:statusID text:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD] commentStatus:YES commentOrigin:NO];
-    }
-    else
-    {
-        [client2 repost:statusID text:self.textView.text commentStatus:YES commentOrigin:NO];
-        
-    }
-    
+    [client2 repost:statusID text:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] commentStatus:YES commentOrigin:NO];
 }
 #pragma mark -
 #pragma mark IBAction
@@ -155,7 +144,7 @@
             
             
             
-       
+            
         }
         if (_repostToWeibo==YES)
         {
@@ -180,7 +169,7 @@
             if (((NewFeedData*)_feedData).repost_ID!=nil)
             {
                 
-               outString=[NSString stringWithFormat:@"%@:%@ [来自人人网]",((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status];
+                outString=[NSString stringWithFormat:@"%@:%@ [来自人人网]",((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status];
                 authorName=((NewFeedData*)_feedData).repost_Name;
             }
             else
@@ -230,11 +219,11 @@
             _postCount++;
             if (_commetData!=nil)
             {
-                 [client1 comment:((NewFeedData*)_feedData).source_ID userID:((NewFeedData*)_feedData).author.userID  text:self.textView.text toID:_commetData.actor_ID];
+                [client1 comment:((NewFeedData*)_feedData).source_ID userID:((NewFeedData*)_feedData).author.userID  text:self.textView.text toID:_commetData.actor_ID];
             }
             else
             {
-            [client1 comment:((NewFeedData*)_feedData).source_ID userID:((NewFeedData*)_feedData).author.userID  text:self.textView.text toID:nil];
+                [client1 comment:((NewFeedData*)_feedData).source_ID userID:((NewFeedData*)_feedData).author.userID  text:self.textView.text toID:nil];
             }
         }
         
@@ -251,7 +240,7 @@
                 {
                     _postStatusErrorCode |= PostStatusErrorRenren;
                 }
-         
+                
                 
                 [self postStatusCompletion];
             }];
@@ -288,7 +277,7 @@
                     
                     
                     
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@ [来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status] withImage:[UIImage imageWithData:imageData]];
+                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status] withImage:[UIImage imageWithData:imageData]];
                     
                 }
                 else
@@ -333,7 +322,7 @@
             else
             {
                 [client comment:((NewFeedData*)_feedData).source_ID cid:nil text:self.textView.text commentOrigin:NO];
-
+                
             }
             
             
@@ -373,15 +362,15 @@
             if (_commetData!=nil)
             {
                 
-            
-            [client2 commentShare:((NewFeedBlog*)_feedData).shareID  uid:((NewFeedBlog*)_feedData).sharePersonID content:self.textView.text toID:_commetData.actor_ID ];     
+                
+                [client2 commentShare:((NewFeedBlog*)_feedData).shareID  uid:((NewFeedBlog*)_feedData).sharePersonID content:self.textView.text toID:_commetData.actor_ID ];     
             }
             else
             {
-            [client2 commentShare:((NewFeedBlog*)_feedData).shareID  uid:((NewFeedBlog*)_feedData).sharePersonID content:self.textView.text toID:nil ];
+                [client2 commentShare:((NewFeedBlog*)_feedData).shareID  uid:((NewFeedBlog*)_feedData).sharePersonID content:self.textView.text toID:nil ];
             }
         }
-
+        
         
         if (_repostToWeibo==YES)
         {
@@ -420,11 +409,11 @@
             
             if (_photoID!=nil)
             {
-            [client share:kPhoto share_ID:_photoID user_ID:userID comment:self.textView.text];
+                [client share:kPhoto share_ID:_photoID user_ID:userID comment:self.textView.text];
             }
             else
             {
-            [client share:kShare share_ID:(_feedData).source_ID user_ID:_feedData.author.userID comment:self.textView.text];
+                [client share:kShare share_ID:(_feedData).source_ID user_ID:_feedData.author.userID comment:self.textView.text];
             }
         }
         if (_repostToWeibo==YES)
@@ -483,15 +472,15 @@
             else if ([_feedData class]==[NewFeedUploadPhoto class])
             {
                 [client commentPhoto:((NewFeedUploadPhoto*)_feedData).photo_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
-
+                
             }
             else
             {
                 [client commentShare:(_feedData).source_ID uid:_feedData.author.userID content:self.textView.text toID:nil];
-
+                
             }
         }
-
+        
     }
     [self dismissView];
 }
@@ -530,17 +519,7 @@
         [self postStatusCompletion];
     }];
     _postCount++;
-    
-    if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
-    {
-        [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD] withImage:image];
-    }
-    else
-    {
-        [client postStatus:self.textView.text withImage:image];
-        
-    }
-    
+    [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:image];
 }
 
 @end

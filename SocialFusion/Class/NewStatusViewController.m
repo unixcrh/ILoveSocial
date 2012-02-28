@@ -22,7 +22,6 @@
 
 #define USER_PHOTO_SIDE_LENGTH 40.0f
 
-
 @interface NewStatusViewController()
 - (void)dismissUserPhoto;
 @end
@@ -105,24 +104,10 @@
         _postCount++;
         if (self.photoImageView.image) {
             
-            if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
-            {
-                [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
-            }
-            else
-            {
-                [client postStatus:self.textView.text withImage:self.photoImageView.image];
-            }
+            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
         }
         else {
-            if ([self.textCountLabel.text integerValue]>WEIBO_MAX_WORD)
-            {
-            [client postStatus:[self.textView.text getSubstringToIndex:WEIBO_MAX_WORD]];
-            }
-            else
-            {
-                [client postStatus:self.textView.text];
-            }
+            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD]];
         }
     }
     
@@ -257,29 +242,21 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (NSString*)getSubstringToIndex:(NSString*)string index:(int)index
-{
-    int i,n=[string length];
-    unichar c;
-    int a=0;
-    int b=0;
-    int l=0;
-    for(i=0;i<n;i++){
-        c=[string characterAtIndex:i];
-        if(isblank(c)){
-            a++;
-        }else if(isascii(c)){
-            b++;
-        }else{
-            l++;
-        }
-        if (l+(int)ceilf((float)(a+b)/2.0)>index)
-        {
-            break;
-        }
-    }
-   return [string substringToIndex:a+b+l];    
-}
+#pragma mark - 
+#pragma mark Override methods
 
+- (void)showTextWarning
+{
+    NSInteger textCount = [self.textCountLabel.text integerValue];
+    if ((textCount >= WEIBO_MAX_WORD) && (_lastTextViewCount < WEIBO_MAX_WORD))
+    {
+        [[UIApplication sharedApplication] presentToast:@"超出140字部分将不会发送至新浪微博。" withVerticalPos:TOAST_POS_Y];
+    }
+    if ((textCount >= RENREN_MAX_WORD) && (_lastTextViewCount < RENREN_MAX_WORD))
+    {
+        [[UIApplication sharedApplication] presentToast:@"超出240字部分将不会发送至人人网。" withVerticalPos:TOAST_POS_Y];
+    }
+    _lastTextViewCount=textCount;
+}
 
 @end

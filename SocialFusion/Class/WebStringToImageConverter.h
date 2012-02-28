@@ -14,8 +14,6 @@
     id<WebStringToImageConverterDelegate> _delegate;
 }
 
-
-
 @property (nonatomic, assign) id<WebStringToImageConverterDelegate> delegate;
 
 -(void)startConvertBlogWithTitle:(NSString*)title detail:(NSString*)string;

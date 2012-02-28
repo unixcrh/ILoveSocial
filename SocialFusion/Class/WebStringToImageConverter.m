@@ -21,9 +21,10 @@
     WebStringToImageConverter* webStringToImage=[[WebStringToImageConverter alloc] init];
     return  webStringToImage;
 }
+
 -(void)startConvertBlogWithTitle:(NSString*)title detail:(NSString*)string
 {
-     UIWebView* webView=[[UIWebView alloc] init];
+    UIWebView* webView=[[UIWebView alloc] init];
     webView.frame=CGRectMake(0, 0, 400 , 480);
     webView.delegate=self;
     NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"blogtemplate" ofType:@"html"];
@@ -49,18 +50,13 @@
     UIGraphicsBeginImageContext(webView.frame.size); 
     
     [webView.layer renderInContext:UIGraphicsGetCurrentContext()]; 
-    
 
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     webView.delegate=nil;
     [webView release];
 
-    
-    
-  
     [_delegate webStringToImageConverter:self didFinishLoadWebViewWithImage:viewImage];
-
     
     [self release];
     

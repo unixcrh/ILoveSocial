@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (WeiboSubString)
--(NSString*)getSubstringToIndex:(int)index;
+-(NSString*)getStatusSubstringWithCount:(int)count;
 @end
