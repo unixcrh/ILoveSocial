@@ -19,6 +19,7 @@ typedef enum {
 
 #define TOAST_POS_Y   (self.toolBarView.frame.origin.y + self.toolBarView.frame.size.height - 40.0f)
 #define WEIBO_MAX_WORD  140
+#define RENREN_MAX_WORD 240
 #define TOOLBAR_HEIGHT  22.0f
 
 @interface PostViewController : CoreDataViewController <UITextViewDelegate, UINavigationControllerDelegate, PickAtListViewControllerDelegate> {

@@ -155,7 +155,7 @@
                 [[UIApplication sharedApplication] presentToast:@"已取消关注。" withVerticalPos:kToastBottomVerticalPosition];
             }
             else {
-                [[UIApplication sharedApplication] presentToast:@"取消关注失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"取消关注失败。" withVerticalPos:kToastBottomVerticalPosition];
                 [self setFollowButtonSelected];
             }
             [self.followButton setUserInteractionEnabled:YES];
@@ -168,7 +168,7 @@
                 [[UIApplication sharedApplication] presentToast:@"已添加关注。" withVerticalPos:kToastBottomVerticalPosition];
             }
             else {
-                [[UIApplication sharedApplication] presentToast:@"添加关注失败。" withVerticalPos:kToastBottomVerticalPosition];
+                [[UIApplication sharedApplication] presentErrorToast:@"添加关注失败。" withVerticalPos:kToastBottomVerticalPosition];
                 [self setFollowButtonSelected];
             }
             [self.followButton setUserInteractionEnabled:YES];
