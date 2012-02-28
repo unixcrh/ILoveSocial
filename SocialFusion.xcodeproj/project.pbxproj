@@ -232,6 +232,7 @@
 		E1532E6B14FD4A4400A7B94E /* FriendListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1532E6A14FD4A4400A7B94E /* FriendListTableViewCell.xib */; };
 		E1532E6D14FD4A5800A7B94E /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1532E6C14FD4A5800A7B94E /* FriendListViewController.xib */; };
 		E1532E7114FD4B8D00A7B94E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1532E7014FD4B8D00A7B94E /* MainWindow.xib */; };
+		E1532E7314FD4D3E00A7B94E /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1532E7214FD4D3E00A7B94E /* DetailImageViewController.xib */; };
 		E15F990E14D5CE3C0069072C /* new_status_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990414D5CE3C0069072C /* new_status_bg@2x.png */; };
 		E15F990F14D5CE3C0069072C /* new_status_btn_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990514D5CE3C0069072C /* new_status_btn_cancel@2x.png */; };
 		E15F991014D5CE3C0069072C /* new_status_btn_dest_hl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15F990614D5CE3C0069072C /* new_status_btn_dest_hl@2x.png */; };
@@ -355,7 +356,6 @@
 		E1E2581914EEBB5B003064CD /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E2581814EEBB5A003064CD /* RenrenDetail.m */; };
 		E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */ = {isa = PBXBuildFile; fileRef = E1E56AE214FA5F5000B959DE /* pocketsocial.css */; };
 		E1E56AEC14FA91EF00B959DE /* NSData+NSData_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */; };
-		E1E56AEE14FA99B400B959DE /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E56AED14FA99B400B959DE /* DetailImageViewController.xib */; };
 		E1E5DF52143B36600098BBD3 /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF51143B36600098BBD3 /* FriendListViewController.m */; };
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
 		E1E5DF94143C6C1F0098BBD3 /* WeiboDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF93143C6C1F0098BBD3 /* WeiboDetail+Addition.m */; };
@@ -718,6 +718,7 @@
 		E1532E6A14FD4A4400A7B94E /* FriendListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListTableViewCell.xib; sourceTree = "<group>"; };
 		E1532E6C14FD4A5800A7B94E /* FriendListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
 		E1532E7014FD4B8D00A7B94E /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		E1532E7214FD4D3E00A7B94E /* DetailImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailImageViewController.xib; path = SocialFusion/Class/DetailImageViewController.xib; sourceTree = "<group>"; };
 		E15F990414D5CE3C0069072C /* new_status_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_bg@2x.png"; sourceTree = "<group>"; };
 		E15F990514D5CE3C0069072C /* new_status_btn_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_btn_cancel@2x.png"; sourceTree = "<group>"; };
 		E15F990614D5CE3C0069072C /* new_status_btn_dest_hl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_btn_dest_hl@2x.png"; sourceTree = "<group>"; };
@@ -890,7 +891,6 @@
 		E1E56AE214FA5F5000B959DE /* pocketsocial.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = pocketsocial.css; sourceTree = "<group>"; };
 		E1E56AEA14FA91EF00B959DE /* NSData+NSData_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSData_Base64.h"; sourceTree = "<group>"; };
 		E1E56AEB14FA91EF00B959DE /* NSData+NSData_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSData_Base64.m"; sourceTree = "<group>"; };
-		E1E56AED14FA99B400B959DE /* DetailImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
 		E1E5DF50143B365F0098BBD3 /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
 		E1E5DF51143B36600098BBD3 /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
 		E1E5DF8F143C6BDB0098BBD3 /* RenrenDetail+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RenrenDetail+Addition.h"; sourceTree = "<group>"; };
@@ -1467,7 +1467,7 @@
 				E1FB624014247EA000828E24 /* CoreDataViewController.m */,
 				73FBBFBF14C3F6B100694B1B /* DetailImageViewController.h */,
 				73FBBFC014C3F6B200694B1B /* DetailImageViewController.m */,
-				E1E56AED14FA99B400B959DE /* DetailImageViewController.xib */,
+				E1532E7214FD4D3E00A7B94E /* DetailImageViewController.xib */,
 				E1D3B17E143244C400443B79 /* EGORefreshTableHeaderView.h */,
 				E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */,
 				E1D3B180143244C500443B79 /* EGOTableViewController.h */,
@@ -2081,11 +2081,11 @@
 				E1E56AE314FA5F5100B959DE /* pocketsocial.css in Resources */,
 				73F41BF314FA052700A6112E /* NewBlogViewController.xib in Resources */,
 				73F41BFA14FA4FAC00A6112E /* btn_msg_new@2x.png in Resources */,
-				E1E56AEE14FA99B400B959DE /* DetailImageViewController.xib in Resources */,
 				E1532E6914FD4A3600A7B94E /* NewFeedListController.xib in Resources */,
 				E1532E6B14FD4A4400A7B94E /* FriendListTableViewCell.xib in Resources */,
 				E1532E6D14FD4A5800A7B94E /* FriendListViewController.xib in Resources */,
 				E1532E7114FD4B8D00A7B94E /* MainWindow.xib in Resources */,
+				E1532E7314FD4D3E00A7B94E /* DetailImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
