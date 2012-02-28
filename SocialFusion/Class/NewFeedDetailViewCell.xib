@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2177</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1173</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIScrollView</string>
@@ -397,14 +397,6 @@
 						<reference key="destination" ref="919437750"/>
 					</object>
 					<int key="connectionID">93</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_style</string>
-						<reference key="source" ref="986509221"/>
-						<reference key="destination" ref="883569839"/>
-					</object>
-					<int key="connectionID">94</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -871,7 +863,6 @@
 						<string key="_commentCel">StatusCommentCell</string>
 						<string key="_headImage">UIImageView</string>
 						<string key="_nameLabel">UILabel</string>
-						<string key="_style">UIImageView</string>
 						<string key="_time">UILabel</string>
 						<string key="_titleView">UIView</string>
 					</dictionary>
@@ -887,10 +878,6 @@
 						<object class="IBToOneOutletInfo" key="_nameLabel">
 							<string key="name">_nameLabel</string>
 							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_style">
-							<string key="name">_style</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_time">
 							<string key="name">_time</string>
@@ -938,6 +925,6 @@
 			<string key="detail_head.png">{51, 51}</string>
 			<string key="detial_quickre.png">{15, 19}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1173</string>
 	</data>
 </archive>

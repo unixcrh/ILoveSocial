@@ -27,11 +27,15 @@
 @synthesize feedData = _feedData;
 
 - (void)dealloc {
-    [_pageLine removeFromSuperview];
-    [_pageLine release];
-    [self.feedData release];
+    [_commentCel release];
+    [_headImage release];
+    [_time release];
+    [_nameLabel release];
+    [_titleView release];
+    
+    [_feedData release];
     [_commentButton release];
-    //[_feedStatusCel release];
+    
     [super dealloc];
 }
 
@@ -82,10 +86,6 @@
 
 - (void)setFixedInfo
 {
-    
-    _pageLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page_line.png"]];
-    _pageLine.frame = CGRectMake(305, 0, 1, 350);
-    
     _nameLabel.text = [_feedData getAuthorName];
     NSData *imageData = nil;
     if([Image imageWithURL:_feedData.owner_Head inManagedObjectContext:self.managedObjectContext]) {
@@ -100,7 +100,6 @@
     ((UIScrollView*)self.view).showsVerticalScrollIndicator = NO;
     ((UIScrollView*)self.view).directionalLockEnabled = YES;
     ((UIScrollView*)self.view).delegate = self;
-    [((UIScrollView*)self.view) addSubview:_pageLine];
     
     self.tableView.frame = CGRectMake(306, 30, 306, 320);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -121,17 +120,6 @@
   
     
     [self.view addSubview:_commentButton];
-    
-    if ([_feedData.style intValue] == 0)
-    {
-        [_style setImage:[UIImage imageNamed:@"detail_renren.png"]];
-    }
-    else
-    {
-        [_style setImage:[UIImage imageNamed:@"detail_weibo.png"]];
-    }
-    
-    
 }
 
 - (void)addOriStatus {

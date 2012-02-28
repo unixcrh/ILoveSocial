@@ -14,30 +14,24 @@
 
 #import "EGOTableViewController.h"
 #import "NewFeedRootData.h"
+
 @interface StatusDetailController : EGOTableViewController<UIScrollViewDelegate>
 {
     IBOutlet StatusCommentCell *_commentCel;
-    int _pageNumber;
-    BOOL _showMoreButton;
     IBOutlet UIImageView* _headImage;
-    IBOutlet UIImageView* _style;
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
-   
-    UIButton* _commentButton;
-    
-    UIActivityIndicatorView* _activity;
-    
-    NSData* _photoData; 
-    
     IBOutlet UIView* _titleView;
     
-    UIImageView* _pageLine;
-    
-    
-   
+    int _pageNumber;
+    BOOL _showMoreButton;
+    UIButton* _commentButton;
+    UIActivityIndicatorView* _activity;
+    NSData* _photoData; 
 }
+
 @property (nonatomic, retain) NewFeedRootData* feedData;
+
 - (void)setFixedInfo;
 - (void)loadMainView;
 - (void)loadData;
@@ -45,7 +39,7 @@
 - (void)ProcessWeiboData:(NSArray*)array;
 - (void)clearData;
 
+- (IBAction)repost;
+- (IBAction)comment:(id)sender;
 
--(IBAction)repost;
--(IBAction)comment:(id)sender;
 @end
