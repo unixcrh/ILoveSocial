@@ -85,6 +85,7 @@
 		739E37F214D3E9B800509275 /* detail_rev.png in Resources */ = {isa = PBXBuildFile; fileRef = 739E37F014D3E9B700509275 /* detail_rev.png */; };
 		73ABE38114416E740067B45F /* NewFeedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ABE37F14416E730067B45F /* NewFeedStatusCell.m */; };
 		73B75BB514BB2A1200D7ACA1 /* NSString+DataURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */; };
+		73B85DA914FCF6B800954090 /* NSString+WeiboAndRenrenFactialExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B85DA814FCF6B700954090 /* NSString+WeiboAndRenrenFactialExpression.m */; };
 		73B9A3831479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */; };
 		73C5D69814D5967C0027647D /* BlogDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C5D69714D5967B0027647D /* BlogDetailController.m */; };
 		73C5D69D14D59EA90027647D /* NewFeedDetailBlogViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C5D69B14D59EA90027647D /* NewFeedDetailBlogViewCell.m */; };
@@ -487,6 +488,8 @@
 		73ABE37F14416E730067B45F /* NewFeedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeedStatusCell.m; sourceTree = "<group>"; };
 		73B75BB314BB2A1100D7ACA1 /* NSString+DataURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DataURI.h"; sourceTree = "<group>"; };
 		73B75BB414BB2A1200D7ACA1 /* NSString+DataURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DataURI.m"; sourceTree = "<group>"; };
+		73B85DA714FCF6B700954090 /* NSString+WeiboAndRenrenFactialExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WeiboAndRenrenFactialExpression.h"; sourceTree = "<group>"; };
+		73B85DA814FCF6B700954090 /* NSString+WeiboAndRenrenFactialExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WeiboAndRenrenFactialExpression.m"; sourceTree = "<group>"; };
 		73B9A3811479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StatusCommentData+StatusCommentData_Addition.h"; sourceTree = "<group>"; };
 		73B9A3821479F7BE0058FC20 /* StatusCommentData+StatusCommentData_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StatusCommentData+StatusCommentData_Addition.m"; sourceTree = "<group>"; };
 		73C5D69614D5967B0027647D /* BlogDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogDetailController.h; sourceTree = "<group>"; };
@@ -1448,6 +1451,8 @@
 				73152F0B1475FF5700B3E7FC /* NewFeedData+NewFeedData_Addition.m */,
 				73C99C9414BF051D00B251DF /* NewFeedSharePhoto+Addition.h */,
 				73C99C9514BF051D00B251DF /* NewFeedSharePhoto+Addition.m */,
+				73B85DA714FCF6B700954090 /* NSString+WeiboAndRenrenFactialExpression.h */,
+				73B85DA814FCF6B700954090 /* NSString+WeiboAndRenrenFactialExpression.m */,
 				736BA57F14C802AD009037EE /* NSString+HTMLSet.h */,
 				736BA58014C802AE009037EE /* NSString+HTMLSet.m */,
 				737E839C14F7D9E7002058C6 /* NSString+Addition.h */,
@@ -2296,6 +2301,7 @@
 				E1B787BB14F8F487000AAD67 /* AppInfoViewController.m in Sources */,
 				73F41BF214FA052700A6112E /* NewBlogViewController.m in Sources */,
 				E1E56AEC14FA91EF00B959DE /* NSData+NSData_Base64.m in Sources */,
+				73B85DA914FCF6B800954090 /* NSString+WeiboAndRenrenFactialExpression.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

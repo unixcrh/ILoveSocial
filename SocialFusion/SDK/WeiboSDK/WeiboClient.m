@@ -9,7 +9,7 @@
 #import "WeiboClient.h"
 #import "JSON.h"
 #import "NSString+URLEncoding.h"
-
+#import "NSString+WeiboAndRenrenFactialExpression.h"
 #import "WBRequest.h"
 #import "OADataFetcher.h"
 #import "OAToken.h"
@@ -730,6 +730,7 @@ report_completion:
 - (void)postStatus:(NSString *)status
 {
     self.httpMethod = HTTPMethodPost;
+      status=[status renren2weibo];
     self.path = @"statuses/update.json";
     [self.params setObject:[status URLEncodedString] forKey:@"status"];
     [self sendRequest];
@@ -803,7 +804,7 @@ report_completion:
 {
     self.path = @"statuses/upload.json";
     self.httpMethod = HTTPMethodForm;
-    
+    text=[text renren2weibo];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -846,7 +847,7 @@ report_completion:
     self.httpMethod = HTTPMethodPost;
     [self.params setObject:statusID forKey:@"id"];
     [self.params setObject:text forKey:@"status"];
-    
+    text=[text renren2weibo]; 
     int value = 0;
     if (commentStatus) {
         value += 1;

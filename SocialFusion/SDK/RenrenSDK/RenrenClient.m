@@ -11,6 +11,7 @@
 #import "ROPasswordFlowRequestParam.h"
 #import "ROPublishPhotoRequestParam.h"
 #include "ROUtility.h"
+#import "NSString+WeiboAndRenrenFactialExpression.h"
 
 static NSString* kAuthBaseURL = @"http://graph.renren.com/oauth/authorize";
 //static NSString* kDialogBaseURL = @"http://widget.renren.com/dialog/";
@@ -576,6 +577,7 @@ hasError = _hasError;
 }
 
 - (void)postStatus:(NSString *)status {
+    status=[status weibo2renren];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"status.set", @"method",
                                    status, @"status", nil];
@@ -584,6 +586,8 @@ hasError = _hasError;
 }
 
 - (void)postStatus:(NSString *)status withImage:(UIImage *)image {
+    
+    status=[status weibo2renren];
     ROPublishPhotoRequestParam *param = [[ROPublishPhotoRequestParam alloc] init];
     param.imageFile = image;
     param.caption = status;
@@ -633,6 +637,7 @@ hasError = _hasError;
 }
 
 - (void)postMessage:(NSString *)msg guestBookOwnerID:(NSString *)uid useSecretWord:(BOOL)isSecret {
+
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"guestbook.post", @"method",
                                    uid, @"uid", 
@@ -652,6 +657,7 @@ hasError = _hasError;
 
 -(void)forwardStatus:(NSString*)user_ID statusID:(NSString*)status_ID andStatusString:(NSString*)status
 {
+    status=[status weibo2renren];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"status.forward", @"method",
                                    status, @"status", 
@@ -665,7 +671,7 @@ hasError = _hasError;
 -(void)share:(int)type  share_ID:(NSString*)share_ID  user_ID:(NSString*)user_ID comment:(NSString *)comment
 {
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",type];
-    
+    comment=[comment weibo2renren];
    // NSLog(@"%@    %@    %@",tempString,share_ID,user_ID);
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"share.share", @"method",
@@ -684,6 +690,8 @@ hasError = _hasError;
            text:(NSString *)text
            toID:(NSString*)to_ID;
 {
+    
+     text=[text weibo2renren];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"status.addComment", @"method",
                                    user_ID, @"owner_id", 
@@ -700,6 +708,9 @@ hasError = _hasError;
               toID:(NSString*)to_ID
             secret:(int)secret
 {
+    
+    content=[content weibo2renren];
+
     NSString* tempString=[[NSString alloc] initWithFormat:@"%d",secret];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"blog.addComment", @"method",
@@ -718,6 +729,8 @@ hasError = _hasError;
             content:(NSString*)content
                toID:(NSString*)to_ID
 {
+    
+     content=[content weibo2renren];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"share.addComment", @"method",
                                    share_id, @"share_id", 
@@ -731,6 +744,7 @@ hasError = _hasError;
 
 -(void)postBlog:(NSString*)title  content:(NSString*)content;
 {
+    title=[title weibo2renren];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"blog.addBlog", @"method",
                                    title, @"title", 
@@ -744,6 +758,8 @@ hasError = _hasError;
                toID:(NSString*)to_ID;
 
 {
+    content=[content weibo2renren];
+
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"photos.addComment", @"method",
                                    share_id, @"pid", 
