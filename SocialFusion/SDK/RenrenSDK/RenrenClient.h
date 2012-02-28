@@ -86,6 +86,8 @@ typedef void (^RRCompletionBlock)(RenrenClient *client);
 
 
 
+-(void)postBlog:(NSString*)title  content:(NSString*)content;
+
 
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)iamge;

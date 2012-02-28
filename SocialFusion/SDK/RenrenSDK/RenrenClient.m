@@ -728,6 +728,16 @@ hasError = _hasError;
 	[self requestWithParams:params andDelegate:self];
 }
 
+
+-(void)postBlog:(NSString*)title  content:(NSString*)content;
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"blog.addBlog", @"method",
+                                   title, @"title", 
+                                   content,@"content",
+                                   nil];
+	[self requestWithParams:params andDelegate:self];
+}
 -(void)commentPhoto:(NSString*)share_id
                 uid:(NSString*)u_ID
             content:(NSString*)content

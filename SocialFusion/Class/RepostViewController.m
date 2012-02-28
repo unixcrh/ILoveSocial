@@ -525,7 +525,7 @@
     [client setCompletionBlock:^(WeiboClient *client) {
         if(client.hasError)
         {
-            _postStatusErrorCode |= PostStatusErrorRenren;
+            _postStatusErrorCode |= PostStatusErrorWeibo;
         }
         [self postStatusCompletion];
     }];

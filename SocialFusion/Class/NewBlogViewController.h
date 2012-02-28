@@ -7,8 +7,8 @@
 //
 
 #import "PostViewController.h"
-
-@interface NewBlogViewController : PostViewController<UIScrollViewDelegate> {
+#import "WebStringToImageConverter.h"
+@interface NewBlogViewController : PostViewController<UIScrollViewDelegate,WebStringToImageConverterDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
     NSUInteger _currentPage;

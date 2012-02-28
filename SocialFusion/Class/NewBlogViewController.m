@@ -9,7 +9,10 @@
 #import "NewBlogViewController.h"
 #import "UIButton+Addition.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "WebStringToImageConverter.h"
+#import "WeiboClient.h"
+#import "NSString+WeiboSubString.h"
+#import "RenrenClient.h"
 @implementation NewBlogViewController
 @synthesize blogTextView = _blogTextView;
 @synthesize postRenrenButton = _postRenrenButton;
@@ -78,6 +81,39 @@
     [self.blogTextView becomeFirstResponder];
 }
 
+
+- (IBAction)didClickPostButton:(id)sender {
+    _postCount = 0;
+    _postStatusErrorCode = PostStatusErrorNone;
+
+    
+    
+        if (_postToRenren==YES)
+        {
+            RenrenClient *client = [RenrenClient client];
+            [client setCompletionBlock:^(RenrenClient *client) {
+                if(client.hasError)
+                    _postStatusErrorCode |= PostStatusErrorRenren;
+                [self postStatusCompletion];
+            }];
+            _postCount++;
+      
+                [client postBlog:self.textView.text content:[_blogTextView.text stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"]];
+            
+        }
+        if (_postToWeibo==YES)
+        {
+            WebStringToImageConverter* webStringConverter=[WebStringToImageConverter webStringToImage];
+            webStringConverter.delegate=self;
+            [webStringConverter startConvertBlogWithTitle:self.textView.text   detail:_blogTextView.text];
+            
+        }
+
+       [self dismissView];
+}
+
+
+
 #pragma mark -
 #pragma mark UIScrollView delegate
 
@@ -139,6 +175,32 @@
     CGRect blogTextViewFrame = self.blogTextView.frame;
     blogTextViewFrame.size.height = scrollViewFrame.size.height;
     self.blogTextView.frame = blogTextViewFrame;
+}
+
+- (void)webStringToImageConverter:(WebStringToImageConverter *)converter  didFinishLoadWebViewWithImage:(UIImage*)image
+{
+    WeiboClient *client = [WeiboClient client];
+    [client setCompletionBlock:^(WeiboClient *client) {
+        if(client.hasError)
+        {
+            _postStatusErrorCode |= PostStatusErrorWeibo;
+        }
+        [self postStatusCompletion];
+    }];
+    _postCount++;
+    
+    
+    NSString* titleString=[NSString stringWithFormat:@"发表了日志《%@》",self.textView.text];
+    if ([titleString integerValue]>WEIBO_MAX_WORD)
+    {
+        [client postStatus:[titleString getSubstringToIndex:WEIBO_MAX_WORD] withImage:image];
+    }
+    else
+    {
+        [client postStatus:titleString withImage:image];
+        
+    }
+    
 }
 
 @end
