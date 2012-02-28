@@ -177,7 +177,6 @@
     CGRect textViewFrame = self.textView.frame;
     textViewFrame.size.height = self.view.frame.size.height - kbSize.height - textViewFrame.origin.y - TOOLBAR_HEIGHT;
     self.textView.frame = textViewFrame;
-    
 }
 
 #pragma mark -
@@ -196,16 +195,20 @@
 }
 
 - (void)didPickAtUser:(NSString *)userName {
-    int location = self.textView.selectedRange.location;
-    NSString *content = self.textView.text;
+    int location = self.processTextView.selectedRange.location;
+    NSString *content = self.processTextView.text;
     NSString *stringToInsert = [userName stringByAppendingString:@" "];
     NSString *result = [NSString stringWithFormat:@"%@%@%@",[content substringToIndex:location], stringToInsert, [content substringFromIndex:location]];
-    self.textView.text = result;
-    NSRange range = self.textView.selectedRange;
+    self.processTextView.text = result;
+    NSRange range = self.processTextView.selectedRange;
     range.location = location + stringToInsert.length;
-    self.textView.selectedRange = range;
+    self.processTextView.selectedRange = range;
     [self updateTextCount];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (UITextView *)processTextView {
+    return self.textView;
 }
 
 @end

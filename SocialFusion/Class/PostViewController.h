@@ -31,6 +31,7 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UILabel *textCountLabel;
 @property (nonatomic, retain) IBOutlet UIView *toolBarView;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, readonly) UITextView *processTextView;
 
 - (IBAction)didClickCancelButton:(id)sender;
 - (IBAction)didClickPostButton:(id)sender;
@@ -42,5 +43,6 @@ typedef enum {
 - (int)sinaCountWord:(NSString*)s;
 
 - (void)updateTextCount;
--(void) showTextWarning;
+- (void)showTextWarning;
+
 @end

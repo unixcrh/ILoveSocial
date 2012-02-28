@@ -106,4 +106,39 @@
     
 }
 
+- (UITextView *)processTextView {
+    if(_currentPage == 0)
+        return self.textView;
+    else if(_currentPage == 1) {
+        return self.blogTextView;
+    }
+    else {
+        return nil;
+    }
+}
+
+#pragma mark -
+#pragma mark Keyboard notification
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    CGRect toolbarFrame = self.toolBarView.frame;
+    toolbarFrame.origin.y = self.view.frame.size.height - kbSize.height - toolbarFrame.size.height;
+    self.toolBarView.frame = toolbarFrame;
+    
+    CGRect scrollViewFrame = self.scrollView.frame;
+    scrollViewFrame.size.height = self.view.frame.size.height - kbSize.height - scrollViewFrame.origin.y - TOOLBAR_HEIGHT;
+    self.scrollView.frame = scrollViewFrame;
+    
+    CGRect textViewFrame = self.textView.frame;
+    textViewFrame.size.height = scrollViewFrame.size.height;
+    self.textView.frame = textViewFrame;
+    
+    CGRect blogTextViewFrame = self.blogTextView.frame;
+    blogTextViewFrame.size.height = scrollViewFrame.size.height;
+    self.blogTextView.frame = blogTextViewFrame;
+}
+
 @end
