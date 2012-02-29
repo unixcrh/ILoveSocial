@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">11A494a</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1128</string>
-		<string key="IBDocument.HIToolboxVersion">564.00</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2177</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1173</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUILabel</string>
@@ -109,6 +109,7 @@
 								<string key="NSFrame">{{13, 310}, {280, 40}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -190,7 +191,7 @@
 							<object class="IBUILabel" id="874061812">
 								<reference key="NSNextResponder" ref="90969752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{28, 245}, {250, 50}}</string>
+								<string key="NSFrame">{{28, 245}, {249, 45}}</string>
 								<reference key="NSSuperview" ref="90969752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="74764777"/>
@@ -200,7 +201,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">注：长微博会使用白底黑字的图片形式进行发布。系统会自动将日志的第一行识别为日志的标题以及与长微博图片同时发送的微博。</string>
+								<string key="IBUIText">注：长微博由标题和正文两部分组成。标题部分以标准的140字微博形式发送。正文部分转换为白底黑字的图片，作为微博配图发送。</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC42AA</bytes>
@@ -422,6 +423,6 @@
 			<string key="publication_btn_bg@2x.png">{560, 80}</string>
 			<string key="publication_btn_bg_disabled@2x.png">{560, 80}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1173</string>
 	</data>
 </archive>
