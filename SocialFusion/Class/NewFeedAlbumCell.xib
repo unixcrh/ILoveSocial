@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2177</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1173</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIScrollView</string>
@@ -357,7 +357,7 @@
 							<object class="IBUIButton" id="775911675">
 								<reference key="NSNextResponder" ref="948040623"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 346}, {306, 45}}</string>
+								<string key="NSFrame">{{-7, 346}, {320, 45}}</string>
 								<reference key="NSSuperview" ref="948040623"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -996,10 +996,10 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="btn_repost.png">{20, 20}</string>
-			<string key="detail_btn_shrink.png">{306, 45}</string>
+			<string key="detail_btn_shrink.png">{320, 46}</string>
 			<string key="detail_head.png">{51, 51}</string>
 			<string key="detail_header_bg@2x.png">{640, 100}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1173</string>
 	</data>
 </archive>
