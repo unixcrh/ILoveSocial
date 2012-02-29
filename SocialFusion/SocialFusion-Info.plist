@@ -16,8 +16,6 @@
 	<array>
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
-		<string>Icon.png</string>
-		<string>Icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.fatcatlab.pocketsocial</string>
