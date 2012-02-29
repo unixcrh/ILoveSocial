@@ -19,6 +19,12 @@
 @implementation StatusDetailControllerWithWeb
 
 
+-(void)dealloc
+{
+    [_webView release];
+    [super dealloc];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView==_webView.scrollView)

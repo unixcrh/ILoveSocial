@@ -33,6 +33,7 @@
     [_nameLabel release];
     [_titleView release];
     
+    [_style release];
     [_feedData release];
     [_commentButton release];
     
@@ -120,6 +121,15 @@
   
     
     [self.view addSubview:_commentButton];
+    if ([_feedData.style intValue] == 0)
+    {
+        [_style setImage:[UIImage imageNamed:@"detail_renren.png"]];
+    }
+    else
+    {
+        [_style setImage:[UIImage imageNamed:@"detail_weibo.png"]];
+    }
+    
 }
 
 - (void)addOriStatus {

@@ -20,6 +20,7 @@
 
 -(void) dealloc{
     [_blogDetail release];
+    [_blogTitle release];
     [super dealloc];
 }
 - (void)loadWebView

@@ -38,6 +38,14 @@
     [_photoID release];
     [_photoURL release];
     [_photoComment release];
+    
+      [_repostToRenrenBut release];
+      [_repostToWeiboBut release];
+          [_repostToRenrenLabelBut release];
+      [_repostToWeiboLabelBut release];
+    
+      [_commentBut release];
+      [_commentLabelBut release];
     [super dealloc];
     
 }

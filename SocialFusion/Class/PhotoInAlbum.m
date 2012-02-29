@@ -17,6 +17,15 @@
 @synthesize imageOut=_imageOut;
 @synthesize imageView=_imageView;
 @synthesize captian=_captian;
+
+
+-(void)dealloc
+{
+    [_captian release];
+    [_imageOut release];
+    [_imageView release];
+    [super dealloc];
+}
 - (id)init
 {
     self=[super init];

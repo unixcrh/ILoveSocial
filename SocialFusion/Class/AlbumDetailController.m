@@ -43,6 +43,12 @@
         [_bigURL[i]  release];
         
     }
+    [_albumTitle release];
+    [_contentScrollView release];
+    [_contentView release];
+    
+    
+    
     [super dealloc];
 }
 

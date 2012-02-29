@@ -22,6 +22,9 @@
     IBOutlet UILabel* _time;
     IBOutlet UILabel* _nameLabel;
     IBOutlet UIView* _titleView;
+    IBOutlet UIImageView* _style;
+    
+    
     
     int _pageNumber;
     BOOL _showMoreButton;

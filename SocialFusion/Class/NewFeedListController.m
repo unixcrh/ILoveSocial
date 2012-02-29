@@ -42,6 +42,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 @synthesize loadingCount = _loadingCount;
 
 - (void)dealloc {
+   [_feedStatusCel release];
+      [_newFeedDetailViewCel release];
+      [_newFeedDetailBlogViewCel release];
+      [_newFeedAlbumCel release];
     [_cellHeightHelper release];
     [super dealloc];
 }

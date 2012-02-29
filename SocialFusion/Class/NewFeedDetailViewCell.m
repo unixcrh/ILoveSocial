@@ -26,7 +26,7 @@
 
 - (void)dealloc {
     //NSLog(@"Friend List Cell Dealloc");
-
+    [detailController release];
     
     [super dealloc];
 }
