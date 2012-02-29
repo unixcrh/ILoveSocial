@@ -674,6 +674,16 @@ report_completion:
     [self sendRequest];
 }
 
+                  
+- (void)getUserWithName:(NSString *)name
+{
+    self.path = @"users/show.json";
+    [self.params setObject:name forKey:@"screen_name"];
+    [self sendRequest];
+}
+
+                  
+                  
 - (void)getFriendsOfUser:(NSString *)userID cursor:(int)cursor count:(int)count
 {
     self.path = @"statuses/friends.json";

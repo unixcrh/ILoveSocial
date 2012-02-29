@@ -155,8 +155,8 @@
     
     
     NSString* tempString = [NSString stringWithFormat:@"%@",[request URL]];
-    
-    //  NSLog(@"%@",tempString);
+    tempString=[tempString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+     
     NSString* commandString = [tempString substringFromIndex:7];
     NSString* startString = [tempString substringToIndex:5];
     
@@ -184,6 +184,8 @@
         
         
         [_listController loadNewWeiboAt:[tempString lastPathComponent]];   
+        
+ 
         return NO;
     }
     else if ([startString isEqualToString:@"file:"])//本地request读取

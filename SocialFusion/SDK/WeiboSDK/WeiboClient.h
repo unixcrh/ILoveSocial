@@ -85,7 +85,8 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 
 - (void)getCommentsAndRepostsCount:(NSArray *)statusIDs;
 
-- (void)getUser:(NSString *)userID;
+- (void)getUserWithName:(NSString *)name;
+
 
 - (void)getFriendsOfUser:(NSString *)userID cursor:(int)cursor count:(int)count;
 - (void)getFollowersOfUser:(NSString *)userID cursor:(int)cursor count:(int)count;
@@ -118,6 +119,8 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 - (void)getUnreadCountSinceStatusID:(NSString *)statusID;
 - (void)resetUnreadCount:(int)type;
 
+
+- (void)getUser:(NSString *)userID;
 
 
 - (void)authorize:(NSArray *)permissions

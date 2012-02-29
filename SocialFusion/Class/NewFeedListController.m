@@ -806,7 +806,29 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 -(void)loadNewWeiboAt:(NSString*)userName
 {
-    
+    NSLog(@"%@",userName);
+    WeiboClient *client = [WeiboClient client];
+    [client setCompletionBlock:^(WeiboClient *client) {
+        if (!client.hasError) {
+            [self clearData];
+           NSDictionary *dict = client.responseJSONObject ;
+
+          
+                
+                WeiboUser *usr = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
+                NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
+                
+                [userDict setObject:usr forKey:kWeiboUser];
+                
+                [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
+
+            
+        }
+        [self doneLoadingTableViewData];
+        _loadingFlag = NO;
+    }];
+    [client getUserWithName:userName];
+
 }
 
 #pragma mark - 
