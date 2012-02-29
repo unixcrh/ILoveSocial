@@ -496,7 +496,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             }
         }
         
-        [cell configureCell:data];
+        [cell configureCell:data first:YES];
         
         
         cell.delegate=self;
@@ -773,7 +773,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)statusCellWebViewDidLoad:(UIWebView*)webView  indexPath:(NSIndexPath*)path Cell:(NewFeedStatusCell*)cell
 {
      NewFeedRootData* _feedData=[self.fetchedResultsController objectAtIndexPath:path];
-    [cell configureCell:_feedData];
+    [cell configureCell:_feedData first:NO];
 }
 
 -(void)loadNewRenrenAt:(NSString*)userID 

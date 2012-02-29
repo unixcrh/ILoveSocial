@@ -372,15 +372,17 @@
 
 
 
-- (void)configureCell:(NewFeedRootData*)feedData 
+- (void)configureCell:(NewFeedRootData*)feedData  first:(BOOL)bol
 {    
     _photoData=nil;
 
     [_time setText:[CommonFunction getTimeBefore:[feedData getDate]]];
     [_name setTitle:[feedData getAuthorName] forState:UIControlStateNormal];
     
+    if (bol==YES)
+    {
     [_photoView setImage:nil];
-    
+    }
     if ([feedData getStyle] == 0)
     {
         [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];

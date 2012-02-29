@@ -56,7 +56,7 @@ typedef  enum kFeedType {
 
 - (id)initWithType:(kFeedType)type;
 - (void)setList:(NewFeedListController*)list;
-- (void)configureCell:(NewFeedRootData*)feedData;
+- (void)configureCell:(NewFeedRootData*)feedData  first:(BOOL)bol;
 - (void)exposeCell;
 - (void)loadImage:(NSData*)image;
 - (void)loadPicture:(NSData*)image;
