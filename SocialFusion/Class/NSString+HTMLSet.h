@@ -18,6 +18,7 @@ typedef  enum kReplayHTMLStyle {
 @interface NSString (HTMLSet)
 - (NSString*)replaceJSSign;
 - (NSString*)replaceHTMLSign:(kReplayHTMLStyle)style;
+- (NSString*)replaceHTMLSignWithoutJS:(kReplayHTMLStyle)style;
 - (NSString*)decodeHTMLSign;
 - (NSString*)setName:(NSString*)name;
 - (NSString*)setTime:(NSString*)time ;

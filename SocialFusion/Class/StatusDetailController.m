@@ -56,6 +56,11 @@
     
 }
 
+
+
+
+
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString* tempString = [NSString stringWithFormat:@"%@",[request URL]];

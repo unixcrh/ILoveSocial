@@ -14,7 +14,7 @@
 
 #import "EGOTableViewController.h"
 #import "NewFeedRootData.h"
-
+@protocol WeiboRenrenSelecter;
 @interface StatusDetailController : EGOTableViewController<UIScrollViewDelegate>
 {
     IBOutlet StatusCommentCell *_commentCel;
@@ -29,9 +29,12 @@
     UIButton* _commentButton;
     UIActivityIndicatorView* _activity;
     NSData* _photoData; 
+    
+
 }
 
 @property (nonatomic, retain) NewFeedRootData* feedData;
+
 
 - (void)setFixedInfo;
 - (void)loadMainView;
@@ -42,5 +45,6 @@
 
 - (IBAction)repost;
 - (IBAction)comment:(id)sender;
+
 
 @end

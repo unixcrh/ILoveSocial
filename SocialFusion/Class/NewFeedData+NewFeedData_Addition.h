@@ -22,6 +22,7 @@
 - (NSString*)getSource_ID;
 - (NSString*)getBlog;
 - (NSString*)getPostMessage;
+- (NSString*)getPostMessagewithOutJS;
 - (int)getComment_Count;
 - (int)getStyle;
 - (void)setCount:(int)count;

@@ -11,7 +11,9 @@
 #import "StatusDetailControllerWithWeb.h"
 @interface NewFeedDetailViewCell : UITableViewCell
 {
-    IBOutlet StatusDetailControllerWithWeb* detailController;
+    IBOutlet StatusDetailControllerWithWeb* _detailController;
 }
+@property (nonatomic, retain) StatusDetailControllerWithWeb* detailController;
+
 - (void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei;
 @end

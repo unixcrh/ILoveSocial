@@ -58,7 +58,25 @@
 {
     return self.owner_Head;
 }
-
+- (NSString*)getPostMessagewithOutJS
+{
+    
+    
+    NSString* string=self.repost_Name;
+    string=[string replaceHTMLSignWithoutJS:[self.style intValue]];
+    
+    
+    NSString* string1=self.repost_Status;
+    string1=[string1 replaceHTMLSignWithoutJS :[self.style intValue]];
+    
+    
+    return [NSString stringWithFormat:@"<span style=\"font-weight:bold;\">%@:</span>%@",string,string1];
+    
+    // NSLog(@"%@",[tempString stringByAppendingFormat:@"%@",post_Status]);
+    // return [tempString stringByAppendingFormat:@":%@",self.repost_Status] ;
+    
+    
+}
 
 - (NSString*)getPostMessage
 {

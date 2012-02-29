@@ -9,13 +9,13 @@
 #import "NewFeedDetailBlogViewCell.h"
 
 @implementation NewFeedDetailBlogViewCell
-
+@synthesize detailController=_detailController;
 - (void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei
 {
-    detailController.feedData=_feedData;
-    detailController.managedObjectContext=context;
-    detailController.currentRenrenUser=ren;
-    detailController.currentWeiboUser=wei;
+    _detailController.feedData=_feedData;
+    _detailController.managedObjectContext=context;
+    _detailController.currentRenrenUser=ren;
+    _detailController.currentWeiboUser=wei;
     
     //  [self.contentView addSubview:detailController.view];
 }
@@ -25,7 +25,7 @@
 
 - (void)dealloc {
     //NSLog(@"Friend List Cell Dealloc");
-    [detailController release];
+    [_detailController release];
     
     [super dealloc];
 }

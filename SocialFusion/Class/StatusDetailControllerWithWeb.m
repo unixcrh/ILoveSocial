@@ -16,8 +16,9 @@
 #import "RepostViewController.h"
 #import "UIApplication+Addition.h"
 #import "StatusCommentData+StatusCommentData_Addition.h"
-@implementation StatusDetailControllerWithWeb
 
+@implementation StatusDetailControllerWithWeb
+@synthesize delegate=_delegate;
 
 -(void)dealloc
 {
@@ -47,7 +48,7 @@
         {
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"photocelldetail" ofType:@"html"];
             NSString *infoText = [[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            infoText = [infoText setWeibo:[(NewFeedData*)self.feedData getName]];
+            infoText = [infoText setWeibo:[((NewFeedData*)self.feedData).message replaceHTMLSignWithoutJS:[((NewFeedData*)self.feedData).style intValue]]];
             
             Image* image = [Image imageWithURL:((NewFeedData*)self.feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
             if (!image)
@@ -77,7 +78,7 @@
         {
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"normalcelldetail" ofType:@"html"];
             NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            infoText=[infoText setWeibo:[(NewFeedData*)self.feedData getName]];
+            infoText=[infoText setWeibo:[((NewFeedData*)self.feedData).message replaceHTMLSignWithoutJS:[((NewFeedData*)self.feedData).style intValue]]];
             [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
             [infoText release];
         }
@@ -88,8 +89,8 @@
         {
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcellwithphotodetail" ofType:@"html"];
             NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            infoText=[infoText setWeibo:[(NewFeedData*)self.feedData getName]];
-            infoText=[infoText setRepost:[(NewFeedData*)self.feedData getPostMessage]];
+            infoText=[infoText setWeibo:[((NewFeedData*)self.feedData).message replaceHTMLSignWithoutJS:[((NewFeedData*)self.feedData).style intValue]]];
+            infoText=[infoText setRepost:[(NewFeedData*)self.feedData getPostMessagewithOutJS]];
             Image* image = [Image imageWithURL:((NewFeedData*)self.feedData).pic_big_URL inManagedObjectContext:self.managedObjectContext];
             if (!image)
             {
@@ -108,14 +109,15 @@
                 [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
                 
             }
+            
             [infoText release];
         }
         else
         {
             NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"repostcelldetail" ofType:@"html"];
             NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-            infoText=[infoText setWeibo:[(NewFeedData*)self.feedData getName]];
-            infoText=[infoText setRepost:[(NewFeedData*)self.feedData getPostMessage]];
+            infoText=[infoText setWeibo:[((NewFeedData*)self.feedData).message replaceHTMLSignWithoutJS:[((NewFeedData*)self.feedData).style intValue]]];
+            infoText=[infoText setRepost:[(NewFeedData*)self.feedData getPostMessagewithOutJS]];
             [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
             [infoText release];
         }
@@ -232,6 +234,48 @@ for (UIView *aView in [_webView subviews])
     
     [[UIApplication sharedApplication] presentModalViewController:vc];
     [vc release];
+}
+
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    
+    
+    NSString* tempString = [NSString stringWithFormat:@"%@",[request URL]];
+    tempString=[tempString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString* startString = [tempString substringToIndex:5];
+    
+
+     if ([[[tempString stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"renren"])
+    {
+        
+        
+        [self.delegate selectRenren:[tempString lastPathComponent]];
+        return NO;
+    }
+    else if ([[[tempString stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"weibo"])
+    {
+        
+        
+        [self.delegate selectWeibo:[tempString lastPathComponent]];   
+        
+        
+        return NO;
+    }
+    else if ([startString isEqualToString:@"file:"])//本地request读取
+    {
+        return YES;
+    }
+    
+    
+    else//其他url，调用safari
+    {
+        
+        
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    }
 }
 
 

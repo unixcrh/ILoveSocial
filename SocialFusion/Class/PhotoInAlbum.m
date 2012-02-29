@@ -38,6 +38,8 @@
     _imageOut=[[UIButton alloc] init];
     _imageView=[[UIImageView alloc] init];
 
+    
+    _imageOut.showsTouchWhenHighlighted=YES;
     _imageOut.frame=CGRectMake(0,0,IMAGE_OUT_WIDTH, IMAGE_OUT_HEIGHT);
     [_imageOut setImage:[UIImage imageNamed:@"detail_photo"] forState:UIControlStateNormal];
 

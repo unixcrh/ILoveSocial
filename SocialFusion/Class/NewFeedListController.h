@@ -27,7 +27,7 @@ typedef   enum kUserFeed {
     kWeiboUserFeed  = 4,
 } kUserFeed;
 
-@interface NewFeedListController : EGOTableViewController<StatusCellDelegate> {
+@interface NewFeedListController : EGOTableViewController<StatusCellDelegate,WeiboRenrenSelecter> {
     NSDate* _currentTime;
 
     IBOutlet NewFeedStatusCell *_feedStatusCel;

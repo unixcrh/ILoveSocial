@@ -10,7 +10,9 @@
 #import "BlogDetailController.h"
 @interface NewFeedDetailBlogViewCell : UITableViewCell
 {
-     IBOutlet BlogDetailController* detailController;
+     IBOutlet BlogDetailController* _detailController;
 }
+@property (nonatomic, retain) BlogDetailController* detailController;
+
 - (void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei;
 @end

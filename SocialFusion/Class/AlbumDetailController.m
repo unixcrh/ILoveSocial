@@ -463,7 +463,6 @@
         }
         scrollView.scrollEnabled=YES;
   _albumTitle.frame=CGRectMake(51 , 52, 245, 21);
-                  //  _albumTitle.frame=CGRectMake(55, 50, 191, 21);  
     }
 }
 

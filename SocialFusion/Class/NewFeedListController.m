@@ -535,7 +535,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             cell = _newFeedDetailBlogViewCel;
             
             [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
-
+            cell.detailController.delegate=self;
             return cell; 
         }
         
@@ -558,7 +558,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
             
-            
+            cell.detailController.delegate=self;
+
             return cell;
         }
     }
@@ -806,23 +807,19 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 }
 -(void)loadNewWeiboAt:(NSString*)userName
 {
-    NSLog(@"%@",userName);
+  //  NSLog(@"%@",userName);
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
             [self clearData];
            NSDictionary *dict = client.responseJSONObject ;
 
-          
-                
+
                 WeiboUser *usr = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
                 NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
-                
-                [userDict setObject:usr forKey:kWeiboUser];
-                
+                [userDict setObject:usr forKey:kWeiboUser];                
                 [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
 
-            
         }
         [self doneLoadingTableViewData];
         _loadingFlag = NO;
@@ -834,5 +831,16 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 #pragma mark - 
 #pragma mark GIF methos
 
+
+-(void)selectWeibo:(NSString *)weibo
+{
+    [self loadNewWeiboAt:weibo];
+}
+
+
+-(void)selectRenren:(NSString *)renren
+{
+    [self loadNewRenrenAt:renren];
+}
 
 @end
