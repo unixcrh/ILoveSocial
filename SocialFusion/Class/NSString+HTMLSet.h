@@ -30,4 +30,5 @@ typedef  enum kReplayHTMLStyle {
 - (NSString*)setCount :(NSString*)count; 
 - (NSString*)setBlogTitle :(NSString*)title ;
 - (NSString*)setBlogDetail :(NSString*)blog;
+-(NSString*)replaceHTMPostSign;
 @end

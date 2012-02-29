@@ -32,7 +32,15 @@
     NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
     
     string=[string stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
-    infoText=[infoText setBlogTitle:title];
+ if (title!=nil)
+ {
+    infoText=[infoText setBlogTitle:[NSString stringWithFormat:@"《%@》",title]];
+ }
+    else
+    {
+        infoText=[infoText setBlogTitle:[NSString stringWithFormat:@""]];
+
+    }
     infoText=[infoText setBlogDetail:string];
     [webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
     [infoText release];
@@ -44,7 +52,6 @@
    float width= [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollWidth"] floatValue];
     
     float height= [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-    //  float height=_webView.scrollView.contentSize.height;
     
     [webView setFrame:CGRectMake(0, 0, width, height)];
     UIGraphicsBeginImageContext(webView.frame.size); 

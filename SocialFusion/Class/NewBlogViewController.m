@@ -14,7 +14,7 @@
 #import "NSString+WeiboSubString.h"
 #import "RenrenClient.h"
 #import "UIApplication+Addition.h"
-
+#import "NSString+HTMLSet.h"
 #define RENREN_BLOG_TITLE_MAX_WORD 100
 
 @interface NewBlogViewController()
@@ -130,7 +130,8 @@
     {
         WebStringToImageConverter* webStringConverter = [WebStringToImageConverter webStringToImage];
         webStringConverter.delegate = self;
-        [webStringConverter startConvertBlogWithTitle:self.textView.text detail:self.blogTextView.text];
+        NSString* detailstring=[self.blogTextView.text replaceHTMPostSign];
+        [webStringConverter startConvertBlogWithTitle:nil detail:detailstring];
     }
     else {
         [self dismissView];

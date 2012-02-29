@@ -53,23 +53,28 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     return returnString;
 }
 
+
+-(NSString*)replaceHTMPostSign
+
+{
+    
+    NSString* returnString = [self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"¢" withString:@"&cent"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"£" withString:@"&pound"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"¥" withString:@"&yen"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"€" withString:@"&euro"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"§" withString:@"&sect"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
+     returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
+    return returnString;
+
+}
 - (NSString*)replaceHTMLSign:(kReplayHTMLStyle)style
 {
     NSString* returnString = [NSString stringWithString:self];
-    /*
-    returnString = [self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"<" withString:@"&lt"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@">" withString:@"&gt"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"¢" withString:@"&cent"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"£" withString:@"&pound"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"¥" withString:@"&yen"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"€" withString:@"&euro"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"§" withString:@"&sect"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"©" withString:@"&copy"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"®" withString:@"&reg"];
-    returnString = [returnString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot"];
-    */
-    
     if (style == kWeibo) {
         returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a  href='//weibo/%@' onclick=\"event.cancelBubble=true;\">%@</a></span>"];
     }
