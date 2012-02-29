@@ -84,7 +84,8 @@
             self.renrenUser = self.currentRenrenUser;
             [self refreshRenrenUserInfoUI];
         }
-	} else {
+	} 
+    else {
 		[self.renrenUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
 	}
     
@@ -98,7 +99,8 @@
             self.weiboUser = self.currentWeiboUser;
             [self refreshWeiboUserInfoUI];
         }
-	} else {
+	} 
+    else {
 		[self.weiboUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
 	}
 }
@@ -129,7 +131,6 @@
         if (!weibo.hasError) {
             NSDictionary *dict = client.responseJSONObject;
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
-            [self.managedObjectContext processPendingChanges];
             
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             [ud setValue:self.currentWeiboUser.userID forKey:@"weibo_ID"];
@@ -149,7 +150,6 @@
             NSArray *result = client.responseJSONObject;
             NSDictionary* dict = [result lastObject];
             self.currentRenrenUser = [RenrenUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
-            [self.managedObjectContext processPendingChanges];
            
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             [ud setValue:self.currentRenrenUser.userID forKey:@"renren_ID"];
@@ -164,12 +164,16 @@
 
 - (void)wbDidLogout {
     [self.weiboUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
-    [self.weiboPhotoImageView fadeOut];
+    [self.weiboPhotoImageView fadeOutWithCompletion:^(BOOL finished) {
+        self.weiboPhotoImageView.image = nil;
+    }];
 }
 
 - (void)rrDidLogout {
     [self.renrenUserNameLabel setText:NSLocalizedString(@"ID_LogIn_All", nil)];
-    [self.renrenPhotoImageView  fadeOut];
+    [self.renrenPhotoImageView fadeOutWithCompletion:^(BOOL finished) {
+        self.renrenPhotoImageView.image = nil;
+    }];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -196,6 +200,8 @@
 
 - (void)refreshRenrenUserInfoUI {
     self.renrenUserNameLabel.text = self.currentRenrenUser.name;
+    if(self.renrenPhotoImageView.image)
+        return;
     Image *image = [Image imageWithURL:self.currentRenrenUser.tinyURL inManagedObjectContext:self.managedObjectContext];
     if (image == nil) {
         [self.renrenPhotoImageView loadImageFromURL:self.currentRenrenUser.tinyURL completion:^{
@@ -203,13 +209,15 @@
         } cacheInContext:self.managedObjectContext];
     }
     else {
-        [self.renrenPhotoImageView fadeIn];
         [self.renrenPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
+        [self.renrenPhotoImageView fadeIn];
     }
 }
 
 - (void)refreshWeiboUserInfoUI {
     self.weiboUserNameLabel.text = self.currentWeiboUser.name;
+    if(self.weiboPhotoImageView.image)
+        return;
     Image *image = [Image imageWithURL:self.currentWeiboUser.tinyURL inManagedObjectContext:self.managedObjectContext];
     if (image == nil) {
         [self.weiboPhotoImageView loadImageFromURL:self.currentWeiboUser.tinyURL completion:^{
@@ -217,8 +225,8 @@
         } cacheInContext:self.managedObjectContext];
     }
     else {
-        [self.weiboPhotoImageView fadeIn];
         [self.weiboPhotoImageView setImage:[UIImage imageWithData:image.imageData.data]];
+        [self.weiboPhotoImageView fadeIn];
     }
 }
 

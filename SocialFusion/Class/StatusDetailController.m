@@ -102,25 +102,27 @@
     ((UIScrollView*)self.view).directionalLockEnabled = YES;
     ((UIScrollView*)self.view).delegate = self;
     
-    self.tableView.frame = CGRectMake(306, 30, 306, 320);
+    self.tableView.frame = CGRectMake(306, 40, 306, 320);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
     self.tableView.allowsSelection = NO;    
     
-    _commentButton=[[UIButton alloc] init];
-    [_commentButton setTitle:[NSString stringWithFormat:@"  评论(%d)",[self.feedData.comment_Count intValue]] forState:UIControlStateNormal];
+    _commentButton = [[UIButton alloc] init];
     [_commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
-    _commentButton.frame=CGRectMake(306, 0, 306, 30);
-    [_commentButton setTitleColor:[UIColor colorWithRed:0.33333 green:0.33333 blue:0.33333 alpha:1 ] forState:UIControlStateNormal];
-    _commentButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
-    [_commentButton.titleLabel setFont:[UIFont systemFontOfSize:13.5]];
-    [_commentButton setBackgroundImage:[UIImage imageNamed:@"btn_msg_new@2x.png"] forState:UIControlStateNormal];
-    //[_commentButton setImage:[UIImage imageNamed:@"btn_msg_new@2x.png"] forState:UIControlStateNormal];
-    //[_commentButton setBackgroundColor:[UIColor colorWithRed:0.99608 green:0.98039 blue:0.86274 alpha:1]];
-  
-    
+    _commentButton.frame = CGRectMake(306, 0, 306, 50);
+    [_commentButton setBackgroundImage:[UIImage imageNamed:@"btn_msg_new.png"] forState:UIControlStateNormal];
+    _commentButton.showsTouchWhenHighlighted = YES;
+    _commentButton.adjustsImageWhenHighlighted = NO;
     [self.view addSubview:_commentButton];
+    
+    UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 60, 0, 100, 40)];
+    commentButtonLabel.text = @"写点评论吧...";
+    commentButtonLabel.backgroundColor = [UIColor clearColor];
+    commentButtonLabel.textColor = [UIColor darkGrayColor];
+    commentButtonLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:commentButtonLabel];
+  
     if ([_feedData.style intValue] == 0)
     {
         [_style setImage:[UIImage imageNamed:@"detail_renren.png"]];
