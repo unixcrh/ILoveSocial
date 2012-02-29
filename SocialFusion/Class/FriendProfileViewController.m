@@ -85,6 +85,7 @@
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
             [self clearData];
+            [self stopLoading];
             NSArray *array = client.responseJSONObject;
             for(NSDictionary *dict in array) {
                 RenrenUser *friend = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
@@ -107,6 +108,7 @@
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
             [self clearData];
+            [self stopLoading];
             //NSLog(@"dict:%@", client.responseJSONObject);
             NSArray *dictArray = [client.responseJSONObject objectForKey:@"users"];
             //NSLog(@"count:%d", [dictArray count]);
@@ -152,6 +154,7 @@
     if(_loadingFlag)
         return;
     _loadingFlag = YES;
+    [self startLoading];
     if(_type == RelationshipViewTypeRenrenFriends) {
         [self loadMoreRenrenData];
     }
