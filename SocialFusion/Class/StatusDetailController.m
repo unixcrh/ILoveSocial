@@ -46,6 +46,12 @@
     [super viewDidUnload];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UIScrollView *scrollView = (UIScrollView *)self.view;
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, scrollView.frame.size.height);
+}
+
 - (void)showBigImage
 {
     
@@ -96,7 +102,6 @@
         _headImage.image = [UIImage imageWithData:imageData];
     }
     _time.text = [CommonFunction getTimeBefore:_feedData.update_Time]; 
-    [(UIScrollView*)self.view setContentSize:CGSizeMake(self.view.frame.size.width*2,390)];
     ((UIScrollView*)self.view).pagingEnabled = YES;
     ((UIScrollView*)self.view).showsVerticalScrollIndicator = NO;
     ((UIScrollView*)self.view).directionalLockEnabled = YES;
@@ -104,9 +109,12 @@
     
     self.tableView.frame = CGRectMake(306, 40, 306, 320);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self.view addSubview:self.tableView];
     
     self.tableView.allowsSelection = NO;    
+    
+    UIScrollView *scrollView = (UIScrollView *)self.view;
     
     _commentButton = [[UIButton alloc] init];
     [_commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,23 +122,23 @@
     [_commentButton setBackgroundImage:[UIImage imageNamed:@"btn_msg_new.png"] forState:UIControlStateNormal];
     _commentButton.showsTouchWhenHighlighted = YES;
     _commentButton.adjustsImageWhenHighlighted = NO;
-    [self.view addSubview:_commentButton];
+    [scrollView addSubview:_commentButton];
     
     UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 10, 0, 100, 40)];
     commentButtonLabel.text = @"写点评论吧...";
     commentButtonLabel.backgroundColor = [UIColor clearColor];
     commentButtonLabel.textColor = [UIColor grayColor];
     commentButtonLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-    [self.view addSubview:commentButtonLabel];
+    [scrollView addSubview:commentButtonLabel];
     [commentButtonLabel release];
     
     UIButton *smallCommentButton = [[UIButton alloc] init];
     [smallCommentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
-    smallCommentButton.frame = CGRectMake(306 + 278, 10, 20, 20);
+    smallCommentButton.frame = CGRectMake(306 + 266, 0, 40, 40);
     [smallCommentButton setImage:[UIImage imageNamed:@"btn_msg.png.png"] forState:UIControlStateNormal];
     smallCommentButton.showsTouchWhenHighlighted = YES;
     smallCommentButton.adjustsImageWhenHighlighted = NO;
-    [self.view addSubview:smallCommentButton];
+    [scrollView addSubview:smallCommentButton];
     [smallCommentButton release];
   
     if ([_feedData.style intValue] == 0)
@@ -168,13 +176,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self addOriStatus ];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+    [self addOriStatus];
 }
 
 - (void)viewDidAppear:(BOOL)animated
