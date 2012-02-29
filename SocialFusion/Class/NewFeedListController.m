@@ -775,6 +775,40 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [cell configureCell:_feedData];
 }
 
+-(void)loadNewRenrenAt:(NSString*)userID 
+{
+   // NSLog(@"%@",userID);
+    RenrenClient *renren = [RenrenClient client];
+    [renren setCompletionBlock:^(RenrenClient *client) {
+        if (!client.hasError) {
+            [self clearData];
+            NSArray *array = client.responseJSONObject;
+        //    NSLog(@"%@",array);
+            for(NSDictionary *dict in array) {
+                
+                [dict setValue:[dict objectForKey:@"uid"] forKey:@"id"];//修改dict结构使其和friendget一样
+                RenrenUser *user = [RenrenUser insertFriend:dict inManagedObjectContext:self.managedObjectContext];
+                NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
+                
+                [userDict setObject:user forKey:kRenrenUser];
+                
+                [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
+            }
+        }
+    }];
+    
+    [renren getUserInfoWithUserID:userID];
+    
+    
+    
+ 
+
+}
+-(void)loadNewWeiboAt:(NSString*)userName
+{
+    
+}
+
 #pragma mark - 
 #pragma mark GIF methos
 

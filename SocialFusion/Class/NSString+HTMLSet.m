@@ -71,15 +71,15 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     */
     
     if (style == kWeibo) {
-        returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='weiboAtClicked(\"%@\")'>%@</a></span>"];
+        returnString = [returnString replaceRegEx:weiboAtRegEx withString:@"<span class='highlight'><a  href='//weibo/%@' onclick=\"event.cancelBubble=true;\">%@</a></span>"];
     }
     else if(style == kRenren){
-        returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a href='javascript:void(0);' onclick='renrenAtClicked(\"%@\")'>%@</a></span>"];
+        returnString = [returnString replaceRegEx:renrenAtRegEx withString:@"<span class='highlight'><a  href='//renren/%@' onclick=\"event.cancelBubble=true;\">%@</a></span>"];
     }
     returnString = [returnString replaceRegEx:linkRegEx withString:@"<span class='highlight'><a href='%@' onclick=\"event.cancelBubble=true;\">%@</a></span>"];
     
     returnString = [returnString replaceJSSign];
-    // NSLog(@"%@",returnString);
+     NSLog(@"%@",returnString);
     return returnString;
 }
 

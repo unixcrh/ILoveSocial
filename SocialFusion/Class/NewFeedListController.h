@@ -62,5 +62,6 @@ typedef   enum kUserFeed {
 - (IBAction)resetToNormalList;
 - (void)setStyle:(int)style;
 - (void)selectUser:(NSIndexPath*)indexPath;
-
+-(void)loadNewRenrenAt:(NSString*)userID ;
+-(void)loadNewWeiboAt:(NSString*)userName;
 @end

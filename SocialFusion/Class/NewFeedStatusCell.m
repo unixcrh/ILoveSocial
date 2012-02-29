@@ -159,6 +159,8 @@
     //  NSLog(@"%@",tempString);
     NSString* commandString = [tempString substringFromIndex:7];
     NSString* startString = [tempString substringToIndex:5];
+    
+    NSLog(@"url:%@",[[tempString stringByDeletingLastPathComponent] lastPathComponent]);
     if ([commandString isEqualToString:@"showimage"])//点击图片
     {
         [self showBigImage];
@@ -169,13 +171,32 @@
         [self exposeCell];
         return NO;
     }
+    
+    else if ([[[tempString stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"renren"])
+    {
+     
+        
+        [_listController loadNewRenrenAt:[tempString lastPathComponent]];
+        return NO;
+    }
+    else if ([[[tempString stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"weibo"])
+    {
+        
+        
+        [_listController loadNewWeiboAt:[tempString lastPathComponent]];   
+        return NO;
+    }
     else if ([startString isEqualToString:@"file:"])//本地request读取
     {
         return YES;
     }
+    
+    
     else//其他url，调用safari
     {
-        [[UIApplication sharedApplication] openURL:[request URL]];
+        
+        
+       [[UIApplication sharedApplication] openURL:[request URL]];
         return NO;
     }
 }
