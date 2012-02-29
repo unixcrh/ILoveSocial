@@ -71,17 +71,20 @@
 {
     _activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _activityView.frame=CGRectMake(15, 15, 30, 30);
-    [self.tableView.tableFooterView addSubview:_activityView];
+    [self.loadMoreDataButton addSubview:_activityView];
     [_activityView startAnimating];
 }
 
 -(void)stopLoading
 {
   
+    if (_activityView!=nil)
+    {
         [_activityView stopAnimating];
         [_activityView removeFromSuperview];
         [_activityView release];
-    
+        _activityView=nil;
+    }
 }
 - (void)showLoadMoreDataButton
 {

@@ -227,6 +227,8 @@
     [self hideLoadMoreDataButton];
     _clearDataFlag = YES;
     
+    
+
     if ([_feedData getStyle] == 0)
     {
         _pageNumber = [_feedData getComment_Count]/10+1;
@@ -242,7 +244,7 @@
     if(_loadingFlag)
         return;
    
-    
+        [self startLoading];
     if ([_feedData getStyle] == 0)
     {
         _pageNumber--;
@@ -279,6 +281,7 @@
     
     _loadingFlag = NO;
     
+    [self stopLoading];
     [self doneLoadingTableViewData];
     [self.tableView reloadData];
 }
@@ -305,7 +308,8 @@
     }
     _loadingFlag = NO;
     
-    
+    [self stopLoading];
+
     [self doneLoadingTableViewData];
     [self.tableView reloadData];
     
@@ -325,6 +329,7 @@
                 [self clearData];
                 NSArray *array = client.responseJSONObject;
                 [self ProcessRenrenData:array];
+                
                 //[self.tableView reloadData];
             }
             
