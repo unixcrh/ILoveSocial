@@ -1,16 +1,19 @@
 @charset "UTF-8";
 /* CSS Document */
+
 body {
 	background-color:transparent;
 	width:306x;
 	font:Helvetica;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+
 a {
 	color:#525044;
 	text-decoration:none;
 	-webkit-tap-highlight-color:rgba(0,0,0,0.3);
 }
+
 #topline {
 	left:3px;
 	position:relative;
@@ -27,6 +30,7 @@ a {
 	margin-top:0px;
 	word-break:break-all;
 }
+
 #allinfo {
 	width:306px;
 	position:absolute;
@@ -34,11 +38,13 @@ a {
 	top: 0px;
 
 }
+
 .headimage {
 	position:absolute;
 	left: 4px;
 	top: 8px;
 }
+
 #maininfo {
 	position:absolute;
 	left:58px;
@@ -46,6 +52,7 @@ a {
 	width:238px;
 	
 }
+
 .title {
 	font-size:16px;
 	font-weight: bold;
@@ -55,6 +62,7 @@ a {
 	text-overflow:ellipsis; 
 	overflow:hidden; 
 }
+
 .time {
 	color:#908E78;
 	font-size:9px;
@@ -63,12 +71,14 @@ a {
 	top:3px;
 	position:absolute;
 }
+
 #repost {
 	position:relative;
 	top:0px;
 	left:0px;
 	border:none;
 }
+
 #repostdata {
 	background-color:#FFEEBA;
 	border-style:solid;
@@ -91,7 +101,6 @@ a {
 	padding-bottom:10px;
 	padding-right:5px;
 	word-break:break-all;
-	
 }
 
 #downborder {
@@ -100,6 +109,7 @@ a {
 	left:12px;
 	top:8px;
 }
+
 #count {
 	position:relative;
 	top:10px;
@@ -108,6 +118,7 @@ a {
 	color:#908E78;
 	height: 10px;
 }
+
 #blog {
 	line-height:120%;
 	color:#525044;
@@ -122,7 +133,6 @@ a {
 	padding-right:5px;
 	top:5px;
 	word-break:break-all;
-
 }
 
 #uploadphoto {
@@ -132,6 +142,7 @@ a {
 	left:-30px;
 	top: 5px;
 }
+
 #albumcomment {
 	line-height:120%;
 	color:#525044;
@@ -148,6 +159,7 @@ a {
 	right:0px;
 	
 }
+
 #photocomment {
 	line-height:120%;
 	color:#525044;
@@ -162,9 +174,9 @@ a {
 	position:absolute;
 	top:5px;
 	right:0px;
-		word-break:break-all;
+    word-break:break-all;
 }
 
-.highlight{color:#66cc33; font-weight:bold;}
-.highlight a:link{text-decoration:none; color:#66cc33;}
-.highlight a:visited{text-decoration:none; color:#66cc33;}
+.highlight {color:#006633; font-weight:bold;}
+.highlight a:link{text-decoration:none; color:#006633;}
+.highlight a:visited{text-decoration:none; color:#006633;}

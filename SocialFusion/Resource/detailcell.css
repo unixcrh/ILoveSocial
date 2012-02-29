@@ -70,4 +70,8 @@ img
 	border-style:solid;
 	border-width:1px;
 	border-color:#FFF;
-	}
+}
+
+.highlight {color:#8f3f3f; font-weight:bold;}
+.highlight a:link{text-decoration:none; color:#8f3f3f;}
+.highlight a:visited{text-decoration:none; color:#8f3f3f;}
