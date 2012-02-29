@@ -110,13 +110,13 @@
     
     _commentButton = [[UIButton alloc] init];
     [_commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
-    _commentButton.frame = CGRectMake(306, 0, 306, 50);
+    _commentButton.frame = CGRectMake(306, 0, 320, 50);
     [_commentButton setBackgroundImage:[UIImage imageNamed:@"btn_msg_new.png"] forState:UIControlStateNormal];
     _commentButton.showsTouchWhenHighlighted = YES;
     _commentButton.adjustsImageWhenHighlighted = NO;
     [self.view addSubview:_commentButton];
     
-    UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 60, 0, 100, 40)];
+    UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 28, 0, 100, 40)];
     commentButtonLabel.text = @"写点评论吧...";
     commentButtonLabel.backgroundColor = [UIColor clearColor];
     commentButtonLabel.textColor = [UIColor grayColor];

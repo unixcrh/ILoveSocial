@@ -333,11 +333,12 @@
     
     
     _photoView = [[UIImageView alloc] init];
-    _photoView.frame=CGRectMake(8, 12, 37, 37);
+    _photoView.frame = CGRectMake(8, 12, 37, 37);
    
     _photoOut = [[UIButton alloc] init];
-    _photoOut.frame=CGRectMake(4, 8, 46, 46);
+    _photoOut.frame = CGRectMake(4, 8, 46, 46);
     _photoOut.adjustsImageWhenHighlighted = NO;
+    _photoOut.showsTouchWhenHighlighted = YES;
     [_photoOut addTarget:self action:@selector(didClickPhotoFrameButton) forControlEvents:UIControlEventTouchUpInside];
     
     _defaultphotoView = [[UIImageView alloc] init];
@@ -347,12 +348,9 @@
     _name = [[UIButton alloc] init];
     _name.frame=CGRectMake(57, 9, 210, 18);
     [_name setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-    [_name addTarget:self action:@selector(didClickPhotoFrameButton) forControlEvents:UIControlEventTouchUpInside];    
+    [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];   
     [_name setTitleColor:[UIColor colorWithRed:0.32157f green:0.31373 blue:0.26666667 alpha:1] forState:UIControlStateNormal];
     [_name.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0f]];
-    
-    [_photoOut setImage:[UIImage imageNamed:@"head_renren.png"] forState:UIControlStateNormal];
     
     _upCutline = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
     _upCutline.frame=CGRectMake(8, 3, 290, 1);
