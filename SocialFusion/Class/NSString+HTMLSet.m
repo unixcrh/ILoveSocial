@@ -8,7 +8,8 @@
 
 #import "NSString+HTMLSet.h"
 
-static NSString *renrenAtRegEx = @"@[^@]*\\([0-9]{9,}\\)\\u0020";
+//static NSString *renrenAtRegEx = @"@[^@]*\\([0-9]{9,}\\)\\u0020";
+static NSString *renrenAtRegEx = @"@[^@]*\\([0-9]{9,}\\)";
 static NSString *weiboAtRegEx = @"@[[a-z][A-Z][0-9][\\u4E00-\\u9FA5]-_]*";
 static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
 
@@ -35,7 +36,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
         NSLog(@"substr:%@", subStr);
         NSString *substituteStr = nil;
         if(isReplacingRenrenAtRegEx) {
-            substituteStr = [NSString stringWithFormat:substitute, [subStr substringWithRange:NSMakeRange(subStr.length - 11, 9)], [subStr substringToIndex:subStr.length - 12]];
+            substituteStr = [NSString stringWithFormat:substitute, [subStr substringWithRange:NSMakeRange(subStr.length - 10, 9)], [subStr substringToIndex:subStr.length - 11]];
         }
         else if(isReplacingWeiboAtRegEx) {
             substituteStr = [NSString stringWithFormat:substitute, [subStr substringFromIndex:1], subStr];
