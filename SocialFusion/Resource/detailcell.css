@@ -20,6 +20,16 @@ body
 	
 }
 
+
+#title
+{
+		padding-left:5px;
+	padding-right:5px;
+	font-size:18px;
+	text-align:center;
+	width:286px;
+	word-break:break-all;
+}
 img
 {
 	max-width:250px;

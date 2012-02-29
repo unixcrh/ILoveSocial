@@ -10,7 +10,6 @@
 
 @interface BlogDetailController : StatusDetailControllerWithWeb
 {
-    IBOutlet UILabel* _blogTitle;
     
     NSString* _blogDetail;
 

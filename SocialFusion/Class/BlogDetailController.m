@@ -20,14 +20,11 @@
 
 -(void) dealloc{
     [_blogDetail release];
-    [_blogTitle release];
     [super dealloc];
 }
 - (void)loadWebView
 {
     
-    
-    [_blogTitle setText:((NewFeedBlog*)self.feedData).title];
     RenrenClient *renren = [RenrenClient client];
     [renren setCompletionBlock:^(RenrenClient *client) {
         if(!client.hasError) {
@@ -37,7 +34,7 @@
             NSString *infoText=[[NSString alloc] initWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
             infoText=[infoText setWeibo:content];
             _blogDetail=[[NSString alloc] initWithString:content];
-
+            infoText=[infoText setBlogTitle:((NewFeedBlog*)self.feedData).title];
             [_webView loadHTMLString:infoText baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
             [infoText release];
             

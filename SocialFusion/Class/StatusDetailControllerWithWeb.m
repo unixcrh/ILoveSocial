@@ -25,50 +25,6 @@
     [super dealloc];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView==_webView.scrollView)
-    {
-        
-        
-        if (_titleView.frame.origin.y+_titleView.frame.size.height>0)
-        {
-            if (_titleView.frame.origin.y>=0)
-            {
-                if (scrollView.contentOffset.y<0)
-                {
-                    _titleView.center=CGPointMake(152, _titleView.frame.size.height/2);
-                    _webView.frame=CGRectMake(0, _titleView.frame.size.height+1, 306, 352-_titleView.frame.size.height-1);
-                    
-                    
-                    return;
-                }
-            }
-            
-            if (scrollView.contentSize.height==_webView.frame.size.height)
-            {
-                return;
-            }
-            _titleView.center=CGPointMake(152, _titleView.center.y-scrollView.contentOffset.y);
-            _webView.frame=CGRectMake(0, _webView.frame.origin.y-scrollView.contentOffset.y, 306, _webView.frame.size.height+scrollView.contentOffset.y);
-            scrollView.contentOffset=CGPointMake(0, 0); 
-        }
-        else
-        {
-            if (scrollView.contentOffset.y<0)
-            {
-                _titleView.center=CGPointMake(152, _titleView.center.y-scrollView.contentOffset.y);
-                _webView.frame=CGRectMake(0, _webView.frame.origin.y-scrollView.contentOffset.y, 306, _webView.frame.size.height+scrollView.contentOffset.y);
-                scrollView.contentOffset=CGPointMake(0, 0); 
-            }
-        }
-    }
-    else
-    {
-        [super scrollViewDidScroll:scrollView];
-    }
-}
-
 
 
 

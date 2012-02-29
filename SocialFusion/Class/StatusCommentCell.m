@@ -56,7 +56,9 @@
     
     float cellHeight = [StatusCommentCell heightForCell:feedData];
     //状态
-    _status.text = feedData.text;
+    
+
+        _status.text = feedData.text;
     
     CGSize size = CGSizeMake(_status.frame.size.width, 1000);
     CGSize labelSize = [_status.text sizeWithFont:_status.font constrainedToSize:size];

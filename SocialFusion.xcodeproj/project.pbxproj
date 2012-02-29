@@ -25,6 +25,7 @@
 		7319DCD7144D6FFC006FE917 /* StatusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7319DCD5144D6FFC006FE917 /* StatusDetailController.m */; };
 		731D1D9E147603B5001981B4 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 731D1D9D147603B5001981B4 /* Image.m */; };
 		731D1DB6147603B6001981B4 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 731D1DB5147603B6001981B4 /* ImageData.m */; };
+		73232A6814FE7427001514B6 /* btn_repost.png in Resources */ = {isa = PBXBuildFile; fileRef = 73232A6714FE7427001514B6 /* btn_repost.png */; };
 		7339DF0814EF5C2900CA4738 /* NewFeedUploadPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7339DF0714EF5C2900CA4738 /* NewFeedUploadPhoto.m */; };
 		7339DF0B14EF5C2900CA4738 /* NewFeedSharePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7339DF0A14EF5C2900CA4738 /* NewFeedSharePhoto.m */; };
 		7341AC9114D50C97003723A7 /* detailcell.css in Resources */ = {isa = PBXBuildFile; fileRef = 7341AC9014D50C97003723A7 /* detailcell.css */; };
@@ -363,6 +364,7 @@
 		731D1D9D147603B5001981B4 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = "SocialFusion/Class/CoreData Models/Image.m"; sourceTree = "<group>"; };
 		731D1DB4147603B6001981B4 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageData.h; path = "SocialFusion/Class/CoreData Models/ImageData.h"; sourceTree = "<group>"; };
 		731D1DB5147603B6001981B4 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = "SocialFusion/Class/CoreData Models/ImageData.m"; sourceTree = "<group>"; };
+		73232A6714FE7427001514B6 /* btn_repost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_repost.png; sourceTree = "<group>"; };
 		7339DF0614EF5C2900CA4738 /* NewFeedUploadPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedUploadPhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedUploadPhoto.h"; sourceTree = "<group>"; };
 		7339DF0714EF5C2900CA4738 /* NewFeedUploadPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedUploadPhoto.m; path = "SocialFusion/Class/CoreData Models/NewFeedUploadPhoto.m"; sourceTree = "<group>"; };
 		7339DF0914EF5C2900CA4738 /* NewFeedSharePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedSharePhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.h"; sourceTree = "<group>"; };
@@ -1336,6 +1338,7 @@
 		E1532E7E14FD551E00A7B94E /* image */ = {
 			isa = PBXGroup;
 			children = (
+				73232A6714FE7427001514B6 /* btn_repost.png */,
 				7359F95A14B3EFC80032F09A /* back.png */,
 				E149D5DF14FE3EBD0030CC88 /* btn_msg_new.png */,
 				73F41BF914FA4FAC00A6112E /* btn_msg_new@2x.png */,
@@ -2026,6 +2029,7 @@
 				E1532E7314FD4D3E00A7B94E /* DetailImageViewController.xib in Resources */,
 				E149D5E014FE3EBD0030CC88 /* btn_msg_new.png in Resources */,
 				E149D5E214FE55DF0030CC88 /* detail_header_bg@2x.png in Resources */,
+				73232A6814FE7427001514B6 /* btn_repost.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
