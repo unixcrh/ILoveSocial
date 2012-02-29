@@ -54,6 +54,16 @@
 										<reference key="NSNextResponder" ref="1070131629"/>
 										<int key="NSvFlags">292</int>
 										<array class="NSMutableArray" key="NSSubviews">
+											<object class="IBUIImageView" id="883569839">
+												<reference key="NSNextResponder" ref="977345865"/>
+												<int key="NSvFlags">292</int>
+												<string key="NSFrame">{{143, 187}, {159, 159}}</string>
+												<reference key="NSSuperview" ref="977345865"/>
+												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="61211770"/>
+												<bool key="IBUIUserInteractionEnabled">NO</bool>
+												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+											</object>
 											<object class="IBUIWebView" id="919437750">
 												<reference key="NSNextResponder" ref="977345865"/>
 												<int key="NSvFlags">292</int>
@@ -68,16 +78,6 @@
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 												<int key="IBUIDataDetectorTypes">1</int>
 												<bool key="IBUIDetectsPhoneNumbers">YES</bool>
-											</object>
-											<object class="IBUIImageView" id="883569839">
-												<reference key="NSNextResponder" ref="977345865"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{143, 187}, {159, 159}}</string>
-												<reference key="NSSuperview" ref="977345865"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="61211770"/>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 											</object>
 											<object class="IBUIView" id="985197908">
 												<reference key="NSNextResponder" ref="977345865"/>
@@ -509,8 +509,8 @@
 						<int key="objectID">86</int>
 						<reference key="object" ref="977345865"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="883569839"/>
 							<reference ref="919437750"/>
+							<reference ref="883569839"/>
 							<reference ref="985197908"/>
 						</array>
 						<reference key="parent" ref="1070131629"/>
