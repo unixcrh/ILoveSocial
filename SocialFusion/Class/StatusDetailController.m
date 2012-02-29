@@ -119,8 +119,8 @@
     UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 60, 0, 100, 40)];
     commentButtonLabel.text = @"写点评论吧...";
     commentButtonLabel.backgroundColor = [UIColor clearColor];
-    commentButtonLabel.textColor = [UIColor darkGrayColor];
-    commentButtonLabel.font = [UIFont systemFontOfSize:14.0f];
+    commentButtonLabel.textColor = [UIColor grayColor];
+    commentButtonLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     [self.view addSubview:commentButtonLabel];
   
     if ([_feedData.style intValue] == 0)

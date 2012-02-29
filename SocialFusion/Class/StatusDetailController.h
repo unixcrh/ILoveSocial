@@ -24,8 +24,6 @@
     IBOutlet UIView* _titleView;
     IBOutlet UIImageView* _style;
     
-    
-    
     int _pageNumber;
     BOOL _showMoreButton;
     UIButton* _commentButton;

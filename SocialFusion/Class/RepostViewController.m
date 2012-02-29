@@ -23,6 +23,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation RepostViewController
+
 @synthesize feedData=_feedData;
 @synthesize blogData=_blogData;
 @synthesize commetData=_commetData;
@@ -106,8 +107,8 @@
         }
         _commentBut.hidden=YES;
         _commentLabelBut.hidden=YES;
-        [_repostToRenrenLabelBut setTitle:[NSString stringWithFormat:@"同时转发到人人网"] forState:UIControlStateNormal];
-        [_repostToWeiboLabelBut setTitle:[NSString stringWithFormat:@"同时转发到新浪微博"] forState:UIControlStateNormal];
+        [_repostToRenrenLabelBut setTitle:[NSString stringWithFormat:@"同时转发人人网"] forState:UIControlStateNormal];
+        [_repostToWeiboLabelBut setTitle:[NSString stringWithFormat:@"同时转发新浪微博"] forState:UIControlStateNormal];
         _comment=YES;
         
     }
