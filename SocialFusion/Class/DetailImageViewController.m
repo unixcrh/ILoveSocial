@@ -60,6 +60,8 @@
     gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissView)];
     [self.scrollView addGestureRecognizer:gesture];
     [gesture release];
+    
+    self.activityView.hidden = YES;
 }
 
 - (id)init {
