@@ -116,12 +116,22 @@
     _commentButton.adjustsImageWhenHighlighted = NO;
     [self.view addSubview:_commentButton];
     
-    UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 28, 0, 100, 40)];
+    UILabel *commentButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(306 + 10, 0, 100, 40)];
     commentButtonLabel.text = @"写点评论吧...";
     commentButtonLabel.backgroundColor = [UIColor clearColor];
     commentButtonLabel.textColor = [UIColor grayColor];
     commentButtonLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     [self.view addSubview:commentButtonLabel];
+    [commentButtonLabel release];
+    
+    UIButton *smallCommentButton = [[UIButton alloc] init];
+    [smallCommentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
+    smallCommentButton.frame = CGRectMake(306 + 278, 10, 20, 20);
+    [smallCommentButton setImage:[UIImage imageNamed:@"btn_msg.png.png"] forState:UIControlStateNormal];
+    smallCommentButton.showsTouchWhenHighlighted = YES;
+    smallCommentButton.adjustsImageWhenHighlighted = NO;
+    [self.view addSubview:smallCommentButton];
+    [smallCommentButton release];
   
     if ([_feedData.style intValue] == 0)
     {
