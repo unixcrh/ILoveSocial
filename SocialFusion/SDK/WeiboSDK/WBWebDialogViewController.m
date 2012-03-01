@@ -197,6 +197,11 @@ static NSString* AccessURL=@"http://api.t.sina.com.cn/oauth/access_token" ;
     }
     
     
+    if ([[url absoluteString] isEqualToString:@"http://service.weibo.com/reg/regindex.php?appsrc=1izgHh&backurl="])
+    {
+        [[UIApplication sharedApplication] openURL:url];
+             return NO;
+    }
 //    else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize"]==NO)&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize#"]==NO))
  //   {
   //      [[UIApplication sharedApplication] openURL:url];
