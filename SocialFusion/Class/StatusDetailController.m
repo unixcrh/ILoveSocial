@@ -22,6 +22,7 @@
 #import "RenrenUser.h"
 #import "WeiboUser.h"
 #import "DetailImageViewController.h"
+#import "NSNotificationCenter+Addition.h"
 @implementation StatusDetailController
 
 @synthesize feedData = _feedData;
@@ -448,5 +449,19 @@
 -(IBAction)comment:(id)sender
 {
     
+}
+
+-(IBAction)selectUser
+{
+    NewFeedRootData* feedData =self.feedData;
+    User *usr = feedData.author;
+    if(usr == nil) 
+        return;
+    NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDict];
+    if([usr isMemberOfClass:[RenrenUser class]])
+        [userDict setObject:usr forKey:kRenrenUser];
+    else if([usr isMemberOfClass:[WeiboUser class]]) 
+        [userDict setObject:usr forKey:kWeiboUser];
+    [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
 }
 @end
