@@ -110,9 +110,9 @@
     NSString *message;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if(whoCalled == LOGOUT_WEIBO)
-        message = [ud stringForKey:@"weibo_Name"];
+        message = self.currentWeiboUser.name;
     else if(whoCalled == LOGOUT_RENREN)
-        message = [ud stringForKey:@"renren_Name"];
+        message = self.currentRenrenUser.name;
     message = [message stringByAppendingString:NSLocalizedString(@"ID_LogOut_All",nil )];
     if(self.hasLoggedInAlertView && self.hasLoggedInAlertView.visible) {
         self.hasLoggedInAlertView.message = message;

@@ -189,7 +189,7 @@ static NSString* AccessURL=@"http://api.t.sina.com.cn/oauth/access_token" ;
     NSString *oauth_verifier = [self getStringFromUrl:q needle:@"oauth_verifier="];
     
     
-    NSString *oauth_token = [self getStringFromUrl:q needle:@"oauth_token="];
+  //  NSString *oauth_token = [self getStringFromUrl:q needle:@"oauth_token="];
     if (oauth_verifier!=nil)
     {
         [self dialogDidSucceed:url];
@@ -197,11 +197,11 @@ static NSString* AccessURL=@"http://api.t.sina.com.cn/oauth/access_token" ;
     }
     
     
-    else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize"]==NO)&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize#"]==NO))
-    {
-        [[UIApplication sharedApplication] openURL:url];
-        return NO;
-    }
+//    else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize"]==NO)&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize#"]==NO))
+ //   {
+  //      [[UIApplication sharedApplication] openURL:url];
+   //     return NO;
+   // }
     
 	//	}
     

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
-
+#import "WeiboClient.h"
 @protocol AppInfoViewControllerDelegate;
 
 @interface AppInfoViewController : UIViewController<MFMailComposeViewControllerDelegate>
@@ -17,7 +17,7 @@
 @property (nonatomic, assign) id<AppInfoViewControllerDelegate> delegate;
 
 - (IBAction)didClickFeedbackButton;
-
+-(IBAction)followUs;
 @end
 
 @protocol AppInfoViewControllerDelegate <NSObject>

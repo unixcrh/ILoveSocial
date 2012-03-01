@@ -13,7 +13,7 @@
 #import "WBRequest.h"
 #import "OADataFetcher.h"
 #import "OAToken.h"
-
+#import "UIApplication+Addition.h"
 #define RequestURL @"http://api.t.sina.com.cn/oauth/request_token" 
 #define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
 
@@ -257,6 +257,15 @@ report_completion:
 {
     NSLog(@"Request Failed");
     NSLog(@"%@", _request.error);
+    
+    if (_request.error.code==3) {
+        [[UIApplication sharedApplication] presentErrorToast:@"请先登录新浪微博" withVerticalPos:370];
+    }
+    
+    if (_request.error.code==1) {
+        [[UIApplication sharedApplication] presentErrorToast:@"网络故障" withVerticalPos:370];
+    }
+    
     
     self.hasError = YES;
     self.errorDesc = @""; //to do

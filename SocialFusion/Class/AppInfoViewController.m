@@ -8,7 +8,8 @@
 
 #import "AppInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "UIApplication+Addition.h"
+#define SINAWEIBOID @"2497693760"
 
 @implementation AppInfoViewController
 @synthesize iconImageView = _iconImageView;
@@ -63,6 +64,24 @@
     
 
 }
+
+
+-(IBAction)followUs
+{
+    WeiboClient *client = [WeiboClient client];
+    [client setCompletionBlock:^(WeiboClient *client) {
+        if (!client.hasError) {
+            [[UIApplication sharedApplication] presentToast:@"关注成功" withVerticalPos:370];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] presentToast:@"该账号已关注" withVerticalPos:370];
+
+        }
+    }];
+    [client follow:SINAWEIBOID];
+}
+
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
