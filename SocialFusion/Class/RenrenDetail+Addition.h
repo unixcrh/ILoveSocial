@@ -2,7 +2,7 @@
 //  RenrenDetail+Addition.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-5.
+//  Created by 王紫川 on 11-10-5.
 //  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 

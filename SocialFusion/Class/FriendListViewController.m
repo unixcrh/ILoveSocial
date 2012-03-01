@@ -2,7 +2,7 @@
 //  FriendListViewController.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-10-4.
+//  Created by 王紫川 on 11-10-4.
 //  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 

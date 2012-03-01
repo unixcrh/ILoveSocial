@@ -2,7 +2,7 @@
 //  LabelConverter.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-1-22.
+//  Created by 王紫川 on 12-1-22.
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
