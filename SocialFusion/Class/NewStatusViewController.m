@@ -16,7 +16,6 @@
 #import "NSString+WeiboSubString.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
-
 #define USER_PHOTO_CENTER CGPointMake(260.0f, 29.0f)
 #define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 150.0f)
 
@@ -107,7 +106,7 @@
             [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
         }
         else {
-            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD]];
+            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] latitude:_location2D.latitude longitude:_location2D.longitude];
         }
     }
     
@@ -259,4 +258,42 @@
     _lastTextViewCount=textCount;
 }
 
+
+
+-(IBAction)getLocation
+{
+    /*
+   CLLocationManager* locationManager = [[CLLocationManager alloc] init];
+    
+
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
+        // 启动GPS信息回调
+        [locationManager startUpdatingLocation];
+     */
+    
+    [[UIApplication sharedApplication] presentToast:@"当前版本尚未支持定位" withVerticalPos:200];
+    
+}
+
+-(IBAction)clickFacialExpression
+{
+    [[UIApplication sharedApplication] presentToast:@"当前版本尚未支持表情" withVerticalPos:200];
+
+}
+/*
+//实现代理方法
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+
+    _location2D=newLocation.coordinate;
+
+ 
+    
+    
+}
+ */
 @end

@@ -11,11 +11,14 @@
 #import "PickAtListViewController.h"
 #import "DetailImageViewController.h"
 #import "User.h"
+#import <CoreLocation/CoreLocation.h>
 
 
-@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, DetailImageViewControllerDelegate> {
+@interface NewStatusViewController : PostViewController <UIImagePickerControllerDelegate, DetailImageViewControllerDelegate,CLLocationManagerDelegate> {
     BOOL _postToRenren;
     BOOL _postToWeibo;
+    
+    CLLocationCoordinate2D _location2D;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *postRenrenButton;
