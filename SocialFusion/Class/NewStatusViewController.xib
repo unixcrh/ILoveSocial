@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2177</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1173</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUITextView</string>
@@ -648,21 +648,21 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFacialExpression</string>
+						<string key="label">didClickFacialExpressionButton</string>
 						<reference key="source" ref="424218084"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">55</int>
+					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">getLocation</string>
+						<string key="label">didClickNavigationButton</string>
 						<reference key="source" ref="528060986"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">54</int>
+					<int key="connectionID">57</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -915,7 +915,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">57</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -931,17 +931,16 @@
 					<string key="className">NewStatusViewController</string>
 					<string key="superclassName">PostViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickFacialExpression">id</string>
+						<string key="didClickNavigationButton">id</string>
 						<string key="didClickPhotoCancelButton:">id</string>
 						<string key="didClickPhotoFrameButton:">id</string>
 						<string key="didClickPickImageButton:">id</string>
 						<string key="didClickPostToRenrenButton:">id</string>
 						<string key="didClickPostToWeiboButton:">id</string>
-						<string key="getLocation">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickFacialExpression">
-							<string key="name">clickFacialExpression</string>
+						<object class="IBActionInfo" key="didClickNavigationButton">
+							<string key="name">didClickNavigationButton</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didClickPhotoCancelButton:">
@@ -962,10 +961,6 @@
 						</object>
 						<object class="IBActionInfo" key="didClickPostToWeiboButton:">
 							<string key="name">didClickPostToWeiboButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="getLocation">
-							<string key="name">getLocation</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -1009,6 +1004,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="didClickAtButton:">id</string>
 						<string key="didClickCancelButton:">id</string>
+						<string key="didClickFacialExpressionButton">id</string>
 						<string key="didClickPostButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -1018,6 +1014,10 @@
 						</object>
 						<object class="IBActionInfo" key="didClickCancelButton:">
 							<string key="name">didClickCancelButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="didClickFacialExpressionButton">
+							<string key="name">didClickFacialExpressionButton</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didClickPostButton:">
@@ -1074,6 +1074,6 @@
 			<string key="new_status_toolbar_btn_photo@2x.png">{44, 44}</string>
 			<string key="new_status_toolbar_btn_smile@2x.png">{44, 44}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1173</string>
 	</data>
 </archive>

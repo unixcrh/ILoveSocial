@@ -201,4 +201,9 @@
     
 }
 
+- (IBAction)didClickFacialExpressionButton
+{
+    [[UIApplication sharedApplication] presentToast:@"当前版本暂不支持表情。" withVerticalPos:TOAST_POS_Y];
+}
+
 @end

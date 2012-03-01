@@ -37,6 +37,7 @@ typedef enum {
 - (IBAction)didClickCancelButton:(id)sender;
 - (IBAction)didClickPostButton:(id)sender;
 - (IBAction)didClickAtButton:(id)sender;
+- (IBAction)didClickFacialExpressionButton;
 
 - (void)postStatusCompletion;
 - (void)dismissView;

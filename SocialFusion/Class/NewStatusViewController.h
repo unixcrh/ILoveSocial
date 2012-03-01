@@ -38,6 +38,6 @@
 
 - (IBAction)didClickPhotoFrameButton:(id)sender;
 
--(IBAction)getLocation;
--(IBAction)clickFacialExpression;
+- (IBAction)didClickNavigationButton;
+
 @end
