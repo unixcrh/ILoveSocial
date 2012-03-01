@@ -12,9 +12,8 @@
 
 static CGFloat kPadding = 10;
 static CGFloat kBorderWidth = 10;
-//static NSString* kWidgetURL=@"http://widget.renren.com/callback.html";
-//static NSString* kWidgetDialogURL=@"//widget.renren.com/dialog";
-static NSString* AccessURL=@"http://api.t.sina.com.cn/oauth/access_token" ;
+
+static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

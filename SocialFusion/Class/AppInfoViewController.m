@@ -54,7 +54,7 @@
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
         [picker setSubject:@"Pocket Social 0.9.0 用户反馈"];
-        [picker.navigationBar setBarStyle:UIBarStyleBlack];
+        [picker.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
         // Set up recipients
         NSArray *toRecipients = [NSArray arrayWithObject:@"PocketSocial@live.com"];
         NSString *emailBody = @"请将需要反馈的信息填入邮件正文，您的宝贵建议会直接送达Pocket Social开发团队。";

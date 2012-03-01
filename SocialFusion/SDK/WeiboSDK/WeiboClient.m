@@ -235,9 +235,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
             self.hasError = YES;
             self.responseStatusCode = [errorCodeString intValue];
             self.errorDesc = [dic objectForKey:@"error"];
-            NSLog(@"Server responsed error code: %d\n\
-                  desc: %@\n\
-                  url: %@\n", self.responseStatusCode, self.errorDesc, request.url);
+            NSLog(@"Server responsed error code: %d\n desc: %@\n url: %@\n", self.responseStatusCode, self.errorDesc, request.url);
         }
     }
     
@@ -392,9 +390,16 @@ report_completion:
 - (void)authorizeWithRRAppAuth:(BOOL)tryRRAppAuth
                     safariAuth:(BOOL)trySafariAuth {
     
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray* graphCookies = [cookies cookiesForURL:
+                             [NSURL URLWithString:@"http://api.t.sina.com.cn/oauth/access_token"]];
+    
+    for (NSHTTPCookie* cookie in graphCookies) {
+        [cookies deleteCookie:cookie];
+    }
+    
     NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
     NSString *strAccess = [info valueForKey:@"WBShareKit_sinaToken"];
-    
     
     if (strAccess==nil)
     {

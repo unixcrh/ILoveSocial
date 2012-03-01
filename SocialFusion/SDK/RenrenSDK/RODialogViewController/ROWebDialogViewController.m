@@ -106,7 +106,7 @@
         BOOL userDidCancel = ((errorReason && [errorReason isEqualToString:@"login_denied"])||[errorReason isEqualToString:@"access_denied"]);
         if(userDidCancel){
             [self dialogDidCancel:url];
-        }else {
+        } else {
             
             [[UIApplication sharedApplication] openURL:request.URL];
             
