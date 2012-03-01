@@ -108,7 +108,6 @@
 - (void)showHasLoggedInAlert:(BOOL)whoCalled {
     self.logoutClient = whoCalled;
     NSString *message;
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if(whoCalled == LOGOUT_WEIBO)
         message = self.currentWeiboUser.name;
     else if(whoCalled == LOGOUT_RENREN)

@@ -17,7 +17,7 @@
 @property (nonatomic, assign) id<AppInfoViewControllerDelegate> delegate;
 
 - (IBAction)didClickFeedbackButton;
--(IBAction)followUs;
+- (IBAction)didClickFollowUsButton;
 @end
 
 @protocol AppInfoViewControllerDelegate <NSObject>

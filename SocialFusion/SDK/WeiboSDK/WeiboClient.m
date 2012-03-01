@@ -13,7 +13,6 @@
 #import "WBRequest.h"
 #import "OADataFetcher.h"
 #import "OAToken.h"
-#import "UIApplication+Addition.h"
 #define RequestURL @"http://api.t.sina.com.cn/oauth/request_token" 
 #define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
 
@@ -210,12 +209,10 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
             self.hasError = YES;
             self.errorDesc = NSLocalizedString(@"ERROR_NO_NEW_DATA", nil);
             goto report_completion;
-            
         case 400: // Bad Request: your request is invalid, and we'll return an error message that tells you why. This is the status code returned if you've exceeded the rate limit
         case 200: // OK: everything went awesome.
         case 403: // Forbidden: we understand your request, but are refusing to fulfill it.  An accompanying error message should explain why
             break;
-            
         case 404: // Not Found: either you're requesting an invalid URI or the resource in question doesn't exist (ex: no such user). 
         case 500: // Internal Server Error: we did something wrong.  Please post to the group about it and the Weibo team will investigate.
         case 502: // Bad Gateway: returned if Weibo is down or being upgraded.
@@ -258,17 +255,16 @@ report_completion:
     NSLog(@"Request Failed");
     NSLog(@"%@", _request.error);
     
-    if (_request.error.code==3) {
-        [[UIApplication sharedApplication] presentErrorToast:@"请先登录新浪微博" withVerticalPos:370];
+    if (_request.error.code == 3) {
+        self.errorDesc = @"请先登录新浪微博。";
     }
     
-    if (_request.error.code==1) {
-        [[UIApplication sharedApplication] presentErrorToast:@"网络故障" withVerticalPos:370];
+    if (_request.error.code == 1) {
+        self.errorDesc = @"网络故障。";
     }
     
     
     self.hasError = YES;
-    self.errorDesc = @""; //to do
     
     //same block called when failed
     [self reportCompletion];

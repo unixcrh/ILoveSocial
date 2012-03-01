@@ -9,7 +9,8 @@
 #import "AppInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIApplication+Addition.h"
-#define SINAWEIBOID @"2497693760"
+
+#define POCKET_SOCIAL_SINA_WEIBO_ID @"2497693760"
 
 @implementation AppInfoViewController
 @synthesize iconImageView = _iconImageView;
@@ -52,34 +53,37 @@
  
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        [picker setSubject:@"Pocket Social 0.9.0 feedback"];
+        [picker setSubject:@"Pocket Social 0.9.0 用户反馈"];
         [picker.navigationBar setBarStyle:UIBarStyleBlack];
         // Set up recipients
         NSArray *toRecipients = [NSArray arrayWithObject:@"PocketSocial@live.com"];
-        NSString *emailBody = @"Please leave your message for the Pocket Social Team here.";
+        NSString *emailBody = @"请将需要反馈的信息填入邮件正文，您的宝贵建议会直接送达Pocket Social开发团队。";
         [picker setToRecipients:toRecipients];
         [picker setMessageBody:emailBody isHTML:YES];
         [self presentModalViewController:picker animated:YES];
         [picker release];
-    
-
 }
 
 
--(IBAction)followUs
+- (IBAction)didClickFollowUsButton
 {
     WeiboClient *client = [WeiboClient client];
     [client setCompletionBlock:^(WeiboClient *client) {
         if (!client.hasError) {
-            [[UIApplication sharedApplication] presentToast:@"关注成功" withVerticalPos:370];
+            [[UIApplication sharedApplication] presentToast:@"关注成功。" withVerticalPos:kToastBottomVerticalPosition];
         }
         else
         {
-            [[UIApplication sharedApplication] presentToast:@"该账号已关注" withVerticalPos:370];
+            if(client.responseStatusCode == 403) {
+                [[UIApplication sharedApplication] presentToast:@"已经关注。" withVerticalPos:kToastBottomVerticalPosition];
+            }
+            else {
+                [[UIApplication sharedApplication] presentErrorToast:client.errorDesc withVerticalPos:kToastBottomVerticalPosition];
+            }
 
         }
     }];
-    [client follow:SINAWEIBOID];
+    [client follow:POCKET_SOCIAL_SINA_WEIBO_ID];
 }
 
 
