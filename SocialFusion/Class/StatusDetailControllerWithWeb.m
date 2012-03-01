@@ -16,7 +16,7 @@
 #import "RepostViewController.h"
 #import "UIApplication+Addition.h"
 #import "StatusCommentData+StatusCommentData_Addition.h"
-
+#import "DetailImageViewController.h"
 @implementation StatusDetailControllerWithWeb
 @synthesize delegate=_delegate;
 
@@ -237,6 +237,15 @@ for (UIView *aView in [_webView subviews])
     [vc release];
 }
 
+-(void)showBigImage
+{
+  
+
+    
+    [DetailImageViewController showDetailImageWithURL:((NewFeedData*)self.feedData).pic_big_URL context:self.managedObjectContext];
+    
+    
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -244,11 +253,20 @@ for (UIView *aView in [_webView subviews])
     
     NSString* tempString = [NSString stringWithFormat:@"%@",[request URL]];
     tempString=[tempString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+     NSString* commandString = [tempString substringFromIndex:7];
     NSString* startString = [tempString substringToIndex:5];
     
+    
+    if ([commandString isEqualToString:@"showimage"])
+    {
+        [self showBigImage];
+        return NO;
+    }
+    
+    
+    
 
-     if ([[[tempString stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"renren"])
+    else if ([[[tempString stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"renren"])
     {
         
         
