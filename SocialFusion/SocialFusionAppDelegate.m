@@ -103,7 +103,16 @@
 }  
 
 
-#pragma mark - Core Data stack  
+#pragma mark - Core Data stack 
+
+- (void)clearAllData {
+    NSPersistentStore *store = nil;
+    NSError *error;
+    NSURL *storeURL = store.URL;
+    NSPersistentStoreCoordinator *storeCoordinator = [self persistentStoreCoordinator];
+    [storeCoordinator removePersistentStore:store error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+}
 
 /** 
  Returns the managed object context for the application. 

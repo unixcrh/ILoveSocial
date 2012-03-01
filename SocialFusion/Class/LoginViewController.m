@@ -166,6 +166,7 @@
     [self.weiboPhotoImageView fadeOutWithCompletion:^(BOOL finished) {
         self.weiboPhotoImageView.image = nil;
     }];
+    self.currentWeiboUser = nil;
 }
 
 - (void)rrDidLogout {
@@ -173,6 +174,7 @@
     [self.renrenPhotoImageView fadeOutWithCompletion:^(BOOL finished) {
         self.renrenPhotoImageView.image = nil;
     }];
+    self.currentRenrenUser = nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -234,21 +236,9 @@
 
 - (IBAction)didClickWeiboLoginButton:(id)sender
 {
-	if (![WeiboClient authorized]) {
-        /*  WeiboClient *weibo = [WeiboClient client];
-         [weibo setCompletionBlock:^(WeiboClient *client) {
-         [self wbDidLogin];
-         }];
-         
-         [weibo authWithUsername:@"wzc345@gmail.com" password:@"5656496" autosave:YES];
-         */
-        
+	if (![WeiboClient authorized]) {        
         WeiboClient *weibo = [WeiboClient client];
-        // [weibo setDelegate:self];
-        //[weibo oAuth:@selector(wbDidLogin) withFailedSelector:@selector(wbDidLogin)];
         [weibo authorize:nil delegate:self];
-        
-        
     }
     else {
         [self showHasLoggedInAlert:LOGOUT_WEIBO];
