@@ -16,6 +16,7 @@
 #import "NSString+WeiboSubString.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
+
 #define USER_PHOTO_CENTER CGPointMake(260.0f, 29.0f)
 #define USER_PHOTO_HIDDEN_CENTER CGPointMake(260.0f, 150.0f)
 
@@ -260,7 +261,7 @@
 
 
 
--(IBAction)getLocation
+- (IBAction)getLocation
 {
     /*
    CLLocationManager* locationManager = [[CLLocationManager alloc] init];
@@ -273,27 +274,22 @@
         [locationManager startUpdatingLocation];
      */
     
-    [[UIApplication sharedApplication] presentToast:@"当前版本尚未支持定位" withVerticalPos:200];
+    [[UIApplication sharedApplication] presentToast:@"当前版本暂不支持定位。" withVerticalPos:TOAST_POS_Y];
     
 }
 
--(IBAction)clickFacialExpression
+- (IBAction)clickFacialExpression
 {
-    [[UIApplication sharedApplication] presentToast:@"当前版本尚未支持表情" withVerticalPos:200];
-
+    [[UIApplication sharedApplication] presentToast:@"当前版本暂不支持表情。" withVerticalPos:TOAST_POS_Y];
 }
+
 /*
 //实现代理方法
 - (void)locationManager:(CLLocationManager *)manager
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-
-    _location2D=newLocation.coordinate;
-
- 
-    
-    
+    _location2D=newLocation.coordinate;    
 }
  */
 @end
