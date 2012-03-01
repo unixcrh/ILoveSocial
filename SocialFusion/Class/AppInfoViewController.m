@@ -28,8 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.iconImageView.layer.masksToBounds = YES;
-    self.iconImageView.layer.cornerRadius = 7.0f;
- 
+    self.iconImageView.layer.cornerRadius = 7.0f;    
 }  
 
 
@@ -44,16 +43,19 @@
 {
     [self dismissView];
 }
--(IBAction)mail
-{
+
+#pragma mark - 
+#pragma mark IBActions
+
+- (IBAction)didClickFeedbackButton {
  
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        [picker setSubject:@"PocketSocial1.0.0 Feedback"];
+        [picker setSubject:@"Pocket Social 0.9.0 feedback"];
         [picker.navigationBar setBarStyle:UIBarStyleBlack];
         // Set up recipients
         NSArray *toRecipients = [NSArray arrayWithObject:@"PocketSocial@live.com"];
-        NSString *emailBody = @"Leave your note to the PocketSocial here.";
+        NSString *emailBody = @"Please leave your message for the Pocket Social Team here.";
         [picker setToRecipients:toRecipients];
         [picker setMessageBody:emailBody isHTML:YES];
         [self presentModalViewController:picker animated:YES];

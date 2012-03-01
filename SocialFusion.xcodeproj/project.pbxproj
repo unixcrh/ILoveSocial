@@ -311,6 +311,7 @@
 		E1C0D71F14F5DDA300F380C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C0D71D14F5DDA300F380C6 /* LoginViewController.m */; };
 		E1C0D72014F5DDA300F380C6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D71E14F5DDA300F380C6 /* LoginViewController.xib */; };
 		E1C0D72214F5E75A00F380C6 /* login_user_name_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D72114F5E75A00F380C6 /* login_user_name_frame@2x.png */; };
+		E1C1F88114FF5615008A29ED /* app_info_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C1F88014FF5615008A29ED /* app_info_btn_bg@2x.png */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
 		E1E257D214ED441A003064CD /* pub_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257D014ED441A003064CD /* pub_bg.png */; };
@@ -800,6 +801,7 @@
 		E1C0D71D14F5DDA300F380C6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E1C0D71E14F5DDA300F380C6 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		E1C0D72114F5E75A00F380C6 /* login_user_name_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_user_name_frame@2x.png"; sourceTree = "<group>"; };
+		E1C1F88014FF5615008A29ED /* app_info_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_info_btn_bg@2x.png"; sourceTree = "<group>"; };
 		E1D3B17E143244C400443B79 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = SocialFusion/Class/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = SocialFusion/Class/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		E1D3B180143244C500443B79 /* EGOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGOTableViewController.h; path = SocialFusion/Class/EGOTableViewController.h; sourceTree = "<group>"; };
@@ -1340,6 +1342,7 @@
 		E1532E7E14FD551E00A7B94E /* image */ = {
 			isa = PBXGroup;
 			children = (
+				E1C1F87E14FF5604008A29ED /* app_info */,
 				73ED631614FF0EAE001A77F3 /* login_btn_info.png */,
 				73232A6714FE7427001514B6 /* btn_repost.png */,
 				7359F95A14B3EFC80032F09A /* back.png */,
@@ -1808,6 +1811,14 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		E1C1F87E14FF5604008A29ED /* app_info */ = {
+			isa = PBXGroup;
+			children = (
+				E1C1F88014FF5615008A29ED /* app_info_btn_bg@2x.png */,
+			);
+			name = app_info;
+			sourceTree = "<group>";
+		};
 		E1E6E8E41451E63600FCB08B /* Friend */ = {
 			isa = PBXGroup;
 			children = (
@@ -2034,6 +2045,7 @@
 				E149D5E214FE55DF0030CC88 /* detail_header_bg@2x.png in Resources */,
 				73232A6814FE7427001514B6 /* btn_repost.png in Resources */,
 				73ED631714FF0EAE001A77F3 /* login_btn_info.png in Resources */,
+				E1C1F88114FF5615008A29ED /* app_info_btn_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

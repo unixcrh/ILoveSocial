@@ -16,7 +16,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *iconImageView;
 @property (nonatomic, assign) id<AppInfoViewControllerDelegate> delegate;
 
--(IBAction)mail;
+- (IBAction)didClickFeedbackButton;
 
 @end
 
