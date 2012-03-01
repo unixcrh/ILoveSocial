@@ -11,6 +11,8 @@
 #import "UIApplication+Addition.h"
 
 #define POCKET_SOCIAL_SINA_WEIBO_ID @"2497693760"
+#define POCKET_SOCIAL_EMAIL @"PocketSocial@live.com"
+#define WZC_EMAIL   @"wzc345@gmail.com"
 
 @implementation AppInfoViewController
 @synthesize iconImageView = _iconImageView;
@@ -50,18 +52,21 @@
 #pragma mark IBActions
 
 - (IBAction)didClickFeedbackButton {
- 
-        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-        picker.mailComposeDelegate = self;
-        [picker setSubject:@"Pocket Social 0.9.0 用户反馈"];
-        [picker.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-        // Set up recipients
-        NSArray *toRecipients = [NSArray arrayWithObject:@"PocketSocial@live.com"];
-        NSString *emailBody = @"请将需要反馈的信息填入邮件正文，您的宝贵建议会直接送达Pocket Social开发团队。";
-        [picker setToRecipients:toRecipients];
-        [picker setMessageBody:emailBody isHTML:YES];
-        [self presentModalViewController:picker animated:YES];
-        [picker release];
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    if (!picker) {
+        [[UIApplication sharedApplication] presentErrorToast:@"您的设备未设置邮件账户。" withVerticalPos:kToastBottomVerticalPosition];
+        return;
+    }
+    picker.mailComposeDelegate = self;
+    [picker setSubject:@"Pocket Social 0.9.0 用户反馈"];
+    [picker.navigationBar setBarStyle:UIBarStyleBlack];
+    // Set up recipients
+    NSArray *toRecipients = [NSArray arrayWithObjects:POCKET_SOCIAL_EMAIL, WZC_EMAIL, nil];
+    NSString *emailBody = @"请将需要反馈的信息填入邮件正文，您的宝贵建议会直接送达Pocket Social开发团队。";
+    [picker setToRecipients:toRecipients];
+    [picker setMessageBody:emailBody isHTML:NO];
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
 }
 
 
