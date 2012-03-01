@@ -80,7 +80,7 @@
             [self didClickPostToWeiboButton];
             if (((NewFeedData*)_feedData).repost_ID!=nil)
             {
-                self.textView.text=[NSString stringWithFormat:@"//%@:%@", ((NewFeedData*)_feedData).author.name  , ((NewFeedData*)_feedData).message];
+                self.textView.text=[NSString stringWithFormat:@"//@%@:%@", ((NewFeedData*)_feedData).author.name  , ((NewFeedData*)_feedData).message];
             }
             self.textView.selectedRange=NSMakeRange(0, 0);
             [self updateTextCount];
