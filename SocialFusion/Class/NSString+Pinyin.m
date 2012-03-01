@@ -2,7 +2,7 @@
 //  NSString+Pinyin.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-9-12.
+//  Created by 王紫川 on 11-9-12.
 //  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 

@@ -310,6 +310,8 @@
 		E1C0D72014F5DDA300F380C6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D71E14F5DDA300F380C6 /* LoginViewController.xib */; };
 		E1C0D72214F5E75A00F380C6 /* login_user_name_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C0D72114F5E75A00F380C6 /* login_user_name_frame@2x.png */; };
 		E1C1F88114FF5615008A29ED /* app_info_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C1F88014FF5615008A29ED /* app_info_btn_bg@2x.png */; };
+		E1C1F88E14FFAFB3008A29ED /* CardBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */; };
+		E1C1F88F14FFAFB3008A29ED /* CardBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
 		E1E257D214ED441A003064CD /* pub_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257D014ED441A003064CD /* pub_bg.png */; };
@@ -798,6 +800,9 @@
 		E1C0D71E14F5DDA300F380C6 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		E1C0D72114F5E75A00F380C6 /* login_user_name_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_user_name_frame@2x.png"; sourceTree = "<group>"; };
 		E1C1F88014FF5615008A29ED /* app_info_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_info_btn_bg@2x.png"; sourceTree = "<group>"; };
+		E1C1F88B14FFAFB2008A29ED /* CardBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBrowserViewController.h; path = SocialFusion/Class/CardBrowserViewController.h; sourceTree = "<group>"; };
+		E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBrowserViewController.m; path = SocialFusion/Class/CardBrowserViewController.m; sourceTree = "<group>"; };
+		E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardBrowserViewController.xib; path = SocialFusion/Class/CardBrowserViewController.xib; sourceTree = "<group>"; };
 		E1D3B17E143244C400443B79 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = SocialFusion/Class/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = SocialFusion/Class/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		E1D3B180143244C500443B79 /* EGOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGOTableViewController.h; path = SocialFusion/Class/EGOTableViewController.h; sourceTree = "<group>"; };
@@ -1561,6 +1566,9 @@
 				E1D3B181143244C800443B79 /* EGOTableViewController.m */,
 				E1ABA425141FA882002CD0A6 /* pinyin.c */,
 				E1ABA426141FA882002CD0A6 /* pinyin.h */,
+				E1C1F88B14FFAFB2008A29ED /* CardBrowserViewController.h */,
+				E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */,
+				E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -2046,6 +2054,7 @@
 				73232A6814FE7427001514B6 /* btn_repost.png in Resources */,
 				73ED631714FF0EAE001A77F3 /* login_btn_info.png in Resources */,
 				E1C1F88114FF5615008A29ED /* app_info_btn_bg@2x.png in Resources */,
+				E1C1F88F14FFAFB3008A29ED /* CardBrowserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2219,6 +2228,7 @@
 				E1532E6114FD49BA00A7B94E /* User.m in Sources */,
 				E1532E6414FD49BC00A7B94E /* WeiboUser.m in Sources */,
 				E1532E6714FD49BE00A7B94E /* NewFeedRootData.m in Sources */,
+				E1C1F88E14FFAFB3008A29ED /* CardBrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

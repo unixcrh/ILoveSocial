@@ -2,7 +2,7 @@
 //  LeaveMessageViewController.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-1-29.
+//  Created by 王紫川 on 12-1-29.
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 

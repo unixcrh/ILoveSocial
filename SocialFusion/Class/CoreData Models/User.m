@@ -2,8 +2,8 @@
 //  User.m
 //  SocialFusion
 //
-//  Created by 紫川 王 on 12-2-29.
-//  Copyright (c) 2012年 TJU. All rights reserved.
+//  Created by 王紫川 on 12-2-29.
+//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
 #import "User.h"

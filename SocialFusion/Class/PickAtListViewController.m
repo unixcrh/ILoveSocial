@@ -2,7 +2,7 @@
 //  PickAtListViewController.m
 //  SocialFusion
 //
-//  Created by Blue Bitch on 12-2-12.
+//  Created by 王紫川 on 12-2-12.
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 

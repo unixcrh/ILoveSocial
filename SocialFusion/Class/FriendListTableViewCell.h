@@ -2,7 +2,7 @@
 //  FreindProfileTabelViewCell.h
 //  SocialFusion
 //
-//  Created by Blue Bitch on 11-8-29.
+//  Created by 王紫川 on 11-8-29.
 //  Copyright 2011年 Tongji Apple Club. All rights reserved.
 //
 
