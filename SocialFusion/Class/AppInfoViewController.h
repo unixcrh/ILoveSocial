@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @protocol AppInfoViewControllerDelegate;
 
-@interface AppInfoViewController : UIViewController
+@interface AppInfoViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIImageView *iconImageView;
 @property (nonatomic, assign) id<AppInfoViewControllerDelegate> delegate;
+
+-(IBAction)mail;
 
 @end
 

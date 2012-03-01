@@ -85,6 +85,7 @@
 		73E4143714E64DC800E47581 /* repostcellwithphotodetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 73E4143614E64DC800E47581 /* repostcellwithphotodetail.html */; };
 		73E4143C14E689E600E47581 /* photo_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 73E4143B14E689E600E47581 /* photo_default.png */; };
 		73E4144714E6BC2400E47581 /* StatusDetailControllerWithWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E4144614E6BC2300E47581 /* StatusDetailControllerWithWeb.m */; };
+		73ED631714FF0EAE001A77F3 /* login_btn_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 73ED631614FF0EAE001A77F3 /* login_btn_info.png */; };
 		73F1F6B214C01A2300C0EAF5 /* head_wb.png in Resources */ = {isa = PBXBuildFile; fileRef = 73F1F6B114C01A2300C0EAF5 /* head_wb.png */; };
 		73F1F6BB14C05AF900C0EAF5 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */; };
 		73F1F6BD14C05D5000C0EAF5 /* photocell.html in Resources */ = {isa = PBXBuildFile; fileRef = 73F1F6BC14C05D5000C0EAF5 /* photocell.html */; };
@@ -451,6 +452,7 @@
 		73E4143B14E689E600E47581 /* photo_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_default.png; sourceTree = "<group>"; };
 		73E4144514E6BC2200E47581 /* StatusDetailControllerWithWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailControllerWithWeb.h; sourceTree = "<group>"; };
 		73E4144614E6BC2300E47581 /* StatusDetailControllerWithWeb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailControllerWithWeb.m; sourceTree = "<group>"; };
+		73ED631614FF0EAE001A77F3 /* login_btn_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn_info.png; sourceTree = "<group>"; };
 		73F1F6B114C01A2300C0EAF5 /* head_wb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_wb.png; sourceTree = "<group>"; };
 		73F1F6B914C05AF700C0EAF5 /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedData.h; path = "SocialFusion/Class/CoreData Models/NewFeedData.h"; sourceTree = "<group>"; };
 		73F1F6BA14C05AF800C0EAF5 /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedData.m; path = "SocialFusion/Class/CoreData Models/NewFeedData.m"; sourceTree = "<group>"; };
@@ -1338,6 +1340,7 @@
 		E1532E7E14FD551E00A7B94E /* image */ = {
 			isa = PBXGroup;
 			children = (
+				73ED631614FF0EAE001A77F3 /* login_btn_info.png */,
 				73232A6714FE7427001514B6 /* btn_repost.png */,
 				7359F95A14B3EFC80032F09A /* back.png */,
 				E149D5DF14FE3EBD0030CC88 /* btn_msg_new.png */,
@@ -2030,6 +2033,7 @@
 				E149D5E014FE3EBD0030CC88 /* btn_msg_new.png in Resources */,
 				E149D5E214FE55DF0030CC88 /* detail_header_bg@2x.png in Resources */,
 				73232A6814FE7427001514B6 /* btn_repost.png in Resources */,
+				73ED631714FF0EAE001A77F3 /* login_btn_info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
