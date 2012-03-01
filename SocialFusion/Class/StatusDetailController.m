@@ -21,7 +21,7 @@
 #import "NSString+HTMLSet.h"
 #import "RenrenUser.h"
 #import "WeiboUser.h"
-
+#import "DetailImageViewController.h"
 @implementation StatusDetailController
 
 @synthesize feedData = _feedData;
@@ -67,20 +67,6 @@
 
 
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSString* tempString = [NSString stringWithFormat:@"%@",[request URL]];
-    //NSLog(@"%@",tempString);
-    
-    NSString* commandString = [tempString substringFromIndex:7];
-    if ([commandString isEqualToString:@"showimage"])
-    {
-        [self showBigImage];
-        return NO;
-    }
-    
-    return YES;
-}
 
 - (void)clearData
 {
