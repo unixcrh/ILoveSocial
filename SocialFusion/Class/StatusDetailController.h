@@ -45,6 +45,7 @@
 
 - (IBAction)repost;
 - (IBAction)comment:(id)sender;
+-(IBAction)selectUser;
 
 
 @end
