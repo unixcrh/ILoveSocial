@@ -106,7 +106,7 @@
             [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
         }
         else {
-            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] latitude:_location2D.latitude longitude:_location2D.longitude];
+            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] ];
         }
     }
     

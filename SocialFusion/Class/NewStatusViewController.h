@@ -2,7 +2,7 @@
 //  NewStatusViewController.h
 //  SocialFusion
 //
-//  Created by 王紫川 on 12-1-29.
+//  Created by Blue Bitch on 12-1-29.
 //  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
 //
 
@@ -18,7 +18,7 @@
     BOOL _postToRenren;
     BOOL _postToWeibo;
     
-    CLLocationCoordinate2D _location2D;
+   // CLLocationCoordinate2D _location2D;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *postRenrenButton;
@@ -38,4 +38,6 @@
 
 - (IBAction)didClickPhotoFrameButton:(id)sender;
 
+-(IBAction)getLocation;
+-(IBAction)clickFacialExpression;
 @end
