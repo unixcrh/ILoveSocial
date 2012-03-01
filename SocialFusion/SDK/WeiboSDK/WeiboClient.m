@@ -756,6 +756,17 @@ report_completion:
     [self sendRequest];
 }
 
+- (void)postStatus:(NSString *)status latitude:(float)lat longitude:(float)lon
+{
+    self.httpMethod = HTTPMethodPost;
+    status=[status renren2weibo];
+    self.path = @"statuses/update.json";
+    [self.params setObject:[status URLEncodedString] forKey:@"status"];
+    [self.params setObject:[NSString stringWithFormat:@"%f",lat] forKey:@"lat"];
+    [self.params setObject:[NSString stringWithFormat:@"%f",lon] forKey:@"long"];
+    [self sendRequest];
+}
+
 - (NSString*)nameValString: (NSDictionary*) dict {
     NSArray* keys = [dict allKeys];
     NSString* result = [NSString string];
@@ -819,6 +830,11 @@ report_completion:
     }
     return fullPath;
 }
+
+
+
+
+
 
 - (void)postStatus:(NSString *)text withImage:(UIImage *)image
 {

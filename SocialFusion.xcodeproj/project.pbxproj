@@ -35,6 +35,7 @@
 		734483C1147A7B780031D33A /* NewFeedDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734483BF147A7B780031D33A /* NewFeedDetailViewCell.xib */; };
 		73467CD414F511C900255F2A /* RepostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73467CD214F511C800255F2A /* RepostViewController.m */; };
 		73467CD514F511C900255F2A /* RepostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73467CD314F511C800255F2A /* RepostViewController.xib */; };
+		7352862214FFBC6000CD5D58 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7352862114FFBC6000CD5D58 /* CoreLocation.framework */; };
 		735323CF14E77B8400B4AB61 /* AlbumDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735323CD14E77B8300B4AB61 /* AlbumDetailController.m */; };
 		735323D314E7E34100B4AB61 /* detail_album.png in Resources */ = {isa = PBXBuildFile; fileRef = 735323D214E7E34000B4AB61 /* detail_album.png */; };
 		735323D614E7E40F00B4AB61 /* NewFeedAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735323D514E7E40E00B4AB61 /* NewFeedAlbumCell.m */; };
@@ -381,6 +382,7 @@
 		73467CD114F511C800255F2A /* RepostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepostViewController.h; sourceTree = "<group>"; };
 		73467CD214F511C800255F2A /* RepostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepostViewController.m; sourceTree = "<group>"; };
 		73467CD314F511C800255F2A /* RepostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepostViewController.xib; sourceTree = "<group>"; };
+		7352862114FFBC6000CD5D58 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		735323CC14E77B8300B4AB61 /* AlbumDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumDetailController.h; sourceTree = "<group>"; };
 		735323CD14E77B8300B4AB61 /* AlbumDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumDetailController.m; sourceTree = "<group>"; };
 		735323CE14E77B8400B4AB61 /* NewFeedAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewFeedAlbumCell.xib; sourceTree = "<group>"; };
@@ -856,6 +858,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C1F89314FFBEFF008A29ED /* MediaPlayer.framework in Frameworks */,
+				7352862214FFBC6000CD5D58 /* CoreLocation.framework in Frameworks */,
 				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E118413914D9B94A000FF01F /* libsqlite3.dylib in Frameworks */,
 				E1ABA4CE141FAB0F002CD0A6 /* QuartzCore.framework in Frameworks */,
@@ -1616,6 +1619,7 @@
 		E1ABA3F1141FA6E1002CD0A6 = {
 			isa = PBXGroup;
 			children = (
+				7352862114FFBC6000CD5D58 /* CoreLocation.framework */,
 				E19A2D0C1420927400BE491A /* Classes */,
 				E1ABA443141FA882002CD0A6 /* SDK */,
 				E1ABA408141FA6E1002CD0A6 /* SocialFusion */,
