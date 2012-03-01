@@ -140,7 +140,7 @@
     UIButton *smallCommentButton = [[UIButton alloc] init];
     [smallCommentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
     smallCommentButton.frame = CGRectMake(306 + 266, 0, 40, 40);
-    [smallCommentButton setImage:[UIImage imageNamed:@"btn_msg.png.png"] forState:UIControlStateNormal];
+    [smallCommentButton setImage:[UIImage imageNamed:@"btn_msg.png"] forState:UIControlStateNormal];
     smallCommentButton.showsTouchWhenHighlighted = YES;
     smallCommentButton.adjustsImageWhenHighlighted = NO;
     [scrollView addSubview:smallCommentButton];
