@@ -9,14 +9,19 @@
 #import "CardBrowserViewController.h"
 #import "UIApplication+Addition.h"
 #import <MediaPlayer/MPMusicPlayerController.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface CardBrowserViewController ()
 
 @end
 
 @implementation CardBrowserViewController
+
 @synthesize webView = _webView;
 @synthesize loadingIndicator = _loadingIndicator;
+@synthesize url = _url;
+@synthesize urlTextField = _urlTextField;
+@synthesize webBackView = _webBackView;
 
 - (void)dealloc
 {
@@ -24,18 +29,22 @@
     _webView.delegate = nil;
     [_webView release];
     [_loadingIndicator release];
+    [_url release];
+    [_urlTextField release];
+    [_webBackView release];
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidUnload
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    self.webView = nil;
+    self.loadingIndicator = nil;
+    self.urlTextField = nil;
+    self.webBackView = nil;
 }
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -48,27 +57,21 @@
     else {
         _isIpodPlaying = NO;
     }
+    
+    self.webBackView.layer.masksToBounds = YES;
+    self.webBackView.layer.cornerRadius = 5.0f;  
+    
+    self.webView.delegate = self;
+    if(self.url) {
+        self.urlTextField.text = [[self.url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self loadLink:self.url];
+    }
 }
 
-- (void)viewDidUnload
+- (void)loadLink:(NSURL*)link
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.webView = nil;
-    self.loadingIndicator = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-	return YES;
-}
-
-- (void)loadLink:(NSString*)link
-{
-    NSURLRequest* request = [[NSURLRequest alloc] initWithURL:[[[NSURL alloc] initWithString:link] autorelease]];
-    [_webView loadRequest:request];
+    NSURLRequest* request = [[NSURLRequest alloc] initWithURL:link];
+    [self.webView loadRequest:request];
 	[request release];
 }
 
@@ -81,7 +84,6 @@
         NSLog(@"%@", [[ipodMusicPlayer nowPlayingItem] description]);
         [ipodMusicPlayer play];
     }
-    [self release];
 }
 
 - (IBAction)didClickSafariButton:(id)sender
@@ -95,11 +97,20 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     [self.loadingIndicator startAnimating];
+    self.loadingIndicator.hidden = NO;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self.loadingIndicator stopAnimating];
+    self.loadingIndicator.hidden = YES;
+}
+
++ (void)showCardBrowserWithLink:(NSURL *)link {
+    CardBrowserViewController *browser = [[CardBrowserViewController alloc] init];
+    browser.url = link;
+    [[UIApplication sharedApplication] presentModalViewController:browser];
+    [browser release];
 }
 
 @end

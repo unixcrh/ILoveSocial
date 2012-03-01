@@ -312,6 +312,7 @@
 		E1C1F88114FF5615008A29ED /* app_info_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C1F88014FF5615008A29ED /* app_info_btn_bg@2x.png */; };
 		E1C1F88E14FFAFB3008A29ED /* CardBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */; };
 		E1C1F88F14FFAFB3008A29ED /* CardBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */; };
+		E1C1F89314FFBEFF008A29ED /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C1F89214FFBEFE008A29ED /* MediaPlayer.framework */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
 		E1E257D214ED441A003064CD /* pub_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257D014ED441A003064CD /* pub_bg.png */; };
@@ -803,6 +804,7 @@
 		E1C1F88B14FFAFB2008A29ED /* CardBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBrowserViewController.h; path = SocialFusion/Class/CardBrowserViewController.h; sourceTree = "<group>"; };
 		E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBrowserViewController.m; path = SocialFusion/Class/CardBrowserViewController.m; sourceTree = "<group>"; };
 		E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardBrowserViewController.xib; path = SocialFusion/Class/CardBrowserViewController.xib; sourceTree = "<group>"; };
+		E1C1F89214FFBEFE008A29ED /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		E1D3B17E143244C400443B79 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = SocialFusion/Class/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = SocialFusion/Class/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		E1D3B180143244C500443B79 /* EGOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGOTableViewController.h; path = SocialFusion/Class/EGOTableViewController.h; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C1F89314FFBEFF008A29ED /* MediaPlayer.framework in Frameworks */,
 				E1ABA4D4141FAB2F002CD0A6 /* MobileCoreServices.framework in Frameworks */,
 				E118413914D9B94A000FF01F /* libsqlite3.dylib in Frameworks */,
 				E1ABA4CE141FAB0F002CD0A6 /* QuartzCore.framework in Frameworks */,
@@ -1635,6 +1638,7 @@
 			children = (
 				E118413814D9B949000FF01F /* libsqlite3.dylib */,
 				73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */,
+				E1C1F89214FFBEFE008A29ED /* MediaPlayer.framework */,
 				E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */,
 				E1ABA4D1141FAB23002CD0A6 /* SystemConfiguration.framework */,
 				E1ABA4CF141FAB16002CD0A6 /* CFNetwork.framework */,

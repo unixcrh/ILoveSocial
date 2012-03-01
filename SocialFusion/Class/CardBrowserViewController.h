@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CardBrowserViewController : UIViewController {
+@interface CardBrowserViewController : UIViewController<UIWebViewDelegate> {
     BOOL _isIpodPlaying;
 }
 
-- (void)loadLink:(NSString*)link;
+@property (nonatomic, retain) IBOutlet UIWebView* webView;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) IBOutlet UITextField *urlTextField;
+@property (nonatomic, retain) IBOutlet UIView *webBackView;
+
++ (void)showCardBrowserWithLink:(NSURL *)link;
+- (void)loadLink:(NSURL*)link;
 
 - (IBAction)didClickCloseButton:(id)sender;
 - (IBAction)didClickSafariButton:(id)sender;
-
-@property (nonatomic, retain) IBOutlet UIWebView* webView;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end

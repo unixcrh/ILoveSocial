@@ -17,6 +17,8 @@
 #import "UIApplication+Addition.h"
 #import "StatusCommentData+StatusCommentData_Addition.h"
 #import "DetailImageViewController.h"
+#import "CardBrowserViewController.h"
+
 @implementation StatusDetailControllerWithWeb
 @synthesize delegate=_delegate;
 
@@ -291,8 +293,7 @@ for (UIView *aView in [_webView subviews])
     else//其他url，调用safari
     {
         
-        
-        [[UIApplication sharedApplication] openURL:[request URL]];
+        [CardBrowserViewController showCardBrowserWithLink:request.URL];
         return NO;
     }
 }
