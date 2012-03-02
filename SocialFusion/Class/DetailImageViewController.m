@@ -34,7 +34,7 @@
 @synthesize webView = _webView;
 
 - (void)dealloc {
-    NSLog(@"DetailImageViewController dealloc");
+  //  NSLog(@"DetailImageViewController dealloc");
     [self.imageView release];
     [_scrollView release];
     [_saveButton release];

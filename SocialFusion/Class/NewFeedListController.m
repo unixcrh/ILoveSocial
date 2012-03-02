@@ -116,7 +116,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"clear all cache");
+   // NSLog(@"clear all cache");
     [Image clearAllCacheInContext:self.managedObjectContext];
 }
 
@@ -223,7 +223,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     else
         _loadingFlag = YES;
     if(_loadingCount < 0) {
-        NSLog(@"shit");
+       // NSLog(@"shit");
     }
         
 }

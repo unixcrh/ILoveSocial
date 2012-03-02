@@ -155,7 +155,7 @@
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index {
     [self.contentViewController removeContentViewAtIndex:index];
-    NSLog(@"open user heap count:%d", _openedUserHeap.count);
+  //  NSLog(@"open user heap count:%d", _openedUserHeap.count);
     [_openedUserHeap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSNumber *openedUserIndex = obj;
         if(openedUserIndex.unsignedIntValue == index) {
@@ -230,7 +230,7 @@
     }
     
     if(!self.labelBarViewController.isSelectUserLock) {
-        NSLog(@"selected user:%@, user id:%@", selectedUser.name, selectedUser.userID);
+       // NSLog(@"selected user:%@, user id:%@", selectedUser.name, selectedUser.userID);
         [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
         LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
         labelInfo.isRemovable = YES;

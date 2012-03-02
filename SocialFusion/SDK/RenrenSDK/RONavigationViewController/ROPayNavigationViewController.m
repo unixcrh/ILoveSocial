@@ -179,7 +179,7 @@
     [super show];
     
     NSURL *url = [ROUtility generateURL:self.url params:self.params];
-	NSLog(@"start load URL: %@", url);
+//	NSLog(@"start load URL: %@", url);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     
@@ -192,7 +192,7 @@
 - (void)otherChangeOption:(ROBaseNavigationViewController *)newController
 {
     NSURL *url = [ROUtility generateURL:self.url params:self.params];
-	NSLog(@"start load URL: %@", url);
+	//NSLog(@"start load URL: %@", url);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     [self.webView loadRequest:request];

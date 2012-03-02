@@ -56,11 +56,7 @@
 
 - (void)showBigImage
 {
-    
-    //Image* imageData = [Image imageWithURL:smallURL inManagedObjectContext:self.managedObjectContext];
-    //UIImage *image = [UIImage imageWithData:imageData.imageData.data];
-    //DetailImageViewController* tempImage = [DetailImageViewController detailImageViewWithImage:image BigURL:stringURL context:self.managedObjectContext];
-    //[tempImage show];
+
     
 }
 
@@ -188,7 +184,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"clear all cache");
+   // NSLog(@"clear all cache");
     [Image clearAllCacheInContext:self.managedObjectContext];
 }
 

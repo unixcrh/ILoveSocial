@@ -189,8 +189,8 @@
         [self setInteralUserInfo];
     }
     if ([response.rootObject isKindOfClass:[ROPublishPhotoResponseItem class]]) {
-        ROPublishPhotoResponseItem *item = (ROPublishPhotoResponseItem *)response.rootObject;
-        NSLog(@"%@",item.responseDictionary);
+     //   ROPublishPhotoResponseItem *item = (ROPublishPhotoResponseItem *)response.rootObject;
+      //  NSLog(@"%@",item.responseDictionary);
         [self uploadSuccess];
     }
     
@@ -219,7 +219,7 @@
             [self dealWithError:error];  
         }
     }
-    NSLog(@"Upload Photo Dialog View Error:%@",[error localizedDescription]);
+  //  NSLog(@"Upload Photo Dialog View Error:%@",[error localizedDescription]);
     
  
     
@@ -259,7 +259,7 @@
     if (renren == self.renren) {
         //登陆失败
         [self.dialogView didRenrenAuthorizeSuccess:NO];
-        NSLog(@"%@",error.localizedDescription);
+        //NSLog(@"%@",error.localizedDescription);
     }
    
 }

@@ -148,7 +148,7 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
 	
     NSURL* url = request.URL;
     
-    NSLog(@"%@",url);
+   // NSLog(@"%@",url);
     
     
     
@@ -264,7 +264,7 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
 
 - (void) errormsg:(NSString*) errorReason{
 	if (errorReason) {
-		NSLog(@"%@",errorReason);
+		//NSLog(@"%@",errorReason);
 	}
 }
 
@@ -415,7 +415,7 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
 - (void)dialogDidSucceed:(NSURL *)url {
 	NSString *q = [url absoluteString];
     
-    NSLog(@"q=%@",q);
+    //NSLog(@"q=%@",q);
 	//NSString* isOk=[url.resourceSpecifier hasPrefix:kWidgetDialogURL]?@"yes":@"no";
 	//if([isOk isEqualToString:@"no"]) {
     // NSString *tokenString = [self getStringFromUrl:q needle:@"oauth_token="];
@@ -453,7 +453,7 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
 
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket failedWithError:(NSError *)error {
-	NSLog(@"%@",error);
+	//NSLog(@"%@",error);
 }
 
 

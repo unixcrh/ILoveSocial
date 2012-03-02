@@ -182,12 +182,12 @@ static Renren *sharedRenren = nil;
 
 - (void)requestWithParam:(RORequestParam *)param andDelegate:(id <RORequestDelegate>)delegate {
     if (nil == param.method || [param.method length] <= 0) {
-        NSLog(@"API Method must be specified");
+        //NSLog(@"API Method must be specified");
         return;
     }
     
     if (![self isSessionValid]) {
-        NSLog(@"Session is not valid! Request abort!!");
+      //  NSLog(@"Session is not valid! Request abort!!");
         return;
     }
     
@@ -451,13 +451,13 @@ static Renren *sharedRenren = nil;
 
 - (RORequest *)requestWithParams:(NSMutableDictionary *)params andDelegate:(id <RenrenDelegate>)delegate{
     if (nil == [params objectForKey:@"method"]) {
-        NSLog(@"API Method must be specified");
+      //  NSLog(@"API Method must be specified");
         return nil;
     }
 	if ([self isSessionValid]) {
 		[params setObject:self.sessionKey forKey:@"session_key"];
     }else {
-		NSLog(@"Session is not valid! Request abort!!");
+		//NSLog(@"Session is not valid! Request abort!!");
 		return nil;
 	}
 	
@@ -528,7 +528,7 @@ static Renren *sharedRenren = nil;
  * Handle the auth.ExpireSession api call failure
  */
 - (void)request:(RORequest *)request didFailWithError:(NSError*)error{
-    NSLog(@"Failed to expire the session");
+   // NSLog(@"Failed to expire the session");
 }
 
 - (void)request:(RORequest *)request didFailWithROError:(ROError *)error{
@@ -606,7 +606,7 @@ static Renren *sharedRenren = nil;
 
 - (void)createAlbum:(ROCreateAlbumRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
 	if (![param.method isEqualToString:@"photos.createAlbum"]) {
-		NSLog(@"API Method Error!");
+	//	NSLog(@"API Method Error!");
 		return;
     }
 	
@@ -619,7 +619,7 @@ static Renren *sharedRenren = nil;
 
 - (void)getAlbums:(ROAlbumsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
 	if (![param.method isEqualToString:@"photos.getAlbums"]) {
-		NSLog(@"API Method Error!");
+	//	NSLog(@"API Method Error!");
 		return;
     }
 	
@@ -632,7 +632,7 @@ static Renren *sharedRenren = nil;
 
 - (void)getUsersInfo:(ROUserInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
 	if (![param.method isEqualToString:@"users.getInfo"]) {
-		NSLog(@"API Method Error!");
+		//NSLog(@"API Method Error!");
 		return;
     }
 	
@@ -645,7 +645,7 @@ static Renren *sharedRenren = nil;
 
 - (void)publishPhoto:(ROPublishPhotoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate{
     if (![param.method isEqualToString:@"photos.upload"]) {
-		NSLog(@"API Method Error!");
+	//	NSLog(@"API Method Error!");
 		return;
     }
 	
@@ -659,7 +659,7 @@ static Renren *sharedRenren = nil;
 - (void)getFriends:(ROGetFriendsRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate
 {
 	if (![param.method isEqualToString:@"friends.get"]) {
-		NSLog(@"API Method Error!");
+		//NSLog(@"API Method Error!");
 		return;
     }
 	
@@ -671,13 +671,13 @@ static Renren *sharedRenren = nil;
 - (void)getFriendsInfo:(ROGetFriendsInfoRequestParam *)param andDelegate:(id<RenrenDelegate>)delegate
 {
 	if (![param.method isEqualToString:@"friends.getFriends"]) {
-		NSLog(@"API Method Error!");
+	//	NSLog(@"API Method Error!");
 		return;
     }
 	
 	if (![self isSessionValid]) {
 		//[self delUserSessionInfo];
-		NSLog(@"Session not valid!! Request abort!");
+		//NSLog(@"Session not valid!! Request abort!");
 		return;
 	}
 	

@@ -127,7 +127,7 @@
         }
         if(completion == nil) {
             _popPageManuallyCompletion = [^{
-                NSLog(@"empty pop page manually completion");
+              //  NSLog(@"empty pop page manually completion");
             } copy];
         }
         else {
@@ -330,7 +330,7 @@
 - (void)popLabelPages {
     [self pushLabelPages:nil];
     [_labelPagesStack removeLastObject];
-    NSLog(@"pop label info array. array count:%d", _labelPagesStack.count);
+   //NSLog(@"pop label info array. array count:%d", _labelPagesStack.count);
     self.pageCount = self.labelPages.count;
     [self refreshLabelBarContentSize];
     for(int i = 0; i < self.pageCount; i++) {
@@ -340,7 +340,7 @@
 }
 
 - (void)pushLabelInfoArray:(NSMutableArray *)infoArray {
-    NSLog(@"push label info array. array count:%d", _labelPagesStack.count);
+   // NSLog(@"push label info array. array count:%d", _labelPagesStack.count);
     [_labelInfoArrayStack addObject:infoArray];
 }
 

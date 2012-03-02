@@ -65,7 +65,7 @@
             });
         }
         else {
-            NSLog(@"download failed: %@", urlString);
+            //NSLog(@"download failed: %@", urlString);
         }
     });   
     dispatch_release(downloadQueue);
@@ -93,7 +93,7 @@
         //NSLog(@"download image:%@", urlString);
         NSData *imageData = [NSData dataWithContentsOfURL:url];
         if(!imageData) {
-            NSLog(@"download image failed:%@", urlString);
+           // NSLog(@"download image failed:%@", urlString);
             return;
         }
         UIImage *img = [UIImage imageWithData:imageData];

@@ -143,7 +143,7 @@
     [self.params setObject:kWidgetDialogUA forKey:@"ua"];
     
     NSURL *url = [ROUtility generateURL:self.serverURL params:self.params];
-	NSLog(@"start load URL: %@", url);
+	//NSLog(@"start load URL: %@", url);
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     [self.webView loadRequest:request];

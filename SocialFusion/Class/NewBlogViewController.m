@@ -30,7 +30,7 @@
 @synthesize scrollView = _scrollView;
 
 - (void)dealloc {
-    NSLog(@"NewBlogViewController dealloc");
+    //NSLog(@"NewBlogViewController dealloc");
     [_blogTextView release];
     [_postRenrenButton release];
     [_postWeiboButton release];

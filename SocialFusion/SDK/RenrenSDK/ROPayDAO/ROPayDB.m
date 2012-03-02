@@ -26,7 +26,7 @@
         [db setShouldCacheStatements:YES];
         success = YES;
     }else{
-        NSLog(@"Failed to open database.");
+        //NSLog(@"Failed to open database.");
         success = NO;
     }
     
@@ -35,7 +35,7 @@
         NSString *createSQL = @"CREATE TABLE IF NOT EXISTS ORDERS (ORDERNUM TEXT PRIMARY KEY,APPID TEXT,TRADINGVOLUME TEXT,ORDERTIME TEXT,SERIALNUM TEXT,USERID TEXT,LOCALORDERSTATUS TEXT,SERVERORDERSTATUS TEXT,PAYENCODE TEXT,DESCRIPTION TEXT,CHECKCODE TEXT,ISTESTORDER TEXT,PAYSTATUSCODE TEXT,PAYMENT TEXT);";
         if (sqlite3_exec([db sqliteHandle], [createSQL UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
             [db close];
-            NSLog(@"Failed to Create table.");
+           // NSLog(@"Failed to Create table.");
             success = NO;
         }
     }

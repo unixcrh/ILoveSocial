@@ -95,7 +95,7 @@
     NSString *insertSQL = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (APPID, TRADINGVOLUME, ORDERNUM, ORDERTIME, SERIALNUM, USERID, LOCALORDERSTATUS, SERVERORDERSTATUS,PAYENCODE,DESCRIPTION,ISTESTORDER,CHECKCODE,PAYMENT) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",TABLE_NAME];
 	[[dbManager getDatabase] executeUpdate:insertSQL, order.appID, order.tradingVolume, order.orderNum, order.orderTime, order.serialNum, order.userID, order.localOrderStatus, order.serverOrderStatus, order.payEncode,order.description,order.isTestOrder,order.orderCheckCode,order.payment];
 	if ([[dbManager getDatabase] hadError]) {
-		NSLog(@"Err %d: %@", [[dbManager getDatabase] lastErrorCode], [[dbManager getDatabase] lastErrorMessage]);
+		//NSLog(@"Err %d: %@", [[dbManager getDatabase] lastErrorCode], [[dbManager getDatabase] lastErrorMessage]);
 	}
 }
 
@@ -107,7 +107,7 @@
 	[[dbManager getDatabase] executeUpdate:[self SQL:@"UPDATE %@ SET TRADINGVOLUME=?, SERIALNUM=?,SERVERORDERSTATUS=?, ORDERTIME=?, PAYENCODE=?, PAYMENT=?, PAYSTATUSCODE=? WHERE ORDERNUM=?" inTable:TABLE_NAME],
 	                                    order.tradingVolume, order.serialNum, order.serverOrderStatus,order.orderTime, order.payEncode,order.payment,order.payStatusCode,order.orderNum];
 	if ([[dbManager getDatabase] hadError]) {
-		NSLog(@"Err %d: %@", [[dbManager getDatabase] lastErrorCode], [[dbManager getDatabase] lastErrorMessage]);
+		//NSLog(@"Err %d: %@", [[dbManager getDatabase] lastErrorCode], [[dbManager getDatabase] lastErrorMessage]);
 		success = NO;
 	}
 	
@@ -121,7 +121,7 @@
 	BOOL success = YES;
 	[[dbManager getDatabase] executeUpdate:[self SQL:@"DELETE FROM %@ WHERE USERID = ?" inTable:TABLE_NAME], UserID];
 	if ([[dbManager getDatabase] hadError]) {
-		NSLog(@"Err %d: %@", [[dbManager getDatabase] lastErrorCode], [[dbManager getDatabase] lastErrorMessage]);
+		//NSLog(@"Err %d: %@", [[dbManager getDatabase] lastErrorCode], [[dbManager getDatabase] lastErrorMessage]);
 		success = NO;
 	}
 	return success;

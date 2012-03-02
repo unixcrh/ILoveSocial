@@ -331,14 +331,14 @@ hasError = _hasError;
                      andDelegate:(id <RORequestDelegate>)delegate {
     
     if ([params objectForKey:@"method"] == nil) {
-        NSLog(@"API Method must be specified");
+       // NSLog(@"API Method must be specified");
         return nil;
     }
 	if ([RenrenClient authorized]) {
 		[params setObject:self.sessionKey forKey:@"session_key"];
     } else {
 		[RenrenClient delUserSessionInfo];
-		NSLog(@"session not valid");
+	//	NSLog(@"session not valid");
 		return nil;
 	}
 	
@@ -359,12 +359,12 @@ hasError = _hasError;
 
 - (void)requestWithParam:(RORequestParam *)param andDelegate:(id <RORequestDelegate>)delegate {
     if (nil == param.method || [param.method length] <= 0) {
-        NSLog(@"API Method must be specified");
+    //    NSLog(@"API Method must be specified");
         return;
     }
     
     if (![RenrenClient authorized]) {
-        NSLog(@"Session is not valid! Request abort!!");
+     //   NSLog(@"Session is not valid! Request abort!!");
         return;
     }
     
@@ -398,7 +398,7 @@ hasError = _hasError;
 }
 
 - (void)request:(RORequest *)request didFailWithError:(NSError *)error {
-	NSLog(@"renren request fail with error:%@",[error localizedDescription]);
+//	NSLog(@"renren request fail with error:%@",[error localizedDescription]);
     _hasError = YES;
     [self reportCompletion];
     [self autorelease];
@@ -408,16 +408,16 @@ hasError = _hasError;
 	//password flow授权错误的处理
 	if([request.requestParamObject isKindOfClass:[ROPasswordFlowRequestParam class]]) {
         // 默认错误处理。
-        NSString *title = [NSString stringWithFormat:@"Error code:%d", [error code]];
-        NSString *description = [NSString stringWithFormat:@"%@", [error localizedDescription]];
-        NSLog(@"renren request error:%@, %@", title, description);
+      //  NSString *title = [NSString stringWithFormat:@"Error code:%d", [error code]];
+       // NSString *description = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+       // NSLog(@"renren request error:%@, %@", title, description);
 	}
     
     else {
         // 默认错误处理。
-        NSString *title = [NSString stringWithFormat:@"Error code:%d", [error code]];
-        NSString *description = [NSString stringWithFormat:@"%@", [error localizedDescription]];
-        NSLog(@"renren request error:%@, %@", title, description);
+    //    NSString *title = [NSString stringWithFormat:@"Error code:%d", [error code]];
+     //   NSString *description = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+      //  NSLog(@"renren request error:%@, %@", title, description);
     }
     _hasError = YES;
     [self reportCompletion];

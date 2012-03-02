@@ -158,7 +158,7 @@
         result = [UserInfoViewController getUserInfoViewControllerWithType:kRenrenUserInfo];
     }
     else {
-        NSLog(@"nil identifier:%@", identifier);
+      //  NSLog(@"nil identifier:%@", identifier);
         abort();
     }
     if([result isKindOfClass:[CoreDataViewController class]]) {
@@ -209,7 +209,7 @@
     if(vc2 == nil)
         return;
     if(identifier == nil) {
-        NSLog(@"replaceObjectAtIndex! identifier nil!");
+     //   NSLog(@"replaceObjectAtIndex! identifier nil!");
         abort();
     }
     vc2.view.frame = vc.view.frame;

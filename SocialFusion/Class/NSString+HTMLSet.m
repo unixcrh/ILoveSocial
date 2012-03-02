@@ -33,7 +33,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
     BOOL isReplacingRenrenAtRegEx = [regEx isEqualToString:renrenAtRegEx];
     while(range.location != NSNotFound) {
         NSString* subStr = [returnString substringWithRange:range];
-        NSLog(@"substr:%@", subStr);
+       // NSLog(@"substr:%@", subStr);
         NSString *substituteStr = nil;
         if(isReplacingRenrenAtRegEx) {
             substituteStr = [NSString stringWithFormat:substitute, [subStr substringWithRange:NSMakeRange(subStr.length - 10, 9)], [subStr substringToIndex:subStr.length - 11]];
@@ -44,7 +44,7 @@ static NSString *linkRegEx = @"https?://[[a-z][A-Z][0-9]\?/%&=.]+";
         else {
             substituteStr = [NSString stringWithFormat:substitute, subStr, subStr];
         }
-        NSLog(@"substituteStr:%@", substituteStr);
+      //  NSLog(@"substituteStr:%@", substituteStr);
         //NSLog(@"substitute str:%@", substituteStr);
         returnString = [returnString stringByReplacingCharactersInRange:range withString:substituteStr];
         NSUInteger newRangeLoc = range.location + substituteStr.length;

@@ -170,7 +170,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 
 - (void)dealloc
 {
-    NSLog(@"WeiboClient dealloc");
+   // NSLog(@"WeiboClient dealloc");
     [_responseJSONObject release];
     [_params release];
     [_request release];
@@ -196,7 +196,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"Request Finished");
+   // NSLog(@"Request Finished");
     //NSLog(@"Response raw string:\n%@", [request responseString]);
     
     switch (request.responseStatusCode) {
@@ -235,7 +235,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
             self.hasError = YES;
             self.responseStatusCode = [errorCodeString intValue];
             self.errorDesc = [dic objectForKey:@"error"];
-            NSLog(@"Server responsed error code: %d\n desc: %@\n url: %@\n", self.responseStatusCode, self.errorDesc, request.url);
+         //   NSLog(@"Server responsed error code: %d\n desc: %@\n url: %@\n", self.responseStatusCode, self.errorDesc, request.url);
         }
     }
     
@@ -250,8 +250,8 @@ report_completion:
 //failed due to network connection or other issues
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    NSLog(@"Request Failed");
-    NSLog(@"%@", _request.error);
+   // NSLog(@"Request Failed");
+  //  NSLog(@"%@", _request.error);
     
     if (_request.error.code == 3) {
         self.errorDesc = @"请先登录新浪微博。";
@@ -867,7 +867,7 @@ report_completion:
     
     //REMAIN_TO_BE_CHECKED
     NSURL* url = [[[NSURL alloc] initWithString:[self getURL:self.path queryParameters:params]] autorelease];
-    NSLog(@"%@", [url description]);
+    //NSLog(@"%@", [url description]);
     [self.request setURL:url];
     [self.request setPostBody:data];
     

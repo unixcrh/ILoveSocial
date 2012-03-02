@@ -83,7 +83,7 @@
     [self.webView loadRequest:[[[NSURLRequest alloc] initWithURL:[[[NSURL alloc] initWithString:@"about:blank"] autorelease]] autorelease]];
     if (_isIpodPlaying) {
         MPMusicPlayerController* ipodMusicPlayer = [MPMusicPlayerController iPodMusicPlayer];
-        NSLog(@"%@", [[ipodMusicPlayer nowPlayingItem] description]);
+     //   NSLog(@"%@", [[ipodMusicPlayer nowPlayingItem] description]);
         [ipodMusicPlayer play];
     }
 }

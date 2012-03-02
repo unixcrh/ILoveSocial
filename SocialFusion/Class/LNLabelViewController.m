@@ -67,7 +67,7 @@
 @synthesize reservedFrame = _reservedFrame;
 
 - (void)dealloc {
-    NSLog(@"LNLabelViewController dealloc");
+   // NSLog(@"LNLabelViewController dealloc");
     [_titleButton release];
     [_titleLabel release];
     [_photoImageView release];
@@ -83,7 +83,7 @@
     self.titleLabel = nil;
     self.photoImageView = nil;
     self.bgImageView = nil;
-    NSLog(@"LNLabelViewController viewDidUnload");
+  //  NSLog(@"LNLabelViewController viewDidUnload");
 }
 
 - (void)viewDidLoad

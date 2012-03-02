@@ -26,7 +26,7 @@
 @synthesize delegate=_delegate;
 
 - (void)dealloc {
-    NSLog(@"NewFeedStatusCell release");
+   // NSLog(@"NewFeedStatusCell release");
     
     [_time release];
     [_photoView release];
@@ -161,7 +161,7 @@
     NSString* commandString = [tempString substringFromIndex:7];
     NSString* startString = [tempString substringToIndex:5];
     
-    NSLog(@"url:%@",[[tempString stringByDeletingLastPathComponent] lastPathComponent]);
+   // NSLog(@"url:%@",[[tempString stringByDeletingLastPathComponent] lastPathComponent]);
     if ([commandString isEqualToString:@"showimage"])//点击图片
     {
         [self showBigImage];
@@ -476,10 +476,10 @@
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setWeibo('%@')",outString]];
         
         outString = [(NewFeedUploadPhoto*)feedData getPhoto_Comment];
-        NSLog(@"%@",outString);
+      //  NSLog(@"%@",outString);
         
         outString = [outString replaceJSSign];
-        NSLog(@"%@",outString);
+      //  NSLog(@"%@",outString);
         
         [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setDetailComment('%@')",outString]];
         
