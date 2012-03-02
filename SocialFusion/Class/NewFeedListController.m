@@ -547,7 +547,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
             
             [cell initWithFeedData:a context:self.managedObjectContext renren:self.currentRenrenUser weibo:self.currentWeiboUser];
             
-            
+            cell.detailController.delegate=self;
+
             return cell;
         }
         else

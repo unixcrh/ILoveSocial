@@ -26,6 +26,7 @@
 @implementation StatusDetailController
 
 @synthesize feedData = _feedData;
+@synthesize delegate=_delegate;
 
 - (void)dealloc {
     [_commentCel release];
@@ -463,5 +464,25 @@
     else if([usr isMemberOfClass:[WeiboUser class]]) 
         [userDict setObject:usr forKey:kWeiboUser];
     [NSNotificationCenter postSelectFriendNotificationWithUserDict:userDict];
+}
+
+
+-(IBAction)selectCommentUser:(id)sender
+{
+    UITableViewCell* cell=(UITableViewCell*)((UIButton*)sender).superview.superview;
+
+    
+    NSIndexPath* indexPath=[self.tableView indexPathForCell:cell];
+
+    StatusCommentData* data=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if ([data.style intValue]==0)
+    {
+        [self.delegate selectRenren:data.actor_ID];
+    }
+    else
+    {
+        [self.delegate selectWeibo:data.owner_Name];
+    }
 }
 @end

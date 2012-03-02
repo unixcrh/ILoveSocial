@@ -35,7 +35,7 @@
     result.actor_ID=[[dict objectForKey:@"uid"] stringValue] ;
     
         
-        
+        result.style=[NSNumber numberWithInt:0];
    // result.owner_Head= [dict objectForKey:@"tinyurl"];
     
     result.owner_Name=[dict objectForKey:@"name"];
@@ -116,7 +116,8 @@
         
         result.text=[dict objectForKey:@"text"] ;
         result.secret=[NSNumber numberWithBool:NO];
-
+        
+        result.style=[NSNumber numberWithInt:1];
         return result;        
         
     }

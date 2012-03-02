@@ -20,7 +20,6 @@
 #import "CardBrowserViewController.h"
 
 @implementation StatusDetailControllerWithWeb
-@synthesize delegate=_delegate;
 
 -(void)dealloc
 {

@@ -9,6 +9,7 @@
 #import "NewFeedAlbumCell.h"
 
 @implementation NewFeedAlbumCell
+@synthesize detailController=_detailController;
 
 - (void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei
 {
