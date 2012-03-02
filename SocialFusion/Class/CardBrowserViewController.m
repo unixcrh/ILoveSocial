@@ -10,7 +10,7 @@
 #import "UIApplication+Addition.h"
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <QuartzCore/QuartzCore.h>
-
+#define BAIDU_LINK_TRANSFER @"http://gate.baidu.com/tc?from=opentc&src="
 @interface CardBrowserViewController ()
 
 @end
@@ -108,7 +108,11 @@
 
 + (void)showCardBrowserWithLink:(NSURL *)link {
     CardBrowserViewController *browser = [[CardBrowserViewController alloc] init];
-    browser.url = link;
+    
+    NSString* wapString=[NSString stringWithFormat:@"%@",link];
+    wapString=[NSString stringWithFormat:@"%@%@",BAIDU_LINK_TRANSFER,wapString];
+    
+    browser.url = [NSURL URLWithString:wapString];
     [[UIApplication sharedApplication] presentModalViewController:browser];
     [browser release];
 }
