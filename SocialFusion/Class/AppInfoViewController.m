@@ -91,7 +91,9 @@
 }
 
 - (IBAction)didClickEvaluateUsButton {
-    [[UIApplication sharedApplication] presentErrorToast:@"抱歉！请移步App Store。" withVerticalPos:kToastBottomVerticalPosition];
+    NSString *urlString = @"http://itunes.apple.com/cn/app/id507420048?mt=8";
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    //[[UIApplication sharedApplication] presentErrorToast:@"抱歉！请移步App Store。" withVerticalPos:kToastBottomVerticalPosition];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
