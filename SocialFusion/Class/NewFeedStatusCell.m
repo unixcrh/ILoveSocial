@@ -345,7 +345,7 @@
     [_defaultphotoView setImage:[UIImage imageNamed:@"default_head_img_tiny@2x.png"]];
     
     _name = [[UIButton alloc] init];
-    _name.frame=CGRectMake(57, 9, 210, 18);
+    _name.frame=CGRectMake(57, 9, 190, 18);
     [_name setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [_name setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];   
     [_name setTitleColor:[UIColor colorWithRed:0.32157f green:0.31373 blue:0.26666667 alpha:1] forState:UIControlStateNormal];
