@@ -18,6 +18,8 @@
 
 - (IBAction)didClickFeedbackButton;
 - (IBAction)didClickFollowUsButton;
+- (IBAction)didClickEvaluateUsButton;
+
 @end
 
 @protocol AppInfoViewControllerDelegate <NSObject>

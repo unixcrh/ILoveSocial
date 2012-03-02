@@ -69,7 +69,6 @@
     [picker release];
 }
 
-
 - (IBAction)didClickFollowUsButton
 {
     WeiboClient *client = [WeiboClient client];
@@ -91,6 +90,9 @@
     [client follow:POCKET_SOCIAL_SINA_WEIBO_ID];
 }
 
+- (IBAction)didClickEvaluateUsButton {
+    [[UIApplication sharedApplication] presentErrorToast:@"抱歉！请移步App Store。" withVerticalPos:kToastBottomVerticalPosition];
+}
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
