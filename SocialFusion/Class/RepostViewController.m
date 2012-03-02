@@ -21,6 +21,7 @@
 #import "NewFeedUploadPhoto.h"
 #import "NSString+WeiboSubString.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIApplication+Addition.h"
 
 @implementation RepostViewController
 
@@ -129,6 +130,16 @@
 - (IBAction)didClickPostButton:(id)sender {
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
+    
+    if(!_repostToWeibo && !_repostToRenren) {
+        [[UIApplication sharedApplication] presentToast:@"请选择发送平台。" withVerticalPos:TOAST_POS_Y];
+        return;
+    }
+    if([self.textView.text isEqualToString:@""] && _comment) {
+        [[UIApplication sharedApplication] presentToast:@"请输入评论内容。" withVerticalPos:TOAST_POS_Y];
+        return;
+    }
+    
     if (_style==kRenrenStatus)
     {
         if (_repostToRenren==YES)
@@ -149,11 +160,6 @@
                 [client forwardStatus:((NewFeedData*)_feedData).author.userID statusID:((NewFeedData*)_feedData).source_ID andStatusString:self.textView.text];
                 
             }
-            
-            
-            
-            
-            
         }
         if (_repostToWeibo==YES)
         {
@@ -237,8 +243,6 @@
         }
         
     }
-    
-    
     else if (_style==kWeiboStatus)
     {
         if (_repostToRenren==YES)
