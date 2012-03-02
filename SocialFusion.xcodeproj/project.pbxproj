@@ -1619,7 +1619,6 @@
 		E1ABA3F1141FA6E1002CD0A6 = {
 			isa = PBXGroup;
 			children = (
-				7352862114FFBC6000CD5D58 /* CoreLocation.framework */,
 				E19A2D0C1420927400BE491A /* Classes */,
 				E1ABA443141FA882002CD0A6 /* SDK */,
 				E1ABA408141FA6E1002CD0A6 /* SocialFusion */,
@@ -1642,6 +1641,7 @@
 			children = (
 				E118413814D9B949000FF01F /* libsqlite3.dylib */,
 				73CB895B145EEB5600C6EEB9 /* libz.1.2.5.dylib */,
+				7352862114FFBC6000CD5D58 /* CoreLocation.framework */,
 				E1C1F89214FFBEFE008A29ED /* MediaPlayer.framework */,
 				E1ABA4D3141FAB2F002CD0A6 /* MobileCoreServices.framework */,
 				E1ABA4D1141FAB23002CD0A6 /* SystemConfiguration.framework */,
@@ -2319,7 +2319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -2338,7 +2338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
