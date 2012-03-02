@@ -61,7 +61,7 @@
 								<string key="NSFrame">{{5, 3}, {180, 21}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="266987608"/>
+								<reference key="NSNextKeyView" ref="605612343"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4zMTc2NDcwNTg4IDAuMzA5ODAzOTIxNiAwLjIzOTIxNTY4NjMgMAA</bytes>
@@ -131,18 +131,18 @@
 							</object>
 							<object class="IBUILabel" id="266987608">
 								<reference key="NSNextResponder" ref="762154621"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{234, 3}, {70, 14}}</string>
+								<int key="NSvFlags">274</int>
+								<string key="NSFrame">{{254, -0.5}, {50, 20}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="605612343"/>
+								<reference key="NSNextKeyView" ref="64992633"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC42MzkyMTU2ODYzIDAuNjI3NDUwOTgwNCAwLjUwNTg4MjM1MjkgMAA</bytes>
 								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
+								<int key="IBUIContentMode">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">4分钟前</string>
@@ -152,7 +152,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
+								<float key="IBUIMinimumFontSize">8</float>
 								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
@@ -170,6 +170,7 @@
 								<string key="NSFrame">{{266, 11}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -195,10 +196,10 @@
 							<object class="IBUIImageView" id="605612343">
 								<reference key="NSNextResponder" ref="762154621"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{252, 5}, {7, 10}}</string>
+								<string key="NSFrame">{{243, 5}, {7, 10}}</string>
 								<reference key="NSSuperview" ref="762154621"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="64992633"/>
+								<reference key="NSNextKeyView" ref="266987608"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -375,6 +376,7 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -463,6 +465,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="comment:">id</string>
 						<string key="repost">id</string>
+						<string key="selectUser">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="comment:">
@@ -471,6 +474,10 @@
 						</object>
 						<object class="IBActionInfo" key="repost">
 							<string key="name">repost</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="selectUser">
+							<string key="name">selectUser</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
