@@ -10,7 +10,7 @@
 #import "AlbumDetailController.h"
 @interface NewFeedAlbumCell : UITableViewCell
 {
-    IBOutlet AlbumDetailController* detailController;
+    IBOutlet AlbumDetailController* _detailController;
 }
 @property (nonatomic, retain) AlbumDetailController* detailController;
 - (void)initWithFeedData:(NewFeedRootData*)_feedData  context:(NSManagedObjectContext*)context renren:(RenrenUser*)ren weibo:(WeiboUser*)wei;
