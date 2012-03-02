@@ -11,6 +11,7 @@
 #import <MediaPlayer/MPMusicPlayerController.h>
 #import <QuartzCore/QuartzCore.h>
 #define BAIDU_LINK_TRANSFER @"http://gate.baidu.com/tc?from=opentc&src="
+#define SINA_IASK_TRANSFER @"http://h2w.iask.cn/hd.php?u="
 @interface CardBrowserViewController ()
 
 @end
@@ -22,6 +23,7 @@
 @synthesize url = _url;
 @synthesize urlTextField = _urlTextField;
 @synthesize webBackView = _webBackView;
+@synthesize showurl=_showurl;
 
 - (void)dealloc
 {
@@ -63,7 +65,7 @@
     
     self.webView.delegate = self;
     if(self.url) {
-        self.urlTextField.text = [[self.url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        self.urlTextField.text = [[self.showurl absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self loadLink:self.url];
     }
 }
@@ -110,8 +112,8 @@
     CardBrowserViewController *browser = [[CardBrowserViewController alloc] init];
     
     NSString* wapString=[NSString stringWithFormat:@"%@",link];
-    wapString=[NSString stringWithFormat:@"%@%@",BAIDU_LINK_TRANSFER,wapString];
-    
+    wapString=[NSString stringWithFormat:@"%@%@",SINA_IASK_TRANSFER,wapString];
+    browser.showurl=link;
     browser.url = [NSURL URLWithString:wapString];
     [[UIApplication sharedApplication] presentModalViewController:browser];
     [browser release];

@@ -15,6 +15,7 @@
 @property (nonatomic, retain) IBOutlet UIWebView* webView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSURL *showurl;
 @property (nonatomic, retain) IBOutlet UITextField *urlTextField;
 @property (nonatomic, retain) IBOutlet UIView *webBackView;
 
