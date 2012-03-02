@@ -800,12 +800,8 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     }];
     
     [renren getUserInfoWithUserID:userID];
-    
-    
-    
- 
-
 }
+
 -(void)loadNewWeiboAt:(NSString*)userName
 {
   //  NSLog(@"%@",userName);
