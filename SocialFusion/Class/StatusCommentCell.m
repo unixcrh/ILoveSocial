@@ -57,8 +57,8 @@
     float cellHeight = [StatusCommentCell heightForCell:feedData];
     //状态
     
-
-        _status.text = feedData.text;
+    
+    _status.text = feedData.text;
     
     CGSize size = CGSizeMake(_status.frame.size.width, 1000);
     CGSize labelSize = [_status.text sizeWithFont:_status.font constrainedToSize:size];
@@ -69,22 +69,22 @@
     //名字
     [_userName setTitle:[feedData getOwner_Name] forState:UIControlStateNormal];
     [_userName sizeToFit];
-        
+    
     //时间
     NSDate* FeedDate = [feedData getUpdateTime];
-
+    
     [_time setText:[CommonFunction getTimeBefore:FeedDate]];
     
     _commentButton.center = CGPointMake(_commentButton.center.x, (cellHeight + COMMENT_BUTTON_OFFSET_Y) / 2);
-
+    
     
     if ([feedData.actor_ID isEqualToString:@"self"]) {
         _commentButton.hidden = YES;
-
+        
     }
     else {
         _commentButton.hidden=NO;
-            }
+    }
     if ([feedData.secret boolValue] == YES) {
         [_secret setImage:[UIImage imageNamed:@"detail_rev_private.png"]];
         _secret.center=CGPointMake(_commentButton.center.x - 20, _commentButton.center.y - 3);
