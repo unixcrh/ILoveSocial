@@ -62,8 +62,9 @@
     
     self.webBackView.layer.masksToBounds = YES;
     self.webBackView.layer.cornerRadius = 5.0f;  
-    
+    self.webView.allowsInlineMediaPlayback = YES;
     self.webView.delegate = self;
+    
     if(self.url) {
         self.urlTextField.text = [[self.showurl absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self loadLink:self.url];
@@ -111,9 +112,9 @@
 + (void)showCardBrowserWithLink:(NSURL *)link {
     CardBrowserViewController *browser = [[CardBrowserViewController alloc] init];
     
-    NSString* wapString=[NSString stringWithFormat:@"%@",link];
-    wapString=[NSString stringWithFormat:@"%@%@",SINA_IASK_TRANSFER,wapString];
-    browser.showurl=link;
+    NSString* wapString = [NSString stringWithFormat:@"%@",link];
+    wapString = [NSString stringWithFormat:@"%@%@",SINA_IASK_TRANSFER,wapString];
+    browser.showurl = link;
     browser.url = [NSURL URLWithString:wapString];
     [[UIApplication sharedApplication] presentModalViewController:browser];
     [browser release];

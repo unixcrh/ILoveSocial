@@ -8,9 +8,9 @@
 
 #import "UIApplication+Addition.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SocialFusionAppDelegate.h"
 
 static UIViewController *_modalViewController;
-static UIViewController *_secondModalViewController;
 static UIView *_backView;
 static BOOL _isShowingToast;
 
@@ -22,29 +22,15 @@ static BOOL _isShowingToast;
 
 @implementation UIApplication (Addition)
 
-- (void)presentSecondModalViewController:(UIViewController *)vc {
-    if (!_modalViewController || _secondModalViewController)
-        return;
-    
-	_secondModalViewController = [vc retain];
-	
-	_backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-	_backView.alpha = 0.0f;
-	_backView.backgroundColor = [UIColor clearColor];
-    
-    CGRect frame = vc.view.frame;
-    frame.origin.x = 0;
-    frame.origin.y = 480;
-    vc.view.frame = frame;
-    
-	[self.keyWindow addSubview:_backView];
-	[self.keyWindow addSubview:vc.view];
-	
-    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        CGRect frame = vc.view.frame;
-        frame.origin.y = 20;
-        vc.view.frame = frame;
-    } completion:^(BOOL finished) {}];
+- (UIView *)rootView
+{
+    return [[self rootViewController] view];
+}
+
+- (UIViewController *)rootViewController
+{
+    SocialFusionAppDelegate *appDelegate = (SocialFusionAppDelegate *)[[UIApplication sharedApplication] delegate];
+    return (UIViewController *)appDelegate.rootViewController;
 }
 
 - (void)dismissSecondModalViewController {
@@ -72,20 +58,19 @@ static BOOL _isShowingToast;
 	_modalViewController = [vc retain];
 	
 	_backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-	_backView.alpha = 0.0f;
 	_backView.backgroundColor = [UIColor clearColor];
     
     CGRect frame = vc.view.frame;
     frame.origin.x = 0;
-    frame.origin.y = 480;
+    frame.origin.y = 460;
     vc.view.frame = frame;
     
-	[self.keyWindow addSubview:_backView];
-	[self.keyWindow addSubview:vc.view];
+	[[self rootView] addSubview:_backView];
+	[[self rootView] addSubview:vc.view];
 	
     [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect frame = vc.view.frame;
-        frame.origin.y = 20;
+        frame.origin.y = 0;
         vc.view.frame = frame;
     } completion:^(BOOL finished) {}];
 }
