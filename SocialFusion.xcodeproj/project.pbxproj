@@ -314,6 +314,7 @@
 		E1C1F88E14FFAFB3008A29ED /* CardBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */; };
 		E1C1F88F14FFAFB3008A29ED /* CardBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */; };
 		E1C1F89314FFBEFF008A29ED /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C1F89214FFBEFE008A29ED /* MediaPlayer.framework */; };
+		E1CA8B251501FD4800B27CC9 /* CardBrowserWebBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CA8B241501FD4800B27CC9 /* CardBrowserWebBackgroundView.m */; };
 		E1D3B182143244CA00443B79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */; };
 		E1D3B183143244CA00443B79 /* EGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D3B181143244C800443B79 /* EGOTableViewController.m */; };
 		E1E257D214ED441A003064CD /* pub_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E257D014ED441A003064CD /* pub_bg.png */; };
@@ -807,6 +808,8 @@
 		E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBrowserViewController.m; path = SocialFusion/Class/CardBrowserViewController.m; sourceTree = "<group>"; };
 		E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardBrowserViewController.xib; path = SocialFusion/Class/CardBrowserViewController.xib; sourceTree = "<group>"; };
 		E1C1F89214FFBEFE008A29ED /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		E1CA8B231501FD4700B27CC9 /* CardBrowserWebBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBrowserWebBackgroundView.h; path = SocialFusion/Class/CardBrowserWebBackgroundView.h; sourceTree = "<group>"; };
+		E1CA8B241501FD4800B27CC9 /* CardBrowserWebBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBrowserWebBackgroundView.m; path = SocialFusion/Class/CardBrowserWebBackgroundView.m; sourceTree = "<group>"; };
 		E1D3B17E143244C400443B79 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = SocialFusion/Class/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		E1D3B17F143244C400443B79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = SocialFusion/Class/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		E1D3B180143244C500443B79 /* EGOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGOTableViewController.h; path = SocialFusion/Class/EGOTableViewController.h; sourceTree = "<group>"; };
@@ -1575,6 +1578,8 @@
 				E1C1F88B14FFAFB2008A29ED /* CardBrowserViewController.h */,
 				E1C1F88C14FFAFB3008A29ED /* CardBrowserViewController.m */,
 				E1C1F88D14FFAFB3008A29ED /* CardBrowserViewController.xib */,
+				E1CA8B231501FD4700B27CC9 /* CardBrowserWebBackgroundView.h */,
+				E1CA8B241501FD4800B27CC9 /* CardBrowserWebBackgroundView.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -2237,6 +2242,7 @@
 				E1532E6414FD49BC00A7B94E /* WeiboUser.m in Sources */,
 				E1532E6714FD49BE00A7B94E /* NewFeedRootData.m in Sources */,
 				E1C1F88E14FFAFB3008A29ED /* CardBrowserViewController.m in Sources */,
+				E1CA8B251501FD4800B27CC9 /* CardBrowserWebBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2319,7 +2325,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -2328,6 +2335,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Pocket Social";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2338,7 +2346,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialFusion/SocialFusion-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -2347,6 +2356,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Pocket Social";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

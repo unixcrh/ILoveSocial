@@ -131,7 +131,7 @@
     _postCount = 0;
     _postStatusErrorCode = PostStatusErrorNone;
     
-    if(!_repostToWeibo && !_repostToRenren) {
+    if(!_repostToWeibo && !_repostToRenren && !_comment) {
         [[UIApplication sharedApplication] presentToast:@"请选择发送平台。" withVerticalPos:TOAST_POS_Y];
         return;
     }
