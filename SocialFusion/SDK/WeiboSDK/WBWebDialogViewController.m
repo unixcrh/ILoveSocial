@@ -14,6 +14,7 @@ static CGFloat kPadding = 10;
 static CGFloat kBorderWidth = 10;
 
 static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
+static NSString* AccessOAUTH2URL=@"https://api.weibo.com/oauth2/access_token";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -147,70 +148,35 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
  navigationType:(UIWebViewNavigationType)navigationType {
 	
     NSURL* url = request.URL;
-    
-   // NSLog(@"%@",url);
-    
-    
-    
-    //	NSString *errorReason=nil;
-    //	NSString *query = [url fragment];
-    //	if (!query) {
-    //		query = [url query];
-    //	}
-	//NSDictionary *params = [self parseURLParams:query];
-	//NSString *accessToken = [params valueForKey:@"access_token"];
-	//NSString *error_desc = [params valueForKey:@"error_description"];
-    //	errorReason = [params valueForKey:@"error"];
-    //	if (errorReason) {
-    //		[self errormsg:error_desc];
-    //		[self dialogDidCancel:url];
-    //	}
-	
-    
-	/*if (navigationType == UIWebViewNavigationTypeLinkClicked)//点击链接  
-     {
-     BOOL userDidCancel = (errorReason && [errorReason isEqualToString:@"login_denied"]||[errorReason isEqualToString:@"access_denied"]);
-     if(userDidCancel){
-     [self dialogDidCancel:url];
-     }else {
-     [[UIApplication sharedApplication] openURL:request.URL];
-     }
-     return NO;
-     }
-     */
-    //	if (navigationType == UIWebViewNavigationTypeLinkClicked) {//提交表单
-    //		NSString *state=[params valueForKey:@"flag"];
-	//	if (state && [state isEqualToString:@"success"]||accessToken) {
-    
-    
+
     NSString *q = [url absoluteString];
+    
+    NSLog(@"%@",q);
     //////
-    NSString *oauth_verifier = [self getStringFromUrl:q needle:@"oauth_verifier="];
+    NSString *accessToken = [self getStringFromUrl:q needle:@"access_token="];
     
-    
-  //  NSString *oauth_token = [self getStringFromUrl:q needle:@"oauth_token="];
-    if (oauth_verifier!=nil)
-    {
-        [self dialogDidSucceed:url];
-        return YES;
-    }
-    
+    NSString* userID=[self getStringFromUrl:q needle:@"uid="];
+    NSLog(@"%@",accessToken);
     
     if ([[url absoluteString] isEqualToString:@"http://service.weibo.com/reg/regindex.php?appsrc=1izgHh&backurl="])
     {
         [[UIApplication sharedApplication] openURL:url];
              return NO;
     }
-//    else if (oauth_token==nil&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize"]==NO)&&([[url absoluteString] isEqualToString:@"http://api.t.sina.com.cn/oauth/authorize#"]==NO))
- //   {
-  //      [[UIApplication sharedApplication] openURL:url];
-   //     return NO;
-   // }
+
+    if (accessToken!=nil&&userID!=nil)
+    {
+        [WeiboClient setTokenWithString:accessToken andID:userID];
+
+        [_delegate wbDialogLogin:nil ];
+        [self dismissWithSuccess:YES animated:YES];
+
+    }
     
-	//	}
+    /*
     
-    
-    //}
+       
+    */
     return YES;
 }
 
@@ -422,7 +388,7 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
     NSString *expTime = [self getStringFromUrl:q needle:@"oauth_verifier="];
     
     
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"808405667" secret:@"2e76c5fca5ac0934c4e4e4114455e261"];
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"1747522276" secret:@"d2b84c895a6f3d9fe4ff0b3301159e3d"];
     
     
     NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
@@ -452,64 +418,6 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
 
 
 
-- (void)requestTokenTicket:(OAServiceTicket *)ticket failedWithError:(NSError *)error {
-	//NSLog(@"%@",error);
-}
-
-
-- (void)requestTokenTicket:(OAServiceTicket *)ticket finishedWithData:(NSMutableData *)data {
-    NSString *responseBody = [[NSString alloc] initWithData:data
-                                                   encoding:NSUTF8StringEncoding];
-    // NSLog(@"ÂÆåÊàêÊúÄÂêé‰∏ÄÊ≠•ÔºåÂπ∂Ê†πÊçÆÁªìÊûúÁîüÊàêtoken:%@",responseBody);
-    
-    
-    //OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-    // NSLog(@"AccessToken:%@",token);
-    
-    
-    //NSLog(@"%@",responseBody);
-    
-    
-    
-    
-    //////
-    /*
-     NSString *userID = [self getStringFromUrl:responseBody needle:@"user_id="];
-     NSLog(@"%@",userID);
-     
-     
-     NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
-     
-     [info setValue:responseBody forKey:@"WBShareKit_sinaToken"];
-     [info setValue:userID forKey:@"WB_User_ID"];
-     [info synchronize];
-     
-     
-     
-     
-     */
-    
-    
-    //   NSLog(@"111111:%@",responseString);
-    
-    [WeiboClient setTokenWithHTTPResponseString:responseBody];
-    
-    
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud setObject:responseBody
-           forKey:@"kUserDefaultKeyTokenResponseString"];
-    [ud synchronize];
-    
-    
-    
-    
-    
-    
-    
-    [_delegate wbDialogLogin:responseBody ];
-    [self dismissWithSuccess:YES animated:YES];
-    
-}
 
 - (void)dialogDidCancel:(NSURL *)url {
     if ([_delegate respondsToSelector:@selector(dialogDidNotCompleteWithUrl:)]) {

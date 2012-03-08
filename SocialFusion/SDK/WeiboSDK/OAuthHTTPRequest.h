@@ -11,29 +11,20 @@
 @interface OAuthHTTPRequest : ASIFormDataRequest {
     BOOL _authNeeded;
     
-    NSString *_consumerKey;
-    NSString *_consumerSecret;
-    
-    NSString *_oauthTokenKey;
-    NSString *_oauthTokenSecret;
+       
+    NSString *_access_token;
     
     NSDictionary *_extraOAuthParams;
     NSDictionary *_requestParams;
+
     
-    NSString *_nonce;
-    NSString *_timestamp;
 }
 
 @property(nonatomic, assign, getter=isAuthNeeded) BOOL authNeeded;
-@property(nonatomic, copy) NSString* consumerKey;
-@property(nonatomic, copy) NSString* consumerSecret;
-@property(nonatomic, copy) NSString* oauthTokenKey;
-@property(nonatomic, copy) NSString* oauthTokenSecret;
+@property(nonatomic, retain) NSString* access_token;
 @property(nonatomic, retain) NSDictionary* extraOAuthParams;
 @property(nonatomic, retain) NSDictionary* requestParams;
-@property(nonatomic, copy) NSString* nonce;
-@property(nonatomic, copy) NSString* timestamp;
 
-- (void)generateOAuthHeader;
+- (void)signatureBaseString;
 
 @end

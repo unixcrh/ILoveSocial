@@ -17,18 +17,24 @@
 #define SINAAccessURL @"http://api.t.sina.com.cn/oauth/access_token" 
 
 #define AuthorizeURL @"http://api.t.sina.com.cn/oauth/authorize"  //获取授权request token
+
+
+#define AuthorizeURL2 @"https://api.weibo.com/2/oauth2/authorize"  //获取授权request token
+
+#define AccessURL2 @"https://api.weibo.com/2/oauth2/access_token"  //获取access token
+
+
 #define AccessURL @"http://api.t.sina.com.cn/oauth/access_token"  //获取access token
 
 #define CallBackURL @"oauth://SocialFusion.com"  //回调url
 
 #define kUserDefaultKeyTokenResponseString @"kUserDefaultKeyTokenResponseString"
 
-static NSString* const AppKey = @"808405667";
-static NSString* const AppSecret = @"2e76c5fca5ac0934c4e4e4114455e261";
-static NSString* const APIDomain = @"api.t.sina.com.cn";
+static NSString* const AppKey = @"1747522276";
+static NSString* const AppSecret = @"d2b84c895a6f3d9fe4ff0b3301159e3d";
+static NSString* const APIDomain = @"api.weibo.com/2";
 
 static NSString* OAuthTokenKey = nil;
-static NSString* OAuthTokenSecret = nil;
 
 static NSString* UserID = nil;
 
@@ -109,6 +115,20 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
     return _completionBlock;
 }
 
+
+
++ (void)setTokenWithString:(NSString *)responseString andID:(NSString*)userID
+{
+    
+            [OAuthTokenKey release];
+            OAuthTokenKey = [responseString retain];
+ 
+            UserID = [userID retain];
+        
+    
+}
+
+
 + (void)setTokenWithHTTPResponseString:(NSString *)responseString
 {
     NSArray *pairs = [responseString componentsSeparatedByString:@"&"];
@@ -119,11 +139,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
             [OAuthTokenKey release];
             OAuthTokenKey = [[[elements objectAtIndex:1] 
                               stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-        } else if ([[elements objectAtIndex:0] isEqualToString:@"oauth_token_secret"]) {
-            [OAuthTokenSecret release];
-            OAuthTokenSecret = [[[elements objectAtIndex:1] 
-                                 stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-        } else if ([[elements objectAtIndex:0] isEqualToString:@"user_id"]) {
+        }  else if ([[elements objectAtIndex:0] isEqualToString:@"user_id"]) {
             [UserID release];
             UserID = [[elements objectAtIndex:1] retain];
         }
@@ -155,7 +171,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
     self = [super init];
     
     _params = [[NSMutableDictionary alloc] initWithCapacity:10];
-    _secureConnection = NO;
+    _secureConnection = YES;
     _authRequired = YES;
     _hasError = NO;
     _responseStatusCode = 0;
@@ -197,7 +213,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
    // NSLog(@"Request Finished");
-    //NSLog(@"Response raw string:\n%@", [request responseString]);
+   // NSLog(@"Response raw string:\n%@", [request responseString]);
     
     switch (request.responseStatusCode) {
         case 401: // Not Authorized: either you need to provide authentication credentials, or the credentials provided aren't valid.
@@ -235,7 +251,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
             self.hasError = YES;
             self.responseStatusCode = [errorCodeString intValue];
             self.errorDesc = [dic objectForKey:@"error"];
-         //   NSLog(@"Server responsed error code: %d\n desc: %@\n url: %@\n", self.responseStatusCode, self.errorDesc, request.url);
+           NSLog(@"Server responsed error code: %d\n desc: %@\n url: %@\n", self.responseStatusCode, self.errorDesc, request.url);
         }
     }
     
@@ -250,8 +266,8 @@ report_completion:
 //failed due to network connection or other issues
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-   // NSLog(@"Request Failed");
-  //  NSLog(@"%@", _request.error);
+    NSLog(@"Request Failed");
+    NSLog(@"%@", _request.error);
     
     if (_request.error.code == 3) {
         self.errorDesc = @"请先登录新浪微博。";
@@ -287,7 +303,9 @@ report_completion:
         [str appendString:[NSString stringWithFormat:@"%@=%@", [name URLEncodedString], 
                            [[self.params objectForKey:name] URLEncodedString]]];
     }
-    
+    [str appendString:@"&"];
+    [str appendString:[NSString stringWithFormat:@"%@=%@", [[NSString stringWithString:@"access_token"] URLEncodedString], 
+                       [OAuthTokenKey URLEncodedString]]];
     return str;
 }
 
@@ -301,6 +319,8 @@ report_completion:
         url = [NSString stringWithFormat:@"%@?%@", url, [self queryString]];
     }
     NSURL *finalURL = [NSURL URLWithString:url];
+    
+    //NSLog(@"finalURL:%@",finalURL);
     [_request setURL:finalURL];
 }
 
@@ -334,11 +354,8 @@ report_completion:
     }
     
     if (self.authRequired) {
-        _request.consumerKey = AppKey;
-        _request.consumerSecret = AppSecret;
-        _request.oauthTokenKey = OAuthTokenKey;
-        _request.oauthTokenSecret = OAuthTokenSecret;
-        [self.request generateOAuthHeader];
+        _request.access_token=OAuthTokenKey;
+        [self.request signatureBaseString];
     }
     
     if (self.isSynchronized) {
@@ -369,7 +386,7 @@ report_completion:
     [ud synchronize];
     
     OAuthTokenKey = nil;
-    OAuthTokenSecret = nil;
+
     UserID = nil;
 }
 
@@ -390,79 +407,22 @@ report_completion:
 - (void)authorizeWithRRAppAuth:(BOOL)tryRRAppAuth
                     safariAuth:(BOOL)trySafariAuth {
     
-    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray* graphCookies = [cookies cookiesForURL:
-                             [NSURL URLWithString:@"http://api.t.sina.com.cn/oauth/access_token"]];
     
-    for (NSHTTPCookie* cookie in graphCookies) {
-        [cookies deleteCookie:cookie];
-    }
-    
-    NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
-    NSString *strAccess = [info valueForKey:@"WBShareKit_sinaToken"];
-    
-    if (strAccess==nil)
-    {
-        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:AppKey secret:AppSecret];
-        
-        OAHMAC_SHA1SignatureProvider *hmacSha1Provider = [[OAHMAC_SHA1SignatureProvider alloc] init];
-        OAMutableURLRequest *hmacSha1Request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:RequestURL]
-                                                                               consumer:consumer
-                                                                                  token:NULL
-                                                                                  realm:NULL
-                                                                      signatureProvider:hmacSha1Provider
-                                                                                  nonce:[self _generateNonce]
-                                                                              timestamp:[self _generateTimestamp]];
-        [hmacSha1Request setHTTPMethod:@"GET"];
-        
-        OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-        [fetcher fetchDataWithRequest:hmacSha1Request 
-                             delegate:self
-                    didFinishSelector:@selector(requestTokenTicket:finishedWithData:)
-                      didFailSelector:@selector(requestTokenTicket:failedWithError:)];
-    }
-    
-}
-
-//登录错误
-- (void)requestTokenTicket:(OAServiceTicket *)ticket failedWithError:(NSError *)error {
-    
-    [_sessionDelegate wbDidNotLogin:YES];
-} 
-
-- (void)requestTokenTicket:(OAServiceTicket *)ticket finishedWithData:(NSMutableData *)data {
-    
-    NSString *responseBody = [[NSString alloc] initWithData:data
-                                                   encoding:NSUTF8StringEncoding];
-    
-    OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-    
-    
-    
-    NSString *tt = [token.key URLEncodedString];
     
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   tt, @"oauth_token",
-                                   @" ", @"oauth_callback",
+                                   @"1747522276",@"client_id",
+                                   @"", @"redirect_uri",
                                    @"mobile", @"display",
+                                   @"token",@"response_type",
                                    nil];
     
     
     
-    WBWebDialogViewController *rrDialog = [[WBWebDialogViewController alloc] initWithURL:@"http://api.t.sina.com.cn/oauth/authorize" params:params delegate:self];
+    WBWebDialogViewController *rrDialog = [[WBWebDialogViewController alloc] initWithURL:AuthorizeURL2 params:params delegate:self];
     [rrDialog show];
     
-    
-    
-    
-    
-    //  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-    
-    NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
-    [info setValue:responseBody forKey:@"responseBody"];
-    [info synchronize];
-    
 }
+
 
 
 
@@ -578,12 +538,13 @@ report_completion:
     
     [self setPreCompletionBlock:^(WeiboClient *client1) {
         if (!client1.hasError) {            
-            NSArray *statusesDict = client1.responseJSONObject;
+            NSDictionary *statusesDict = client1.responseJSONObject;
+           
             if (statusesDict) {
                 WeiboClient *client2 = [WeiboClient client];
                 [client2 setCompletionBlock:client1.completionBlock];
                 [client1 setCompletionBlock:NULL];
-                [client2 getCommentsAndRepostsCountForStatusesDict:statusesDict];
+                [client2 getCommentsAndRepostsCountForStatusesDict:[statusesDict objectForKey:@"statuses"]];
             }
         }
     }];
@@ -599,7 +560,7 @@ report_completion:
                 feature:(int)feature
 {
     self.path = @"statuses/user_timeline.json";
-    [self.params setObject:userID forKey:@"user_id"];
+    [self.params setObject:userID forKey:@"uid"];
     
     if (sinceID) {
         [self.params setObject:sinceID forKey:@"since_id"];
@@ -619,12 +580,12 @@ report_completion:
     
     [self setPreCompletionBlock:^(WeiboClient *client1) {
         if (!client1.hasError) {
-            NSArray *statusesDict = client1.responseJSONObject;
+            NSDictionary *statusesDict = client1.responseJSONObject;
             if ([statusesDict count]) {
                 WeiboClient *client2 = [WeiboClient client];
                 [client2 setCompletionBlock:client1.completionBlock];
                 [client1 setCompletionBlock:NULL];
-                [client2 getCommentsAndRepostsCountForStatusesDict:statusesDict];
+                [client2 getCommentsAndRepostsCountForStatusesDict:[statusesDict objectForKey:@"statuses"]];
             }
         }
     }];
@@ -636,7 +597,7 @@ report_completion:
                        page:(int)page
                       count:(int)count
 {
-    self.path = @"statuses/comments.json";
+    self.path = @"comments/show.json";
     [self.params setObject:statusID forKey:@"id"];
     if (page) {
         [self.params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
@@ -680,7 +641,7 @@ report_completion:
 - (void)getUser:(NSString *)userID
 {
     self.path = @"users/show.json";
-    [self.params setObject:userID forKey:@"user_id"];
+    [self.params setObject:userID forKey:@"uid"];
     [self sendRequest];
 }
 
@@ -696,8 +657,8 @@ report_completion:
                   
 - (void)getFriendsOfUser:(NSString *)userID cursor:(int)cursor count:(int)count
 {
-    self.path = @"statuses/friends.json";
-    [self.params setObject:userID forKey:@"user_id"];
+    self.path = @"friendships/friends.json";
+    [self.params setObject:userID forKey:@"uid"];
     [self.params setObject:[NSString stringWithFormat:@"%d", cursor] forKey:@"cursor"];
     if (count) {
         [self.params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
@@ -707,8 +668,8 @@ report_completion:
 
 - (void)getFollowersOfUser:(NSString *)userID cursor:(int)cursor count:(int)count
 {
-    self.path = @"statuses/followers.json";
-    [self.params setObject:userID forKey:@"user_id"];
+    self.path = @"friendships/followers.json";
+    [self.params setObject:userID forKey:@"uid"];
     [self.params setObject:[NSString stringWithFormat:@"%d", cursor] forKey:@"cursor"];
     if (count) {
         [self.params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
@@ -902,7 +863,14 @@ report_completion:
   commentOrigin:(BOOL)commentOrigin
 {
     self.httpMethod = HTTPMethodPost;
-    self.path = @"statuses/comment.json";
+    if (cid==nil)
+    {
+          self.path =@"comments/create.json";
+    }
+    else
+    {
+    self.path = @"comments/reply.json";
+    }
     if (statusID) {
         [self.params setObject:statusID forKey:@"id"];
     }

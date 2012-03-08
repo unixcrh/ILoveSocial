@@ -127,8 +127,8 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 
 - (void)authorize:(NSArray *)permissions
          delegate:(id<WBSessionDelegate>)delegate ;
-+ (void)setTokenWithHTTPResponseString:(NSString *)responseString;
-
+//+ (void)setTokenWithHTTPResponseString:(NSString *)responseString;
++ (void)setTokenWithString:(NSString *)responseString andID:(NSString*)userID;
 @end
 
 @protocol WBSessionDelegate <NSObject>

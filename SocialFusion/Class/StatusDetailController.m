@@ -326,7 +326,7 @@
         [weibo setCompletionBlock:^(WeiboClient *client) {
             if(!client.hasError) {
                 [self clearData];
-                NSArray *array = client.responseJSONObject;
+                NSArray *array = [client.responseJSONObject objectForKey:@"comments"];
                 [self ProcessWeiboData:array];
             }
         }];

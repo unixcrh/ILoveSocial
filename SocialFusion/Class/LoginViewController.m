@@ -129,6 +129,8 @@
     [weibo setCompletionBlock:^(WeiboClient *client) {
         if (!weibo.hasError) {
             NSDictionary *dict = client.responseJSONObject;
+           // NSLog(@"%@",dict);
+
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
