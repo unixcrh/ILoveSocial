@@ -30,8 +30,7 @@
 
 #define kUserDefaultKeyTokenResponseString @"kUserDefaultKeyTokenResponseString"
 
-static NSString* const AppKey = @"1747522276";
-static NSString* const AppSecret = @"d2b84c895a6f3d9fe4ff0b3301159e3d";
+
 static NSString* const APIDomain = @"api.weibo.com/2";
 
 static NSString* OAuthTokenKey = nil;
@@ -410,7 +409,7 @@ report_completion:
     
     
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"1747522276",@"client_id",
+                                   AppKey,@"client_id",
                                    @"", @"redirect_uri",
                                    @"mobile", @"display",
                                    @"token",@"response_type",

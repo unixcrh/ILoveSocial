@@ -18,7 +18,8 @@ enum {
     ResetUnreadCountTypeDirectMessage = 3,
     ResetUnreadCountTypeFollowers = 4,
 };
-
+static NSString* const AppKey = @"808405667";
+static NSString* const AppSecret = @"2e76c5fca5ac0934c4e4e4114455e261";
 typedef void (^WCCompletionBlock)(WeiboClient *client);
 
 

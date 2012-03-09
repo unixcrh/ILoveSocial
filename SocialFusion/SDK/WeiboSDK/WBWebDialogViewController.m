@@ -388,7 +388,7 @@ static NSString* AccessOAUTH2URL=@"https://api.weibo.com/oauth2/access_token";
     NSString *expTime = [self getStringFromUrl:q needle:@"oauth_verifier="];
     
     
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"1747522276" secret:@"d2b84c895a6f3d9fe4ff0b3301159e3d"];
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:AppKey secret:AppSecret];
     
     
     NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
