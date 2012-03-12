@@ -125,12 +125,14 @@
 }
 
 - (void)wbDidLogin {
+    NSLog(@"currentUserID %@",[WeiboClient currentUserID]);
     WeiboClient *weibo = [WeiboClient client];
     [weibo setCompletionBlock:^(WeiboClient *client) {
         if (!weibo.hasError) {
             NSDictionary *dict = client.responseJSONObject;
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             
+            NSLog(@"dict %@", dict);
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             [ud setValue:self.currentWeiboUser.userID forKey:@"weibo_ID"];
             [ud synchronize];
@@ -138,8 +140,15 @@
             self.weiboUser = self.currentWeiboUser;
             [self refreshWeiboUserInfoUI];
         }
+        else {
+            NSLog(@"%@", client.errorDesc);
+        }
     }];
     [weibo getUser:[WeiboClient currentUserID]];
+}
+
+- (void)wbDidNotLogin:(BOOL)cancelled {
+    
 }
 
 - (void)rrDidLogin {

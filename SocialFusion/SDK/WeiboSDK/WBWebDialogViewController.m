@@ -496,17 +496,10 @@ static NSString* AccessURL = @"http://api.t.sina.com.cn/oauth/access_token" ;
     
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud setObject:responseBody
-           forKey:@"kUserDefaultKeyTokenResponseString"];
+    [ud setObject:responseBody forKey:@"kUserDefaultKeyTokenResponseString"];
     [ud synchronize];
-    
-    
-    
-    
-    
-    
-    
-    [_delegate wbDialogLogin:responseBody ];
+
+    [_delegate wbDialogLogin:responseBody];
     [self dismissWithSuccess:YES animated:YES];
     
 }

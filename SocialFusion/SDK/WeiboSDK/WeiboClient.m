@@ -79,15 +79,11 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 @synthesize hasError = _hasError;
 @synthesize errorDesc = _errorDesc;
 
-
-
-#pragma mark Ëé∑ÂæóÊó∂Èó¥Êà≥
 - (NSString *)_generateTimestamp 
 {
     return [NSString stringWithFormat:@"%d", time(NULL)];
 }
 
-#pragma mark Ëé∑ÂæóÈöèÊó∂Â≠óÁ¨¶‰∏≤
 - (NSString *)_generateNonce 
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
@@ -95,8 +91,6 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
     NSMakeCollectable(theUUID);
     return (NSString *)string;
 }
-
-
 
 - (void)setCompletionBlock:(void (^)(WeiboClient* client))completionBlock
 {
@@ -437,8 +431,6 @@ report_completion:
     
     OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
     
-    
-    
     NSString *tt = [token.key URLEncodedString];
     
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -452,16 +444,11 @@ report_completion:
     WBWebDialogViewController *rrDialog = [[WBWebDialogViewController alloc] initWithURL:@"http://api.t.sina.com.cn/oauth/authorize" params:params delegate:self];
     [rrDialog show];
     
-    
-    
-    
-    
     //  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     
     NSUserDefaults *info = [NSUserDefaults standardUserDefaults];
     [info setValue:responseBody forKey:@"responseBody"];
-    [info synchronize];
-    
+    [info synchronize];    
 }
 
 
