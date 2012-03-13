@@ -680,7 +680,7 @@ report_completion:
 {
     self.httpMethod = HTTPMethodPost;
     self.path = @"friendships/create.json";
-    [self.params setObject:userID forKey:@"user_id"];
+    [self.params setObject:userID forKey:@"uid"];
     [self sendRequest];
 }
 
@@ -688,7 +688,7 @@ report_completion:
 {
     self.httpMethod = HTTPMethodPost;
     self.path = @"friendships/destroy.json";
-    [self.params setObject:userID forKey:@"user_id"];
+    [self.params setObject:userID forKey:@"uid"];
     [self sendRequest];
 }
 
@@ -712,7 +712,7 @@ report_completion:
     self.httpMethod = HTTPMethodPost;
       status=[status renren2weibo];
     self.path = @"statuses/update.json";
-    [self.params setObject:[status URLEncodedString] forKey:@"status"];
+    [self.params setObject:status forKey:@"status"];
     [self sendRequest];
 }
 
@@ -721,7 +721,7 @@ report_completion:
     self.httpMethod = HTTPMethodPost;
     status=[status renren2weibo];
     self.path = @"statuses/update.json";
-    [self.params setObject:[status URLEncodedString] forKey:@"status"];
+    [self.params setObject:status  forKey:@"status"];
     [self.params setObject:[NSString stringWithFormat:@"%f",lat] forKey:@"lat"];
     [self.params setObject:[NSString stringWithFormat:@"%f",lon] forKey:@"long"];
     [self sendRequest];
