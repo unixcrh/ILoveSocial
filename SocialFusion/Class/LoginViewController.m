@@ -224,7 +224,7 @@
     Image *image = [Image imageWithURL:self.currentWeiboUser.tinyURL inManagedObjectContext:self.managedObjectContext];
     if (image == nil) {
         [self.weiboPhotoImageView loadImageFromURL:self.currentWeiboUser.tinyURL completion:^{
-            [self.renrenPhotoImageView fadeIn];
+            [self.weiboPhotoImageView fadeIn];
         } cacheInContext:self.managedObjectContext];
     }
     else {
