@@ -78,7 +78,7 @@
         }
         else
         {
-            if(client.responseStatusCode == 403) {
+            if(client.responseStatusCode == 20506) {
                 [[UIApplication sharedApplication] presentToast:@"已经关注。" withVerticalPos:kToastBottomVerticalPosition];
             }
             else {
