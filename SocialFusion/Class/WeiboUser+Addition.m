@@ -26,13 +26,14 @@
         result = [NSEntityDescription insertNewObjectForEntityForName:@"WeiboUser" inManagedObjectContext:context];
     }
     
+    
     result.updateDate = [NSDate date];
     
     result.userID = userID;
     result.name = [NSString stringWithFormat:@"%@", [dict objectForKey:@"screen_name"]];
     result.pinyinName = [result.name pinyinFirstLetterArray];
-    NSDictionary *statusDict = [dict objectForKey:@"status"];
-    result.latestStatus = [statusDict objectForKey:@"text"];
+   // NSDictionary *statusDict = [dict objectForKey:@"status"];
+    result.latestStatus = [dict objectForKey:@"description"];
     result.tinyURL = [dict objectForKey:@"profile_image_url"];
     
     WeiboDetail *detail = [WeiboDetail insertDetailInformation:dict inManagedObjectContext:context];
