@@ -405,7 +405,12 @@ report_completion:
                     safariAuth:(BOOL)trySafariAuth {
     
     
-    
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+
+    NSHTTPCookie *cookieB; 
+    for (cookieB in [cookies cookies]) { 
+        [cookies deleteCookie:cookieB]; 
+    }  
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    AppKey,@"client_id",
                                    @"", @"redirect_uri",
