@@ -376,6 +376,10 @@ report_completion:
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setObject:nil forKey:kUserDefaultKeyTokenResponseString];
+    [ud setObject:nil forKey:kUserDefaultKeyExpireTime];
+        [ud setObject:nil forKey:kUserDefaultKeyGetKeyDate];
+        [ud setObject:nil forKey:@"weibo_ID"];
+
     [ud synchronize];
     
     OAuthTokenKey = nil;
