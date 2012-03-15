@@ -111,6 +111,7 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     [_cellHeightHelper myinit:self];
     
     self.tableView.scrollsToTop = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -178,7 +179,10 @@ static NSInteger SoryArrayByTime(NewFeedRootData* data1, NewFeedRootData* data2,
     if(_firstLoad) {
         _firstLoad = NO;
         if(![self isUserNewFeedArrayEmpte] && [self isMemberOfClass:[NewFeedListController class]])
+        {
+            [self showLoadMoreDataButton];
             return;
+        }
     }
     [self hideLoadMoreDataButton];
     if (_currentTime != nil)

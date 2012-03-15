@@ -29,6 +29,8 @@
 #define CallBackURL @"oauth://SocialFusion.com"  //回调url
 
 #define kUserDefaultKeyTokenResponseString @"kUserDefaultKeyTokenResponseString"
+#define kUserDefaultKeyGetKeyDate @"kUserDefaultKeyGetKeyDate"
+#define kUserDefaultKeyExpireTime @"kUserDefaultKeyExpireTime"
 
 
 static NSString* const APIDomain = @"api.weibo.com/2";
@@ -57,7 +59,6 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 @property (nonatomic, assign, getter=isSynchronized) BOOL synchronized;
 @property (nonatomic, copy) WCCompletionBlock preCompletionBlock;
 
-+ (void)setTokenWithHTTPResponseString:(NSString *)responseString;
 - (void)buildURL;
 - (void)sendRequest;
 
@@ -116,8 +117,15 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 
 
 
-+ (void)setTokenWithString:(NSString *)responseString andID:(NSString*)userID
++ (void)setTokenWithString:(NSString *)responseString andID:(NSString*)userID andTime:(int)time
 {
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setValue:[NSNumber numberWithInt:time] forKey:kUserDefaultKeyExpireTime];
+    [ud setValue:responseString forKey:kUserDefaultKeyTokenResponseString];
+    [ud setValue:[NSDate dateWithTimeIntervalSinceNow:0] forKey:kUserDefaultKeyGetKeyDate];
+    [ud synchronize];
+    
     
             [OAuthTokenKey release];
             OAuthTokenKey = [responseString retain];
@@ -128,35 +136,12 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 }
 
 
-+ (void)setTokenWithHTTPResponseString:(NSString *)responseString
-{
-    NSArray *pairs = [responseString componentsSeparatedByString:@"&"];
-    
-    for (NSString *pair in pairs) {
-        NSArray *elements = [pair componentsSeparatedByString:@"="];
-        if ([[elements objectAtIndex:0] isEqualToString:@"oauth_token"]) {
-            [OAuthTokenKey release];
-            OAuthTokenKey = [[[elements objectAtIndex:1] 
-                              stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-        }  else if ([[elements objectAtIndex:0] isEqualToString:@"user_id"]) {
-            [UserID release];
-            UserID = [[elements objectAtIndex:1] retain];
-        }
-    }
-}
 
-+ (void)fetchTokenFromUserDefault
-{
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSString *tokenResponseString = [ud objectForKey:kUserDefaultKeyTokenResponseString];
-    if (tokenResponseString) {
-        [self setTokenWithHTTPResponseString:tokenResponseString];
-    }
-}
+
 
 + (void)initialize
 {
-    [WeiboClient fetchTokenFromUserDefault];
+    
 }
 
 + (id)client
@@ -373,8 +358,17 @@ report_completion:
         return YES;
     }
     
-    [self fetchTokenFromUserDefault];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     
+
+    
+    int expire_time=[ud integerForKey:kUserDefaultKeyExpireTime];
+    NSDate* date=[ud objectForKey:kUserDefaultKeyGetKeyDate];
+   if ( [[date dateByAddingTimeInterval:expire_time] compare:[NSDate dateWithTimeIntervalSinceNow:0]]== NSOrderedDescending)
+   {
+    UserID=[ud stringForKey:@"weibo_ID"];
+    OAuthTokenKey=[ud stringForKey:kUserDefaultKeyTokenResponseString];
+   }
     return UserID != nil;
 }
 
@@ -448,7 +442,7 @@ report_completion:
             NSString *responseString = client.request.responseString;
             
             //   NSLog(@"111111:%@",responseString);
-            [WeiboClient setTokenWithHTTPResponseString:responseString];
+        //    [WeiboClient setTokenWithHTTPResponseString:responseString];
             if (UserID) {
                 if (autosave) {
                     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];

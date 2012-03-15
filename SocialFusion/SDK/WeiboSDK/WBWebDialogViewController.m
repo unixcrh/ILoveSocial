@@ -156,7 +156,9 @@ static NSString* AccessOAUTH2URL=@"https://api.weibo.com/oauth2/access_token";
     NSString *accessToken = [self getStringFromUrl:q needle:@"access_token="];
     
     NSString* userID=[self getStringFromUrl:q needle:@"uid="];
-    NSLog(@"%@",accessToken);
+    
+    int time=[[self getStringFromUrl:q needle:@"expires_in="] intValue];
+    
     
     if ([[url absoluteString] isEqualToString:@"http://service.weibo.com/reg/regindex.php?appsrc=1izgHh&backurl="])
     {
@@ -166,7 +168,11 @@ static NSString* AccessOAUTH2URL=@"https://api.weibo.com/oauth2/access_token";
 
     if (accessToken!=nil&&userID!=nil)
     {
-        [WeiboClient setTokenWithString:accessToken andID:userID];
+        
+        
+        
+     
+        [WeiboClient setTokenWithString:accessToken andID:userID andTime:time];
 
         [_delegate wbDialogLogin:nil ];
         [self dismissWithSuccess:YES animated:YES];
