@@ -129,7 +129,7 @@
     [weibo setCompletionBlock:^(WeiboClient *client) {
         if (!weibo.hasError) {
             NSDictionary *dict = client.responseJSONObject;
-           // NSLog(@"%@",dict);
+            NSLog(@"%@",dict);
 
             self.currentWeiboUser = [WeiboUser insertUser:dict inManagedObjectContext:self.managedObjectContext];
             
@@ -139,6 +139,13 @@
             
             self.weiboUser = self.currentWeiboUser;
             [self refreshWeiboUserInfoUI];
+        }
+        else{
+             [WeiboClient signout];          
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"内测阶段只支持测试账户" delegate:nil cancelButtonTitle:NSLocalizedString(@"ID_OK",nil) otherButtonTitles:nil];
+            self.hasLoggedInAlertView = alert;
+            [alert show];
+            [alert release];
         }
     }];
     [weibo getUser:[WeiboClient currentUserID]];
