@@ -369,6 +369,7 @@
 		731D1DB4147603B6001981B4 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageData.h; path = "SocialFusion/Class/CoreData Models/ImageData.h"; sourceTree = "<group>"; };
 		731D1DB5147603B6001981B4 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = "SocialFusion/Class/CoreData Models/ImageData.m"; sourceTree = "<group>"; };
 		73232A6714FE7427001514B6 /* btn_repost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_repost.png; sourceTree = "<group>"; };
+		732DEAD1151B2FAF00326B69 /* SocialFusion 1.0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.3.xcdatamodel"; sourceTree = "<group>"; };
 		7339DF0614EF5C2900CA4738 /* NewFeedUploadPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedUploadPhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedUploadPhoto.h"; sourceTree = "<group>"; };
 		7339DF0714EF5C2900CA4738 /* NewFeedUploadPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedUploadPhoto.m; path = "SocialFusion/Class/CoreData Models/NewFeedUploadPhoto.m"; sourceTree = "<group>"; };
 		7339DF0914EF5C2900CA4738 /* NewFeedSharePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedSharePhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.h"; sourceTree = "<group>"; };
@@ -2384,6 +2385,7 @@
 		E1E5DFAD143CB4110098BBD3 /* SocialFusion.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				732DEAD1151B2FAF00326B69 /* SocialFusion 1.0.3.xcdatamodel */,
 				E1E257E914EE886C003064CD /* SocialFusion 1.0.2.xcdatamodel */,
 				E1F247D214C3F03F00D2653A /* SocialFusion 1.0.1.xcdatamodel */,
 				E1E5DFAE143CB4110098BBD3 /* SocialFusion.xcdatamodel */,
