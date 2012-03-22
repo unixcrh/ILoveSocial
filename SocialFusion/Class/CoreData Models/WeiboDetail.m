@@ -2,8 +2,8 @@
 //  WeiboDetail.m
 //  SocialFusion
 //
-//  Created by 王紫川 on 12-2-17.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by He Ruoyun on 12-3-22.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import "WeiboDetail.h"
@@ -12,7 +12,6 @@
 
 @implementation WeiboDetail
 
-@dynamic headURL;
 @dynamic followersCount;
 @dynamic verified;
 @dynamic province;
@@ -21,6 +20,7 @@
 @dynamic favouritesCount;
 @dynamic location;
 @dynamic domainURL;
+@dynamic headURL;
 @dynamic city;
 @dynamic following;
 @dynamic selfDescription;

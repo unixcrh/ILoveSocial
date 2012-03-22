@@ -1,5 +1,5 @@
 //
-//  NewFeedData.h
+//  NewFeedPhoto.h
 //  SocialFusion
 //
 //  Created by He Ruoyun on 12-3-22.
@@ -11,13 +11,12 @@
 #import "NewFeedRootData.h"
 
 
-@interface NewFeedData : NewFeedRootData
+@interface NewFeedPhoto : NewFeedRootData
 
+@property (nonatomic, retain) NSString * album_ID;
+@property (nonatomic, retain) NSString * album_Title;
+@property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSString * pic_big_URL;
 @property (nonatomic, retain) NSString * pic_URL;
-@property (nonatomic, retain) NSString * repost_Name;
-@property (nonatomic, retain) NSString * repost_Status;
-@property (nonatomic, retain) NSString * repost_StatusID;
-@property (nonatomic, retain) NSString * repost_UserID;
 
 @end

@@ -2,8 +2,8 @@
 //  NewFeedBlog.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-1-30.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by He Ruoyun on 12-3-22.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,10 +13,9 @@
 
 @interface NewFeedBlog : NewFeedRootData
 
+@property (nonatomic, retain) NSString * blog_Description;
+@property (nonatomic, retain) NSString * share_BlogID;
+@property (nonatomic, retain) NSString * share_UserID;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * prefix;
-@property (nonatomic, retain) NSString * mydescription;
-@property (nonatomic, retain) NSString * shareID;
-@property (nonatomic, retain) NSString * sharePersonID;
 
 @end

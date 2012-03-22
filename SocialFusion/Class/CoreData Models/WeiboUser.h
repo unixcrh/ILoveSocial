@@ -2,8 +2,8 @@
 //  WeiboUser.h
 //  SocialFusion
 //
-//  Created by 王紫川 on 12-2-29.
-//  Copyright (c) 2012年 Tongji Apple Club. All rights reserved.
+//  Created by He Ruoyun on 12-3-22.
+//  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
