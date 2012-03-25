@@ -2,13 +2,14 @@
 //  User.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-3-22.
+//  Created by He Ruoyun on 12-3-24.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class NewFeedRootData;
 
 @interface User : NSManagedObject
 
@@ -24,13 +25,13 @@
 
 @interface User (CoreDataGeneratedAccessors)
 
-- (void)addStatusesObject:(NSManagedObject *)value;
-- (void)removeStatusesObject:(NSManagedObject *)value;
+- (void)addStatusesObject:(NewFeedRootData *)value;
+- (void)removeStatusesObject:(NewFeedRootData *)value;
 - (void)addStatuses:(NSSet *)values;
 - (void)removeStatuses:(NSSet *)values;
 
-- (void)addNewFeedObject:(NSManagedObject *)value;
-- (void)removeNewFeedObject:(NSManagedObject *)value;
+- (void)addNewFeedObject:(NewFeedRootData *)value;
+- (void)removeNewFeedObject:(NewFeedRootData *)value;
 - (void)addNewFeed:(NSSet *)values;
 - (void)removeNewFeed:(NSSet *)values;
 

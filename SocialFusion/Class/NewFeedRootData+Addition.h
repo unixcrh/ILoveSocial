@@ -17,11 +17,6 @@
 - (void)configureNewFeed:(int)sytle height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
 - (NSString*)getAuthorName;
 
-- (NSString*)getHeadURL;
-- (NSDate*)getDate;
-- (NSString*)getActor_ID;
-- (NSString*)getSource_ID;
-- (NSString*)getBlog;
 - (int)getComment_Count;
 - (int)getStyle;
 - (void)setCount:(int)count;

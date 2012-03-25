@@ -40,16 +40,16 @@
 		736341F514B6E5DC00A697A5 /* top.png in Resources */ = {isa = PBXBuildFile; fileRef = 736341F414B6E5DC00A697A5 /* top.png */; };
 		736444FD14B9D89F0054AF56 /* head_renren.png in Resources */ = {isa = PBXBuildFile; fileRef = 736444FC14B9D89F0054AF56 /* head_renren.png */; };
 		7364450014B9EDD00054AF56 /* blogcell.html in Resources */ = {isa = PBXBuildFile; fileRef = 736444FF14B9EDD00054AF56 /* blogcell.html */; };
+		736679C0151D87FD00EAE24C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 736679BF151D87FD00EAE24C /* User.m */; };
+		736679C3151D87FE00EAE24C /* NewFeedRootData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736679C2151D87FE00EAE24C /* NewFeedRootData.m */; };
 		736AC58E151B6CE200FB4264 /* NewFeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC58D151B6CE200FB4264 /* NewFeedData.m */; };
 		736AC594151B6CE300FB4264 /* NewFeedSharePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC593151B6CE300FB4264 /* NewFeedSharePhoto.m */; };
-		736AC597151B6CE300FB4264 /* NewFeedRootData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC596151B6CE300FB4264 /* NewFeedRootData.m */; };
 		736AC59A151B6CE300FB4264 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC599151B6CE300FB4264 /* Image.m */; };
 		736AC59D151B6CE300FB4264 /* WeiboDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC59C151B6CE300FB4264 /* WeiboDetail.m */; };
 		736AC5A0151B6CE300FB4264 /* DetailInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC59F151B6CE300FB4264 /* DetailInformation.m */; };
 		736AC5A3151B6CE400FB4264 /* NewFeedShareAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5A2151B6CE400FB4264 /* NewFeedShareAlbum.m */; };
 		736AC5A6151B6CE400FB4264 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5A5151B6CE400FB4264 /* ImageData.m */; };
 		736AC5A9151B6CE400FB4264 /* NewFeedBlog.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5A8151B6CE400FB4264 /* NewFeedBlog.m */; };
-		736AC5AC151B6CE400FB4264 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5AB151B6CE400FB4264 /* User.m */; };
 		736AC5AF151B6CE400FB4264 /* WeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5AE151B6CE400FB4264 /* WeiboUser.m */; };
 		736AC5B2151B6CE400FB4264 /* RenrenUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5B1151B6CE400FB4264 /* RenrenUser.m */; };
 		736AC5B5151B6CE400FB4264 /* RenrenDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AC5B4151B6CE400FB4264 /* RenrenDetail.m */; };
@@ -387,12 +387,14 @@
 		736341F414B6E5DC00A697A5 /* top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top.png; sourceTree = "<group>"; };
 		736444FC14B9D89F0054AF56 /* head_renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_renren.png; sourceTree = "<group>"; };
 		736444FF14B9EDD00054AF56 /* blogcell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blogcell.html; sourceTree = "<group>"; };
+		736679BE151D87FD00EAE24C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
+		736679BF151D87FD00EAE24C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
+		736679C1151D87FE00EAE24C /* NewFeedRootData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedRootData.h; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.h"; sourceTree = "<group>"; };
+		736679C2151D87FE00EAE24C /* NewFeedRootData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedRootData.m; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.m"; sourceTree = "<group>"; };
 		736AC58C151B6CE200FB4264 /* NewFeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedData.h; path = "SocialFusion/Class/CoreData Models/NewFeedData.h"; sourceTree = "<group>"; };
 		736AC58D151B6CE200FB4264 /* NewFeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedData.m; path = "SocialFusion/Class/CoreData Models/NewFeedData.m"; sourceTree = "<group>"; };
 		736AC592151B6CE300FB4264 /* NewFeedSharePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedSharePhoto.h; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.h"; sourceTree = "<group>"; };
 		736AC593151B6CE300FB4264 /* NewFeedSharePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedSharePhoto.m; path = "SocialFusion/Class/CoreData Models/NewFeedSharePhoto.m"; sourceTree = "<group>"; };
-		736AC595151B6CE300FB4264 /* NewFeedRootData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedRootData.h; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.h"; sourceTree = "<group>"; };
-		736AC596151B6CE300FB4264 /* NewFeedRootData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedRootData.m; path = "SocialFusion/Class/CoreData Models/NewFeedRootData.m"; sourceTree = "<group>"; };
 		736AC598151B6CE300FB4264 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = "SocialFusion/Class/CoreData Models/Image.h"; sourceTree = "<group>"; };
 		736AC599151B6CE300FB4264 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = "SocialFusion/Class/CoreData Models/Image.m"; sourceTree = "<group>"; };
 		736AC59B151B6CE300FB4264 /* WeiboDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboDetail.h; path = "SocialFusion/Class/CoreData Models/WeiboDetail.h"; sourceTree = "<group>"; };
@@ -405,8 +407,6 @@
 		736AC5A5151B6CE400FB4264 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageData.m; path = "SocialFusion/Class/CoreData Models/ImageData.m"; sourceTree = "<group>"; };
 		736AC5A7151B6CE400FB4264 /* NewFeedBlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewFeedBlog.h; path = "SocialFusion/Class/CoreData Models/NewFeedBlog.h"; sourceTree = "<group>"; };
 		736AC5A8151B6CE400FB4264 /* NewFeedBlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewFeedBlog.m; path = "SocialFusion/Class/CoreData Models/NewFeedBlog.m"; sourceTree = "<group>"; };
-		736AC5AA151B6CE400FB4264 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "SocialFusion/Class/CoreData Models/User.h"; sourceTree = "<group>"; };
-		736AC5AB151B6CE400FB4264 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "SocialFusion/Class/CoreData Models/User.m"; sourceTree = "<group>"; };
 		736AC5AD151B6CE400FB4264 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboUser.h; path = "SocialFusion/Class/CoreData Models/WeiboUser.h"; sourceTree = "<group>"; };
 		736AC5AE151B6CE400FB4264 /* WeiboUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboUser.m; path = "SocialFusion/Class/CoreData Models/WeiboUser.m"; sourceTree = "<group>"; };
 		736AC5B0151B6CE400FB4264 /* RenrenUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenrenUser.h; path = "SocialFusion/Class/CoreData Models/RenrenUser.h"; sourceTree = "<group>"; };
@@ -1586,6 +1586,10 @@
 				736AC5B9151B6CE400FB4264 /* StatusCommentData.h */,
 				736AC5BA151B6CE400FB4264 /* StatusCommentData.m */,
 				736AC5B6151B6CE400FB4264 /* NewFeedPhoto.h */,
+				736679C1151D87FE00EAE24C /* NewFeedRootData.h */,
+				736679C2151D87FE00EAE24C /* NewFeedRootData.m */,
+				736679BE151D87FD00EAE24C /* User.h */,
+				736679BF151D87FD00EAE24C /* User.m */,
 				736AC5B7151B6CE400FB4264 /* NewFeedPhoto.m */,
 				736AC5B3151B6CE400FB4264 /* RenrenDetail.h */,
 				736AC5B4151B6CE400FB4264 /* RenrenDetail.m */,
@@ -1593,8 +1597,6 @@
 				736AC5B1151B6CE400FB4264 /* RenrenUser.m */,
 				736AC5AD151B6CE400FB4264 /* WeiboUser.h */,
 				736AC5AE151B6CE400FB4264 /* WeiboUser.m */,
-				736AC5AA151B6CE400FB4264 /* User.h */,
-				736AC5AB151B6CE400FB4264 /* User.m */,
 				736AC5A7151B6CE400FB4264 /* NewFeedBlog.h */,
 				736AC5A8151B6CE400FB4264 /* NewFeedBlog.m */,
 				736AC5A4151B6CE400FB4264 /* ImageData.h */,
@@ -1607,8 +1609,6 @@
 				736AC59C151B6CE300FB4264 /* WeiboDetail.m */,
 				736AC598151B6CE300FB4264 /* Image.h */,
 				736AC599151B6CE300FB4264 /* Image.m */,
-				736AC595151B6CE300FB4264 /* NewFeedRootData.h */,
-				736AC596151B6CE300FB4264 /* NewFeedRootData.m */,
 				736AC592151B6CE300FB4264 /* NewFeedSharePhoto.h */,
 				736AC593151B6CE300FB4264 /* NewFeedSharePhoto.m */,
 				736AC58C151B6CE200FB4264 /* NewFeedData.h */,
@@ -2225,19 +2225,19 @@
 				E1C1F88E14FFAFB3008A29ED /* CardBrowserViewController.m in Sources */,
 				736AC58E151B6CE200FB4264 /* NewFeedData.m in Sources */,
 				736AC594151B6CE300FB4264 /* NewFeedSharePhoto.m in Sources */,
-				736AC597151B6CE300FB4264 /* NewFeedRootData.m in Sources */,
 				736AC59A151B6CE300FB4264 /* Image.m in Sources */,
 				736AC59D151B6CE300FB4264 /* WeiboDetail.m in Sources */,
 				736AC5A0151B6CE300FB4264 /* DetailInformation.m in Sources */,
 				736AC5A3151B6CE400FB4264 /* NewFeedShareAlbum.m in Sources */,
 				736AC5A6151B6CE400FB4264 /* ImageData.m in Sources */,
 				736AC5A9151B6CE400FB4264 /* NewFeedBlog.m in Sources */,
-				736AC5AC151B6CE400FB4264 /* User.m in Sources */,
 				736AC5AF151B6CE400FB4264 /* WeiboUser.m in Sources */,
 				736AC5B2151B6CE400FB4264 /* RenrenUser.m in Sources */,
 				736AC5B5151B6CE400FB4264 /* RenrenDetail.m in Sources */,
 				736AC5B8151B6CE400FB4264 /* NewFeedPhoto.m in Sources */,
 				736AC5BB151B6CE400FB4264 /* StatusCommentData.m in Sources */,
+				736679C0151D87FD00EAE24C /* User.m in Sources */,
+				736679C3151D87FE00EAE24C /* NewFeedRootData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
