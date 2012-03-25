@@ -37,12 +37,11 @@
         NSString* dateString = [dict objectForKey:@"update_time"];
         self.update_Time = [form dateFromString: dateString];
         [form release];
-        
         self.owner_Head_URL = [dict objectForKey:@"headurl"];
         self.owner_Name = [dict objectForKey:@"name"];
         self.comment_Count = [NSNumber numberWithInt:[[[dict objectForKey:@"comments"] objectForKey:@"count"] intValue]];
-        
         self.author = [RenrenUser insertUserWithName:self.owner_Name userID: [[dict objectForKey:@"actor_id"] stringValue] inManagedObjectContext:context];
+
         
     }
     else if(style == kNewFeedStyleWeibo)

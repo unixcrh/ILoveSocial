@@ -12,52 +12,7 @@
 //#import "CalculateHeight.h"
 @implementation NewFeedData (NewFeedData_Addition)
 
-- (NSString*)getBlog
-{
-    return nil;
-}
-- (NSString*)getActor_ID
-{
-    return self.actor_ID;
-}
-- (NSString*)getSource_ID
-{
-    return self.source_ID;
-}
-
-- (int)getComment_Count
-{
-    return [self.comment_Count intValue];
-}
-
-
-- (void)setCount:(int)count
-{
-    self.comment_Count=[NSNumber numberWithInt:count];
-}
-- (NSDate*)getDate
-{
-    return self.update_Time;
-}
-
-
-
-- (int)getStyle
-{
-    return [self.style intValue];
-}
-
-- (NSString*)getAuthorName
-{
-    return self.owner_Name;
-}
-
-
-
-- (NSString*)getHeadURL
-{
-    return self.owner_Head;
-}
+/*
 - (NSString*)getPostMessagewithOutJS
 {
     
@@ -97,18 +52,9 @@
     
     
 }
+*/
 
 
-- (NSString*)getPostName
-{
-    return self.repost_Name;
-}
-
-
-- (NSString*)getName
-{
-    return [self.message replaceHTMLSign:[self.style intValue]];
-}
 
 
 - (void)configureNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -116,13 +62,12 @@
     if(style == kNewFeedStyleWeibo) {
         self.pic_URL = [dict objectForKey:@"thumbnail_pic"];
         self.pic_big_URL = [dict objectForKey:@"bmiddle_pic"];
-        
         NSDictionary* attachment = [dict objectForKey:@"retweeted_status"];
         if ([attachment count] != 0)
         {
             if ([attachment count] != 0)
             {
-                self.repost_ID = [[[attachment  objectForKey:@"user"] objectForKey:@"id"] stringValue];
+                self.repost_UserID = [[[attachment  objectForKey:@"user"] objectForKey:@"id"] stringValue];
                 self.repost_StatusID = [[attachment objectForKey:@"id"] stringValue ];
                 self.repost_Name = [[attachment objectForKey:@"user"] objectForKey:@"screen_name"] ;
                 self.repost_Status = [attachment objectForKey:@"text"] ;
@@ -130,12 +75,11 @@
                 self.pic_big_URL = [attachment objectForKey:@"bmiddle_pic"];
             }
         }
-        
-        self.message = [dict objectForKey:@"text"];
+        self.maininfo = [dict objectForKey:@"text"];
     }
     else if(style == kNewFeedStyleRenren) {
    
-        self.message=[dict objectForKey:@"message"];
+        self.maininfo=[dict objectForKey:@"message"];
         
         NSArray* attachments=[dict objectForKey:@"attachment"];
         if ([attachments count]!=0)
@@ -143,7 +87,7 @@
             NSDictionary* attachment=[attachments objectAtIndex:0];
             if ([attachment count]!=0)
             {
-                self.repost_ID=[[attachment objectForKey:@"owner_id"] stringValue];
+                self.repost_UserID=[[attachment objectForKey:@"owner_id"] stringValue];
                 self.repost_Name=[attachment objectForKey:@"owner_name"];
                 self.repost_Status=[attachment objectForKey:@"content"];                
                 self.repost_StatusID=[[attachment objectForKey:@"media_id"] stringValue];

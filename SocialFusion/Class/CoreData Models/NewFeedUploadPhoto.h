@@ -1,5 +1,5 @@
 //
-//  NewFeedSharePhoto.h
+//  NewFeedUploadPhoto.h
 //  SocialFusion
 //
 //  Created by He Ruoyun on 12-3-25.
@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "NewFeedSharePhotoandAlbum.h"
+#import "NewFeedPhoto.h"
 
 
-@interface NewFeedSharePhoto : NewFeedSharePhotoandAlbum
+@interface NewFeedUploadPhoto : NewFeedPhoto
 
-@property (nonatomic, retain) NSString * share_Comment;
 
 @end

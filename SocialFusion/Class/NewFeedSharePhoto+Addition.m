@@ -69,9 +69,7 @@
     else
     {
         return self.share_comment;
-    }
-    //return self.prefix;
-    
+    }    
 }
 
 - (NSString*)getPhotoComment

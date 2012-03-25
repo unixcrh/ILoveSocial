@@ -16,16 +16,13 @@
     
     if ([[dict objectForKey:@"feed_type"] intValue] == 21)
     {
-        //  NSLog(@"%@",dict);
-        self.source_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
-        self.actor_ID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
-        self.shareID=[[dict objectForKey:@"source_id"] stringValue]; 
-        self.sharePersonID=[[dict objectForKey:@"actor_id"] stringValue];
+        self.share_BlogID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"media_id"] stringValue];
+        self.share_UserID=[[[[dict objectForKey:@"attachment"] objectAtIndex:0] objectForKey:@"owner_id"] stringValue];
+        self.maininfo_ID=[[dict objectForKey:@"source_id"] stringValue]; 
     }
-    
-    self.prefix = [dict objectForKey:@"prefix"] ;
+    self.maininfo = [NSString stringWithFormat:@"%@《%@》",[dict objectForKey:@"prefix"],[dict objectForKey:@"title"] ]  ;
     self.title = [dict objectForKey:@"title"] ;
-    self.mydescription = [dict objectForKey:@"description"] ;
+    self.blog_Description = [dict objectForKey:@"description"] ;
 }
 
 + (NewFeedBlog *)insertNewFeed:(int)style height:(int)height getDate:(NSDate*)getDate Dic:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)context;
@@ -55,26 +52,7 @@
     return res;
 }
 
-- (NSString*)getBlog
-{
-    return self.mydescription;
-}
 
-- (NSString*)getName
-{
-    
-    
-    //if (description==nil)
-    //description=@"";
-    
-    
-    
-    
-    
-    
-    return [NSString stringWithFormat:@"%@《%@》",self.prefix,self.title]  ;
-    
-}
 
 
 

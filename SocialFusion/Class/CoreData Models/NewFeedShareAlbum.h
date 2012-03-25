@@ -2,7 +2,7 @@
 //  NewFeedShareAlbum.h
 //  SocialFusion
 //
-//  Created by He Ruoyun on 12-3-22.
+//  Created by He Ruoyun on 12-3-25.
 //  Copyright (c) 2012年 TJU. All rights reserved.
 //
 
@@ -12,8 +12,6 @@
 
 @interface NewFeedShareAlbum : NSManagedObject
 
-@property (nonatomic, retain) NSString * from_ID;
-@property (nonatomic, retain) NSString * from_Name;
-@property (nonatomic, retain) NSString * from_UserID;
+@property (nonatomic, retain) NSNumber * photo_Count;
 
 @end
