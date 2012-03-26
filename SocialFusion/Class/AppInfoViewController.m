@@ -58,7 +58,7 @@
         return;
     }
     picker.mailComposeDelegate = self;
-    [picker setSubject:@"Pocket Social 0.9.0 用户反馈"];
+    [picker setSubject:@"Pocket Social 0.9.2 用户反馈"];
     [picker.navigationBar setBarStyle:UIBarStyleBlack];
     // Set up recipients
     NSArray *toRecipients = [NSArray arrayWithObjects:POCKET_SOCIAL_EMAIL, nil];
