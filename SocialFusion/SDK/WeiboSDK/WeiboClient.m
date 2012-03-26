@@ -170,7 +170,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 
 - (void)dealloc
 {
-   // NSLog(@"WeiboClient dealloc");
+    NSLog(@"WeiboClient dealloc");
     [_responseJSONObject release];
     [_params release];
     [_request release];
@@ -188,7 +188,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
     if (_preCompletionBlock) {
         _preCompletionBlock(self);
     }
-    //NSLog(@"completion block retain count:%d", [_completionBlock retainCount]);
+    NSLog(@"completion block retain count:%d", [_completionBlock retainCount]);
     if (_completionBlock) {
         _completionBlock(self);
     }
@@ -196,8 +196,8 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-   // NSLog(@"Request Finished");
-   // NSLog(@"Response raw string:\n%@", [request responseString]);
+    NSLog(@"Request Finished");
+    NSLog(@"Response raw string:\n%@", [request responseString]);
     
     switch (request.responseStatusCode) {
         case 401: // Not Authorized: either you need to provide authentication credentials, or the credentials provided aren't valid.
@@ -304,7 +304,7 @@ report_completion:
     }
     NSURL *finalURL = [NSURL URLWithString:url];
     
-    //NSLog(@"finalURL:%@",finalURL);
+    NSLog(@"finalURL:%@",finalURL);
     [_request setURL:finalURL];
 }
 
@@ -334,12 +334,14 @@ report_completion:
             NSString* contentType = [[[NSString alloc] initWithFormat:@"multipart/form-data; boundary=%@", TWITTERFON_FORM_BOUNDARY] autorelease];
             [self.request addRequestHeader:@"Content-Type" value:contentType];
             self.request.requestMethod = @"POST";
+
         }
     }
     
     if (self.authRequired) {
-        _request.access_token=OAuthTokenKey;
-        [self.request signatureBaseString];
+        _request.access_token=[OAuthTokenKey URLEncodedString];
+        
+        NSLog(@"access_token:%@",_request.access_token);
     }
     
     if (self.isSynchronized) {
@@ -450,8 +452,6 @@ report_completion:
         if (!client.hasError) {
             NSString *responseString = client.request.responseString;
             
-            //   NSLog(@"111111:%@",responseString);
-        //    [WeiboClient setTokenWithHTTPResponseString:responseString];
             if (UserID) {
                 if (autosave) {
                     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -743,7 +743,14 @@ report_completion:
                       [@"\"\r\n\r\n" stringByAppendingString:
                        [[dict valueForKey: [keys objectAtIndex: i]] stringByAppendingString: @"\r\n"]]]]]]];
     }
-    
+    result = [result stringByAppendingString:
+              [@"--" stringByAppendingString:
+               [TWITTERFON_FORM_BOUNDARY stringByAppendingString:
+                [@"\r\nContent-Disposition: form-data; name=\"" stringByAppendingString:
+                 [@"access_token" stringByAppendingString:
+                  [@"\"\r\n\r\n" stringByAppendingString:
+                   [OAuthTokenKey stringByAppendingString: @"\r\n"]]]]]]];
+
     return result;
 }
 
@@ -815,25 +822,17 @@ report_completion:
     NSString *footer = [NSString stringWithFormat:@"\r\n--%@--\r\n", TWITTERFON_FORM_BOUNDARY];
     
     param = [param stringByAppendingString:[NSString stringWithFormat:@"--%@\r\n", TWITTERFON_FORM_BOUNDARY]];
-    param = [param stringByAppendingString:@"Content-Disposition: form-data; name=\"pic\";filename=\"image.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n"];
+    param = [param stringByAppendingString:@"Content-Disposition: form-data; name=\"pic\";filename=\"image.jpg\"\r\nContent-Type: image/jpeg\r\nContent-Transfer-Encoding: binary\r\n\r\n"];
     
     NSMutableData *data = [NSMutableData data];
     [data appendData:[param dataUsingEncoding:NSUTF8StringEncoding]];
     [data appendData:imageData];
+
     [data appendData:[footer dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
-    [params setObject:AppKey forKey:@"source"];
-    [params setObject:text forKey:@"status"];
-    
-    //    [self post:[self getURL:self.path queryParameters:params] data:data];
-    
-    //REMAIN_TO_BE_CHECKED
-    NSURL* url = [[[NSURL alloc] initWithString:[self getURL:self.path queryParameters:params]] autorelease];
-    //NSLog(@"%@", [url description]);
-    [self.request setURL:url];
+
     [self.request setPostBody:data];
     
+    NSLog(@"data:%@",data);
     [self sendRequest];
 }
 
