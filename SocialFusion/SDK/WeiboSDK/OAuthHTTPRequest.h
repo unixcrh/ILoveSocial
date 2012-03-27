@@ -25,6 +25,4 @@
 @property(nonatomic, retain) NSDictionary* extraOAuthParams;
 @property(nonatomic, retain) NSDictionary* requestParams;
 
-- (void)signatureBaseString;
-
 @end
