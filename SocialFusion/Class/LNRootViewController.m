@@ -152,6 +152,8 @@
 #pragma mark LNLabelBarViewController delegate
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectParentLabelAtIndex:(NSUInteger)index {
+    if([LabelConverter isUserCreatedLabel:index])
+        index--;
     self.contentViewController.currentContentIndex = index;
 }
 

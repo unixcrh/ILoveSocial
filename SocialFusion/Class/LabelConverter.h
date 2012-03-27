@@ -67,5 +67,6 @@
 + (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)parentIdentifier;
 + (NSUInteger)getSystemDefaultLabelCount;
 + (NSUInteger)getSystemDefaultLabelIndexWithIdentifier:(NSString *)identifier;
++ (BOOL)isUserCreatedLabel:(NSUInteger)index;
 
 @end
