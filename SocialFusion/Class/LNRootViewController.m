@@ -14,6 +14,7 @@
 #import "NSNotificationCenter+Addition.h"
 #import "UIApplication+Addition.h"
 
+#import "SpashViewController.h"
 #define CONTENT_VIEW_ORIGIN_X   7.0f
 #define CONTENT_VIEW_ORIGIN_Y   64.0f
 
@@ -138,7 +139,13 @@
 - (void)loadLoginView {
     self.loginViewController = [[[LoginViewController alloc] init] autorelease];
     self.loginViewController.managedObjectContext = self.managedObjectContext;
-    [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
+   [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
+   
+    SpashViewController* view=[[SpashViewController alloc] init];
+    [self.view insertSubview:view.view aboveSubview:self.labelBarViewController.view];
+    
+
+    
     self.loginViewController.view.userInteractionEnabled = NO;
 }
 

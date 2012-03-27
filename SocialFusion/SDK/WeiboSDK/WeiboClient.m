@@ -188,7 +188,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
     if (_preCompletionBlock) {
         _preCompletionBlock(self);
     }
-    NSLog(@"completion block retain count:%d", [_completionBlock retainCount]);
+   // NSLog(@"completion block retain count:%d", [_completionBlock retainCount]);
     if (_completionBlock) {
         _completionBlock(self);
     }
@@ -197,7 +197,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSLog(@"Request Finished");
-    NSLog(@"Response raw string:\n%@", [request responseString]);
+   // NSLog(@"Response raw string:\n%@", [request responseString]);
     
     switch (request.responseStatusCode) {
         case 401: // Not Authorized: either you need to provide authentication credentials, or the credentials provided aren't valid.
@@ -304,7 +304,7 @@ report_completion:
     }
     NSURL *finalURL = [NSURL URLWithString:url];
     
-    NSLog(@"finalURL:%@",finalURL);
+ //   NSLog(@"finalURL:%@",finalURL);
     [_request setURL:finalURL];
 }
 
@@ -341,7 +341,7 @@ report_completion:
     if (self.authRequired) {
         _request.access_token=[OAuthTokenKey URLEncodedString];
         
-        NSLog(@"access_token:%@",_request.access_token);
+    //    NSLog(@"access_token:%@",_request.access_token);
     }
     
     if (self.isSynchronized) {
@@ -832,7 +832,7 @@ report_completion:
 
     [self.request setPostBody:data];
     
-    NSLog(@"data:%@",data);
+   // NSLog(@"data:%@",data);
     [self sendRequest];
 }
 
