@@ -212,6 +212,7 @@
 		<string>kParentFriend</string>
 		<string>kParentPublication</string>
 		<string>kParentUserInfo</string>
+		<string>kParentBackToLogin</string>
 	</array>
 	<key>kParentWeiboUser</key>
 	<dict>
@@ -243,6 +244,15 @@
 	<dict>
 		<key>kLabelName</key>
 		<string>发件箱</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+	</dict>
+    <key>kParentBackToLogin</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>登录卡</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>

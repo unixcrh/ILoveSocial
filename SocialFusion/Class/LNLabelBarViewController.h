@@ -44,6 +44,7 @@ typedef void (^PopPageMnuallyCompletion)(void);
 
 - (void)showLoginLabelAnimated:(BOOL)animated;
 - (void)hideLoginLabelAnimated:(BOOL)animated;
+- (void)showLoginLabelAnimated:(BOOL)animated completion:(void (^)(void))completion;
 
 @end
 

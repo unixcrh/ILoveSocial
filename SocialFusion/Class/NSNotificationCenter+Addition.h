@@ -10,12 +10,16 @@
 
 #define kSelectFriendNotification @"kSelectFriendNotification"
 #define kSelectChildLabelNotification @"kSelectChildLabelNotification"
+#define kSelectBackToLoginNotification @"kSelectBackToLoginNotification"
 
 @interface NSNotificationCenter (Addition)
 
 + (void)postSelectFriendNotificationWithUserDict:(NSDictionary *)userDict;
 + (void)postSelectChildLabelNotificationWithIdentifier:(NSString *)identifier;
++ (void)postSelectBackToLoginNotification;
+
 + (void)registerSelectFriendNotificationWithSelector:(SEL)selector target:(id)aTarget;
 + (void)registerSelectChildLabelNotificationWithSelector:(SEL)aSelector target:(id)aTarget;
++ (void)registerSelectBackToLoginNotificationWithSelector:(SEL)aSelector target:(id)aTarget;
 
 @end

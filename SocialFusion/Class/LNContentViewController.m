@@ -157,8 +157,11 @@
     else if([identifier isEqualToString:kChildRenrenInfo] || [identifier isEqualToString:kChildCurrentRenrenInfo]) {
         result = [UserInfoViewController getUserInfoViewControllerWithType:kRenrenUserInfo];
     }
-    else {
+    else if([identifier isEqualToString:kParentBackToLogin]){
       //  NSLog(@"nil identifier:%@", identifier);
+        return nil;
+    }
+    else {
         abort();
     }
     if([result isKindOfClass:[CoreDataViewController class]]) {

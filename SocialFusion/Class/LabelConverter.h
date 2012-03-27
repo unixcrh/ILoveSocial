@@ -49,6 +49,8 @@
 
 #define kParentPublication  @"kParentPublication"
 
+#define kParentBackToLogin     @"kParentBackToLogin"
+
 @class LabelInfo;
 
 @interface LabelConverter : NSObject {

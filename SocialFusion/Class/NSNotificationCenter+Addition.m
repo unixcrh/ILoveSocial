@@ -18,6 +18,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kSelectChildLabelNotification object:identifier userInfo:nil];
 }
 
++ (void)postSelectBackToLoginNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSelectBackToLoginNotification object:nil userInfo:nil];
+}
+
 + (void)registerSelectFriendNotificationWithSelector:(SEL)aSelector target:(id)aTarget {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:aTarget selector:aSelector
@@ -29,6 +33,13 @@
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:aTarget selector:aSelector
                    name:kSelectChildLabelNotification  
+                 object:nil];
+}
+
++ (void)registerSelectBackToLoginNotificationWithSelector:(SEL)aSelector target:(id)aTarget {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:aTarget selector:aSelector
+                   name:kSelectBackToLoginNotification 
                  object:nil];
 }
 
