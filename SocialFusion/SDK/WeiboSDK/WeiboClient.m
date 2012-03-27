@@ -710,25 +710,26 @@ report_completion:
     [self sendRequest];
 }
 
-- (void)postStatus:(NSString *)status
-{
-    self.httpMethod = HTTPMethodPost;
-      status=[status renren2weibo];
-    self.path = @"statuses/update.json";
-    [self.params setObject:status forKey:@"status"];
-    [self sendRequest];
-}
-
 - (void)postStatus:(NSString *)status latitude:(float)lat longitude:(float)lon
 {
     self.httpMethod = HTTPMethodPost;
     status=[status renren2weibo];
     self.path = @"statuses/update.json";
     [self.params setObject:status  forKey:@"status"];
-    [self.params setObject:[NSString stringWithFormat:@"%f",lat] forKey:@"lat"];
-    [self.params setObject:[NSString stringWithFormat:@"%f",lon] forKey:@"long"];
+    if (lat<180)
+    {
+        [self.params setObject:[NSString stringWithFormat:@"%f",lat] forKey:@"lat"];
+        [self.params setObject:[NSString stringWithFormat:@"%f",lon] forKey:@"long"];
+    }
     [self sendRequest];
 }
+
+- (void)postStatus:(NSString *)status 
+{
+    [self postStatus:status latitude:360.0f longitude:0.0f];
+}
+
+
 
 - (NSString*)nameValString: (NSDictionary*) dict {
     NSArray* keys = [dict allKeys];
@@ -803,20 +804,29 @@ report_completion:
 
 
 
-
-
-
-- (void)postStatus:(NSString *)text withImage:(UIImage *)image
+- (void)postStatus:(NSString *)status withImage:(UIImage *)image latitude:(float)lat longitude:(float)lon
 {
     self.path = @"statuses/upload.json";
     self.httpMethod = HTTPMethodForm;
-    text=[text renren2weibo];
+    status=[status renren2weibo];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
-    
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         text, @"status",
+    NSDictionary* dic;
+    if (lat<180)
+    {
+     dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         status, @"status",
                          AppKey, @"source",
+                        [NSString stringWithFormat:@"%f",lat], @"lat",
+                         [NSString stringWithFormat:@"%f",lon],@"long",
                          nil];
+    }
+    else
+    {
+        dic = [NSDictionary dictionaryWithObjectsAndKeys:
+               status, @"status",
+               AppKey, @"source",
+               nil];  
+    }
     NSString *param = [self nameValString:dic];
     
     NSString *footer = [NSString stringWithFormat:@"\r\n--%@--\r\n", TWITTERFON_FORM_BOUNDARY];
@@ -827,13 +837,19 @@ report_completion:
     NSMutableData *data = [NSMutableData data];
     [data appendData:[param dataUsingEncoding:NSUTF8StringEncoding]];
     [data appendData:imageData];
-
+    
     [data appendData:[footer dataUsingEncoding:NSUTF8StringEncoding]];
-
+    
     [self.request setPostBody:data];
     
-   // NSLog(@"data:%@",data);
+    // NSLog(@"data:%@",data);
     [self sendRequest];
+}
+
+
+- (void)postStatus:(NSString *)status withImage:(UIImage *)image;
+{
+    [self postStatus:status withImage:image latitude:360 longitude:0];
 }
 
 - (void)repost:(NSString *)statusID 

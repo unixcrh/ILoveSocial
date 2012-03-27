@@ -1694,6 +1694,7 @@
 		E1ABA41C141FA882002CD0A6 /* ViewContrlloers */ = {
 			isa = PBXGroup;
 			children = (
+				7309DDBD1447E95C00774011 /* NewFeed */,
 				E1E6E8E41451E63600FCB08B /* Friend */,
 				E1779B8D14C73AB4001CE627 /* LabelNavigation */,
 				E1C0D71B14F5DD8300F380C6 /* Login */,
@@ -1825,7 +1826,6 @@
 				73462DAF152196D20046E491 /* SpashViewController.h */,
 				73462DB0152196D20046E491 /* SpashViewController.m */,
 				73462DB1152196D20046E491 /* SpashViewController.xib */,
-				7309DDBD1447E95C00774011 /* NewFeed */,
 			);
 			name = Login;
 			sourceTree = "<group>";

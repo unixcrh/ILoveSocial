@@ -101,7 +101,7 @@ typedef void (^WCCompletionBlock)(WeiboClient *client);
 - (void)postStatus:(NSString *)status;
 - (void)postStatus:(NSString *)status latitude:(float)lat longitude:(float)lon;
 - (void)postStatus:(NSString *)status withImage:(UIImage *)image;
-//- (void)postStatus:(NSString *)status withImage:(UIImage *)image latitude:(float)lat longitude:(float)lon;
+- (void)postStatus:(NSString *)status withImage:(UIImage *)image latitude:(float)lat longitude:(float)lon;
 
 - (void)repost:(NSString *)statusID 
           text:(NSString *)text 

@@ -30,6 +30,8 @@
 
 @synthesize postRenrenButton = _postRenrenButton;
 @synthesize postWeiboButton = _postWeiboButton;
+@synthesize navigation = _navigation;
+
 @synthesize photoView = _photoView;
 @synthesize photoImageView = _photoImageView;
 @synthesize photoCancelButton = _photoCancelButton; 
@@ -42,6 +44,7 @@
     [_photoImageView release];
     [_photoCancelButton release];
     [_processUser release];
+    [_navigation release];
     [super dealloc];
 }
 
@@ -66,6 +69,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _located=NO;
     [self.postRenrenButton setSelected:_postToRenren];
     [self.postWeiboButton setSelected:_postToWeibo];
 
@@ -103,11 +107,25 @@
         }];
         _postCount++;
         if (self.photoImageView.image) {
-            
+            if (_located==NO)
+            {
             [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
+            }
+            else
+            {
+            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image latitude:_location2D.latitude longitude:_location2D.longitude];
+            }
         }
         else {
+            if (_located==NO)
+            {
             [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] ];
+            }
+            else
+            {
+                [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] latitude:_location2D.latitude longitude:_location2D.longitude ];
+
+            }
         }
     }
     
@@ -263,7 +281,8 @@
 
 - (IBAction)didClickNavigationButton
 {
-    /*
+    if (_located==NO)
+    {
    CLLocationManager* locationManager = [[CLLocationManager alloc] init];
     
 
@@ -272,19 +291,31 @@
         locationManager.distanceFilter = kCLDistanceFilterNone;
         // 启动GPS信息回调
         [locationManager startUpdatingLocation];
-     */
-    
-    [[UIApplication sharedApplication] presentToast:@"当前版本暂不支持定位。" withVerticalPos:TOAST_POS_Y];
+
+     
+    }
+    else
+    {
+        _located=NO;
+        _navigation.highlighted=NO;
+
+    }
+    //[[UIApplication sharedApplication] presentToast:@"当前版本暂不支持定位。" withVerticalPos:TOAST_POS_Y];
     
 }
 
-/*
+
 //实现代理方法
 - (void)locationManager:(CLLocationManager *)manager
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    _located=YES;
     _location2D=newLocation.coordinate;    
+    _navigation.highlighted=YES;
+    
+    [manager stopUpdatingLocation];
+    [manager release];
 }
- */
+ 
 @end

@@ -18,11 +18,14 @@
     BOOL _postToRenren;
     BOOL _postToWeibo;
     
-   // CLLocationCoordinate2D _location2D;
+    BOOL _located;
+    CLLocationCoordinate2D _location2D;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *postRenrenButton;
 @property (nonatomic, retain) IBOutlet UIButton *postWeiboButton;
+
+@property (nonatomic, retain) IBOutlet UIButton *navigation;
 
 @property (nonatomic, retain) IBOutlet UIView *photoView;
 @property (nonatomic, retain) IBOutlet UIImageView *photoImageView;
