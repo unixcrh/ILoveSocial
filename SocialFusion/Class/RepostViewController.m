@@ -287,15 +287,19 @@
                 if (((NewFeedData*)_feedData).repost_ID!=nil)
                 {
                     
+                    NSString* postString=[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status];
                     
                     
                     
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).repost_Name,((NewFeedData*)_feedData).repost_Status] withImage:[UIImage imageWithData:imageData]];
+                    [client postStatus:[postString getStatusSubstringWithCount:190] withImage:[UIImage imageWithData:imageData]];
                     
                 }
                 else
                 {
-                    [client postStatus:[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message] withImage:[UIImage imageWithData:imageData]];
+                    
+                    NSString* postString=[NSString stringWithFormat:@"%@ 转自%@：%@[来自新浪微博]",self.textView.text,((NewFeedData*)_feedData).author.name,((NewFeedData*)_feedData).message];
+
+                    [client postStatus:[postString getStatusSubstringWithCount:190] withImage:[UIImage imageWithData:imageData]];
                 }
                 
             }
@@ -452,7 +456,12 @@
                 [self postStatusCompletion];
             }];
             _postCount++;  
-            [client postStatus:[NSString stringWithFormat:@"%@ //%@[来自人人网]",self.textView.text,_photoComment] withImage:[UIImage imageWithData:imageData]];
+            
+            NSString* outString=[NSString stringWithFormat:@"%@ //%@[来自人人网]",self.textView.text,_photoComment];
+
+            
+            [client postStatus:[outString getStatusSubstringWithCount:WEIBO_MAX_WORD-10] withImage:[UIImage imageWithData:imageData]];
+            
         }
    
         
