@@ -12,6 +12,7 @@
 #import "UIImageView+Addition.h"
 #import "UIImage+Addition.h"
 #import "User.h"
+#import "NSNotificationCenter+Addition.h"
 
 #define DEGREES_TO_RADIANS(__ANGLE) ((__ANGLE) / 180.0 * M_PI)
 
@@ -144,6 +145,10 @@
 }
 
 - (IBAction)clickTitleButton:(id)sender {
+    if([self.info.identifier isEqualToString:kParentBackToLogin]) {
+        [NSNotificationCenter postSelectBackToLoginNotification];
+        return;
+    }
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(labelView: didSelectLabelAtIndex:)]) {
         [self.delegate labelView:self didSelectLabelAtIndex:self.index];
     }

@@ -59,6 +59,7 @@
     
     [NSNotificationCenter registerSelectFriendNotificationWithSelector:@selector(selectFriendNotification:) target:self];
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
+    [NSNotificationCenter registerSelectBackToLoginNotificationWithSelector:@selector(selectBackToLoginNotification:) target:self];
     
     [self loadLabelBarView];
     [self loadFakeContentView];
@@ -141,11 +142,9 @@
     self.loginViewController.managedObjectContext = self.managedObjectContext;
    [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
    
-    SpashViewController* view=[[SpashViewController alloc] init];
-    [self.view insertSubview:view.view aboveSubview:self.labelBarViewController.view];
-    
+    //SpashViewController* view = [[SpashViewController alloc] init];
+    //[self.view insertSubview:view.view aboveSubview:self.labelBarViewController.view];
 
-    
     self.loginViewController.view.userInteractionEnabled = NO;
 }
 
@@ -153,6 +152,8 @@
 #pragma mark LNLabelBarViewController delegate
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectParentLabelAtIndex:(NSUInteger)index {
+    if([LabelConverter isUserCreatedLabel:index])
+        index--;
     self.contentViewController.currentContentIndex = index;
 }
 
@@ -248,6 +249,10 @@
     }
 }
 
+- (void)selectBackToLoginNotification:(NSNotification *)notification {
+    [self raiseLoginViewAnimated:YES];
+}
+
 #pragma mark - 
 #pragma makr LNContentViewController delegate
 
@@ -321,7 +326,7 @@
     }];
 }
 
-- (void)raiseLoginViewAnimationWithCompletion:(void (^)(void))completion {
+- (void)raiseLoginViewAnimationWithCompletion:(void (^)(void))completion {    
     CGRect frame = self.loginViewController.view.frame;
     if(frame.origin.y == 0) {
         if(completion)
@@ -349,8 +354,8 @@
                 
                 [self performSelector:@selector(loadContentView) withObject:nil afterDelay:0.6f];
                 
-                [self.loginViewController.view removeFromSuperview];
-                self.loginViewController = nil;
+                //[self.loginViewController.view removeFromSuperview];
+                //self.loginViewController = nil;
             }];
         }];
     }
@@ -375,10 +380,13 @@
 
 - (void)raiseLoginViewAnimated:(BOOL)animated {
     if(animated) {
-        self.contentViewController.view.userInteractionEnabled = NO;
-        [self dropLabelBarViewAnimationWithCompletion:^{
-            [self raiseLoginViewAnimationWithCompletion:^{
-                self.loginViewController.view.userInteractionEnabled = YES;
+        
+        [self.labelBarViewController showLoginLabelAnimated:YES completion:^{
+            self.contentViewController.view.userInteractionEnabled = NO;
+            [self dropLabelBarViewAnimationWithCompletion:^{
+                [self raiseLoginViewAnimationWithCompletion:^{
+                    self.loginViewController.view.userInteractionEnabled = YES;
+                }];
             }];
         }];
     }

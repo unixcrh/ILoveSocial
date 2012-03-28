@@ -49,6 +49,8 @@
 
 #define kParentPublication  @"kParentPublication"
 
+#define kParentBackToLogin     @"kParentBackToLogin"
+
 @class LabelInfo;
 
 @interface LabelConverter : NSObject {
@@ -65,5 +67,6 @@
 + (NSString *)getDefaultChildIdentifierWithParentIdentifier:(NSString *)parentIdentifier;
 + (NSUInteger)getSystemDefaultLabelCount;
 + (NSUInteger)getSystemDefaultLabelIndexWithIdentifier:(NSString *)identifier;
++ (BOOL)isUserCreatedLabel:(NSUInteger)index;
 
 @end

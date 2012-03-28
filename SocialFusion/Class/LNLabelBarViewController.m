@@ -499,11 +499,17 @@
 }
 
 - (void)showLoginLabelAnimated:(BOOL)animated {
+    [self showLoginLabelAnimated:animated completion:nil];
+}
+
+- (void)showLoginLabelAnimated:(BOOL)animated completion:(void (^)(void))completion{
     if(animated) {
         self.scrollView.userInteractionEnabled = NO;
         [self hideBasicLabelsAnimationWithCompletion:^{
             [self showLoginLabelAnimationWithCompletion:^{
                 self.loginButton.userInteractionEnabled = YES;
+                if(completion)
+                    completion();
             }];
         }];
     }

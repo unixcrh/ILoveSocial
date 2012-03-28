@@ -27,6 +27,12 @@ static LabelConverter *instance = nil;
     return instance;
 }
 
++ (BOOL)isUserCreatedLabel:(NSUInteger)index {
+    if(index >= [LabelConverter getSystemDefaultLabelCount] - 1)
+        return YES;
+    else 
+        return NO;
+}
 
 - (void)configureLabelToContentMap {
     NSString *configFilePath = [[NSBundle mainBundle] pathForResource:@"LabelProperty-Config" ofType:@"plist"];  
