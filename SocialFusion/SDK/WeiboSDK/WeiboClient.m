@@ -806,6 +806,10 @@ report_completion:
 
 - (void)postStatus:(NSString *)status withImage:(UIImage *)image latitude:(float)lat longitude:(float)lon
 {
+    if (status==nil)
+    {
+        status=[NSString stringWithString:@"分享图片"];
+    }
     self.path = @"statuses/upload.json";
     self.httpMethod = HTTPMethodForm;
     status=[status renren2weibo];

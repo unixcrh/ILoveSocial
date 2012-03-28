@@ -13,6 +13,7 @@
 @synthesize delegate=_delegate;
 -(void)dealloc
 {
+    self.delegate=nil;
     [super dealloc];
 }
 
@@ -55,7 +56,7 @@
     
     [webView setFrame:CGRectMake(0, 0, width, height)];
     UIGraphicsBeginImageContext(webView.frame.size); 
-    
+    NSLog(@"%lf",height);
     [webView.layer renderInContext:UIGraphicsGetCurrentContext()]; 
 
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
