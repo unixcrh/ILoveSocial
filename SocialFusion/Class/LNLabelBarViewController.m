@@ -196,7 +196,10 @@
     }
     
     if(removedLabel.isSelected) {
-        [self selectLabelAtIndex:index - 1];
+        NSUInteger labelToSelect = index - 1;
+        if(labelToSelect == [LabelConverter getSystemDefaultLabelCount] - 1)
+            labelToSelect--;
+        [self selectLabelAtIndex:labelToSelect];
     }
     
     if(self.labelInfoArray.count % 4 == 0) {

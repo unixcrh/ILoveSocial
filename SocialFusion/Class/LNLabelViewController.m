@@ -145,7 +145,7 @@
 }
 
 - (IBAction)clickTitleButton:(id)sender {
-    if([self.info.identifier isEqualToString:kParentBackToLogin]) {
+    if([self.info.identifier isEqualToString:kParentBackToLogin] && sender != nil) {
         [NSNotificationCenter postSelectBackToLoginNotification];
         return;
     }

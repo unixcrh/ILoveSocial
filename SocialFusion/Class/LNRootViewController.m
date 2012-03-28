@@ -164,10 +164,6 @@
 }
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index {
-    if([LabelConverter isUserCreatedLabel:index])
-        index--;
-    [self.contentViewController removeContentViewAtIndex:index];
-
     [_openedUserHeap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSNumber *openedUserIndex = obj;
         if(openedUserIndex.unsignedIntValue == index) {
@@ -181,6 +177,10 @@
             [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:openedUserIndex.unsignedIntValue - 1] forKey:key];
         }
     }];
+    
+    if([LabelConverter isUserCreatedLabel:index])
+        index--;
+    [self.contentViewController removeContentViewAtIndex:index];
 }
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar willOpenParentLabelAtIndex:(NSUInteger)index {
