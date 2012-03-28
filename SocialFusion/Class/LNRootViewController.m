@@ -158,12 +158,16 @@
 }
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didSelectChildLabelWithIndentifier:(NSString *)identifier inParentLabelAtIndex:(NSUInteger)index {
+    if([LabelConverter isUserCreatedLabel:index])
+        index--;
     [self.contentViewController setContentViewAtIndex:index forIdentifier:identifier];
 }
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar didRemoveParentLabelAtIndex:(NSUInteger)index {
+    if([LabelConverter isUserCreatedLabel:index])
+        index--;
     [self.contentViewController removeContentViewAtIndex:index];
-  //  NSLog(@"open user heap count:%d", _openedUserHeap.count);
+
     [_openedUserHeap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSNumber *openedUserIndex = obj;
         if(openedUserIndex.unsignedIntValue == index) {
@@ -180,6 +184,8 @@
 }
 
 - (void)labelBarView:(LNLabelBarViewController *)labelBar willOpenParentLabelAtIndex:(NSUInteger)index {
+    if([LabelConverter isUserCreatedLabel:index])
+        index--;
     NSString *identifier = [self.contentViewController currentContentIdentifierAtIndex:index];
     [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
 }
@@ -212,6 +218,7 @@
         [self.labelBarViewController selectParentLabelAtIndex:parentFriendLabelIndex];
     }
     else {
+        NSLog(@"identifier%@, contentViewIndex:%d", identifier, self.contentViewController.currentContentIndex);
         [self.labelBarViewController selectChildLabelWithIdentifier:identifier];
         [self.contentViewController setContentViewAtIndex:self.contentViewController.currentContentIndex forIdentifier:identifier];
     }

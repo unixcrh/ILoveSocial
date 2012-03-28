@@ -104,8 +104,6 @@
 }
 
 - (void)removeContentViewAtIndexFromScrollView:(NSUInteger)index {
-    if([LabelConverter isUserCreatedLabel:index])
-        index--;
     UIViewController *vc = [self.contentViewControllerHeap objectAtIndex:index];
     [vc.view removeFromSuperview];
     [self.contentViewControllerHeap enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -204,8 +202,6 @@
 }
 
 - (void)setContentViewAtIndex:(NSUInteger)index forIdentifier:(NSString *)identifier {
-    if([LabelConverter isUserCreatedLabel:index])
-        index--;
     if(index >= self.contentViewControllerHeap.count)
         return;
     NSString *currentIdentifier = [self.contentViewIndentifierHeap objectAtIndex:index];
@@ -216,12 +212,19 @@
     if(vc2 == nil)
         return;
     if(identifier == nil) {
-     //   NSLog(@"replaceObjectAtIndex! identifier nil!");
-        abort();
+        //abort();
+        return;
     }
     vc2.view.frame = vc.view.frame;
-    [vc.view removeFromSuperview];
     [self.scrollView addSubview:vc2.view];
+    vc2.view.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        vc2.view.alpha = 1;
+        vc.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [vc.view removeFromSuperview];
+    }];
+    
     [self.contentViewControllerHeap replaceObjectAtIndex:index withObject:vc2];
     [self.contentViewIndentifierHeap replaceObjectAtIndex:index withObject:identifier];
     
@@ -249,8 +252,6 @@
 }
 
 - (NSString *)currentContentIdentifierAtIndex:(NSUInteger)index {
-    if([LabelConverter isUserCreatedLabel:index])
-        index--;
     NSString *result = [self.contentViewIndentifierHeap objectAtIndex:index];
     return result;
 }
