@@ -297,8 +297,7 @@
 #pragma mark - 
 #pragma makr SpashViewController delegate
 
--(void)splashViewWillRemove
-{
+-(void)splashViewWillRemove {
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.labelBarViewController.view.alpha = 1.0f;
         self.loginViewController.view.alpha = 1.0f;
@@ -308,8 +307,7 @@
 #pragma mark - 
 #pragma makr LoginView delegate
 
-- (void)didClickShowHelp
-{
+- (void)didClickShowHelp {
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.loginViewController.view.alpha = 0;
         self.labelBarViewController.view.alpha = 0;
@@ -410,17 +408,14 @@
 }
 
 - (void)dropLoginViewAnimated:(BOOL)animated {
+    self.contentViewController.view.hidden = NO;
     if(animated) {
         self.loginViewController.view.userInteractionEnabled = NO;
         [self dropLoginViewAnimationWithCompletion:^{
             [self raiseLabelBarViewAnimationWithCompletion:^{
                 self.contentViewController.view.userInteractionEnabled = YES;
                 [self.labelBarViewController hideLoginLabelAnimated:YES];
-                
                 [self performSelector:@selector(loadContentView) withObject:nil afterDelay:0.6f];
-                
-                //[self.loginViewController.view removeFromSuperview];
-                //self.loginViewController = nil;
             }];
         }];
     }
@@ -445,11 +440,11 @@
 
 - (void)raiseLoginViewAnimated:(BOOL)animated {
     if(animated) {
-        
         [self.labelBarViewController showLoginLabelAnimated:YES completion:^{
             self.contentViewController.view.userInteractionEnabled = NO;
             [self dropLabelBarViewAnimationWithCompletion:^{
                 [self raiseLoginViewAnimationWithCompletion:^{
+                    self.contentViewController.view.hidden = YES;
                     self.loginViewController.view.userInteractionEnabled = YES;
                 }];
             }];
