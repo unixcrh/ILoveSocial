@@ -19,7 +19,7 @@
 #define CONTENT_VIEW_ORIGIN_Y   64.0f
 
 #define LABEL_BAR_VIEW_HEIGHT   64.0f
-#define LABEL_BAR_VIEW_DROP_Y 396.0f
+#define LABEL_BAR_VIEW_DROP_Y   396.0f
 
 #define USER_NOT_OPEN   0
 
@@ -33,6 +33,7 @@
 
 - (void)raiseLoginViewAnimated:(BOOL)animated;
 - (void)dropLoginViewAnimated:(BOOL)animated;
+
 @end
 
 @implementation LNRootViewController
@@ -77,10 +78,10 @@
     }
     else
     {
-        [UIView animateWithDuration:0.4f animations:^{
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.labelBarViewController.view.alpha = 1.0f;
             self.loginViewController.view.alpha = 1.0f;
-        }];
+        } completion:nil];
     }
 }
 
@@ -298,10 +299,10 @@
 
 -(void)splashViewWillRemove
 {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.labelBarViewController.view.alpha = 1.0f;
         self.loginViewController.view.alpha = 1.0f;
-    }];
+    } completion:nil];
 }
 
 #pragma mark - 
@@ -309,7 +310,7 @@
 
 - (void)didClickShowHelp
 {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.loginViewController.view.alpha = 0;
         self.labelBarViewController.view.alpha = 0;
     } completion:^(BOOL finished) {
