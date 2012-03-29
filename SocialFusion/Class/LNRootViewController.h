@@ -10,8 +10,9 @@
 #import "CoreDataViewController.h"
 #import "LNLabelBarViewController.h"
 #import "LNContentViewController.h"
-
-@interface LNRootViewController : CoreDataViewController<LNLabelBarViewControllerDelegate, LNContentViewControllerDelegate> {
+#import "SpashViewController.h"
+#import "LoginViewController.h"
+@interface LNRootViewController : CoreDataViewController<LNLabelBarViewControllerDelegate, LNContentViewControllerDelegate,SplashViewDelegate, LoginViewDelegate> {
     LNLabelBarViewController *_labelBarViewController;
     LNContentViewController *_contentViewController;
     NSMutableDictionary *_openedUserHeap;

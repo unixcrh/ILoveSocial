@@ -7,14 +7,12 @@
 //
 
 #import "LNRootViewController.h"
-#import "LoginViewController.h"
 #import "LabelConverter.h"
 #import "RenrenUser+Addition.h"
 #import "WeiboUser+Addition.h"
 #import "NSNotificationCenter+Addition.h"
 #import "UIApplication+Addition.h"
 
-#import "SpashViewController.h"
 #define CONTENT_VIEW_ORIGIN_X   7.0f
 #define CONTENT_VIEW_ORIGIN_Y   64.0f
 
@@ -29,6 +27,7 @@
 - (void)loadLabelBarView;
 - (void)loadLoginView;
 - (void)loadFakeContentView;
+- (void)loadSplashView;
 
 - (void)raiseLoginViewAnimated:(BOOL)animated;
 - (void)dropLoginViewAnimated:(BOOL)animated;
@@ -61,18 +60,11 @@
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
     [NSNotificationCenter registerSelectBackToLoginNotificationWithSelector:@selector(selectBackToLoginNotification:) target:self];
     
-    [self loadLabelBarView];
-    [self loadFakeContentView];
-    [self loadLoginView];
-    [self raiseLoginViewAnimated:NO];
-    [self.labelBarViewController showLoginLabelAnimated:NO];
-    
-    self.labelBarViewController.view.alpha = 0;
-    self.loginViewController.view.alpha = 0;
-    [UIView animateWithDuration:0.4f animations:^{
-        self.labelBarViewController.view.alpha = 1.0f;
-        self.loginViewController.view.alpha = 1.0f;
-    }];
+    [self loadSplashView];
+   // [self loadLabelBarView];
+   // [self loadFakeContentView];
+   // [self loadLoginView];
+
 }
 
 - (id)init {
@@ -137,13 +129,18 @@
     self.labelBarViewController.view.userInteractionEnabled = YES;
 }
 
+- (void)loadSplashView{
+    SpashViewController* view = [[SpashViewController alloc] init];
+    view.delegate=self;
+   // [self.view insertSubview:view.view aboveSubview:self.labelBarViewController.view];
+    [self.view addSubview:view.view];
+}
 - (void)loadLoginView {
     self.loginViewController = [[[LoginViewController alloc] init] autorelease];
     self.loginViewController.managedObjectContext = self.managedObjectContext;
+    self.loginViewController.delegate=self;
    [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
    
-    //SpashViewController* view = [[SpashViewController alloc] init];
-    //[self.view insertSubview:view.view aboveSubview:self.labelBarViewController.view];
 
     self.loginViewController.view.userInteractionEnabled = NO;
 }
@@ -259,6 +256,48 @@
 - (void)selectBackToLoginNotification:(NSNotification *)notification {
     [self raiseLoginViewAnimated:YES];
 }
+
+
+#pragma mark - 
+#pragma makr SpashViewController delegate
+
+-(void)SplashViewDidRemoved
+{
+    [self loadLabelBarView];
+    [self loadFakeContentView];
+    [self loadLoginView];
+    [self raiseLoginViewAnimated:NO];
+    [self.labelBarViewController showLoginLabelAnimated:NO];
+    
+    self.labelBarViewController.view.alpha = 0;
+    self.loginViewController.view.alpha = 0;
+    [UIView animateWithDuration:0.4f animations:^{
+        self.labelBarViewController.view.alpha = 1.0f;
+        self.loginViewController.view.alpha = 1.0f;
+    }];
+}
+
+#pragma mark - 
+#pragma makr LoginView delegate
+
+-(void)didClickShowHelp
+{
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        self.loginViewController.view.alpha=0;
+        self.labelBarViewController.view.alpha=0;
+        self.contentViewController.view.alpha=0;
+    } completion:^(BOOL finished) {
+        
+        [self.loginViewController.view removeFromSuperview];
+        [self.labelBarViewController.view removeFromSuperview];
+        [self.contentViewController.view removeFromSuperview];
+        [self loadSplashView];
+    }];
+
+}
+
+
 
 #pragma mark - 
 #pragma makr LNContentViewController delegate

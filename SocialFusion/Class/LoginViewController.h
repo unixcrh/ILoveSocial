@@ -9,6 +9,7 @@
 #import "CoreDataViewController.h"
 #import "WeiboClient.h"
 #import "AppInfoViewController.h"
+@protocol LoginViewDelegate;
 
 @interface LoginViewController : CoreDataViewController<UIAlertViewDelegate, WBSessionDelegate, AppInfoViewControllerDelegate>
 
@@ -20,9 +21,17 @@
 @property(nonatomic, retain) IBOutlet UIView *weiboPhotoView;
 @property(nonatomic, retain) IBOutlet UIView *renrenPhotoView;
 @property(nonatomic, readonly) BOOL isLoginValid;
+@property (nonatomic, assign) id<LoginViewDelegate> delegate;
 
 - (IBAction)didClickRenrenLoginButton:(id)sender;
 - (IBAction)didClickWeiboLoginButton:(id)sender;
 - (IBAction)didClickInfoButton:(id)sender;
+- (IBAction)didClickHelpButton:(id)sender;
+
+@end
+
+@protocol LoginViewDelegate <NSObject>
+
+- (void) didClickShowHelp;
 
 @end

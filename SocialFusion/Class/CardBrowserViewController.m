@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #define BAIDU_LINK_TRANSFER @"http://gate.baidu.com/tc?from=opentc&src="
 #define SINA_IASK_TRANSFER @"http://h2w.iask.cn/hd.php?u="
+#define SINA_IASK_VIDEO_TRANSFER @"http://3g.sina.com.cn/3g/site/proc/video/show_convert_videoV2.php?url="
 @interface CardBrowserViewController ()
 
 @end

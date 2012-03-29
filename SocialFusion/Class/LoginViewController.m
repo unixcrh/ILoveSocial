@@ -36,10 +36,11 @@
 @synthesize logoutClient = _logoutClient;
 @synthesize weiboPhotoImageView = _weiboPhotoImageView, renrenPhotoImageView = _renrenPhotoImageView;
 @synthesize weiboPhotoView = _weiboPhotoView, renrenPhotoView = _renrenPhotoView;
-
+@synthesize delegate=_delegate;
 
 - (void)dealloc
 {
+    NSLog(@"loginview release");
     [_weiboUserNameLabel release];
     [_renrenUserNameLabel release];
     if(self.hasLoggedInAlertView.visible) {
@@ -277,6 +278,11 @@
     vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:vc animated:YES];
     [vc release];
+}
+
+- (IBAction)didClickHelpButton:(id)sender
+{
+    [_delegate didClickShowHelp];
 }
 
 #pragma mark -
