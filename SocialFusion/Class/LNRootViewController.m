@@ -12,8 +12,12 @@
 #import "WeiboUser+Addition.h"
 #import "NSNotificationCenter+Addition.h"
 #import "UIApplication+Addition.h"
+#import "RenrenClient.h"
+#import "WeiboClient.h"
 
-#define kHAVEOPENED @"HAVEOPENED"
+#define kHasShownUserGuide @"kHasShownUserGuide_0_9_2"
+#define kHasSharedAd @"kHasSharedAd_0_9_2"
+
 #define CONTENT_VIEW_ORIGIN_X   7.0f
 #define CONTENT_VIEW_ORIGIN_Y   64.0f
 
@@ -70,9 +74,9 @@
     self.labelBarViewController.view.alpha = 0;
     self.loginViewController.view.alpha = 0;
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:kHAVEOPENED] == NO)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:kHasShownUserGuide] == NO)
     {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHAVEOPENED];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHasShownUserGuide];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self didClickShowHelp];
     }
@@ -217,6 +221,31 @@
         }
         else 
             [self dropLoginViewAnimated:YES];
+        
+        
+        BOOL _selected=[[NSUserDefaults standardUserDefaults] boolForKey:@"kShared"];
+        BOOL _firstLoad=[[NSUserDefaults standardUserDefaults] boolForKey:kHasSharedAd];
+        if ((_selected&&!_firstLoad)==YES)
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHasSharedAd];
+        RenrenClient *renren = [RenrenClient client];
+        [renren setCompletionBlock:^(RenrenClient *client) {
+            if(!client.hasError) {
+             
+            }
+        }];
+  
+
+        [renren postStatus:@"我正在使用全新的Pocket Social，完美整合人人网与新浪微博，带给我与众不同的社交体验。下载地址：http://itunes.apple.com/cn/app/pocket-social/id507420048?mt=8" withImage:[UIImage imageNamed:@"share.png"]];
+        
+            WeiboClient *weibo = [WeiboClient client];
+        [weibo setCompletionBlock:^(WeiboClient *client) {
+            if(!client.hasError) {
+                
+            }
+        }];
+        [weibo postStatus:@"我正在使用全新的Pocket Social，完美整合人人网与新浪微博，带给我与众不同的社交体验。下载地址：http://itunes.apple.com/cn/app/pocket-social/id507420048?mt=8" withImage:[UIImage imageNamed:@"share.png"]];
+        }
     }
 }
 

@@ -16,12 +16,13 @@
 @synthesize scrollView = _scrollView;
 @synthesize pageImage = _pageImage;
 @synthesize delegate = _delegate;
-
+@synthesize chooseShare=_chooseShare;
 - (void)dealloc
 {
     NSLog(@"SplashView Release");
     [_scrollView release];
     [_pageImage release];
+    [_chooseShare release];
     [super dealloc];
 }
 
@@ -31,6 +32,10 @@
 {
     [super viewDidLoad];
     [_pageImage setImage:[UIImage imageNamed:@"pagecon1"]];
+    _chooseShare.center=CGPointMake(112+3*SPLASHVIEWWIDTH, 378);
+    _selectShared=YES;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kShared"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     _scrollView.delegate = self;
     _scrollView.contentSize = CGSizeMake(5 * SPLASHVIEWWIDTH, SPLASHVIEWHEIGHT);
@@ -95,7 +100,7 @@
     {
         self.view.backgroundColor = [UIColor clearColor];
     }
-        
+
     if(pageNumber == 5) {
         [self dismissView];
     }
@@ -110,6 +115,30 @@
         [self.view removeFromSuperview];
         [self release];
     }];
+}
+
+- (IBAction)selectShare
+{
+    if (_selectShared == YES)
+    {
+        _selectShared = NO;
+        [UIView animateWithDuration:0.3f animations:^{
+            _chooseShare.alpha = 0.05;
+            _chooseShare.enabled = YES;
+        } completion:^(BOOL finished) {
+        }];
+    }
+    else
+    {
+        _selectShared = YES;
+        [UIView animateWithDuration:0.3f animations:^{
+            _chooseShare.alpha = 1;
+        } completion:^(BOOL finished) {
+        }];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:_selectShared forKey:@"kShared"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
