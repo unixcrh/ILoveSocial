@@ -7,6 +7,7 @@
 //
 
 #import "SpashViewController.h"
+#import "UIButton+Addition.h"
 
 #define SPLASHVIEWWIDTH 320
 #define SPLASHVIEWHEIGHT 460
@@ -16,13 +17,16 @@
 @synthesize scrollView = _scrollView;
 @synthesize pageImage = _pageImage;
 @synthesize delegate = _delegate;
-@synthesize chooseShare=_chooseShare;
+@synthesize chooseShareButton = _chooseShareButton;
+@synthesize chooseShareIndicator = _chooseShareIndicator;
+
 - (void)dealloc
 {
     NSLog(@"SplashView Release");
     [_scrollView release];
     [_pageImage release];
-    [_chooseShare release];
+    [_chooseShareButton release];
+    [_chooseShareIndicator release];
     [super dealloc];
 }
 
@@ -31,11 +35,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_pageImage setImage:[UIImage imageNamed:@"pagecon1"]];
-    _chooseShare.center=CGPointMake(112+3*SPLASHVIEWWIDTH, 378);
-    _selectShared=YES;
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kShared"];
+    [_pageImage setImage:[UIImage imageNamed:@"pagecon1.png"]];
+    self.chooseShareButton.center = CGPointMake(112 + 3 * SPLASHVIEWWIDTH, 378);
+    self.chooseShareIndicator.center = self.chooseShareButton.center;
+    
+    _selectShared = ![[NSUserDefaults standardUserDefaults] boolForKey:kHasShownUserGuide];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHasShownUserGuide];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.chooseShareIndicator setSelected:_selectShared];
     
     _scrollView.delegate = self;
     _scrollView.contentSize = CGSizeMake(5 * SPLASHVIEWWIDTH, SPLASHVIEWHEIGHT);
@@ -78,6 +85,8 @@
     // e.g. self.myOutlet = nil;
     self.pageImage = nil;
     self.scrollView = nil;
+    self.chooseShareButton = nil;
+    self.chooseShareIndicator = nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -96,7 +105,7 @@
     NSString* changingPage = [NSString stringWithFormat:@"pagecon%d.png", pageNumberToChange];
     [_pageImage setImage:[UIImage imageNamed:changingPage]];
     
-    if (scrollView.contentOffset.x == 2*SPLASHVIEWWIDTH)
+    if (scrollView.contentOffset.x == 2 * SPLASHVIEWWIDTH)
     {
         self.view.backgroundColor = [UIColor clearColor];
     }
@@ -119,25 +128,9 @@
 
 - (IBAction)selectShare
 {
-    if (_selectShared == YES)
-    {
-        _selectShared = NO;
-        [UIView animateWithDuration:0.3f animations:^{
-            _chooseShare.alpha = 0.05;
-            _chooseShare.enabled = YES;
-        } completion:^(BOOL finished) {
-        }];
-    }
-    else
-    {
-        _selectShared = YES;
-        [UIView animateWithDuration:0.3f animations:^{
-            _chooseShare.alpha = 1;
-        } completion:^(BOOL finished) {
-        }];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:_selectShared forKey:@"kShared"];
+    _selectShared = !_selectShared;
+    [self.chooseShareIndicator setPostPlatformButtonSelected:_selectShared];
+    [[NSUserDefaults standardUserDefaults] setBool:_selectShared forKey:kSelectShareAd];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

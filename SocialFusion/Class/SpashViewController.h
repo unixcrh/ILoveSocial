@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define kHasShownUserGuide  @"kHasShownUserGuide_0_9_2"
+#define kSelectShareAd      @"kSelectShareAd"
+
 @protocol SplashViewDelegate;
 
 @interface SpashViewController : UIViewController<UIScrollViewDelegate>
@@ -17,7 +20,8 @@
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, retain) IBOutlet UIImageView *pageImage;
 @property (nonatomic, assign) id<SplashViewDelegate> delegate;
-@property(nonatomic, retain) IBOutlet UIButton *chooseShare;
+@property(nonatomic, retain) IBOutlet UIButton *chooseShareButton;
+@property(nonatomic, retain) IBOutlet UIButton *chooseShareIndicator;
 
 - (IBAction)selectShare;
 - (void)dismissView;
