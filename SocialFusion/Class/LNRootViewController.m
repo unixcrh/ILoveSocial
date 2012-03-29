@@ -13,6 +13,7 @@
 #import "NSNotificationCenter+Addition.h"
 #import "UIApplication+Addition.h"
 
+#define kHAVEOPENED @"HAVEOPENED"
 #define CONTENT_VIEW_ORIGIN_X   7.0f
 #define CONTENT_VIEW_ORIGIN_Y   64.0f
 
@@ -68,10 +69,20 @@
     
     self.labelBarViewController.view.alpha = 0;
     self.loginViewController.view.alpha = 0;
-    [UIView animateWithDuration:0.4f animations:^{
-        self.labelBarViewController.view.alpha = 1.0f;
-        self.loginViewController.view.alpha = 1.0f;
-    }];
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:kHAVEOPENED] == NO)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHAVEOPENED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self didClickShowHelp];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.4f animations:^{
+            self.labelBarViewController.view.alpha = 1.0f;
+            self.loginViewController.view.alpha = 1.0f;
+        }];
+    }
 }
 
 - (id)init {
