@@ -440,12 +440,14 @@
 
 - (void)raiseLoginViewAnimated:(BOOL)animated {
     if(animated) {
+        self.labelBarViewController.view.userInteractionEnabled = NO;
         [self.labelBarViewController showLoginLabelAnimated:YES completion:^{
             self.contentViewController.view.userInteractionEnabled = NO;
             [self dropLabelBarViewAnimationWithCompletion:^{
                 [self raiseLoginViewAnimationWithCompletion:^{
                     self.contentViewController.view.hidden = YES;
                     self.loginViewController.view.userInteractionEnabled = YES;
+                    self.labelBarViewController.view.userInteractionEnabled = YES;
                 }];
             }];
         }];
