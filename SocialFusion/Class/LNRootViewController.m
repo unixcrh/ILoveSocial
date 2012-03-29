@@ -60,11 +60,18 @@
     [NSNotificationCenter registerSelectChildLabelNotificationWithSelector:@selector(selectChildLabelNotification:) target:self];
     [NSNotificationCenter registerSelectBackToLoginNotificationWithSelector:@selector(selectBackToLoginNotification:) target:self];
     
-    [self loadSplashView];
-   // [self loadLabelBarView];
-   // [self loadFakeContentView];
-   // [self loadLoginView];
-
+    [self loadLabelBarView];
+    [self loadFakeContentView];
+    [self loadLoginView];
+    [self raiseLoginViewAnimated:NO];
+    [self.labelBarViewController showLoginLabelAnimated:NO];
+    
+    self.labelBarViewController.view.alpha = 0;
+    self.loginViewController.view.alpha = 0;
+    [UIView animateWithDuration:0.4f animations:^{
+        self.labelBarViewController.view.alpha = 1.0f;
+        self.loginViewController.view.alpha = 1.0f;
+    }];
 }
 
 - (id)init {
@@ -131,17 +138,15 @@
 
 - (void)loadSplashView{
     SpashViewController* view = [[SpashViewController alloc] init];
-    view.delegate=self;
-   // [self.view insertSubview:view.view aboveSubview:self.labelBarViewController.view];
+    view.delegate = self;
     [self.view addSubview:view.view];
 }
+
 - (void)loadLoginView {
     self.loginViewController = [[[LoginViewController alloc] init] autorelease];
     self.loginViewController.managedObjectContext = self.managedObjectContext;
-    self.loginViewController.delegate=self;
+    self.loginViewController.delegate = self;
    [self.view insertSubview:self.loginViewController.view belowSubview:self.labelBarViewController.view];
-   
-
     self.loginViewController.view.userInteractionEnabled = NO;
 }
 
@@ -242,7 +247,6 @@
     }
     
     if(!self.labelBarViewController.isSelectUserLock) {
-       // NSLog(@"selected user:%@, user id:%@", selectedUser.name, selectedUser.userID);
         [_openedUserHeap setObject:[NSNumber numberWithUnsignedInt:self.labelBarViewController.parentLabelCount] forKey:selectedUser.userID];
         LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:identifier];
         labelInfo.isRemovable = YES;
@@ -261,17 +265,9 @@
 #pragma mark - 
 #pragma makr SpashViewController delegate
 
--(void)SplashViewDidRemoved
+-(void)splashViewWillRemove
 {
-    [self loadLabelBarView];
-    [self loadFakeContentView];
-    [self loadLoginView];
-    [self raiseLoginViewAnimated:NO];
-    [self.labelBarViewController showLoginLabelAnimated:NO];
-    
-    self.labelBarViewController.view.alpha = 0;
-    self.loginViewController.view.alpha = 0;
-    [UIView animateWithDuration:0.4f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         self.labelBarViewController.view.alpha = 1.0f;
         self.loginViewController.view.alpha = 1.0f;
     }];
@@ -280,24 +276,15 @@
 #pragma mark - 
 #pragma makr LoginView delegate
 
--(void)didClickShowHelp
+- (void)didClickShowHelp
 {
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        self.loginViewController.view.alpha=0;
-        self.labelBarViewController.view.alpha=0;
-        self.contentViewController.view.alpha=0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.loginViewController.view.alpha = 0;
+        self.labelBarViewController.view.alpha = 0;
     } completion:^(BOOL finished) {
-        
-        [self.loginViewController.view removeFromSuperview];
-        [self.labelBarViewController.view removeFromSuperview];
-        [self.contentViewController.view removeFromSuperview];
         [self loadSplashView];
     }];
-
 }
-
-
 
 #pragma mark - 
 #pragma makr LNContentViewController delegate

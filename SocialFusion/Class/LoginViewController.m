@@ -282,7 +282,7 @@
 
 - (IBAction)didClickHelpButton:(id)sender
 {
-    [_delegate didClickShowHelp];
+    [self.delegate didClickShowHelp];
 }
 
 #pragma mark -

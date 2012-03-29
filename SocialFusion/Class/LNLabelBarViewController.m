@@ -527,6 +527,10 @@
         self.scrollView.userInteractionEnabled = NO;
         self.loginButton.userInteractionEnabled = YES;
     }
+    self.pageControl.alpha = 1.0f;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.pageControl.alpha = 0;
+    }];
 }
 
 - (void)hideLoginLabelAnimated:(BOOL)animated {
@@ -549,6 +553,10 @@
         self.scrollView.userInteractionEnabled = YES;
         self.loginButton.userInteractionEnabled = NO;
     }
+    self.pageControl.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.pageControl.alpha = 1.0f;
+    }];
 }
 
 #pragma mark -
