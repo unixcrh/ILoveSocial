@@ -65,7 +65,7 @@
     NSString *emailBody = @"请将需要反馈的信息填入邮件正文，您的宝贵建议会直接送达Pocket Social开发团队。";
     [picker setToRecipients:toRecipients];
     [picker setMessageBody:emailBody isHTML:NO];
-    [self presentModalViewController:picker animated:YES];
+    [[UIApplication sharedApplication].rootViewController presentModalViewController:picker animated:YES];
     [picker release];
 }
 
@@ -99,6 +99,6 @@
 #pragma mark - MFMailComposeViewControllerDelegate
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-	[self dismissModalViewControllerAnimated:YES];
+	[[UIApplication sharedApplication].rootViewController dismissModalViewControllerAnimated:YES];
 }
 @end

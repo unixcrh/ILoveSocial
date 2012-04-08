@@ -24,7 +24,7 @@ static BOOL _isShowingToast;
 
 - (UIView *)rootView
 {
-    return [[self rootViewController] view];
+    return self.rootViewController.view;
 }
 
 - (UIViewController *)rootViewController

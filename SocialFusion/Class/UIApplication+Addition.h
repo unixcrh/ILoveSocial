@@ -13,6 +13,8 @@
 
 @interface UIApplication (Addition)
 
+@property (nonatomic, readonly) UIViewController *rootViewController;
+
 - (void)presentModalViewController:(UIViewController *)vc;
 - (void)dismissModalViewController;
 - (void)presentToast:(NSString *)text withVerticalPos:(CGFloat)y;
