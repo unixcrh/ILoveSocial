@@ -213,7 +213,11 @@ for (UIView *aView in [_webView subviews])
 {
     UITableViewCell* cell=(UITableViewCell*)((UIButton*)sender).superview.superview;
     NSIndexPath* indexPath=[self.tableView indexPathForCell:cell];
-    
+
+    if (_showMoreButton == YES)
+    {
+        indexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+    }
     StatusCommentData* data=[self.fetchedResultsController objectAtIndexPath:indexPath];
     
     
