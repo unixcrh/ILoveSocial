@@ -68,10 +68,10 @@
         if (_style==kRenrenStatus)
         {
             [self didClickPostToRenrenButton];
-            if (((NewFeedData*)_feedData).repost_ID!=nil)
-            {
-                self.textView.text=[NSString stringWithFormat:@"//%@:%@", ((NewFeedData*)_feedData).author.name  , ((NewFeedData*)_feedData).message];
-            }
+      //      if (((NewFeedData*)_feedData).repost_ID!=nil)
+      //      {
+       //         self.textView.text=[NSString stringWithFormat:@"//%@:%@", ((NewFeedData*)_feedData).author.name  , ((NewFeedData*)_feedData).message];
+       //     }
             self.textView.selectedRange=NSMakeRange(0, 0);
             [self updateTextCount];
         }
@@ -122,7 +122,8 @@
         [self postStatusCompletion];
     }];
     
-    [client2 repost:statusID text:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] commentStatus:YES commentOrigin:NO];
+     
+    [client2 repost:statusID text:[    [NSString stringWithFormat:@"%@//%@:%@", self.textView.text,((NewFeedData*)_feedData).author.name  , ((NewFeedData*)_feedData).message] getStatusSubstringWithCount:WEIBO_MAX_WORD] commentStatus:YES commentOrigin:NO];
 }
 #pragma mark -
 #pragma mark IBAction
@@ -151,15 +152,18 @@
                 [self postStatusCompletion];
             }];
             _postCount++;
-            if (((NewFeedData*)_feedData).repost_ID!=nil)
-            {
-                [client forwardStatus:((NewFeedData*)_feedData).repost_ID statusID:((NewFeedData*)_feedData).repost_StatusID andStatusString:self.textView.text];
-            }
-            else
-            {
+            
+   
+            
+      //      if (((NewFeedData*)_feedData).repost_ID!=nil)
+      //      {
+             //   [client forwardStatus:((NewFeedData*)_feedData).repost_ID statusID:((NewFeedData*)_feedData).repost_StatusID andStatusString:self.textView.text];
+        //    }
+         //   else
+          //  {
                 [client forwardStatus:((NewFeedData*)_feedData).author.userID statusID:((NewFeedData*)_feedData).source_ID andStatusString:self.textView.text];
                 
-            }
+           // }
         }
         if (_repostToWeibo==YES)
         {
