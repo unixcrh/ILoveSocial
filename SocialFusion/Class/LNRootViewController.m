@@ -228,7 +228,8 @@
                     
                 }
             }];
-            [renren postStatus:@"我正在使用全新的Pocket Social，完美整合人人网与新浪微博，带给我与众不同的社交体验。下载地址：http://itunes.apple.com/cn/app/pocket-social/id507420048?mt=8" withImage:[UIImage imageNamed:@"share_ad.png"]];
+            NSString *ad_slogan = [NSString stringWithFormat:@"我正在使用全新的Pocket Social 0.9.2，无缝浏览人人网与新浪微博，享受无与伦比的便捷社交体验。下载地址：http://itunes.apple.com/cn/app/pocket-social/id507420048?mt=8"];
+            [renren postStatus:ad_slogan withImage:[UIImage imageNamed:@"share_ad.png"]];
             
             WeiboClient *weibo = [WeiboClient client];
             [weibo setCompletionBlock:^(WeiboClient *client) {
@@ -236,7 +237,7 @@
                     
                 }
             }];
-            [weibo postStatus:@"我正在使用全新的Pocket Social，完美整合人人网与新浪微博，带给我与众不同的社交体验。下载地址：http://itunes.apple.com/cn/app/pocket-social/id507420048?mt=8" withImage:[UIImage imageNamed:@"share_ad.png"]];
+            [weibo postStatus:ad_slogan withImage:[UIImage imageNamed:@"share_ad.png"]];
         }
     }
 }

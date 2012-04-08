@@ -69,10 +69,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _located=NO;
     [self.postRenrenButton setSelected:_postToRenren];
     [self.postWeiboButton setSelected:_postToWeibo];
-
+    
     self.photoView.hidden = YES;
     
     if (self.processUser) {
@@ -107,24 +106,24 @@
         }];
         _postCount++;
         if (self.photoImageView.image) {
-            if (_located==NO)
+            if (_located == NO)
             {
-            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
+                [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image];
             }
             else
             {
-            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image latitude:_location2D.latitude longitude:_location2D.longitude];
+                [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] withImage:self.photoImageView.image latitude:_location2D.latitude longitude:_location2D.longitude];
             }
         }
         else {
-            if (_located==NO)
+            if (_located == NO)
             {
-            [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] ];
+                [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] ];
             }
             else
             {
                 [client postStatus:[self.textView.text getStatusSubstringWithCount:WEIBO_MAX_WORD] latitude:_location2D.latitude longitude:_location2D.longitude ];
-
+                
             }
         }
     }
@@ -281,27 +280,22 @@
 
 - (IBAction)didClickNavigationButton
 {
-    if (_located==NO)
+    if (_located == NO)
     {
-   CLLocationManager* locationManager = [[CLLocationManager alloc] init];
-    
-
+        CLLocationManager* locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         locationManager.distanceFilter = kCLDistanceFilterNone;
         // 启动GPS信息回调
         [locationManager startUpdatingLocation];
-
-     
+        _navigation.selected = YES;
     }
     else
     {
-        _located=NO;
-        _navigation.highlighted=NO;
-
+        _located = NO;
+        _navigation.selected = NO;
+        
     }
-    //[[UIApplication sharedApplication] presentToast:@"当前版本暂不支持定位。" withVerticalPos:TOAST_POS_Y];
-    
 }
 
 
@@ -310,12 +304,11 @@
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    _located=YES;
-    _location2D=newLocation.coordinate;    
-    _navigation.highlighted=YES;
+    _located = YES;
+    _location2D = newLocation.coordinate;    
     
     [manager stopUpdatingLocation];
     [manager release];
 }
- 
+
 @end

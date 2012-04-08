@@ -347,6 +347,7 @@
 		E1E5DF91143C6BDB0098BBD3 /* RenrenDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF90143C6BDB0098BBD3 /* RenrenDetail+Addition.m */; };
 		E1E5DF94143C6C1F0098BBD3 /* WeiboDetail+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DF93143C6C1F0098BBD3 /* WeiboDetail+Addition.m */; };
 		E1E5DFAF143CB4110098BBD3 /* SocialFusion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1E5DFAD143CB4110098BBD3 /* SocialFusion.xcdatamodeld */; };
+		E1F1CEED1531FD8000EBD4EB /* new_status_toolbar_btn_nav_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F1CEEC1531FD8000EBD4EB /* new_status_toolbar_btn_nav_select@2x.png */; };
 		E1FB624114247EA000828E24 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */; };
 		E1FB624214247EA000828E24 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB624014247EA000828E24 /* CoreDataViewController.m */; };
 		E1FB62621424812C00828E24 /* Image+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB62591424812B00828E24 /* Image+Addition.m */; };
@@ -868,6 +869,7 @@
 		E1E5DF92143C6C1F0098BBD3 /* WeiboDetail+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeiboDetail+Addition.h"; sourceTree = "<group>"; };
 		E1E5DF93143C6C1F0098BBD3 /* WeiboDetail+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeiboDetail+Addition.m"; sourceTree = "<group>"; };
 		E1E5DFAE143CB4110098BBD3 /* SocialFusion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialFusion.xcdatamodel; sourceTree = "<group>"; };
+		E1F1CEEC1531FD8000EBD4EB /* new_status_toolbar_btn_nav_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_status_toolbar_btn_nav_select@2x.png"; sourceTree = "<group>"; };
 		E1F247D214C3F03F00D2653A /* SocialFusion 1.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SocialFusion 1.0.1.xcdatamodel"; sourceTree = "<group>"; };
 		E1FB623D14247EA000828E24 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = SocialFusion/Class/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E1FB623E14247EA000828E24 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = SocialFusion/Class/CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -1455,6 +1457,7 @@
 				E15F990914D5CE3C0069072C /* new_status_toolbar_bg@2x.png */,
 				E15F990A14D5CE3C0069072C /* new_status_toolbar_btn_at@2x.png */,
 				E15F990B14D5CE3C0069072C /* new_status_toolbar_btn_nav@2x.png */,
+				E1F1CEEC1531FD8000EBD4EB /* new_status_toolbar_btn_nav_select@2x.png */,
 				E15F990C14D5CE3C0069072C /* new_status_toolbar_btn_photo@2x.png */,
 				E15F990D14D5CE3C0069072C /* new_status_toolbar_btn_smile@2x.png */,
 				E1BF1C9C14E1ACB3003750CF /* publication_btn_bg@2x.png */,
@@ -2124,6 +2127,7 @@
 				739386DA152498380084A5F7 /* share_tick.png in Resources */,
 				739386DB152498380084A5F7 /* share_tick@2x.png in Resources */,
 				739386DD1524A1220084A5F7 /* share_ad.png in Resources */,
+				E1F1CEED1531FD8000EBD4EB /* new_status_toolbar_btn_nav_select@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
